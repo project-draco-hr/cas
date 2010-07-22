@@ -1,0 +1,11 @@
+{
+  final String dn=findDn(this.ldapServiceMapper.getSearchFilter(registeredService.getId()).encode());
+  try {
+    this.ldapTemplate.unbind(dn,false);
+    return true;
+  }
+ catch (  final Exception e) {
+    log.warn("Error deleting Registered Service",e);
+    return false;
+  }
+}

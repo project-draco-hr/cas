@@ -1,0 +1,8 @@
+{
+  this.validator.setServicesManager(new TestServicesManager(exists));
+  final RegisteredServiceImpl impl=new RegisteredServiceImpl();
+  impl.setServiceId(name);
+  final BindException exception=new BindException(impl,"registeredService");
+  this.validator.validate(impl,exception);
+  assertEquals(expectedErrors,exception.getErrorCount());
+}

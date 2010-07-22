@@ -1,0 +1,6 @@
+{
+  this.overrides=new HashMap<Pattern,String>();
+  for (  final Map.Entry<String,String> entry : mobileOverrides.entrySet()) {
+    this.overrides.put(Pattern.compile(entry.getKey()),entry.getValue());
+  }
+}

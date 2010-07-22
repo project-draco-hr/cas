@@ -1,0 +1,4 @@
+{
+  this.remoteCentralAuthenticationService=new RemoteCentralAuthenticationService();
+  this.remoteCentralAuthenticationService.setCentralAuthenticationService(getCentralAuthenticationService());
+}

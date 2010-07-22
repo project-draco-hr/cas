@@ -1,0 +1,3 @@
+{
+  assertTrue("Authentications are not equal",this.authentication.equals(this.authentication));
+}

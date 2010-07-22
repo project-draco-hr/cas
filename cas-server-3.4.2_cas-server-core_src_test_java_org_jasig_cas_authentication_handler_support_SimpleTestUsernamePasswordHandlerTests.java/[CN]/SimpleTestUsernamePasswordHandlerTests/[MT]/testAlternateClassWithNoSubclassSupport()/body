@@ -1,0 +1,5 @@
+{
+  this.authenticationHandler.setClassToSupport(UsernamePasswordCredentials.class);
+  this.authenticationHandler.setSupportSubClasses(false);
+  assertFalse(this.authenticationHandler.supports(new ExtendedCredentials()));
+}

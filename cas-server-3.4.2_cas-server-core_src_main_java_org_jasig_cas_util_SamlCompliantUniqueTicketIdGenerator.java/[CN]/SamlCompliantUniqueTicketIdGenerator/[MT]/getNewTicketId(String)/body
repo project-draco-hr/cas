@@ -1,0 +1,8 @@
+{
+  if (saml2compliant) {
+    return new SAMLArtifactType0002(this.randomStringGenerator.getNewStringAsBytes(),new URI(this.sourceLocation)).encode();
+  }
+ else {
+    return new SAMLArtifactType0001(this.randomStringGenerator.getNewStringAsBytes(),new URI(this.sourceLocation).toBytes()).encode();
+  }
+}

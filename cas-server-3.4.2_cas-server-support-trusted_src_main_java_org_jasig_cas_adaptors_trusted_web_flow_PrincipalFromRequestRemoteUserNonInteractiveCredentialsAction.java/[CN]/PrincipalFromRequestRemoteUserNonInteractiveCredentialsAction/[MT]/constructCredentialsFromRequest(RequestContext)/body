@@ -1,0 +1,14 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final String remoteUser=request.getRemoteUser();
+  if (StringUtils.hasText(remoteUser)) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("Remote  User [" + remoteUser + "] found in HttpServletRequest");
+    }
+    return new PrincipalBearingCredentials(new SimplePrincipal(remoteUser));
+  }
+  if (logger.isDebugEnabled()) {
+    logger.debug("Remote User not found in HttpServletRequest.");
+  }
+  return null;
+}

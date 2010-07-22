@@ -1,0 +1,3 @@
+{
+  this.regExTrustedIssuerDnPattern=Pattern.compile(trustedIssuerDnPattern);
+}

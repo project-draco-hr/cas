@@ -1,0 +1,6 @@
+{
+  final ModelAndView modelAndView=new ModelAndView(CONST_PROXY_FAILURE);
+  modelAndView.addObject("code",code);
+  modelAndView.addObject("description",getMessageSourceAccessor().getMessage(description,args,description));
+  return modelAndView;
+}

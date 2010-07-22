@@ -1,0 +1,4 @@
+{
+  this.extractor=new SamlArgumentExtractor();
+  super.setUp();
+}

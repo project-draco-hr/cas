@@ -1,0 +1,6 @@
+{
+  final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  c.setUsername("scott");
+  c.setPassword("rutgers");
+  this.authenticationHandler.authenticate(c);
+}

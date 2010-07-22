@@ -1,0 +1,5 @@
+{
+  Assert.notNull(credentials,"credentials cannot be null");
+  checkForErrors(credentials);
+  return this.centralAuthenticationService.createTicketGrantingTicket(credentials);
+}

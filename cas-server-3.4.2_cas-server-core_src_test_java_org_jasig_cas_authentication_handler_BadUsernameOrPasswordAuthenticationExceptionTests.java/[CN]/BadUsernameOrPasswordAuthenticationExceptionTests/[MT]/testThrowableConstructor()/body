@@ -1,0 +1,6 @@
+{
+  final RuntimeException r=new RuntimeException();
+  final BadUsernameOrPasswordAuthenticationException e=new BadUsernameOrPasswordAuthenticationException(r);
+  assertEquals(CODE,e.getCode());
+  assertEquals(r,e.getCause());
+}

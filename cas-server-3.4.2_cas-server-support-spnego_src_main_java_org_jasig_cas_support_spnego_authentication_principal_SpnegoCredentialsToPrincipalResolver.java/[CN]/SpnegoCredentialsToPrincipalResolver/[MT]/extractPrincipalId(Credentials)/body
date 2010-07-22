@@ -1,0 +1,11 @@
+{
+  final SpnegoCredentials c=(SpnegoCredentials)credentials;
+switch (this.transformPrincipalId) {
+case UPPERCASE:
+    return c.getPrincipal().getId().toUpperCase(Locale.ENGLISH);
+case LOWERCASE:
+  return c.getPrincipal().getId().toLowerCase(Locale.ENGLISH);
+default :
+return c.getPrincipal().getId();
+}
+}

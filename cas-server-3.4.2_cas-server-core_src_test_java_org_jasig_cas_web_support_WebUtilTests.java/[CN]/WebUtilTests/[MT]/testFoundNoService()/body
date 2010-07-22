@@ -1,0 +1,8 @@
+{
+  final SamlArgumentExtractor openIdArgumentExtractor=new SamlArgumentExtractor();
+  final ArgumentExtractor[] argumentExtractors=new ArgumentExtractor[]{openIdArgumentExtractor};
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setParameter("service","test");
+  final Service service=WebUtils.getService(Arrays.asList(argumentExtractors),request);
+  assertNull(service);
+}

@@ -1,0 +1,7 @@
+{
+  Authentication authentication=TestUtils.getAuthentication();
+  List<Authentication> principals=new ArrayList<Authentication>();
+  principals.add(authentication);
+  TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,authentication,new NeverExpiresExpirationPolicy());
+  assertEquals(principals,t.getChainedAuthentications());
+}

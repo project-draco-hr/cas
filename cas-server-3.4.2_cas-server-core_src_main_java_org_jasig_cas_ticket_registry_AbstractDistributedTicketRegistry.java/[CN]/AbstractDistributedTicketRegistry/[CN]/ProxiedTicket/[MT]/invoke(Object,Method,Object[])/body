@@ -1,0 +1,20 @@
+{
+  final Object result=m.invoke(this.ticket,args);
+  if (ABSTRACT_GT_METHOD.equals(m)) {
+    if (result == null) {
+      return null;
+    }
+    final Ticket oldTicket=(Ticket)result;
+    final Ticket t=this.ticketRegistry.getTicket(oldTicket.getId());
+    if (t != null) {
+      return ProxiedTicket.newInstance(t,this.ticketRegistry);
+    }
+    return null;
+  }
+  for (  final Method method : this.methods) {
+    if (method.equals(m)) {
+      this.ticketRegistry.updateTicket((Ticket)this.ticket);
+    }
+  }
+  return result;
+}

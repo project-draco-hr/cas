@@ -1,0 +1,3 @@
+{
+  this.failureRangeInSeconds=failureRangeInSeconds;
+}

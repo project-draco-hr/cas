@@ -1,0 +1,13 @@
+{
+  final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  this.authenticationHandler.setFileName(new ClassPathResource("org/jasig/cas/adaptors/generic/authentication2.txt"));
+  this.authenticationHandler.setSeparator(",");
+  c.setUsername("scott");
+  c.setPassword("rutgers");
+  try {
+    assertTrue(this.authenticationHandler.authenticate(c));
+  }
+ catch (  AuthenticationException e) {
+    fail("AuthenticationException caught but it should not have been thrown.");
+  }
+}

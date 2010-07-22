@@ -1,0 +1,7 @@
+{
+  final Ticket t=(Ticket)this.client.get(ticketId);
+  if (t == null) {
+    return null;
+  }
+  return getProxiedTicketInstance(t);
+}

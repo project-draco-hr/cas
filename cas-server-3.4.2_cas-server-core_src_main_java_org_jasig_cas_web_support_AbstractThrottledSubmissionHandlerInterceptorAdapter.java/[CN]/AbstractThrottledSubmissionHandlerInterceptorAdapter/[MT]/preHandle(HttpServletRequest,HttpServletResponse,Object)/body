@@ -1,0 +1,13 @@
+{
+  if (!"POST".equals(request.getMethod())) {
+    return true;
+  }
+  final int count=findCount(request,this.usernameParameter,this.failureRangeInSeconds);
+  if (count >= this.failureThreshold) {
+    updateCount(request,this.usernameParameter);
+    log.warn("*** Possible Hacking Attempt from [" + request.getRemoteAddr() + "].  More than "+ this.failureThreshold+ " failed login attempts within "+ this.failureRangeInSeconds+ " seconds.");
+    response.sendError(403,"Access Denied for user [" + request.getParameter(usernameParameter) + " from IP Address ["+ request.getRemoteAddr()+ "]");
+    return false;
+  }
+  return true;
+}

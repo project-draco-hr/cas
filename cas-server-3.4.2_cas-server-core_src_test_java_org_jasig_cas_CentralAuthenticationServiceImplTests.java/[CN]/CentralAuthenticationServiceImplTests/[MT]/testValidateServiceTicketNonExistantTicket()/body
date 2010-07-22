@@ -1,0 +1,8 @@
+{
+  try {
+    getCentralAuthenticationService().validateServiceTicket("test",TestUtils.getService());
+    fail(TestUtils.CONST_EXCEPTION_EXPECTED);
+  }
+ catch (  TicketException e) {
+  }
+}

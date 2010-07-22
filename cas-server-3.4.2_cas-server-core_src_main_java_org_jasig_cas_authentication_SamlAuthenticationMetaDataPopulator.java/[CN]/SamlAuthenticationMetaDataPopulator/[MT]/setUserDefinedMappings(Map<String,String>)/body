@@ -1,0 +1,3 @@
+{
+  this.authenticationMethods.putAll(userDefinedMappings);
+}

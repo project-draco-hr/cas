@@ -1,0 +1,5 @@
+{
+  this.handler=new Cas20ProxyHandler();
+  this.handler.setHttpClient(new HttpClient());
+  this.handler.setUniqueTicketIdGenerator(new DefaultUniqueTicketIdGenerator());
+}

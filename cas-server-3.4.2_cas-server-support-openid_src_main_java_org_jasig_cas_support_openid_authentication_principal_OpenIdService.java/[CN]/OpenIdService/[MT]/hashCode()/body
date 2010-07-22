@@ -1,0 +1,7 @@
+{
+  final int prime=31;
+  int result=1;
+  result=prime * result + ((this.identity == null) ? 0 : this.identity.hashCode());
+  result=prime * result + ((this.signature == null) ? 0 : this.signature.hashCode());
+  return result;
+}

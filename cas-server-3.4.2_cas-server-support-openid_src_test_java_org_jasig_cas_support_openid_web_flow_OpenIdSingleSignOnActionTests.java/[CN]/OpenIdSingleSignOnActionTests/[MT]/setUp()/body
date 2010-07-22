@@ -1,0 +1,25 @@
+{
+  this.ticketRegistry=new DefaultTicketRegistry();
+  this.authenticationManager=new DirectMappingAuthenticationManagerImpl();
+  final Map<Class<? extends Credentials>,DirectAuthenticationHandlerMappingHolder> credentialsMapping=new HashMap<Class<? extends Credentials>,DirectAuthenticationHandlerMappingHolder>();
+  final DirectAuthenticationHandlerMappingHolder holder=new DirectAuthenticationHandlerMappingHolder();
+  final OpenIdCredentialsAuthenticationHandler handler=new OpenIdCredentialsAuthenticationHandler();
+  handler.setTicketRegistry(this.ticketRegistry);
+  holder.setAuthenticationHandler(handler);
+  holder.setCredentialsToPrincipalResolver(new OpenIdCredentialsToPrincipalResolver());
+  this.authenticationManager.setCredentialsMapping(credentialsMapping);
+  credentialsMapping.put(OpenIdCredentials.class,holder);
+  final Map<String,UniqueTicketIdGenerator> generator=new HashMap<String,UniqueTicketIdGenerator>();
+  generator.put(OpenIdService.class.getName(),new DefaultUniqueTicketIdGenerator());
+  this.impl.setAuthenticationManager(this.authenticationManager);
+  this.impl.setServicesManager(new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl()));
+  this.impl.setServiceTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
+  this.impl.setTicketGrantingTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
+  this.impl.setTicketGrantingTicketUniqueTicketIdGenerator(new DefaultUniqueTicketIdGenerator());
+  this.impl.setTicketRegistry(this.ticketRegistry);
+  this.impl.setUniqueTicketIdGeneratorsForService(generator);
+  this.action=new OpenIdSingleSignOnAction();
+  this.action.setCentralAuthenticationService(this.impl);
+  this.action.setExtractor(new DefaultOpenIdUserNameExtractor());
+  this.action.afterPropertiesSet();
+}

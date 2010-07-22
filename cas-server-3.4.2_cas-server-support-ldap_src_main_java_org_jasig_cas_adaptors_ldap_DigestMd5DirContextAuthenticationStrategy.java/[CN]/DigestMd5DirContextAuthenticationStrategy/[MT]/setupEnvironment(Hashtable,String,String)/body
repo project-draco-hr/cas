@@ -1,0 +1,5 @@
+{
+  env.put(Context.SECURITY_AUTHENTICATION,DIGEST_MD5_AUTHENTICATION);
+  env.put(Context.SECURITY_PRINCIPAL,userDn);
+  env.put(Context.SECURITY_CREDENTIALS,password);
+}

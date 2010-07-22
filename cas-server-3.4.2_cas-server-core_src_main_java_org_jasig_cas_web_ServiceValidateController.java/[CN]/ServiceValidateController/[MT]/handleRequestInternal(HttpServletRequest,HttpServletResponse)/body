@@ -1,0 +1,46 @@
+{
+  final WebApplicationService service=this.argumentExtractor.extractService(request);
+  final String serviceTicketId=service != null ? service.getArtifactId() : null;
+  if (service == null || serviceTicketId == null) {
+    return generateErrorView("INVALID_REQUEST","INVALID_REQUEST",null);
+  }
+  try {
+    final Credentials serviceCredentials=getServiceCredentialsFromRequest(request);
+    String proxyGrantingTicketId=null;
+    if (serviceCredentials != null) {
+      try {
+        proxyGrantingTicketId=this.centralAuthenticationService.delegateTicketGrantingTicket(serviceTicketId,serviceCredentials);
+      }
+ catch (      final TicketException e) {
+        logger.error("TicketException generating ticket for: " + serviceCredentials,e);
+      }
+    }
+    final Assertion assertion=this.centralAuthenticationService.validateServiceTicket(serviceTicketId,service);
+    final ValidationSpecification validationSpecification=this.getCommandClass();
+    final ServletRequestDataBinder binder=new ServletRequestDataBinder(validationSpecification,"validationSpecification");
+    initBinder(request,binder);
+    binder.bind(request);
+    if (!validationSpecification.isSatisfiedBy(assertion)) {
+      if (logger.isDebugEnabled()) {
+        logger.debug("ServiceTicket [" + serviceTicketId + "] does not satisfy validation specification.");
+      }
+      return generateErrorView("INVALID_TICKET","INVALID_TICKET_SPEC",null);
+    }
+    final ModelAndView success=new ModelAndView(this.successView);
+    success.addObject(MODEL_ASSERTION,assertion);
+    if (serviceCredentials != null && proxyGrantingTicketId != null) {
+      final String proxyIou=this.proxyHandler.handle(serviceCredentials,proxyGrantingTicketId);
+      success.addObject(MODEL_PROXY_GRANTING_TICKET_IOU,proxyIou);
+    }
+    return success;
+  }
+ catch (  final TicketValidationException e) {
+    return generateErrorView(e.getCode(),e.getCode(),new Object[]{serviceTicketId,e.getOriginalService().getId(),service.getId()});
+  }
+catch (  final TicketException te) {
+    return generateErrorView(te.getCode(),te.getCode(),new Object[]{serviceTicketId});
+  }
+catch (  final UnauthorizedServiceException e) {
+    return generateErrorView(e.getMessage(),e.getMessage(),null);
+  }
+}

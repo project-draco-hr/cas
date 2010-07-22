@@ -1,0 +1,3 @@
+{
+  return getCurrentDayOfWeekFor(new Date());
+}

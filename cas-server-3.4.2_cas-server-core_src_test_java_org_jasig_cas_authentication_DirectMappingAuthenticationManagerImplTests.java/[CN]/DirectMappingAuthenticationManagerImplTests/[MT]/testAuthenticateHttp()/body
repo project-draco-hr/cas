@@ -1,0 +1,10 @@
+{
+  try {
+    final HttpBasedServiceCredentials c=new HttpBasedServiceCredentials(new URL("http://www.cnn.com"));
+    this.manager.authenticate(c);
+    fail("Exception expected.");
+  }
+ catch (  final IllegalArgumentException e) {
+    return;
+  }
+}

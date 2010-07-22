@@ -1,0 +1,10 @@
+{
+  final String username=credentials.getUsername();
+  final String password=credentials.getPassword();
+  if (StringUtils.hasText(username) && StringUtils.hasText(password) && username.equals(getPasswordEncoder().encode(password))) {
+    log.debug("User [" + username + "] was successfully authenticated.");
+    return true;
+  }
+  log.debug("User [" + username + "] failed authentication");
+  return false;
+}

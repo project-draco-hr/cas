@@ -1,0 +1,4 @@
+{
+  this.authenticationHandler=new SimpleTestUsernamePasswordAuthenticationHandler();
+  this.authenticationHandler.setPasswordEncoder(new PlainTextPasswordEncoder());
+}

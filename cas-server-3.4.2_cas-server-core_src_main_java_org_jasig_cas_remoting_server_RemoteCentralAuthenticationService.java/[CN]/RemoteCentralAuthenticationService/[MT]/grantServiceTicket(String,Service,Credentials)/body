@@ -1,0 +1,4 @@
+{
+  checkForErrors(credentials);
+  return this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credentials);
+}

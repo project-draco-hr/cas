@@ -1,0 +1,15 @@
+{
+  this.tgtTimeout=ticketGrantingTicketTimeOut;
+  this.stTimeout=serviceTicketTimeOut;
+  final List<InetSocketAddress> addresses=new ArrayList<InetSocketAddress>();
+  for (  final String hostname : hostnames) {
+    String[] hostPort=hostname.split(":");
+    addresses.add(new InetSocketAddress(hostPort[0],Integer.parseInt(hostPort[1])));
+  }
+  try {
+    this.client=new MemcachedClient(addresses);
+  }
+ catch (  final IOException e) {
+    throw new IllegalStateException(e);
+  }
+}

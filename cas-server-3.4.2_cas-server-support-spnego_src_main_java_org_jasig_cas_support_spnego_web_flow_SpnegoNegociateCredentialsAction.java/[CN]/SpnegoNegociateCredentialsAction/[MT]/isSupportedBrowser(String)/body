@@ -1,0 +1,8 @@
+{
+  for (  final String supportedBrowser : this.supportedBrowser) {
+    if (userAgent.contains(supportedBrowser)) {
+      return true;
+    }
+  }
+  return false;
+}

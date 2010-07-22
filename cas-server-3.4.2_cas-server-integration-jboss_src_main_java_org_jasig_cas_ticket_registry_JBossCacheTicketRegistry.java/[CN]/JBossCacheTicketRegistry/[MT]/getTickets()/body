@@ -1,0 +1,17 @@
+{
+  try {
+    final Node<String,Ticket> node=this.cache.getNode(FQN_TICKET);
+    if (node == null) {
+      return Collections.emptyList();
+    }
+    final Set<String> keys=node.getKeys();
+    final List<Ticket> list=new ArrayList<Ticket>();
+    for (    final String key : keys) {
+      list.add(node.get(key));
+    }
+    return list;
+  }
+ catch (  final CacheException e) {
+    return Collections.emptyList();
+  }
+}

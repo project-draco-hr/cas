@@ -1,0 +1,5 @@
+{
+  this.httpClient=new HttpClient();
+  this.httpClient.setConnectionTimeout(1000);
+  this.httpClient.setReadTimeout(1000);
+}

@@ -1,0 +1,6 @@
+String id
+String relayState
+String requestId
+PrivateKey privateKey
+PublicKey publicKey
+String alternateUserName

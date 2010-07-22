@@ -1,0 +1,4 @@
+{
+  checkForErrors(credentials);
+  return this.centralAuthenticationService.delegateTicketGrantingTicket(serviceTicketId,credentials);
+}

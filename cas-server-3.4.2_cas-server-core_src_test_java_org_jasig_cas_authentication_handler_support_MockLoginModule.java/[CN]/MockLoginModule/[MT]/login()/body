@@ -1,0 +1,15 @@
+{
+  final Callback[] callbacks=new Callback[]{new NameCallback("f"),new PasswordCallback("f",false)};
+  try {
+    this.callbackHandler.handle(callbacks);
+  }
+ catch (  Exception e) {
+    throw new LoginException();
+  }
+  final String userName=((NameCallback)callbacks[0]).getName();
+  final String password=new String(((PasswordCallback)callbacks[1]).getPassword());
+  if (userName.equals("test") && password.equals("test")) {
+    return true;
+  }
+  throw new LoginException();
+}

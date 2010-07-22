@@ -1,0 +1,11 @@
+{
+  final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  this.authenticationHandler.setFileName(new ClassPathResource("fff"));
+  c.setUsername("scott");
+  c.setPassword("rutgers");
+  try {
+    assertFalse(this.authenticationHandler.authenticate(c));
+  }
+ catch (  Exception e) {
+  }
+}

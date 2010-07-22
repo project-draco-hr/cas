@@ -1,0 +1,13 @@
+{
+  final String ticketGrantingTicketId=this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request);
+  final String service=request.getParameter("service");
+  if (ticketGrantingTicketId != null) {
+    this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
+    this.ticketGrantingTicketCookieGenerator.removeCookie(response);
+    this.warnCookieGenerator.removeCookie(response);
+  }
+  if (this.followServiceRedirects && service != null) {
+    return new ModelAndView(new RedirectView(service));
+  }
+  return new ModelAndView(this.logoutView);
+}

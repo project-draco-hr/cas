@@ -1,0 +1,15 @@
+{
+  Assert.notNull(ticketGrantingTicketId);
+  if (log.isDebugEnabled()) {
+    log.debug("Removing ticket [" + ticketGrantingTicketId + "] from registry.");
+  }
+  final TicketGrantingTicket ticket=(TicketGrantingTicket)this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
+  if (ticket == null) {
+    return;
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("Ticket found.  Expiring and then deleting.");
+  }
+  ticket.expire();
+  this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
+}

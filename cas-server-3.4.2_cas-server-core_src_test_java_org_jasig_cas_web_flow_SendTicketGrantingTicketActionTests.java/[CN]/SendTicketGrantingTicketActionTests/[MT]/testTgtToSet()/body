@@ -1,0 +1,8 @@
+{
+  final MockHttpServletResponse response=new MockHttpServletResponse();
+  final String TICKET_VALUE="test";
+  WebUtils.putTicketGrantingTicketInRequestScope(this.context,TICKET_VALUE);
+  this.context.setExternalContext(new ServletExternalContext(new MockServletContext(),new MockHttpServletRequest(),response));
+  assertEquals("success",this.action.execute(this.context).getId());
+  assertEquals(TICKET_VALUE,response.getCookies()[0].getValue());
+}

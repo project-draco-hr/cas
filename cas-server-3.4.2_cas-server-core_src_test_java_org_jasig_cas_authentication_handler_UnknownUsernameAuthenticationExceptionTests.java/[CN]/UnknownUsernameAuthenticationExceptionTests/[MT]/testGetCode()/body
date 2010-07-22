@@ -1,0 +1,5 @@
+{
+  AuthenticationException e=new UnknownUsernameAuthenticationException();
+  assertEquals(CODE,e.getCode());
+  assertEquals(CODE,e.toString());
+}

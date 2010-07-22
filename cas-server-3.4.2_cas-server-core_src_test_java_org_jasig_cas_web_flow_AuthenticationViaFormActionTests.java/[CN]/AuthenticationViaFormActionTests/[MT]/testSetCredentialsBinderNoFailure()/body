@@ -1,0 +1,11 @@
+{
+  final CredentialsBinder c=new CredentialsBinder(){
+    public void bind(    final HttpServletRequest request,    final Credentials credentials){
+    }
+    public boolean supports(    final Class<?> clazz){
+      return true;
+    }
+  }
+;
+  this.action.setCredentialsBinder(c);
+}

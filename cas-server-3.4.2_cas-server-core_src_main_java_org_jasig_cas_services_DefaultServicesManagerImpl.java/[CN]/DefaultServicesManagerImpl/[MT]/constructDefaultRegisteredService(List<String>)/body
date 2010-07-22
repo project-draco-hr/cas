@@ -1,0 +1,12 @@
+{
+  final RegisteredServiceImpl r=new RegisteredServiceImpl();
+  r.setAllowedToProxy(true);
+  r.setAnonymousAccess(false);
+  r.setEnabled(true);
+  r.setSsoEnabled(true);
+  r.setAllowedAttributes(attributes);
+  if (attributes == null || attributes.isEmpty()) {
+    r.setIgnoreAttributes(true);
+  }
+  return r;
+}

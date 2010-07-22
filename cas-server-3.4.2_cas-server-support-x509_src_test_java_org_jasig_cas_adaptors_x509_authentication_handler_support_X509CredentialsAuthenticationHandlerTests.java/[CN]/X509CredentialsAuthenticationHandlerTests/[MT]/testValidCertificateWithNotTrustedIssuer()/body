@@ -1,0 +1,5 @@
+{
+  this.authenticationHandler.setTrustedIssuerDnPattern("test");
+  final X509CertificateCredentials credentials=new X509CertificateCredentials(new X509Certificate[]{VALID_CERTIFICATE});
+  assertFalse(this.authenticationHandler.authenticate(credentials));
+}

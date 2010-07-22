@@ -1,0 +1,4 @@
+String id
+TicketGrantingTicketImpl ticketGrantingTicket
+Authentication authentication
+ExpirationPolicy policy

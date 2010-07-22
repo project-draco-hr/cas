@@ -1,0 +1,4 @@
+{
+  final DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+  return dateFormat.format(date);
+}

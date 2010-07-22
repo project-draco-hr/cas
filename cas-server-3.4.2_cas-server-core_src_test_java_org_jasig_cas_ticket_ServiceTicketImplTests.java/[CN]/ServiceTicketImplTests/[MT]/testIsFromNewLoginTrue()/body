@@ -1,0 +1,4 @@
+{
+  ServiceTicket s=new ServiceTicketImpl("stest1",this.ticketGrantingTicket,TestUtils.getService(),true,new NeverExpiresExpirationPolicy());
+  assertTrue(s.isFromNewLogin());
+}

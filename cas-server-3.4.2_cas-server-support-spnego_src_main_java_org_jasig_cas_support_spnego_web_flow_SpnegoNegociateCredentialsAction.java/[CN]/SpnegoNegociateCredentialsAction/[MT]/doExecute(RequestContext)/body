@@ -1,0 +1,16 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
+  final String authorizationHeader=request.getHeader(SpnegoConstants.HEADER_AUTHORIZATION);
+  final String userAgent=request.getHeader(SpnegoConstants.HEADER_USER_AGENT);
+  if (StringUtils.hasText(userAgent) && isSupportedBrowser(userAgent)) {
+    if (!StringUtils.hasText(authorizationHeader) || !authorizationHeader.startsWith(this.messageBeginPrefix) || authorizationHeader.length() <= this.messageBeginPrefix.length()) {
+      if (logger.isDebugEnabled()) {
+        logger.debug("Authorization header not found. Sending WWW-Authenticate header");
+      }
+      response.setHeader(SpnegoConstants.HEADER_AUTHENTICATE,this.ntlm ? SpnegoConstants.NTLM : SpnegoConstants.NEGOTIATE);
+      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+    }
+  }
+  return success();
+}

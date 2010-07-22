@@ -1,0 +1,6 @@
+{
+  final HttpClient httpClient=new HttpClient();
+  httpClient.setAcceptableCodes(new int[]{900});
+  this.authenticationHandler.setHttpClient(httpClient);
+  assertFalse(this.authenticationHandler.authenticate(TestUtils.getHttpBasedServiceCredentials("https://www.ja-sig.org")));
+}

@@ -1,0 +1,9 @@
+{
+  try {
+    Thread.sleep(TIMEOUT + TIMEOUT_BUFFER);
+    assertTrue(this.ticket.isExpired());
+  }
+ catch (  InterruptedException e) {
+    fail(e.getMessage());
+  }
+}

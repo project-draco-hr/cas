@@ -1,0 +1,5 @@
+{
+  final DatabaseEntry de=new DatabaseEntry();
+  StringBinding.stringToEntry(key,de);
+  return de;
+}

@@ -1,0 +1,18 @@
+{
+  final Map<String,Object> model=new HashMap<String,Object>();
+  final Map<String,Object> attributes=new HashMap<String,Object>();
+  attributes.put("testAttribute","testValue");
+  final SimplePrincipal principal=new SimplePrincipal("testPrincipal",attributes);
+  final MutableAuthentication authentication=new MutableAuthentication(principal);
+  final List<Authentication> authentications=new ArrayList<Authentication>();
+  authentications.add(authentication);
+  final Assertion assertion=new ImmutableAssertionImpl(authentications,TestUtils.getService(),true);
+  model.put("assertion",assertion);
+  final MockWriterHttpMockHttpServletResponse servletResponse=new MockWriterHttpMockHttpServletResponse();
+  this.response.renderMergedOutputModel(model,new MockHttpServletRequest(),servletResponse);
+  final String written=servletResponse.getWrittenValue();
+  assertTrue(written.contains("testPrincipal"));
+  assertTrue(written.contains("testAttribute"));
+  assertTrue(written.contains("testValue"));
+  assertTrue(written.contains("urn:oasis:names:tc:SAML:1.0:am:unspecified"));
+}

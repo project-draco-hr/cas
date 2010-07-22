@@ -1,0 +1,13 @@
+{
+  final String ticket=request.getParameter("pgt");
+  final Service targetService=getTargetService(request);
+  if (!StringUtils.hasText(ticket) || targetService == null) {
+    return generateErrorView("INVALID_REQUEST","INVALID_REQUEST_PROXY",null);
+  }
+  try {
+    return new ModelAndView(CONST_PROXY_SUCCESS,MODEL_SERVICE_TICKET,this.centralAuthenticationService.grantServiceTicket(ticket,targetService));
+  }
+ catch (  TicketException e) {
+    return generateErrorView(e.getCode(),e.getCode(),new Object[]{ticket});
+  }
+}

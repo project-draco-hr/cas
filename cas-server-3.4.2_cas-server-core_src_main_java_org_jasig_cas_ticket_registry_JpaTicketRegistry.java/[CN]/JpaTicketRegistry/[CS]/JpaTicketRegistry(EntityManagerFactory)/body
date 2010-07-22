@@ -1,0 +1,3 @@
+{
+  this.jpaTemplate=new JpaTemplate(factory);
+}

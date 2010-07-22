@@ -1,0 +1,4 @@
+{
+  this.validator=new RegisteredServiceValidator();
+  this.validator.setMaxDescriptionLength(1);
+}

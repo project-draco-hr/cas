@@ -1,0 +1,8 @@
+{
+  this.users=new ArrayList<String>();
+  this.users.add("scott");
+  this.users.add("dima");
+  this.users.add("bill");
+  this.authenticationHandler=new RejectUsersAuthenticationHandler();
+  this.authenticationHandler.setUsers(this.users);
+}

@@ -1,0 +1,11 @@
+{
+  if (this == obj)   return true;
+  if (!super.equals(obj))   return false;
+  if (getClass() != obj.getClass())   return false;
+  final OpenIdService other=(OpenIdService)obj;
+  if (this.identity == null) {
+    if (other.identity != null)     return false;
+  }
+ else   if (!this.identity.equals(other.identity))   return false;
+  return true;
+}

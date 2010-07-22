@@ -1,0 +1,28 @@
+{
+  String serviceTicket;
+  String queryString=webResponse.getURL().getQuery();
+  int ticketIndex=queryString.indexOf("ticket=");
+  if (ticketIndex == -1) {
+    String response=webResponse.getText();
+    int declarationStartsAt=response.indexOf("window.location.href");
+    String responseAfterWindowLocHref=response.substring(declarationStartsAt + "window.location.href12".length());
+    final int endDoubleQuoteIndex=responseAfterWindowLocHref.indexOf("\"");
+    final int endSingleQuoteIndex=responseAfterWindowLocHref.indexOf("\'");
+    int endQuoteIndex=0;
+    if (endDoubleQuoteIndex == -1 && endSingleQuoteIndex == -1) {
+      throw new RuntimeException("Failed parsing a service ticket from the response:" + response);
+    }
+ else     if ((endDoubleQuoteIndex > -1) && (endDoubleQuoteIndex < endSingleQuoteIndex || endSingleQuoteIndex == -1)) {
+      endQuoteIndex=endDoubleQuoteIndex;
+    }
+ else {
+      endQuoteIndex=endSingleQuoteIndex;
+    }
+    int ticketEqualsIndex=responseAfterWindowLocHref.indexOf("ticket=");
+    serviceTicket=responseAfterWindowLocHref.substring(ticketEqualsIndex + "ticket=".length(),endQuoteIndex);
+  }
+ else {
+    serviceTicket=queryString.substring(ticketIndex + "ticket=".length(),queryString.length());
+  }
+  return serviceTicket;
+}

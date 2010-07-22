@@ -1,0 +1,14 @@
+{
+  RegisteredServiceImpl s=new RegisteredServiceImpl();
+  s.setId(Long.parseLong(ctx.getStringAttribute(this.idAttribute)));
+  s.setServiceId(ctx.getStringAttribute(this.serviceIdAttribute));
+  s.setName(ctx.getStringAttribute(this.namingAttribute));
+  s.setEnabled(SpringLdapUtils.getBoolean(ctx,this.serviceEnabledAttribute));
+  s.setAllowedToProxy(SpringLdapUtils.getBoolean(ctx,this.serviceAllowedToProxyAttribute));
+  s.setAnonymousAccess(SpringLdapUtils.getBoolean(ctx,this.serviceAnonymousAccessAttribute));
+  s.setDescription(ctx.getStringAttribute(this.serviceDescriptionAttribute));
+  s.setSsoEnabled(SpringLdapUtils.getBoolean(ctx,this.serviceSsoEnabledAttribute));
+  s.setTheme(ctx.getStringAttribute(this.serviceThemeAttribute));
+  s.setAllowedAttributes(Arrays.asList(ctx.getStringAttributes(this.serviceAllowedAttributesAttribute)));
+  return s;
+}

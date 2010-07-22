@@ -1,0 +1,8 @@
+{
+  final List<TicketGrantingTicketImpl> tgts=this.jpaTemplate.find("select t from TicketGrantingTicketImpl t");
+  final List<ServiceTicketImpl> sts=this.jpaTemplate.find("select s from ServiceTicketImpl s");
+  final List<Ticket> tickets=new ArrayList<Ticket>();
+  tickets.addAll(tgts);
+  tickets.addAll(sts);
+  return tickets;
+}

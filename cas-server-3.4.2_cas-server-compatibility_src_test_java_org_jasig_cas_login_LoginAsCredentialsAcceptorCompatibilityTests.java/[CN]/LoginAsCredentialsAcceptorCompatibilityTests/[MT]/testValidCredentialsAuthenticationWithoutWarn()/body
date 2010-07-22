@@ -1,0 +1,7 @@
+{
+  final String service="http://www.cnn.com";
+  beginAt("/login?service=" + URLEncoder.encode(service,"UTF-8"));
+  setFormElement(FORM_USERNAME,getUsername());
+  setFormElement(FORM_PASSWORD,getGoodPassword());
+  submit();
+}

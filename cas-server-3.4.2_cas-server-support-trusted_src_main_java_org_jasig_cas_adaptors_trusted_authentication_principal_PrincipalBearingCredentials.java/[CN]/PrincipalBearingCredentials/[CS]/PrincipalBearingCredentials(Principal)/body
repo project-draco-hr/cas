@@ -1,0 +1,4 @@
+{
+  Assert.notNull(principal,"principal cannot be null");
+  this.principal=principal;
+}

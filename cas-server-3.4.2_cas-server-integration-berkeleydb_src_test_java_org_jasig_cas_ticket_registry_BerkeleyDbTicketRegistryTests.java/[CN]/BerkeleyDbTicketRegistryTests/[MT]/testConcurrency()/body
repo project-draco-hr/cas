@@ -1,0 +1,13 @@
+{
+  int i=10;
+  List<Thread> threads=new ArrayList<Thread>();
+  for (int j=0; j < i; j++) {
+    Runnable runner=new BerkeleyDbTicketRegistryRunner(this);
+    Thread thread=new Thread(runner);
+    thread.start();
+    threads.add(thread);
+  }
+  for (  Thread thread : threads) {
+    thread.join();
+  }
+}

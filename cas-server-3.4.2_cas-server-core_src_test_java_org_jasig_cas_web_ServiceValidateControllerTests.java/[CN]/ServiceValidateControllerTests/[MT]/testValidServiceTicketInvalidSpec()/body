@@ -1,0 +1,3 @@
+{
+  assertEquals(CONST_FAILURE_VIEW,this.serviceValidateController.handleRequestInternal(getHttpServletRequest(),new MockHttpServletResponse()).getViewName());
+}

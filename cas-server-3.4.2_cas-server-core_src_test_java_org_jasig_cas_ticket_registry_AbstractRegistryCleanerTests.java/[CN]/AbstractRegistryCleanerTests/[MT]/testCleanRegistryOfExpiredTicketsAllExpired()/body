@@ -1,0 +1,5 @@
+{
+  populateRegistryWithExpiredTickets();
+  this.registryCleaner.clean();
+  assertTrue(this.ticketRegistry.getTickets().isEmpty());
+}

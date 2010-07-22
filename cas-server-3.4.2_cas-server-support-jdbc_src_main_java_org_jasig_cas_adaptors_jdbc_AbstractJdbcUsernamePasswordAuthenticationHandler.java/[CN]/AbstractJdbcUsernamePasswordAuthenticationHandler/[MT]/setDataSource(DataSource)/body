@@ -1,0 +1,4 @@
+{
+  this.jdbcTemplate=new SimpleJdbcTemplate(dataSource);
+  this.dataSource=dataSource;
+}

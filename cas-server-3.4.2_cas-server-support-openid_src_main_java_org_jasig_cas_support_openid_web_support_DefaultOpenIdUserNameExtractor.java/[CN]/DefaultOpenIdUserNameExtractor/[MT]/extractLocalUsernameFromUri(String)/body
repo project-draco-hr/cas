@@ -1,0 +1,9 @@
+{
+  if (uri == null) {
+    return null;
+  }
+  if (!uri.contains("/")) {
+    return null;
+  }
+  return uri.substring(uri.lastIndexOf("/") + 1);
+}

@@ -1,0 +1,16 @@
+{
+  this.mockConfig=new MockServletConfig(this.mockContext,"cas");
+  this.safeServlet.init(this.mockConfig);
+  ServletRequest mockRequest=new MockHttpServletRequest();
+  ServletResponse mockResponse=new MockHttpServletResponse();
+  try {
+    this.safeServlet.service(mockRequest,mockResponse);
+  }
+ catch (  ApplicationContextException e) {
+    System.out.println(e);
+    fail("Unexpected exception.");
+  }
+catch (  Exception e) {
+    return;
+  }
+}

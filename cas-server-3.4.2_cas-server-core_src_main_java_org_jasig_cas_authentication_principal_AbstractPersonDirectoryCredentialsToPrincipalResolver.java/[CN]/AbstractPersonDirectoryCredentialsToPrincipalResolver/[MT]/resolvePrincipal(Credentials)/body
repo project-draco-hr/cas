@@ -1,0 +1,26 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("Attempting to resolve a principal...");
+  }
+  final String principalId=extractPrincipalId(credentials);
+  if (principalId == null) {
+    return null;
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("Creating SimplePrincipal for [" + principalId + "]");
+  }
+  final Map<String,List<Object>> attributes=this.attributeRepository.getPerson(principalId).getAttributes();
+  if (attributes == null & !this.returnNullIfNoAttributes) {
+    return new SimplePrincipal(principalId);
+  }
+  if (attributes == null && this.returnNullIfNoAttributes) {
+    return null;
+  }
+  final Map<String,Object> convertedAttributes=new HashMap<String,Object>();
+  for (  final Map.Entry<String,List<Object>> entry : attributes.entrySet()) {
+    final String key=entry.getKey();
+    final Object value=entry.getValue().size() == 1 ? entry.getValue().get(0) : entry.getValue();
+    convertedAttributes.put(key,value);
+  }
+  return new SimplePrincipal(principalId,convertedAttributes);
+}

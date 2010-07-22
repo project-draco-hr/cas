@@ -1,0 +1,8 @@
+{
+  this.g=new CookieRetrievingCookieGenerator();
+  this.g.setRememberMeMaxAge(100);
+  this.g.setCookieDomain("cas.org");
+  this.g.setCookieMaxAge(5);
+  this.g.setCookiePath("/");
+  this.g.setCookieName("test");
+}

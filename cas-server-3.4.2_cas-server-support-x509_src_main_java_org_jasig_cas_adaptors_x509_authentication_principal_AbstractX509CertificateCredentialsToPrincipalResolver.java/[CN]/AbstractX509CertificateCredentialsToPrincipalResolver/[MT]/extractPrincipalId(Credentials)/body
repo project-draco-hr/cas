@@ -1,0 +1,3 @@
+{
+  return resolvePrincipalInternal(((X509CertificateCredentials)credentials).getCertificate());
+}

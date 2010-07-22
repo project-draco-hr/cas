@@ -1,0 +1,7 @@
+{
+  final Service service=TestUtils.getService();
+  final List<Authentication> list=new ArrayList<Authentication>();
+  list.add(TestUtils.getAuthentication());
+  final Assertion assertion=new ImmutableAssertionImpl(list,service,false);
+  assertEquals(service,assertion.getService());
+}

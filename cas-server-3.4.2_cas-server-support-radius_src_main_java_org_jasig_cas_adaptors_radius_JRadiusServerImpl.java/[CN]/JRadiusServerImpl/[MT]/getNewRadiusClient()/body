@@ -1,0 +1,3 @@
+{
+  return new RadiusClient(this.inetAddress,this.sharedSecret,this.authenticationPort,this.accountingPort,this.socketTimeout);
+}

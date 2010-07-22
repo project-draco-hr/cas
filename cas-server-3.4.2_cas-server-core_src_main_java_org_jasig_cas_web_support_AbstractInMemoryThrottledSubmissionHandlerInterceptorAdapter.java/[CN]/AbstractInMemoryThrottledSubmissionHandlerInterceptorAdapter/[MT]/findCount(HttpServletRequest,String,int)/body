@@ -1,0 +1,4 @@
+{
+  final AtomicInteger existingValue=this.ipMap.get(constructKey(request,usernameParameter));
+  return existingValue == null ? 0 : existingValue.get();
+}

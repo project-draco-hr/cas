@@ -1,0 +1,3 @@
+{
+  this.remoteCentralAuthenticationService.destroyTicketGrantingTicket("test");
+}

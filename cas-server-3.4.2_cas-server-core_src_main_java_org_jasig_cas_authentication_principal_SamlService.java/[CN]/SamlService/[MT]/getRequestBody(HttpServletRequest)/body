@@ -1,0 +1,14 @@
+{
+  final StringBuilder builder=new StringBuilder();
+  try {
+    final BufferedReader reader=request.getReader();
+    String line;
+    while ((line=reader.readLine()) != null) {
+      builder.append(line);
+    }
+    return builder.toString();
+  }
+ catch (  final Exception e) {
+    return null;
+  }
+}

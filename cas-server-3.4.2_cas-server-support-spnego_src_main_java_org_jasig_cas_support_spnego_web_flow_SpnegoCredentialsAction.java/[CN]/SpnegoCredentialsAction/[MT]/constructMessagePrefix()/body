@@ -1,0 +1,3 @@
+{
+  return (this.ntlm ? SpnegoConstants.NTLM : SpnegoConstants.NEGOTIATE) + " ";
+}

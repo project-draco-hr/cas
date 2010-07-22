@@ -1,0 +1,3 @@
+{
+  assertTrue(this.authenticationHandler.supports(TestUtils.getHttpBasedServiceCredentials()));
+}

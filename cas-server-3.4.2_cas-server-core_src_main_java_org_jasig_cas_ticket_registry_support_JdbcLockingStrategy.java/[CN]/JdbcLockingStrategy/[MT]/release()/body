@@ -1,0 +1,3 @@
+{
+  this.jdbcTemplate.update(this.updateReleaseSql,new Object[]{this.applicationId,this.uniqueId});
+}

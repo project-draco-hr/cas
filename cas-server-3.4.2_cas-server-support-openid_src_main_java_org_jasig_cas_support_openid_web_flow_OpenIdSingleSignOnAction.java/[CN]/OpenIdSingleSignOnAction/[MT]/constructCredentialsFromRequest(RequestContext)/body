@@ -1,0 +1,13 @@
+{
+  final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
+  final String userName=this.extractor.extractLocalUsernameFromUri(context.getRequestParameters().get("openid.identity"));
+  final Service service=WebUtils.getService(context);
+  context.getExternalContext().getSessionMap().put("openIdLocalId",userName);
+  if (service instanceof OpenIdService && userName == null) {
+    context.getFlowScope().remove("service");
+  }
+  if (ticketGrantingTicketId == null || userName == null) {
+    return null;
+  }
+  return new OpenIdCredentials(ticketGrantingTicketId,userName);
+}

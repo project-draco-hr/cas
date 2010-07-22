@@ -1,0 +1,28 @@
+{
+  final JdbcLockingStrategy lock1=new JdbcLockingStrategy();
+  final JdbcLockingStrategy lock2=new JdbcLockingStrategy();
+  lock1.setDataSource(this.testDataSource);
+  lock2.setDataSource(this.testDataSource);
+  lock1.setPlatform(DatabasePlatform.HSQL);
+  lock2.setPlatform(DatabasePlatform.HSQL);
+  lock1.setApplicationId("ticketregistry");
+  lock2.setApplicationId("ticketregistry");
+  lock1.setUniqueId("lock1");
+  lock2.setUniqueId("lock2");
+  lock1.setLockTimeout(2);
+  lock2.setLockTimeout(2);
+  lock1.afterPropertiesSet();
+  lock2.afterPropertiesSet();
+  assertTrue(lock1.acquire());
+  assertFalse(lock2.acquire());
+  assertFalse(lock1.acquire());
+  lock1.release();
+  assertTrue(lock2.acquire());
+  assertFalse(lock1.acquire());
+  assertFalse(lock2.acquire());
+  Thread.sleep(3000);
+  assertTrue(lock1.acquire());
+  assertFalse(lock2.acquire());
+  lock1.release();
+  lock2.release();
+}

@@ -1,0 +1,3 @@
+{
+  assertTrue(this.authenticationHandler.supports(new X509CertificateCredentials(new X509Certificate[0])));
+}

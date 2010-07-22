@@ -1,0 +1,3 @@
+{
+  return this.serialNumberPrefix + certificate.getSerialNumber().toString() + this.valueDelimiter+ certificate.getIssuerDN().getName();
+}

@@ -1,0 +1,6 @@
+{
+  final List<Authentication> list=new ArrayList<Authentication>();
+  list.add(TestUtils.getAuthentication());
+  final ImmutableAssertionImpl assertion=new ImmutableAssertionImpl(list,TestUtils.getService(),false);
+  assertFalse(assertion.isFromNewLogin());
+}

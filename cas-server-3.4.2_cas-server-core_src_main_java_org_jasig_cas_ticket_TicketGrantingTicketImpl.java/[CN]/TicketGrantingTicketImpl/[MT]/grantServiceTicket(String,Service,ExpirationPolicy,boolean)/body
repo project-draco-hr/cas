@@ -1,0 +1,8 @@
+{
+  final ServiceTicket serviceTicket=new ServiceTicketImpl(id,this,service,this.getCountOfUses() == 0 || credentialsProvided,expirationPolicy);
+  updateState();
+  final List<Authentication> authentications=getChainedAuthentications();
+  service.setPrincipal(authentications.get(authentications.size() - 1).getPrincipal());
+  this.services.put(id,service);
+  return serviceTicket;
+}

@@ -1,0 +1,12 @@
+{
+  try {
+    getAuthenticationManager().authenticate(new Credentials(){
+      private static final long serialVersionUID=-4897240037527663222L;
+    }
+);
+    fail("Authentication should have failed.");
+  }
+ catch (  UnsupportedCredentialsException e) {
+    return;
+  }
+}

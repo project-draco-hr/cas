@@ -1,0 +1,7 @@
+{
+  final X509CertificateCredentials credentials=new X509CertificateCredentials(new X509Certificate[0]);
+  credentials.setCertificate(getTestCertificate());
+  this.resolver.setIdentifier("$C, $CN");
+  assertEquals("The principals should match",this.resolver.resolvePrincipal(credentials).getId(),"SE, test testsson");
+  assertFalse("The principals should not match",this.resolver.resolvePrincipal(credentials).getId().equals("SE, Altcom Test"));
+}

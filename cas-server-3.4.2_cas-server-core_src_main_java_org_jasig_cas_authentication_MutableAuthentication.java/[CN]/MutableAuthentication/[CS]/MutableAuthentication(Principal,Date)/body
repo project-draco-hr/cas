@@ -1,0 +1,4 @@
+{
+  super(principal,new HashMap<String,Object>());
+  this.authenticatedDate=date;
+}

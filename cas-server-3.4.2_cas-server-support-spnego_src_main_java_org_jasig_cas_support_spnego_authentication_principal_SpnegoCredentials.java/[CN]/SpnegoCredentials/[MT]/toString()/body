@@ -1,0 +1,3 @@
+{
+  return this.principal != null ? this.principal.getId() : "Principal is null";
+}

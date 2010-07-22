@@ -1,0 +1,10 @@
+{
+  final Class<? extends Credentials> credentialsClass=credentials.getClass();
+  final DirectAuthenticationHandlerMappingHolder d=this.credentialsMapping.get(credentialsClass);
+  Assert.notNull(d,"no mapping found for: " + credentialsClass.getName());
+  if (!d.getAuthenticationHandler().authenticate(credentials)) {
+    throw new BadCredentialsAuthenticationException();
+  }
+  final Principal p=d.getCredentialsToPrincipalResolver().resolvePrincipal(credentials);
+  return new Pair<AuthenticationHandler,Principal>(d.getAuthenticationHandler(),p);
+}

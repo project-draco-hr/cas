@@ -1,0 +1,6 @@
+{
+  Date dateFromFirstCall=this.authentication.getAuthenticatedDate();
+  Date dateFromSecondCall=this.authentication.getAuthenticatedDate();
+  assertNotSame("Dates are the same.",dateFromFirstCall,dateFromSecondCall);
+  assertEquals("Dates are not equal.",dateFromFirstCall,dateFromSecondCall);
+}

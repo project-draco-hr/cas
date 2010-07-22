@@ -1,0 +1,4 @@
+{
+  this.principal=new MockPrincipal("test");
+  this.valid=valid;
+}

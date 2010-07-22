@@ -1,0 +1,9 @@
+{
+  try {
+    final SAXBuilder builder=new SAXBuilder();
+    return builder.build(new ByteArrayInputStream(xmlString.getBytes()));
+  }
+ catch (  final Exception e) {
+    return null;
+  }
+}

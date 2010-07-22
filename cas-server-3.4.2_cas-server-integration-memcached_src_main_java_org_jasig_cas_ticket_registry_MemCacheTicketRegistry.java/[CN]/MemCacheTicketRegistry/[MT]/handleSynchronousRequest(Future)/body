@@ -1,0 +1,9 @@
+{
+  try {
+    if (this.synchronizeUpdatesToRegistry) {
+      f.get();
+    }
+  }
+ catch (  final Exception e) {
+  }
+}

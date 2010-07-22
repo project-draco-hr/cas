@@ -1,0 +1,12 @@
+{
+  try {
+    if (log.isDebugEnabled()) {
+      final Date creationDate=new Date(ticket.getCreationTime());
+      log.debug("Removing Ticket >" + ticket.getId() + "< created: "+ creationDate.toString());
+    }
+    this.jpaTemplate.remove(ticket);
+  }
+ catch (  final Exception e) {
+    log.error("Error removing " + ticket + " from registry.",e);
+  }
+}

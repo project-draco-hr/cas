@@ -1,0 +1,43 @@
+{
+  final List<String> cns=new ArrayList<String>();
+  final SearchControls searchControls=getSearchControls();
+  final String base=this.searchBase;
+  final String transformedUsername=getPrincipalNameTransformer().transform(credentials.getUsername());
+  final String filter=LdapUtils.getFilterWithValues(getFilter(),transformedUsername);
+  this.getLdapTemplate().search(new SearchExecutor(){
+    public NamingEnumeration executeSearch(    final DirContext context) throws NamingException {
+      return context.search(base,filter,searchControls);
+    }
+  }
+,new NameClassPairCallbackHandler(){
+    public void handleNameClassPair(    final NameClassPair nameClassPair){
+      cns.add(nameClassPair.getNameInNamespace());
+    }
+  }
+);
+  if (cns.isEmpty()) {
+    log.info("Search for " + filter + " returned 0 results.");
+    return false;
+  }
+  if (cns.size() > 1 && !this.allowMultipleAccounts) {
+    log.warn("Search for " + filter + " returned multiple results, which is not allowed.");
+    return false;
+  }
+  for (  final String dn : cns) {
+    DirContext test=null;
+    String finalDn=composeCompleteDnToCheck(dn,credentials);
+    try {
+      this.log.debug("Performing LDAP bind with credential: " + dn);
+      test=this.getContextSource().getContext(finalDn,credentials.getPassword());
+      if (test != null) {
+        return true;
+      }
+    }
+ catch (    final Exception e) {
+    }
+ finally {
+      LdapUtils.closeContext(test);
+    }
+  }
+  return false;
+}

@@ -1,0 +1,4 @@
+{
+  final CacheFactory<String,Ticket> cf=new DefaultCacheFactory<String,Ticket>();
+  this.cache=cf.createCache(this.configLocation.getInputStream());
+}

@@ -1,0 +1,24 @@
+{
+  boolean lockAcquired=false;
+  if (this.platform == DatabasePlatform.SqlServer) {
+    this.jdbcTemplate.execute("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+  }
+  try {
+    final SqlRowSet rowSet=(SqlRowSet)this.jdbcTemplate.query(this.selectSql,new Object[]{this.applicationId},new SqlRowSetResultSetExtractor());
+    final Timestamp expDate=getExpirationDate();
+    if (!rowSet.next()) {
+      this.jdbcTemplate.update(this.createSql,new Object[]{this.applicationId,this.uniqueId,expDate});
+      return true;
+    }
+    lockAcquired=canAcquire(rowSet);
+    if (lockAcquired) {
+      this.jdbcTemplate.update(this.updateAcquireSql,new Object[]{this.uniqueId,expDate,this.applicationId});
+    }
+  }
+  finally {
+    if (this.platform == DatabasePlatform.SqlServer) {
+      this.jdbcTemplate.execute("SET TRANSACTION ISOLATION LEVEL READ COMMITTED");
+    }
+  }
+  return lockAcquired;
+}

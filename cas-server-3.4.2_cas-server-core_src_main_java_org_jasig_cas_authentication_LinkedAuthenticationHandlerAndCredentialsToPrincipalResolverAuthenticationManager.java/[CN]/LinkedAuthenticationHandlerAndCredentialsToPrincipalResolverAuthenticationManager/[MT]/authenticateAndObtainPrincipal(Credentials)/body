@@ -1,0 +1,17 @@
+{
+  boolean foundOneThatWorks=false;
+  for (  final AuthenticationHandler authenticationHandler : this.linkedHandlers.keySet()) {
+    if (!authenticationHandler.supports(credentials)) {
+      continue;
+    }
+    foundOneThatWorks=true;
+    if (authenticationHandler.authenticate(credentials)) {
+      final Principal p=this.linkedHandlers.get(authenticationHandler).resolvePrincipal(credentials);
+      return new Pair<AuthenticationHandler,Principal>(authenticationHandler,p);
+    }
+  }
+  if (foundOneThatWorks) {
+    throw BadCredentialsAuthenticationException.ERROR;
+  }
+  throw UnsupportedCredentialsException.ERROR;
+}

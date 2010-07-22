@@ -1,0 +1,4 @@
+{
+  final UsernamePasswordCredentials usernamePasswordCredentials=(UsernamePasswordCredentials)credentials;
+  return usernamePasswordCredentials.getUsername();
+}

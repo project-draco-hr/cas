@@ -1,0 +1,72 @@
+{
+  final X509CertificateCredentials x509Credentials=(X509CertificateCredentials)credentials;
+  final X509Certificate[] certificates=x509Credentials.getCertificates();
+  X509Certificate certificateCredentialsCandidate=null;
+  boolean hasTrustedIssuerInChain=false;
+  for (int i=(certificates.length - 1); i >= 0; i--) {
+    final X509Certificate certificate=certificates[i];
+    try {
+      final Principal issuerPrincipal=certificate.getIssuerDN();
+      boolean isEndUserCertificate=false;
+      if (log.isDebugEnabled()) {
+        log.debug("--examining cert[" + certificate.getSerialNumber().toString() + "] "+ certificate.getSubjectDN()+ "\""+ " from issuer \""+ issuerPrincipal.getName()+ "\"");
+      }
+      certificate.checkValidity();
+      log.debug("certificate is valid");
+      if (isCertificateFromTrustedIssuer(issuerPrincipal)) {
+        hasTrustedIssuerInChain=true;
+        log.debug("certificate was issued by trusted issuer");
+      }
+      int pathLength=certificate.getBasicConstraints();
+      if (pathLength != -1) {
+        log.debug("this is a CA certificate");
+        if (pathLength == Integer.MAX_VALUE && this.maxPathLength_allowUnspecified != true) {
+          if (log.isWarnEnabled()) {
+            log.warn("authentication failed; cert pathLength not specified" + " and unlimited/unspecified not allowed by config [see maxPathLength_allow_unlimited]");
+          }
+          return false;
+        }
+ else         if (pathLength > this.maxPathLength && pathLength < Integer.MAX_VALUE) {
+          if (log.isWarnEnabled()) {
+            log.warn("authentication failed; cert pathLength [" + pathLength + "] is more than allowed by config ["+ this.maxPathLength+ "]");
+          }
+          return false;
+        }
+      }
+ else {
+        isEndUserCertificate=true;
+        log.debug("this is an end-user certificate");
+      }
+      if (issuerPrincipal != null && isEndUserCertificate && this.doesCertificateSubjectDnMatchPattern(certificate.getSubjectDN()) && (!this.checkKeyUsage || (this.checkKeyUsage && this.doesCertificateKeyUsageMatch(certificate)))) {
+        if (log.isDebugEnabled()) {
+          log.debug("cert[" + certificate.getSerialNumber().toString() + "] ok, setting as credentials candidate");
+        }
+        certificateCredentialsCandidate=certificate;
+      }
+    }
+ catch (    final CertificateExpiredException e) {
+      log.warn("authentication failed; certficiate expired [" + certificate.toString() + "]");
+      certificateCredentialsCandidate=null;
+    }
+catch (    final CertificateNotYetValidException e) {
+      log.warn("authentication failed; certficate not yet valid [" + certificate.toString() + "]");
+      certificateCredentialsCandidate=null;
+    }
+  }
+  if (certificateCredentialsCandidate != null && hasTrustedIssuerInChain) {
+    if (log.isInfoEnabled()) {
+      log.info("authentication OK; SSL client authentication data meets criteria for cert[" + certificateCredentialsCandidate.getSerialNumber().toString() + "]");
+    }
+    x509Credentials.setCertificate(certificateCredentialsCandidate);
+    return true;
+  }
+  if (log.isInfoEnabled()) {
+    if (!hasTrustedIssuerInChain) {
+      log.info("client cert did not have trusted issuer pattern \"" + this.regExTrustedIssuerDnPattern.pattern() + "\" in chain; authentication failed");
+    }
+ else {
+      log.info("authentication failed; SSL client authentication data doesn't meet criteria");
+    }
+  }
+  return false;
+}

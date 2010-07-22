@@ -1,0 +1,4 @@
+{
+  Assert.isTrue(this.filter.contains("%u"),"filter must contain %u");
+  this.ldapTemplate.setIgnorePartialResultException(this.ignorePartialResultException);
+}

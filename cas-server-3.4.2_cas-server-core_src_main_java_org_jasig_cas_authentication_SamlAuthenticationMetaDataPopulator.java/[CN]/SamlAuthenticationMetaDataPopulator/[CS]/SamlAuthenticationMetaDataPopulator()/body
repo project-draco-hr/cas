@@ -1,0 +1,6 @@
+{
+  this.authenticationMethods.put("org.jasig.cas.authentication.principal.HttpBasedServiceCredentials",SAMLAuthenticationStatement.AuthenticationMethod_SSL_TLS_Client);
+  this.authenticationMethods.put("org.jasig.cas.authentication.principal.UsernamePasswordCredentials",SAMLAuthenticationStatement.AuthenticationMethod_Password);
+  this.authenticationMethods.put("org.jasig.cas.adaptors.trusted.authentication.principal.PrincipalBearingCredentials",SAMLAuthenticationStatement.AuthenticationMethod_Unspecified);
+  this.authenticationMethods.put("org.jasig.cas.adaptors.x509.authentication.principal.X509CertificateCredentials",SAMLAuthenticationStatement.AuthenticationMethod_X509_PublicKey);
+}

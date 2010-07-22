@@ -1,0 +1,4 @@
+{
+  final Authentication authentication=new MutableAuthentication(new SimplePrincipal("test"));
+  return new TicketGrantingTicketImpl("test",authentication,new NeverExpiresExpirationPolicy());
+}

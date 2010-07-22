@@ -1,0 +1,4 @@
+{
+  final Credentials credentials=(Credentials)AopUtils.unWrapJoinPoint(joinPoint).getArgs()[0];
+  return new String[]{"supplied credentials: " + credentials.toString()};
+}

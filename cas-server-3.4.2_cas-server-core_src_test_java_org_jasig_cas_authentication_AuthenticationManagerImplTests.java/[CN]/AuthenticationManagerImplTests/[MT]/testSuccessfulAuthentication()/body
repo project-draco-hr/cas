@@ -1,0 +1,3 @@
+{
+  assertEquals(TestUtils.getPrincipal(),getAuthenticationManager().authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword()).getPrincipal());
+}

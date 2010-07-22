@@ -1,0 +1,3 @@
+{
+  assertNotNull("Attributes are null.",TestUtils.getAuthentication().getAttributes());
+}

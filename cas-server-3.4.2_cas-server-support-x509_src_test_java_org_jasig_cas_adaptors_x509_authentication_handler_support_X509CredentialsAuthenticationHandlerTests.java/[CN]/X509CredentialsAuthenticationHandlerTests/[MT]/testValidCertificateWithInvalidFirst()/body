@@ -1,0 +1,4 @@
+{
+  final X509CertificateCredentials credentials=new X509CertificateCredentials(new X509Certificate[]{INVALID_CERTIFICATE,VALID_CERTIFICATE});
+  assertFalse(this.authenticationHandler.authenticate(credentials));
+}

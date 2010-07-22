@@ -1,0 +1,5 @@
+{
+  this.ticket=serviceTicket;
+  this.ticketRegistry=ticketRegistry;
+  this.methods=methods;
+}

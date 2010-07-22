@@ -1,0 +1,5 @@
+{
+  this.listener=new SafeContextLoaderListener();
+  this.servletContext=new MockServletContext();
+  this.servletContextEvent=new ServletContextEvent(this.servletContext);
+}

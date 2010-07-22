@@ -1,0 +1,6 @@
+{
+  Assert.notNull(serviceRegistryDao,"serviceRegistryDao cannot be null.");
+  this.serviceRegistryDao=serviceRegistryDao;
+  this.disabledRegisteredService=constructDefaultRegisteredService(defaultAttributes);
+  load();
+}

@@ -1,0 +1,6 @@
+{
+  this.serviceThemeResolver.setServicesManager(null);
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setParameter("service","myServiceId");
+  assertEquals("test",this.serviceThemeResolver.resolveThemeName(request));
+}

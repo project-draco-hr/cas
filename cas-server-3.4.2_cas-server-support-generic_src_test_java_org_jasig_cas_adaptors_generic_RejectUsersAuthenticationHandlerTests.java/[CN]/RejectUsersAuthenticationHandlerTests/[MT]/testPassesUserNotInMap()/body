@@ -1,0 +1,11 @@
+{
+  final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  c.setUsername("fds");
+  c.setPassword("rutgers");
+  try {
+    assertTrue(this.authenticationHandler.authenticate(c));
+  }
+ catch (  AuthenticationException e) {
+    fail("Exception thrown but not expected.");
+  }
+}

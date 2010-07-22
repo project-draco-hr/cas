@@ -1,0 +1,8 @@
+{
+  try {
+    return new MockPrintWriter(new ByteArrayOutputStream(),this.builder);
+  }
+ catch (  Exception e) {
+    throw new RuntimeException();
+  }
+}

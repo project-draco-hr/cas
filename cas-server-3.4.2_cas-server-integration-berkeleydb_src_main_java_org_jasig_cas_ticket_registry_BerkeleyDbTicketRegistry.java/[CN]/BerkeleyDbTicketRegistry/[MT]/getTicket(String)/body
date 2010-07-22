@@ -1,0 +1,17 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("Attempting to retrieve ticket [" + ticketId + "]");
+  }
+  final DatabaseEntry theData=new DatabaseEntry();
+  try {
+    this.ticketDb.get(null,getKeyFromString(ticketId),theData,LockMode.DEFAULT);
+  }
+ catch (  final DatabaseException e) {
+    throw new RuntimeException(e);
+  }
+  final Ticket ticket=theData.getData() != null ? (Ticket)this.ticketBinding.entryToObject(theData) : null;
+  if (ticket != null && log.isDebugEnabled()) {
+    log.debug("Ticket [" + ticketId + "] found in registry.");
+  }
+  return getProxiedTicketInstance(ticket);
+}

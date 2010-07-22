@@ -1,0 +1,12 @@
+{
+  final SpnegoCredentials credentials=new SpnegoCredentials(new byte[]{0,1,2});
+  this.authenticationHandler.setAuthentication(new MockJCSIFAuthentication(false));
+  try {
+    this.authenticationHandler.authenticate(credentials);
+    fail("An AuthenticationException should have been thrown");
+  }
+ catch (  AuthenticationException e) {
+    assertNull(credentials.getNextToken());
+    assertNull(credentials.getPrincipal());
+  }
+}

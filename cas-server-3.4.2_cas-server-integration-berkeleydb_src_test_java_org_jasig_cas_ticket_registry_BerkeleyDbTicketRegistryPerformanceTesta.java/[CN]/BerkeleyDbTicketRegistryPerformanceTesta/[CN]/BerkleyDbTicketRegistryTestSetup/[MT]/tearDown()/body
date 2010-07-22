@@ -1,0 +1,7 @@
+{
+  registry.destroy();
+  registry=null;
+  new File("00000000.jdb").delete();
+  new File("je.lck").delete();
+  super.tearDown();
+}

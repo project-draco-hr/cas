@@ -1,0 +1,15 @@
+{
+  final String id=request.getParameter("id");
+  if (!StringUtils.hasText(id)) {
+    logger.debug("Created new service.");
+    return new RegisteredServiceImpl();
+  }
+  final RegisteredService service=this.servicesManager.findServiceBy(Long.parseLong(id));
+  if (service != null) {
+    logger.debug("Loaded service " + service.getServiceId());
+  }
+ else {
+    logger.debug("Invalid service id specified.");
+  }
+  return service;
+}

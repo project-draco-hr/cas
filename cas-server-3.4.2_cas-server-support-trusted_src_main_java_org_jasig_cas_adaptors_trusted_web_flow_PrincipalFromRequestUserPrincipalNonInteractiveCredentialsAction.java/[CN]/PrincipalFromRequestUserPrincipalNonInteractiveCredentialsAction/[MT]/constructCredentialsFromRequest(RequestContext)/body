@@ -1,0 +1,14 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final Principal principal=request.getUserPrincipal();
+  if (principal != null) {
+    if (logger.isDebugEnabled()) {
+      logger.debug("UserPrincipal [" + principal.getName() + "] found in HttpServletRequest");
+    }
+    return new PrincipalBearingCredentials(new SimplePrincipal(principal.getName()));
+  }
+  if (logger.isDebugEnabled()) {
+    logger.debug("UserPrincipal not found in HttpServletRequest.");
+  }
+  return null;
+}

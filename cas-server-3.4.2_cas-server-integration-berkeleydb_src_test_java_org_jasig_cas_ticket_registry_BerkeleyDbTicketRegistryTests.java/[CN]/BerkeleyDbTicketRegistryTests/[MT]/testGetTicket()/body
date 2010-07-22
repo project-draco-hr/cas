@@ -1,0 +1,9 @@
+{
+  TicketGrantingTicket oldticket=getTicket();
+  long cdate=oldticket.getCreationTime();
+  this.reg.addTicket(oldticket);
+  Thread.sleep(1000);
+  TicketGrantingTicket newticket=(TicketGrantingTicket)this.reg.getTicket(DEFAULT_ID);
+  assertEquals(newticket.getCreationTime(),cdate);
+  assertEquals(newticket,oldticket);
+}

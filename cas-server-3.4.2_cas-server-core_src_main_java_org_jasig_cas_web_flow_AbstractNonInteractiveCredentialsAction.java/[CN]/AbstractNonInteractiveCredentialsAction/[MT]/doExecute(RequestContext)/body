@@ -1,0 +1,34 @@
+{
+  final Credentials credentials=constructCredentialsFromRequest(context);
+  if (credentials == null) {
+    return error();
+  }
+  final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
+  final Service service=WebUtils.getService(context);
+  if (isRenewPresent(context) && ticketGrantingTicketId != null && service != null) {
+    try {
+      final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credentials);
+      WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
+      return result("warn");
+    }
+ catch (    final TicketException e) {
+      if (e.getCause() != null && AuthenticationException.class.isAssignableFrom(e.getCause().getClass())) {
+        onError(context,credentials);
+        return error();
+      }
+      this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
+      if (logger.isDebugEnabled()) {
+        logger.debug("Attempted to generate a ServiceTicket using renew=true with different credentials",e);
+      }
+    }
+  }
+  try {
+    WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credentials));
+    onSuccess(context,credentials);
+    return success();
+  }
+ catch (  final TicketException e) {
+    onError(context,credentials);
+    return error();
+  }
+}

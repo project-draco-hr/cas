@@ -1,0 +1,4 @@
+{
+  this.ticketGrantingTicketId=ticketGrantingTicketId;
+  this.username=username;
+}

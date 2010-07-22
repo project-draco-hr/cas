@@ -1,0 +1,4 @@
+{
+  this.centralAuthenticationService.destroyTicketGrantingTicket(this.ticketGrantingTicketId);
+  getResponse().setStatus(Status.SUCCESS_OK);
+}

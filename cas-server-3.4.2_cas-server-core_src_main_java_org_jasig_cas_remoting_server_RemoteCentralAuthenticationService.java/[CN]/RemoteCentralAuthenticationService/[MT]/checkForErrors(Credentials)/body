@@ -1,0 +1,9 @@
+{
+  if (credentials == null) {
+    return;
+  }
+  final Set<ConstraintViolation<Credentials>> errors=this.validator.validate(credentials);
+  if (!errors.isEmpty()) {
+    throw new IllegalArgumentException("Error validating credentials: " + errors.toString());
+  }
+}

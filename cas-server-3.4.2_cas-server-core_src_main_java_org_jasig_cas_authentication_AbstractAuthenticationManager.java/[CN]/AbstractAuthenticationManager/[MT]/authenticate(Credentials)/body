@@ -1,0 +1,12 @@
+{
+  final Pair<AuthenticationHandler,Principal> pair=authenticateAndObtainPrincipal(credentials);
+  Authentication authentication=new MutableAuthentication(pair.getSecond());
+  if (pair.getFirst() instanceof NamedAuthenticationHandler) {
+    final NamedAuthenticationHandler a=(NamedAuthenticationHandler)pair.getFirst();
+    authentication.getAttributes().put(AuthenticationManager.AUTHENTICATION_METHOD_ATTRIBUTE,a.getName());
+  }
+  for (  final AuthenticationMetaDataPopulator authenticationMetaDataPopulator : this.authenticationMetaDataPopulators) {
+    authentication=authenticationMetaDataPopulator.populateAttributes(authentication,credentials);
+  }
+  return new ImmutableAuthentication(authentication.getPrincipal(),authentication.getAttributes());
+}

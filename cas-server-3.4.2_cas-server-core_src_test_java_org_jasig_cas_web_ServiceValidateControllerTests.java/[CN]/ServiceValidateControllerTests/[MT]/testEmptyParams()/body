@@ -1,0 +1,3 @@
+{
+  assertNotNull(this.serviceValidateController.handleRequestInternal(new MockHttpServletRequest(),new MockHttpServletResponse()).getModel().get("code"));
+}

@@ -1,0 +1,3 @@
+boolean exists
+int expectedErrors
+String name

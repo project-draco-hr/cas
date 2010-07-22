@@ -1,0 +1,10 @@
+{
+  final String ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  getCentralAuthenticationService().destroyTicketGrantingTicket(ticketId);
+  try {
+    getCentralAuthenticationService().grantServiceTicket(ticketId,TestUtils.getService());
+    fail(TestUtils.CONST_EXCEPTION_EXPECTED);
+  }
+ catch (  TicketException e) {
+  }
+}

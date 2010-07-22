@@ -1,0 +1,4 @@
+{
+  beginAt(getValidationPath());
+  assertTextPresent("cas:authenticationFailure");
+}

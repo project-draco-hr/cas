@@ -1,0 +1,10 @@
+{
+  this.warnCookieGenerator=new CookieRetrievingCookieGenerator();
+  this.tgtCookieGenerator=new CookieRetrievingCookieGenerator();
+  this.action.setTicketGrantingTicketCookieGenerator(this.tgtCookieGenerator);
+  this.action.setWarnCookieGenerator(this.warnCookieGenerator);
+  final ArgumentExtractor[] argExtractors=new ArgumentExtractor[]{new CasArgumentExtractor()};
+  this.action.setArgumentExtractors(Arrays.asList(argExtractors));
+  this.action.afterPropertiesSet();
+  this.action.afterPropertiesSet();
+}

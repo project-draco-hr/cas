@@ -1,0 +1,14 @@
+{
+  final Configuration configuration=Validation.byDefaultProvider().configure();
+  configuration.traversableResolver(new TraversableResolver(){
+    public boolean isReachable(    final Object o,    final Path.Node node,    final Class<?> aClass,    final Path path,    final ElementType elementType){
+      return true;
+    }
+    public boolean isCascadable(    final Object o,    final Path.Node node,    final Class<?> aClass,    final Path path,    final ElementType elementType){
+      return true;
+    }
+  }
+);
+  final Validator validator=configuration.buildValidatorFactory().getValidator();
+  setValidator(validator);
+}

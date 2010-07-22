@@ -1,0 +1,3 @@
+{
+  assertEquals("scootman28",this.extractor.extractLocalUsernameFromUri("http://test.com/scootman28"));
+}

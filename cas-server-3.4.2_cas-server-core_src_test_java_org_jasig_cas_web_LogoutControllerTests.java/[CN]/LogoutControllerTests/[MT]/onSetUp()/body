@@ -1,0 +1,11 @@
+{
+  this.warnCookieGenerator=new CookieRetrievingCookieGenerator();
+  this.warnCookieGenerator.setCookieName("test");
+  this.ticketGrantingTicketCookieGenerator=new CookieRetrievingCookieGenerator();
+  this.ticketGrantingTicketCookieGenerator.setCookieName(COOKIE_TGC_ID);
+  this.logoutController=new LogoutController();
+  this.logoutController.setCentralAuthenticationService(getCentralAuthenticationService());
+  this.logoutController.setLogoutView("test");
+  this.logoutController.setWarnCookieGenerator(this.warnCookieGenerator);
+  this.logoutController.setTicketGrantingTicketCookieGenerator(this.ticketGrantingTicketCookieGenerator);
+}

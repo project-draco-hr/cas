@@ -1,0 +1,3 @@
+{
+  return service != null && PATH_MATCHER.match(this.serviceId.toLowerCase(),service.getId().toLowerCase());
+}

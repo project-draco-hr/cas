@@ -1,0 +1,4 @@
+{
+  this.context.setExternalContext(new ServletExternalContext(new MockServletContext(),new MockHttpServletRequest(),new MockHttpServletResponse()));
+  assertEquals("success",this.action.execute(this.context).getId());
+}

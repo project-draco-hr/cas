@@ -1,0 +1,6 @@
+{
+  this.action=new GenerateServiceTicketAction();
+  this.action.setCentralAuthenticationService(getCentralAuthenticationService());
+  this.action.afterPropertiesSet();
+  this.ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
+}

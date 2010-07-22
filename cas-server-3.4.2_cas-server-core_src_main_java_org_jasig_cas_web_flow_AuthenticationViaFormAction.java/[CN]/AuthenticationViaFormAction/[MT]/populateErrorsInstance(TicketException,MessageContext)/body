@@ -1,0 +1,8 @@
+{
+  try {
+    messageContext.addMessage(new MessageBuilder().error().code(e.getCode()).defaultText(e.getCode()).build());
+  }
+ catch (  final Exception fe) {
+    logger.error(fe.getMessage(),fe);
+  }
+}

@@ -1,0 +1,12 @@
+{
+  final String pgtUrl=request.getParameter("pgtUrl");
+  if (StringUtils.hasText(pgtUrl)) {
+    try {
+      return new HttpBasedServiceCredentials(new URL(pgtUrl));
+    }
+ catch (    final Exception e) {
+      logger.error("Error constructing pgtUrl",e);
+    }
+  }
+  return null;
+}

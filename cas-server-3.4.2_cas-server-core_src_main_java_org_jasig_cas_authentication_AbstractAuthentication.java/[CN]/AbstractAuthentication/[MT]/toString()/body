@@ -1,0 +1,3 @@
+{
+  return "[Principal=" + this.principal.getId() + ", attributes="+ this.attributes.toString()+ "]";
+}

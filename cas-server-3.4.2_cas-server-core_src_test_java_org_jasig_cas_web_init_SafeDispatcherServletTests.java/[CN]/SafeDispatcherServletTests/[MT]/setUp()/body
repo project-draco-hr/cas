@@ -1,0 +1,6 @@
+{
+  super.setUp();
+  this.safeServlet=new SafeDispatcherServlet();
+  this.mockContext=new MockServletContext();
+  this.mockConfig=new MockServletConfig(this.mockContext);
+}

@@ -1,0 +1,7 @@
+{
+  final boolean result=pattern.matcher(principal.getName()).matches();
+  if (log.isDebugEnabled()) {
+    log.debug("Pattern Match: " + result + " ["+ principal.getName()+ "] against ["+ pattern.pattern()+ "].");
+  }
+  return result;
+}

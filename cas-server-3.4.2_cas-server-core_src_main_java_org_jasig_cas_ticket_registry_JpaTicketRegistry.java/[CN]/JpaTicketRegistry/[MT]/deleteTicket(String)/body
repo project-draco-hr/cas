@@ -1,0 +1,12 @@
+{
+  final Ticket ticket=getRawTicket(ticketId);
+  if (ticket == null) {
+    return false;
+  }
+  if (ticket instanceof ServiceTicket) {
+    removeTicket(ticket);
+    return true;
+  }
+  deleteTicketAndChildren(ticket);
+  return true;
+}

@@ -1,0 +1,50 @@
+{
+  HttpURLConnection connection=null;
+  BufferedReader in=null;
+  try {
+    if (log.isDebugEnabled()) {
+      log.debug("Attempting to access " + url);
+    }
+    final URL logoutUrl=new URL(url);
+    final String output="logoutRequest=" + URLEncoder.encode(message,"UTF-8");
+    connection=(HttpURLConnection)logoutUrl.openConnection();
+    connection.setDoInput(true);
+    connection.setDoOutput(true);
+    connection.setRequestMethod("POST");
+    connection.setReadTimeout(readTimeout);
+    connection.setConnectTimeout(connectionTimeout);
+    connection.setRequestProperty("Content-Length",Integer.toString(output.getBytes().length));
+    connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+    final DataOutputStream printout=new DataOutputStream(connection.getOutputStream());
+    printout.writeBytes(output);
+    printout.flush();
+    printout.close();
+    in=new BufferedReader(new InputStreamReader(connection.getInputStream()));
+    while (in.readLine() != null) {
+    }
+    if (log.isDebugEnabled()) {
+      log.debug("Finished sending message to" + url);
+    }
+    return true;
+  }
+ catch (  final SocketTimeoutException e) {
+    log.warn("Socket Timeout Detected while attempting to send message to [" + url + "].");
+    return false;
+  }
+catch (  final Exception e) {
+    log.warn("Error Sending message to url endpoint [" + url + "].  Error is ["+ e.getMessage()+ "]");
+    return false;
+  }
+ finally {
+    if (in != null) {
+      try {
+        in.close();
+      }
+ catch (      final IOException e) {
+      }
+    }
+    if (connection != null) {
+      connection.disconnect();
+    }
+  }
+}

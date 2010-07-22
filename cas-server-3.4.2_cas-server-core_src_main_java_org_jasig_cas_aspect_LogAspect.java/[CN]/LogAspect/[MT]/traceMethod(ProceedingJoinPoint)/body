@@ -1,0 +1,25 @@
+{
+  Object returnVal=null;
+  final Logger log=getLog(proceedingJoinPoint);
+  final String methodName=proceedingJoinPoint.getSignature().getName();
+  try {
+    if (log.isTraceEnabled()) {
+      final Object[] args=proceedingJoinPoint.getArgs();
+      final String arguments;
+      if (args == null || args.length == 0) {
+        arguments="";
+      }
+ else {
+        arguments=Arrays.deepToString(args);
+      }
+      log.trace("Entering method [" + methodName + " with arguments ["+ arguments+ "]");
+    }
+    returnVal=proceedingJoinPoint.proceed();
+    return returnVal;
+  }
+  finally {
+    if (log.isTraceEnabled()) {
+      log.trace("Leaving method [" + methodName + "] with return value ["+ (returnVal != null ? returnVal.toString() : "null")+ "].");
+    }
+  }
+}

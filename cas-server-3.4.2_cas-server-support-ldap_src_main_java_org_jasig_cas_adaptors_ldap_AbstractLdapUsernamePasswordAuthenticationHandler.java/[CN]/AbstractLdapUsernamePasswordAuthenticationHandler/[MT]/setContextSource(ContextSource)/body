@@ -1,0 +1,4 @@
+{
+  this.contextSource=contextSource;
+  this.ldapTemplate=new LdapTemplate(contextSource);
+}

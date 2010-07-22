@@ -1,0 +1,8 @@
+{
+  if (credentials.getClass().equals(LegacyCasCredentials.class)) {
+    ((LegacyCasCredentials)credentials).setServletRequest(request);
+  }
+ else {
+    ((LegacyCasTrustedCredentials)credentials).setServletRequest(request);
+  }
+}

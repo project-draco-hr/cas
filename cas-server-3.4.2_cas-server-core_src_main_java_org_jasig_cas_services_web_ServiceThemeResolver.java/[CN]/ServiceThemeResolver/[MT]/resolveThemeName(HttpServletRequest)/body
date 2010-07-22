@@ -1,0 +1,16 @@
+{
+  if (this.servicesManager == null) {
+    return getDefaultThemeName();
+  }
+  final Service service=WebUtils.getService(this.argumentExtractors,request);
+  final RegisteredService rService=this.servicesManager.findServiceBy(service);
+  String userAgent=request.getHeader("User-Agent");
+  for (  final Map.Entry<Pattern,String> entry : this.overrides.entrySet()) {
+    if (entry.getKey().matcher(userAgent).matches()) {
+      request.setAttribute("isMobile","true");
+      request.setAttribute("browserType",entry.getValue());
+      break;
+    }
+  }
+  return service != null && rService != null && StringUtils.hasText(rService.getTheme()) ? rService.getTheme() : getDefaultThemeName();
+}

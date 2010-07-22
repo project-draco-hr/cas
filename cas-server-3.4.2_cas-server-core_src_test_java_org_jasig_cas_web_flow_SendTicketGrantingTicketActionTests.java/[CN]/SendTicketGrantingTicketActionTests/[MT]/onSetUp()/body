@@ -1,0 +1,9 @@
+{
+  this.action=new SendTicketGrantingTicketAction();
+  this.ticketGrantingTicketCookieGenerator=new CookieRetrievingCookieGenerator();
+  this.ticketGrantingTicketCookieGenerator.setCookieName("TGT");
+  this.action.setCentralAuthenticationService(getCentralAuthenticationService());
+  this.action.setTicketGrantingTicketCookieGenerator(this.ticketGrantingTicketCookieGenerator);
+  this.action.afterPropertiesSet();
+  this.context=new MockRequestContext();
+}

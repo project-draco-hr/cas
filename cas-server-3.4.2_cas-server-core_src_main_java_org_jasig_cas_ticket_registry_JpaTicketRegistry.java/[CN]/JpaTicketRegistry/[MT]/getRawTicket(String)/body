@@ -1,0 +1,12 @@
+{
+  try {
+    if (ticketId.startsWith(this.ticketGrantingTicketPrefix)) {
+      return this.jpaTemplate.find(TicketGrantingTicketImpl.class,ticketId);
+    }
+    return this.jpaTemplate.find(ServiceTicketImpl.class,ticketId);
+  }
+ catch (  final Exception e) {
+    log.error("Error getting ticket " + ticketId + " from registry.",e);
+  }
+  return null;
+}

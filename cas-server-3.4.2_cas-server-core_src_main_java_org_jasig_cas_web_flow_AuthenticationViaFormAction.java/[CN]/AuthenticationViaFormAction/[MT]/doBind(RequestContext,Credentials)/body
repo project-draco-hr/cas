@@ -1,0 +1,6 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  if (this.credentialsBinder != null && this.credentialsBinder.supports(credentials.getClass())) {
+    this.credentialsBinder.bind(request,credentials);
+  }
+}

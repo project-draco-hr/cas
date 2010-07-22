@@ -1,0 +1,15 @@
+{
+  for (int i=0; i < 3; i++) {
+    TicketGrantingTicket ticket=this.test.getTicket(this.toString() + this.createTime);
+    this.test.getReg().addTicket(ticket);
+    TicketGrantingTicket oldticket=this.test.getTicket(this.toString() + this.createTime);
+    BerkeleyDbTicketRegistryTests.this.reg.addTicket(oldticket);
+    TicketGrantingTicket newticket=(TicketGrantingTicket)this.test.getReg().getTicket(this.toString() + this.createTime);
+    assertEquals(newticket,oldticket);
+    boolean delete=(rand.nextInt() % 3) == 0;
+    if (!delete) {
+      this.test.getReg().deleteTicket(this.toString() + this.createTime);
+    }
+    this.test.getReg().getTickets();
+  }
+}

@@ -1,0 +1,5 @@
+{
+  super(id,ticketGrantingTicket,policy);
+  Assert.notNull(authentication,"authentication cannot be null");
+  this.authentication=authentication;
+}

@@ -1,0 +1,3 @@
+{
+  this(hostName,sharedSecret,radiusAuthenticator,authenticationPort,DEFAULT_ACCOUNTING_PORT);
+}

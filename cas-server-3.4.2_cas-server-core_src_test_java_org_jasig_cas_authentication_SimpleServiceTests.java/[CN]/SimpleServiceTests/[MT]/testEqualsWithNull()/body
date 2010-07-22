@@ -1,0 +1,3 @@
+{
+  assertFalse("Service matches null.",TestUtils.getService().equals(null));
+}

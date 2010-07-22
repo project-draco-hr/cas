@@ -1,0 +1,3 @@
+{
+  assertEquals(this.resolver.resolvePrincipal(TestUtils.getHttpBasedServiceCredentials()).getId(),TestUtils.getHttpBasedServiceCredentials().getCallbackUrl().toExternalForm());
+}

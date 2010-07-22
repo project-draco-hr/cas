@@ -1,0 +1,9 @@
+{
+  final MockRequestContext context=new MockRequestContext();
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setParameter("service","test");
+  context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
+  final Event event=this.action.execute(context);
+  assertEquals("test",WebUtils.getService(context).getId());
+  assertEquals("success",event.getId());
+}

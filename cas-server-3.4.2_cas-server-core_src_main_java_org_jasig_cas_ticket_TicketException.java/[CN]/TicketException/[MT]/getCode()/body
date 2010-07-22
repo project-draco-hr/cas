@@ -1,0 +1,3 @@
+{
+  return (this.getCause() != null) ? this.getCause().toString() : this.code;
+}

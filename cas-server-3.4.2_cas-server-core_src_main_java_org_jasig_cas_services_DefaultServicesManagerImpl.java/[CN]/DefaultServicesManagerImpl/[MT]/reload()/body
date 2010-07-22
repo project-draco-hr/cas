@@ -1,0 +1,4 @@
+{
+  log.info("Reloading registered services.");
+  load();
+}

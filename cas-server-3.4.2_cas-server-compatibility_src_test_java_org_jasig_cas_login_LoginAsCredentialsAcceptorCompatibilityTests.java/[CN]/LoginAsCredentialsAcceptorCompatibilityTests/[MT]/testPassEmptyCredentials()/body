@@ -1,0 +1,5 @@
+{
+  beginAt("/login");
+  submit();
+  assertFormElementPresent(FORM_USERNAME);
+}

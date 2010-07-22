@@ -1,0 +1,10 @@
+{
+  int numTimes=100;
+  for (int i=0; i < numTimes; i++) {
+    Ticket originalTicket=generateRandomTicket();
+    String id=originalTicket.getId();
+    registry.addTicket(originalTicket);
+    assertEquals(originalTicket,registry.getTicket(id));
+    assertTrue(registry.deleteTicket(id));
+  }
+}

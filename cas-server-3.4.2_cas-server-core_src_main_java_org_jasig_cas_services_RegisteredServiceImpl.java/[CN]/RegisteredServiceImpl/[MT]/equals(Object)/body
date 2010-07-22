@@ -1,0 +1,17 @@
+{
+  if (this == o)   return true;
+  if (!(o instanceof RegisteredServiceImpl))   return false;
+  RegisteredServiceImpl that=(RegisteredServiceImpl)o;
+  if (allowedToProxy != that.allowedToProxy)   return false;
+  if (anonymousAccess != that.anonymousAccess)   return false;
+  if (enabled != that.enabled)   return false;
+  if (evaluationOrder != that.evaluationOrder)   return false;
+  if (ignoreAttributes != that.ignoreAttributes)   return false;
+  if (ssoEnabled != that.ssoEnabled)   return false;
+  if (allowedAttributes != null ? !allowedAttributes.equals(that.allowedAttributes) : that.allowedAttributes != null)   return false;
+  if (description != null ? !description.equals(that.description) : that.description != null)   return false;
+  if (name != null ? !name.equals(that.name) : that.name != null)   return false;
+  if (serviceId != null ? !serviceId.equals(that.serviceId) : that.serviceId != null)   return false;
+  if (theme != null ? !theme.equals(that.theme) : that.theme != null)   return false;
+  return true;
+}

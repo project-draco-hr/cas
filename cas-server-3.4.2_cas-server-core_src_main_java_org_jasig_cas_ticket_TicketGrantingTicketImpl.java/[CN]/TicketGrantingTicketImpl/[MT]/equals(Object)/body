@@ -1,0 +1,7 @@
+{
+  if (object == null || !(object instanceof TicketGrantingTicket)) {
+    return false;
+  }
+  final Ticket ticket=(Ticket)object;
+  return ticket.getId().equals(this.getId());
+}

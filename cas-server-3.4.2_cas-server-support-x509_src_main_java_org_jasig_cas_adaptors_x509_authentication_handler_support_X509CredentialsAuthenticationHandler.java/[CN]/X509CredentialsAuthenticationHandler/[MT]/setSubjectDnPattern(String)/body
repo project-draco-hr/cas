@@ -1,0 +1,3 @@
+{
+  this.regExSubjectDnPattern=Pattern.compile(subjectDnPattern);
+}

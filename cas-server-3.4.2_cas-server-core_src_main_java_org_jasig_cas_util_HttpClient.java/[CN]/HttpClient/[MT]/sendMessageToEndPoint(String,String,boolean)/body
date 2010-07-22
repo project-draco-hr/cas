@@ -1,0 +1,12 @@
+{
+  final Future<Boolean> result=EXECUTOR_SERVICE.submit(new MessageSender(url,message,this.readTimeout,this.connectionTimeout));
+  if (async) {
+    return true;
+  }
+  try {
+    return result.get();
+  }
+ catch (  final Exception e) {
+    return false;
+  }
+}

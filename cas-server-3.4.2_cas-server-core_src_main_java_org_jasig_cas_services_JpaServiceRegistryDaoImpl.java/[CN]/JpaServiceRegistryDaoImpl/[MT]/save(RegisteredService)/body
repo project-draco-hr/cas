@@ -1,0 +1,8 @@
+{
+  final boolean isNew=registeredService.getId() == -1;
+  final RegisteredService r=getJpaTemplate().merge(registeredService);
+  if (!isNew) {
+    getJpaTemplate().persist(r);
+  }
+  return r;
+}

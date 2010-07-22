@@ -1,0 +1,3 @@
+{
+  return getCalendarFor(date).get(Calendar.DAY_OF_WEEK);
+}

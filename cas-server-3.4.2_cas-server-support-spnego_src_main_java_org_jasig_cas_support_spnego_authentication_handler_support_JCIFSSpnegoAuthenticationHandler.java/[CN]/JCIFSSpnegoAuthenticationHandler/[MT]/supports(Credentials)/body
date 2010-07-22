@@ -1,0 +1,3 @@
+{
+  return credentials != null && SpnegoCredentials.class.equals(credentials.getClass());
+}

@@ -1,0 +1,3 @@
+String[] hostnames
+int ticketGrantingTicketTimeOut
+int serviceTicketTimeOut

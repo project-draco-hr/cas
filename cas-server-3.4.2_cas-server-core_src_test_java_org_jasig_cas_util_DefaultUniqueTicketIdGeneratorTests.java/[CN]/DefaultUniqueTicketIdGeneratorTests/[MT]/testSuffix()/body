@@ -1,0 +1,5 @@
+{
+  final String SUFFIX="suffix";
+  DefaultUniqueTicketIdGenerator generator=new DefaultUniqueTicketIdGenerator(SUFFIX);
+  assertTrue(generator.getNewTicketId("test").endsWith(SUFFIX));
+}

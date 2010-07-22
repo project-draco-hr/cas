@@ -1,0 +1,31 @@
+{
+  this.log.info("Beginning ticket cleanup.");
+  this.log.debug("Attempting to acquire ticket cleanup lock.");
+  if (!this.lock.acquire()) {
+    this.log.info("Could not obtain lock.  Aborting cleanup.");
+    return;
+  }
+  this.log.debug("Acquired lock.  Proceeding with cleanup.");
+  try {
+    final List<Ticket> ticketsToRemove=new ArrayList<Ticket>();
+    final Collection<Ticket> ticketsInCache;
+    ticketsInCache=this.ticketRegistry.getTickets();
+    for (    final Ticket ticket : ticketsInCache) {
+      if (ticket.isExpired()) {
+        ticketsToRemove.add(ticket);
+      }
+    }
+    this.log.info(ticketsToRemove.size() + " tickets found to be removed.");
+    for (    final Ticket ticket : ticketsToRemove) {
+      if (ticket instanceof TicketGrantingTicket) {
+        ((TicketGrantingTicket)ticket).expire();
+      }
+      this.ticketRegistry.deleteTicket(ticket.getId());
+    }
+  }
+  finally {
+    this.log.debug("Releasing ticket cleanup lock.");
+    this.lock.release();
+  }
+  this.log.info("Finished ticket cleanup.");
+}

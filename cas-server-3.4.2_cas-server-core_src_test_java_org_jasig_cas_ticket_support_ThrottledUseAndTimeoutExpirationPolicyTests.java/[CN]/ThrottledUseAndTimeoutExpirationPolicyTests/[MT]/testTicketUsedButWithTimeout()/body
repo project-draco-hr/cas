@@ -1,0 +1,10 @@
+{
+  try {
+    this.ticket.grantServiceTicket("test",TestUtils.getService(),this.expirationPolicy,false);
+    Thread.sleep(TIMEOUT - 100);
+    assertFalse(this.ticket.isExpired());
+  }
+ catch (  InterruptedException e) {
+    fail(e.getMessage());
+  }
+}

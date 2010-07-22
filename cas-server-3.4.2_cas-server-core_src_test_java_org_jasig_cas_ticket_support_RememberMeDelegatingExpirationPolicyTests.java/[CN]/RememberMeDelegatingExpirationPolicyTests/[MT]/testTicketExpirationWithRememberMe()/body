@@ -1,0 +1,8 @@
+{
+  final MutableAuthentication authentication=new MutableAuthentication(TestUtils.getPrincipal());
+  authentication.getAttributes().put(RememberMeCredentials.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME,Boolean.TRUE);
+  final TicketGrantingTicketImpl t=new TicketGrantingTicketImpl("111",authentication,this.p);
+  assertFalse(t.isExpired());
+  t.grantServiceTicket("55",TestUtils.getService(),this.p,false);
+  assertTrue(t.isExpired());
+}

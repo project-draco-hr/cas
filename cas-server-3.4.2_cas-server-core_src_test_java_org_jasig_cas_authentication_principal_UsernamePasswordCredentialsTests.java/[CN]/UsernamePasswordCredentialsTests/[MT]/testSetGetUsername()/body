@@ -1,0 +1,6 @@
+{
+  final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  final String userName="test";
+  c.setUsername(userName);
+  assertEquals(userName,c.getUsername());
+}

@@ -1,0 +1,5 @@
+{
+  context=new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"});
+  this.scheduler=(Scheduler)context.getBean("autowiringSchedulerFactoryBean");
+  this.scheduler.start();
+}

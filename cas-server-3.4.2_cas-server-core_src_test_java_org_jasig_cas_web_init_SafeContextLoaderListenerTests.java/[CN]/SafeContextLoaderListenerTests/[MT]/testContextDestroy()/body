@@ -1,0 +1,3 @@
+{
+  this.listener.contextDestroyed(this.servletContextEvent);
+}

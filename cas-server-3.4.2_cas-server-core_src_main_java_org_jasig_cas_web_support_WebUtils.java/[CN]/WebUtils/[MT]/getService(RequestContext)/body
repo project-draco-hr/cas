@@ -1,0 +1,3 @@
+{
+  return (WebApplicationService)context.getFlowScope().get("service");
+}

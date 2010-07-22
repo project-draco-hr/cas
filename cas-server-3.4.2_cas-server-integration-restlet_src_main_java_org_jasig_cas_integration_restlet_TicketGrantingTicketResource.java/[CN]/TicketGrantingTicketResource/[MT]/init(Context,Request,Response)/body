@@ -1,0 +1,5 @@
+{
+  super.init(context,request,response);
+  this.ticketGrantingTicketId=(String)request.getAttributes().get("ticketGrantingTicketId");
+  this.getVariants().add(new Variant(MediaType.APPLICATION_WWW_FORM));
+}

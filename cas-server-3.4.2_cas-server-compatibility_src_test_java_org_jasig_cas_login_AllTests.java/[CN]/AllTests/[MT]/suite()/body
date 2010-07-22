@@ -1,0 +1,10 @@
+{
+  TestSuite suite=new TestSuite("CAS 2 compatibility tests");
+  suite.addTestSuite(ValidateCompatibilityTests.class);
+  suite.addTestSuite(LoginAsCredentialsAcceptorCompatibilityTests.class);
+  suite.addTestSuite(ProxyValidateCompatibilityTests.class);
+  suite.addTestSuite(LogoutCompatibilityTests.class);
+  suite.addTestSuite(LoginAsCredentialsRequestorCompatibilityTests.class);
+  suite.addTestSuite(ServiceValidateCompatibilityTests.class);
+  return suite;
+}

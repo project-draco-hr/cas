@@ -1,0 +1,9 @@
+{
+  this.sharedSecret=sharedSecret;
+  this.authenticationPort=authenticationPort;
+  this.accountingPort=accountingPort;
+  this.socketTimeout=socketTimeout;
+  this.retries=retries;
+  this.radiusAuthenticator=radiusAuthenticator;
+  this.inetAddress=InetAddress.getByName(hostName);
+}

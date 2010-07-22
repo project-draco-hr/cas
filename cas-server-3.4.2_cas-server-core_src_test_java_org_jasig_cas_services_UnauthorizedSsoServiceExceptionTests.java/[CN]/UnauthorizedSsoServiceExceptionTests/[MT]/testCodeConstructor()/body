@@ -1,0 +1,5 @@
+{
+  final String MESSAGE="GG";
+  final UnauthorizedSsoServiceException e=new UnauthorizedSsoServiceException(MESSAGE);
+  assertEquals(MESSAGE,e.getMessage());
+}

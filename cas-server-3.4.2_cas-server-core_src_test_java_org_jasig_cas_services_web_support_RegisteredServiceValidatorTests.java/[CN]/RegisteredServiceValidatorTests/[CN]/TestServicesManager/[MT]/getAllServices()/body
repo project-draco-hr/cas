@@ -1,0 +1,11 @@
+{
+  if (!this.returnValue) {
+    return new ArrayList<RegisteredService>();
+  }
+  final RegisteredServiceImpl r=new RegisteredServiceImpl();
+  r.setServiceId("test");
+  r.setId(1000);
+  final ArrayList<RegisteredService> list=new ArrayList<RegisteredService>();
+  list.add(r);
+  return list;
+}

@@ -1,0 +1,4 @@
+{
+  getJpaTemplate().remove(getJpaTemplate().contains(registeredService) ? registeredService : getJpaTemplate().merge(registeredService));
+  return true;
+}

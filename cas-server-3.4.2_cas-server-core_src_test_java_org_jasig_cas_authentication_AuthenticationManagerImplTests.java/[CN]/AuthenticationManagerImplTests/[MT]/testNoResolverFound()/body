@@ -1,0 +1,8 @@
+{
+  AuthenticationManagerImpl manager=new AuthenticationManagerImpl();
+  HttpBasedServiceCredentialsAuthenticationHandler authenticationHandler=new HttpBasedServiceCredentialsAuthenticationHandler();
+  authenticationHandler.setHttpClient(new HttpClient());
+  manager.setAuthenticationHandlers(Arrays.asList((AuthenticationHandler)authenticationHandler));
+  manager.setCredentialsToPrincipalResolvers(Arrays.asList((CredentialsToPrincipalResolver)new UsernamePasswordCredentialsToPrincipalResolver()));
+  manager.authenticate(TestUtils.getHttpBasedServiceCredentials());
+}

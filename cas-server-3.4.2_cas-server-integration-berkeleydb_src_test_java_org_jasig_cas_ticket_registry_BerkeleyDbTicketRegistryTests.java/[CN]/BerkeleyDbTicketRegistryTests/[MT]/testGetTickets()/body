@@ -1,0 +1,8 @@
+{
+  TicketGrantingTicket ticket=getTicket();
+  this.reg.addTicket(ticket);
+  ticket=getTicket("abc");
+  this.reg.addTicket(ticket);
+  Collection tickets=this.reg.getTickets();
+  assertNotNull(tickets);
+}

@@ -1,0 +1,29 @@
+{
+  Cursor cursor=null;
+  final List<Ticket> tickets=new ArrayList<Ticket>();
+  try {
+    final CursorConfig cconfig=new CursorConfig();
+    cconfig.setReadUncommitted(true);
+    cursor=this.ticketDb.openCursor(null,cconfig);
+    final DatabaseEntry foundKey=new DatabaseEntry();
+    final DatabaseEntry foundData=new DatabaseEntry();
+    while (cursor.getNext(foundKey,foundData,LockMode.READ_UNCOMMITTED) == OperationStatus.SUCCESS) {
+      if (foundData.getData() != null) {
+        Ticket ticket=(Ticket)this.ticketBinding.entryToObject(foundData);
+        tickets.add(getProxiedTicketInstance(ticket));
+      }
+    }
+    cursor.close();
+  }
+ catch (  DatabaseException de) {
+    try {
+      if (cursor != null) {
+        cursor.close();
+      }
+    }
+ catch (    DatabaseException e) {
+    }
+    throw new RuntimeException(de);
+  }
+  return tickets;
+}

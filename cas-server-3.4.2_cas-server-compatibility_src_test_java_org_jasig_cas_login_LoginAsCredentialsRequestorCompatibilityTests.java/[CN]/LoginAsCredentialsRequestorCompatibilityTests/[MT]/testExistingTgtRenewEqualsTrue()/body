@@ -1,0 +1,13 @@
+{
+  final String service="http://www.yale.edu";
+  final String encodedService=URLEncoder.encode(service,"UTF-8");
+  final String renewUrl="/login?service=" + encodedService + "&renew=true";
+  beginAt("/login");
+  setFormElement(FORM_USERNAME,getUsername());
+  setFormElement(FORM_PASSWORD,getGoodPassword());
+  submit();
+  assertCookiePresent(COOKIE_TGC_ID);
+  beginAt(renewUrl);
+  assertFormPresent();
+  assertFormElementPresent(LOGIN_TOKEN);
+}

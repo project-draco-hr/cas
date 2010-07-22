@@ -1,0 +1,30 @@
+{
+  HttpURLConnection connection=null;
+  try {
+    connection=(HttpURLConnection)url.openConnection();
+    connection.setConnectTimeout(this.connectionTimeout);
+    connection.setReadTimeout(this.readTimeout);
+    connection.connect();
+    final int responseCode=connection.getResponseCode();
+    for (    final int acceptableCode : this.acceptableCodes) {
+      if (responseCode == acceptableCode) {
+        if (log.isDebugEnabled()) {
+          log.debug("Response code from server matched " + responseCode + ".");
+        }
+        return true;
+      }
+    }
+    if (log.isDebugEnabled()) {
+      log.debug("Response Code did not match any of the acceptable response codes.  Code returned was " + responseCode);
+    }
+  }
+ catch (  final IOException e) {
+    log.error(e.getMessage(),e);
+  }
+ finally {
+    if (connection != null) {
+      connection.disconnect();
+    }
+  }
+  return false;
+}

@@ -1,0 +1,8 @@
+{
+  Assert.notNull(principals,"principals cannot be null");
+  Assert.notNull(service,"service cannot be null");
+  Assert.notEmpty(principals,"principals cannot be empty");
+  this.principals=principals;
+  this.service=service;
+  this.fromNewLogin=fromNewLogin;
+}

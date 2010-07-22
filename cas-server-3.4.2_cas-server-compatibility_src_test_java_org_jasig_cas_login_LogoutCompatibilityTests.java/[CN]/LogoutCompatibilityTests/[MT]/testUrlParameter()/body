@@ -1,0 +1,5 @@
+{
+  final String service="https://localhost:8443/contacts-cas/j_acegi_cas_security_check";
+  beginAt("/logout?url=" + URLEncoder.encode(service,"UTF-8"));
+  assertTextPresent(service);
+}

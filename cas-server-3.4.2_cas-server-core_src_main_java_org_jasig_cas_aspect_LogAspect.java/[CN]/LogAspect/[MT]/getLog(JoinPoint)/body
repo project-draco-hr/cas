@@ -1,0 +1,7 @@
+{
+  final Object target=joinPoint.getTarget();
+  if (target != null) {
+    return LoggerFactory.getLogger(target.getClass());
+  }
+  return LoggerFactory.getLogger(getClass());
+}

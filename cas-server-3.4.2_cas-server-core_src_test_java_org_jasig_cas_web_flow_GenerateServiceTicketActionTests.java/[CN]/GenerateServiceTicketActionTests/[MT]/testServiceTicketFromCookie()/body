@@ -1,0 +1,11 @@
+{
+  MockRequestContext context=new MockRequestContext();
+  context.getFlowScope().put("service",TestUtils.getService());
+  context.getFlowScope().put("ticketGrantingTicketId",this.ticketGrantingTicket);
+  MockHttpServletRequest request=new MockHttpServletRequest();
+  context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
+  request.addParameter("service","service");
+  request.setCookies(new Cookie[]{new Cookie("TGT",this.ticketGrantingTicket)});
+  this.action.execute(context);
+  assertNotNull(WebUtils.getServiceTicketFromRequestScope(context));
+}

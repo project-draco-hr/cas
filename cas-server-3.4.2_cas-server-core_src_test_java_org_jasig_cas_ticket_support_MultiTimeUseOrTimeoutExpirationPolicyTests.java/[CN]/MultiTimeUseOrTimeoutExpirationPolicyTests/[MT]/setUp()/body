@@ -1,0 +1,5 @@
+{
+  this.expirationPolicy=new MultiTimeUseOrTimeoutExpirationPolicy(NUMBER_OF_USES,TIMEOUT);
+  this.ticket=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),this.expirationPolicy);
+  super.setUp();
+}

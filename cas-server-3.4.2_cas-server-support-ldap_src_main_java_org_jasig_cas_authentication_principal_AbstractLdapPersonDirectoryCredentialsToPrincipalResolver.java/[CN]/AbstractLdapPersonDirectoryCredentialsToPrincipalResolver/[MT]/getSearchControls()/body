@@ -1,0 +1,11 @@
+{
+  final SearchControls constraints=new SearchControls();
+  if (log.isDebugEnabled()) {
+    log.debug("returning searchcontrols: scope=" + this.scope + "; search base="+ this.searchBase+ "; attributes="+ Arrays.toString(this.attributeIds)+ "; timeout="+ this.timeout);
+  }
+  constraints.setSearchScope(this.scope);
+  constraints.setReturningAttributes(this.attributeIds);
+  constraints.setTimeLimit(this.timeout);
+  constraints.setCountLimit(DEFAULT_MAX_NUMBER_OF_RESULTS);
+  return constraints;
+}

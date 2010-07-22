@@ -1,0 +1,5 @@
+{
+  AuthenticationException e=new BadCredentialsAuthenticationException();
+  assertEquals(CODE,e.getCode());
+  assertEquals(CODE,e.toString());
+}

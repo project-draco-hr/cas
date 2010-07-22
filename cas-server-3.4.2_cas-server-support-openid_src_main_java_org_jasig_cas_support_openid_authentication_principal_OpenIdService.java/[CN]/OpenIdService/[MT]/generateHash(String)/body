@@ -1,0 +1,11 @@
+{
+  try {
+    final Mac sha1=Mac.getInstance("HmacSHA1");
+    sha1.init(this.sharedSecret);
+    return Base64.encodeBase64String(sha1.doFinal(value.getBytes()));
+  }
+ catch (  final Exception e) {
+    LOG.error(e.getMessage(),e);
+    return Base64.encodeBase64String(ENCODER.encode(value).getBytes());
+  }
+}

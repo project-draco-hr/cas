@@ -1,0 +1,4 @@
+{
+  TicketGrantingTicket ticket=getTicket();
+  this.reg.addTicket(ticket);
+}

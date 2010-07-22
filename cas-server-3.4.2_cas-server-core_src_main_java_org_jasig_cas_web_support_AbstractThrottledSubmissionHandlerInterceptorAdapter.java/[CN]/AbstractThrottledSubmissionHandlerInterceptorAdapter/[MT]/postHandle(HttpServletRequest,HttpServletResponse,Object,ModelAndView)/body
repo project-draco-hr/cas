@@ -1,0 +1,9 @@
+{
+  if (!"POST".equals(request.getMethod())) {
+    return;
+  }
+  if (modelAndView == null || !"casLoginView".equals(modelAndView.getViewName())) {
+    return;
+  }
+  updateCount(request,this.usernameParameter);
+}

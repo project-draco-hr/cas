@@ -1,0 +1,3 @@
+{
+  assertEquals("INVALID_REQUEST",this.proxyController.handleRequestInternal(new MockHttpServletRequest(),new MockHttpServletResponse()).getModel().get("code"));
+}

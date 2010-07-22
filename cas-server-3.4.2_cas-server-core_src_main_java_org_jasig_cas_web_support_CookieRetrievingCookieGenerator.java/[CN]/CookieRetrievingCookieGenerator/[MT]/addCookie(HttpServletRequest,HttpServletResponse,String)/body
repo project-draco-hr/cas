@@ -1,0 +1,13 @@
+{
+  if (!StringUtils.hasText(request.getParameter(RememberMeCredentials.REQUEST_PARAMETER_REMEMBER_ME))) {
+    super.addCookie(response,cookieValue);
+  }
+ else {
+    final Cookie cookie=createCookie(cookieValue);
+    cookie.setMaxAge(this.rememberMeMaxAge);
+    if (isCookieSecure()) {
+      cookie.setSecure(true);
+    }
+    response.addCookie(cookie);
+  }
+}

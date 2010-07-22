@@ -1,0 +1,6 @@
+{
+  if (obj == null) {
+    return null;
+  }
+  return java.lang.reflect.Proxy.newProxyInstance(obj.getClass().getClassLoader(),obj.getClass().getInterfaces(),new ProxiedTicket(obj,ticketRegistry,obj instanceof ServiceTicket ? SERVICE_TICKET_METHODS : TICKET_GRANTING_TICKET_METHODS));
+}

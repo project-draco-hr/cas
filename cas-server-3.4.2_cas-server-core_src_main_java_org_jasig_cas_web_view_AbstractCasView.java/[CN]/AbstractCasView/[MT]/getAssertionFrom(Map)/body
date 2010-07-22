@@ -1,0 +1,3 @@
+{
+  return (Assertion)model.get("assertion");
+}

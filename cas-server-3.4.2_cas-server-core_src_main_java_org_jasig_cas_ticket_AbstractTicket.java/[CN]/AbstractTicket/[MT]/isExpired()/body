@@ -1,0 +1,3 @@
+{
+  return this.expirationPolicy.isExpired(this) || (getGrantingTicket() != null && getGrantingTicket().isExpired()) || isExpiredInternal();
+}

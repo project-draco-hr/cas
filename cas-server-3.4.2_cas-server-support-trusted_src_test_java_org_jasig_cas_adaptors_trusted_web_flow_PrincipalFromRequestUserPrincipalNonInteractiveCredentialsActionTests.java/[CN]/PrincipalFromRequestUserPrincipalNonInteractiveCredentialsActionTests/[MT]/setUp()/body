@@ -1,0 +1,16 @@
+{
+  this.action=new PrincipalFromRequestUserPrincipalNonInteractiveCredentialsAction();
+  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl();
+  centralAuthenticationService.setTicketRegistry(new DefaultTicketRegistry());
+  final Map<String,UniqueTicketIdGenerator> idGenerators=new HashMap<String,UniqueTicketIdGenerator>();
+  idGenerators.put(SimpleWebApplicationServiceImpl.class.getName(),new DefaultUniqueTicketIdGenerator());
+  final AuthenticationManagerImpl authenticationManager=new AuthenticationManagerImpl();
+  authenticationManager.setAuthenticationHandlers(Arrays.asList(new AuthenticationHandler[]{new PrincipalBearingCredentialsAuthenticationHandler()}));
+  authenticationManager.setCredentialsToPrincipalResolvers(Arrays.asList(new CredentialsToPrincipalResolver[]{new PrincipalBearingCredentialsToPrincipalResolver()}));
+  centralAuthenticationService.setTicketGrantingTicketUniqueTicketIdGenerator(new DefaultUniqueTicketIdGenerator());
+  centralAuthenticationService.setUniqueTicketIdGeneratorsForService(idGenerators);
+  centralAuthenticationService.setServiceTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
+  centralAuthenticationService.setTicketGrantingTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
+  centralAuthenticationService.setAuthenticationManager(authenticationManager);
+  this.action.setCentralAuthenticationService(centralAuthenticationService);
+}

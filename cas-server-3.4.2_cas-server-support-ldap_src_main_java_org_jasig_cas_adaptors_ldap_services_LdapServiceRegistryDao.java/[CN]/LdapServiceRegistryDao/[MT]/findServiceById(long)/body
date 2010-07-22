@@ -1,0 +1,3 @@
+{
+  return (RegisteredService)this.ldapTemplate.lookup(findDn(this.ldapServiceMapper.getSearchFilter(id).encode()),this.ldapServiceMapper);
+}

@@ -1,0 +1,9 @@
+{
+  final RegisteredService service=(RegisteredService)command;
+  this.servicesManager.save(service);
+  logger.info("Saved changes to service " + service.getId());
+  final ModelAndView modelAndView=new ModelAndView(new RedirectView("/services/manage.html#" + service.getId(),true));
+  modelAndView.addObject("action","add");
+  modelAndView.addObject("id",service.getId());
+  return modelAndView;
+}

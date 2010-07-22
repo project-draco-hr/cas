@@ -1,0 +1,12 @@
+{
+  final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  this.authenticationHandler.setFileName(new ClassPathResource("org/jasig/cas/adaptors/generic/authentication2.txt"));
+  this.authenticationHandler.setSeparator(",");
+  c.setUsername("fds");
+  c.setPassword("rutgers");
+  try {
+    assertFalse(this.authenticationHandler.authenticate(c));
+  }
+ catch (  AuthenticationException e) {
+  }
+}

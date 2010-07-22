@@ -1,0 +1,9 @@
+{
+  if (credentials instanceof RememberMeCredentials) {
+    final RememberMeCredentials r=(RememberMeCredentials)credentials;
+    if (r.isRememberMe()) {
+      authentication.getAttributes().put(RememberMeCredentials.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME,Boolean.TRUE);
+    }
+  }
+  return authentication;
+}

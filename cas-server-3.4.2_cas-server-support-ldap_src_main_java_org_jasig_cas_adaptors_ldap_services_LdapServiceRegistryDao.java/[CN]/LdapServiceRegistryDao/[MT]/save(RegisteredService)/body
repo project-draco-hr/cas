@@ -1,0 +1,12 @@
+{
+  final RegisteredServiceImpl registeredService=(RegisteredServiceImpl)rs;
+  if (registeredService.getId() != -1) {
+    return update(registeredService);
+  }
+  final DirContextAdapter ctx=this.ldapServiceMapper.createCtx(this.serviceBaseDn,registeredService);
+  final String dn=ctx.getNameInNamespace();
+  registeredService.setId(dn.hashCode());
+  this.ldapServiceMapper.doMapToContext(registeredService,ctx);
+  this.ldapTemplate.bind(ctx.getNameInNamespace(),ctx,null);
+  return registeredService;
+}

@@ -1,0 +1,5 @@
+{
+  final SimplePrincipal principal=new SimplePrincipal(id);
+  TicketGrantingTicket ticket=new TicketGrantingTicketImpl(id,new ImmutableAuthentication(principal),new TimeoutExpirationPolicy(500));
+  return ticket;
+}

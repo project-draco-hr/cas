@@ -1,0 +1,4 @@
+{
+  final LegacyCasCredentials casCredentials=(LegacyCasCredentials)credentials;
+  return this.passwordHandler.authenticate(casCredentials.getServletRequest(),casCredentials.getUsername(),casCredentials.getPassword());
+}

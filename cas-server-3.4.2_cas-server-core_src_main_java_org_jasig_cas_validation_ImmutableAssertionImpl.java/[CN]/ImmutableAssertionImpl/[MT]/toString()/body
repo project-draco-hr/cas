@@ -1,0 +1,3 @@
+{
+  return "[principals={" + this.principals.toString() + "} for service="+ this.service.toString()+ "]";
+}

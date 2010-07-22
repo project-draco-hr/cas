@@ -1,0 +1,7 @@
+{
+  try {
+    assertFalse(this.authenticationHandler.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword(null)));
+  }
+ catch (  AuthenticationException ae) {
+  }
+}

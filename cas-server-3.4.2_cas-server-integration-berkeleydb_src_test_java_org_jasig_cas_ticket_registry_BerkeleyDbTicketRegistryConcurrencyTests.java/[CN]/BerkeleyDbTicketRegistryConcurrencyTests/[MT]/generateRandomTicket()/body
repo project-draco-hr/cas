@@ -1,0 +1,6 @@
+{
+  final String id=this.generator.getNewTicketId("TGT");
+  final SimplePrincipal principal=new SimplePrincipal(id);
+  TicketGrantingTicketImpl ticket=new TicketGrantingTicketImpl(id,new ImmutableAuthentication(principal),new TimeoutExpirationPolicy(500));
+  return ticket;
+}

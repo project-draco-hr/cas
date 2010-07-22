@@ -1,0 +1,7 @@
+{
+  if (o == null || !this.getClass().isAssignableFrom(o.getClass())) {
+    return false;
+  }
+  final Assertion a=(Assertion)o;
+  return this.service.equals(a.getService()) && this.fromNewLogin == a.isFromNewLogin() && this.principals.equals(a.getChainedAuthentications());
+}

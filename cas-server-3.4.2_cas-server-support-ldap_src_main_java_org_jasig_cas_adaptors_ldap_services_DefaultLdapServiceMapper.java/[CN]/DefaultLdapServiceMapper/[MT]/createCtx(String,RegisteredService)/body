@@ -1,0 +1,5 @@
+{
+  DistinguishedName dn=new DistinguishedName(parentDn);
+  dn.add(this.namingAttribute,servivce.getName());
+  return new DirContextAdapter(dn);
+}

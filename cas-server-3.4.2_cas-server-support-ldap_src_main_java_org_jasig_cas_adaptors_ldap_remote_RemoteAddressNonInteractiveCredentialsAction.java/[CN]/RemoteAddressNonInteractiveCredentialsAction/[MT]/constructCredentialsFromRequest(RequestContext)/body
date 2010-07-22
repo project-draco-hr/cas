@@ -1,0 +1,9 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final String remoteAddress=request.getRemoteAddr();
+  if (StringUtils.hasText(remoteAddress)) {
+    return new RemoteAddressCredentials(remoteAddress);
+  }
+  logger.debug("No remote address found.");
+  return null;
+}

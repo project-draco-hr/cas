@@ -1,0 +1,8 @@
+{
+  final int ipOctet=Integer.parseInt(octet);
+  String hex=Integer.toString(ipOctet,16);
+  while (hex.length() < 2) {
+    hex="0" + hex;
+  }
+  return hex;
+}

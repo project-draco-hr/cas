@@ -1,0 +1,3 @@
+{
+  this.principalBearingCredentials=new PrincipalBearingCredentials(new SimplePrincipal("test"));
+}

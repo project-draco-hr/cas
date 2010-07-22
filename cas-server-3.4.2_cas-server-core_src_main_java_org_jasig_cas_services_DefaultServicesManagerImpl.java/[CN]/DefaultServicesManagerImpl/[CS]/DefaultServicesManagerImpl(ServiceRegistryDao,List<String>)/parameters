@@ -1,0 +1,2 @@
+ServiceRegistryDao serviceRegistryDao
+List<String> defaultAttributes

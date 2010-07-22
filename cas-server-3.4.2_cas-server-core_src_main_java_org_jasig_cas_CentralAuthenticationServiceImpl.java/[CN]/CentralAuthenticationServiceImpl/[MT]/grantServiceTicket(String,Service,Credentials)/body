@@ -1,0 +1,43 @@
+{
+  Assert.notNull(ticketGrantingTicketId,"ticketGrantingticketId cannot be null");
+  Assert.notNull(service,"service cannot be null");
+  final TicketGrantingTicket ticketGrantingTicket;
+  ticketGrantingTicket=(TicketGrantingTicket)this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
+  if (ticketGrantingTicket == null) {
+    throw new InvalidTicketException();
+  }
+synchronized (ticketGrantingTicket) {
+    if (ticketGrantingTicket.isExpired()) {
+      this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
+      throw new InvalidTicketException();
+    }
+  }
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  if (registeredService == null || !registeredService.isEnabled()) {
+    log.warn("ServiceManagement: Unauthorized Service Access. Service [" + service.getId() + "] not found in Service Registry.");
+    throw new UnauthorizedServiceException();
+  }
+  if (!registeredService.isSsoEnabled() && credentials == null && ticketGrantingTicket.getCountOfUses() > 0) {
+    log.warn("ServiceManagement: Service Not Allowed to use SSO.  Service [" + service.getId() + "]");
+    throw new UnauthorizedSsoServiceException();
+  }
+  if (credentials != null) {
+    try {
+      final Authentication authentication=this.authenticationManager.authenticate(credentials);
+      final Authentication originalAuthentication=ticketGrantingTicket.getAuthentication();
+      if (!(authentication.getPrincipal().equals(originalAuthentication.getPrincipal()) && authentication.getAttributes().equals(originalAuthentication.getAttributes()))) {
+        throw new TicketCreationException();
+      }
+    }
+ catch (    final AuthenticationException e) {
+      throw new TicketCreationException(e);
+    }
+  }
+  final UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(service.getClass().getName());
+  final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),service,this.serviceTicketExpirationPolicy,credentials != null);
+  this.serviceTicketRegistry.addTicket(serviceTicket);
+  if (log.isInfoEnabled()) {
+    log.info("Granted service ticket [" + serviceTicket.getId() + "] for service ["+ service.getId()+ "] for user ["+ serviceTicket.getGrantingTicket().getAuthentication().getPrincipal().getId()+ "]");
+  }
+  return serviceTicket.getId();
+}

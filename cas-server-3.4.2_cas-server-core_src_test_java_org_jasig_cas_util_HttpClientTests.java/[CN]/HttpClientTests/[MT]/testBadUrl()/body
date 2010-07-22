@@ -1,0 +1,3 @@
+{
+  assertFalse(this.httpClient.isValidEndPoint("http://www.jasig.org/scottb.html"));
+}

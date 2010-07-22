@@ -1,0 +1,19 @@
+{
+  ((CentralAuthenticationServiceImpl)getCentralAuthenticationService()).setTicketGrantingTicketExpirationPolicy(new ExpirationPolicy(){
+    private static final long serialVersionUID=1L;
+    public boolean isExpired(    final TicketState ticket){
+      return true;
+    }
+  }
+);
+  final String ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  try {
+    getCentralAuthenticationService().grantServiceTicket(ticketId,TestUtils.getService());
+    fail(TestUtils.CONST_EXCEPTION_EXPECTED);
+  }
+ catch (  TicketException e) {
+  }
+ finally {
+    ((CentralAuthenticationServiceImpl)getCentralAuthenticationService()).setTicketGrantingTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
+  }
+}

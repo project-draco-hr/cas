@@ -1,0 +1,3 @@
+{
+  assertNull(this.proxyHandler.handle(TestUtils.getCredentialsWithSameUsernameAndPassword(),"test"));
+}

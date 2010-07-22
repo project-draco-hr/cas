@@ -1,0 +1,8 @@
+{
+  if (ticket instanceof TicketGrantingTicket) {
+    handleSynchronousRequest(this.client.add(ticket.getId(),this.tgtTimeout,ticket));
+  }
+  if (ticket instanceof ServiceTicket) {
+    handleSynchronousRequest(this.client.add(ticket.getId(),this.stTimeout,ticket));
+  }
+}

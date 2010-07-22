@@ -1,0 +1,7 @@
+{
+  if (object == null || !(object instanceof ServiceTicket)) {
+    return false;
+  }
+  final Ticket serviceTicket=(Ticket)object;
+  return serviceTicket.getId().equals(this.getId());
+}

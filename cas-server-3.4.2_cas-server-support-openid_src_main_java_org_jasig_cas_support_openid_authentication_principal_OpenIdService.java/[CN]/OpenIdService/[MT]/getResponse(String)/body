@@ -1,0 +1,15 @@
+{
+  final Map<String,String> parameters=new HashMap<String,String>();
+  if (ticketId != null) {
+    parameters.put("openid.mode","id_res");
+    parameters.put("openid.identity",this.identity);
+    parameters.put("openid.assoc_handle",ticketId);
+    parameters.put("openid.return_to",getOriginalUrl());
+    parameters.put("openid.signed","identity,return_to");
+    parameters.put("openid.sig",generateHash("identity=" + this.identity + ",return_to="+ getOriginalUrl()));
+  }
+ else {
+    parameters.put("openid.mode","cancel");
+  }
+  return Response.getRedirectResponse(getOriginalUrl(),parameters);
+}

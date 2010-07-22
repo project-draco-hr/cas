@@ -1,0 +1,3 @@
+{
+  this(hostName,sharedSecret,radiusAuthenticator,authenticationPort,accountingPort,DEFAULT_SOCKET_TIMEOUT,DEFAULT_NUMBER_OF_RETRIES);
+}

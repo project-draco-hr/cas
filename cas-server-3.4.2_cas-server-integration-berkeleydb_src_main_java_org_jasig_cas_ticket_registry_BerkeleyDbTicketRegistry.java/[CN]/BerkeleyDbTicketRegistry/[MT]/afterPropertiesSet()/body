@@ -1,0 +1,15 @@
+{
+  final EnvironmentConfig envConfig=new EnvironmentConfig();
+  envConfig.setTransactional(true);
+  envConfig.setAllowCreate(true);
+  envConfig.setTxnNoSync(true);
+  envConfig.setTxnWriteNoSync(true);
+  final DatabaseConfig dbConfig=new DatabaseConfig();
+  dbConfig.setTransactional(true);
+  dbConfig.setAllowCreate(true);
+  this.environment=new Environment(this.dbHome.getFile(),envConfig);
+  this.ticketDb=this.environment.openDatabase(null,"ticketDb",dbConfig);
+  this.catalogDb=this.environment.openDatabase(null,"catalogDb",dbConfig);
+  StoredClassCatalog catalog=new StoredClassCatalog(this.catalogDb);
+  this.ticketBinding=new SerialBinding(catalog,Ticket.class);
+}

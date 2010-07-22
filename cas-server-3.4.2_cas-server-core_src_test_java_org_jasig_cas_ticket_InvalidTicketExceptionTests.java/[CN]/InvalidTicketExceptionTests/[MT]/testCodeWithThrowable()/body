@@ -1,0 +1,5 @@
+{
+  AuthenticationException a=new BadCredentialsAuthenticationException();
+  TicketException t=new InvalidTicketException(a);
+  assertEquals(a.toString(),t.getCode());
+}

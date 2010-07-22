@@ -1,0 +1,5 @@
+{
+  assertFalse(this.authenticationHandler.supports(null));
+  assertTrue(this.authenticationHandler.supports(new SpnegoCredentials(new byte[]{0,1,2})));
+  assertFalse(this.authenticationHandler.supports(new UsernamePasswordCredentials()));
+}

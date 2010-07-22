@@ -1,0 +1,6 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter("openid.identity","http://openid.ja-sig.org/battags");
+  request.addParameter("openid.return_to","http://www.ja-sig.org/?service=fa");
+  this.openIdService=OpenIdService.createServiceFrom(request);
+}

@@ -1,0 +1,7 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setRemoteUser("test");
+  final MockRequestContext context=new MockRequestContext();
+  context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
+  assertEquals("success",this.action.execute(context).getId());
+}

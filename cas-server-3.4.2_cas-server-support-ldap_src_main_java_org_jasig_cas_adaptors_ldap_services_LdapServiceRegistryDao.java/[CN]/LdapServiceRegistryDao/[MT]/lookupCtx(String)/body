@@ -1,0 +1,3 @@
+{
+  return dn == null ? null : (DirContextAdapter)this.ldapTemplate.lookup(dn);
+}

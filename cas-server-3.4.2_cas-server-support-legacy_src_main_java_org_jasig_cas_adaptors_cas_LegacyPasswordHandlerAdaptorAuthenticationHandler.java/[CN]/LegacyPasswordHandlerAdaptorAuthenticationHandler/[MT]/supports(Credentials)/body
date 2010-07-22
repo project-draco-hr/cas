@@ -1,0 +1,3 @@
+{
+  return credentials != null && LegacyCasCredentials.class.equals(credentials.getClass());
+}

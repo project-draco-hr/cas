@@ -1,0 +1,5 @@
+{
+  final Calendar cal=Calendar.getInstance();
+  cal.add(Calendar.SECOND,this.lockTimeout);
+  return new Timestamp(cal.getTimeInMillis());
+}

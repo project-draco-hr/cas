@@ -1,0 +1,6 @@
+{
+  final UsernamePasswordCredentials credentials=new UsernamePasswordCredentials();
+  credentials.setUsername(this.resolverTestConfig.getNotExistsCredential());
+  final Principal p=this.ldapResolver.resolvePrincipal(credentials);
+  assertNull(p);
+}

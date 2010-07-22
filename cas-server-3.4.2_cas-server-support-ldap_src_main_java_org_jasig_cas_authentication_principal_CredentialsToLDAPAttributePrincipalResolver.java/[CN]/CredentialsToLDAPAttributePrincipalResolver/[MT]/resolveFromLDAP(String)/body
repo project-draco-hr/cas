@@ -1,0 +1,33 @@
+{
+  final String searchFilter=LdapUtils.getFilterWithValues(getFilter(),lookupAttributeValue);
+  if (log.isDebugEnabled()) {
+    log.debug("LDAP search with filter \"" + searchFilter + "\"");
+  }
+  try {
+    final String idAttribute=getAttributeIds()[0];
+    final List principalList=getLdapTemplate().search(getSearchBase(),searchFilter,getSearchControls(),new AttributesMapper(){
+      public Object mapFromAttributes(      final Attributes attrs) throws NamingException {
+        final Attribute attribute=attrs.get(idAttribute);
+        if (attribute == null) {
+          log.debug("Principal attribute \"" + idAttribute + "\" "+ "not found in LDAP search results. Returning null.");
+          return null;
+        }
+        return attribute.get();
+      }
+    }
+);
+    if (principalList.isEmpty()) {
+      log.debug("LDAP search returned zero results.");
+      return null;
+    }
+    if (principalList.size() > 1) {
+      log.error("LDAP search returned multiple results " + "for filter \"" + searchFilter + "\", "+ "which is not allowed.");
+      return null;
+    }
+    return (String)principalList.get(0);
+  }
+ catch (  final Exception e) {
+    log.error(e.getMessage(),e);
+    return null;
+  }
+}
