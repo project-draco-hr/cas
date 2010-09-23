@@ -9,6 +9,9 @@
   s.setDescription(ctx.getStringAttribute(this.serviceDescriptionAttribute));
   s.setSsoEnabled(SpringLdapUtils.getBoolean(ctx,this.serviceSsoEnabledAttribute));
   s.setTheme(ctx.getStringAttribute(this.serviceThemeAttribute));
-  s.setAllowedAttributes(Arrays.asList(ctx.getStringAttributes(this.serviceAllowedAttributesAttribute)));
+  final String[] attributes=ctx.getStringAttributes(this.serviceAllowedAttributesAttribute);
+  if (attributes != null) {
+    s.setAllowedAttributes(Arrays.asList(attributes));
+  }
   return s;
 }

@@ -1,3 +1,4 @@
 {
+  Assert.notNull(allowedAttributes,"allowedAttributes cannot be null.");
   this.allowedAttributes=allowedAttributes;
 }
