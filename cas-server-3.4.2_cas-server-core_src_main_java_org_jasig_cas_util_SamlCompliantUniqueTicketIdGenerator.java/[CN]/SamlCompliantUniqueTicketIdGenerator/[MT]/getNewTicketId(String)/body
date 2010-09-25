@@ -3,6 +3,6 @@
     return new SAMLArtifactType0002(this.randomStringGenerator.getNewStringAsBytes(),new URI(this.sourceLocation)).encode();
   }
  else {
-    return new SAMLArtifactType0001(this.randomStringGenerator.getNewStringAsBytes(),new URI(this.sourceLocation).toBytes()).encode();
+    return new SAMLArtifactType0001(this.sourceIdDigest,this.randomStringGenerator.getNewStringAsBytes()).encode();
   }
 }
