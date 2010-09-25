@@ -1,8 +1,2 @@
 {
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  final ModelAndView modelAndView=new ModelAndView("redirect");
-  request.setMethod("GET");
-  request.setRemoteAddr("111.111.111.111");
-  this.adapter.postHandle(request,new MockHttpServletResponse(),new Object(),modelAndView);
-  assertEquals("redirect",modelAndView.getViewName());
 }

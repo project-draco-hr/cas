@@ -2,7 +2,11 @@
   if (!"POST".equals(request.getMethod())) {
     return;
   }
-  if (modelAndView == null || !"casLoginView".equals(modelAndView.getViewName())) {
+  RequestContext context=(RequestContext)request.getAttribute("flowRequestContext");
+  if (context == null || context.getCurrentEvent() == null) {
+    return;
+  }
+  if (SUCCESSFUL_AUTHENTICATION_EVENT.equals(context.getCurrentEvent().getId())) {
     return;
   }
   updateCount(request,this.usernameParameter);
