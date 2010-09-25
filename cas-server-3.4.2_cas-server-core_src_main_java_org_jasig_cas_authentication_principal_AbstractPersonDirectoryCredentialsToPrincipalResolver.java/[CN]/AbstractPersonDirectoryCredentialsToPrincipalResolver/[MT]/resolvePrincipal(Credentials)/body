@@ -9,11 +9,18 @@
   if (log.isDebugEnabled()) {
     log.debug("Creating SimplePrincipal for [" + principalId + "]");
   }
-  final Map<String,List<Object>> attributes=this.attributeRepository.getPerson(principalId).getAttributes();
+  final IPersonAttributes personAttributes=this.attributeRepository.getPerson(principalId);
+  final Map<String,List<Object>> attributes;
+  if (personAttributes == null) {
+    attributes=null;
+  }
+ else {
+    attributes=personAttributes.getAttributes();
+  }
   if (attributes == null & !this.returnNullIfNoAttributes) {
     return new SimplePrincipal(principalId);
   }
-  if (attributes == null && this.returnNullIfNoAttributes) {
+  if (attributes == null) {
     return null;
   }
   final Map<String,Object> convertedAttributes=new HashMap<String,Object>();
