@@ -1,4 +1,8 @@
 {
-  Assert.notNull(allowedAttributes,"allowedAttributes cannot be null.");
-  this.allowedAttributes=allowedAttributes;
+  if (allowedAttributes == null) {
+    this.allowedAttributes=new ArrayList<String>();
+  }
+ else {
+    this.allowedAttributes=allowedAttributes;
+  }
 }

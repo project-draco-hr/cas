@@ -7,6 +7,12 @@
     final Service service=assertion.getService();
     final SAMLResponse samlResponse=new SAMLResponse(null,service.getId(),new ArrayList<Object>(),null);
     samlResponse.setIssueInstant(currentDate);
+    if (service instanceof SamlService) {
+      final SamlService samlService=(SamlService)service;
+      if (samlService.getRequestID() != null) {
+        samlResponse.setInResponseTo(samlService.getRequestID());
+      }
+    }
     final SAMLAssertion samlAssertion=new SAMLAssertion();
     samlAssertion.setIssueInstant(currentDate);
     samlAssertion.setIssuer(this.issuer);

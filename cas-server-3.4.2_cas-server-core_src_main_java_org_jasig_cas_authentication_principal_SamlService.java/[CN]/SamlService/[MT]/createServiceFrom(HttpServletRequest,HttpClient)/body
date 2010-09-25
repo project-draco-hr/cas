@@ -2,6 +2,7 @@
   final String service=request.getParameter(CONST_PARAM_SERVICE);
   final String artifactId;
   final String requestBody=getRequestBody(request);
+  final String requestId;
   if (!StringUtils.hasText(service) && !StringUtils.hasText(requestBody)) {
     return null;
   }
@@ -11,9 +12,11 @@
     final int artifactStartLocation=startTagLocation + CONST_START_ARTIFACT_XML_TAG.length();
     final int endTagLocation=requestBody.indexOf(CONST_END_ARTIFACT_XML_TAG);
     artifactId=requestBody.substring(artifactStartLocation,endTagLocation).trim();
+    requestId=extractRequestId(requestBody);
   }
  else {
     artifactId=null;
+    requestId=null;
   }
-  return new SamlService(id,service,artifactId,httpClient);
+  return new SamlService(id,service,artifactId,httpClient,requestId);
 }
