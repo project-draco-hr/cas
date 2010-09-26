@@ -14,7 +14,7 @@
   }
   for (  final String key : properties.keySet()) {
     final String value=properties.get(key);
-    newFilter=newFilter.replaceAll(key,value);
+    newFilter=newFilter.replaceAll(key,Matcher.quoteReplacement(value));
   }
   return newFilter;
 }
