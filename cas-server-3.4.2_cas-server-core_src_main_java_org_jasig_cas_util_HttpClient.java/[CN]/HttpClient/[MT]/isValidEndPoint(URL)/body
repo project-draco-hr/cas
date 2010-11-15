@@ -1,5 +1,6 @@
 {
   HttpURLConnection connection=null;
+  InputStream is=null;
   try {
     connection=(HttpURLConnection)url.openConnection();
     connection.setConnectTimeout(this.connectionTimeout);
@@ -17,11 +18,17 @@
     if (log.isDebugEnabled()) {
       log.debug("Response Code did not match any of the acceptable response codes.  Code returned was " + responseCode);
     }
+    if (responseCode == 500) {
+      is=connection.getInputStream();
+      final String value=IOUtils.toString(is);
+      log.error(String.format("There was an error contacting the endpoint: %s; The error was:\n%s",url.toExternalForm(),value));
+    }
   }
  catch (  final IOException e) {
     log.error(e.getMessage(),e);
   }
  finally {
+    IOUtils.closeQuietly(is);
     if (connection != null) {
       connection.disconnect();
     }
