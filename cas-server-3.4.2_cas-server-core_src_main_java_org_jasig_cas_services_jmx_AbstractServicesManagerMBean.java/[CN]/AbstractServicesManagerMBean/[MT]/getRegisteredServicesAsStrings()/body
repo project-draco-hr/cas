@@ -1,0 +1,7 @@
+{
+  final List<String> services=new ArrayList<String>();
+  for (  final RegisteredService r : this.servicesManager.getAllServices()) {
+    services.add(new StringBuilder().append("id: ").append(r.getId()).append(" name: ").append(r.getName()).append(" enabled: ").append(r.isEnabled()).append(" ssoEnabled: ").append(r.isSsoEnabled()).append(" serviceId: ").append(r.getServiceId()).toString());
+  }
+  return services;
+}
