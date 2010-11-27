@@ -1,3 +1,9 @@
 {
-  return (Ticket)ProxiedTicket.newInstance(ticket,this);
+  if (ticket == null) {
+    return null;
+  }
+  if (ticket instanceof TicketGrantingTicket) {
+    return new TicketGrantingTicketDelegator(this,(TicketGrantingTicket)ticket,needsCallback());
+  }
+  return new ServiceTicketDelegator(this,(ServiceTicket)ticket,needsCallback());
 }

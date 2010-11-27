@@ -1,0 +1,4 @@
+{
+  this.getTicket().expire();
+  updateTicket();
+}
