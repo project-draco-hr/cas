@@ -2,5 +2,6 @@
   if (!callback) {
     return this.ticket.isExpired();
   }
-  return this.ticket.isExpired() || (getGrantingTicket() != null && getGrantingTicket().isExpired());
+  final TicketGrantingTicket t=getGrantingTicket();
+  return this.ticket.isExpired() || (t != null && t.isExpired());
 }
