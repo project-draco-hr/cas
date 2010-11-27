@@ -1,7 +1,8 @@
 {
   final StringBuilder builder=new StringBuilder(parameters.size() * 40 + 100);
   boolean isFirst=true;
-  builder.append(url);
+  final String[] fragmentSplit=url.split("#");
+  builder.append(fragmentSplit[0]);
   for (  final Map.Entry<String,String> entry : parameters.entrySet()) {
     if (entry.getValue() != null) {
       if (isFirst) {
@@ -20,6 +21,10 @@
         builder.append(entry.getValue());
       }
     }
+  }
+  if (fragmentSplit.length > 1) {
+    builder.append("#");
+    builder.append(fragmentSplit[1]);
   }
   return new Response(ResponseType.REDIRECT,builder.toString(),parameters);
 }
