@@ -1,0 +1,9 @@
+{
+  if (getCertificate() != null) {
+    return getCertificate().getSubjectDN().getName();
+  }
+  if (getCertificates() != null && getCertificates().length > 1) {
+    return getCertificates()[0].getSubjectDN().getName();
+  }
+  return super.toString();
+}
