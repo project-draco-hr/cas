@@ -1,0 +1,9 @@
+{
+  final Collection<Object[]> params=new ArrayList<Object[]>();
+  params.add(new Object[]{"target/test-classes/x509-ctop-resolver-hizzy.crt","$CN","Hizzogarthington I.S. Pleakinsense"});
+  params.add(new Object[]{"target/test-classes/x509-ctop-resolver-hizzy.crt","$EMAILADDRESS","hizzy@vt.edu"});
+  params.add(new Object[]{"target/test-classes/x509-ctop-resolver-hizzy.crt","$OU $CN","Middleware Hizzogarthington I.S. Pleakinsense"});
+  params.add(new Object[]{"target/test-classes/x509-ctop-resolver-gazzo.crt","$CN:$SERIALNUMBER","Gazzaloddi P. Wishwashington:271828183"});
+  params.add(new Object[]{"target/test-classes/x509-ctop-resolver-jacky.crt","$UID@$DC.$DC","jacky@vt.edu"});
+  return params;
+}
