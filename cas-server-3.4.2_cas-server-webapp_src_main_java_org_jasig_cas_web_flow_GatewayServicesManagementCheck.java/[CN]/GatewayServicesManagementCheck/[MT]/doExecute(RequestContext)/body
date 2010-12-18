@@ -1,0 +1,8 @@
+{
+  final Service service=WebUtils.getService(context);
+  final boolean match=this.servicesManager.matchesExistingService(service);
+  if (match) {
+    return success();
+  }
+  throw new UnauthorizedServiceException(String.format("Service [%s] is not authorized to use CAS.",service.getId()));
+}
