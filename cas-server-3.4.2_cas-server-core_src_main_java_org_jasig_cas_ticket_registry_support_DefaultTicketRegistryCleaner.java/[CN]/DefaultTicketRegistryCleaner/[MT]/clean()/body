@@ -17,7 +17,7 @@
     }
     this.log.info(ticketsToRemove.size() + " tickets found to be removed.");
     for (    final Ticket ticket : ticketsToRemove) {
-      if (ticket instanceof TicketGrantingTicket) {
+      if (this.logUserOutOfServices && ticket instanceof TicketGrantingTicket) {
         ((TicketGrantingTicket)ticket).expire();
       }
       this.ticketRegistry.deleteTicket(ticket.getId());
