@@ -1,0 +1,21 @@
+{
+  cert.checkValidity();
+  this.revocationChecker.check(cert);
+  int pathLength=cert.getBasicConstraints();
+  if (pathLength < 0) {
+    if (!isCertificateAllowed(cert)) {
+      throw new GeneralSecurityException("Certificate subject does not match pattern " + this.regExSubjectDnPattern.pattern());
+    }
+    if (this.checkKeyUsage && !isValidKeyUsage(cert)) {
+      throw new GeneralSecurityException("Certificate keyUsage constraint forbids SSL client authentication.");
+    }
+  }
+ else {
+    if (pathLength == Integer.MAX_VALUE && this.maxPathLengthAllowUnspecified != true) {
+      throw new GeneralSecurityException("Unlimited certificate path length not allowed by configuration.");
+    }
+ else     if (pathLength > this.maxPathLength && pathLength < Integer.MAX_VALUE) {
+      throw new GeneralSecurityException(String.format("Certificate path length %s exceeds maximum value %s.",pathLength,this.maxPathLength));
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  this.revocationDate=revoked;
+  this.serial=serial;
+  this.reason=reason;
+}

@@ -1,0 +1,19 @@
+{
+  InputStream in=null;
+  try {
+    in=new ClassPathResource(file).getInputStream();
+    return (X509Certificate)CryptReader.readCertificate(in);
+  }
+ catch (  Exception e) {
+    throw new RuntimeException("Error reading certificate " + file,e);
+  }
+ finally {
+    if (in != null) {
+      try {
+        in.close();
+      }
+ catch (      IOException e) {
+      }
+    }
+  }
+}

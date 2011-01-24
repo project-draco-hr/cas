@@ -1,0 +1,6 @@
+{
+  if (threshold < 0) {
+    throw new IllegalArgumentException("Threshold must be non-negative.");
+  }
+  this.threshold=threshold;
+}

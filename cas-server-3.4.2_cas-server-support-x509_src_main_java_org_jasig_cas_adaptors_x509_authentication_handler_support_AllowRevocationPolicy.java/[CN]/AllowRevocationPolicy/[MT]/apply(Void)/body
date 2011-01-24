@@ -1,0 +1,3 @@
+{
+  this.logger.info("Continuing since AllowRevocationPolicy is in effect.");
+}

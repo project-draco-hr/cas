@@ -1,0 +1,6 @@
+{
+  if (this.reason != null) {
+    return String.format("Certificate %s revoked on %s for reason %s",this.serial,this.revocationDate,this.reason);
+  }
+  return String.format("Certificate %s revoked on %s",this.serial,this.revocationDate);
+}

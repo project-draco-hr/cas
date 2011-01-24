@@ -1,0 +1,5 @@
+{
+  this.issuer=issuer;
+  this.thisUpdate=thisUpdate;
+  this.nextUpdate=nextUpdate;
+}

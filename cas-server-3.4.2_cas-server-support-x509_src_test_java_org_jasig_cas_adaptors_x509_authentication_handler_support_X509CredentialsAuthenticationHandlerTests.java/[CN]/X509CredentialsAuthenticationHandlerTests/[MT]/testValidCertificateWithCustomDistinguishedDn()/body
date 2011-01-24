@@ -1,5 +1,5 @@
 {
-  this.authenticationHandler.setSubjectDnPattern("s.*");
+  this.authenticationHandler.setSubjectDnPattern("CN=\\w+,DC=jasig,DC=org");
   final X509CertificateCredentials credentials=new X509CertificateCredentials(new X509Certificate[]{VALID_CERTIFICATE});
   assertTrue(this.authenticationHandler.authenticate(credentials));
 }

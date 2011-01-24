@@ -1,0 +1,22 @@
+{
+  if (cert == null) {
+    throw new IllegalArgumentException("Certificate cannot be null.");
+  }
+  if (this.logger.isDebugEnabled()) {
+    this.logger.debug("Evaluating certificate revocation status for " + CertUtils.toString(cert));
+  }
+  final X509CRL crl=getCRL(cert);
+  if (crl == null) {
+    this.logger.warn("CRL data is not available for " + cert);
+    this.unavailableCRLPolicy.apply(null);
+    return;
+  }
+  if (CertUtils.isExpired(crl)) {
+    this.logger.warn("CRL data expired on " + crl.getNextUpdate());
+    this.expiredCRLPolicy.apply(crl);
+  }
+  final X509CRLEntry entry=crl.getRevokedCertificate(cert);
+  if (entry != null) {
+    throw new RevokedCertificateException(entry);
+  }
+}

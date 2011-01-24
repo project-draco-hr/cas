@@ -1,7 +1,8 @@
 {
-  final boolean result=pattern.matcher(principal.getName()).matches();
-  if (log.isDebugEnabled()) {
-    log.debug("Pattern Match: " + result + " ["+ principal.getName()+ "] against ["+ pattern.pattern()+ "].");
+  final String name=principal.getName();
+  final boolean result=pattern.matcher(name).matches();
+  if (this.log.isDebugEnabled()) {
+    this.log.debug(String.format("%s matches %s == %s",pattern.pattern(),name,result));
   }
   return result;
 }

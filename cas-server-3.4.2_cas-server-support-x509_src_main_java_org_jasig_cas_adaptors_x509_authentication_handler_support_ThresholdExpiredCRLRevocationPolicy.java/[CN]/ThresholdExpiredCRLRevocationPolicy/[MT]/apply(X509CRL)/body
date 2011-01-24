@@ -1,0 +1,10 @@
+{
+  final Calendar cutoff=Calendar.getInstance();
+  if (CertUtils.isExpired(crl,cutoff.getTime())) {
+    cutoff.add(Calendar.SECOND,-this.threshold);
+    if (CertUtils.isExpired(crl,cutoff.getTime())) {
+      throw new ExpiredCRLException(crl.toString(),cutoff.getTime(),this.threshold);
+    }
+    this.logger.info(String.format("CRL expired on %s but is within threshold period, %s seconds.",crl.getNextUpdate(),this.threshold));
+  }
+}

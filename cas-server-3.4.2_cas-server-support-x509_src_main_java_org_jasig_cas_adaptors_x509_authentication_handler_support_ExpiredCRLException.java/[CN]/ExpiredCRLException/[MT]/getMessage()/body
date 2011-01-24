@@ -1,0 +1,6 @@
+{
+  if (this.leniency > 0) {
+    return String.format("CRL %s expired on %s and is beyond the leniency period of %s seconds.",this.id,this.expirationDate,this.leniency);
+  }
+  return String.format("CRL %s expired on %s",this.id,this.expirationDate);
+}

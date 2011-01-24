@@ -1,7 +1,7 @@
 {
   return new Principal(){
     public String getName(){
-      return "JA-SIG";
+      return "CN=Jasig,DC=jasig,DC=org";
     }
   }
 ;

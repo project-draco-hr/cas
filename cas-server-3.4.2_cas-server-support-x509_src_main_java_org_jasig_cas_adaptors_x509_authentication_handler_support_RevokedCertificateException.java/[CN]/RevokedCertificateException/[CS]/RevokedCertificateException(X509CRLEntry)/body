@@ -1,0 +1,14 @@
+{
+  this.revocationDate=entry.getRevocationDate();
+  this.serial=entry.getSerialNumber();
+  if (entry.hasExtensions()) {
+    try {
+      final int code=Integer.parseInt(new String(entry.getExtensionValue(CRL_REASON_OID),"ASCII"));
+      if (code < Reason.values().length) {
+        this.reason=Reason.fromCode(code);
+      }
+    }
+ catch (    Exception e) {
+    }
+  }
+}

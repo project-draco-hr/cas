@@ -1,0 +1,16 @@
+{
+  this.checker=checker;
+  this.expected=expected;
+  this.certificates=new X509Certificate[certFiles.length];
+  int i=0;
+  for (  String file : certFiles) {
+    this.certificates[i++]=readCertificate(file);
+  }
+  this.checker.setExpiredCRLPolicy(expiredCRLPolicy);
+  try {
+    this.checker.afterPropertiesSet();
+  }
+ catch (  Exception e) {
+    throw new RuntimeException("ResourceCRLRevocationChecker initialization failed",e);
+  }
+}

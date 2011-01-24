@@ -1,7 +1,0 @@
-{
-  final Set<String> criticalOids=certificate.getCriticalExtensionOIDs();
-  if (criticalOids == null || criticalOids.isEmpty()) {
-    return false;
-  }
-  return criticalOids.contains(oid);
-}

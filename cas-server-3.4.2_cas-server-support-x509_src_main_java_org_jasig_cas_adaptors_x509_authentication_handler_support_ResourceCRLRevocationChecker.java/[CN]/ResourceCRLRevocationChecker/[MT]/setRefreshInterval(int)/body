@@ -1,0 +1,8 @@
+{
+  if (seconds > 0) {
+    this.refreshInterval=seconds;
+  }
+ else {
+    throw new IllegalArgumentException("Refresh interval must be positive integer.");
+  }
+}
