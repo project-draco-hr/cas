@@ -1,0 +1,3 @@
+{
+  Assert.assertEquals(this.expectedSupports,this.handler.supports(this.credentials));
+}

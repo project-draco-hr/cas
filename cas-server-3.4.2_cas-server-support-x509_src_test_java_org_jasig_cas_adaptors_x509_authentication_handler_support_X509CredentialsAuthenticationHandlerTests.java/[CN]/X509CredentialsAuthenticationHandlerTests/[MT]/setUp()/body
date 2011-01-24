@@ -1,4 +1,0 @@
-{
-  this.authenticationHandler=new X509CredentialsAuthenticationHandler();
-  this.authenticationHandler.setTrustedIssuerDnPattern("CN=\\w+,DC=jasig,DC=org");
-}
