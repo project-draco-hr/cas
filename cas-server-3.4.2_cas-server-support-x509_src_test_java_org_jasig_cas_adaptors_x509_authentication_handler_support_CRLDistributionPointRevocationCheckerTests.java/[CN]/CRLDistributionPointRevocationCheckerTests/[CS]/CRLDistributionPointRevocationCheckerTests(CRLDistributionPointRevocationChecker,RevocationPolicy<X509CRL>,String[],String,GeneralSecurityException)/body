@@ -1,0 +1,6 @@
+{
+  super(certFiles,expected);
+  this.checker=checker;
+  this.checker.setExpiredCRLPolicy(expiredCRLPolicy);
+  this.webServer=new MockWebServer(8085,new ClassPathResource(crlFile),"text/plain");
+}

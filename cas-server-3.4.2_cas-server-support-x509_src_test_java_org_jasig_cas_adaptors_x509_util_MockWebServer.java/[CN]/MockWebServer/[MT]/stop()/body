@@ -1,0 +1,12 @@
+{
+  if (!isRunning()) {
+    return;
+  }
+  this.worker.stop();
+  try {
+    this.workerThread.join();
+  }
+ catch (  InterruptedException e) {
+    e.printStackTrace();
+  }
+}

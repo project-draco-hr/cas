@@ -1,0 +1,6 @@
+{
+  this.serverSocket=sock;
+  this.resource=resource;
+  this.contentType=contentType;
+  this.running=true;
+}

@@ -1,0 +1,3 @@
+int port
+Resource resource
+String contentType

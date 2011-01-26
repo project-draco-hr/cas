@@ -49,9 +49,12 @@
   handler.setRevocationChecker(checker);
   handler.setTrustedIssuerDnPattern(".*");
   params.add(new Object[]{handler,new X509CertificateCredentials(createCertificates("user-revoked.crt")),true,false});
+  final ThresholdExpiredCRLRevocationPolicy zeroThresholdPolicy=new ThresholdExpiredCRLRevocationPolicy();
+  zeroThresholdPolicy.setThreshold(0);
   handler=new X509CredentialsAuthenticationHandler();
   handler.setTrustedIssuerDnPattern(".*");
   checker=new ResourceCRLRevocationChecker(new ClassPathResource("userCA-expired.crl"));
+  checker.setExpiredCRLPolicy(zeroThresholdPolicy);
   checker.afterPropertiesSet();
   handler.setRevocationChecker(checker);
   params.add(new Object[]{handler,new X509CertificateCredentials(createCertificates("user-valid.crt")),true,false});

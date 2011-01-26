@@ -1,7 +1,7 @@
 {
   try {
     for (    X509Certificate cert : this.certificates) {
-      this.checker.check(cert);
+      getChecker().check(cert);
     }
     if (this.expected != null) {
       Assert.fail("Expected exception of type " + this.expected.getClass());

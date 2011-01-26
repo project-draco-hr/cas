@@ -1,0 +1,29 @@
+{
+  final Collection<Object[]> params=new ArrayList<Object[]>();
+  Cache cache;
+  final ThresholdExpiredCRLRevocationPolicy defaultPolicy=new ThresholdExpiredCRLRevocationPolicy();
+  final ThresholdExpiredCRLRevocationPolicy zeroThresholdPolicy=new ThresholdExpiredCRLRevocationPolicy();
+  zeroThresholdPolicy.setThreshold(0);
+  cache=new Cache("crlCache-1",100,false,false,20,10);
+  cache.initialise();
+  params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),defaultPolicy,new String[]{"user-valid-distcrl.crt"},"userCA-valid.crl",null});
+  cache=new Cache("crlCache-2",100,false,false,20,10);
+  cache.initialise();
+  params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),defaultPolicy,new String[]{"user-revoked-distcrl.crt"},"userCA-valid.crl",new RevokedCertificateException(new Date(),new BigInteger("1"))});
+  cache=new Cache("crlCache-3",100,false,false,20,10);
+  cache.initialise();
+  params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),zeroThresholdPolicy,new String[]{"user-valid-distcrl.crt"},"userCA-expired.crl",new ExpiredCRLException("test",new Date())});
+  cache=new Cache("crlCache-4",100,false,false,20,10);
+  cache.initialise();
+  params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),new RevocationPolicy<X509CRL>(){
+    public void apply(    X509CRL crl){
+    }
+  }
+,new String[]{"user-valid-distcrl.crt"},"userCA-expired.crl",null});
+  cache=new Cache("crlCache-5",100,false,false,20,10);
+  cache.initialise();
+  final CRLDistributionPointRevocationChecker checker5=new CRLDistributionPointRevocationChecker(cache);
+  checker5.setUnavailableCRLPolicy(new AllowRevocationPolicy());
+  params.add(new Object[]{checker5,defaultPolicy,new String[]{"user-valid.crt"},"userCA-expired.crl",null});
+  return params;
+}

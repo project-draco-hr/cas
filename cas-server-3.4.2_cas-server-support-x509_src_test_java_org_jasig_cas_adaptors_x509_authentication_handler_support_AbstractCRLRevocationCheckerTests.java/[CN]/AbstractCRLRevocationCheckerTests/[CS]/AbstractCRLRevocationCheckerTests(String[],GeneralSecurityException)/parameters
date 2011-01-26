@@ -1,0 +1,2 @@
+String[] certFiles
+GeneralSecurityException expected

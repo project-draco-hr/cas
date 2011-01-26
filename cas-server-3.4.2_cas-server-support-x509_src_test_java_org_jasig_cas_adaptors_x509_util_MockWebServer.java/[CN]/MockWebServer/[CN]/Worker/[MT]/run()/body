@@ -1,0 +1,14 @@
+{
+  while (this.running) {
+    try {
+      writeResponse(this.serverSocket.accept());
+    }
+ catch (    SocketException se) {
+      System.out.println("Stopping on socket close.");
+      this.running=false;
+    }
+catch (    IOException ioe) {
+      ioe.printStackTrace();
+    }
+  }
+}
