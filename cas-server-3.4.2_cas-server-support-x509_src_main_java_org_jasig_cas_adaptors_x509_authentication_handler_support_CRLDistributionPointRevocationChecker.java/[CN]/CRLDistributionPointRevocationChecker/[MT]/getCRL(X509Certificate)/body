@@ -1,7 +1,7 @@
 {
   final URL[] urls=getDistributionPoints(cert);
   if (this.logger.isDebugEnabled()) {
-    this.logger.debug(String.format("Distribution points for %s: %s.",CertUtils.toString(cert),urls));
+    this.logger.debug(String.format("Distribution points for %s: %s.",CertUtils.toString(cert),Arrays.asList(urls)));
   }
   Object value;
   for (  URL url : urls) {

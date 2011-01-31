@@ -25,5 +25,8 @@
   final CRLDistributionPointRevocationChecker checker5=new CRLDistributionPointRevocationChecker(cache);
   checker5.setUnavailableCRLPolicy(new AllowRevocationPolicy());
   params.add(new Object[]{checker5,defaultPolicy,new String[]{"user-valid.crt"},"userCA-expired.crl",null});
+  cache=new Cache("crlCache-6",100,false,false,20,10);
+  cache.initialise();
+  params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),defaultPolicy,new String[]{"user-revoked-distcrl2.crt"},"userCA-valid.crl",new RevokedCertificateException(new Date(),new BigInteger("1"))});
   return params;
 }

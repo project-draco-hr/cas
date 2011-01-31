@@ -1,8 +1,10 @@
 {
   try {
-    list.add(new URL(url));
+    final URL url=new URL(uriString);
+    final URI uri=new URI(url.getProtocol(),url.getAuthority(),url.getPath(),url.getQuery(),null);
+    list.add(uri.toURL());
   }
- catch (  MalformedURLException e) {
-    this.logger.warn(url + " is not a valid distribution point URL.");
+ catch (  Exception e) {
+    this.logger.warn(uriString + " is not a valid distribution point URI.");
   }
 }
