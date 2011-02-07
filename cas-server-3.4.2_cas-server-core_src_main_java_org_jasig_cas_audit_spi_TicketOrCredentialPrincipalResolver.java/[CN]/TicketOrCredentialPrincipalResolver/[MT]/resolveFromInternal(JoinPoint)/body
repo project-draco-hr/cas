@@ -14,5 +14,14 @@
       return tgt.getAuthentication().getPrincipal().getId();
     }
   }
+ else {
+    final SecurityContext securityContext=SecurityContextHolder.getContext();
+    if (securityContext != null) {
+      final Authentication authentication=securityContext.getAuthentication();
+      if (authentication != null) {
+        return ((User)authentication.getPrincipal()).getUsername();
+      }
+    }
+  }
   return UNKNOWN_USER;
 }
