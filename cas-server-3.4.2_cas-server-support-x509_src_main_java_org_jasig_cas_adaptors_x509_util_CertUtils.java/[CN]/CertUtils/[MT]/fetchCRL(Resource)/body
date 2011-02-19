@@ -4,6 +4,6 @@
     return (X509CRL)CertUtils.getCertificateFactory().generateCRL(in);
   }
   finally {
-    in.close();
+    IOUtils.closeQuietly(in);
   }
 }

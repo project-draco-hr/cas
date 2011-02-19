@@ -4,7 +4,7 @@
     final URI uri=new URI(url.getProtocol(),url.getAuthority(),url.getPath(),url.getQuery(),null);
     list.add(uri.toURL());
   }
- catch (  Exception e) {
-    this.logger.warn(uriString + " is not a valid distribution point URI.");
+ catch (  final Exception e) {
+    log.warn(uriString + " is not a valid distribution point URI.");
   }
 }
