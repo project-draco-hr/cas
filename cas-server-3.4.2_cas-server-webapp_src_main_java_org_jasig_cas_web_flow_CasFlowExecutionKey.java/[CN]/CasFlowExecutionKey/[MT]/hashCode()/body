@@ -1,0 +1,5 @@
+{
+  int result=super.hashCode();
+  result=31 * result + (encryptedValue != null ? encryptedValue.hashCode() : 0);
+  return result;
+}

@@ -1,0 +1,3 @@
+{
+  this(conversationManager,snapshotFactory,DEFAULT_CIPHER_ALGORITHM,KeyGenerator.getInstance(DEFAULT_ENCRYPTION_ALGORITHM).generateKey());
+}

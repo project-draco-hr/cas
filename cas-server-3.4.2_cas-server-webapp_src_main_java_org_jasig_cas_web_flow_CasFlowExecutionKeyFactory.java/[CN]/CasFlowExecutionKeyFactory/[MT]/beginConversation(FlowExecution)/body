@@ -1,0 +1,5 @@
+{
+  ConversationParameters parameters=createConversationParameters(execution);
+  Conversation conversation=this.conversationManager.beginConversation(parameters);
+  return conversation;
+}

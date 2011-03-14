@@ -1,0 +1,8 @@
+{
+  try {
+    return Integer.valueOf(encodedId);
+  }
+ catch (  NumberFormatException e) {
+    throw new BadlyFormattedFlowExecutionKeyException(encodedKey,CompositeFlowExecutionKey.getFormat(),e);
+  }
+}

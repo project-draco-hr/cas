@@ -1,0 +1,4 @@
+ConversationManager conversationManager
+FlowExecutionSnapshotFactory snapshotFactory
+String cipherAlgorithm
+Key secretKey

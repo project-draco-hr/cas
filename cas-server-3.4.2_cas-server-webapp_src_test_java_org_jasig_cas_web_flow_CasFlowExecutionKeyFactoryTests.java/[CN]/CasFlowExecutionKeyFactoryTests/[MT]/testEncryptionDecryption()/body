@@ -1,0 +1,7 @@
+{
+  final CasFlowExecutionKeyFactory factory=new CasFlowExecutionKeyFactory(mock(ConversationManager.class),mock(FlowExecutionSnapshotFactory.class));
+  final String originalString="5f43a855f34852343434234343Ze1s1";
+  final String encryptedVersion=factory.encrypt(originalString);
+  final String decryptedVersion=factory.decrypt(encryptedVersion);
+  assertEquals(originalString,decryptedVersion);
+}
