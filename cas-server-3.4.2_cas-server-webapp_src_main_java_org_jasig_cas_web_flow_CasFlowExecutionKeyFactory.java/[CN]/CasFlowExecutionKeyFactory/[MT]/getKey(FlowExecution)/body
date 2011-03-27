@@ -13,7 +13,11 @@
   }
  else {
     if (getAlwaysGenerateNewNextKey()) {
-      return new CompositeFlowExecutionKey(key.getExecutionId(),nextSnapshotId(key.getExecutionId()));
+      final Serializable executionId=key.getExecutionId();
+      final Serializable snapshotId=nextSnapshotId(key.getExecutionId());
+      final String unencryptedVersion=UUID.randomUUID().toString() + CasFlowExecutionKey.KEY_SEPARATOR + "e"+ executionId+ "s"+ snapshotId;
+      final String encryptedVersion=encrypt(unencryptedVersion);
+      return new CasFlowExecutionKey(executionId,snapshotId,encryptedVersion);
     }
  else {
       return execution.getKey();
