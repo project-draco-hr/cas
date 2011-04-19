@@ -1,0 +1,13 @@
+{
+  final Conversation conversation=getConversation(executionId);
+  conversation.lock();
+  try {
+    final UUID savedUUID=(UUID)conversation.getAttribute(UUID_KEY);
+    if (!givenUUID.equals(savedUUID)) {
+      throw new IllegalStateException("UUID component of flow execution key not recognized.");
+    }
+  }
+  finally {
+    conversation.unlock();
+  }
+}

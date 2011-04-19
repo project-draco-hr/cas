@@ -1,4 +1,0 @@
-{
-  super(executionId,snapshotId);
-  this.encryptedValue=encryptedVersion;
-}

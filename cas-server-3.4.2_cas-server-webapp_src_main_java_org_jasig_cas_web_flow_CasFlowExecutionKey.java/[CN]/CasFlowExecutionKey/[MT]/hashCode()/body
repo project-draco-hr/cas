@@ -1,5 +1,5 @@
 {
   int result=super.hashCode();
-  result=31 * result + (encryptedValue != null ? encryptedValue.hashCode() : 0);
+  result=31 * result + (this.uuid != null ? this.uuid.hashCode() : 0);
   return result;
 }

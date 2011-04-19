@@ -2,25 +2,17 @@
   if (this.defaultBehavior) {
     return super.getKey(execution);
   }
-  final CasFlowExecutionKey key=(CasFlowExecutionKey)execution.getKey();
+  CasFlowExecutionKey key=(CasFlowExecutionKey)execution.getKey();
   if (key == null) {
-    final Conversation conversation=beginConversation(execution);
+    final Conversation conversation=this.conversationManager.beginConversation(createConversationParameters(execution));
     final ConversationId executionId=conversation.getId();
-    final Serializable nextSnapshotId=nextSnapshotId(executionId);
-    final String unencryptedVersion=UUID.randomUUID().toString() + CasFlowExecutionKey.KEY_SEPARATOR + "e"+ executionId+ "s"+ nextSnapshotId;
-    final String encryptedVersion=encrypt(unencryptedVersion);
-    return new CasFlowExecutionKey(executionId,nextSnapshotId,encryptedVersion);
+    key=newKey(conversation,executionId);
   }
  else {
     if (getAlwaysGenerateNewNextKey()) {
       final Serializable executionId=key.getExecutionId();
-      final Serializable snapshotId=nextSnapshotId(key.getExecutionId());
-      final String unencryptedVersion=UUID.randomUUID().toString() + CasFlowExecutionKey.KEY_SEPARATOR + "e"+ executionId+ "s"+ snapshotId;
-      final String encryptedVersion=encrypt(unencryptedVersion);
-      return new CasFlowExecutionKey(executionId,snapshotId,encryptedVersion);
-    }
- else {
-      return execution.getKey();
+      key=newKey(getConversation(executionId),executionId);
     }
   }
+  return key;
 }

@@ -3,11 +3,18 @@
     return super.parseFlowExecutionKey(encodedKey);
   }
   if (!StringUtils.hasText(encodedKey)) {
-    throw new BadlyFormattedFlowExecutionKeyException(encodedKey,"The string-encoded flow execution key is required");
+    throw new IllegalStateException("The string-encoded flow execution key is required");
   }
-  final String unencryptedVersion=decrypt(encodedKey);
-  String[] keyParts=CasFlowExecutionKey.keyParts(unencryptedVersion);
-  Serializable executionId=parseExecutionId(keyParts[0],encodedKey);
-  Serializable snapshotId=parseSnapshotId(keyParts[1],encodedKey);
-  return new CasFlowExecutionKey(executionId,snapshotId,encodedKey);
+  final String[] keyParts=CasFlowExecutionKey.keyParts(encodedKey);
+  final UUID uuid;
+  try {
+    uuid=UUID.fromString(keyParts[0]);
+  }
+ catch (  Exception e) {
+    throw new BadlyFormattedFlowExecutionKeyException(encodedKey,CasFlowExecutionKey.FORMAT);
+  }
+  Serializable executionId=parseExecutionId(keyParts[1],encodedKey);
+  Serializable snapshotId=parseSnapshotId(keyParts[2],encodedKey);
+  validateUUID(uuid,executionId);
+  return new CasFlowExecutionKey(executionId,snapshotId,uuid);
 }

@@ -1,0 +1,13 @@
+{
+  final long hi_word=(long)this.secureRandom.nextInt() << 32;
+  final long lo_word=System.currentTimeMillis() & 0xFFFFFFFF;
+  final UUID uuid=new UUID(hi_word | lo_word,this.secureRandom.nextLong());
+  conversation.lock();
+  try {
+    conversation.putAttribute(UUID_KEY,uuid);
+  }
+  finally {
+    conversation.unlock();
+  }
+  return new CasFlowExecutionKey(executionId,nextSnapshotId(executionId),uuid);
+}

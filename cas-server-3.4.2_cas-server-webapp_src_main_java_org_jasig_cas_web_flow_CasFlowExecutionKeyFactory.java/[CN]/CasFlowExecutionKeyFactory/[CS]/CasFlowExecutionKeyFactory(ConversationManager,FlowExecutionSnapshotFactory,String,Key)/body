@@ -1,6 +1,0 @@
-{
-  super(conversationManager,snapshotFactory);
-  this.conversationManager=conversationManager;
-  this.key=secretKey;
-  this.cipherAlgorithm=cipherAlgorithm;
-}

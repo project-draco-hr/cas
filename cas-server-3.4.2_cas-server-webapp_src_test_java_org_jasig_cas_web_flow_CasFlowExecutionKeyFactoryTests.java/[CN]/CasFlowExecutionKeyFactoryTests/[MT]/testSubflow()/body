@@ -1,0 +1,27 @@
+{
+  final FlowExecutionImplFactory executionFactory=new FlowExecutionImplFactory();
+  final Flow flow=createFlowWithSubflow("parent","child");
+  final CasFlowExecutionKeyFactory keyFactory=new CasFlowExecutionKeyFactory(this.mockConversationManager,new SimpleFlowExecutionSnapshotFactory(executionFactory,newMockFlowLocator(flow)));
+  keyFactory.setAlwaysGenerateNewNextKey(true);
+  executionFactory.setExecutionKeyFactory(keyFactory);
+  final FlowExecution execution=executionFactory.createFlowExecution(flow);
+  execution.start(null,new MockExternalContext());
+  assertTrue(execution.isActive());
+  assertEquals("view",execution.getActiveSession().getScope().get("renderCalled"));
+  final FlowExecutionKey key1=execution.getKey();
+  assertNotNull(key1);
+  assertEquals(key1,keyFactory.parseFlowExecutionKey(key1.toString()));
+  final MockExternalContext context1=new MockExternalContext();
+  context1.setEventId("submit");
+  execution.resume(context1);
+  assertTrue(execution.isActive());
+  assertEquals("parentview",execution.getActiveSession().getScope().get("renderCalled"));
+  final FlowExecutionKey key2=execution.getKey();
+  assertNotNull(key2);
+  assertFalse(key1.equals(key2));
+  assertEquals(key2,keyFactory.parseFlowExecutionKey(key2.toString()));
+  final MockExternalContext context2=new MockExternalContext();
+  context2.setEventId("submit");
+  execution.resume(context2);
+  assertTrue(execution.hasEnded());
+}

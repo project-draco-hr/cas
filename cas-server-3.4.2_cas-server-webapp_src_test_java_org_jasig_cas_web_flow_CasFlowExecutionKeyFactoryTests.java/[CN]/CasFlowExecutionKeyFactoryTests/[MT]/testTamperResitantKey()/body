@@ -1,0 +1,15 @@
+{
+  final CasFlowExecutionKeyFactory keyFactory=new CasFlowExecutionKeyFactory(this.mockConversationManager,mock(FlowExecutionSnapshotFactory.class));
+  final FlowExecutionKey key=keyFactory.getKey(newMockExecution(createSimpleFlow("test")));
+  assertNotNull(key);
+  final char[] keyChars=key.toString().toCharArray();
+  keyChars[3]=keyChars[3] == '0' ? 'f' : '0';
+  final String tamperedKey=new String(keyChars);
+  try {
+    keyFactory.parseFlowExecutionKey(tamperedKey);
+    fail("Should have thrown IllegalStateException");
+  }
+ catch (  IllegalStateException e) {
+    assertEquals(key,keyFactory.parseFlowExecutionKey(key.toString()));
+  }
+}

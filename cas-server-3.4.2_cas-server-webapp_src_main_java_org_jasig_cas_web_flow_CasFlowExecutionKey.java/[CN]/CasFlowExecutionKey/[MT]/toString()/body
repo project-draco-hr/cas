@@ -1,3 +1,8 @@
 {
-  return this.encryptedValue;
+  final StringBuilder sb=new StringBuilder(50);
+  sb.append(KEY_PREFIX);
+  sb.append(this.uuid);
+  sb.append(KEY_SEPARATOR);
+  sb.append(super.toString());
+  return sb.toString();
 }
