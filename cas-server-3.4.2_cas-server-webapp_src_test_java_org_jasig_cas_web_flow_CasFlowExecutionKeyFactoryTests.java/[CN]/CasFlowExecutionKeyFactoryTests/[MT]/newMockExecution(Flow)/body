@@ -1,5 +1,0 @@
-{
-  final FlowExecution execution=mock(FlowExecution.class);
-  when(execution.getDefinition()).thenReturn(flow);
-  return execution;
-}

@@ -1,0 +1,3 @@
+{
+  this.ticketIdGenerator=generator;
+}

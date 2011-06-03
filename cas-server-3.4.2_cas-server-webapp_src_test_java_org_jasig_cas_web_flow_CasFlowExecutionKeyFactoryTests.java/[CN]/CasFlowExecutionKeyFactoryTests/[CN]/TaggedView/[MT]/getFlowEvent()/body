@@ -1,3 +1,0 @@
-{
-  return new Event(this,this.context.getExternalContext().getRequestParameterMap().get("_eventId"));
-}

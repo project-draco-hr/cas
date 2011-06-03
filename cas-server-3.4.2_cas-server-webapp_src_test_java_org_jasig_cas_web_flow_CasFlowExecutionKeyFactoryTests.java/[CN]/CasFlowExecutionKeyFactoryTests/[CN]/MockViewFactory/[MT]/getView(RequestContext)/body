@@ -1,3 +1,0 @@
-{
-  return new TaggedView(context,this.id);
-}

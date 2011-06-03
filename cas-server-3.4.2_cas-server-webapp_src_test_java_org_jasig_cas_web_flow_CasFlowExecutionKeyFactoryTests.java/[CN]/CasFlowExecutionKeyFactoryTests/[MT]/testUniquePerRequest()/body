@@ -1,8 +1,0 @@
-{
-  final CasFlowExecutionKeyFactory keyFactory=new CasFlowExecutionKeyFactory(this.mockConversationManager,mock(FlowExecutionSnapshotFactory.class));
-  keyFactory.setAlwaysGenerateNewNextKey(true);
-  final FlowExecution execution=newMockExecution(createSimpleFlow("test"));
-  final FlowExecutionKey key1=keyFactory.getKey(execution);
-  final FlowExecutionKey key2=keyFactory.getKey(execution);
-  assertFalse(key1.equals(key2));
-}

@@ -1,5 +1,0 @@
-{
-  final FlowDefinitionLocator locator=mock(FlowDefinitionLocator.class);
-  when(locator.getFlowDefinition(anyString())).thenReturn(flow);
-  return locator;
-}

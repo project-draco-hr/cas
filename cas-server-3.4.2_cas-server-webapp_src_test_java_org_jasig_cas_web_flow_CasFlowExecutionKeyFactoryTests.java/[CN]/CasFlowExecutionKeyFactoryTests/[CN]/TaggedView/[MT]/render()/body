@@ -1,3 +1,0 @@
-{
-  this.context.getFlowScope().put("renderCalled",this.tag);
-}

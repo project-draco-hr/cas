@@ -1,7 +1,0 @@
-{
-  final StringBuffer builder=new StringBuffer();
-  builder.append(request.getRequestURI());
-  builder.append("?");
-  appendQueryParameters(builder,request.getParameterMap(),getEncodingScheme(request));
-  return builder.toString();
-}

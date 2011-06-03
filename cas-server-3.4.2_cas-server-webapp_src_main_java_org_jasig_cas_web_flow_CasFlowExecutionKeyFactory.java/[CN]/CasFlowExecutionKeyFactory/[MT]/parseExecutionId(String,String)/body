@@ -1,8 +1,0 @@
-{
-  try {
-    return this.conversationManager.parseConversationId(encodedId);
-  }
- catch (  ConversationException e) {
-    throw new BadlyFormattedFlowExecutionKeyException(encodedKey,CompositeFlowExecutionKey.getFormat(),e);
-  }
-}
