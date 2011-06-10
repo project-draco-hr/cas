@@ -1,3 +1,4 @@
 {
-  return context.getFlowScope().getString("loginTicket");
+  final String lt=(String)context.getFlowScope().remove("loginTicket");
+  return lt != null ? lt : "";
 }
