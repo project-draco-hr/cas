@@ -1,6 +1,6 @@
 {
   if (registeredService.getId() == -1) {
-    ((RegisteredServiceImpl)registeredService).setId(this.generator.getNextLong());
+    ((RegisteredServiceImpl)registeredService).setId(findHighestId() + 1);
   }
   this.registeredServices.remove(registeredService);
   this.registeredServices.add(registeredService);
