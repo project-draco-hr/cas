@@ -1,8 +1,8 @@
 {
-  afterPropertiesSetInternal();
   Assert.isTrue(this.filter.contains("%u") || this.filter.contains("%U"),"filter must contain %u or %U");
   if (this.ldapTemplate == null) {
     this.ldapTemplate=new LdapTemplate(this.contextSource);
   }
   this.ldapTemplate.setIgnorePartialResultException(this.ignorePartialResultException);
+  afterPropertiesSetInternal();
 }

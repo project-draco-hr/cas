@@ -1,5 +1,0 @@
-{
-  if (this.poolingContextSource != null) {
-    setLdapTemplate(new LdapTemplate(this.poolingContextSource));
-  }
-}
