@@ -1,0 +1,3 @@
+{
+  setLdapTemplate(new LdapTemplate(contextSource));
+}
