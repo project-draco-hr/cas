@@ -6,6 +6,7 @@
     final String authenticationMethod=(String)authentication.getAttributes().get(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD);
     final Service service=assertion.getService();
     final SAMLResponse samlResponse=new SAMLResponse(null,service.getId(),new ArrayList<Object>(),null);
+    final boolean isRemembered=(authentication.getAttributes().get(RememberMeCredentials.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME) == Boolean.TRUE && !assertion.isFromNewLogin());
     samlResponse.setIssueInstant(currentDate);
     if (service instanceof SamlService) {
       final SamlService samlService=(SamlService)service;
@@ -24,7 +25,7 @@
     samlAuthenticationStatement.setAuthInstant(authentication.getAuthenticatedDate());
     samlAuthenticationStatement.setAuthMethod(authenticationMethod != null ? authenticationMethod : SAMLAuthenticationStatement.AuthenticationMethod_Unspecified);
     samlAuthenticationStatement.setSubject(getSamlSubject(authentication));
-    if (!authentication.getPrincipal().getAttributes().isEmpty()) {
+    if (!authentication.getPrincipal().getAttributes().isEmpty() || isRemembered) {
       final SAMLAttributeStatement attributeStatement=new SAMLAttributeStatement();
       attributeStatement.setSubject(getSamlSubject(authentication));
       samlAssertion.addStatement(attributeStatement);
@@ -42,6 +43,13 @@
  else {
           attribute.addValue(e.getValue());
         }
+        attributeStatement.addAttribute(attribute);
+      }
+      if (isRemembered) {
+        final SAMLAttribute attribute=new SAMLAttribute();
+        attribute.setName(REMEMBER_ME_ATTRIBUTE_NAME);
+        attribute.setNamespace(NAMESPACE);
+        attribute.addValue(true);
         attributeStatement.addAttribute(attribute);
       }
     }
