@@ -19,7 +19,7 @@
     if (securityContext != null) {
       final Authentication authentication=securityContext.getAuthentication();
       if (authentication != null) {
-        return ((User)authentication.getPrincipal()).getUsername();
+        return ((UserDetails)authentication.getPrincipal()).getUsername();
       }
     }
   }
