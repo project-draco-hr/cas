@@ -1,0 +1,16 @@
+{
+  try {
+    ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false);
+    Thread.sleep(SLIDING_TIMEOUT - 100);
+    assertFalse(ticketGrantingTicket.isExpired());
+    ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false);
+    Thread.sleep(SLIDING_TIMEOUT - 100);
+    assertFalse(ticketGrantingTicket.isExpired());
+    ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false);
+    Thread.sleep(SLIDING_TIMEOUT + 100);
+    assertTrue(ticketGrantingTicket.isExpired());
+  }
+ catch (  InterruptedException e) {
+    fail(e.getMessage());
+  }
+}

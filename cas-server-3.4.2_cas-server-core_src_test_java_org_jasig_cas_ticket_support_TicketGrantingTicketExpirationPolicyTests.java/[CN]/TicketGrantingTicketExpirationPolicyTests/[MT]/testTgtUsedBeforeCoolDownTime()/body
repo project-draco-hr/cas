@@ -1,0 +1,12 @@
+{
+  try {
+    assertFalse(ticketGrantingTicket.isExpired());
+    ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false);
+    assertTrue(ticketGrantingTicket.isExpired());
+    Thread.sleep(COOL_DOWN + 100);
+    assertFalse(ticketGrantingTicket.isExpired());
+  }
+ catch (  InterruptedException e) {
+    fail(e.getMessage());
+  }
+}

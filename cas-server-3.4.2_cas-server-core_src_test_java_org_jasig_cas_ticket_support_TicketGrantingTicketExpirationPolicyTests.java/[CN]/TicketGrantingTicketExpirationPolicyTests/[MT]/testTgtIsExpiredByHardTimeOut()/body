@@ -1,0 +1,15 @@
+{
+  try {
+    while (System.currentTimeMillis() - ticketGrantingTicket.getCreationTime() < (HARD_TIMEOUT - SLIDING_TIMEOUT / 2)) {
+      ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false);
+      Thread.sleep(SLIDING_TIMEOUT - 100);
+      assertFalse(this.ticketGrantingTicket.isExpired());
+    }
+    ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false);
+    Thread.sleep(SLIDING_TIMEOUT / 2 + 100);
+    assertTrue(ticketGrantingTicket.isExpired());
+  }
+ catch (  InterruptedException e) {
+    fail(e.getMessage());
+  }
+}

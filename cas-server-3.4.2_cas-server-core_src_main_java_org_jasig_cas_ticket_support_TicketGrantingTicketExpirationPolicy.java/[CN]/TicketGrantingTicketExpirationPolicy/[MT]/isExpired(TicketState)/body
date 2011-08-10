@@ -1,0 +1,27 @@
+{
+  if (ticketState.getCountOfUses() == 0) {
+    if ((System.currentTimeMillis() - ticketState.getCreationTime() < timeToKillInMilliSeconds)) {
+      if (log.isDebugEnabled()) {
+        log.debug("Ticket is not expired due to a uses count of zero and the time being within timeToKillInMilliseconds");
+      }
+      return false;
+    }
+  }
+  if ((System.currentTimeMillis() - ticketState.getCreationTime() >= maxTimeToLiveInMilliSeconds)) {
+    if (log.isDebugEnabled()) {
+      log.debug("Ticket is expired due to the time being greater than the maxTimeToLiveInMilliSeconds");
+    }
+    return true;
+  }
+  if ((System.currentTimeMillis() - ticketState.getLastTimeUsed() >= timeToKillInMilliSeconds)) {
+    if (log.isDebugEnabled()) {
+      log.debug("Ticket is expired due to the time being greater than the timeToKillInMilliseconds");
+    }
+    return true;
+  }
+  if ((System.currentTimeMillis() - ticketState.getLastTimeUsed() <= timeInBetweenUsesInMilliSeconds)) {
+    log.warn("Ticket is expired due to the time being less than the waiting period.");
+    return true;
+  }
+  return false;
+}
