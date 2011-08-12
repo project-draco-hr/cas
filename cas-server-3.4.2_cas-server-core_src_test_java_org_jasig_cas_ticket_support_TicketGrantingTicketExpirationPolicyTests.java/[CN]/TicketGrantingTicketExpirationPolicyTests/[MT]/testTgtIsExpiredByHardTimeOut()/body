@@ -10,6 +10,6 @@
     assertTrue(ticketGrantingTicket.isExpired());
   }
  catch (  InterruptedException e) {
-    fail(e.getMessage());
+    throw e;
   }
 }
