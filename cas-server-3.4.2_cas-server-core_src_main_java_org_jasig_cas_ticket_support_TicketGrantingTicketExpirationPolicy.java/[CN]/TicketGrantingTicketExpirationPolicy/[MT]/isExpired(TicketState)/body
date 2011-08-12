@@ -19,9 +19,5 @@
     }
     return true;
   }
-  if ((System.currentTimeMillis() - ticketState.getLastTimeUsed() <= minTimeInBetweenUsesInMilliSeconds)) {
-    log.warn("Ticket is expired (throttled, really) due to the time since last use being less than minTimeInBetweenUsesInMilliSeconds.");
-    return true;
-  }
   return false;
 }

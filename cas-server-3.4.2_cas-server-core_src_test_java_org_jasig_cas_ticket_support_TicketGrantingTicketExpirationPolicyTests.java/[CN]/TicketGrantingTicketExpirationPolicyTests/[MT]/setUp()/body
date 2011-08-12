@@ -2,7 +2,6 @@
   expirationPolicy=new TicketGrantingTicketExpirationPolicy();
   expirationPolicy.setMaxTimeToLiveInMilliSeconds(HARD_TIMEOUT);
   expirationPolicy.setTimeToKillInMilliSeconds(SLIDING_TIMEOUT);
-  expirationPolicy.setMinTimeInBetweenUsesInMilliSeconds(COOL_DOWN);
   ticketGrantingTicket=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),expirationPolicy);
   super.setUp();
 }
