@@ -1,0 +1,7 @@
+{
+  final String url="https://www.example.com\r\nLocation: javascript:\r\n\r\n<script>alert(document.cookie)</script>";
+  final Map<String,String> attributes=new HashMap<String,String>();
+  attributes.put("ticket","ST-12345");
+  final Response response=Response.getRedirectResponse(url,attributes);
+  assertEquals("https://www.example.com Location: javascript: <script>alert(document.cookie)</script>?ticket=ST-12345",response.getUrl());
+}
