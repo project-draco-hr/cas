@@ -1,0 +1,9 @@
+{
+  final Matcher m=NON_PRINTABLE.matcher(url);
+  final StringBuffer sb=new StringBuffer(url.length());
+  while (m.find()) {
+    m.appendReplacement(sb," ");
+  }
+  m.appendTail(sb);
+  return sb.toString();
+}
