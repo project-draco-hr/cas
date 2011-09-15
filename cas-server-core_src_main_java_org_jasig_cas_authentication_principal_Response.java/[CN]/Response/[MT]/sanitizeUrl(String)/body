@@ -1,9 +1,14 @@
 {
   final Matcher m=NON_PRINTABLE.matcher(url);
   final StringBuffer sb=new StringBuffer(url.length());
+  boolean hasNonPrintable=false;
   while (m.find()) {
     m.appendReplacement(sb," ");
+    hasNonPrintable=true;
   }
   m.appendTail(sb);
+  if (hasNonPrintable) {
+    LOG.warn("Non-printable characters detected in redirect URL.  This may indicate a CRLF attack.");
+  }
   return sb.toString();
 }
