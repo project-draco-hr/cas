@@ -5,7 +5,15 @@
       continue;
     }
     foundOneThatWorks=true;
-    if (authenticationHandler.authenticate(credentials)) {
+    boolean authenticated=false;
+    final LoggingStopWatch stopWatch=new LoggingStopWatch(authenticationHandler.getClass().getSimpleName());
+    try {
+      authenticated=authenticationHandler.authenticate(credentials);
+    }
+  finally {
+      stopWatch.stop();
+    }
+    if (authenticated) {
       final Principal p=this.linkedHandlers.get(authenticationHandler).resolvePrincipal(credentials);
       return new Pair<AuthenticationHandler,Principal>(authenticationHandler,p);
     }

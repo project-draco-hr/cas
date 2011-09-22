@@ -5,7 +5,15 @@
   for (  final AuthenticationHandler authenticationHandler : this.authenticationHandlers) {
     if (authenticationHandler.supports(credentials)) {
       foundSupported=true;
-      if (!authenticationHandler.authenticate(credentials)) {
+      boolean auth=false;
+      final LoggingStopWatch stopWatch=new LoggingStopWatch(authenticationHandler.getClass().getSimpleName());
+      try {
+        auth=authenticationHandler.authenticate(credentials);
+      }
+  finally {
+        stopWatch.stop();
+      }
+      if (!auth) {
         if (log.isInfoEnabled()) {
           log.info("AuthenticationHandler: " + authenticationHandler.getClass().getName() + " failed to authenticate the user which provided the following credentials: "+ credentials.toString());
         }
