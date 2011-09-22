@@ -47,7 +47,7 @@
       }
       if (isRemembered) {
         final SAMLAttribute attribute=new SAMLAttribute();
-        attribute.setName(REMEMBER_ME_ATTRIBUTE_NAME);
+        attribute.setName(this.rememberMeAttributeName);
         attribute.setNamespace(NAMESPACE);
         attribute.addValue(true);
         attributeStatement.addAttribute(attribute);
