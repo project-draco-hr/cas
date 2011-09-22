@@ -8,6 +8,7 @@
     return true;
   }
  catch (  final NamingException e) {
+    log.debug(e.getMessage(),e);
     return false;
   }
  finally {
