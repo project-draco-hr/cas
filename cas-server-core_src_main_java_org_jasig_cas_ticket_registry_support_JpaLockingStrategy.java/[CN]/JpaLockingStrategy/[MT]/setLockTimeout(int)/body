@@ -1,0 +1,6 @@
+{
+  if (seconds < 0) {
+    throw new IllegalArgumentException("Lock timeout must be non-negative.");
+  }
+  this.lockTimeout=seconds;
+}

@@ -1,0 +1,7 @@
+{
+  final List<Map<String,Object>> results=simpleJdbcTemplate.queryForList("SELECT unique_id FROM locks WHERE application_id=?",appId);
+  if (results.size() == 0) {
+    return null;
+  }
+  return (String)results.get(0).get("unique_id");
+}
