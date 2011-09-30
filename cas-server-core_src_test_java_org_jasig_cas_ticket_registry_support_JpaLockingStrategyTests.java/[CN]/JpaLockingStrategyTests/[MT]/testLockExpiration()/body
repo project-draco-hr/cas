@@ -1,0 +1,19 @@
+{
+  final String appId="expquick";
+  final String uniqueId=appId + "-1";
+  final LockingStrategy lock=newLockTxProxy(appId,uniqueId,1);
+  try {
+    assertTrue(lock.acquire());
+    assertEquals(uniqueId,getOwner(appId));
+    assertFalse(lock.acquire());
+    Thread.sleep(1500);
+    assertTrue(lock.acquire());
+    assertEquals(uniqueId,getOwner(appId));
+    lock.release();
+    assertNull(getOwner(appId));
+  }
+ catch (  Exception e) {
+    logger.debug("testLockExpiration produced an error",e);
+    fail("testLockExpiration failed");
+  }
+}

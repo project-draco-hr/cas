@@ -1,2 +1,3 @@
 String appId
 String uniqueId
+int ttl
