@@ -1,0 +1,3 @@
+{
+  return parent.grantServiceTicket(idGenerator.getNewTicketId("ST"),new MockService("https://service.example.com"),expirationPolicyST,false);
+}

@@ -1,5 +1,5 @@
 {
-  final TestService testService=new TestService();
+  final MockService testService=new MockService("test");
   TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
   t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),testService,new NeverExpiresExpirationPolicy(),false);
   t.expire();
