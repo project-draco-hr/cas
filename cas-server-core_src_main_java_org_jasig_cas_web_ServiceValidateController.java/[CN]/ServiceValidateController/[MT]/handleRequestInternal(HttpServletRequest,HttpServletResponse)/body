@@ -29,6 +29,7 @@
       }
       return generateErrorView("INVALID_TICKET","INVALID_TICKET_SPEC",null);
     }
+    onSuccessfulValidation(serviceTicketId,assertion);
     final ModelAndView success=new ModelAndView(this.successView);
     success.addObject(MODEL_ASSERTION,assertion);
     if (serviceCredentials != null && proxyGrantingTicketId != null) {
