@@ -2,7 +2,7 @@
   final Map<String,String> properties=new HashMap<String,String>();
   final String[] userDomain;
   String newFilter=filter;
-  properties.put("%u",userName.replace("\\","\\\\"));
+  properties.put("%u",userName);
   userDomain=userName.split("@");
   properties.put("%U",userDomain[0]);
   if (userDomain.length > 1) {
@@ -13,7 +13,7 @@
     }
   }
   for (  final String key : properties.keySet()) {
-    final String value=properties.get(key);
+    final String value=LdapEncoder.nameEncode(properties.get(key));
     newFilter=newFilter.replaceAll(key,Matcher.quoteReplacement(value));
   }
   return newFilter;
