@@ -1,0 +1,9 @@
+{
+  new TransactionTemplate(txManager).execute(new TransactionCallback<Void>(){
+    public Void doInTransaction(    final TransactionStatus status){
+      jpaTicketRegistry.deleteTicket(ticketId);
+      return null;
+    }
+  }
+);
+}

@@ -1,8 +1,6 @@
 {
-  final Map<String,Object> params=new HashMap<String,Object>();
-  params.put("id",ticket.getId());
-  final List<TicketGrantingTicketImpl> ticketGrantingTicketImpls=this.jpaTemplate.findByNamedParams("select t from TicketGrantingTicketImpl t where t.ticketGrantingTicket.id = :id",params);
-  final List<ServiceTicketImpl> serviceTicketImpls=this.jpaTemplate.findByNamedParams("select s from ServiceTicketImpl s where s.ticketGrantingTicket.id = :id",params);
+  final List<TicketGrantingTicketImpl> ticketGrantingTicketImpls=entityManager.createQuery("select t from TicketGrantingTicketImpl t where t.ticketGrantingTicket.id = :id",TicketGrantingTicketImpl.class).setLockMode(LockModeType.PESSIMISTIC_WRITE).setParameter("id",ticket.getId()).getResultList();
+  final List<ServiceTicketImpl> serviceTicketImpls=entityManager.createQuery("select s from ServiceTicketImpl s where s.ticketGrantingTicket.id = :id",ServiceTicketImpl.class).setParameter("id",ticket.getId()).getResultList();
   for (  final ServiceTicketImpl s : serviceTicketImpls) {
     removeTicket(s);
   }

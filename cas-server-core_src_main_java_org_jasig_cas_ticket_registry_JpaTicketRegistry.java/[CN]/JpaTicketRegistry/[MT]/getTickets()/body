@@ -1,6 +1,6 @@
 {
-  final List<TicketGrantingTicketImpl> tgts=this.jpaTemplate.find("select t from TicketGrantingTicketImpl t");
-  final List<ServiceTicketImpl> sts=this.jpaTemplate.find("select s from ServiceTicketImpl s");
+  final List<TicketGrantingTicketImpl> tgts=entityManager.createQuery("select t from TicketGrantingTicketImpl t",TicketGrantingTicketImpl.class).getResultList();
+  final List<ServiceTicketImpl> sts=entityManager.createQuery("select s from ServiceTicketImpl s",ServiceTicketImpl.class).getResultList();
   final List<Ticket> tickets=new ArrayList<Ticket>();
   tickets.addAll(tgts);
   tickets.addAll(sts);

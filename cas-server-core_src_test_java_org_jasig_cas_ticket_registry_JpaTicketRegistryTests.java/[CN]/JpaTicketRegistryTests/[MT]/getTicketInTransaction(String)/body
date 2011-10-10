@@ -1,0 +1,8 @@
+{
+  return new TransactionTemplate(txManager).execute(new TransactionCallback<Ticket>(){
+    public Ticket doInTransaction(    final TransactionStatus status){
+      return jpaTicketRegistry.getTicket(ticketId);
+    }
+  }
+);
+}
