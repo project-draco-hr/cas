@@ -1,0 +1,4 @@
+{
+  applicationContext=new ClassPathXmlApplicationContext("classpath:ticketRegistry.xml");
+  super.setUp();
+}
