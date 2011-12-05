@@ -1,0 +1,10 @@
+{
+  try {
+    this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",getAuthentication(),new NeverExpiresExpirationPolicy()));
+    assertFalse("Ticket was deleted.",this.ticketRegistry.deleteTicket(null));
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    fail("Caught an exception. But no exception should have been thrown.");
+  }
+}

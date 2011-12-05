@@ -1,0 +1,12 @@
+{
+  Element element=new Element(ticket.getId(),ticket);
+  if (ticket instanceof ServiceTicket) {
+    this.serviceTicketsCache.put(element);
+  }
+ else   if (ticket instanceof TicketGrantingTicket) {
+    this.ticketGrantingTicketsCache.put(element);
+  }
+ else {
+    throw new IllegalArgumentException("Invalid ticket type " + ticket);
+  }
+}

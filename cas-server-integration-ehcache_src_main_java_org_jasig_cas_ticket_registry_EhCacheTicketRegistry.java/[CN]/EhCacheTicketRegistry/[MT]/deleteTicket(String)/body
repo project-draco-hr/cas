@@ -1,0 +1,19 @@
+{
+  if (ticketId == null) {
+    return false;
+  }
+  boolean result;
+  if (ticketId.startsWith(TicketGrantingTicket.PREFIX)) {
+    result=this.ticketGrantingTicketsCache.remove(ticketId);
+  }
+ else   if (ticketId.startsWith(ServiceTicket.PREFIX)) {
+    result=this.serviceTicketsCache.remove(ticketId);
+  }
+ else {
+    result=false;
+    if (log.isInfoEnabled()) {
+      log.info("Unsupported ticket prefix for ticketId '" + ticketId + "', return "+ result);
+    }
+  }
+  return result;
+}
