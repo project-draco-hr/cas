@@ -21,6 +21,14 @@ synchronized (ticketGrantingTicket) {
     log.warn("ServiceManagement: Service Not Allowed to use SSO.  Service [" + service.getId() + "]");
     throw new UnauthorizedSsoServiceException();
   }
+  final List<Authentication> authns=ticketGrantingTicket.getChainedAuthentications();
+  if (authns.size() > 1) {
+    if (!registeredService.isAllowedToProxy()) {
+      final String message="ServiceManagement: Service Attempted to Proxy, but is not allowed.  Service: [" + service.getId() + "]"+ "\nRegistered Service: ["+ registeredService.toString()+ "]";
+      log.warn(message);
+      throw new UnauthorizedProxyingException(message);
+    }
+  }
   if (credentials != null) {
     try {
       final Authentication authentication=this.authenticationManager.authenticate(credentials);
