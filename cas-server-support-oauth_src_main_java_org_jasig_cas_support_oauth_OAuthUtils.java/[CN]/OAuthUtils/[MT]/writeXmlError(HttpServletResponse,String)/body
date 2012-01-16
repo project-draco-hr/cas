@@ -1,0 +1,3 @@
+{
+  return writeXml(response,"<error>" + error + "</error>");
+}

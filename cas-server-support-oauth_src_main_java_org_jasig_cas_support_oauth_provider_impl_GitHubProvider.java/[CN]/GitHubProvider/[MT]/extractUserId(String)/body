@@ -1,0 +1,14 @@
+{
+  String userId=null;
+  try {
+    JSONObject jsonObject=new JSONObject(body);
+    JSONObject jsonUser=(JSONObject)jsonObject.get("user");
+    userId=jsonUser.getString("id");
+    logger.debug("userId : {}",userId);
+  }
+ catch (  JSONException e) {
+    logger.error("JSON exception",e);
+    return null;
+  }
+  return userId;
+}

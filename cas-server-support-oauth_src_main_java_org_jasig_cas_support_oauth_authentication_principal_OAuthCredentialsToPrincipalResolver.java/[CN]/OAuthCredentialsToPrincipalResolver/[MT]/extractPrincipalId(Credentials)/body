@@ -1,0 +1,6 @@
+{
+  OAuthCredentials oauthCredentials=(OAuthCredentials)credentials;
+  String uid=oauthCredentials.getProviderType() + "#" + oauthCredentials.getUserId();
+  logger.debug("uid : {}",uid);
+  return uid;
+}

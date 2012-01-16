@@ -1,0 +1,16 @@
+{
+  if ("authorize".equals(method)) {
+    return authorizeController.handleRequest(request,response);
+  }
+ else   if ("callbackAuthorize".equals(method)) {
+    return callbackAuthorizeController.handleRequest(request,response);
+  }
+ else   if ("accessToken".equals(method)) {
+    return accessTokenController.handleRequest(request,response);
+  }
+ else   if ("profile".equals(method)) {
+    return profileController.handleRequest(request,response);
+  }
+  logger.error("Unknown method : {}",method);
+  return null;
+}

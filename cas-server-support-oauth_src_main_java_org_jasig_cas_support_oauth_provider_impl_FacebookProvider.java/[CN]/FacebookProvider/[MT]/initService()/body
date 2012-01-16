@@ -1,0 +1,3 @@
+{
+  service=new ServiceBuilder().provider(FacebookApi.class).apiKey(key).apiSecret(secret).callback(callbackUrl).build();
+}

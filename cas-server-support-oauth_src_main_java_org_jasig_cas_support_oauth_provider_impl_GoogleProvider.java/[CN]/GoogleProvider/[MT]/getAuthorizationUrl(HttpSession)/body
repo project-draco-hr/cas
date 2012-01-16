@@ -1,0 +1,8 @@
+{
+  Token requestToken=service.getRequestToken();
+  logger.debug("requestToken : {}",requestToken);
+  session.setAttribute(name + "#tokenRequest",requestToken);
+  String authorizationUrl="https://www.google.com/accounts/OAuthAuthorizeToken?oauth_token=" + requestToken.getToken();
+  logger.debug("authorizationUrl : {}",authorizationUrl);
+  return authorizationUrl;
+}

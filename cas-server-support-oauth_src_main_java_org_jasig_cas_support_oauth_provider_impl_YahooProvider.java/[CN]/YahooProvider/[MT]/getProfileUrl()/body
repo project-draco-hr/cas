@@ -1,0 +1,3 @@
+{
+  return "http://social.yahooapis.com/v1/me/guid?format=xml";
+}

@@ -1,0 +1,5 @@
+{
+  String userId=StringUtils.substringAfter(StringUtils.substringBefore(body,"&amp;authToken="),"&amp;key=");
+  logger.debug("userId : {}",userId);
+  return userId;
+}

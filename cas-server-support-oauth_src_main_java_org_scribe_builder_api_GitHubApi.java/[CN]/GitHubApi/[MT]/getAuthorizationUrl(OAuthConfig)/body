@@ -1,0 +1,9 @@
+{
+  Preconditions.checkValidUrl(config.getCallback(),"Must provide a valid url as callback. GitHub does not support OOB");
+  if (config.hasScope()) {
+    return String.format(SCOPED_AUTHORIZE_URL,config.getApiKey(),formURLEncode(config.getCallback()),formURLEncode(config.getScope()));
+  }
+ else {
+    return String.format(AUTHORIZE_URL,config.getApiKey(),formURLEncode(config.getCallback()));
+  }
+}

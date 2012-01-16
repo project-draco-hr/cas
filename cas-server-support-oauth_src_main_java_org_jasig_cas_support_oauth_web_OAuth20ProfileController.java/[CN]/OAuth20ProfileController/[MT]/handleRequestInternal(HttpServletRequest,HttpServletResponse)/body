@@ -1,0 +1,16 @@
+{
+  String accessToken=request.getParameter(OAuthConstants.ACCESS_TOKEN);
+  logger.debug("accessToken : {}",accessToken);
+  if (StringUtils.isBlank(accessToken)) {
+    logger.error("missing accessToken");
+    return OAuthUtils.writeXmlError(response,"missing_accessToken");
+  }
+  TicketGrantingTicketImpl ticketGrantingTicketImpl=(TicketGrantingTicketImpl)ticketRegistry.getTicket(accessToken);
+  if (ticketGrantingTicketImpl == null || ticketGrantingTicketImpl.isExpired()) {
+    logger.error("expired accessToken : {}",accessToken);
+    return OAuthUtils.writeXmlError(response,"expired_accessToken");
+  }
+  String xml="<profile><id>" + ticketGrantingTicketImpl.getAuthentication().getPrincipal().getId() + "</id></profile>";
+  logger.debug("xml : {}",xml);
+  return OAuthUtils.writeXml(response,xml);
+}

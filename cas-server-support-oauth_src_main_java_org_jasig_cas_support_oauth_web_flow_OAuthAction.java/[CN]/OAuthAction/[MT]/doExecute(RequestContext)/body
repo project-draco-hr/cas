@@ -1,0 +1,40 @@
+{
+  HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  HttpSession session=request.getSession();
+  String providerName=request.getParameter("oauth_provider");
+  logger.debug("providerName : {}",providerName);
+  if (StringUtils.isNotBlank(providerName)) {
+    OAuthProvider provider=null;
+    for (    OAuthProvider aProvider : providers) {
+      if (StringUtils.equals(providerName,aProvider.getName())) {
+        provider=aProvider;
+        break;
+      }
+    }
+    String token=provider.extractTokenFromRequest(request);
+    String verifier=provider.extractVerifierFromRequest(request);
+    logger.debug("token : {}",token);
+    logger.debug("verifier : {}",verifier);
+    Service service=(Service)session.getAttribute("service");
+    context.getFlowScope().put("service",service);
+    Credentials credentials=new OAuthCredentials(providerName,provider.getClass().getName(),token,verifier);
+    try {
+      WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credentials));
+      return success();
+    }
+ catch (    final TicketException e) {
+      return error();
+    }
+  }
+ else {
+    Service service=(Service)context.getFlowScope().get("service");
+    session.setAttribute("service",service);
+    for (    OAuthProvider provider : providers) {
+      String key=provider.getName() + "_authorizationUrl";
+      String authorizatonUrl=provider.getAuthorizationUrl(session);
+      logger.debug("key : {} -> authorizationUrl : {}",key,authorizatonUrl);
+      request.setAttribute(key,authorizatonUrl);
+    }
+  }
+  return error();
+}

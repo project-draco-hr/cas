@@ -1,0 +1,8 @@
+{
+  Token requestToken=service.getRequestToken();
+  logger.debug("requestToken : {}",requestToken);
+  session.setAttribute(name + "#tokenRequest",requestToken);
+  String authorizationUrl=service.getAuthorizationUrl(requestToken);
+  logger.debug("authorizationUrl : {}",authorizationUrl);
+  return authorizationUrl;
+}

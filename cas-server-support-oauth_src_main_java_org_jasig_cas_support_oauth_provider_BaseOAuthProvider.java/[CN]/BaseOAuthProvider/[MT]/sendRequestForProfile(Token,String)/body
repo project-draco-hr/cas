@@ -1,0 +1,17 @@
+{
+  logger.debug("accessToken : {} / profileUrl : {}",accessToken,profileUrl);
+  OAuthRequest request=new OAuthRequest(Verb.GET,profileUrl);
+  service.signRequest(accessToken,request);
+  if (this instanceof GoogleProvider) {
+    request.addHeader("GData-Version","3.0");
+  }
+  Response response=request.send();
+  int code=response.getCode();
+  String body=response.getBody();
+  logger.debug("response code : {} / response body : {}",code,body);
+  if (code != 200) {
+    logger.error("Get the user profile failed, code : " + code + " / body : "+ body);
+    return null;
+  }
+  return body;
+}

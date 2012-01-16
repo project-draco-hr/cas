@@ -1,0 +1,11 @@
+{
+  PrintWriter printWriter;
+  try {
+    printWriter=response.getWriter();
+    printWriter.print(text);
+  }
+ catch (  IOException e) {
+    logger.warn("Failed to write to response",e);
+  }
+  return null;
+}

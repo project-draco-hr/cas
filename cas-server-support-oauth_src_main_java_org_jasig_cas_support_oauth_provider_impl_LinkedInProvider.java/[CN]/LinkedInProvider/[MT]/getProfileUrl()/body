@@ -1,0 +1,3 @@
+{
+  return "http://api.linkedin.com/v1/people/~";
+}
