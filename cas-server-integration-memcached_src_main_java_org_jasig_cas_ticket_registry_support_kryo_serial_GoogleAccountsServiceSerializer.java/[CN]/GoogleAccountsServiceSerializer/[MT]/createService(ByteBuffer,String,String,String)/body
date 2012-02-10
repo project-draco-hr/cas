@@ -1,6 +1,6 @@
 {
-  final String requestId=kryo.readObjectData(buffer,String.class);
-  final String relayState=kryo.readObjectData(buffer,String.class);
+  final String requestId=kryo.readObject(buffer,String.class);
+  final String relayState=kryo.readObject(buffer,String.class);
   try {
     final GoogleAccountsService service=(GoogleAccountsService)CONSTRUCTOR.newInstance(id,originalUrl,artifactId,relayState,requestId,privateKey,publicKey,alternateUsername);
     return service;

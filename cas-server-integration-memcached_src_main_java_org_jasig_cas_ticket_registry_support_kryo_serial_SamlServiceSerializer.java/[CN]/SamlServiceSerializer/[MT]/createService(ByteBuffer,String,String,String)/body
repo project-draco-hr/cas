@@ -1,5 +1,5 @@
 {
-  final String requestId=kryo.readObjectData(buffer,String.class);
+  final String requestId=kryo.readObject(buffer,String.class);
   try {
     return (SamlService)CONSTRUCTOR.newInstance(id,originalUrl,artifactId,new HttpClient(),requestId);
   }

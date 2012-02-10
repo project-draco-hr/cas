@@ -1,4 +1,4 @@
 {
   super.write(buffer,service);
-  kryo.writeObjectData(buffer,service.getRequestID());
+  kryo.writeObject(buffer,service.getRequestID());
 }
