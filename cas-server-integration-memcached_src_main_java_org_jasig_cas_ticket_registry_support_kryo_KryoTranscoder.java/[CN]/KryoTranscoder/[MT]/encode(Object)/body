@@ -1,22 +1,6 @@
 {
-  final ByteBuffer buffer;
-  try {
-    buffer=bufferPool.borrowObject();
-  }
- catch (  Exception e) {
-    throw new IllegalStateException("Failed borrowing byte buffer from pool.",e);
-  }
-  try {
-    kryo.writeObjectData(buffer,o);
-  }
-  finally {
-    try {
-      bufferPool.returnObject(buffer);
-    }
- catch (    Exception e) {
-      throw new IllegalStateException("Failed returning byte buffer to pool.",e);
-    }
-  }
+  final ByteBuffer buffer=Kryo.getContext().getBuffer(maxSize);
+  kryo.writeObjectData(buffer,o);
   final int flag;
   if (o instanceof TicketGrantingTicketImpl) {
     flag=TGT_TYPE;

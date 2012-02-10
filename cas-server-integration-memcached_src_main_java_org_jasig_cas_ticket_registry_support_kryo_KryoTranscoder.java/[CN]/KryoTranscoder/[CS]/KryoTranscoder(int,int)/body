@@ -1,4 +1,0 @@
-{
-  maxSize=maxEncodableSize;
-  bufferPool=new StackObjectPool<ByteBuffer>(new ByteBufferFactory(),bufferPoolSize,bufferPoolSize);
-}
