@@ -1,0 +1,9 @@
+{
+  final Field f=getField(target,fieldName);
+  try {
+    return f.get(target);
+  }
+ catch (  IllegalAccessException e) {
+    throw new IllegalStateException("Error getting field value",e);
+  }
+}

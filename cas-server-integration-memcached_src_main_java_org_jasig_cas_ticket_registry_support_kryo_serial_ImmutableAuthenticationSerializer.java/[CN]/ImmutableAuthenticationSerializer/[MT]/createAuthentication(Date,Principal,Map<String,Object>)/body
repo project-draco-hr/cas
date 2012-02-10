@@ -1,0 +1,5 @@
+{
+  final ImmutableAuthentication auth=new ImmutableAuthentication(principal,attributes);
+  fieldHelper.setFieldValue(auth,"authenticatedDate",authDate);
+  return auth;
+}

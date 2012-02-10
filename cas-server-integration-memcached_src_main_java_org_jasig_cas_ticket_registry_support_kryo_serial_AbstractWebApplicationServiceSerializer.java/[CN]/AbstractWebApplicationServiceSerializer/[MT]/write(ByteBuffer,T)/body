@@ -1,0 +1,5 @@
+{
+  kryo.writeObjectData(buffer,service.getId());
+  kryo.writeObjectData(buffer,fieldHelper.getFieldValue(service,"originalUrl"));
+  kryo.writeObjectData(buffer,service.getArtifactId());
+}

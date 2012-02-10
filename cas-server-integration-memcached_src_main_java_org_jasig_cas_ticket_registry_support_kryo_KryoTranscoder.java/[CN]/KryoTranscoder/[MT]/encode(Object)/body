@@ -1,0 +1,31 @@
+{
+  final ByteBuffer buffer;
+  try {
+    buffer=bufferPool.borrowObject();
+  }
+ catch (  Exception e) {
+    throw new IllegalStateException("Failed borrowing byte buffer from pool.",e);
+  }
+  try {
+    kryo.writeObjectData(buffer,o);
+  }
+  finally {
+    try {
+      bufferPool.returnObject(buffer);
+    }
+ catch (    Exception e) {
+      throw new IllegalStateException("Failed returning byte buffer to pool.",e);
+    }
+  }
+  final int flag;
+  if (o instanceof TicketGrantingTicketImpl) {
+    flag=TGT_TYPE;
+  }
+ else   if (o instanceof ServiceTicketImpl) {
+    flag=ST_TYPE;
+  }
+ else {
+    throw new IllegalArgumentException("Unsupported object " + o);
+  }
+  return new CachedData(flag,buffer.array(),maxSize);
+}

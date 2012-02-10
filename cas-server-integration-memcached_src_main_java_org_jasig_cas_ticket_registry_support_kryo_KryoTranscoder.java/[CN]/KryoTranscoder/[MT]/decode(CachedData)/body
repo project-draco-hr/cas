@@ -1,0 +1,13 @@
+{
+  final Class<?> clazz;
+  if (d.getFlags() == TGT_TYPE) {
+    clazz=TicketGrantingTicketImpl.class;
+  }
+ else   if (d.getFlags() == ST_TYPE) {
+    clazz=ServiceTicketImpl.class;
+  }
+ else {
+    throw new IllegalArgumentException("Unsupported flags " + d.getFlags());
+  }
+  return kryo.readObjectData(ByteBuffer.wrap(d.getData()),clazz);
+}
