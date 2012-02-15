@@ -1,3 +1,0 @@
-{
-  service=new ServiceBuilder().provider(GoogleApi.class).apiKey(key).apiSecret(secret).scope("http://www-opensocial.googleusercontent.com/api/people/").callback(callbackUrl).build();
-}

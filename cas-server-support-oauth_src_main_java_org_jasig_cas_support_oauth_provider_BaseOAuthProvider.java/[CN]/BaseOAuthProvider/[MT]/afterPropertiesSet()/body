@@ -1,4 +1,0 @@
-{
-  this.callbackUrl=loginUrl + "?oauth_provider=" + URLEncoder.encode(name);
-  initService();
-}

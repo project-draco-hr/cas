@@ -1,23 +1,22 @@
 {
   HttpServletRequest request=WebUtils.getHttpServletRequest(context);
   HttpSession session=request.getSession();
-  String providerName=request.getParameter("oauth_provider");
-  logger.debug("providerName : {}",providerName);
-  if (StringUtils.isNotBlank(providerName)) {
+  String providerType=request.getParameter(OAUTH_PROVIDER);
+  logger.debug("providerType : {}",providerType);
+  if (StringUtils.isNotBlank(providerType)) {
     OAuthProvider provider=null;
     for (    OAuthProvider aProvider : providers) {
-      if (StringUtils.equals(providerName,aProvider.getName())) {
+      if (StringUtils.equals(providerType,aProvider.getType())) {
         provider=aProvider;
         break;
       }
     }
-    String token=provider.extractTokenFromRequest(request);
-    String verifier=provider.extractVerifierFromRequest(request);
-    logger.debug("token : {}",token);
-    logger.debug("verifier : {}",verifier);
+    logger.debug("provider : {}",provider);
+    @SuppressWarnings("unchecked") OAuthCredential credential=provider.getCredentialFromParameters(request.getParameterMap());
+    logger.debug("credential : {}",credential);
     Service service=(Service)session.getAttribute("service");
     context.getFlowScope().put("service",service);
-    Credentials credentials=new OAuthCredentials(providerName,provider.getClass().getName(),token,verifier);
+    Credentials credentials=new OAuthCredentials(credential);
     try {
       WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credentials));
       return success();
@@ -30,9 +29,9 @@
     Service service=(Service)context.getFlowScope().get("service");
     session.setAttribute("service",service);
     for (    OAuthProvider provider : providers) {
-      String key=provider.getName() + "_authorizationUrl";
-      String authorizatonUrl=provider.getAuthorizationUrl(session);
-      logger.debug("key : {} -> authorizationUrl : {}",key,authorizatonUrl);
+      String key=provider.getType() + "Url";
+      String authorizatonUrl=provider.getAuthorizationUrl(new HttpUserSession(session));
+      logger.debug("{} -> {}",key,authorizatonUrl);
       request.setAttribute(key,authorizatonUrl);
     }
   }

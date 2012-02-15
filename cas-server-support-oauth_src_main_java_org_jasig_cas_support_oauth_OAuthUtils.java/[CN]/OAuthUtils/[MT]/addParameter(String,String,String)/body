@@ -1,8 +1,8 @@
 {
   if (url.indexOf("?") >= 0) {
-    return url + "&" + name+ "="+ URLEncoder.encode(value);
+    return url + "&" + name+ "="+ OAuthEncoder.encode(value);
   }
  else {
-    return url + "?" + name+ "="+ URLEncoder.encode(value);
+    return url + "?" + name+ "="+ OAuthEncoder.encode(value);
   }
 }

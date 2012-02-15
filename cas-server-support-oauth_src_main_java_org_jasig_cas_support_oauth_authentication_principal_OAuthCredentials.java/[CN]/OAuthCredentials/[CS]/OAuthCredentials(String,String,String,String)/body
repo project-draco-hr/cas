@@ -1,6 +1,0 @@
-{
-  this.providerName=providerName;
-  this.providerType=providerType;
-  this.token=token;
-  this.verifier=verifier;
-}

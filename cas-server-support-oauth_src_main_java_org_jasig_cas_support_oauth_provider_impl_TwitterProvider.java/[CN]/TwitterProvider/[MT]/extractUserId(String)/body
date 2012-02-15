@@ -1,5 +1,0 @@
-{
-  String userId=StringUtils.substringAfter(StringUtils.substringBefore(body,"</id>"),"<id>");
-  logger.debug("userId : {}",userId);
-  return userId;
-}

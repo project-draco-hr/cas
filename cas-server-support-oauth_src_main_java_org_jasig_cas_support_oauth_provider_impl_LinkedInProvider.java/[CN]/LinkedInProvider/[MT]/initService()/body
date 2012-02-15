@@ -1,3 +1,0 @@
-{
-  service=new ServiceBuilder().provider(LinkedInApi.class).apiKey(key).apiSecret(secret).callback(callbackUrl).build();
-}

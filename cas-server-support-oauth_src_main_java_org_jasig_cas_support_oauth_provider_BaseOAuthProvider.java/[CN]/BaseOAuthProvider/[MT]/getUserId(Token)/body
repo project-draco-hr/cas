@@ -1,7 +1,0 @@
-{
-  String body=sendRequestForProfile(accessToken,getProfileUrl());
-  if (body == null) {
-    return null;
-  }
-  return extractUserId(body);
-}

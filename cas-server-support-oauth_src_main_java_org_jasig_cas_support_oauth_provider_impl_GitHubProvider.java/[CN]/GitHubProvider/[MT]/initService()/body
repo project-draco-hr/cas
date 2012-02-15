@@ -1,3 +1,0 @@
-{
-  service=new ServiceBuilder().provider(GitHubApi.class).apiKey(key).apiSecret(secret).callback(callbackUrl).scope("user").build();
-}

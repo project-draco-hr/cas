@@ -1,3 +1,0 @@
-{
-  service=new ServiceBuilder().provider(TwitterApi.class).apiKey(key).apiSecret(secret).callback(callbackUrl).build();
-}

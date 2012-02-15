@@ -1,0 +1,3 @@
+{
+  return String.format(serverUrl + "/authorize?client_id=%s&redirect_uri=%s",config.getApiKey(),OAuthEncoder.encode(config.getCallback()));
+}

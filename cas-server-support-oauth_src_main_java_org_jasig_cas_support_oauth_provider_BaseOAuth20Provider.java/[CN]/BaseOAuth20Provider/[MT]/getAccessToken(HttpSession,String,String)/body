@@ -1,7 +1,0 @@
-{
-  logger.debug("verifier : {}",verifier);
-  Verifier providerVerifier=new Verifier(verifier);
-  Token accessToken=service.getAccessToken(null,providerVerifier);
-  logger.debug("accessToken : {}",accessToken);
-  return accessToken;
-}

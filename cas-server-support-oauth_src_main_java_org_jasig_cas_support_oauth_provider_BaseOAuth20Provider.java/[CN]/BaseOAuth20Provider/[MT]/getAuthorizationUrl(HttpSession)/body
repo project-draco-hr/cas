@@ -1,5 +1,0 @@
-{
-  String authorizationUrl=service.getAuthorizationUrl(null);
-  logger.debug("authorizationUrl : {}",authorizationUrl);
-  return authorizationUrl;
-}

@@ -1,0 +1,3 @@
+{
+  super(credential.getToken(),credential.getVerifier(),credential.getProviderType());
+}

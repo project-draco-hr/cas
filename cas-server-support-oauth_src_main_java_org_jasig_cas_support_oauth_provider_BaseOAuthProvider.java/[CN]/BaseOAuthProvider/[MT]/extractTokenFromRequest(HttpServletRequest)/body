@@ -1,3 +1,0 @@
-{
-  return request.getParameter("oauth_token");
-}
