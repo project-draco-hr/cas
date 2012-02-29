@@ -1,0 +1,12 @@
+{
+  final StringBuilder sb=new StringBuilder();
+  if (desc != null) {
+    sb.append(desc);
+    if (!desc.endsWith(".")) {
+      sb.append('.');
+    }
+    sb.append(' ');
+  }
+  sb.append(active).append(" active, ").append(idle).append(" idle.");
+  return sb.toString();
+}

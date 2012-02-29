@@ -1,0 +1,7 @@
+{
+  final Set<Monitor> monitors=new HashSet<Monitor>();
+  monitors.add(new MemoryMonitor());
+  monitors.add(newSessionMonitor());
+  monitor.setMonitors(monitors);
+  assertEquals(StatusCode.OK,monitor.observe().getCode());
+}

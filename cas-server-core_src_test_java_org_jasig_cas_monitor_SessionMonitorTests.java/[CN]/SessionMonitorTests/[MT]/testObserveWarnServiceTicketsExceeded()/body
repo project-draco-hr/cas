@@ -1,0 +1,7 @@
+{
+  addTicketsToRegistry(1,10);
+  monitor.setServiceTicketCountWarnThreshold(5);
+  final SessionStatus status=monitor.observe();
+  assertEquals(StatusCode.WARN,status.getCode());
+  assertTrue(status.getDescription().contains("Service ticket count"));
+}

@@ -1,0 +1,5 @@
+{
+  registry=new DefaultTicketRegistry();
+  monitor=new SessionMonitor();
+  monitor.setTicketRegistry(registry);
+}

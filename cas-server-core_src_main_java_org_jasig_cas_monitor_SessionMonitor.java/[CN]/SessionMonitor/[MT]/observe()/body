@@ -1,0 +1,25 @@
+{
+  try {
+    final int sessionCount=registryState.sessionCount();
+    final int ticketCount=registryState.serviceTicketCount();
+    final StringBuilder msg=new StringBuilder();
+    StatusCode code=StatusCode.OK;
+    if (sessionCountWarnThreshold > -1 && sessionCount > sessionCountWarnThreshold) {
+      code=StatusCode.WARN;
+      msg.append(String.format("Session count (%s) is above threshold %s.",sessionCount,sessionCountWarnThreshold));
+    }
+    if (serviceTicketCountWarnThreshold > -1 && ticketCount > serviceTicketCountWarnThreshold) {
+      if (code == StatusCode.WARN) {
+        msg.append(' ');
+      }
+ else {
+        code=StatusCode.WARN;
+      }
+      msg.append(String.format("Service ticket count (%s) is above threshold %s.",ticketCount,serviceTicketCountWarnThreshold));
+    }
+    return new SessionStatus(code,msg.toString(),sessionCount,ticketCount);
+  }
+ catch (  Exception e) {
+    return new SessionStatus(StatusCode.ERROR,e.getMessage());
+  }
+}

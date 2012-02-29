@@ -1,0 +1,11 @@
+{
+  MockTicketGrantingTicket ticket=null;
+  for (int i=0; i < tgtCount; i++) {
+    ticket=new MockTicketGrantingTicket("junit");
+    registry.addTicket(ticket);
+  }
+  String id;
+  for (int i=0; i < stCount; i++) {
+    registry.addTicket(ticket.grantServiceTicket(new MockService("junit")));
+  }
+}

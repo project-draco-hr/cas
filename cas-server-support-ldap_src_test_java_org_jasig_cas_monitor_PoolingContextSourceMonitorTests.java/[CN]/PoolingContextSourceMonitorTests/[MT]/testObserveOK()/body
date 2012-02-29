@@ -1,0 +1,4 @@
+{
+  monitor.setMaxWait(5000);
+  assertEquals(StatusCode.OK,monitor.observe().getCode());
+}
