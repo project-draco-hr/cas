@@ -1,1 +1,1 @@
-int maxEncodableSize
+int initialBufferSize

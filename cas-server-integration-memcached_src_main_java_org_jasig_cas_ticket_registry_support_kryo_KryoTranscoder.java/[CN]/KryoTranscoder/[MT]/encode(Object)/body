@@ -1,15 +1,4 @@
 {
-  final ByteBuffer buffer=Kryo.getContext().getBuffer(maxSize);
-  kryo.writeObjectData(buffer,o);
-  final int flag;
-  if (o instanceof TicketGrantingTicketImpl) {
-    flag=TGT_TYPE;
-  }
- else   if (o instanceof ServiceTicketImpl) {
-    flag=ST_TYPE;
-  }
- else {
-    throw new IllegalArgumentException("Unsupported object " + o);
-  }
-  return new CachedData(flag,buffer.array(),maxSize);
+  final byte[] bytes=encodeToBytes(o);
+  return new CachedData(0,bytes,bytes.length);
 }
