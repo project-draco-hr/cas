@@ -1,0 +1,27 @@
+{
+  OAuthCredentials credential=(OAuthCredentials)credentials;
+  logger.debug("credential : {}",credential);
+  String providerType=credential.getProviderType();
+  logger.debug("providerType : {}",providerType);
+  OAuthProvider provider=null;
+  for (  OAuthProvider aProvider : providers) {
+    if (StringUtils.equals(providerType,aProvider.getType())) {
+      provider=aProvider;
+      break;
+    }
+  }
+  logger.debug("provider : {}",provider);
+  HttpServletRequest request=(HttpServletRequest)ExternalContextHolder.getExternalContext().getNativeRequest();
+  Token accessToken=provider.getAccessToken(new HttpUserSession(request.getSession()),credential);
+  logger.debug("accessToken : {}",accessToken);
+  UserProfile userProfile=provider.getUserProfile(accessToken);
+  logger.debug("userProfile : {}",userProfile);
+  if (userProfile != null && StringUtils.isNotBlank(userProfile.getId())) {
+    credential.setUserId(userProfile.getId());
+    credential.setUserAttributes(userProfile.getAttributes());
+    return true;
+  }
+ else {
+    return false;
+  }
+}

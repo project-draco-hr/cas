@@ -1,0 +1,6 @@
+{
+  if (StringUtils.isBlank(url)) {
+    url="/";
+  }
+  return OAuthUtils.redirectTo(OAuthUtils.addParameter(url,"error",error));
+}

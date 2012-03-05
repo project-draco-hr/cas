@@ -1,0 +1,40 @@
+{
+  String redirectUri=request.getParameter(OAuthConstants.REDIRECT_URI);
+  logger.debug("redirect_uri : {}",redirectUri);
+  String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+  logger.debug("clientId : {}",clientId);
+  String clientSecret=request.getParameter(OAuthConstants.CLIENT_SECRET);
+  logger.debug("clientSecret : {}",clientSecret);
+  if (StringUtils.isBlank(clientId)) {
+    logger.error("missing clientId");
+    return OAuthUtils.redirectToError(redirectUri,"missing_clientId");
+  }
+  if (StringUtils.isBlank(redirectUri)) {
+    logger.error("missing redirectUri");
+    return OAuthUtils.redirectToError(redirectUri,"missing_redirectUri");
+  }
+  Collection<RegisteredService> services=servicesManager.getAllServices();
+  RegisteredService service=null;
+  for (  RegisteredService aService : services) {
+    if (StringUtils.equals(aService.getName(),clientId)) {
+      service=aService;
+      break;
+    }
+  }
+  if (service == null) {
+    logger.error("Unknown clientId : {}",clientId);
+    return OAuthUtils.redirectToError(redirectUri,"unknow_clientId");
+  }
+  String serviceId=service.getServiceId();
+  if (!StringUtils.startsWith(redirectUri,serviceId)) {
+    logger.error("Unsupported redirectUri : {} for serviceId : {}",redirectUri,serviceId);
+    return OAuthUtils.redirectToError(redirectUri,"unsupported_redirectUri");
+  }
+  HttpSession session=request.getSession();
+  session.setAttribute(OAuthConstants.OAUTH20_CALLBACKURL,redirectUri);
+  String callbackAuthorizeUrl=request.getRequestURL().toString().replace("/authorize","/callbackAuthorize");
+  logger.debug("callbackAuthorizeUrl : {}",callbackAuthorizeUrl);
+  String loginUrlWithService=OAuthUtils.addParameter(loginUrl,"service",callbackAuthorizeUrl);
+  logger.debug("loginUrlWithService : {}",loginUrlWithService);
+  return OAuthUtils.redirectTo(loginUrlWithService);
+}
