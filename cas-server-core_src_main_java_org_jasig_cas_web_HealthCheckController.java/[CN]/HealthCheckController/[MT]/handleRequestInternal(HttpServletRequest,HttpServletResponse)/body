@@ -1,0 +1,19 @@
+{
+  final HealthStatus healthStatus=healthCheckMonitor.observe();
+  final StringBuilder sb=new StringBuilder();
+  sb.append("Health: ").append(healthStatus.getCode()).append("\n\nDetails:");
+  String name;
+  Status status;
+  int i=0;
+  for (  Map.Entry<String,Status> entry : healthStatus.getDetails().entrySet()) {
+    name=entry.getKey();
+    status=entry.getValue();
+    response.addHeader("X-CAS-" + name,String.format("%s;%s",status.getCode(),status.getDescription()));
+    sb.append("\n\t").append(++i).append('.').append(name).append(": ");
+    sb.append(status.getCode()).append(", ").append(status.getDescription());
+  }
+  response.setStatus(healthStatus.getCode().value());
+  response.setContentType("text/plain");
+  response.getOutputStream().write(sb.toString().getBytes(response.getCharacterEncoding()));
+  return null;
+}
