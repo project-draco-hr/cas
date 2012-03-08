@@ -1,0 +1,3 @@
+{
+  logger.debug("Permitting {} to pass through",request.getRemoteAddr());
+}
