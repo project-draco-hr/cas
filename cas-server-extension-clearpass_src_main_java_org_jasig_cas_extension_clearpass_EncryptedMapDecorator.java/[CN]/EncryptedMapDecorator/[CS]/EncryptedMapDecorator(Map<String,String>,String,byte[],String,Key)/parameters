@@ -1,0 +1,5 @@
+Map<String,String> decoratedMap
+String hashAlgorithm
+byte[] salt
+String secretKeyAlgorithm
+Key secretKey

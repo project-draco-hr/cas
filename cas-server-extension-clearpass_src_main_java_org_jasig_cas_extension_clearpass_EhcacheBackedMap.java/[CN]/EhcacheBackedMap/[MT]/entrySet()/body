@@ -1,0 +1,11 @@
+{
+  final Set<String> keys=keySet();
+  final Set<Entry<String,String>> entries=new HashSet<Entry<String,String>>();
+  for (  final String key : keys) {
+    final Element element=this.cache.get(key);
+    if (element != null) {
+      entries.add(new ElementMapEntry(element));
+    }
+  }
+  return entries;
+}

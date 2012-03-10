@@ -1,0 +1,2 @@
+TicketRegistry ticketRegistry
+Map<String,String> cache

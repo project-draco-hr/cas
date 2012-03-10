@@ -1,0 +1,3 @@
+Map<String,String> decoratedMap
+String salt
+String secretKey
