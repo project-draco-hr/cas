@@ -1,0 +1,5 @@
+{
+  final RegisteredServiceImpl service=new RegisteredServiceImpl();
+  service.setServiceId(id);
+  return service;
+}

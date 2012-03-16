@@ -1,7 +1,7 @@
 {
   if (this == o)   return true;
-  if (!(o instanceof RegisteredServiceImpl))   return false;
-  RegisteredServiceImpl that=(RegisteredServiceImpl)o;
+  if (!(o instanceof AbstractRegisteredService))   return false;
+  final AbstractRegisteredService that=(AbstractRegisteredService)o;
   if (allowedToProxy != that.allowedToProxy)   return false;
   if (anonymousAccess != that.anonymousAccess)   return false;
   if (enabled != that.enabled)   return false;

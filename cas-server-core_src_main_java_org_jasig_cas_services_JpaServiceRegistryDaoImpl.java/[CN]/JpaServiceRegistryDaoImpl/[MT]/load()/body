@@ -1,3 +1,3 @@
 {
-  return getJpaTemplate().find("select r from RegisteredServiceImpl r");
+  return getJpaTemplate().find("select r from AbstractRegisteredService r");
 }

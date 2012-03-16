@@ -1,5 +1,10 @@
 {
-  final RegisteredService service=(RegisteredService)command;
+  AbstractRegisteredService service=(AbstractRegisteredService)command;
+  if (service.getId() < 0 && service.getServiceId().startsWith("^")) {
+    final RegexRegisteredService regexService=new RegexRegisteredService();
+    service.copyTo(regexService);
+    service=regexService;
+  }
   this.servicesManager.save(service);
   logger.info("Saved changes to service " + service.getId());
   final ModelAndView modelAndView=new ModelAndView(new RedirectView("/services/manage.html#" + service.getId(),true));

@@ -1,0 +1,14 @@
+{
+  target.setAllowedAttributes(this.allowedAttributes);
+  target.setAllowedToProxy(this.allowedToProxy);
+  target.setDescription(this.description);
+  target.setEnabled(this.enabled);
+  target.setId(this.id);
+  target.setName(this.name);
+  target.setServiceId(this.serviceId);
+  target.setSsoEnabled(this.ssoEnabled);
+  target.setTheme(this.theme);
+  target.setAnonymousAccess(this.anonymousAccess);
+  target.setIgnoreAttributes(this.ignoreAttributes);
+  target.setEvaluationOrder(this.evaluationOrder);
+}

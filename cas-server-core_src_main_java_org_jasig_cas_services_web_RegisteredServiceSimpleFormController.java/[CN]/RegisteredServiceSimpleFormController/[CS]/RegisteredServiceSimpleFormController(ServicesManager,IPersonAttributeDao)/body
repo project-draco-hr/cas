@@ -1,5 +1,5 @@
 {
   this.servicesManager=servicesManager;
   this.personAttributeDao=attributeRepository;
-  this.setCommandClass(RegisteredServiceImpl.class);
+  this.setCommandClass(AbstractRegisteredService.class);
 }

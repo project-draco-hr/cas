@@ -1,0 +1,5 @@
+{
+  final AbstractRegisteredService clone=newInstance();
+  copyTo(clone);
+  return clone;
+}
