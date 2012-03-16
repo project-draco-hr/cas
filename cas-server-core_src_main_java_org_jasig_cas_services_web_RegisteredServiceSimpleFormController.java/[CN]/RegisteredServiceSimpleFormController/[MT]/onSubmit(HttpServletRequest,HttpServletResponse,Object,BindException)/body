@@ -1,9 +1,11 @@
 {
   AbstractRegisteredService service=(AbstractRegisteredService)command;
-  if (service.getId() < 0 && service.getServiceId().startsWith("^")) {
-    final RegexRegisteredService regexService=new RegexRegisteredService();
-    service.copyTo(regexService);
-    service=regexService;
+  if (this.getCommandClass() == null) {
+    if (service.getId() < 0 && service.getServiceId().startsWith("^")) {
+      final RegexRegisteredService regexService=new RegexRegisteredService();
+      service.copyTo(regexService);
+      service=regexService;
+    }
   }
   this.servicesManager.save(service);
   logger.info("Saved changes to service " + service.getId());

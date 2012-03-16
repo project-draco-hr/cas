@@ -2,7 +2,10 @@
   final String id=request.getParameter("id");
   if (!StringUtils.hasText(id)) {
     logger.debug("Created new service.");
-    return new RegisteredServiceImpl();
+    if (this.getCommandClass() == null) {
+      return new RegisteredServiceImpl();
+    }
+    return this.createCommand();
   }
   final RegisteredService service=this.servicesManager.findServiceBy(Long.parseLong(id));
   if (service != null) {
