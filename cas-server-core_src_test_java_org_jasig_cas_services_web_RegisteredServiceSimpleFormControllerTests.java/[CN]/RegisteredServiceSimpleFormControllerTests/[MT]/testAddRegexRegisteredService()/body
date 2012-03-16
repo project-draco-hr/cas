@@ -2,7 +2,7 @@
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockHttpServletResponse response=new MockHttpServletResponse();
   request.addParameter("description","description");
-  request.addParameter("serviceId","serviceId");
+  request.addParameter("serviceId","^https://.*");
   request.addParameter("name","name");
   request.addParameter("theme","theme");
   request.addParameter("allowedToProxy","true");
@@ -16,6 +16,6 @@
   final Collection<RegisteredService> services=this.manager.getAllServices();
   assertEquals(1,services.size());
   for (  RegisteredService rs : this.manager.getAllServices()) {
-    assertTrue(rs instanceof RegisteredServiceImpl);
+    assertTrue(rs instanceof RegexRegisteredService);
   }
 }
