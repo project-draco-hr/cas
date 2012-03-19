@@ -1,0 +1,14 @@
+{
+  this.setId(source.getId());
+  this.setAllowedAttributes(new ArrayList<String>(source.getAllowedAttributes()));
+  this.setAllowedToProxy(source.isAllowedToProxy());
+  this.setDescription(source.getDescription());
+  this.setEnabled(source.isEnabled());
+  this.setName(source.getName());
+  this.setServiceId(source.getServiceId());
+  this.setSsoEnabled(source.isSsoEnabled());
+  this.setTheme(source.getTheme());
+  this.setAnonymousAccess(source.isAnonymousAccess());
+  this.setIgnoreAttributes(source.isIgnoreAttributes());
+  this.setEvaluationOrder(source.getEvaluationOrder());
+}

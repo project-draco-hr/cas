@@ -1,9 +1,10 @@
 {
-  AbstractRegisteredService service=(AbstractRegisteredService)command;
+  RegisteredService service=(RegisteredService)command;
   if (this.getCommandClass() == null) {
     if (service.getId() < 0 && service.getServiceId().startsWith("^")) {
+      logger.debug("Detected regular expression starting with ^");
       final RegexRegisteredService regexService=new RegexRegisteredService();
-      service.copyTo(regexService);
+      regexService.copyFrom(service);
       service=regexService;
     }
   }
