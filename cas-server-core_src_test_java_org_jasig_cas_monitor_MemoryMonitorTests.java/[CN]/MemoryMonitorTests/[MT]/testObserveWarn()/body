@@ -1,0 +1,5 @@
+{
+  final MemoryMonitor monitor=new MemoryMonitor();
+  monitor.setFreeMemoryWarnThreshold(100);
+  assertEquals(StatusCode.WARN,monitor.observe().getCode());
+}

@@ -1,0 +1,21 @@
+{
+  final Future<StatusCode> result=executor.submit(new Validator());
+  StatusCode code;
+  String description=null;
+  try {
+    code=result.get(maxWait,TimeUnit.MILLISECONDS);
+  }
+ catch (  InterruptedException e) {
+    code=StatusCode.UNKNOWN;
+    description="Validator thread interrupted during pool validation.";
+  }
+catch (  TimeoutException e) {
+    code=StatusCode.WARN;
+    description=String.format("Pool validation timed out.  Max wait is %s ms.",maxWait);
+  }
+catch (  Exception e) {
+    code=StatusCode.ERROR;
+    description=e.getMessage();
+  }
+  return new PoolStatus(code,description,getActiveCount(),getIdleCount());
+}

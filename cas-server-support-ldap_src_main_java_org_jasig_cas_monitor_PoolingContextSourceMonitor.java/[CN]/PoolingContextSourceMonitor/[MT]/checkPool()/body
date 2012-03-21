@@ -1,0 +1,14 @@
+{
+  final boolean success;
+  DirContext ctxt=null;
+  try {
+    ctxt=poolingContextSource.getReadOnlyContext();
+    success=poolingContextSource.getDirContextValidator().validateDirContext(DirContextType.READ_ONLY,ctxt);
+  }
+  finally {
+    if (ctxt != null) {
+      ctxt.close();
+    }
+  }
+  return success ? StatusCode.OK : StatusCode.ERROR;
+}

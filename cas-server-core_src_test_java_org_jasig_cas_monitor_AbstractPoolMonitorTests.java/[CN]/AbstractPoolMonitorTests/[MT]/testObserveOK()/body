@@ -1,0 +1,20 @@
+{
+  final AbstractPoolMonitor monitor=new AbstractPoolMonitor(){
+    protected StatusCode checkPool() throws Exception {
+      return StatusCode.OK;
+    }
+    protected int getIdleCount(){
+      return 3;
+    }
+    protected int getActiveCount(){
+      return 2;
+    }
+  }
+;
+  monitor.setExecutor(executor);
+  monitor.setMaxWait(1000);
+  final PoolStatus status=monitor.observe();
+  assertEquals(StatusCode.OK,status.getCode());
+  assertEquals(3,status.getIdleCount());
+  assertEquals(2,status.getActiveCount());
+}

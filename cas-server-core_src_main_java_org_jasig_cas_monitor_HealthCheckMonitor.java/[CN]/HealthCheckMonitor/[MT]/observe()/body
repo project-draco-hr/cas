@@ -1,0 +1,13 @@
+{
+  final Map<String,Status> results=new HashMap<String,Status>(monitors.size());
+  StatusCode code=StatusCode.UNKNOWN;
+  Status result;
+  for (  Monitor monitor : monitors) {
+    result=monitor.observe();
+    if (result.getCode().value() > code.value()) {
+      code=result.getCode();
+    }
+    results.put(monitor.getName(),result);
+  }
+  return new HealthStatus(code,results);
+}

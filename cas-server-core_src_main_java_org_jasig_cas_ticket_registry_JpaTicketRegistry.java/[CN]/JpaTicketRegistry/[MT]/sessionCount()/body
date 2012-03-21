@@ -1,0 +1,3 @@
+{
+  return (Integer)entityManager.createQuery("select count(t) from TicketGrantingTicketImpl t").getSingleResult();
+}
