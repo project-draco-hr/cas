@@ -1,5 +1,6 @@
 {
   final String userName=request.getRemoteUser();
+  log.debug("Handling clearPass request for user " + userName);
   if (userName != null) {
     final String password=this.credentialsCache.get(userName);
     return new ModelAndView(this.successView,MODEL_CLEARPASS,password);

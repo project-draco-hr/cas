@@ -1,4 +1,5 @@
 {
   this.ticketRegistry=ticketRegistry;
   this.cache=cache;
+  this.ticketRegistryState=(TicketRegistryState)ticketRegistry;
 }
