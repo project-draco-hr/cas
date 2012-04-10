@@ -1,0 +1,7 @@
+{
+  this.decoratedMap=decoratedMap;
+  this.key=secretKey;
+  this.salt=salt;
+  this.secretKeyAlgorithm=secretKeyAlgorithm;
+  this.messageDigest=MessageDigest.getInstance(hashAlgorithm);
+}

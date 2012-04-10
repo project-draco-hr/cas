@@ -1,0 +1,16 @@
+{
+  if (value == null)   return null;
+  try {
+    final Cipher cipher=getCipherObject();
+    byte[] ivByteArray=algorithmParametersHashMap.get(hashedKey).getIV();
+    IvParameterSpec ivSpec=new IvParameterSpec(ivByteArray);
+    cipher.init(Cipher.DECRYPT_MODE,this.key,ivSpec);
+    byte[] valueByteArray=value.getBytes();
+    byte[] decrypted64ByteValue=new Base64().decode(valueByteArray);
+    byte[] decryptedByteArray=cipher.doFinal(decrypted64ByteValue);
+    return new String(decryptedByteArray);
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  if (!(value instanceof String)) {
+    return false;
+  }
+  final String encryptedValue=encrypt((String)value);
+  return this.decoratedMap.containsValue(encryptedValue);
+}

@@ -1,0 +1,13 @@
+{
+  final String url=this.clearPassUrl + (this.clearPassUrl.contains("?") ? "&" : "?") + "ticket="+ proxyTicket;
+  final String response=retrieveResponseFromServer(url,"UTF-8");
+  final String password=XmlUtils.getTextForElement(response,"credentials");
+  if (log.isTraceEnabled()) {
+    log.trace(String.format("ClearPass Response was:\n %s",response));
+  }
+  if (CommonUtils.isNotBlank(password)) {
+    return password;
+  }
+  log.error("Unable to Retrieve Password.  If you see a [403] HTTP response code returned from the CommonUtils then it most likely means the proxy configuration on the CAS server is not correct.\n\n" + "Full Response from ClearPass was [" + response + "].");
+  return null;
+}
