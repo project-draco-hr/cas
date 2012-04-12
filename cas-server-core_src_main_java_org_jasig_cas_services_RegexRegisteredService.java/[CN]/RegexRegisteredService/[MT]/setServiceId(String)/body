@@ -1,0 +1,4 @@
+{
+  servicePattern=createPattern(id);
+  serviceId=id;
+}

@@ -1,0 +1,3 @@
+{
+  return this.credentialstring != null ? new String(this.credentialstring) : null;
+}

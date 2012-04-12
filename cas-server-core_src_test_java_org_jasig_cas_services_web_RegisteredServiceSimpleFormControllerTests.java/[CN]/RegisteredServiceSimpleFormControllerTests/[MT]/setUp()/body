@@ -7,7 +7,6 @@
   final RegisteredServiceValidator validator=new RegisteredServiceValidator();
   validator.setServicesManager(this.manager);
   this.controller=new RegisteredServiceSimpleFormController(this.manager,this.repository);
-  this.controller.setCommandClass(RegisteredServiceImpl.class);
   this.controller.setCommandName("registeredService");
   this.controller.setValidator(validator);
 }

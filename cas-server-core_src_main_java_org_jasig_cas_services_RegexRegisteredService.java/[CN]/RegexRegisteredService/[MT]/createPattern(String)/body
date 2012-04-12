@@ -1,0 +1,6 @@
+{
+  if (pattern == null) {
+    throw new IllegalArgumentException("Pattern cannot be null.");
+  }
+  return Pattern.compile(pattern);
+}

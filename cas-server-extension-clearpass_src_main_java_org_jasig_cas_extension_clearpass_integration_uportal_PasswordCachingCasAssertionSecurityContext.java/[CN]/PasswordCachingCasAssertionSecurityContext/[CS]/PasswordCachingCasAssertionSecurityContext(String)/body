@@ -1,0 +1,5 @@
+{
+  super();
+  Assert.notNull(clearPassUrl,"clearPassUrl cannot be null.");
+  this.clearPassUrl=clearPassUrl;
+}
