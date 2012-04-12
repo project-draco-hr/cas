@@ -12,7 +12,7 @@
       }
     }
     logger.debug("provider : {}",provider);
-    @SuppressWarnings("unchecked") OAuthCredential credential=provider.getCredential(request.getParameterMap());
+    @SuppressWarnings("unchecked") OAuthCredential credential=provider.getCredential(new HttpUserSession(request),request.getParameterMap());
     logger.debug("credential : {}",credential);
     Service service=(Service)session.getAttribute("service");
     context.getFlowScope().put("service",service);

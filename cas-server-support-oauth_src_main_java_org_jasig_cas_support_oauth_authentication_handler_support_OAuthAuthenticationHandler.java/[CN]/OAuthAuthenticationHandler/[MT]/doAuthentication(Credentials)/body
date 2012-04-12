@@ -11,8 +11,7 @@
     }
   }
   logger.debug("provider : {}",provider);
-  HttpServletRequest request=(HttpServletRequest)ExternalContextHolder.getExternalContext().getNativeRequest();
-  Token accessToken=provider.getAccessToken(new HttpUserSession(request.getSession()),credential);
+  Token accessToken=provider.getAccessToken(credential);
   logger.debug("accessToken : {}",accessToken);
   UserProfile userProfile=provider.getUserProfile(accessToken);
   logger.debug("userProfile : {}",userProfile);

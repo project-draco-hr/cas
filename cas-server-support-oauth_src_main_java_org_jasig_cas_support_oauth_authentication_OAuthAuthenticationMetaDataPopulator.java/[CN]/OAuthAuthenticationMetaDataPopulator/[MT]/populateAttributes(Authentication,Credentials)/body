@@ -4,6 +4,7 @@
     final Principal simplePrincipal=new SimplePrincipal(authentication.getPrincipal().getId(),oauthCredentials.getUserAttributes());
     final MutableAuthentication mutableAuthentication=new MutableAuthentication(simplePrincipal,authentication.getAuthenticatedDate());
     mutableAuthentication.getAttributes().putAll(authentication.getAttributes());
+    mutableAuthentication.getAttributes().put(PROVIDER_TYPE,oauthCredentials.getProviderType());
     return mutableAuthentication;
   }
   return authentication;
