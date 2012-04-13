@@ -1,0 +1,8 @@
+{
+  for (  DelegateController delegate : delegates) {
+    if (delegate.canHandle(request,response)) {
+      return delegate.handleRequest(request,response);
+    }
+  }
+  return generateErrorView("INVALID_REQUEST","INVALID_REQUEST",null);
+}

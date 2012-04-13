@@ -1,6 +1,14 @@
 {
-  final MockHttpServletRequest request=new MockHttpServletRequest();
   request.addParameter("openid.identity","http://openid.ja-sig.org/battags");
   request.addParameter("openid.return_to","http://www.ja-sig.org/?service=fa");
-  this.openIdService=OpenIdService.createServiceFrom(request);
+  request.addParameter("openid.mode","checkid_setup");
+  sharedAssociations=mock(ServerAssociationStore.class);
+  manager=new ServerManager();
+  manager.setOPEndpointUrl("https://localshot:8443/cas/login");
+  manager.setEnforceRpId(false);
+  manager.setSharedAssociations(sharedAssociations);
+  context=mock(ApplicationContext.class);
+  ApplicationContextProvider contextProvider=new ApplicationContextProvider();
+  contextProvider.setApplicationContext(context);
+  cas=mock(CentralAuthenticationService.class);
 }
