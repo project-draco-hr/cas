@@ -4,6 +4,7 @@
     ServerManager manager=(ServerManager)ApplicationContextProvider.getApplicationContext().getBean("serverManager");
     CentralAuthenticationService cas=(CentralAuthenticationService)ApplicationContextProvider.getApplicationContext().getBean("centralAuthenticationService");
     boolean associated=false;
+    boolean associationValid=true;
     try {
       AuthRequest authReq=AuthRequest.createAuthRequest(requestParameters,manager.getRealmVerifier());
       Map parameterMap=authReq.getParameterMap();
@@ -11,8 +12,11 @@
         String assocHandle=(String)parameterMap.get("openid.assoc_handle");
         if (assocHandle != null) {
           Association association=manager.getSharedAssociations().load(assocHandle);
-          if (association != null && (!association.hasExpired())) {
+          if (association != null) {
             associated=true;
+            if (association.hasExpired()) {
+              associationValid=false;
+            }
           }
         }
       }
@@ -23,8 +27,13 @@
     boolean successFullAuthentication=true;
     try {
       if (associated) {
-        cas.validateServiceTicket(ticketId,this);
-        LOG.info("Validated openid ticket");
+        if (associationValid) {
+          cas.validateServiceTicket(ticketId,this);
+          LOG.info("Validated openid ticket");
+        }
+ else {
+          successFullAuthentication=false;
+        }
       }
     }
  catch (    TicketException te) {

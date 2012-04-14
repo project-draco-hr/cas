@@ -12,6 +12,12 @@
   when(context.getBean("centralAuthenticationService")).thenReturn(cas);
   when(sharedAssociations.load("test")).thenReturn(association);
   final Response response=this.openIdService.getResponse("test");
+  try {
+    verify(cas).validateServiceTicket("test",openIdService);
+  }
+ catch (  Exception e) {
+    fail("Error while validating ticket");
+  }
   request.removeParameter("openid.assoc_handle");
   assertNotNull(response);
   assertEquals("test",response.getAttributes().get("openid.assoc_handle"));
