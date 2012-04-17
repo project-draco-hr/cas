@@ -1,3 +1,0 @@
-{
-  return this.signature != null ? this.signature : generateHash("identity=" + this.identity + ",return_to="+ getOriginalUrl());
-}
