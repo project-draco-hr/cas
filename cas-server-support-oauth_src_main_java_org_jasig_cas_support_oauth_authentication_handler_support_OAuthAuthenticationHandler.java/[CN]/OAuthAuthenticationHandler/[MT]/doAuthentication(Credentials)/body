@@ -16,8 +16,7 @@
   UserProfile userProfile=provider.getUserProfile(accessToken);
   logger.debug("userProfile : {}",userProfile);
   if (userProfile != null && StringUtils.isNotBlank(userProfile.getId())) {
-    credential.setUserId(userProfile.getId());
-    credential.setUserAttributes(userProfile.getAttributes());
+    credential.setUserProfile(userProfile);
     return true;
   }
  else {

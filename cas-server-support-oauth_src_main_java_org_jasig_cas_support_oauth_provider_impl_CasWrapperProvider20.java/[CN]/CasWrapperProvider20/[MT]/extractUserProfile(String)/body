@@ -1,5 +1,5 @@
 {
-  UserProfile userProfile=new UserProfile();
+  CasWrapperProfile userProfile=new CasWrapperProfile();
   JsonNode json=JsonHelper.getFirstNode(body);
   if (json != null) {
     userProfile.setId(JsonHelper.get(json,"id"));
