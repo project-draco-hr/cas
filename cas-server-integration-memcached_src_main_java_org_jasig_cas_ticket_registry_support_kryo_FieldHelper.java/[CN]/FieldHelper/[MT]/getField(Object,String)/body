@@ -8,7 +8,7 @@
       f.setAccessible(true);
       fieldCache.put(key,f);
     }
- catch (    NoSuchFieldException e) {
+ catch (    final NoSuchFieldException e) {
       clazz=clazz.getSuperclass();
       if (clazz == null) {
         throw new IllegalStateException("No such field " + key);

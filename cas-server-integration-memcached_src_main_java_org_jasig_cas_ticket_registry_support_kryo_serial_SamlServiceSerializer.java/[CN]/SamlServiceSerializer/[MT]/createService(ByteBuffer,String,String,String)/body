@@ -3,7 +3,7 @@
   try {
     return (SamlService)CONSTRUCTOR.newInstance(id,originalUrl,artifactId,new HttpClient(),requestId);
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     throw new IllegalStateException("Error creating SamlService",e);
   }
 }

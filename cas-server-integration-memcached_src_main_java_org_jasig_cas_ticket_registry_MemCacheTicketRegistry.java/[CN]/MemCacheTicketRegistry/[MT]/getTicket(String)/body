@@ -1,7 +1,12 @@
 {
-  final Ticket t=(Ticket)this.client.get(ticketId);
-  if (t == null) {
-    return null;
+  try {
+    final Ticket t=(Ticket)this.client.get(ticketId);
+    if (t != null) {
+      return getProxiedTicketInstance(t);
+    }
   }
-  return getProxiedTicketInstance(t);
+ catch (  final Exception e) {
+    log.error("Failed fetching {} ",ticketId,e);
+  }
+  return null;
 }

@@ -5,7 +5,7 @@
     final GoogleAccountsService service=(GoogleAccountsService)CONSTRUCTOR.newInstance(id,originalUrl,artifactId,relayState,requestId,privateKey,publicKey,alternateUsername);
     return service;
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     throw new IllegalStateException("Error creating SamlService",e);
   }
 }

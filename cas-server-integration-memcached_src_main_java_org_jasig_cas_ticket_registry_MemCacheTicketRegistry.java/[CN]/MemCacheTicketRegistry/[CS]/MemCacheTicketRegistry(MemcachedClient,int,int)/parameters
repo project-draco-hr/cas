@@ -1,0 +1,3 @@
+MemcachedClient client
+int ticketGrantingTicketTimeOut
+int serviceTicketTimeOut

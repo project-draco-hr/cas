@@ -1,15 +1,10 @@
 {
-  this.tgtTimeout=ticketGrantingTicketTimeOut;
-  this.stTimeout=serviceTicketTimeOut;
-  final List<InetSocketAddress> addresses=new ArrayList<InetSocketAddress>();
-  for (  final String hostname : hostnames) {
-    String[] hostPort=hostname.split(":");
-    addresses.add(new InetSocketAddress(hostPort[0],Integer.parseInt(hostPort[1])));
-  }
   try {
-    this.client=new MemcachedClient(addresses);
+    this.client=new MemcachedClient(AddrUtil.getAddresses(Arrays.asList(hostnames)));
   }
  catch (  final IOException e) {
-    throw new IllegalStateException(e);
+    throw new IllegalArgumentException("Invalid memcached host specification.",e);
   }
+  this.tgtTimeout=ticketGrantingTicketTimeOut * 1000;
+  this.stTimeout=serviceTicketTimeOut * 1000;
 }

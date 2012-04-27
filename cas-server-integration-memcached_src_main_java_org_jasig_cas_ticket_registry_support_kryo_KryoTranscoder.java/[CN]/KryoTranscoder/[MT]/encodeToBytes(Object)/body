@@ -8,7 +8,7 @@
       result=new byte[buffer.flip().limit()];
       buffer.get(result);
     }
- catch (    SerializationException e) {
+ catch (    final SerializationException e) {
       Throwable rootCause=e;
       while (rootCause.getCause() != null) {
         rootCause=rootCause.getCause();

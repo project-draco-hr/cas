@@ -1,8 +1,14 @@
 {
-  if (ticket instanceof TicketGrantingTicket) {
-    handleSynchronousRequest(this.client.replace(ticket.getId(),this.tgtTimeout,ticket));
+  log.debug("Updating ticket {}",ticket);
+  try {
+    if (!this.client.replace(ticket.getId(),getTimeout(ticket),ticket).get()) {
+      log.error("Failed updating {}",ticket);
+    }
   }
-  if (ticket instanceof ServiceTicket) {
-    handleSynchronousRequest(this.client.replace(ticket.getId(),this.stTimeout,ticket));
+ catch (  final InterruptedException e) {
+    log.warn("Interrupted while waiting for response to async replace operation for ticket {}. " + "Cannot determine whether update was successful.",ticket);
+  }
+catch (  final Exception e) {
+    log.error("Failed updating {}",ticket,e);
   }
 }
