@@ -1,6 +1,5 @@
 {
-  Assert.assertNotNull(registry);
-  final String id="ST-1234567890ABCDEFGHIJKL-node";
+  final String id="ST-1234567890ABCDEFGHIJKL-crud";
   final ServiceTicket ticket=mock(ServiceTicket.class,withSettings().serializable());
   when(ticket.getId()).thenReturn(id);
   registry.addTicket(ticket);

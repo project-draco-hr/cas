@@ -1,0 +1,9 @@
+{
+  final String id="ST-1234567890ABCDEFGHIJKL-exp";
+  final ServiceTicket ticket=mock(ServiceTicket.class,withSettings().serializable());
+  when(ticket.getId()).thenReturn(id);
+  registry.addTicket(ticket);
+  Assert.assertNotNull((ServiceTicket)registry.getTicket(id));
+  Thread.sleep(2100);
+  Assert.assertNull((ServiceTicket)registry.getTicket(id));
+}

@@ -1,11 +1,9 @@
 {
-  daemon=new MemCacheDaemon<LocalCacheElement>();
-  daemon.setCache(new CacheImpl(ConcurrentLinkedHashMap.<Key,LocalCacheElement>create(ConcurrentLinkedHashMap.EvictionPolicy.FIFO,100,1024)));
-  daemon.setBinary(binaryProtocol);
-  daemon.setAddr(new InetSocketAddress("127.0.0.1",11211));
-  daemon.setIdleTime(30);
-  daemon.setVerbose(true);
-  daemon.start();
+  final boolean environmentOk=isMemcachedListening();
+  if (!environmentOk) {
+    logger.warn("Aborting test since no memcached server is available on localhost.");
+  }
+  Assume.assumeTrue(environmentOk);
   context=new ClassPathXmlApplicationContext("/ticketRegistry-test.xml");
   registry=context.getBean(registryBean,MemCacheTicketRegistry.class);
 }

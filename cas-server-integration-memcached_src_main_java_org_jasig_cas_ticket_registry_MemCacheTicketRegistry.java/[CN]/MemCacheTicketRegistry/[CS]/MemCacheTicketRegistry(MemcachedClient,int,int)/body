@@ -1,5 +1,5 @@
 {
-  this.tgtTimeout=ticketGrantingTicketTimeOut * 1000;
-  this.stTimeout=serviceTicketTimeOut * 1000;
+  this.tgtTimeout=ticketGrantingTicketTimeOut;
+  this.stTimeout=serviceTicketTimeOut;
   this.client=client;
 }
