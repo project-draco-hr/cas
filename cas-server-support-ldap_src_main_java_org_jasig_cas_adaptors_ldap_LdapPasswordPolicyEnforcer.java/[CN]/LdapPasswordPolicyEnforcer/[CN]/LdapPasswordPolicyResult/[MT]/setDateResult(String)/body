@@ -1,3 +1,3 @@
 {
-  this.DateResult=date;
+  this.dateResult=date;
 }
