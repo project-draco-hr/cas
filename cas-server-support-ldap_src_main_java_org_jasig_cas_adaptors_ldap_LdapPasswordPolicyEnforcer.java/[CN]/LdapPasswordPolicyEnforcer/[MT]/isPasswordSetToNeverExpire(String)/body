@@ -1,0 +1,8 @@
+{
+  boolean ignoreChecks=this.noWarnValues.contains(pswValue);
+  if (!ignoreChecks && StringUtils.isNumeric(pswValue)) {
+    final double psw=Double.parseDouble(pswValue);
+    ignoreChecks=psw == PASSWORD_STATUS_NEVER_EXPIRE;
+  }
+  return ignoreChecks;
+}

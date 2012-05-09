@@ -1,0 +1,4 @@
+{
+  this.warningDays=warningDays;
+  logDebug("Default warningDays: " + warningDays);
+}

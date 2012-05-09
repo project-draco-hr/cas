@@ -1,0 +1,3 @@
+{
+  this.ldapPattern=Pattern.compile(ldapPattern);
+}
