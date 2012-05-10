@@ -1,8 +1,14 @@
 {
-  if (ticket instanceof TicketGrantingTicket) {
-    handleSynchronousRequest(this.client.add(ticket.getId(),this.tgtTimeout,ticket));
+  log.debug("Adding ticket {}",ticket);
+  try {
+    if (!this.client.add(ticket.getId(),getTimeout(ticket),ticket).get()) {
+      log.error("Failed adding {}",ticket);
+    }
   }
-  if (ticket instanceof ServiceTicket) {
-    handleSynchronousRequest(this.client.add(ticket.getId(),this.stTimeout,ticket));
+ catch (  final InterruptedException e) {
+    log.warn("Interrupted while waiting for response to async add operation for ticket {}. " + "Cannot determine whether add was successful.",ticket);
+  }
+catch (  final Exception e) {
+    log.error("Failed adding {}",ticket,e);
   }
 }

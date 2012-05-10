@@ -1,0 +1,4 @@
+ByteBuffer buffer
+String id
+String originalUrl
+String artifactId

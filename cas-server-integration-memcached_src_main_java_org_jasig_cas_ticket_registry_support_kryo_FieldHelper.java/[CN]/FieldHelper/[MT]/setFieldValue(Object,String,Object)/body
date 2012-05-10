@@ -1,0 +1,9 @@
+{
+  final Field f=getField(target,fieldName);
+  try {
+    f.set(target,value);
+  }
+ catch (  final IllegalAccessException e) {
+    throw new IllegalStateException("Error setting field value",e);
+  }
+}

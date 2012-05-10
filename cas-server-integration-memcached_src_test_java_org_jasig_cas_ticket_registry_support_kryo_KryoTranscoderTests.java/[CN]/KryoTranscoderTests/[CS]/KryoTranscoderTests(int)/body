@@ -1,0 +1,5 @@
+{
+  transcoder=new KryoTranscoder(bufferSize);
+  transcoder.setSerializerMap(Collections.<Class<?>,Serializer>singletonMap(MockServiceTicket.class,new FieldSerializer(transcoder.getKryo(),MockServiceTicket.class)));
+  transcoder.initialize();
+}

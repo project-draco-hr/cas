@@ -1,0 +1,20 @@
+{
+  buffer.putInt(map.size());
+  Object value;
+  Collection items;
+  for (  final String key : map.keySet()) {
+    kryo.writeObjectData(buffer,key);
+    value=map.get(key);
+    if (value instanceof Collection) {
+      items=(Collection)value;
+      kryo.writeClass(buffer,ArrayList.class);
+      buffer.putInt(items.size());
+      for (      final Object o : items) {
+        kryo.writeClassAndObject(buffer,o);
+      }
+    }
+ else {
+      kryo.writeClassAndObject(buffer,map.get(key));
+    }
+  }
+}

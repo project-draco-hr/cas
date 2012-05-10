@@ -1,0 +1,4 @@
+{
+  super(kryo);
+  this.fieldHelper=helper;
+}
