@@ -1,0 +1,4 @@
+{
+  this.timeout=timeout;
+  logDebug("Timeout: " + this.timeout);
+}

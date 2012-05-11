@@ -1,0 +1,4 @@
+{
+  this.dateAttribute=DateAttribute;
+  logDebug("Date attribute: " + DateAttribute);
+}

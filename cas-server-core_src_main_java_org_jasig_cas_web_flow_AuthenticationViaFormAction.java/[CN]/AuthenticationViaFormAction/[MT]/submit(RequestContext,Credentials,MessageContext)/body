@@ -17,9 +17,9 @@
       return "warn";
     }
  catch (    final TicketException e) {
-      if (e.getCause() != null && AuthenticationException.class.isAssignableFrom(e.getCause().getClass())) {
+      if (isCauseAuthenticationException(e)) {
         populateErrorsInstance(e,messageContext);
-        return "error";
+        return getAuthenticationExceptionEventId(e);
       }
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
       if (logger.isDebugEnabled()) {
@@ -34,6 +34,7 @@
   }
  catch (  final TicketException e) {
     populateErrorsInstance(e,messageContext);
+    if (isCauseAuthenticationException(e))     return getAuthenticationExceptionEventId(e);
     return "error";
   }
 }

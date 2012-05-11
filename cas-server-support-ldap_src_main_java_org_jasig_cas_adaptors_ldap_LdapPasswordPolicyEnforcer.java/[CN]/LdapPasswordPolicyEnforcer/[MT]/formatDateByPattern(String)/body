@@ -1,0 +1,5 @@
+{
+  final DateTimeFormatter fmt=DateTimeFormat.forPattern(this.dateFormat);
+  final DateTime date=new DateTime(DateTime.parse(ldapResult,fmt),DEFAULT_TIME_ZONE);
+  return date;
+}
