@@ -1,22 +1,25 @@
 {
   boolean foundOneThatWorks=false;
+  String handlerName;
   for (  final AuthenticationHandler authenticationHandler : this.linkedHandlers.keySet()) {
     if (!authenticationHandler.supports(credentials)) {
       continue;
     }
     foundOneThatWorks=true;
     boolean authenticated=false;
-    final LoggingStopWatch stopWatch=new LoggingStopWatch(authenticationHandler.getClass().getSimpleName());
+    handlerName=authenticationHandler.getClass().getName();
     try {
       authenticated=authenticationHandler.authenticate(credentials);
     }
-  finally {
-      stopWatch.stop();
+ catch (    Exception e) {
+      log.error("{} threw error authenticating {}",new Object[]{handlerName,credentials,e});
     }
     if (authenticated) {
+      log.info("{} successfully authenticated {}",handlerName,credentials);
       final Principal p=this.linkedHandlers.get(authenticationHandler).resolvePrincipal(credentials);
       return new Pair<AuthenticationHandler,Principal>(authenticationHandler,p);
     }
+    log.info("{} failed to authenticate {}",handlerName,credentials);
   }
   if (foundOneThatWorks) {
     throw BadCredentialsAuthenticationException.ERROR;
