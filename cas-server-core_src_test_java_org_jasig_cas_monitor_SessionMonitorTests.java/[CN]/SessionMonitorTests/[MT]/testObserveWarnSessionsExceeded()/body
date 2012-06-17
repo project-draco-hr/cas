@@ -1,5 +1,5 @@
 {
-  addTicketsToRegistry(10,1);
+  addTicketsToRegistry(defaultRegistry,10,1);
   monitor.setSessionCountWarnThreshold(5);
   final SessionStatus status=monitor.observe();
   assertEquals(StatusCode.WARN,status.getCode());
