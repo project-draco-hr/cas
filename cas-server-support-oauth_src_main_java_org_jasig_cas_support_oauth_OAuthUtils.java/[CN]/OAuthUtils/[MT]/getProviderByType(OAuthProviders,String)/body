@@ -1,0 +1,11 @@
+{
+  List<OAuthProvider> listProviders=providers.getProviders();
+  if (listProviders != null && type != null) {
+    for (    OAuthProvider provider : listProviders) {
+      if (provider != null && type.equals(provider.getType())) {
+        return provider;
+      }
+    }
+  }
+  return null;
+}

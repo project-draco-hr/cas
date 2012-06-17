@@ -2,8 +2,8 @@
   CasWrapperProfile userProfile=new CasWrapperProfile();
   JsonNode json=JsonHelper.getFirstNode(body);
   if (json != null) {
-    userProfile.setId(JsonHelper.get(json,"id"));
-    json=json.get("attributes");
+    userProfile.setId(JsonHelper.get(json,CasWrapperProfile.ID));
+    json=json.get(CasWrapperProfile.ATTRIBUTES);
     if (json != null) {
       Iterator<JsonNode> nodes=json.iterator();
       while (nodes.hasNext()) {

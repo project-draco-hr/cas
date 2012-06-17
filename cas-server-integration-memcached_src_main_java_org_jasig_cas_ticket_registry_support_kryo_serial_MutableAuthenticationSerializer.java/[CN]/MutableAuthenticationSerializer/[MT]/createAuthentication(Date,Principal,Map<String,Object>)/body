@@ -1,0 +1,5 @@
+{
+  final MutableAuthentication auth=new MutableAuthentication(principal,authDate);
+  fieldHelper.setFieldValue(auth,"attributes",attributes);
+  return auth;
+}

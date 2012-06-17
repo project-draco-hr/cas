@@ -1,0 +1,3 @@
+{
+  if (this.logger.isErrorEnabled())   this.logger.error(e.getMessage(),e);
+}

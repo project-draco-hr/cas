@@ -1,0 +1,12 @@
+{
+  Assert.notNull(this.ldapTemplate,"ldapTemplate cannot be null");
+  Assert.notNull(this.filter,"filter cannot be null");
+  Assert.notNull(this.searchBase,"searchBase cannot be null");
+  Assert.notNull(this.warnAll,"warnAll cannot be null");
+  Assert.notNull(this.dateAttribute,"dateAttribute cannot be null");
+  Assert.notNull(this.dateFormat,"dateFormat cannot be null");
+  Assert.isTrue(this.filter.contains("%u") || this.filter.contains("%U"),"filter must contain %u");
+  this.ldapTemplate.setIgnorePartialResultException(this.ignorePartialResultException);
+  for (  final int element : VALID_SCOPE_VALUES)   if (this.scope == element)   return;
+  throw new IllegalStateException("You must set a valid scope. Valid scope values are: " + Arrays.toString(VALID_SCOPE_VALUES));
+}

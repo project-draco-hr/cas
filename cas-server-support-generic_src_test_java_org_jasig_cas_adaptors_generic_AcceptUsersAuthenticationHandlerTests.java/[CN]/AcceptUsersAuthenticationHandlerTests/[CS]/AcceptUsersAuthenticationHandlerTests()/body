@@ -3,7 +3,7 @@
   this.users.put("scott","rutgers");
   this.users.put("dima","javarules");
   this.users.put("bill","thisisAwesoME");
-  this.users.put("brian","t?st");
+  this.users.put("brian","t???st");
   this.authenticationHandler=new AcceptUsersAuthenticationHandler();
   this.authenticationHandler.setUsers(this.users);
 }

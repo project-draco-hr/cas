@@ -1,0 +1,6 @@
+{
+  DateTime expireDate=null;
+  if (isUsingActiveDirectory())   expireDate=convertDateToActiveDirectoryFormat(ldapDateResult);
+ else   expireDate=formatDateByPattern(ldapDateResult);
+  return expireDate;
+}

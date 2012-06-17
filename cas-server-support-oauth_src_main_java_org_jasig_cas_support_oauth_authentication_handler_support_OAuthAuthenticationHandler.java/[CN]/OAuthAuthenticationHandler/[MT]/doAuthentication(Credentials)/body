@@ -3,13 +3,7 @@
   logger.debug("credential : {}",credential);
   String providerType=credential.getProviderType();
   logger.debug("providerType : {}",providerType);
-  OAuthProvider provider=null;
-  for (  OAuthProvider aProvider : providers) {
-    if (StringUtils.equals(providerType,aProvider.getType())) {
-      provider=aProvider;
-      break;
-    }
-  }
+  OAuthProvider provider=OAuthUtils.getProviderByType(providers,providerType);
   logger.debug("provider : {}",provider);
   Token accessToken=provider.getAccessToken(credential);
   logger.debug("accessToken : {}",accessToken);

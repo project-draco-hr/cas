@@ -1,0 +1,3 @@
+{
+  return e.getCause() != null && AuthenticationException.class.isAssignableFrom(e.getCause().getClass());
+}
