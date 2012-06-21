@@ -1,0 +1,3 @@
+{
+  if (this.log.isErrorEnabled())   this.log.error("{} threw error authenticating {}",new Object[]{handlerName,credentials,e});
+}
