@@ -1,7 +1,0 @@
-{
-  this.reg.destroy();
-  this.reg=null;
-  new File("00000000.jdb").delete();
-  new File("je.lck").delete();
-  super.tearDown();
-}
