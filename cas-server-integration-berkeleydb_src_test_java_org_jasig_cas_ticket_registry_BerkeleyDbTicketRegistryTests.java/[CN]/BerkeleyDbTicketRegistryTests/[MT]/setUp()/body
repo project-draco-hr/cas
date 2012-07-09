@@ -1,5 +1,0 @@
-{
-  super.setUp();
-  this.reg=new BerkeleyDbTicketRegistry();
-  this.reg.afterPropertiesSet();
-}

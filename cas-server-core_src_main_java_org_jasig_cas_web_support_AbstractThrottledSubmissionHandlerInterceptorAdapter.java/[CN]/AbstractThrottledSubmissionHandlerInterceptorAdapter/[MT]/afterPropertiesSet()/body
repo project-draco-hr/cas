@@ -1,0 +1,3 @@
+{
+  this.thresholdRate=(double)failureThreshold / (double)failureRangeInSeconds;
+}

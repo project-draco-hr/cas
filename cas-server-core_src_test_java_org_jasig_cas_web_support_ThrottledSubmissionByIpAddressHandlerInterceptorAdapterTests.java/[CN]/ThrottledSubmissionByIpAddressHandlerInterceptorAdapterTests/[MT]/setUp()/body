@@ -1,5 +1,0 @@
-{
-  this.adapter=new InMemoryThrottledSubmissionByIpAddressHandlerInterceptorAdapter();
-  this.adapter.setFailureThreshold(CONST_FAILURE_THRESHHOLD);
-  this.adapter.setFailureRangeInSeconds(CONST_FAILURE_TIMEOUT);
-}

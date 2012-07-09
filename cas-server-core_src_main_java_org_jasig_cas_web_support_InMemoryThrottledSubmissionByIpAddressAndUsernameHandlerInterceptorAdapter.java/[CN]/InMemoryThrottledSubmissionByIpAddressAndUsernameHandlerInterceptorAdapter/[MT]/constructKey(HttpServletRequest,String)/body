@@ -1,7 +1,0 @@
-{
-  final String username=request.getParameter(usernameParameter);
-  if (username == null) {
-    return request.getRemoteAddr();
-  }
-  return request.getRemoteAddr() + ";" + username.toLowerCase();
-}

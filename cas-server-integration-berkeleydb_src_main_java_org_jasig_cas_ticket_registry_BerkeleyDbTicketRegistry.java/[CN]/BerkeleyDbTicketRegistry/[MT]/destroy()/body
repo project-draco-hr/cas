@@ -1,5 +1,0 @@
-{
-  this.catalogDb.close();
-  this.ticketDb.close();
-  this.environment.close();
-}

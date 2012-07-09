@@ -1,7 +1,0 @@
-{
-  final AtomicInteger newAtomicInteger=new AtomicInteger(1);
-  final AtomicInteger oldAtomicInteger=this.ipMap.putIfAbsent(constructKey(request,usernameParameter),newAtomicInteger);
-  if (oldAtomicInteger != null) {
-    oldAtomicInteger.incrementAndGet();
-  }
-}
