@@ -7,11 +7,11 @@
   logger.debug("clientSecret : {}",clientSecret);
   if (StringUtils.isBlank(clientId)) {
     logger.error("missing clientId");
-    return OAuthUtils.redirectToError(redirectUri,OAuthConstants.MISSING_CLIENT_ID);
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,200);
   }
   if (StringUtils.isBlank(redirectUri)) {
     logger.error("missing redirectUri");
-    return OAuthUtils.redirectToError(redirectUri,OAuthConstants.MISSING_REDIRECT_URI);
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,200);
   }
   Collection<RegisteredService> services=servicesManager.getAllServices();
   RegisteredService service=null;
@@ -23,12 +23,12 @@
   }
   if (service == null) {
     logger.error("Unknown clientId : {}",clientId);
-    return OAuthUtils.redirectToError(redirectUri,OAuthConstants.UNKNOWN_CLIENT_ID);
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,200);
   }
   String serviceId=service.getServiceId();
   if (!StringUtils.startsWith(redirectUri,serviceId)) {
     logger.error("Unsupported redirectUri : {} for serviceId : {}",redirectUri,serviceId);
-    return OAuthUtils.redirectToError(redirectUri,OAuthConstants.UNSUPPORTED_REDIRECT_URI);
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,200);
   }
   HttpSession session=request.getSession();
   session.setAttribute(OAuthConstants.OAUTH20_CALLBACKURL,redirectUri);

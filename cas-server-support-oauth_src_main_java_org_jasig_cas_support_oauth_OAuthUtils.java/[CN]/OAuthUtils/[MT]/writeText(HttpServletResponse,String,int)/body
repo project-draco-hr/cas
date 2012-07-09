@@ -2,6 +2,7 @@
   PrintWriter printWriter;
   try {
     printWriter=response.getWriter();
+    response.setStatus(status);
     printWriter.print(text);
   }
  catch (  IOException e) {

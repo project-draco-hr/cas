@@ -1,2 +1,3 @@
 HttpServletResponse response
-String text
+String error
+int status
