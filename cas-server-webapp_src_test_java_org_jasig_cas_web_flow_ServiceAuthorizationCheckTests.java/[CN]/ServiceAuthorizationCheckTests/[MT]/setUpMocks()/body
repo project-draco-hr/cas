@@ -1,0 +1,9 @@
+{
+  RegisteredServiceImpl authorizedRegisteredService=new RegisteredServiceImpl();
+  RegisteredServiceImpl unauthorizedRegisteredService=new RegisteredServiceImpl();
+  unauthorizedRegisteredService.setEnabled(false);
+  when(this.servicesManager.findServiceBy(this.authorizedService)).thenReturn(authorizedRegisteredService);
+  when(this.servicesManager.findServiceBy(this.unauthorizedService)).thenReturn(unauthorizedRegisteredService);
+  when(this.servicesManager.findServiceBy(this.undefinedService)).thenReturn(null);
+  this.serviceAuthorizationCheck=new ServiceAuthorizationCheck(this.servicesManager);
+}

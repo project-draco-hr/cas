@@ -1,0 +1,6 @@
+{
+  MockRequestContext mockRequestContext=new MockRequestContext();
+  mockRequestContext.getFlowScope().put("service",this.authorizedService);
+  Event event=this.serviceAuthorizationCheck.doExecute(mockRequestContext);
+  assertEquals("success",event.getId());
+}
