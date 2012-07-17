@@ -1,0 +1,7 @@
+{
+  final DataSourceMonitor monitor=new DataSourceMonitor(dataSource);
+  monitor.setExecutor(Executors.newSingleThreadExecutor());
+  monitor.setValidationQuery("SELECT 1 FROM INFORMATION_SCHEMA.SYSTEM_USERS");
+  final PoolStatus status=monitor.observe();
+  assertEquals(StatusCode.OK,status.getCode());
+}

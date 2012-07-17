@@ -1,5 +1,4 @@
 {
-  monitor=new PoolingContextSourceMonitor();
-  monitor.setPoolingContextSource(poolingContextSource);
+  monitor=new PoolingContextSourceMonitor(poolingContextSource);
   monitor.setExecutor(executor);
 }

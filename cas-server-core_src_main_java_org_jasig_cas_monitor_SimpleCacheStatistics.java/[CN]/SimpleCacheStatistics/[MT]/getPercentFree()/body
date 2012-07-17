@@ -1,0 +1,6 @@
+{
+  if (capacity == 0) {
+    return 0;
+  }
+  return (int)((capacity - size) * 100 / capacity);
+}

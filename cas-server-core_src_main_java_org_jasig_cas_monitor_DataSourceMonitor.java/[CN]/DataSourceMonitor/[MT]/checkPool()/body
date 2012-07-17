@@ -1,0 +1,23 @@
+{
+  final Connection connection=dataSource.getConnection();
+  PreparedStatement ps=null;
+  ResultSet rs=null;
+  StatusCode result=StatusCode.WARN;
+  try {
+    ps=dataSource.getConnection().prepareStatement(validationQuery);
+    rs=ps.executeQuery();
+    if (rs.next()) {
+      result=StatusCode.OK;
+    }
+  }
+  finally {
+    if (rs != null) {
+      rs.close();
+    }
+    if (ps != null) {
+      ps.close();
+    }
+    connection.close();
+  }
+  return result;
+}

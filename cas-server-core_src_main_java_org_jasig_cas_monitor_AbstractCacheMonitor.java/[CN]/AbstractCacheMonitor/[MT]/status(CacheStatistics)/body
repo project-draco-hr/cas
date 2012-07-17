@@ -1,0 +1,13 @@
+{
+  final StatusCode code;
+  if (statistics.getEvictions() > evictionThreshold) {
+    code=StatusCode.WARN;
+  }
+ else   if (statistics.getPercentFree() < warnFreeThreshold) {
+    code=StatusCode.WARN;
+  }
+ else {
+    code=StatusCode.OK;
+  }
+  return code;
+}

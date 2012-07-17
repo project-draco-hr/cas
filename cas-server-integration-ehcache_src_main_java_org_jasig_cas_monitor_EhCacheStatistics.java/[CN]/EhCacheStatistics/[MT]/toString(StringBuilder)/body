@@ -1,0 +1,17 @@
+{
+  if (getName() != null) {
+    builder.append(getName()).append(':');
+  }
+  final int free=getPercentFree();
+  if (useBytes) {
+    builder.append(heapSize / 1024 / 1024).append("MB heap, ");
+    builder.append(diskSize / 1024 / 1024).append("MB disk, ");
+  }
+ else {
+    builder.append(heapSize).append("items in heap, ");
+    builder.append(diskSize).append("items on disk, ");
+  }
+  builder.append(offHeapSize / 1024 / 1024).append("MB off-heap, ");
+  builder.append(free).append("% free, ");
+  builder.append(getEvictions()).append(" evictions");
+}

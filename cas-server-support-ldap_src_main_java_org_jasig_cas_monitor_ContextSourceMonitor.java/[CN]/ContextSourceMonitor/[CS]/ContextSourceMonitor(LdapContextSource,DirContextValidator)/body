@@ -1,0 +1,4 @@
+{
+  this.contextSource=source;
+  this.dirContextValidator=validator;
+}

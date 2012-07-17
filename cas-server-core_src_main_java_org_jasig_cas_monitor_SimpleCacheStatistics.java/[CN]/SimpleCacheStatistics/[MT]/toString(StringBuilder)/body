@@ -1,0 +1,8 @@
+{
+  if (name != null) {
+    builder.append(name).append(':');
+  }
+  builder.append(size / 1024 / 1024).append("MB, ");
+  builder.append(getPercentFree()).append("% free, ");
+  builder.append(evictions).append(" evictions");
+}

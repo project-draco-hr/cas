@@ -1,3 +1,6 @@
 {
-  return name;
+  if (name != null) {
+    return name;
+  }
+  return getClass().getSimpleName();
 }
