@@ -1,6 +1,4 @@
 {
-  if (n == null || n.trim().length() == 0) {
-    throw new IllegalArgumentException("Monitor name cannot be null or empty.");
-  }
+  Assert.hasText(n,"Monitor name cannot be null or empty.");
   this.name=n;
 }

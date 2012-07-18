@@ -5,15 +5,15 @@
   try {
     code=result.get(maxWait,TimeUnit.MILLISECONDS);
   }
- catch (  InterruptedException e) {
+ catch (  final InterruptedException e) {
     code=StatusCode.UNKNOWN;
     description="Validator thread interrupted during pool validation.";
   }
-catch (  TimeoutException e) {
+catch (  final TimeoutException e) {
     code=StatusCode.WARN;
     description=String.format("Pool validation timed out.  Max wait is %s ms.",maxWait);
   }
-catch (  Exception e) {
+catch (  final Exception e) {
     code=StatusCode.ERROR;
     description=e.getMessage();
   }

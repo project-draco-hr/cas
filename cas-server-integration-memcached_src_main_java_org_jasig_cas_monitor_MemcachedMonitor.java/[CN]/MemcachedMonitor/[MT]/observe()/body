@@ -1,6 +1,6 @@
 {
   if (memcachedClient.getAvailableServers().size() == 0) {
-    return new CacheStatus(new RuntimeException("No memcached servers available."));
+    return new CacheStatus(StatusCode.ERROR,"No memcached servers available.");
   }
   final Collection<SocketAddress> unavailableList=memcachedClient.getUnavailableServers();
   final CacheStatus status;

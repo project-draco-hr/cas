@@ -1,10 +1,6 @@
 {
-  final StatusCode code;
   if (dirContextValidator.validateDirContext(DirContextType.READ_ONLY,contextSource.getReadOnlyContext())) {
-    code=StatusCode.OK;
+    return Status.OK;
   }
- else {
-    code=StatusCode.ERROR;
-  }
-  return new Status(code);
+  return Status.ERROR;
 }
