@@ -1,23 +1,11 @@
 {
-  final Connection connection=dataSource.getConnection();
-  PreparedStatement ps=null;
-  ResultSet rs=null;
-  StatusCode result=StatusCode.WARN;
-  try {
-    ps=dataSource.getConnection().prepareStatement(validationQuery);
-    rs=ps.executeQuery();
-    if (rs.next()) {
-      result=StatusCode.OK;
+  return this.jdbcTemplate.query(this.validationQuery,new ResultSetExtractor<StatusCode>(){
+    public StatusCode extractData(    final ResultSet rs) throws SQLException, DataAccessException {
+      if (rs.next()) {
+        return StatusCode.OK;
+      }
+      return StatusCode.WARN;
     }
   }
-  finally {
-    if (rs != null) {
-      rs.close();
-    }
-    if (ps != null) {
-      ps.close();
-    }
-    connection.close();
-  }
-  return result;
+);
 }
