@@ -1,10 +1,10 @@
 {
-  if (name != null) {
-    builder.append(name).append(':');
+  if (this.name != null) {
+    builder.append(this.name).append(':');
   }
   final Formatter formatter=new Formatter(builder);
-  formatter.format("%.2f",size / 1048510.0);
+  formatter.format("%.2f",this.size / 1048510.0);
   builder.append("MB used, ");
   builder.append(getPercentFree()).append("% free, ");
-  builder.append(evictions).append(" evictions");
+  builder.append(this.evictions).append(" evictions");
 }

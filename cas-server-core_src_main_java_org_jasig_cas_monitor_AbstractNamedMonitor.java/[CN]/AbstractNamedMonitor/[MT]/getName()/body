@@ -1,3 +1,3 @@
 {
-  return StringUtils.defaultIfEmpty(name,getClass().getSimpleName());
+  return StringUtils.defaultIfEmpty(this.name,getClass().getSimpleName());
 }

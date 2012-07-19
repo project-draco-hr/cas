@@ -1,3 +1,3 @@
 {
-  return activeCount;
+  return this.activeCount;
 }
