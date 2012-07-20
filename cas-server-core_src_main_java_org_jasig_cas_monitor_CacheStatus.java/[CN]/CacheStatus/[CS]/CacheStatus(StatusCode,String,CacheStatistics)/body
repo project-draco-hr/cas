@@ -1,4 +1,4 @@
 {
-  super(code,statistics != null && statistics.length > 0 ? buildDescription(description,statistics) : description);
+  super(code,buildDescription(description,statistics));
   this.statistics=statistics;
 }
