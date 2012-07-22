@@ -1,0 +1,11 @@
+{
+  return this.jdbcTemplate.query(this.validationQuery,new ResultSetExtractor<StatusCode>(){
+    public StatusCode extractData(    final ResultSet rs) throws SQLException, DataAccessException {
+      if (rs.next()) {
+        return StatusCode.OK;
+      }
+      return StatusCode.WARN;
+    }
+  }
+);
+}

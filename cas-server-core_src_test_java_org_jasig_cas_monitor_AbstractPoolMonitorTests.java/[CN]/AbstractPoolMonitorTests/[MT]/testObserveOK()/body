@@ -11,7 +11,7 @@
     }
   }
 ;
-  monitor.setExecutor(executor);
+  monitor.setExecutor(this.executor);
   monitor.setMaxWait(1000);
   final PoolStatus status=monitor.observe();
   assertEquals(StatusCode.OK,status.getCode());
