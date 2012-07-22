@@ -1,11 +1,11 @@
 {
-  String ticket=request.getParameter("ticket");
+  String ticket=request.getParameter(OAuthConstants.TICKET);
   logger.debug("ticket : {}",ticket);
   HttpSession session=request.getSession();
   String callbackUrl=(String)session.getAttribute(OAuthConstants.OAUTH20_CALLBACKURL);
   logger.debug("callbackUrl : {}",callbackUrl);
   session.removeAttribute(OAuthConstants.OAUTH20_CALLBACKURL);
-  String callbackUrlWithCode=OAuthUtils.addParameter(callbackUrl,"code",ticket);
+  String callbackUrlWithCode=OAuthUtils.addParameter(callbackUrl,OAuthConstants.CODE,ticket);
   logger.debug("callbackUrlWithCode : {}",callbackUrlWithCode);
   return OAuthUtils.redirectTo(callbackUrlWithCode);
 }
