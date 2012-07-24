@@ -1,5 +1,5 @@
 {
-  final XSString stringValue=attrValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME,XSString.TYPE_NAME);
+  final XSString stringValue=this.attrValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME,XSString.TYPE_NAME);
   if (value instanceof String) {
     stringValue.setValue((String)value);
   }

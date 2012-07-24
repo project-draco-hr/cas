@@ -10,7 +10,7 @@
       if (c.isEmpty()) {
         continue;
       }
-      for (      Object value : c) {
+      for (      final Object value : c) {
         attribute.getAttributeValues().add(newAttributeValue(value));
       }
     }
