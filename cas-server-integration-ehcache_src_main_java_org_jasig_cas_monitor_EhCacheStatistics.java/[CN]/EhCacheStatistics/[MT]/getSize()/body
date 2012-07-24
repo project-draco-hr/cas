@@ -1,0 +1,13 @@
+{
+  final LiveCacheStatistics statistics=cache.getLiveCacheStatistics();
+  if (useBytes) {
+    diskSize=statistics.getLocalDiskSizeInBytes();
+    heapSize=statistics.getLocalHeapSizeInBytes();
+  }
+ else {
+    diskSize=cache.getDiskStoreSize();
+    heapSize=cache.getMemoryStoreSize();
+  }
+  offHeapSize=statistics.getLocalOffHeapSizeInBytes();
+  return heapSize;
+}

@@ -1,0 +1,7 @@
+{
+  this.providers=providers;
+  for (  OAuthProvider provider : providers.getProviders()) {
+    BaseOAuthProvider baseProvider=(BaseOAuthProvider)provider;
+    baseProvider.setCallbackUrl(OAuthUtils.addParameter(baseProvider.getCallbackUrl(),OAuthConstants.OAUTH_PROVIDER,provider.getType()));
+  }
+}

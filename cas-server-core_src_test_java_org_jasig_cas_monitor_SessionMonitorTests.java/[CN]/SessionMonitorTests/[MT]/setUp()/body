@@ -1,5 +1,5 @@
 {
-  defaultRegistry=new DefaultTicketRegistry();
-  monitor=new SessionMonitor();
-  monitor.setTicketRegistry(defaultRegistry);
+  this.defaultRegistry=new DefaultTicketRegistry();
+  this.monitor=new SessionMonitor();
+  this.monitor.setTicketRegistry(this.defaultRegistry);
 }

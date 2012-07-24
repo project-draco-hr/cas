@@ -1,0 +1,21 @@
+{
+  if (getName() != null) {
+    builder.append(getName()).append(':');
+  }
+  final int free=getPercentFree();
+  final Formatter formatter=new Formatter(builder);
+  if (useBytes) {
+    formatter.format("%.2f",heapSize / 1048510.0);
+    builder.append("MB heap, ");
+    formatter.format("%.2f",diskSize / 1048510.0);
+    builder.append("MB disk, ");
+  }
+ else {
+    builder.append(heapSize).append(" items in heap, ");
+    builder.append(diskSize).append(" items on disk, ");
+  }
+  formatter.format("%.2f",offHeapSize / 1048510.0);
+  builder.append("MB off-heap, ");
+  builder.append(free).append("% free, ");
+  builder.append(getEvictions()).append(" evictions");
+}

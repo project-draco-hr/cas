@@ -1,0 +1,6 @@
+{
+  if (dirContextValidator.validateDirContext(DirContextType.READ_ONLY,contextSource.getReadOnlyContext())) {
+    return Status.OK;
+  }
+  return Status.ERROR;
+}

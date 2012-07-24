@@ -4,6 +4,6 @@
   memoryMonitor.setFreeMemoryWarnThreshold(100);
   monitors.add(memoryMonitor);
   monitors.add(newSessionMonitor());
-  monitor.setMonitors(monitors);
-  assertEquals(StatusCode.WARN,monitor.observe().getCode());
+  this.monitor.setMonitors(monitors);
+  assertEquals(StatusCode.WARN,this.monitor.observe().getCode());
 }

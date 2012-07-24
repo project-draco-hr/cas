@@ -1,3 +1,3 @@
 {
-  return idleCount;
+  return this.idleCount;
 }
