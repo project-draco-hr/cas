@@ -18,7 +18,7 @@
     final BasicSAMLMessageContext messageContext=new BasicSAMLMessageContext();
     messageContext.setOutboundMessageTransport(new HttpServletResponseAdapter(response,false));
     messageContext.setOutboundSAMLMessage(samlResponse);
-    final HTTPSOAP11Encoder encoder=new HTTPSOAP11Encoder();
+    final HTTPSOAP11Encoder encoder=new CasHTTPSOAP11Encoder();
     encoder.encode(messageContext);
   }
  catch (  final Exception e) {
