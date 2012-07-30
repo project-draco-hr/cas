@@ -1,11 +1,8 @@
 {
-  if (username != null) {
-    if (username.trim().length() == 0) {
-      username=null;
-    }
- else {
-      this.setAnonymousAccess(username.equals(DEFAULT_OPAQUE_USERNAME_ATTRIBUTE));
-    }
+  if (StringUtils.isBlank(username)) {
+    this.usernameAttribute=DEFAULT_USERNAME_ATTRIBUTE;
   }
-  this.usernameAttribute=username;
+ else {
+    this.usernameAttribute=username;
+  }
 }

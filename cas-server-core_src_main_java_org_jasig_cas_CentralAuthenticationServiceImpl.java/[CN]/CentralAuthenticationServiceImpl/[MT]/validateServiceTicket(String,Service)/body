@@ -25,24 +25,7 @@ synchronized (serviceTicket) {
     List<Authentication> chainedAuthenticationsList=serviceTicket.getGrantingTicket().getChainedAuthentications();
     final Authentication authentication=chainedAuthenticationsList.get(chainedAuthenticationsList.size() - 1);
     final Principal principal=authentication.getPrincipal();
-    String principalId=principal.getId();
-    if (registeredService.isAnonymousAccess()) {
-      principalId=this.persistentIdGenerator.generate(principal,serviceTicket.getService());
-    }
- else {
-      if (registeredService.getUsernameAttribute() == null || registeredService.getAllowedAttributes().equals(RegisteredService.DEFAULT_USERNAME_ATTRIBUTE)) {
-        principalId=principal.getId();
-      }
- else {
-        if (registeredService.isIgnoreAttributes() || registeredService.getAllowedAttributes().contains(registeredService.getUsernameAttribute())) {
-          principalId=principal.getAttributes().get(registeredService.getUsernameAttribute()).toString();
-        }
- else {
-          final Object[] errorLogParameters=new Object[]{principalId,registeredService.getUsernameAttribute(),principal.getAttributes(),registeredService.getServiceId(),principalId};
-          log.warn("Principal [{}] did not have attribute [{}] among attributes [{}] so CAS cannot " + "provide on the validation response the user attribute the registered service [{}] expects. " + "CAS will instead return the default username attribute [{}]",errorLogParameters);
-        }
-      }
-    }
+    String principalId=determinePrincipalIdForRegisteredService(principal,registeredService,serviceTicket);
     final Authentication authToUse;
     if (!registeredService.isIgnoreAttributes()) {
       final Map<String,Object> attributes=new HashMap<String,Object>();
