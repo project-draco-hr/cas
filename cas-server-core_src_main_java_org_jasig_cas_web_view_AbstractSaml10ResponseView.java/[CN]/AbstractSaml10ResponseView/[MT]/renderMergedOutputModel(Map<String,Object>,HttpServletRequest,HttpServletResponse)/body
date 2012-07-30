@@ -16,13 +16,12 @@
     }
     prepareResponse(samlResponse,model);
     final BasicSAMLMessageContext messageContext=new BasicSAMLMessageContext();
-    messageContext.setOutboundMessageTransport(new HttpServletResponseAdapter(response,false));
+    messageContext.setOutboundMessageTransport(new HttpServletResponseAdapter(response,request.isSecure()));
     messageContext.setOutboundSAMLMessage(samlResponse);
-    final HTTPSOAP11Encoder encoder=new CasHTTPSOAP11Encoder();
-    encoder.encode(messageContext);
+    this.encoder.encode(messageContext);
   }
  catch (  final Exception e) {
-    log.error("{}::{}",e.getClass().getSimpleName(),e.getMessage());
+    this.log.error("Error generating SAML response for service {}.",serviceId);
     throw e;
   }
 }

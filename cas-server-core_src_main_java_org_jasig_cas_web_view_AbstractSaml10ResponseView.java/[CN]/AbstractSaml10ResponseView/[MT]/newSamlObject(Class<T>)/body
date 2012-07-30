@@ -4,10 +4,10 @@
     final Field f=objectType.getField(DEFAULT_ELEMENT_NAME_FIELD);
     qName=(QName)f.get(null);
   }
- catch (  NoSuchFieldException e) {
+ catch (  final NoSuchFieldException e) {
     throw new IllegalStateException("Cannot find field " + objectType.getName() + "."+ DEFAULT_ELEMENT_NAME_FIELD);
   }
-catch (  IllegalAccessException e) {
+catch (  final IllegalAccessException e) {
     throw new IllegalStateException("Cannot access field " + objectType.getName() + "."+ DEFAULT_ELEMENT_NAME_FIELD);
   }
   final SAMLObjectBuilder<T> builder=(SAMLObjectBuilder<T>)Configuration.getBuilderFactory().getBuilder(qName);
