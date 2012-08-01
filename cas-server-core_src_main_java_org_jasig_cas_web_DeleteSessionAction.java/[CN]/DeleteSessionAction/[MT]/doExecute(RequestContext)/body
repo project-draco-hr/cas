@@ -1,8 +1,8 @@
 {
   HttpServletRequest request=WebUtils.getHttpServletRequest(context);
   HttpSession session=request.getSession(false);
-  if (session != null && deleteSession) {
-    session.setMaxInactiveInterval(timeToDieInSeconds);
+  if (session != null) {
+    session.setMaxInactiveInterval(this.timeToDieInSeconds);
   }
   return null;
 }
