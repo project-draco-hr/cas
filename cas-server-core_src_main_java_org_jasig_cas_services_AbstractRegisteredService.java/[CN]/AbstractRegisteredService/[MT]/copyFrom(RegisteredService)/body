@@ -11,4 +11,5 @@
   this.setAnonymousAccess(source.isAnonymousAccess());
   this.setIgnoreAttributes(source.isIgnoreAttributes());
   this.setEvaluationOrder(source.getEvaluationOrder());
+  this.setUsernameAttribute(source.getUsernameAttribute());
 }

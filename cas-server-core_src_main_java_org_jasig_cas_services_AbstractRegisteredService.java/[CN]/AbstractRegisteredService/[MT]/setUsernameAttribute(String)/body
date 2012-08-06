@@ -1,0 +1,8 @@
+{
+  if (StringUtils.isBlank(username)) {
+    this.usernameAttribute=DEFAULT_USERNAME_ATTRIBUTE;
+  }
+ else {
+    this.usernameAttribute=username;
+  }
+}
