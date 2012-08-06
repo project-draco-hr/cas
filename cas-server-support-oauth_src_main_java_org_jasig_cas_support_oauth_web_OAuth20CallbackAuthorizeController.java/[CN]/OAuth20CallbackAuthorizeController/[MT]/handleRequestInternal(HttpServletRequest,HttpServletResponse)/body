@@ -7,7 +7,7 @@
   session.removeAttribute(OAuthConstants.OAUTH20_CALLBACKURL);
   String callbackUrlWithCode=OAuthUtils.addParameter(callbackUrl,OAuthConstants.CODE,ticket);
   logger.debug("callbackUrlWithCode : {}",callbackUrlWithCode);
-  Map model=new HashMap();
+  Map<String,Object> model=new HashMap<String,Object>();
   model.put("callbackUrlWithCode",callbackUrlWithCode);
   String serviceName=(String)session.getAttribute(OAuthConstants.OAUTH20_SERVICE_NAME);
   model.put("serviceName",serviceName);
