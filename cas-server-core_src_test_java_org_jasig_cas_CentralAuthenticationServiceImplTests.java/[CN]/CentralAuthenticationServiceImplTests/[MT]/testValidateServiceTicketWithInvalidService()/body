@@ -5,6 +5,6 @@
     getCentralAuthenticationService().validateServiceTicket(serviceTicket,TestUtils.getService("test2"));
     fail(TestUtils.CONST_EXCEPTION_EXPECTED);
   }
- catch (  TicketException e) {
+ catch (  UnauthorizedServiceException e) {
   }
 }
