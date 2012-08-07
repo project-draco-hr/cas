@@ -1,0 +1,3 @@
+{
+  return this.supportRegistryState ? this.serviceTicketsCache.getKeysWithExpiryCheck().size() : 0;
+}

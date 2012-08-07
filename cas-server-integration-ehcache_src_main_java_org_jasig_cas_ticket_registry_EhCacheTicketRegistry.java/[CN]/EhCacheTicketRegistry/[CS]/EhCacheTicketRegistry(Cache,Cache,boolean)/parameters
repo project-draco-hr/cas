@@ -1,0 +1,3 @@
+Cache serviceTicketsCache
+Cache ticketGrantingTicketsCache
+boolean supportRegistryState

@@ -3,6 +3,7 @@
     this.ticketRegistry.getTicket("FALALALALALAL");
   }
  catch (  Exception e) {
+    e.printStackTrace();
     fail("Exception caught.  None expected.");
   }
 }

@@ -1,3 +1,7 @@
 {
-  return this.ticketRegistryState.sessionCount();
+  if (this.ticketRegistry instanceof TicketRegistryState) {
+    return ((TicketRegistryState)this.ticketRegistry).sessionCount();
+  }
+  this.log.debug("Ticket registry {} does not support report the sessionCount() operation of the registry state.",this.ticketRegistry.getClass().getName());
+  return 0;
 }

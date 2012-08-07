@@ -18,6 +18,7 @@
     }
   }
  catch (  Exception e) {
+    e.printStackTrace();
     fail("Caught an exception. But no exception should have been thrown.");
   }
 }
