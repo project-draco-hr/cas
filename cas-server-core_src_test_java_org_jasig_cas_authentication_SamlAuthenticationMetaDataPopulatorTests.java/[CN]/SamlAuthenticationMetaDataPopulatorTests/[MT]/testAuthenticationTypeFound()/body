@@ -2,5 +2,5 @@
   final UsernamePasswordCredentials credentials=new UsernamePasswordCredentials();
   final MutableAuthentication ma=new MutableAuthentication(TestUtils.getPrincipal());
   final Authentication m2=this.populator.populateAttributes(ma,credentials);
-  assertEquals(m2.getAttributes().get("samlAuthenticationStatementAuthMethod"),SAMLAuthenticationStatement.AuthenticationMethod_Password);
+  assertEquals(m2.getAttributes().get("samlAuthenticationStatementAuthMethod"),SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_PASSWORD);
 }

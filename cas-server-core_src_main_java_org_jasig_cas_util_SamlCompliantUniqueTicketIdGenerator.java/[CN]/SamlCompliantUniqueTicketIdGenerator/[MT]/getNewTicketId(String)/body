@@ -1,8 +1,8 @@
 {
   if (saml2compliant) {
-    return new SAMLArtifactType0002(this.randomStringGenerator.getNewStringAsBytes(),new URI(this.sourceLocation)).encode();
+    return new SAML2ArtifactType0004(ENDPOINT_ID,newAssertionHandle(),sourceIdDigest).base64Encode();
   }
  else {
-    return new SAMLArtifactType0001(this.sourceIdDigest,this.randomStringGenerator.getNewStringAsBytes()).encode();
+    return new SAML1ArtifactType0001(this.sourceIdDigest,newAssertionHandle()).base64Encode();
   }
 }

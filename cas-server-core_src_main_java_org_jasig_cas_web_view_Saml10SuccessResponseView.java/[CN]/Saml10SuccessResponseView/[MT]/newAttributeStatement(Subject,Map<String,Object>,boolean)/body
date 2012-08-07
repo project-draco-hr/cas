@@ -1,0 +1,31 @@
+{
+  final AttributeStatement attrStatement=newSamlObject(AttributeStatement.class);
+  attrStatement.setSubject(subject);
+  for (  final Entry<String,Object> e : attributes.entrySet()) {
+    if (e.getValue() instanceof Collection<?> && ((Collection<?>)e.getValue()).isEmpty()) {
+      log.info("Skipping attribute {} because it does not have any values.",e.getKey());
+      continue;
+    }
+    final Attribute attribute=newSamlObject(Attribute.class);
+    attribute.setAttributeName(e.getKey());
+    attribute.setAttributeNamespace(NAMESPACE);
+    if (e.getValue() instanceof Collection<?>) {
+      final Collection<?> c=(Collection<?>)e.getValue();
+      for (      final Object value : c) {
+        attribute.getAttributeValues().add(newAttributeValue(value));
+      }
+    }
+ else {
+      attribute.getAttributeValues().add(newAttributeValue(e.getValue()));
+    }
+    attrStatement.getAttributes().add(attribute);
+  }
+  if (isRemembered) {
+    final Attribute attribute=newSamlObject(Attribute.class);
+    attribute.setAttributeName(this.rememberMeAttributeName);
+    attribute.setAttributeNamespace(NAMESPACE);
+    attribute.getAttributeValues().add(newAttributeValue(REMEMBER_ME_ATTRIBUTE_VALUE));
+    attrStatement.getAttributes().add(attribute);
+  }
+  return attrStatement;
+}
