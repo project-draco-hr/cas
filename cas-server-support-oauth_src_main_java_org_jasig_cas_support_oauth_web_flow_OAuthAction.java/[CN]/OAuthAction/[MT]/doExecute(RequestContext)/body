@@ -32,7 +32,7 @@
         authorizationUrl=provider.getAuthorizationUrl(new HttpUserSession(session));
       }
       logger.debug("{} -> {}",key,authorizationUrl);
-      context.getFlowScope().put(key,authorizatonUrl);
+      context.getFlowScope().put(key,authorizationUrl);
     }
   }
   return error();
