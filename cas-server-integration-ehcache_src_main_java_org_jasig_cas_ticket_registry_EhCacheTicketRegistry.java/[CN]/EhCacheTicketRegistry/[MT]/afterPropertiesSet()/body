@@ -1,8 +1,6 @@
 {
   if (this.serviceTicketsCache == null || this.ticketGrantingTicketsCache == null) {
-    final String message="Both serviceTicketsCache and ticketGrantingTicketsCache are required properties. serviceTicketsCache={}, ticketGrantingTicketsCache= {}";
-    log.error(message,this.serviceTicketsCache,this.ticketGrantingTicketsCache);
-    throw new BeanInstantiationException(this.getClass(),message);
+    throw new BeanInstantiationException(this.getClass(),"Both serviceTicketsCache and ticketGrantingTicketsCache are required properties.");
   }
   if (this.log.isDebugEnabled()) {
     CacheConfiguration config=this.serviceTicketsCache.getCacheConfiguration();

@@ -3,5 +3,5 @@
     return ((TicketRegistryState)this.ticketRegistry).serviceTicketCount();
   }
   log.debug("Ticket registry {} does not support report the serviceTicketCount() operation of the registry state.",this.ticketRegistry.getClass().getName());
-  return 0;
+  return super.serviceTicketCount();
 }
