@@ -1,11 +1,15 @@
 {
-  String ticket=request.getParameter(OAuthConstants.TICKET);
+  final String ticket=request.getParameter(OAuthConstants.TICKET);
   logger.debug("ticket : {}",ticket);
-  HttpSession session=request.getSession();
-  String callbackUrl=(String)session.getAttribute(OAuthConstants.OAUTH20_CALLBACKURL);
+  final HttpSession session=request.getSession();
+  final String callbackUrl=(String)session.getAttribute(OAuthConstants.OAUTH20_CALLBACKURL);
   logger.debug("callbackUrl : {}",callbackUrl);
   session.removeAttribute(OAuthConstants.OAUTH20_CALLBACKURL);
-  String callbackUrlWithCode=OAuthUtils.addParameter(callbackUrl,OAuthConstants.CODE,ticket);
+  final String callbackUrlWithCode=OAuthUtils.addParameter(callbackUrl,OAuthConstants.CODE,ticket);
   logger.debug("callbackUrlWithCode : {}",callbackUrlWithCode);
-  return OAuthUtils.redirectTo(callbackUrlWithCode);
+  final Map<String,Object> model=new HashMap<String,Object>();
+  model.put("callbackUrlWithCode",callbackUrlWithCode);
+  final String serviceName=(String)session.getAttribute(OAuthConstants.OAUTH20_SERVICE_NAME);
+  model.put("serviceName",serviceName);
+  return new ModelAndView(OAuthConstants.CONFIRM_VIEW,model);
 }
