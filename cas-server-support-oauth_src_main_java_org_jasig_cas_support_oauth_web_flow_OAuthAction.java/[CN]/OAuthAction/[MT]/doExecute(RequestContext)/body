@@ -8,9 +8,11 @@
     logger.debug("provider : {}",provider);
     @SuppressWarnings("unchecked") final OAuthCredential credential=provider.getCredential(new HttpUserSession(request),request.getParameterMap());
     logger.debug("credential : {}",credential);
-    final Service service=(Service)session.getAttribute("service");
-    context.getFlowScope().put("service",service);
-    restoreState(context);
+    final Service service=(Service)session.getAttribute(OAuthConstants.SERVICE);
+    context.getFlowScope().put(OAuthConstants.SERVICE,service);
+    restoreRequestAttribute(request,session,OAuthConstants.THEME);
+    restoreRequestAttribute(request,session,OAuthConstants.LOCALE);
+    restoreRequestAttribute(request,session,OAuthConstants.METHOD);
     final Credentials credentials=new OAuthCredentials(credential);
     try {
       WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credentials));
@@ -21,9 +23,13 @@
     }
   }
  else {
-    final Service service=(Service)context.getFlowScope().get("service");
-    session.setAttribute("service",service);
-    saveState(context);
+    final Service service=(Service)context.getFlowScope().get(OAuthConstants.SERVICE);
+    if (service != null) {
+      session.setAttribute(OAuthConstants.SERVICE,service);
+    }
+    saveRequestParameter(request,session,OAuthConstants.THEME);
+    saveRequestParameter(request,session,OAuthConstants.LOCALE);
+    saveRequestParameter(request,session,OAuthConstants.METHOD);
     for (    final OAuthProvider provider : providers.getProviders()) {
       final String key=provider.getType() + "Url";
       String authorizationUrl=null;
