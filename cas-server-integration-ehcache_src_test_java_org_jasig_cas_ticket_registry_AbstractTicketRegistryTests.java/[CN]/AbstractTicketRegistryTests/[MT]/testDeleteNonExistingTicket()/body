@@ -4,7 +4,7 @@
     assertFalse("Ticket was deleted.",this.ticketRegistry.deleteTicket("TEST1"));
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    log.error(e.getMessage(),e);
     fail("Caught an exception. But no exception should have been thrown.");
   }
 }
