@@ -4,7 +4,7 @@
     this.ticketRegistry.getTicket("TEST",TicketGrantingTicket.class);
   }
  catch (  Exception e) {
-    System.out.println(e);
+    log.error(e.getMessage(),e);
     fail("Caught an exception. But no exception should have been thrown.");
   }
 }

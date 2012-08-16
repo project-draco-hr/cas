@@ -1,0 +1,4 @@
+{
+  this(serviceTicketsCache,ticketGrantingTicketsCache);
+  setSupportRegistryState(supportRegistryState);
+}

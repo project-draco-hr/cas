@@ -3,7 +3,7 @@
     assertEquals("The size of the empty registry is not zero.",this.ticketRegistry.getTickets().size(),0);
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    log.error(e.getMessage(),e);
     fail("Caught an exception. But no exception should have been thrown.");
   }
 }
