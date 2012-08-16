@@ -1,6 +1,6 @@
 {
   if (StringUtils.isBlank(username)) {
-    this.usernameAttribute=DEFAULT_USERNAME_ATTRIBUTE;
+    this.usernameAttribute=null;
   }
  else {
     this.usernameAttribute=username;
