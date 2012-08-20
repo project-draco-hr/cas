@@ -1,0 +1,29 @@
+{
+  final ModelAndView mv=new ModelAndView("jsonView");
+  try {
+    final String idAsString=request.getParameter("id");
+    if (!GenericValidator.isLong(idAsString)) {
+      throw new IllegalArgumentException("Invalid service id: " + idAsString);
+    }
+    final String evalOrderAsString=request.getParameter("evaluationOrder");
+    if (!GenericValidator.isLong(evalOrderAsString)) {
+      throw new IllegalArgumentException("Invalid service evaluation order " + evalOrderAsString);
+    }
+    final long id=NumberUtils.toLong(idAsString);
+    final int evaluationOrder=NumberUtils.toInt(evalOrderAsString);
+    final AbstractRegisteredService svc=(AbstractRegisteredService)this.servicesManager.findServiceBy(id);
+    if (svc != null) {
+      svc.setEvaluationOrder(evaluationOrder);
+      this.servicesManager.save(svc);
+    }
+ else     throw new IllegalArgumentException("Service id " + id + " cannot be found.");
+  }
+ catch (  Exception e) {
+    mv.addObject("error",e.getMessage());
+    logger.error(e.getMessage(),e);
+  }
+ finally {
+    mv.addObject("successful",!mv.getModelMap().containsKey("error"));
+  }
+  return mv;
+}

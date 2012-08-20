@@ -1,7 +1,4 @@
 {
-  final int result=this.evaluationOrder - other.getEvaluationOrder();
-  if (result == 0) {
-    return (int)(this.id - other.getId());
-  }
-  return result;
+  final Comparator<RegisteredService> comparator=RegisteredServiceComparator.getInstance();
+  return comparator.compare(this,other);
 }

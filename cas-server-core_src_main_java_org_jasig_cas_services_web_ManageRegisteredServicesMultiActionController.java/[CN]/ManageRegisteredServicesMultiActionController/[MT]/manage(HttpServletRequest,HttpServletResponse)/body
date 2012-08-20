@@ -1,7 +1,6 @@
 {
   final Map<String,Object> model=new HashMap<String,Object>();
   final List<RegisteredService> services=new ArrayList<RegisteredService>(this.servicesManager.getAllServices());
-  PropertyComparator.sort(services,this.propertyComparator.getSortDefinition());
   model.put("services",services);
   model.put("pageTitle",VIEW_NAME);
   model.put("defaultServiceUrl",this.defaultServiceUrl);

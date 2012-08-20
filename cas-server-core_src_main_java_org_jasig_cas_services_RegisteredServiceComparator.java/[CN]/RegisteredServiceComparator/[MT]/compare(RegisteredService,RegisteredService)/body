@@ -1,0 +1,7 @@
+{
+  int result=Integer.valueOf(o1.getEvaluationOrder()).compareTo(Integer.valueOf(o2.getEvaluationOrder()));
+  if (result == 0) {
+    result=o1.getName().compareToIgnoreCase(o2.getName());
+  }
+  return result;
+}
