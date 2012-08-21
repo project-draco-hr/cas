@@ -1,16 +1,19 @@
 {
-  HttpServletRequest request=WebUtils.getHttpServletRequest(context);
-  HttpSession session=request.getSession();
-  String providerType=request.getParameter(OAuthConstants.OAUTH_PROVIDER);
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final HttpSession session=request.getSession();
+  final String providerType=request.getParameter(OAuthConstants.OAUTH_PROVIDER);
   logger.debug("providerType : {}",providerType);
   if (StringUtils.isNotBlank(providerType)) {
-    OAuthProvider provider=OAuthUtils.getProviderByType(providers,providerType);
+    final OAuthProvider provider=OAuthUtils.getProviderByType(providers,providerType);
     logger.debug("provider : {}",provider);
-    @SuppressWarnings("unchecked") OAuthCredential credential=provider.getCredential(new HttpUserSession(request),request.getParameterMap());
+    @SuppressWarnings("unchecked") final OAuthCredential credential=provider.getCredential(new HttpUserSession(request),request.getParameterMap());
     logger.debug("credential : {}",credential);
-    Service service=(Service)session.getAttribute("service");
-    context.getFlowScope().put("service",service);
-    Credentials credentials=new OAuthCredentials(credential);
+    final Service service=(Service)session.getAttribute(OAuthConstants.SERVICE);
+    context.getFlowScope().put(OAuthConstants.SERVICE,service);
+    restoreRequestAttribute(request,session,OAuthConstants.THEME);
+    restoreRequestAttribute(request,session,OAuthConstants.LOCALE);
+    restoreRequestAttribute(request,session,OAuthConstants.METHOD);
+    final Credentials credentials=new OAuthCredentials(credential);
     try {
       WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credentials));
       return success();
@@ -20,10 +23,15 @@
     }
   }
  else {
-    Service service=(Service)context.getFlowScope().get("service");
-    session.setAttribute("service",service);
-    for (    OAuthProvider provider : providers.getProviders()) {
-      String key=provider.getType() + "Url";
+    final Service service=(Service)context.getFlowScope().get(OAuthConstants.SERVICE);
+    if (service != null) {
+      session.setAttribute(OAuthConstants.SERVICE,service);
+    }
+    saveRequestParameter(request,session,OAuthConstants.THEME);
+    saveRequestParameter(request,session,OAuthConstants.LOCALE);
+    saveRequestParameter(request,session,OAuthConstants.METHOD);
+    for (    final OAuthProvider provider : providers.getProviders()) {
+      final String key=provider.getType() + "Url";
       String authorizationUrl=null;
       if (provider instanceof BaseOAuth10Provider) {
         authorizationUrl=OAuthUtils.addParameter(request.getContextPath() + oauth10loginUrl,OAuthConstants.OAUTH_PROVIDER,provider.getType());
