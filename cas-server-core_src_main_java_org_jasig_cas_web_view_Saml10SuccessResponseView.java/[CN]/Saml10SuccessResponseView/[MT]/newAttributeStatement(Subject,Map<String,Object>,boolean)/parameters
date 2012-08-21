@@ -1,0 +1,3 @@
+Subject subject
+Map<String,Object> attributes
+boolean isRemembered

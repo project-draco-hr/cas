@@ -1,0 +1,3 @@
+{
+  return BooleanUtils.toInteger(this.supportRegistryState,this.serviceTicketsCache.getKeysWithExpiryCheck().size(),super.serviceTicketCount());
+}

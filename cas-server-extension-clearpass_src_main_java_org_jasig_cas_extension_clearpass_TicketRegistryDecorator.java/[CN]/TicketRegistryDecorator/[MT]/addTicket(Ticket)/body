@@ -3,7 +3,7 @@
     final TicketGrantingTicket ticketGrantingTicket=(TicketGrantingTicket)ticket;
     final String ticketId=ticketGrantingTicket.getId();
     final String userName=ticketGrantingTicket.getAuthentication().getPrincipal().getId();
-    log.debug(String.format("Creating mapping ticket [%s] to user name [%s]",ticketId,userName));
+    log.debug("Creating mapping ticket {} to user name {}",ticketId,userName);
     this.cache.put(ticketId,userName);
   }
   this.ticketRegistry.addTicket(ticket);

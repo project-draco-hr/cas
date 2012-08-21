@@ -8,9 +8,9 @@
   authentications.add(authentication);
   final Assertion assertion=new ImmutableAssertionImpl(authentications,TestUtils.getService(),true);
   model.put("assertion",assertion);
-  final MockWriterHttpMockHttpServletResponse servletResponse=new MockWriterHttpMockHttpServletResponse();
+  final MockHttpServletResponse servletResponse=new MockHttpServletResponse();
   this.response.renderMergedOutputModel(model,new MockHttpServletRequest(),servletResponse);
-  final String written=servletResponse.getWrittenValue();
+  final String written=servletResponse.getContentAsString();
   assertTrue(written.contains("testPrincipal"));
   assertTrue(written.contains("testAttribute"));
   assertTrue(written.contains("testValue"));

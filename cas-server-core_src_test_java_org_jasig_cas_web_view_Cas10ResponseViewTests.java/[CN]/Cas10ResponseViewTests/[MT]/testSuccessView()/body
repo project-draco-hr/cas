@@ -1,6 +1,6 @@
 {
-  final MockWriterHttpMockHttpServletResponse response=new MockWriterHttpMockHttpServletResponse();
+  final MockHttpServletResponse response=new MockHttpServletResponse();
   this.view.setSuccessResponse(true);
   this.view.render(this.model,new MockHttpServletRequest(),response);
-  assertEquals("yes\ntest\n",response.getWrittenValue());
+  assertEquals("yes\ntest\n",response.getContentAsString());
 }

@@ -6,15 +6,15 @@
   attributes.put("testAttributeCollection",Arrays.asList(new String[]{"tac1","tac2"}));
   final SimplePrincipal principal=new SimplePrincipal("testPrincipal",attributes);
   final MutableAuthentication authentication=new MutableAuthentication(principal);
-  authentication.getAttributes().put(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD,SAMLAuthenticationStatement.AuthenticationMethod_SSL_TLS_Client);
+  authentication.getAttributes().put(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD,SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_SSL_TLS_CLIENT);
   authentication.getAttributes().put("testSamlAttribute","value");
   final List<Authentication> authentications=new ArrayList<Authentication>();
   authentications.add(authentication);
   final Assertion assertion=new ImmutableAssertionImpl(authentications,TestUtils.getService(),true);
   model.put("assertion",assertion);
-  final MockWriterHttpMockHttpServletResponse servletResponse=new MockWriterHttpMockHttpServletResponse();
+  final MockHttpServletResponse servletResponse=new MockHttpServletResponse();
   this.response.renderMergedOutputModel(model,new MockHttpServletRequest(),servletResponse);
-  final String written=servletResponse.getWrittenValue();
+  final String written=servletResponse.getContentAsString();
   assertTrue(written.contains("testPrincipal"));
   assertTrue(written.contains("testAttribute"));
   assertTrue(written.contains("testValue"));
@@ -22,6 +22,7 @@
   assertTrue(written.contains("testAttributeCollection"));
   assertTrue(written.contains("tac1"));
   assertTrue(written.contains("tac2"));
-  assertTrue(written.contains(SAMLAuthenticationStatement.AuthenticationMethod_SSL_TLS_Client));
+  assertTrue(written.contains(SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_SSL_TLS_CLIENT));
   assertTrue(written.contains("AuthenticationMethod"));
+  assertTrue(written.contains("AssertionID"));
 }
