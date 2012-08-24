@@ -11,8 +11,9 @@
     connection.setDoInput(true);
     connection.setDoOutput(true);
     connection.setRequestMethod("POST");
-    connection.setReadTimeout(readTimeout);
-    connection.setConnectTimeout(connectionTimeout);
+    connection.setReadTimeout(this.readTimeout);
+    connection.setConnectTimeout(this.connectionTimeout);
+    connection.setInstanceFollowRedirects(this.followRedirects);
     connection.setRequestProperty("Content-Length",Integer.toString(output.getBytes().length));
     connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
     final DataOutputStream printout=new DataOutputStream(connection.getOutputStream());

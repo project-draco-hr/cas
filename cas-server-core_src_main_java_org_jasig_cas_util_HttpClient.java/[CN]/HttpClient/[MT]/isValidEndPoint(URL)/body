@@ -5,6 +5,7 @@
     connection=(HttpURLConnection)url.openConnection();
     connection.setConnectTimeout(this.connectionTimeout);
     connection.setReadTimeout(this.readTimeout);
+    connection.setInstanceFollowRedirects(this.followRedirects);
     connection.connect();
     final int responseCode=connection.getResponseCode();
     for (    final int acceptableCode : this.acceptableCodes) {
