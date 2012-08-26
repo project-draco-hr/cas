@@ -1,4 +1,3 @@
 {
-  final Comparator<RegisteredService> comparator=RegisteredServiceComparator.getInstance();
-  return comparator.compare(this,other);
+  return new CompareToBuilder().append(this.getEvaluationOrder(),other.getEvaluationOrder()).append(this.getName().toLowerCase(),other.getName().toLowerCase()).append(this.getId(),other.getId()).toComparison();
 }

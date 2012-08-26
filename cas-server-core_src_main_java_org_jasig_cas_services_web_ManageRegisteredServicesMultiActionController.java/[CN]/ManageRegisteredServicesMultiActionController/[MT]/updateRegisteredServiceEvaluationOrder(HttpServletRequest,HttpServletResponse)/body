@@ -1,29 +1,18 @@
 {
-  final ModelAndView mv=new ModelAndView("jsonView");
-  try {
-    final String idAsString=request.getParameter("id");
-    if (!GenericValidator.isLong(idAsString)) {
-      throw new IllegalArgumentException("Invalid service id: " + idAsString);
-    }
-    final String evalOrderAsString=request.getParameter("evaluationOrder");
-    if (!GenericValidator.isLong(evalOrderAsString)) {
-      throw new IllegalArgumentException("Invalid service evaluation order " + evalOrderAsString);
-    }
-    final long id=NumberUtils.toLong(idAsString);
-    final int evaluationOrder=NumberUtils.toInt(evalOrderAsString);
-    final AbstractRegisteredService svc=(AbstractRegisteredService)this.servicesManager.findServiceBy(id);
-    if (svc != null) {
-      svc.setEvaluationOrder(evaluationOrder);
-      this.servicesManager.save(svc);
-    }
- else     throw new IllegalArgumentException("Service id " + id + " cannot be found.");
+  final String idAsString=request.getParameter("id");
+  if (!GenericValidator.isLong(idAsString)) {
+    throw new IllegalArgumentException("Invalid service id: " + idAsString);
   }
- catch (  Exception e) {
-    mv.addObject("error",e.getMessage());
-    logger.error(e.getMessage(),e);
+  final String evalOrderAsString=request.getParameter("evaluationOrder");
+  if (!GenericValidator.isLong(evalOrderAsString)) {
+    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    throw new IllegalArgumentException("Invalid service evaluation order " + evalOrderAsString);
   }
- finally {
-    mv.addObject("successful",!mv.getModelMap().containsKey("error"));
-  }
-  return mv;
+  final long id=NumberUtils.toLong(idAsString);
+  final int evaluationOrder=NumberUtils.toInt(evalOrderAsString);
+  final RegisteredService svc=this.servicesManager.findServiceBy(id);
+  if (svc == null)   throw new IllegalArgumentException("Service id " + id + " cannot be found.");
+  svc.setEvaluationOrder(evaluationOrder);
+  this.servicesManager.save(svc);
+  return new ModelAndView("jsonView");
 }
