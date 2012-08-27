@@ -1,3 +1,4 @@
 {
-  CacheManager.getInstance().removalAll();
+  this.cacheManager.removalAll();
+  this.cacheManager.shutdown();
 }
