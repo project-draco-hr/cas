@@ -1,5 +1,5 @@
 {
-  final Future<Boolean> result=EXECUTOR_SERVICE.submit(new MessageSender(url,message,this.readTimeout,this.connectionTimeout));
+  final Future<Boolean> result=EXECUTOR_SERVICE.submit(new MessageSender(url,message,this.readTimeout,this.connectionTimeout,this.followRedirects));
   if (async) {
     return true;
   }
