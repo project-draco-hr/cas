@@ -17,5 +17,6 @@
       log.warn("Principal [{}] did not have attribute [{}] among attributes [{}] so CAS cannot " + "provide on the validation response the user attribute the registered service [{}] expects. " + "CAS will instead return the default username attribute [{}]",errorLogParameters);
     }
   }
+  log.debug("Principal id to return for service [{}] is [{}]. The default principal id is [{}].",new Object[]{registeredService.getName(),principal.getId(),principalId});
   return principalId;
 }
