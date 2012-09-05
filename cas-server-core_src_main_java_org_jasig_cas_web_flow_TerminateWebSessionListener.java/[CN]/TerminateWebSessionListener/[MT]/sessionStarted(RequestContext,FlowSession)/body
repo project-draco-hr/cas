@@ -3,7 +3,7 @@
   try {
     service=WebUtils.getService(context);
   }
- catch (  IllegalStateException e) {
+ catch (  final IllegalStateException e) {
     logger.debug("Error getting service from flow state.",e);
     return;
   }
