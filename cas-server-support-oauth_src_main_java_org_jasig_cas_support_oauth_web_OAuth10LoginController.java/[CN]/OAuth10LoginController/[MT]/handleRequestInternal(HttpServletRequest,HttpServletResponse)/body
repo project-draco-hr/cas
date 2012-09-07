@@ -1,6 +1,6 @@
 {
-  String providerType=request.getParameter(OAuthConstants.OAUTH_PROVIDER);
-  OAuthProvider provider=OAuthUtils.getProviderByType(providers,providerType);
-  String authorizationUrl=provider.getAuthorizationUrl(new HttpUserSession(request));
+  final String providerType=request.getParameter(OAuthConstants.OAUTH_PROVIDER);
+  final OAuthProvider provider=OAuthUtils.getProviderByType(configuration.getProviders(),providerType);
+  final String authorizationUrl=provider.getAuthorizationUrl(new HttpUserSession(request));
   return OAuthUtils.redirectTo(authorizationUrl);
 }

@@ -1,0 +1,2 @@
+List<OAuthProvider> providers
+String type

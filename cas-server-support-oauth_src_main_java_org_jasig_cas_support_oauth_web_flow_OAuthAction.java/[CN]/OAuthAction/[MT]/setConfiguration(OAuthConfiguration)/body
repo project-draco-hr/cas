@@ -1,0 +1,7 @@
+{
+  this.configuration=configuration;
+  for (  final OAuthProvider provider : configuration.getProviders()) {
+    final BaseOAuthProvider baseProvider=(BaseOAuthProvider)provider;
+    baseProvider.setCallbackUrl(OAuthUtils.addParameter(configuration.getLoginUrl(),OAuthConstants.OAUTH_PROVIDER,provider.getType()));
+  }
+}
