@@ -1,14 +1,20 @@
 {
+  long id=0;
+  int evaluationOrder=0;
   final String idAsString=request.getParameter("id");
-  if (!GenericValidator.isLong(idAsString)) {
+  try {
+    id=Long.parseLong(idAsString);
+  }
+ catch (  NumberFormatException e) {
     throw new IllegalArgumentException("Invalid service id: " + idAsString);
   }
   final String evalOrderAsString=request.getParameter("evaluationOrder");
-  if (!GenericValidator.isLong(evalOrderAsString)) {
+  try {
+    evaluationOrder=Integer.parseInt(evalOrderAsString);
+  }
+ catch (  NumberFormatException e) {
     throw new IllegalArgumentException("Invalid service evaluation order " + evalOrderAsString);
   }
-  final long id=NumberUtils.toLong(idAsString);
-  final int evaluationOrder=NumberUtils.toInt(evalOrderAsString);
   final RegisteredService svc=this.servicesManager.findServiceBy(id);
   if (svc == null)   throw new IllegalArgumentException("Service id " + id + " cannot be found.");
   svc.setEvaluationOrder(evaluationOrder);
