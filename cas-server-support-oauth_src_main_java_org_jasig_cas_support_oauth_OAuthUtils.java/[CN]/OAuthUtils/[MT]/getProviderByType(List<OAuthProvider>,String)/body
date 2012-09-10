@@ -1,9 +1,7 @@
 {
-  if (providers != null && type != null) {
-    for (    final OAuthProvider provider : providers) {
-      if (provider != null && type.equals(provider.getType())) {
-        return provider;
-      }
+  for (  final OAuthProvider provider : providers) {
+    if (provider != null && type.equals(provider.getType())) {
+      return provider;
     }
   }
   return null;
