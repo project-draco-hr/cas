@@ -1,0 +1,9 @@
+{
+  long id=Long.parseLong(request.getParameter("id"));
+  int evaluationOrder=Integer.parseInt(request.getParameter("evaluationOrder"));
+  final RegisteredService svc=this.servicesManager.findServiceBy(id);
+  if (svc == null)   throw new IllegalArgumentException("Service id " + id + " cannot be found.");
+  svc.setEvaluationOrder(evaluationOrder);
+  this.servicesManager.save(svc);
+  return new ModelAndView("jsonView");
+}

@@ -8,6 +8,6 @@
   final ModelAndView modelAndView=this.controller.manage(new MockHttpServletRequest(),new MockHttpServletResponse());
   assertNotNull(modelAndView);
   assertEquals("manageServiceView",modelAndView.getViewName());
-  final Collection c=(Collection)modelAndView.getModel().get("services");
+  final Collection<?> c=(Collection<?>)modelAndView.getModel().get("services");
   assertTrue(c.contains(r));
 }
