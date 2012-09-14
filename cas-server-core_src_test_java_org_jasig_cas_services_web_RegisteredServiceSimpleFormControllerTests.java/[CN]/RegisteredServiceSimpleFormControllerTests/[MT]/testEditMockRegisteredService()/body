@@ -3,6 +3,7 @@
   final MockHttpServletResponse response=new MockHttpServletResponse();
   final MockRegisteredService r=new MockRegisteredService();
   r.setId(1000);
+  r.setName("Test Service");
   r.setServiceId("test");
   r.setDescription("description");
   this.manager.save(r);
