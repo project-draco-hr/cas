@@ -1,4 +1,5 @@
 {
+  this.request=new MockHttpServletRequest();
   this.warnCookieGenerator=new CookieRetrievingCookieGenerator();
   this.serviceRegistryDao=new InMemoryServiceRegistryDaoImpl();
   this.serviceManager=new DefaultServicesManagerImpl(serviceRegistryDao);
