@@ -4,7 +4,7 @@
   final String providerType=request.getParameter(OAuthConstants.OAUTH_PROVIDER);
   logger.debug("providerType : {}",providerType);
   if (StringUtils.isNotBlank(providerType)) {
-    final OAuthProvider provider=OAuthUtils.getProviderByType(providers,providerType);
+    final OAuthProvider provider=OAuthUtils.getProviderByType(this.configuration.getProviders(),providerType);
     logger.debug("provider : {}",provider);
     @SuppressWarnings("unchecked") final OAuthCredential credential=provider.getCredential(new HttpUserSession(request),request.getParameterMap());
     logger.debug("credential : {}",credential);
@@ -30,11 +30,11 @@
     saveRequestParameter(request,session,OAuthConstants.THEME);
     saveRequestParameter(request,session,OAuthConstants.LOCALE);
     saveRequestParameter(request,session,OAuthConstants.METHOD);
-    for (    final OAuthProvider provider : providers.getProviders()) {
+    for (    final OAuthProvider provider : this.configuration.getProviders()) {
       final String key=provider.getType() + "Url";
       String authorizationUrl=null;
       if (provider instanceof BaseOAuth10Provider) {
-        authorizationUrl=OAuthUtils.addParameter(request.getContextPath() + oauth10loginUrl,OAuthConstants.OAUTH_PROVIDER,provider.getType());
+        authorizationUrl=OAuthUtils.addParameter(request.getContextPath() + this.oauth10loginUrl,OAuthConstants.OAUTH_PROVIDER,provider.getType());
       }
  else {
         authorizationUrl=provider.getAuthorizationUrl(new HttpUserSession(session));

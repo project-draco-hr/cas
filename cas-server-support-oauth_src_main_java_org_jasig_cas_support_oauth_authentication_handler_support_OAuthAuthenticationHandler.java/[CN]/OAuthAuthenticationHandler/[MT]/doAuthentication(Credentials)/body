@@ -1,11 +1,11 @@
 {
-  OAuthCredentials oauthCredentials=(OAuthCredentials)credentials;
+  final OAuthCredentials oauthCredentials=(OAuthCredentials)credentials;
   logger.debug("credential : {}",oauthCredentials);
-  String providerType=oauthCredentials.getCredential().getProviderType();
+  final String providerType=oauthCredentials.getCredential().getProviderType();
   logger.debug("providerType : {}",providerType);
-  OAuthProvider provider=OAuthUtils.getProviderByType(providers,providerType);
+  final OAuthProvider provider=OAuthUtils.getProviderByType(this.configuration.getProviders(),providerType);
   logger.debug("provider : {}",provider);
-  UserProfile userProfile=provider.getUserProfile(oauthCredentials.getCredential());
+  final UserProfile userProfile=provider.getUserProfile(oauthCredentials.getCredential());
   logger.debug("userProfile : {}",userProfile);
   if (userProfile != null && StringUtils.isNotBlank(userProfile.getId())) {
     oauthCredentials.setUserProfile(userProfile);

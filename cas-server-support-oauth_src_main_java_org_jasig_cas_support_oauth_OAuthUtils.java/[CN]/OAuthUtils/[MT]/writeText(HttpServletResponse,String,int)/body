@@ -5,7 +5,7 @@
     response.setStatus(status);
     printWriter.print(text);
   }
- catch (  IOException e) {
+ catch (  final IOException e) {
     logger.error("Failed to write to response",e);
   }
   return null;
