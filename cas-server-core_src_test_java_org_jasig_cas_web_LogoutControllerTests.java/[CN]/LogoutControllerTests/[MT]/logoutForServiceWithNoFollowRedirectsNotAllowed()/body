@@ -1,0 +1,10 @@
+{
+  MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter("service","TestService");
+  final RegisteredServiceImpl impl=new RegisteredServiceImpl();
+  impl.setServiceId("TestService2");
+  impl.setName("TestService2");
+  this.serviceRegistryDao.save(impl);
+  this.logoutController.setFollowServiceRedirects(false);
+  assertTrue(!(this.logoutController.handleRequestInternal(request,new MockHttpServletResponse()).getView() instanceof RedirectView));
+}

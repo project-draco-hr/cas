@@ -6,7 +6,7 @@
     this.ticketGrantingTicketCookieGenerator.removeCookie(response);
     this.warnCookieGenerator.removeCookie(response);
   }
-  if (this.followServiceRedirects && service != null) {
+  if (this.followServiceRedirects && service != null && this.servicesManager.matchesExistingService(new SimpleWebApplicationServiceImpl(service))) {
     return new ModelAndView(new RedirectView(service));
   }
   return new ModelAndView(this.logoutView);

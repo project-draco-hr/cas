@@ -1,5 +1,8 @@
 {
   this.warnCookieGenerator=new CookieRetrievingCookieGenerator();
+  this.serviceRegistryDao=new InMemoryServiceRegistryDaoImpl();
+  this.serviceManager=new DefaultServicesManagerImpl(serviceRegistryDao);
+  this.serviceManager.reload();
   this.warnCookieGenerator.setCookieName("test");
   this.ticketGrantingTicketCookieGenerator=new CookieRetrievingCookieGenerator();
   this.ticketGrantingTicketCookieGenerator.setCookieName(COOKIE_TGC_ID);
@@ -8,4 +11,5 @@
   this.logoutController.setLogoutView("test");
   this.logoutController.setWarnCookieGenerator(this.warnCookieGenerator);
   this.logoutController.setTicketGrantingTicketCookieGenerator(this.ticketGrantingTicketCookieGenerator);
+  this.logoutController.setServicesManager(this.serviceManager);
 }
