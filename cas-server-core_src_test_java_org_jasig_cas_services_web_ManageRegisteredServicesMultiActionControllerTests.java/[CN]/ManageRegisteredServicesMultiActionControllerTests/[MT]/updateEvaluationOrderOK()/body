@@ -11,8 +11,6 @@
   final ModelAndView modelAndView=this.controller.updateRegisteredServiceEvaluationOrder(request,new MockHttpServletResponse());
   assertNotNull(modelAndView);
   assertEquals("jsonView",modelAndView.getViewName());
-  assertTrue(!modelAndView.getModelMap().containsAttribute("error"));
-  assertEquals(modelAndView.getModelMap().get("successful").toString(),Boolean.TRUE.toString());
   RegisteredService result=this.servicesManager.findServiceBy(r.getId());
   assertEquals(result.getEvaluationOrder(),100);
 }
