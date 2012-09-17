@@ -1,0 +1,10 @@
+{
+  final Kryo kryo=new Kryo();
+  kryo.register(ArrayList.class);
+  final AttributeMapSerializer serializer=new AttributeMapSerializer(kryo);
+  final ByteBuffer buffer=ByteBuffer.allocate(2048);
+  serializer.write(buffer,this.attributes);
+  buffer.flip();
+  printBuffer(buffer);
+  Assert.assertEquals(this.attributes,serializer.read(buffer));
+}

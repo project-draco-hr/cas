@@ -1,0 +1,16 @@
+{
+  RegisteredServiceImpl r=new RegisteredServiceImpl();
+  r.setId(1200);
+  r.setName("name");
+  r.setServiceId("test");
+  r.setEvaluationOrder(2);
+  this.servicesManager.save(r);
+  MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter("id",String.valueOf(r.getId()));
+  request.addParameter("evaluationOrder","100");
+  final ModelAndView modelAndView=this.controller.updateRegisteredServiceEvaluationOrder(request,new MockHttpServletResponse());
+  assertNotNull(modelAndView);
+  assertEquals("jsonView",modelAndView.getViewName());
+  RegisteredService result=this.servicesManager.findServiceBy(r.getId());
+  assertEquals(result.getEvaluationOrder(),100);
+}

@@ -1,0 +1,3 @@
+{
+  return RegisteredService.class.isAssignableFrom(clazz);
+}

@@ -7,7 +7,10 @@
     this.warnCookieGenerator.removeCookie(response);
   }
   if (this.followServiceRedirects && service != null) {
-    return new ModelAndView(new RedirectView(service));
+    final RegisteredService rService=this.servicesManager.findServiceBy(new SimpleWebApplicationServiceImpl(service));
+    if (rService != null && rService.isEnabled()) {
+      return new ModelAndView(new RedirectView(service));
+    }
   }
   return new ModelAndView(this.logoutView);
 }

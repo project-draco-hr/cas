@@ -1,0 +1,19 @@
+{
+  Socket socket=null;
+  try {
+    socket=new Socket("127.0.0.1",11211);
+    return true;
+  }
+ catch (  Exception e) {
+    return false;
+  }
+ finally {
+    if (socket != null) {
+      try {
+        socket.close();
+      }
+ catch (      IOException e) {
+      }
+    }
+  }
+}

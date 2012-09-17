@@ -1,7 +1,6 @@
 {
-  expirationPolicy=new TicketGrantingTicketExpirationPolicy();
-  expirationPolicy.setMaxTimeToLiveInMilliSeconds(HARD_TIMEOUT);
-  expirationPolicy.setTimeToKillInMilliSeconds(SLIDING_TIMEOUT);
-  ticketGrantingTicket=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),expirationPolicy);
-  super.setUp();
+  this.expirationPolicy=new TicketGrantingTicketExpirationPolicy();
+  this.expirationPolicy.setMaxTimeToLiveInSeconds(HARD_TIMEOUT_SECONDS);
+  this.expirationPolicy.setTimeToKillInSeconds(SLIDING_TIMEOUT_SECONDS);
+  this.ticketGrantingTicket=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),this.expirationPolicy);
 }

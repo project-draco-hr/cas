@@ -1,0 +1,5 @@
+String url
+String message
+int readTimeout
+int connectionTimeout
+boolean followRedirects

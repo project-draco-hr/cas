@@ -1,10 +1,10 @@
 {
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  final MockWriterHttpMockHttpServletResponse response=new MockWriterHttpMockHttpServletResponse();
+  final MockHttpServletResponse response=new MockHttpServletResponse();
   request.addParameter("TARGET","service");
   final String description="Validation failed";
-  this.view.renderMergedOutputModel(Collections.singletonMap("description",description),request,response);
-  final String responseText=response.getWrittenValue();
+  this.view.renderMergedOutputModel(Collections.<String,Object>singletonMap("description",description),request,response);
+  final String responseText=response.getContentAsString();
   assertTrue(responseText.contains("Status"));
   assertTrue(responseText.contains(description));
 }

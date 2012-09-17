@@ -1,0 +1,11 @@
+{
+  TicketGrantingTicketImpl ticket=null;
+  for (int i=0; i < tgtCount; i++) {
+    ticket=new TicketGrantingTicketImpl(GENERATOR.getNewTicketId("TGT"),new ImmutableAuthentication(new SimplePrincipal("grover")),TEST_EXP_POLICY);
+    registry.addTicket(ticket);
+  }
+  String id;
+  for (int i=0; i < stCount; i++) {
+    registry.addTicket(ticket.grantServiceTicket(GENERATOR.getNewTicketId("ST"),new MockService("junit"),TEST_EXP_POLICY,false));
+  }
+}

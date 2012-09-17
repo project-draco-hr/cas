@@ -1,4 +1,0 @@
-{
-  BerkeleyDbTicketRegistryConcurrencyTests testCase=new BerkeleyDbTicketRegistryConcurrencyTests("testBasicFunctionality");
-  return new BerkleyDbTicketRegistryTestSetup(new LoadTest(testCase,100));
-}

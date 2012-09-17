@@ -1,5 +1,0 @@
-{
-  super.setUp();
-  registry=new BerkeleyDbTicketRegistry();
-  registry.afterPropertiesSet();
-}

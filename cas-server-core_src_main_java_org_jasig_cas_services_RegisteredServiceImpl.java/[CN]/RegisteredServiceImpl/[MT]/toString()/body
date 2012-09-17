@@ -1,9 +1,0 @@
-{
-  final ToStringBuilder toStringBuilder=new ToStringBuilder(this,ToStringStyle.SHORT_PREFIX_STYLE);
-  toStringBuilder.append("id",this.id);
-  toStringBuilder.append("name",this.name);
-  toStringBuilder.append("description",this.description);
-  toStringBuilder.append("serviceId",this.serviceId);
-  toStringBuilder.append("attributes",this.allowedAttributes.toArray());
-  return toStringBuilder.toString();
-}

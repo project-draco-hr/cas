@@ -1,4 +1,0 @@
-{
-  super(out,autoFlush);
-  this.builder=builder;
-}

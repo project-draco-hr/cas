@@ -1,8 +1,0 @@
-{
-  final SAMLSubject samlSubject=new SAMLSubject();
-  samlSubject.addConfirmationMethod(SAMLSubject.CONF_ARTIFACT);
-  final SAMLNameIdentifier samlNameIdentifier=new SAMLNameIdentifier();
-  samlNameIdentifier.setName(authentication.getPrincipal().getId());
-  samlSubject.setNameIdentifier(samlNameIdentifier);
-  return samlSubject;
-}

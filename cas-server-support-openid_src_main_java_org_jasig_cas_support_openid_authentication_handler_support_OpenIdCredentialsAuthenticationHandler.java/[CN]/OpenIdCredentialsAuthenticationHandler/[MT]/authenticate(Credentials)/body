@@ -1,8 +1,12 @@
 {
   final OpenIdCredentials c=(OpenIdCredentials)credentials;
+  boolean result=false;
   final TicketGrantingTicket t=(TicketGrantingTicket)this.ticketRegistry.getTicket(c.getTicketGrantingTicketId(),TicketGrantingTicket.class);
-  if (t.isExpired()) {
-    return false;
+  if (t == null || t.isExpired()) {
+    result=false;
   }
-  return t.getAuthentication().getPrincipal().getId().equals(c.getUsername());
+ else {
+    result=t.getAuthentication().getPrincipal().getId().equals(c.getUsername());
+  }
+  return result;
 }

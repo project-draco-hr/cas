@@ -1,0 +1,8 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final HttpSession webSession=request.getSession(false);
+  if (webSession != null && webSession.getAttribute(DO_NOT_TERMINATE) == null) {
+    logger.debug("Terminate web session {} in {} seconds",webSession.getId(),this.timeToDieInSeconds);
+    webSession.setMaxInactiveInterval(this.timeToDieInSeconds);
+  }
+}

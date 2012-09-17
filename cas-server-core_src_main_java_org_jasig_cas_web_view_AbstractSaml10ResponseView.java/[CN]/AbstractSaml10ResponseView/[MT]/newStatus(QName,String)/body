@@ -1,0 +1,12 @@
+{
+  final Status status=newSamlObject(Status.class);
+  final StatusCode code=newSamlObject(StatusCode.class);
+  code.setValue(codeValue);
+  status.setStatusCode(code);
+  if (statusMessage != null) {
+    final StatusMessage message=newSamlObject(StatusMessage.class);
+    message.setMessage(statusMessage);
+    status.setStatusMessage(message);
+  }
+  return status;
+}

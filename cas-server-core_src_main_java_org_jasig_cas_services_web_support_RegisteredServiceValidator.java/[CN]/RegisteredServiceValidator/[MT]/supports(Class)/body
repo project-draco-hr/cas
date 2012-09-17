@@ -1,3 +1,0 @@
-{
-  return RegisteredServiceImpl.class.equals(clazz);
-}

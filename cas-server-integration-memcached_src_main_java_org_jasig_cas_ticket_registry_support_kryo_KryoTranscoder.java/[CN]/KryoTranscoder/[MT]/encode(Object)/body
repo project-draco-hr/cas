@@ -1,0 +1,4 @@
+{
+  final byte[] bytes=encodeToBytes(o);
+  return new CachedData(0,bytes,bytes.length);
+}

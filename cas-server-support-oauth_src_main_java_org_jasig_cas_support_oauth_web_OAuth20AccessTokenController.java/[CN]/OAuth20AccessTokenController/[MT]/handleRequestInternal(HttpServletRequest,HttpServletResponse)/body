@@ -1,0 +1,59 @@
+{
+  final String redirectUri=request.getParameter(OAuthConstants.REDIRECT_URI);
+  logger.debug("redirect_uri : {}",redirectUri);
+  final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+  logger.debug("clientId : {}",clientId);
+  final String clientSecret=request.getParameter(OAuthConstants.CLIENT_SECRET);
+  logger.debug("clientSecret : {}",clientSecret);
+  final String code=request.getParameter(OAuthConstants.CODE);
+  logger.debug("code : {}",clientSecret);
+  if (StringUtils.isBlank(clientId)) {
+    logger.error("missing clientId");
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,400);
+  }
+  if (StringUtils.isBlank(redirectUri)) {
+    logger.error("missing redirectUri");
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,400);
+  }
+  if (StringUtils.isBlank(clientSecret)) {
+    logger.error("missing clientSecret");
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,400);
+  }
+  if (StringUtils.isBlank(code)) {
+    logger.error("missing code");
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,400);
+  }
+  final Collection<RegisteredService> services=servicesManager.getAllServices();
+  RegisteredService service=null;
+  for (  final RegisteredService aService : services) {
+    if (StringUtils.equals(aService.getName(),clientId)) {
+      service=aService;
+      break;
+    }
+  }
+  if (service == null) {
+    logger.error("Unknown clientId : {}",clientId);
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,400);
+  }
+  final String serviceId=service.getServiceId();
+  if (!StringUtils.startsWith(redirectUri,serviceId)) {
+    logger.error("Unsupported redirectUri : {} for serviceId : {}",redirectUri,serviceId);
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,400);
+  }
+  final String serviceDescription=service.getDescription();
+  if (!StringUtils.equals(serviceDescription,clientSecret)) {
+    logger.error("Wrong client secret : {} for service description : {}",clientSecret,serviceDescription);
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,400);
+  }
+  final ServiceTicket serviceTicket=(ServiceTicket)ticketRegistry.getTicket(code);
+  if (serviceTicket == null || serviceTicket.isExpired()) {
+    logger.error("Code expired : {}",code);
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_GRANT,400);
+  }
+  final TicketGrantingTicket ticketGrantingTicket=serviceTicket.getGrantingTicket();
+  ticketRegistry.deleteTicket(serviceTicket.getId());
+  final int expires=(int)(timeout - ((System.currentTimeMillis() - ticketGrantingTicket.getCreationTime()) / 1000));
+  final String text="access_token=" + ticketGrantingTicket.getId() + "&expires="+ expires;
+  logger.debug("text : {}",text);
+  return OAuthUtils.writeText(response,text,200);
+}

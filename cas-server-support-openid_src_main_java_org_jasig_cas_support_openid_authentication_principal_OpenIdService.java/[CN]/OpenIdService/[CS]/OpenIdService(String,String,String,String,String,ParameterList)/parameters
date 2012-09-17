@@ -1,0 +1,6 @@
+String id
+String originalUrl
+String artifactId
+String openIdIdentity
+String signature
+ParameterList parameterList

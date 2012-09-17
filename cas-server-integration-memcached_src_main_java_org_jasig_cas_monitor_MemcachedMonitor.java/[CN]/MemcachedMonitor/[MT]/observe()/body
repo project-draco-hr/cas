@@ -1,0 +1,15 @@
+{
+  if (memcachedClient.getAvailableServers().size() == 0) {
+    return new CacheStatus(StatusCode.ERROR,"No memcached servers available.");
+  }
+  final Collection<SocketAddress> unavailableList=memcachedClient.getUnavailableServers();
+  final CacheStatus status;
+  if (unavailableList.size() > 0) {
+    final String description="One or more memcached servers is unavailable: " + unavailableList;
+    status=new CacheStatus(StatusCode.WARN,description,getStatistics());
+  }
+ else {
+    status=super.observe();
+  }
+  return status;
+}

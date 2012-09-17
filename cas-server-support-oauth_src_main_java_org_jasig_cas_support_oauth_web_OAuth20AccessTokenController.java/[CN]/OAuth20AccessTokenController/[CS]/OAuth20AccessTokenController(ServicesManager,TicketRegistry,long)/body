@@ -1,0 +1,5 @@
+{
+  this.servicesManager=servicesManager;
+  this.ticketRegistry=ticketRegistry;
+  this.timeout=timeout;
+}

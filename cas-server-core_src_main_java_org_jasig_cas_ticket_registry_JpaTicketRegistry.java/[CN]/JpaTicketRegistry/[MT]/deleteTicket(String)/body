@@ -5,8 +5,10 @@
   }
   if (ticket instanceof ServiceTicket) {
     removeTicket(ticket);
+    log.debug("Deleted ticket [{}] from the registry.",ticket);
     return true;
   }
   deleteTicketAndChildren(ticket);
+  log.debug("Deleted ticket [{}] and its children from the registry.",ticket);
   return true;
 }

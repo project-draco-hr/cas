@@ -1,0 +1,11 @@
+{
+  if (credentials instanceof OAuthCredentials) {
+    OAuthCredentials oauthCredentials=(OAuthCredentials)credentials;
+    final Principal simplePrincipal=new SimplePrincipal(authentication.getPrincipal().getId(),oauthCredentials.getUserProfile().getAttributes());
+    final MutableAuthentication mutableAuthentication=new MutableAuthentication(simplePrincipal,authentication.getAuthenticatedDate());
+    mutableAuthentication.getAttributes().putAll(authentication.getAttributes());
+    mutableAuthentication.getAttributes().put(OAuthConstants.PROVIDER_TYPE,oauthCredentials.getCredential().getProviderType());
+    return mutableAuthentication;
+  }
+  return authentication;
+}

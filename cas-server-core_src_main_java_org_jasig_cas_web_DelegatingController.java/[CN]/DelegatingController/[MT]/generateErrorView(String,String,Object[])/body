@@ -1,0 +1,7 @@
+{
+  final ModelAndView modelAndView=new ModelAndView(this.failureView);
+  final String convertedDescription=getMessageSourceAccessor().getMessage(description,args,description);
+  modelAndView.addObject("code",code);
+  modelAndView.addObject("description",convertedDescription);
+  return modelAndView;
+}

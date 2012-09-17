@@ -1,0 +1,13 @@
+{
+  if (o == null) {
+    return false;
+  }
+  if (this == o) {
+    return true;
+  }
+  if (!(o instanceof AbstractRegisteredService)) {
+    return false;
+  }
+  final AbstractRegisteredService that=(AbstractRegisteredService)o;
+  return new EqualsBuilder().append(this.allowedToProxy,that.allowedToProxy).append(this.anonymousAccess,that.anonymousAccess).append(this.enabled,that.enabled).append(this.evaluationOrder,that.evaluationOrder).append(this.ignoreAttributes,that.ignoreAttributes).append(this.ssoEnabled,that.ssoEnabled).append(this.allowedAttributes,that.allowedAttributes).append(this.description,that.description).append(this.name,that.name).append(this.serviceId,that.serviceId).append(this.theme,that.theme).append(this.usernameAttribute,that.usernameAttribute).isEquals();
+}

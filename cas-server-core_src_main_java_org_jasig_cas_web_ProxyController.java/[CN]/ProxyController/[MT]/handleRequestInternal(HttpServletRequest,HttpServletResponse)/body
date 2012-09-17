@@ -10,4 +10,7 @@
  catch (  TicketException e) {
     return generateErrorView(e.getCode(),e.getCode(),new Object[]{ticket});
   }
+catch (  final UnauthorizedServiceException e) {
+    return generateErrorView("UNAUTHORIZED_SERVICE","UNAUTHORIZED_SERVICE_PROXY",new Object[]{targetService});
+  }
 }

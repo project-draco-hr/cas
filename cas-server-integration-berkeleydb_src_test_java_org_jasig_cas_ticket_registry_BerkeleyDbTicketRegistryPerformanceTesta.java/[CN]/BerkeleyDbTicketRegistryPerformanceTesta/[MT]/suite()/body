@@ -1,4 +1,0 @@
-{
-  BerkeleyDbTicketRegistryPerformanceTesta testCase=new BerkeleyDbTicketRegistryPerformanceTesta("testAddGetRemove");
-  return new BerkleyDbTicketRegistryTestSetup(new LoadTest(testCase,10));
-}

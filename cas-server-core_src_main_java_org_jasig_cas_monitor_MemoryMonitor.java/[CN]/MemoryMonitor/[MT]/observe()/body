@@ -1,0 +1,12 @@
+{
+  final StatusCode code;
+  final long free=Runtime.getRuntime().freeMemory();
+  final long total=Runtime.getRuntime().totalMemory();
+  if (free * 100 / total < this.freeMemoryWarnThreshold) {
+    code=StatusCode.WARN;
+  }
+ else {
+    code=StatusCode.OK;
+  }
+  return new MemoryStatus(code,free,total);
+}

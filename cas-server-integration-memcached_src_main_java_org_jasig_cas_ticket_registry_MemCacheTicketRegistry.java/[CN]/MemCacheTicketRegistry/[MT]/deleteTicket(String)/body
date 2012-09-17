@@ -1,10 +1,10 @@
 {
-  Future<Boolean> f=this.client.delete(ticketId);
+  log.debug("Deleting ticket {}",ticketId);
   try {
-    return f.get().booleanValue();
+    return this.client.delete(ticketId).get();
   }
  catch (  final Exception e) {
-    log.error(e.getMessage(),e);
-    return false;
+    log.error("Failed deleting {}",ticketId,e);
   }
+  return false;
 }

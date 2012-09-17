@@ -1,0 +1,3 @@
+{
+  if (this.logger.isInfoEnabled())   this.logger.info(log);
+}

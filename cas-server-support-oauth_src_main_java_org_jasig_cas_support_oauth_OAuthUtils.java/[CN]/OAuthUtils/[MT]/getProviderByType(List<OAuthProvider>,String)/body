@@ -1,0 +1,8 @@
+{
+  for (  final OAuthProvider provider : providers) {
+    if (provider != null && type.equals(provider.getType())) {
+      return provider;
+    }
+  }
+  return null;
+}

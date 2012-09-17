@@ -1,0 +1,6 @@
+{
+  super(kryo,helper);
+  this.publicKey=publicKey;
+  this.privateKey=privateKey;
+  this.alternateUsername=alternateUsername;
+}

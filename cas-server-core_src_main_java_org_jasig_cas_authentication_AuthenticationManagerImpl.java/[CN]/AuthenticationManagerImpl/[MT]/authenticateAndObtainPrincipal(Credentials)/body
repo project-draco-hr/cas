@@ -2,35 +2,35 @@
   boolean foundSupported=false;
   boolean authenticated=false;
   AuthenticationHandler authenticatedClass=null;
+  String handlerName;
+  AuthenticationException unAuthSupportedHandlerException=BadCredentialsAuthenticationException.ERROR;
   for (  final AuthenticationHandler authenticationHandler : this.authenticationHandlers) {
     if (authenticationHandler.supports(credentials)) {
       foundSupported=true;
-      boolean auth=false;
-      final LoggingStopWatch stopWatch=new LoggingStopWatch(authenticationHandler.getClass().getSimpleName());
+      handlerName=authenticationHandler.getClass().getName();
       try {
-        auth=authenticationHandler.authenticate(credentials);
-      }
-  finally {
-        stopWatch.stop();
-      }
-      if (!auth) {
-        if (log.isInfoEnabled()) {
-          log.info("AuthenticationHandler: " + authenticationHandler.getClass().getName() + " failed to authenticate the user which provided the following credentials: "+ credentials.toString());
+        if (!authenticationHandler.authenticate(credentials)) {
+          log.info("{} failed to authenticate {}",handlerName,credentials);
         }
-      }
  else {
-        if (log.isInfoEnabled()) {
-          log.info("AuthenticationHandler: " + authenticationHandler.getClass().getName() + " successfully authenticated the user which provided the following credentials: "+ credentials.toString());
+          log.info("{} successfully authenticated {}",handlerName,credentials);
+          authenticatedClass=authenticationHandler;
+          authenticated=true;
+          break;
         }
-        authenticatedClass=authenticationHandler;
-        authenticated=true;
-        break;
+      }
+ catch (      AuthenticationException e) {
+        unAuthSupportedHandlerException=e;
+        logAuthenticationHandlerError(handlerName,credentials,e);
+      }
+catch (      Exception e) {
+        logAuthenticationHandlerError(handlerName,credentials,e);
       }
     }
   }
   if (!authenticated) {
     if (foundSupported) {
-      throw BadCredentialsAuthenticationException.ERROR;
+      throw unAuthSupportedHandlerException;
     }
     throw UnsupportedCredentialsException.ERROR;
   }

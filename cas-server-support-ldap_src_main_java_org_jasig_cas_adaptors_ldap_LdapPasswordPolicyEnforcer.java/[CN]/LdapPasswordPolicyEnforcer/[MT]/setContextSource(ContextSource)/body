@@ -1,0 +1,3 @@
+{
+  this.ldapTemplate=new LdapTemplate(contextSource);
+}

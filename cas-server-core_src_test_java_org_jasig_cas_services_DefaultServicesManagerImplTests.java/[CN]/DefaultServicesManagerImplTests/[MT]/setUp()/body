@@ -5,7 +5,7 @@
   r.setId(2500);
   r.setServiceId("serviceId");
   r.setName("serviceName");
-  r.setEvaluationOrder(1);
+  r.setEvaluationOrder(1000);
   list.add(r);
   dao.setRegisteredServices(list);
   this.defaultServicesManagerImpl=new DefaultServicesManagerImpl(dao);

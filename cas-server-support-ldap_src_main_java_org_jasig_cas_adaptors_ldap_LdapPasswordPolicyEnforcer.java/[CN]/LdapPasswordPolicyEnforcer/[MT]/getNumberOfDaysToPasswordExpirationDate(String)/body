@@ -1,0 +1,25 @@
+{
+  String msgToLog=null;
+  final LdapPasswordPolicyResult ldapResult=getEnforcedPasswordPolicy(userId);
+  if (ldapResult == null) {
+    logDebug("Skipping all password policy checks...");
+    return PASSWORD_STATUS_PASS;
+  }
+  if (!StringUtils.isEmpty(this.noWarnAttribute))   logDebug("No warning attribute value for " + this.noWarnAttribute + " is set to: "+ ldapResult.getNoWarnAttributeResult());
+  if (isPasswordSetToNeverExpire(ldapResult.getNoWarnAttributeResult())) {
+    logDebug("Account password will never expire. Skipping password warning check...");
+    return PASSWORD_STATUS_PASS;
+  }
+  if (StringUtils.isEmpty(ldapResult.getWarnDaysResult()))   logDebug("No warning days value is found for " + userId + ". Using system default of "+ this.warningDays);
+ else   this.warningDays=Integer.parseInt(ldapResult.getWarnDaysResult());
+  if (StringUtils.isEmpty(ldapResult.getValidDaysResult()))   logDebug("No maximum password valid days found for " + ldapResult.getUserId() + ". Using system default of "+ this.validDays+ " days");
+ else   this.validDays=Integer.parseInt(ldapResult.getValidDaysResult());
+  final DateTime expireTime=getExpirationDateToUse(ldapResult.getDateResult());
+  if (expireTime == null) {
+    msgToLog="Expiration date cannot be determined for date " + ldapResult.getDateResult();
+    final LdapPasswordPolicyEnforcementException exc=new LdapPasswordPolicyEnforcementException(msgToLog);
+    logError(msgToLog,exc);
+    throw exc;
+  }
+  return getDaysToExpirationDate(userId,expireTime);
+}

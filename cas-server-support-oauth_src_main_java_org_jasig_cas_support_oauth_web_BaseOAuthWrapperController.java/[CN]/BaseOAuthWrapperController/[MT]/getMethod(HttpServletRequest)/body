@@ -1,0 +1,11 @@
+{
+  String method=request.getRequestURI();
+  if (method.indexOf("?") >= 0) {
+    method=StringUtils.substringBefore(method,"?");
+  }
+  int pos=method.lastIndexOf("/");
+  if (pos >= 0) {
+    method=method.substring(pos + 1);
+  }
+  return method;
+}

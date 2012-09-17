@@ -1,0 +1,4 @@
+{
+  this.noWarnAttribute=noWarnAttribute;
+  logDebug("Attribute to flag warning bypass: " + noWarnAttribute);
+}

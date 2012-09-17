@@ -1,0 +1,25 @@
+{
+  logDebug("Calculating number of days left to the expiration date for user " + userId);
+  final DateTime currentTime=new DateTime(DEFAULT_TIME_ZONE);
+  logInfo("Current date is " + currentTime.toString());
+  logInfo("Expiration date is " + expireDate.toString());
+  final Days d=Days.daysBetween(currentTime,expireDate);
+  int daysToExpirationDate=d.getDays();
+  if (expireDate.equals(currentTime) || expireDate.isBefore(currentTime)) {
+    String msgToLog="Authentication failed because account password has expired with " + daysToExpirationDate + " to expiration date. ";
+    msgToLog+="Verify the value of the " + this.dateAttribute + " attribute and make sure it's not before the current date, which is "+ currentTime.toString();
+    final LdapPasswordPolicyEnforcementException exc=new LdapPasswordPolicyEnforcementException(msgToLog);
+    logError(msgToLog,exc);
+    throw exc;
+  }
+  DateTime warnPeriod=new DateTime(DateTime.parse(expireDate.toString()),DEFAULT_TIME_ZONE);
+  warnPeriod=warnPeriod.minusDays(this.warningDays);
+  logInfo("Warning period begins on " + warnPeriod.toString());
+  if (this.warnAll)   logInfo("Warning all. The password for " + userId + " will expire in "+ daysToExpirationDate+ " days.");
+ else   if (currentTime.equals(warnPeriod) || currentTime.isAfter(warnPeriod))   logInfo("Password will expire in " + daysToExpirationDate + " days.");
+ else {
+    logInfo("Password is not expiring. " + daysToExpirationDate + " days left to the warning");
+    daysToExpirationDate=PASSWORD_STATUS_PASS;
+  }
+  return daysToExpirationDate;
+}

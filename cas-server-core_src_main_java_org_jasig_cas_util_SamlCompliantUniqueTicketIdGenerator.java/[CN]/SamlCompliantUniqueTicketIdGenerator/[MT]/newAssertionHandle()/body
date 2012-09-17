@@ -1,0 +1,5 @@
+{
+  final byte[] handle=new byte[ASSERTION_HANDLE_SIZE];
+  this.random.nextBytes(handle);
+  return handle;
+}

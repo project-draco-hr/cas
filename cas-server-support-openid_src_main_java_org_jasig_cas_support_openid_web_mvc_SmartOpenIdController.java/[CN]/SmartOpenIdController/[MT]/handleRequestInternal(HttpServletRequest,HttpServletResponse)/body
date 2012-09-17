@@ -1,0 +1,5 @@
+{
+  final Map<String,String> parameters=new HashMap<String,String>();
+  parameters.putAll(getAssociationResponse(request));
+  return new ModelAndView(successView,"parameters",parameters);
+}

@@ -1,0 +1,16 @@
+{
+  final Service service=WebUtils.getService(context);
+  if (service == null) {
+    return success();
+  }
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  if (registeredService == null) {
+    logger.warn("Unauthorized Service Access for Service: [ {} ] - service is not defined in the service registry.",service.getId());
+    throw new UnauthorizedServiceException();
+  }
+ else   if (!registeredService.isEnabled()) {
+    logger.warn("Unauthorized Service Access for Service: [ {} ] - service is not enabled in the service registry.",service.getId());
+    throw new UnauthorizedServiceException();
+  }
+  return success();
+}

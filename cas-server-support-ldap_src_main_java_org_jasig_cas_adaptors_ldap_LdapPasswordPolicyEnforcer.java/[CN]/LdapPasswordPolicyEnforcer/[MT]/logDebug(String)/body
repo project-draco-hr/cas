@@ -1,0 +1,3 @@
+{
+  if (this.logger.isDebugEnabled())   this.logger.debug(log);
+}
