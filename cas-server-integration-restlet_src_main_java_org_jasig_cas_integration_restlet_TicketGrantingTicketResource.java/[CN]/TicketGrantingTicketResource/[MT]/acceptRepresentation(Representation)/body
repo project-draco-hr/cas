@@ -1,5 +1,5 @@
 {
-  final Form form=getRequest().getEntityAsForm();
+  final Form form=new Form(entity);
   final String serviceUrl=form.getFirstValue("service");
   try {
     final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(this.ticketGrantingTicketId,new SimpleWebApplicationServiceImpl(serviceUrl,this.httpClient));
