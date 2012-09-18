@@ -1,7 +1,7 @@
 {
   if (log.isDebugEnabled()) {
     log.debug("Obtaining credentials...");
-    final Form form=log.debug(getRequest().getEntityAsForm().toString());
+    final Form form=new Form(entity);
   }
   final Credentials c=obtainCredentials();
   try {

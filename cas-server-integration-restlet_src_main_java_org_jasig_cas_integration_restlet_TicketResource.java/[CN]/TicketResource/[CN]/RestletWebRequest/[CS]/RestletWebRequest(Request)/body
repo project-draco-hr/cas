@@ -1,4 +1,4 @@
 {
-  this.form=getRequest().getEntityAsForm();
+  this.form=new Form(request.getEntity());
   this.request=request;
 }
