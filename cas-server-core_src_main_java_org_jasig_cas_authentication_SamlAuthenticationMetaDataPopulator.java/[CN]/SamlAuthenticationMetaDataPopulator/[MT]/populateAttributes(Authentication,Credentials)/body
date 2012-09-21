@@ -1,6 +1,6 @@
 {
   final String credentialsClass=credentials.getClass().getName();
-  final String authenticationMetehod=this.authenticationMethods.get(credentialsClass);
-  authentication.getAttributes().put(ATTRIBUTE_AUTHENTICATION_METHOD,authenticationMetehod);
+  final String authenticationMethod=this.authenticationMethods.get(credentialsClass);
+  authentication.getAttributes().put(ATTRIBUTE_AUTHENTICATION_METHOD,authenticationMethod);
   return authentication;
 }
