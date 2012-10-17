@@ -33,8 +33,12 @@
         return true;
       }
     }
- catch (    final Exception e) {
-      if (this.log.isErrorEnabled())       this.log.error(e.getMessage(),e);
+ catch (    final NamingSecurityException e) {
+      log.info("Failed to authenticate user {} with error {}",credentials.getUsername(),e.getMessage());
+      throw handleLdapError(e);
+    }
+catch (    final Exception e) {
+      this.log.error(e.getMessage(),e);
       throw handleLdapError(e);
     }
  finally {
