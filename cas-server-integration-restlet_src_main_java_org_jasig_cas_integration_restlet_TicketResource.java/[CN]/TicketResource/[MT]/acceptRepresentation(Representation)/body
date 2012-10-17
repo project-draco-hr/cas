@@ -1,8 +1,5 @@
 {
-  if (log.isDebugEnabled()) {
-    log.debug("Obtaining credentials...");
-    final Form form=new Form(entity);
-  }
+  log.debug("Obtaining credentials...");
   final Credentials c=obtainCredentials();
   try {
     final String ticketGrantingTicketId=this.centralAuthenticationService.createTicketGrantingTicket(c);
