@@ -1,0 +1,18 @@
+{
+  final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.AUTHORIZE_URL);
+  mockRequest.setParameter(OAuthConstants.CLIENT_ID,CLIENT_ID);
+  mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
+  final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
+  final ServicesManager servicesManager=mock(ServicesManager.class);
+  final RegisteredServiceImpl registeredServiceImpl=new RegisteredServiceImpl();
+  registeredServiceImpl.setName(CLIENT_ID);
+  registeredServiceImpl.setServiceId(OTHER_REDIRECT_URI);
+  final List<RegisteredService> services=new ArrayList<RegisteredService>();
+  services.add(registeredServiceImpl);
+  when(servicesManager.getAllServices()).thenReturn(services);
+  final OAuth20WrapperController oauth20WrapperController=new OAuth20WrapperController();
+  oauth20WrapperController.setServicesManager(servicesManager);
+  oauth20WrapperController.afterPropertiesSet();
+  final ModelAndView modelAndView=oauth20WrapperController.handleRequest(mockRequest,mockResponse);
+  assertEquals(OAuthConstants.ERROR_VIEW,modelAndView.getViewName());
+}
