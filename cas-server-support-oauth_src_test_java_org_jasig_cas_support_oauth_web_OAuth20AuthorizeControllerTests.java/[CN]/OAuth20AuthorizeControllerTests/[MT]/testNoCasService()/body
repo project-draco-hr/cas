@@ -8,6 +8,9 @@
   final OAuth20WrapperController oauth20WrapperController=new OAuth20WrapperController();
   oauth20WrapperController.setServicesManager(servicesManager);
   oauth20WrapperController.afterPropertiesSet();
+  final Logger logger=mock(Logger.class);
+  OAuth20AuthorizeController.setLogger(logger);
   final ModelAndView modelAndView=oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   assertEquals(OAuthConstants.ERROR_VIEW,modelAndView.getViewName());
+  verify(logger).error("Unknown clientId : {}",CLIENT_ID);
 }

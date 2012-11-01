@@ -2,6 +2,7 @@
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.AUTHORIZE_URL);
   mockRequest.setParameter(OAuthConstants.CLIENT_ID,CLIENT_ID);
   mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
+  mockRequest.setParameter(OAuthConstants.STATE,STATE);
   mockRequest.setServerName(CAS_SERVER);
   mockRequest.setServerPort(CAS_PORT);
   mockRequest.setScheme(CAS_SCHEME);
@@ -22,6 +23,7 @@
   final HttpSession session=mockRequest.getSession();
   assertEquals(REDIRECT_URI,(String)session.getAttribute(OAuthConstants.OAUTH20_CALLBACKURL));
   assertEquals(SERVICE_NAME,(String)session.getAttribute(OAuthConstants.OAUTH20_SERVICE_NAME));
+  assertEquals(STATE,(String)session.getAttribute(OAuthConstants.OAUTH20_STATE));
   final View view=modelAndView.getView();
   assertTrue(view instanceof RedirectView);
   final RedirectView redirectView=(RedirectView)view;

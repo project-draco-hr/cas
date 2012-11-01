@@ -16,7 +16,10 @@
   final OAuth20WrapperController oauth20WrapperController=new OAuth20WrapperController();
   oauth20WrapperController.setServicesManager(servicesManager);
   oauth20WrapperController.afterPropertiesSet();
+  final Logger logger=mock(Logger.class);
+  OAuth20AccessTokenController.setLogger(logger);
   oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   assertEquals(400,mockResponse.getStatus());
   assertEquals("error=" + OAuthConstants.INVALID_REQUEST,mockResponse.getContentAsString());
+  verify(logger).error("Wrong client secret : {} for service description : {}",CLIENT_SECRET,WRONG_CLIENT_SECRET);
 }

@@ -9,7 +9,9 @@
   logger.debug("state : {}",state);
   session.removeAttribute(OAuthConstants.OAUTH20_STATE);
   callbackUrl=OAuthUtils.addParameter(callbackUrl,OAuthConstants.CODE,ticket);
-  callbackUrl=OAuthUtils.addParameter(callbackUrl,OAuthConstants.STATE,state);
+  if (state != null) {
+    callbackUrl=OAuthUtils.addParameter(callbackUrl,OAuthConstants.STATE,state);
+  }
   logger.debug("callbackUrl : {}",callbackUrl);
   final Map<String,Object> model=new HashMap<String,Object>();
   model.put("callbackUrl",callbackUrl);
