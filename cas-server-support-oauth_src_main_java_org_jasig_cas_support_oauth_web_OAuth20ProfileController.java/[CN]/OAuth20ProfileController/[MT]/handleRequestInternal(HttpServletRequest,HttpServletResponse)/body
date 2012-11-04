@@ -1,10 +1,10 @@
 {
   final String accessToken=request.getParameter(OAuthConstants.ACCESS_TOKEN);
-  logger.debug("accessToken : {}",accessToken);
+  log.debug("accessToken : {}",accessToken);
   final JsonFactory jsonFactory=new JsonFactory();
   final JsonGenerator jsonGenerator=jsonFactory.createJsonGenerator(response.getWriter());
   if (StringUtils.isBlank(accessToken)) {
-    logger.error("missing accessToken");
+    log.error("missing accessToken");
     jsonGenerator.writeStartObject();
     jsonGenerator.writeStringField("error",OAuthConstants.MISSING_ACCESS_TOKEN);
     jsonGenerator.writeEndObject();
@@ -14,7 +14,7 @@
   }
   final TicketGrantingTicket ticketGrantingTicket=(TicketGrantingTicket)ticketRegistry.getTicket(accessToken);
   if (ticketGrantingTicket == null || ticketGrantingTicket.isExpired()) {
-    logger.error("expired accessToken : {}",accessToken);
+    log.error("expired accessToken : {}",accessToken);
     jsonGenerator.writeStartObject();
     jsonGenerator.writeStringField("error",OAuthConstants.EXPIRED_ACCESS_TOKEN);
     jsonGenerator.writeEndObject();

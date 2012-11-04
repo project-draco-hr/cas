@@ -2,12 +2,12 @@
   final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
   final HttpSession session=request.getSession();
   final String providerType=request.getParameter(OAuthConstants.OAUTH_PROVIDER);
-  logger.debug("providerType : {}",providerType);
+  log.debug("providerType : {}",providerType);
   if (StringUtils.isNotBlank(providerType)) {
     final OAuthProvider provider=OAuthUtils.getProviderByType(this.configuration.getProviders(),providerType);
-    logger.debug("provider : {}",provider);
+    log.debug("provider : {}",provider);
     @SuppressWarnings("unchecked") final OAuthCredential credential=provider.getCredential(new HttpUserSession(request),request.getParameterMap());
-    logger.debug("credential : {}",credential);
+    log.debug("credential : {}",credential);
     final Service service=(Service)session.getAttribute(OAuthConstants.SERVICE);
     context.getFlowScope().put(OAuthConstants.SERVICE,service);
     restoreRequestAttribute(request,session,OAuthConstants.THEME);
@@ -39,7 +39,7 @@
  else {
         authorizationUrl=provider.getAuthorizationUrl(new HttpUserSession(session));
       }
-      logger.debug("{} -> {}",key,authorizationUrl);
+      log.debug("{} -> {}",key,authorizationUrl);
       context.getFlowScope().put(key,authorizationUrl);
     }
   }

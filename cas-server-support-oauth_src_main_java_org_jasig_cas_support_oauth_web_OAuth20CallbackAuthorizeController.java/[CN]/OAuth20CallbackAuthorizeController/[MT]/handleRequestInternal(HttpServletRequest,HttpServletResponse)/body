@@ -1,22 +1,22 @@
 {
   final String ticket=request.getParameter(OAuthConstants.TICKET);
-  logger.debug("ticket : {}",ticket);
+  log.debug("ticket : {}",ticket);
   final HttpSession session=request.getSession();
   String callbackUrl=(String)session.getAttribute(OAuthConstants.OAUTH20_CALLBACKURL);
-  logger.debug("callbackUrl : {}",callbackUrl);
+  log.debug("callbackUrl : {}",callbackUrl);
   session.removeAttribute(OAuthConstants.OAUTH20_CALLBACKURL);
   final String state=(String)session.getAttribute(OAuthConstants.OAUTH20_STATE);
-  logger.debug("state : {}",state);
+  log.debug("state : {}",state);
   session.removeAttribute(OAuthConstants.OAUTH20_STATE);
   callbackUrl=OAuthUtils.addParameter(callbackUrl,OAuthConstants.CODE,ticket);
   if (state != null) {
     callbackUrl=OAuthUtils.addParameter(callbackUrl,OAuthConstants.STATE,state);
   }
-  logger.debug("callbackUrl : {}",callbackUrl);
+  log.debug("callbackUrl : {}",callbackUrl);
   final Map<String,Object> model=new HashMap<String,Object>();
   model.put("callbackUrl",callbackUrl);
   final String serviceName=(String)session.getAttribute(OAuthConstants.OAUTH20_SERVICE_NAME);
-  logger.debug("serviceName : {}",serviceName);
+  log.debug("serviceName : {}",serviceName);
   model.put("serviceName",serviceName);
   return new ModelAndView(OAuthConstants.CONFIRM_VIEW,model);
 }

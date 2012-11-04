@@ -1,6 +1,6 @@
 {
   OAuthCredentials oauthCredentials=(OAuthCredentials)credentials;
   String principalId=oauthCredentials.getUserProfile().getTypedId();
-  logger.debug("principalId : {}",principalId);
+  log.debug("principalId : {}",principalId);
   return principalId;
 }
