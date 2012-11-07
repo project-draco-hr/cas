@@ -1,0 +1,18 @@
+{
+  if (log.isDebugEnabled()) {
+    final Set<String> pairs=new HashSet<String>();
+    for (    final String name : form.getNames()) {
+      final StringBuilder builder=new StringBuilder();
+      builder.append(name);
+      builder.append(": ");
+      if (!"password".equalsIgnoreCase(name)) {
+        builder.append(form.getValues(name));
+      }
+ else {
+        builder.append("*****");
+      }
+      pairs.add(builder.toString());
+    }
+    log.debug(StringUtils.join(pairs,", "));
+  }
+}
