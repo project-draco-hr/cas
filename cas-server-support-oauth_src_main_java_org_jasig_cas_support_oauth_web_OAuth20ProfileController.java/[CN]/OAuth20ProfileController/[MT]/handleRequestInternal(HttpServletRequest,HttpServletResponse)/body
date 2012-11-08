@@ -3,6 +3,7 @@
   log.debug("accessToken : {}",accessToken);
   final JsonFactory jsonFactory=new JsonFactory();
   final JsonGenerator jsonGenerator=jsonFactory.createJsonGenerator(response.getWriter());
+  response.setContentType("application/json");
   if (StringUtils.isBlank(accessToken)) {
     log.error("missing accessToken");
     jsonGenerator.writeStartObject();
