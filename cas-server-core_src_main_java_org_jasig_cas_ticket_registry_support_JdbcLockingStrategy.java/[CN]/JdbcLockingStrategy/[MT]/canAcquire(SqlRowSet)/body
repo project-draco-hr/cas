@@ -1,8 +1,0 @@
-{
-  if (lockRow.getString(this.uniqueIdColumnName) != null) {
-    final Calendar expCal=Calendar.getInstance();
-    expCal.setTime(lockRow.getTimestamp(this.expirationDateColumnName));
-    return Calendar.getInstance().after(expCal);
-  }
-  return true;
-}
