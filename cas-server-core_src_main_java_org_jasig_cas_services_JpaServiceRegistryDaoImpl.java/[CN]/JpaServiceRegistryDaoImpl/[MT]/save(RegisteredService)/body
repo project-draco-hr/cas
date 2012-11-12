@@ -1,8 +1,8 @@
 {
   final boolean isNew=registeredService.getId() == -1;
-  final RegisteredService r=getJpaTemplate().merge(registeredService);
+  final RegisteredService r=this.entityManager.merge(registeredService);
   if (!isNew) {
-    getJpaTemplate().persist(r);
+    this.entityManager.persist(r);
   }
   return r;
 }
