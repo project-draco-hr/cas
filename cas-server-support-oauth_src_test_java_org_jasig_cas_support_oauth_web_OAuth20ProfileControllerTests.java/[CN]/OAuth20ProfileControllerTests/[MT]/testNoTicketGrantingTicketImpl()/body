@@ -11,6 +11,7 @@
   OAuth20ProfileController.setLogger(logger);
   oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   assertEquals(200,mockResponse.getStatus());
+  assertEquals(CONTENT_TYPE,mockResponse.getContentType());
   assertEquals("{\"error\":\"" + OAuthConstants.EXPIRED_ACCESS_TOKEN + "\"}",mockResponse.getContentAsString());
   verify(logger).error("expired accessToken : {}",TGT_ID);
 }
