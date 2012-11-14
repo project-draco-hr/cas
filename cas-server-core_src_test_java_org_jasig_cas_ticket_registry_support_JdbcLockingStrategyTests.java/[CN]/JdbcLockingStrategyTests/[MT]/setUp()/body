@@ -1,7 +1,0 @@
-{
-  super.setUp();
-  this.testDataSource=new SimpleDriverDataSource(new org.hsqldb.jdbcDriver(),"jdbc:hsqldb:mem:locktest","sa","");
-  final JdbcTemplate tmpl=new JdbcTemplate(this.testDataSource);
-  tmpl.execute(CREATE_TABLE_SQL);
-  tmpl.execute(CREATE_PRI_KEY_SQL);
-}
