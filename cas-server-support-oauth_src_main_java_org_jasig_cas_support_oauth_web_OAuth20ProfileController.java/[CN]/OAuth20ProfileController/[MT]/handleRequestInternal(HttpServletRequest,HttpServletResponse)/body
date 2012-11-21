@@ -13,7 +13,7 @@
     response.flushBuffer();
     return null;
   }
-  final TicketGrantingTicket ticketGrantingTicket=(TicketGrantingTicket)ticketRegistry.getTicket(accessToken);
+  final TicketGrantingTicket ticketGrantingTicket=(TicketGrantingTicket)this.ticketRegistry.getTicket(accessToken);
   if (ticketGrantingTicket == null || ticketGrantingTicket.isExpired()) {
     log.error("expired accessToken : {}",accessToken);
     jsonGenerator.writeStartObject();
