@@ -1,0 +1,15 @@
+{
+  final FacebookProvider facebookProvider=new FacebookProvider();
+  facebookProvider.setKey(MY_KEY);
+  facebookProvider.setSecret(MY_SECRET);
+  final TwitterProvider twitterProvider=new TwitterProvider();
+  twitterProvider.setKey(MY_KEY);
+  twitterProvider.setSecret(MY_SECRET);
+  final OAuthConfiguration oAuthConfiguration=new OAuthConfiguration();
+  oAuthConfiguration.setLoginUrl(MY_LOGIN_URL);
+  final List<OAuthProvider> providers=new ArrayList<OAuthProvider>();
+  providers.add(facebookProvider);
+  providers.add(twitterProvider);
+  oAuthConfiguration.setProviders(providers);
+  return oAuthConfiguration;
+}
