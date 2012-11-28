@@ -1,10 +1,8 @@
 {
   final Pair<AuthenticationHandler,Principal> pair=authenticateAndObtainPrincipal(credentials);
   final Principal p=pair.getSecond();
-  log.info(String.format("Principal found: %s",p.getId()));
-  if (log.isDebugEnabled()) {
-    log.debug(String.format("Attribute map for %s: %s",p.getId(),p.getAttributes()));
-  }
+  log.info("Authenticated {} with credential {}.",p,credentials);
+  log.debug("Attribute map for {}: {}",p.getId(),p.getAttributes());
   Authentication authentication=new MutableAuthentication(p);
   if (pair.getFirst() instanceof NamedAuthenticationHandler) {
     final NamedAuthenticationHandler a=(NamedAuthenticationHandler)pair.getFirst();
