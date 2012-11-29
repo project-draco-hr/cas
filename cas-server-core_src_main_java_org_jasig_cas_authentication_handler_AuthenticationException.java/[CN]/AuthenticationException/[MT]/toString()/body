@@ -1,5 +1,0 @@
-{
-  String msg=getCode();
-  if (getMessage() != null && getMessage().trim().length() > 0)   msg=":" + getMessage();
-  return msg;
-}
