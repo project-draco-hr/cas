@@ -25,8 +25,8 @@
   }
   final Principal principal=ticketGrantingTicket.getAuthentication().getPrincipal();
   jsonGenerator.writeStartObject();
-  jsonGenerator.writeStringField(CasWrapperProfile.ID,principal.getId());
-  jsonGenerator.writeArrayFieldStart(CasWrapperProfile.ATTRIBUTES);
+  jsonGenerator.writeStringField(ID,principal.getId());
+  jsonGenerator.writeArrayFieldStart(ATTRIBUTES);
   final Map<String,Object> attributes=principal.getAttributes();
   for (  final String key : attributes.keySet()) {
     jsonGenerator.writeStartObject();

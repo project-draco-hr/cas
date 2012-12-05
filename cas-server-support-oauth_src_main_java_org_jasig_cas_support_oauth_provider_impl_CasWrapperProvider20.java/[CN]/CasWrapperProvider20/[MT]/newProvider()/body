@@ -1,5 +1,0 @@
-{
-  final CasWrapperProvider20 newProvider=new CasWrapperProvider20();
-  newProvider.setServerUrl(this.serverUrl);
-  return newProvider;
-}

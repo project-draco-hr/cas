@@ -1,0 +1,4 @@
+{
+  this.providersDefinition=providersDefinition;
+  this.providersDefinition.init();
+}

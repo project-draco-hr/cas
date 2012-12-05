@@ -11,13 +11,13 @@
   mockRequestContext.setExternalContext(servletExternalContext);
   mockRequestContext.getFlowScope().put(OAuthConstants.SERVICE,new SimpleWebApplicationServiceImpl(MY_SERVICE));
   final OAuthAction oAuthAction=new OAuthAction();
-  oAuthAction.setConfiguration(newConfiguration());
+  oAuthAction.setProvidersDefinition(newProvidersDefinition());
   final Event event=oAuthAction.execute(mockRequestContext);
   assertEquals("error",event.getId());
   assertEquals(MY_THEME,mockSession.getAttribute(OAuthConstants.THEME));
   assertEquals(MY_LOCALE,mockSession.getAttribute(OAuthConstants.LOCALE));
   assertEquals(MY_METHOD,mockSession.getAttribute(OAuthConstants.METHOD));
   final MutableAttributeMap flowScope=mockRequestContext.getFlowScope();
-  assertTrue(((String)flowScope.get("FacebookProviderUrl")).startsWith("https://www.facebook.com/dialog/oauth?client_id=my_key&redirect_uri=http%3A%2F%2Fcasserver%2Flogin%3Foauth_provider%3DFacebookProvider&state="));
-  assertEquals("/oauth10login?oauth_provider=TwitterProvider",flowScope.get("TwitterProviderUrl"));
+  assertTrue(((String)flowScope.get("FacebookProviderUrl")).startsWith("https://www.facebook.com/dialog/oauth?client_id=my_key&redirect_uri=http%3A%2F%2Fcasserver%2Flogin%3F" + ProvidersDefinition.DEFAULT_PROVIDER_TYPE_PARAMETER + "%3DFacebookProvider&state="));
+  assertEquals("/oauth10login?" + ProvidersDefinition.DEFAULT_PROVIDER_TYPE_PARAMETER + "=TwitterProvider",flowScope.get("TwitterProviderUrl"));
 }

@@ -1,6 +1,6 @@
 {
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest();
-  mockRequest.setParameter(OAuthConstants.OAUTH_PROVIDER,"FacebookProvider");
+  mockRequest.setParameter(ProvidersDefinition.DEFAULT_PROVIDER_TYPE_PARAMETER,"FacebookProvider");
   final MockHttpSession mockSession=new MockHttpSession();
   mockSession.setAttribute(OAuthConstants.THEME,MY_THEME);
   mockSession.setAttribute(OAuthConstants.LOCALE,MY_LOCALE);
@@ -14,7 +14,7 @@
   mockRequestContext.setExternalContext(servletExternalContext);
   final CentralAuthenticationService centralAuthenticationService=mock(CentralAuthenticationService.class);
   final OAuthAction oAuthAction=new OAuthAction();
-  oAuthAction.setConfiguration(newConfiguration());
+  oAuthAction.setProvidersDefinition(newProvidersDefinition());
   oAuthAction.setCentralAuthenticationService(centralAuthenticationService);
   final Event event=oAuthAction.execute(mockRequestContext);
   assertEquals("success",event.getId());

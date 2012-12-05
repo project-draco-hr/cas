@@ -1,3 +1,0 @@
-{
-  return serverUrl + "/" + OAuthConstants.ACCESS_TOKEN_URL+ "?";
-}

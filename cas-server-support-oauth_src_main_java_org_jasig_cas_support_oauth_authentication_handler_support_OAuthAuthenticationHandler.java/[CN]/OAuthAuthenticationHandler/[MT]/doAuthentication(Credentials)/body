@@ -3,7 +3,7 @@
   log.debug("credential : {}",oauthCredentials);
   final String providerType=oauthCredentials.getCredential().getProviderType();
   log.debug("providerType : {}",providerType);
-  final OAuthProvider provider=OAuthUtils.getProviderByType(this.configuration.getProviders(),providerType);
+  final OAuthProvider provider=this.providersDefinition.findProvider(providerType);
   log.debug("provider : {}",provider);
   final UserProfile userProfile=provider.getUserProfile(oauthCredentials.getCredential());
   log.debug("userProfile : {}",userProfile);
