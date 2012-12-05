@@ -1,8 +1,0 @@
-{
-  final CacheManager mgr=this.applicationContext.getBean("cacheManager",CacheManager.class);
-  if (mgr.getStatus().equals(Status.STATUS_ALIVE)) {
-    log.debug("Shutting down cache manager {}...",mgr.getName());
-    mgr.removalAll();
-    mgr.shutdown();
-  }
-}

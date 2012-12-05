@@ -1,3 +1,0 @@
-{
-  applicationContext=new ClassPathXmlApplicationContext("classpath:ticketRegistry.xml");
-}
