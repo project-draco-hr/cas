@@ -1,5 +1,5 @@
 {
-  super(msg);
-  this.code=code;
+  this(code,msg);
+  Assert.hasLength(type,"The exception type cannot be blank");
   this.type=type;
 }
