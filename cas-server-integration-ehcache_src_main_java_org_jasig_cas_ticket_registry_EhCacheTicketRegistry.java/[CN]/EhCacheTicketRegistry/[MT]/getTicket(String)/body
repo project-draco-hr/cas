@@ -6,5 +6,5 @@
   if (element == null) {
     element=this.ticketGrantingTicketsCache.get(ticketId);
   }
-  return element == null ? null : getProxiedTicketInstance((Ticket)element.getValue());
+  return element == null ? null : getProxiedTicketInstance((Ticket)element.getObjectValue());
 }

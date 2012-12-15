@@ -8,7 +8,7 @@
     return true;
   }
  catch (  final NamingException e) {
-    if (this.log.isErrorEnabled())     this.log.error(e.getMessage(),e);
+    log.info("Failed to authenticate user {} with error {}",credentials.getUsername(),e.getMessage());
     throw handleLdapError(e);
   }
  finally {

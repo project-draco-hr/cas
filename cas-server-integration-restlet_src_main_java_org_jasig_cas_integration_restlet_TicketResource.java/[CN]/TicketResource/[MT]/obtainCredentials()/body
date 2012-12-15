@@ -2,10 +2,7 @@
   final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
   final WebRequestDataBinder binder=new WebRequestDataBinder(c);
   final RestletWebRequest webRequest=new RestletWebRequest(getRequest());
-  if (log.isDebugEnabled()) {
-    log.debug(new Form(getRequest().getEntity()).toString());
-    log.debug("Username from RestletWebRequest: " + webRequest.getParameter("username"));
-  }
+  logFormRequest(new Form(getRequest().getEntity()));
   binder.bind(webRequest);
   return c;
 }

@@ -1,0 +1,22 @@
+{
+  final TwitterProvider twitterProvider=new TwitterProvider();
+  twitterProvider.setKey("OPEWaSoTuAe49K4dSoRvNw");
+  twitterProvider.setSecret("aKmvleltXAmLKcnlMgzRjTsCnhV3QVMVDh153xJttCo");
+  final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",MY_LOGIN_URL);
+  mockRequest.setParameter(OAuthConstants.OAUTH_PROVIDER,twitterProvider.getType());
+  final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
+  final OAuthConfiguration oAuthConfiguration=new OAuthConfiguration();
+  oAuthConfiguration.setLoginUrl(MY_LOGIN_URL);
+  final List<OAuthProvider> providers=new ArrayList<OAuthProvider>();
+  providers.add(twitterProvider);
+  oAuthConfiguration.setProviders(providers);
+  final OAuthAction oAuthAction=new OAuthAction();
+  oAuthAction.setConfiguration(oAuthConfiguration);
+  final OAuth10LoginController oAuth10LoginController=new OAuth10LoginController();
+  oAuth10LoginController.setConfiguration(oAuthConfiguration);
+  final ModelAndView modelAndView=oAuth10LoginController.handleRequest(mockRequest,mockResponse);
+  final View view=modelAndView.getView();
+  assertTrue(view instanceof RedirectView);
+  final RedirectView redirectView=(RedirectView)view;
+  assertTrue(redirectView.getUrl().startsWith("https://api.twitter.com/oauth/authorize?oauth_token="));
+}
