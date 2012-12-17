@@ -2,18 +2,20 @@
   if (this.serviceTicketsCache == null || this.ticketGrantingTicketsCache == null) {
     throw new BeanInstantiationException(this.getClass(),"Both serviceTicketsCache and ticketGrantingTicketsCache are required properties.");
   }
-  if (this.log.isDebugEnabled()) {
+  if (log.isDebugEnabled()) {
     CacheConfiguration config=this.serviceTicketsCache.getCacheConfiguration();
     log.debug("serviceTicketsCache.maxElementsInMemory={}",config.getMaxEntriesLocalHeap());
     log.debug("serviceTicketsCache.maxElementsOnDisk={}",config.getMaxElementsOnDisk());
-    log.debug("serviceTicketsCache.overflowToDisk={}",config.isOverflowToDisk());
+    log.debug("serviceTicketsCache.isOverflowToDisk={}",config.isOverflowToDisk());
     log.debug("serviceTicketsCache.timeToLive={}",config.getTimeToLiveSeconds());
     log.debug("serviceTicketsCache.timeToIdle={}",config.getTimeToIdleSeconds());
+    log.debug("serviceTicketsCache.cacheManager={}",this.serviceTicketsCache.getCacheManager().getName());
     config=this.ticketGrantingTicketsCache.getCacheConfiguration();
     log.debug("ticketGrantingTicketsCache.maxElementsInMemory={}",config.getMaxEntriesLocalHeap());
     log.debug("ticketGrantingTicketsCache.maxElementsOnDisk={}",config.getMaxElementsOnDisk());
-    log.debug("ticketGrantingTicketsCache.overflowToDisk={}",config.isOverflowToDisk());
+    log.debug("ticketGrantingTicketsCache.isOverflowToDisk={}",config.isOverflowToDisk());
     log.debug("ticketGrantingTicketsCache.timeToLive={}",config.getTimeToLiveSeconds());
     log.debug("ticketGrantingTicketsCache.timeToIdle={}",config.getTimeToIdleSeconds());
+    log.debug("ticketGrantingTicketsCache.cacheManager={}",this.ticketGrantingTicketsCache.getCacheManager().getName());
   }
 }

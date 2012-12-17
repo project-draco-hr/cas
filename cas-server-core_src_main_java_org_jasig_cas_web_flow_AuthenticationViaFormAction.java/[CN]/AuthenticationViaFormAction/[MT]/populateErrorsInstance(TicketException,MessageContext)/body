@@ -1,8 +1,15 @@
 {
   try {
-    messageContext.addMessage(new MessageBuilder().error().code(e.getCode()).defaultText(e.getCode()).build());
+    final String exceptionCode=e.getCode();
+    final MessageBuilder messageBuilder=new MessageBuilder().error().code(exceptionCode);
+    messageContext.addMessage(messageBuilder.build());
   }
- catch (  final Exception fe) {
+ catch (  final NoSuchMessageException ex) {
+    final String defaultCode=BadCredentialsAuthenticationException.CODE;
+    logger.debug("Could not locate the message based on the exception code. Reverting back to default exception code [{}]",defaultCode);
+    messageContext.addMessage(new MessageBuilder().error().code(defaultCode).defaultText("A technical has error occured. [code:" + defaultCode + "]").build());
+  }
+catch (  final Exception fe) {
     logger.error(fe.getMessage(),fe);
   }
 }

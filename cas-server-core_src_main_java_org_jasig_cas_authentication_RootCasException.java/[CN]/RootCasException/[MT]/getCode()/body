@@ -1,0 +1,7 @@
+{
+  final Throwable cause=this.getCause();
+  if (cause != null && (cause instanceof RootCasException)) {
+    return ((RootCasException)cause).getCode();
+  }
+  return this.code;
+}

@@ -1,0 +1,4 @@
+{
+  Assert.hasLength(code,"The exception code cannot be blank");
+  this.code=code;
+}
