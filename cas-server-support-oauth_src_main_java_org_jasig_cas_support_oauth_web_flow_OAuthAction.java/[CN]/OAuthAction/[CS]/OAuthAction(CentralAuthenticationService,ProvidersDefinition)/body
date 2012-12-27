@@ -1,5 +1,4 @@
 {
   this.centralAuthenticationService=centralAuthenticationService;
   this.providersDefinition=providersDefinition;
-  this.providersDefinition.init();
 }
