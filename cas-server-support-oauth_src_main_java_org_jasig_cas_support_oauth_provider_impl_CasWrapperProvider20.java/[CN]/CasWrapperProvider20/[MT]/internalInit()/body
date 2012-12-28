@@ -1,4 +1,0 @@
-{
-  CasWrapperApi20.setServerUrl(this.serverUrl);
-  this.service=new ServiceBuilder().provider(CasWrapperApi20.class).apiKey(this.key).apiSecret(this.secret).callback(this.callbackUrl).build();
-}

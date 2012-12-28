@@ -1,3 +1,0 @@
-{
-  return this.serverUrl + "/" + OAuthConstants.PROFILE_URL;
-}
