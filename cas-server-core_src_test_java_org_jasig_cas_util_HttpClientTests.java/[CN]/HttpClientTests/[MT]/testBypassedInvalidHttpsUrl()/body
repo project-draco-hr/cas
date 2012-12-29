@@ -1,0 +1,7 @@
+{
+  final HttpClient client=this.getHttpClient();
+  client.setSSLSocketFactory(this.getFriendlyToAllSSLSocketFactory());
+  client.setHostnameVerifier(this.getFriendlyToAllHostnameVerifier());
+  client.setAcceptableCodes(new int[]{200,403});
+  assertTrue(client.isValidEndPoint("https://static.ak.connect.facebook.com"));
+}

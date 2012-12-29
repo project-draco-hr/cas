@@ -1,0 +1,6 @@
+{
+  final HttpClient httpClient=new HttpClient();
+  httpClient.setConnectionTimeout(1000);
+  httpClient.setReadTimeout(1000);
+  return httpClient;
+}
