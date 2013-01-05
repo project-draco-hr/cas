@@ -1,6 +1,0 @@
-{
-  if (CommonUtils.isNotBlank(this.clearPassUrl)) {
-    return new PasswordCachingCasAssertionSecurityContext(this.clearPassUrl);
-  }
-  throw new IllegalStateException(String.format("clearPassUrl not configured.  Cannot create an instance of [%s] without it.",getClass().getSimpleName()));
-}

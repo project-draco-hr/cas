@@ -1,3 +1,0 @@
-{
-  return CommonUtils.getResponseFromServer(url,"UTF-8");
-}
