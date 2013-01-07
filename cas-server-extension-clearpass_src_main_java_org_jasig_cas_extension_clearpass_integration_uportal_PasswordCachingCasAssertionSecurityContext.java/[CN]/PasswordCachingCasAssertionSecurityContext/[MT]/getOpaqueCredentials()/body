@@ -1,8 +1,0 @@
-{
-  if (this.cachedCredentials == null) {
-    return super.getOpaqueCredentials();
-  }
-  final NotSoOpaqueCredentials credentials=new CacheOpaqueCredentials();
-  credentials.setCredentials(this.cachedCredentials);
-  return credentials;
-}
