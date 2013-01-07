@@ -1,0 +1,3 @@
+{
+  ClientInfoHolder.setClientInfo(CLIENT_INFO);
+}
