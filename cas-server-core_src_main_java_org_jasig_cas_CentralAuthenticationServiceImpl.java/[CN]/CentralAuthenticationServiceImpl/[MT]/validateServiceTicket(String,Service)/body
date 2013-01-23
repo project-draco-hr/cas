@@ -26,9 +26,8 @@ synchronized (serviceTicket) {
     final Authentication authentication=chainedAuthenticationsList.get(chainedAuthenticationsList.size() - 1);
     final Principal principal=authentication.getPrincipal();
     final String principalId=determinePrincipalIdForRegisteredService(principal,registeredService,serviceTicket);
-    Map<String,Object> attributesToRelease=null;
+    Map<String,Object> attributesToRelease=new HashMap<String,Object>();
     if (!registeredService.isIgnoreAttributes()) {
-      attributesToRelease=new HashMap<String,Object>();
       for (      final String attribute : registeredService.getAllowedAttributes()) {
         final Object value=principal.getAttributes().get(attribute);
         if (value != null) {
@@ -37,7 +36,7 @@ synchronized (serviceTicket) {
       }
     }
  else {
-      attributesToRelease=new HashMap<String,Object>(principal.getAttributes());
+      attributesToRelease.putAll(principal.getAttributes());
     }
     final Principal modifiedPrincipal=new SimplePrincipal(principalId,attributesToRelease);
     final MutableAuthentication mutableAuthentication=new MutableAuthentication(modifiedPrincipal,authentication.getAuthenticatedDate());
