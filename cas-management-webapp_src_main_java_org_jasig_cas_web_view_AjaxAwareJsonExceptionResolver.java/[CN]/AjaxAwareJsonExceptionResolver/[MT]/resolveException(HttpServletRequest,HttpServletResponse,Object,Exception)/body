@@ -1,9 +1,8 @@
 {
-  final ModelAndView mv=null;
   final String contentType=request.getHeader(this.ajaxRequestHeaderName);
   if (contentType.equals(this.ajaxRequestHeaderValue)) {
     log.debug("Handling exception {} for ajax request indicated by header {}",ex.getClass().getName(),this.ajaxRequestHeaderName);
     return super.resolveException(request,response,handler,ex);
   }
-  return mv;
+  return null;
 }
