@@ -9,7 +9,7 @@
   }
  else {
     if ((registeredService.isIgnoreAttributes() || registeredService.getAllowedAttributes().contains(serviceUsernameAttribute)) && principal.getAttributes().containsKey(serviceUsernameAttribute)) {
-      principalId=principal.getAttributes().get(registeredService.getUsernameAttribute()).toString();
+      principalId=principal.getAttributes().get(serviceUsernameAttribute).toString();
     }
  else {
       principalId=principal.getId();
