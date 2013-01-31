@@ -1,5 +1,5 @@
 {
-  if (e instanceof AuthenticationException) {
+  if (e instanceof GeneralSecurityException) {
     log.info("{} failed authenticating {}",handlerName,credentials);
   }
  else {

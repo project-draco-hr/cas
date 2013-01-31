@@ -1,0 +1,10 @@
+{
+  if (!(obj instanceof HandlerResult)) {
+    return false;
+  }
+  if (obj == this) {
+    return true;
+  }
+  final HandlerResult other=(HandlerResult)obj;
+  return this.handlerName.equals(other.getHandlerName()) && this.principal.equals(other.getPrincipal()) && this.warnings.equals(other.getWarnings());
+}

@@ -5,7 +5,7 @@
   final DirectAuthenticationHandlerMappingHolder holder=new DirectAuthenticationHandlerMappingHolder();
   final OpenIdCredentialsAuthenticationHandler handler=new OpenIdCredentialsAuthenticationHandler();
   handler.setTicketRegistry(this.ticketRegistry);
-  holder.setAuthenticationHandler(handler);
+  holder.setAuthenticationHandler(new LegacyAuthenticationHandlerAdapter(handler));
   holder.setCredentialsToPrincipalResolver(new OpenIdCredentialsToPrincipalResolver());
   this.authenticationManager.setCredentialsMapping(credentialsMapping);
   credentialsMapping.put(OpenIdCredentials.class,holder);

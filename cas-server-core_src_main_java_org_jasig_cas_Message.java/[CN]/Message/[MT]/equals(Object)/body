@@ -1,0 +1,10 @@
+{
+  if (other == null || !(other instanceof Message)) {
+    return false;
+  }
+  if (other == this) {
+    return true;
+  }
+  final Message m=(Message)other;
+  return this.code.equals(m.getCode()) && this.defaultMessage.equals(m.getDefaultMessage()) && Arrays.equals(this.params,m.getParams());
+}

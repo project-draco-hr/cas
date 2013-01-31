@@ -1,0 +1,13 @@
+{
+  try {
+    if (this.legacyHandler.authenticate(credential)) {
+      return this.result;
+    }
+ else {
+      throw new GeneralSecurityException(String.format("%s failed to authenticate %s",this.getName(),credential));
+    }
+  }
+ catch (  AuthenticationException e) {
+    throw new GeneralSecurityException(String.format("%s failed to authenticate %s",this.getName(),credential),e);
+  }
+}

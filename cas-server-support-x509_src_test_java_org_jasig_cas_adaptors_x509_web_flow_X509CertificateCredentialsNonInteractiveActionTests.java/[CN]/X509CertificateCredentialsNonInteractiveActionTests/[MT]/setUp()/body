@@ -7,7 +7,8 @@
   final AuthenticationManagerImpl authenticationManager=new AuthenticationManagerImpl();
   final X509CredentialsAuthenticationHandler a=new X509CredentialsAuthenticationHandler();
   a.setTrustedIssuerDnPattern("CN=\\w+,DC=jasig,DC=org");
-  authenticationManager.setAuthenticationHandlers(Arrays.asList(new AuthenticationHandler[]{a}));
+  final AuthenticationHandler[] handlers=new AuthenticationHandler[]{new LegacyAuthenticationHandlerAdapter(a)};
+  authenticationManager.setAuthenticationHandlers(Arrays.asList(handlers));
   authenticationManager.setCredentialsToPrincipalResolvers(Arrays.asList(new CredentialsToPrincipalResolver[]{new X509CertificateCredentialsToSerialNumberPrincipalResolver()}));
   centralAuthenticationService.setTicketGrantingTicketUniqueTicketIdGenerator(new DefaultUniqueTicketIdGenerator());
   centralAuthenticationService.setUniqueTicketIdGeneratorsForService(idGenerators);

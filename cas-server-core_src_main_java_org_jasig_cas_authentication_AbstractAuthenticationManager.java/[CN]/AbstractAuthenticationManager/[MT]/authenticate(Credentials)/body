@@ -4,10 +4,7 @@
   log.info("Authenticated {} with credential {}.",p,credentials);
   log.debug("Attribute map for {}: {}",p.getId(),p.getAttributes());
   Authentication authentication=new MutableAuthentication(p);
-  if (pair.getFirst() instanceof NamedAuthenticationHandler) {
-    final NamedAuthenticationHandler a=(NamedAuthenticationHandler)pair.getFirst();
-    authentication.getAttributes().put(AuthenticationManager.AUTHENTICATION_METHOD_ATTRIBUTE,a.getName());
-  }
+  authentication.getAttributes().put(AuthenticationManager.AUTHENTICATION_METHOD_ATTRIBUTE,pair.getFirst().getName());
   for (  final AuthenticationMetaDataPopulator authenticationMetaDataPopulator : this.authenticationMetaDataPopulators) {
     authentication=authenticationMetaDataPopulator.populateAttributes(authentication,credentials);
   }

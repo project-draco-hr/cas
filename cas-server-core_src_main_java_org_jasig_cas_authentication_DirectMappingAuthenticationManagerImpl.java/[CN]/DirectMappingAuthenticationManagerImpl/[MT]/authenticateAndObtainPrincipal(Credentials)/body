@@ -6,13 +6,13 @@
   boolean authenticated=false;
   AuthenticationException authException=BadCredentialsAuthenticationException.ERROR;
   try {
-    authenticated=d.getAuthenticationHandler().authenticate(credentials);
+    d.getAuthenticationHandler().authenticate(credentials);
+    authenticated=true;
   }
- catch (  AuthenticationException e) {
-    authException=e;
+ catch (  final GeneralSecurityException e) {
     logAuthenticationHandlerError(handlerName,credentials,e);
   }
-catch (  Exception e) {
+catch (  final PreventedException e) {
     logAuthenticationHandlerError(handlerName,credentials,e);
   }
   if (!authenticated) {

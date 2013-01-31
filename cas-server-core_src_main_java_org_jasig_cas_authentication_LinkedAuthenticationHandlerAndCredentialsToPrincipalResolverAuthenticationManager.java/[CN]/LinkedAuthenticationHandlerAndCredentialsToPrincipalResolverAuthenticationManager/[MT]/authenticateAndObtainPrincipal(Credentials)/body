@@ -10,13 +10,13 @@
     boolean authenticated=false;
     handlerName=authenticationHandler.getClass().getName();
     try {
-      authenticated=authenticationHandler.authenticate(credentials);
+      authenticationHandler.authenticate(credentials);
+      authenticated=true;
     }
- catch (    AuthenticationException e) {
-      authException=e;
+ catch (    final GeneralSecurityException e) {
       logAuthenticationHandlerError(handlerName,credentials,e);
     }
-catch (    Exception e) {
+catch (    final PreventedException e) {
       logAuthenticationHandlerError(handlerName,credentials,e);
     }
     if (authenticated) {
