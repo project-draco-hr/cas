@@ -1,10 +1,12 @@
 {
-  if (!exception.getClass().equals(NoSuchFlowExecutionException.class)) {
+  if (!exception.getClass().isAssignableFrom(FlowExecutionRepositoryException.class)) {
     return null;
   }
   final String urlToRedirectTo=request.getRequestURI() + (request.getQueryString() != null ? "?" + request.getQueryString() : "");
   if (log.isDebugEnabled()) {
-    log.debug("Error getting flow information for URL:" + urlToRedirectTo,exception);
+    log.debug("Error getting flow information for URL: {}",urlToRedirectTo,exception);
   }
-  return new ModelAndView(new RedirectView(urlToRedirectTo));
+  final Map<String,Object> model=new HashMap<String,Object>();
+  model.put(this.modelKey,StringEscapeUtils.escapeHtml(exception.getMessage()));
+  return new ModelAndView(new RedirectView(urlToRedirectTo),model);
 }

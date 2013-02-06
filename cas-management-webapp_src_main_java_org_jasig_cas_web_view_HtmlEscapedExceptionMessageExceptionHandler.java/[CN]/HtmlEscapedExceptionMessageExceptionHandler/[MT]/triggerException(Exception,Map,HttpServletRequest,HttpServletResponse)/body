@@ -1,3 +1,0 @@
-{
-  model.put(this.modelKey,StringEscapeUtils.escapeHtml(e.getMessage()));
-}
