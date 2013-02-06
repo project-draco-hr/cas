@@ -1,0 +1,7 @@
+{
+  MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setRequestURI("test");
+  request.setQueryString("execution=e2s1<iframe src=javascript:alert(26748)");
+  ModelAndView model=(this.resolver.resolveException(request,new MockHttpServletResponse(),null,new BadlyFormattedFlowExecutionKeyException("invalidKey","e2s1")));
+  assertEquals(request.getRequestURI() + "?" + request.getQueryString(),((RedirectView)model.getView()).getUrl());
+}
