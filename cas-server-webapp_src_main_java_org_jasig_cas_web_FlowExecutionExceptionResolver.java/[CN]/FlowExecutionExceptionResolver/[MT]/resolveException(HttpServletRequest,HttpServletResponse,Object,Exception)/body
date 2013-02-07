@@ -1,5 +1,5 @@
 {
-  if (!(exception instanceof FlowExecutionRepositoryException)) {
+  if (!(exception instanceof FlowExecutionRepositoryException) || exception instanceof BadlyFormattedFlowExecutionKeyException) {
     log.debug("Ignoring the received exception due to a type mismatch",exception);
     return null;
   }
