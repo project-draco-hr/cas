@@ -6,7 +6,7 @@
     this.manager.authenticate(c);
     fail();
   }
- catch (  final BadCredentialsAuthenticationException e) {
+ catch (  final AuthenticationException e) {
     return;
   }
 }

@@ -11,15 +11,13 @@
       WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
       return result("warn");
     }
- catch (    final TicketException e) {
-      if (e.getCause() != null && AuthenticationException.class.isAssignableFrom(e.getCause().getClass())) {
-        onError(context,credentials);
-        return error();
-      }
+ catch (    final AuthenticationException e) {
+      onError(context,credentials);
+      return error();
+    }
+catch (    final TicketException e) {
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
-      if (logger.isDebugEnabled()) {
-        logger.debug("Attempted to generate a ServiceTicket using renew=true with different credentials",e);
-      }
+      logger.debug("Attempted to generate a ServiceTicket using renew=true with different credentials",e);
     }
   }
   try {
@@ -27,7 +25,7 @@
     onSuccess(context,credentials);
     return success();
   }
- catch (  final TicketException e) {
+ catch (  final Exception e) {
     onError(context,credentials);
     return error();
   }

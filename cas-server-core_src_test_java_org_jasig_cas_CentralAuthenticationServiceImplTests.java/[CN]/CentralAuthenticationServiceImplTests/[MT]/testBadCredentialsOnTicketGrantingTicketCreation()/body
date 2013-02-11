@@ -3,6 +3,6 @@
     getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithDifferentUsernameAndPassword());
     fail(TestUtils.CONST_EXCEPTION_EXPECTED);
   }
- catch (  TicketException e) {
+ catch (  AuthenticationException e) {
   }
 }

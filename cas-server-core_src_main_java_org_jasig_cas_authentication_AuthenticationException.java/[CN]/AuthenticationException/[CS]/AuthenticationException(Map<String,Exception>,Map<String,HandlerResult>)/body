@@ -1,0 +1,3 @@
+{
+  this(String.format("%s errors, %s successes",handlerErrors.size(),handlerSuccesses.size()),handlerErrors,handlerSuccesses);
+}

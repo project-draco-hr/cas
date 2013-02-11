@@ -1,23 +1,18 @@
 {
   Assert.notNull(serviceTicketId,"serviceTicketId cannot be null");
   Assert.notNull(credentials,"credentials cannot be null");
-  try {
-    final Authentication authentication=this.authenticationManager.authenticate(credentials);
-    final ServiceTicket serviceTicket;
-    serviceTicket=(ServiceTicket)this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
-    if (serviceTicket == null || serviceTicket.isExpired()) {
-      throw new InvalidTicketException();
-    }
-    final RegisteredService registeredService=this.servicesManager.findServiceBy(serviceTicket.getService());
-    if (registeredService == null || !registeredService.isEnabled() || !registeredService.isAllowedToProxy()) {
-      log.warn("ServiceManagement: Service Attempted to Proxy, but is not allowed.  Service: [" + serviceTicket.getService().getId() + "]");
-      throw new UnauthorizedProxyingException();
-    }
-    final TicketGrantingTicket ticketGrantingTicket=serviceTicket.grantTicketGrantingTicket(this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),authentication,this.ticketGrantingTicketExpirationPolicy);
-    this.ticketRegistry.addTicket(ticketGrantingTicket);
-    return ticketGrantingTicket.getId();
+  final Authentication authentication=this.authenticationManager.authenticate(credentials);
+  final ServiceTicket serviceTicket;
+  serviceTicket=(ServiceTicket)this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
+  if (serviceTicket == null || serviceTicket.isExpired()) {
+    throw new InvalidTicketException();
   }
- catch (  final AuthenticationException e) {
-    throw new TicketCreationException(e);
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(serviceTicket.getService());
+  if (registeredService == null || !registeredService.isEnabled() || !registeredService.isAllowedToProxy()) {
+    log.warn("ServiceManagement: Service Attempted to Proxy, but is not allowed.  Service: [" + serviceTicket.getService().getId() + "]");
+    throw new UnauthorizedProxyingException();
   }
+  final TicketGrantingTicket ticketGrantingTicket=serviceTicket.grantTicketGrantingTicket(this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),authentication,this.ticketGrantingTicketExpirationPolicy);
+  this.ticketRegistry.addTicket(ticketGrantingTicket);
+  return ticketGrantingTicket.getId();
 }

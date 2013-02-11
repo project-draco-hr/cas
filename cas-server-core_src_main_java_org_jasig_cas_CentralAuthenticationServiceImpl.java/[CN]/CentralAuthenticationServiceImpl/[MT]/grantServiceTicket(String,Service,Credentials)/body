@@ -29,15 +29,10 @@ synchronized (ticketGrantingTicket) {
     }
   }
   if (credentials != null) {
-    try {
-      final Authentication authentication=this.authenticationManager.authenticate(credentials);
-      final Authentication originalAuthentication=ticketGrantingTicket.getAuthentication();
-      if (!(authentication.getPrincipal().equals(originalAuthentication.getPrincipal()) && authentication.getAttributes().equals(originalAuthentication.getAttributes()))) {
-        throw new TicketCreationException();
-      }
-    }
- catch (    final AuthenticationException e) {
-      throw new TicketCreationException(e);
+    final Authentication authentication=this.authenticationManager.authenticate(credentials);
+    final Authentication originalAuthentication=ticketGrantingTicket.getAuthentication();
+    if (!(authentication.getPrincipal().equals(originalAuthentication.getPrincipal()) && authentication.getAttributes().equals(originalAuthentication.getAttributes()))) {
+      throw new TicketCreationException();
     }
   }
   final UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(service.getClass().getName());

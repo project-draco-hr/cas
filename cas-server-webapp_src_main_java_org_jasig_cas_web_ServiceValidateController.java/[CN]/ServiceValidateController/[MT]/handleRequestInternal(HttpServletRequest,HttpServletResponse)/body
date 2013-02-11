@@ -14,7 +14,10 @@
       try {
         proxyGrantingTicketId=this.centralAuthenticationService.delegateTicketGrantingTicket(serviceTicketId,serviceCredentials);
       }
- catch (      final TicketException e) {
+ catch (      final AuthenticationException e) {
+        logger.info("Failed to authenticate " + serviceCredentials);
+      }
+catch (      final TicketException e) {
         logger.error("TicketException generating ticket for: " + serviceCredentials,e);
       }
     }

@@ -4,7 +4,8 @@
     this.manager.authenticate(c);
     fail("Exception expected.");
   }
- catch (  final IllegalArgumentException e) {
-    return;
+ catch (  final AuthenticationException e) {
+    assertEquals(0,e.getHandlerErrors().size());
+    assertEquals(0,e.getHandlerSuccesses().size());
   }
 }

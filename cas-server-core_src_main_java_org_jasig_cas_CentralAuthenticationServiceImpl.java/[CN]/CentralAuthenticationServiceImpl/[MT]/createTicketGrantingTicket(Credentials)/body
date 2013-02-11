@@ -1,12 +1,7 @@
 {
   Assert.notNull(credentials,"credentials cannot be null");
-  try {
-    final Authentication authentication=this.authenticationManager.authenticate(credentials);
-    final TicketGrantingTicket ticketGrantingTicket=new TicketGrantingTicketImpl(this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),authentication,this.ticketGrantingTicketExpirationPolicy);
-    this.ticketRegistry.addTicket(ticketGrantingTicket);
-    return ticketGrantingTicket.getId();
-  }
- catch (  final AuthenticationException e) {
-    throw new TicketCreationException(e);
-  }
+  final Authentication authentication=this.authenticationManager.authenticate(credentials);
+  final TicketGrantingTicket ticketGrantingTicket=new TicketGrantingTicketImpl(this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),authentication,this.ticketGrantingTicketExpirationPolicy);
+  this.ticketRegistry.addTicket(ticketGrantingTicket);
+  return ticketGrantingTicket.getId();
 }
