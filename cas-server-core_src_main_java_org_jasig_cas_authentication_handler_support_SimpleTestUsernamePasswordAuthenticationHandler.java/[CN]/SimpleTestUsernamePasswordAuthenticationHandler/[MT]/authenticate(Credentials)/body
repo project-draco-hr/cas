@@ -1,0 +1,24 @@
+{
+  final UsernamePasswordCredentials passwordCredential=(UsernamePasswordCredentials)credential;
+  final String username=passwordCredential.getUsername();
+  final String password=passwordCredential.getPassword();
+  final Exception exception=this.usernameErrorMap.get(username);
+  if (exception instanceof GeneralSecurityException) {
+    throw (GeneralSecurityException)exception;
+  }
+ else   if (exception instanceof PreventedException) {
+    throw (PreventedException)exception;
+  }
+ else   if (exception instanceof RuntimeException) {
+    throw (RuntimeException)exception;
+  }
+ else   if (exception != null) {
+    log.debug("Cannot throw checked exception {} since it is not declared by method signature.",exception);
+  }
+  if (StringUtils.hasText(username) && StringUtils.hasText(password) && username.equals(password)) {
+    log.debug("User [{}] was successfully authenticated.",username);
+    return new HandlerResult(this);
+  }
+  log.debug("User [{}] failed authentication",username);
+  throw new FailedLoginException();
+}

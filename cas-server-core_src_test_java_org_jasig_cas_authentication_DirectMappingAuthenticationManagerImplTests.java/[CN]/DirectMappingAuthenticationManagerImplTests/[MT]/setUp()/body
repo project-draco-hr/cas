@@ -5,7 +5,7 @@
   populators.add(new SamlAuthenticationMetaDataPopulator());
   this.manager.setAuthenticationMetaDataPopulators(populators);
   final DirectAuthenticationHandlerMappingHolder d=new DirectAuthenticationHandlerMappingHolder();
-  d.setAuthenticationHandler(new LegacyAuthenticationHandlerAdapter(new SimpleTestUsernamePasswordAuthenticationHandler()));
+  d.setAuthenticationHandler(new SimpleTestUsernamePasswordAuthenticationHandler());
   d.setCredentialsToPrincipalResolver(new UsernamePasswordCredentialsToPrincipalResolver());
   mappings.put(UsernamePasswordCredentials.class,d);
   this.manager.setCredentialsMapping(mappings);

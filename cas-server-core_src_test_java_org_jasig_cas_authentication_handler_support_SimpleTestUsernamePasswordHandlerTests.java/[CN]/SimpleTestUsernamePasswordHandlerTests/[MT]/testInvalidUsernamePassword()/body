@@ -1,7 +1,3 @@
 {
-  try {
-    assertFalse(this.authenticationHandler.authenticate(TestUtils.getCredentialsWithDifferentUsernameAndPassword()));
-  }
- catch (  AuthenticationException ae) {
-  }
+  this.authenticationHandler.authenticate(TestUtils.getCredentialsWithDifferentUsernameAndPassword());
 }

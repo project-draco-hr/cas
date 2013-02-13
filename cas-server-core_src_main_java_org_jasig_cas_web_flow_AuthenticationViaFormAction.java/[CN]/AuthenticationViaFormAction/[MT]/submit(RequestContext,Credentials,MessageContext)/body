@@ -2,10 +2,9 @@
   final String authoritativeLoginTicket=WebUtils.getLoginTicketFromFlowScope(context);
   final String providedLoginTicket=WebUtils.getLoginTicketFromRequest(context);
   if (!authoritativeLoginTicket.equals(providedLoginTicket)) {
-    this.logger.warn("Invalid login ticket " + providedLoginTicket);
-    final String code="INVALID_TICKET";
-    messageContext.addMessage(new MessageBuilder().error().code(code).arg(providedLoginTicket).defaultText(code).build());
-    return "error";
+    this.logger.warn("Invalid login ticket {}",providedLoginTicket);
+    messageContext.addMessage(new MessageBuilder().code("error.invalid.loginticket").build());
+    return newEvent(ERROR);
   }
   final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
   final Service service=WebUtils.getService(context);
@@ -14,27 +13,28 @@
       final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credentials);
       WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
       putWarnCookieIfRequestParameterPresent(context);
-      return "warn";
+      return newEvent(WARN);
     }
- catch (    final TicketException e) {
-      if (isCauseAuthenticationException(e)) {
-        populateErrorsInstance(e,messageContext);
-        return getAuthenticationExceptionEventId(e);
-      }
+ catch (    final AuthenticationException e) {
+      return newEvent(AUTHENTICATION_FAILURE,e);
+    }
+catch (    final TicketCreationException e) {
+      logger.warn("Invalid attempt to access service using renew=true with different credentials. Ending SSO session.");
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
-      if (logger.isDebugEnabled()) {
-        logger.debug("Attempted to generate a ServiceTicket using renew=true with different credentials",e);
-      }
+    }
+catch (    final TicketException e) {
+      return newEvent(ERROR,e);
     }
   }
   try {
     WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credentials));
     putWarnCookieIfRequestParameterPresent(context);
-    return "success";
+    return newEvent(SUCCESS);
   }
- catch (  final TicketException e) {
-    populateErrorsInstance(e,messageContext);
-    if (isCauseAuthenticationException(e))     return getAuthenticationExceptionEventId(e);
-    return "error";
+ catch (  final AuthenticationException e) {
+    return newEvent(AUTHENTICATION_FAILURE,e);
+  }
+catch (  final Exception e) {
+    return newEvent(ERROR,e);
   }
 }
