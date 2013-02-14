@@ -1,0 +1,11 @@
+{
+  final Map<String,String> attributesToFilter=new HashMap<String,String>(valuesToFilter.size());
+  for (  final String attributeName : valuesToFilter.keySet()) {
+    final String attributeValue=valuesToFilter.get(attributeName);
+    if (patternMatchesAttributeValue(attributeValue)) {
+      logReleasedAttributeEntry(attributeName,attributeValue);
+      attributesToFilter.put(attributeName,valuesToFilter.get(attributeName));
+    }
+  }
+  return attributesToFilter;
+}

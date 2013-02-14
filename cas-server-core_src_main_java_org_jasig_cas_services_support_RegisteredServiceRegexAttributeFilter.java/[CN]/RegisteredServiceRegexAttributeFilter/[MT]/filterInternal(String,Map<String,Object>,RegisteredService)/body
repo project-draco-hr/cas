@@ -1,0 +1,33 @@
+{
+  final Map<String,Object> attributesToRelease=new HashMap<String,Object>();
+  for (  final String attributeName : givenAttributes.keySet()) {
+    final Object attributeValue=givenAttributes.get(attributeName);
+    log.debug("Received attribute [{}] with value [{}]",attributeName,attributeValue);
+    if (attributeValue != null) {
+      if (attributeValue instanceof Collection) {
+        final String[] filteredAttributes=filterArrayAttributes(((Collection<String>)attributeValue).toArray(new String[]{}),attributeName);
+        if (filteredAttributes.length > 0) {
+          attributesToRelease.put(attributeName,filteredAttributes);
+        }
+      }
+ else       if (attributeValue.getClass().isArray()) {
+        final String[] filteredAttributes=filterArrayAttributes((String[])attributeValue,attributeName);
+        if (filteredAttributes.length > 0) {
+          attributesToRelease.put(attributeName,filteredAttributes);
+        }
+      }
+ else       if (attributeValue instanceof Map) {
+        final Map<String,String> filteredAttributes=filterMapAttributes((Map<String,String>)attributeValue);
+        if (filteredAttributes.size() > 0) {
+          attributesToRelease.put(attributeName,filteredAttributes);
+        }
+      }
+ else       if (patternMatchesAttributeValue(attributeValue.toString())) {
+        logReleasedAttributeEntry(attributeName,attributeValue.toString());
+        attributesToRelease.put(attributeName,attributeValue);
+      }
+    }
+  }
+  log.debug("Total number of attributes received is {} and total number of attributes filtered and released is {}",givenAttributes.size(),attributesToRelease.size());
+  return attributesToRelease;
+}
