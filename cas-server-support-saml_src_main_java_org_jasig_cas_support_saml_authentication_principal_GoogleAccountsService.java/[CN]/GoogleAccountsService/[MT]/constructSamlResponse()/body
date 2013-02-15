@@ -1,0 +1,28 @@
+{
+  String samlResponse=TEMPLATE_SAML_RESPONSE;
+  final Calendar c=Calendar.getInstance();
+  c.setTime(new Date());
+  c.add(Calendar.YEAR,1);
+  final String userId;
+  if (this.alternateUserName == null) {
+    userId=getPrincipal().getId();
+  }
+ else {
+    final String attributeValue=(String)getPrincipal().getAttributes().get(this.alternateUserName);
+    if (attributeValue == null) {
+      userId=getPrincipal().getId();
+    }
+ else {
+      userId=attributeValue;
+    }
+  }
+  samlResponse=samlResponse.replace("<USERNAME_STRING>",userId);
+  samlResponse=samlResponse.replace("<RESPONSE_ID>",createID());
+  samlResponse=samlResponse.replace("<ISSUE_INSTANT>",SamlDateUtils.getCurrentDateAndTime());
+  samlResponse=samlResponse.replace("<AUTHN_INSTANT>",SamlDateUtils.getCurrentDateAndTime());
+  samlResponse=samlResponse.replaceAll("<NOT_ON_OR_AFTER>",SamlDateUtils.getFormattedDateAndTime(c.getTime()));
+  samlResponse=samlResponse.replace("<ASSERTION_ID>",createID());
+  samlResponse=samlResponse.replaceAll("<ACS_URL>",getId());
+  samlResponse=samlResponse.replace("<REQUEST_ID>",this.requestId);
+  return samlResponse;
+}
