@@ -1,0 +1,16 @@
+{
+  when(this.registeredService.isIgnoreAttributes()).thenReturn(false);
+  final Map<String,Object> attrs=this.filter.filter("test",this.givenAttributesMap,this.registeredService);
+  assertEquals(attrs.size(),3);
+  assertFalse(attrs.containsKey("phone"));
+  assertFalse(attrs.containsKey("givenName"));
+  assertTrue(attrs.containsKey("uid"));
+  assertTrue(attrs.containsKey("memberOf"));
+  assertTrue(attrs.containsKey("mapAttribute"));
+  final Map<String,String> mapAttributes=(Map<String,String>)attrs.get("mapAttribute");
+  assertTrue(mapAttributes.containsKey("uid"));
+  assertTrue(mapAttributes.containsKey("familyName"));
+  assertFalse(mapAttributes.containsKey("phone"));
+  final String[] arrayAttrs=(String[])attrs.get("memberOf");
+  assertEquals(arrayAttrs.length,2);
+}
