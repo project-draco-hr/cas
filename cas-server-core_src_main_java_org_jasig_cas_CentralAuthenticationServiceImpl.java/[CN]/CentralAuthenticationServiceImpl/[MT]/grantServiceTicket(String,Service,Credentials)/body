@@ -3,13 +3,13 @@
   Assert.notNull(service,"service cannot be null");
   final TicketGrantingTicket ticketGrantingTicket=(TicketGrantingTicket)this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   if (ticketGrantingTicket == null) {
-    log.debug("Ticket-grant ticket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
+    log.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
     throw new InvalidTicketException(ticketGrantingTicketId);
   }
 synchronized (ticketGrantingTicket) {
     if (ticketGrantingTicket.isExpired()) {
       this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
-      log.debug("Ticket-grant ticket [{}] has expired and is now deleted from the ticket registry.",ticketGrantingTicketId);
+      log.debug("TicketGrantingTicket[{}] has expired and is now deleted from the ticket registry.",ticketGrantingTicketId);
       throw new InvalidTicketException(ticketGrantingTicketId);
     }
   }
@@ -19,7 +19,7 @@ synchronized (ticketGrantingTicket) {
     throw new UnauthorizedServiceException();
   }
   if (!registeredService.isSsoEnabled() && credentials == null && ticketGrantingTicket.getCountOfUses() > 0) {
-    log.warn("ServiceManagement: Service is [{}] not allowed to use SSO.",service.getId());
+    log.warn("ServiceManagement: Service [{}] is not allowed to use SSO.",service.getId());
     throw new UnauthorizedSsoServiceException();
   }
   final List<Authentication> authns=ticketGrantingTicket.getChainedAuthentications();

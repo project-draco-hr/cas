@@ -4,8 +4,9 @@
   final ServiceTicket serviceTicket=(ServiceTicket)this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService == null || !registeredService.isEnabled()) {
-    log.warn("ServiceManagement: Service [{}] does not exist or is not enabled, and thus not allowed to validate tickets.",service.getId());
-    throw new UnauthorizedServiceException("Service is not allowed to validate tickets.");
+    final String msg=String.format("ServiceManagement: Service [%s] does not exist or is not enabled, and thus not allowed to validate tickets.",service.getId());
+    log.warn(msg);
+    throw new UnauthorizedServiceException(msg);
   }
   if (serviceTicket == null) {
     log.info("ServiceTicket [{}] does not exist.",serviceTicketId);
@@ -14,7 +15,7 @@
   try {
 synchronized (serviceTicket) {
       if (serviceTicket.isExpired()) {
-        log.info("Service ticket [{}] has expired.",serviceTicketId);
+        log.info("ServiceTicket [{}] has expired.",serviceTicketId);
         throw new InvalidTicketException(serviceTicketId);
       }
       if (!serviceTicket.isValidFor(service)) {

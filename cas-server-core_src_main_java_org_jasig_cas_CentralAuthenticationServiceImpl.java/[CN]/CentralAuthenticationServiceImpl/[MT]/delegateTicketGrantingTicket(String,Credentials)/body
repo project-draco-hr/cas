@@ -6,7 +6,7 @@
     final ServiceTicket serviceTicket;
     serviceTicket=(ServiceTicket)this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
     if (serviceTicket == null || serviceTicket.isExpired()) {
-      log.debug("Service ticket [{}] has expired or cannot be found in the ticket registry",serviceTicketId);
+      log.debug("ServiceTicket [{}] has expired or cannot be found in the ticket registry",serviceTicketId);
       throw new InvalidTicketException(serviceTicketId);
     }
     final RegisteredService registeredService=this.servicesManager.findServiceBy(serviceTicket.getService());
