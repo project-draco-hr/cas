@@ -1,9 +1,10 @@
 {
   final String userName=request.getRemoteUser();
-  log.debug("Handling clearPass request for user " + userName);
+  log.debug("Handling clearPass request for user [{}]",userName);
   if (userName != null) {
     final String password=this.credentialsCache.get(userName);
+    log.debug("Retrieved user credentials successfully from clearPass. Credentials will be provided to the requesting service.");
     return new ModelAndView(this.successView,MODEL_CLEARPASS,password);
   }
-  return returnError("No authentication information provided.");
+  return returnError("No username was provided to clearPass.");
 }
