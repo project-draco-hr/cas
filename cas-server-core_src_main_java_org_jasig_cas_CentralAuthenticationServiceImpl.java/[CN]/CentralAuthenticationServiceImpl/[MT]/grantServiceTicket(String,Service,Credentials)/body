@@ -1,7 +1,7 @@
 {
   Assert.notNull(ticketGrantingTicketId,"ticketGrantingticketId cannot be null");
   Assert.notNull(service,"service cannot be null");
-  final TicketGrantingTicket ticketGrantingTicket=(TicketGrantingTicket)this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
+  final TicketGrantingTicket ticketGrantingTicket=this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   if (ticketGrantingTicket == null) {
     throw new InvalidTicketException();
   }
