@@ -2,7 +2,7 @@
   Assert.notNull(serviceTicketId,"serviceTicketId cannot be null");
   Assert.notNull(credentials,"credentials cannot be null");
   try {
-    final ServiceTicket serviceTicket=(ServiceTicket)this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
+    final ServiceTicket serviceTicket=this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
     if (serviceTicket == null || serviceTicket.isExpired()) {
       throw new InvalidTicketException();
     }
