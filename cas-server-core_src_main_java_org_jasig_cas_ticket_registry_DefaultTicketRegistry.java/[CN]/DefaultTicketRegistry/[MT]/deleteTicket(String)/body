@@ -2,8 +2,6 @@
   if (ticketId == null) {
     return false;
   }
-  if (log.isDebugEnabled()) {
-    log.debug("Removing ticket [" + ticketId + "] from registry");
-  }
+  log.debug("Removing ticket [{}] from registry",ticketId);
   return (this.cache.remove(ticketId) != null);
 }

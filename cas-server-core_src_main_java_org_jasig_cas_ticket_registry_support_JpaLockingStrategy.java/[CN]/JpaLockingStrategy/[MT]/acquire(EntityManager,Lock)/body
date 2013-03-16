@@ -11,7 +11,7 @@
   boolean success=false;
   try {
     if (lock.getApplicationId() != null) {
-      lock=em.merge(lock);
+      em.merge(lock);
     }
  else {
       lock.setApplicationId(applicationId);
@@ -19,13 +19,13 @@
     }
     success=true;
   }
- catch (  PersistenceException e) {
+ catch (  final PersistenceException e) {
     success=false;
-    if (logger.isDebugEnabled()) {
-      logger.debug("{} could not obtain {} lock.",new Object[]{uniqueId,applicationId,e});
+    if (log.isDebugEnabled()) {
+      log.debug("{} could not obtain {} lock.",new Object[]{uniqueId,applicationId,e});
     }
  else {
-      logger.info("{} could not obtain {} lock.",uniqueId,applicationId);
+      log.info("{} could not obtain {} lock.",uniqueId,applicationId);
     }
   }
   return success;

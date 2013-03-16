@@ -3,5 +3,4 @@
   this.expirationPolicy.setTimeToKillInMilliSeconds(TIMEOUT);
   this.expirationPolicy.setTimeInBetweenUsesInMilliSeconds(1000);
   this.ticket=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),this.expirationPolicy);
-  super.setUp();
 }

@@ -1,8 +1,3 @@
 {
-  try {
-    new TicketGrantingTicketImpl("test",null,null,new NeverExpiresExpirationPolicy());
-    fail("Exception expected.");
-  }
- catch (  Exception e) {
-  }
+  new TicketGrantingTicketImpl("test",null,null,new NeverExpiresExpirationPolicy());
 }
