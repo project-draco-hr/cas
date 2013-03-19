@@ -3,27 +3,29 @@
   Assert.notNull(service,"service cannot be null");
   final TicketGrantingTicket ticketGrantingTicket=this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   if (ticketGrantingTicket == null) {
-    throw new InvalidTicketException();
+    log.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
+    throw new InvalidTicketException(ticketGrantingTicketId);
   }
 synchronized (ticketGrantingTicket) {
     if (ticketGrantingTicket.isExpired()) {
       this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
-      throw new InvalidTicketException();
+      log.debug("TicketGrantingTicket[{}] has expired and is now deleted from the ticket registry.",ticketGrantingTicketId);
+      throw new InvalidTicketException(ticketGrantingTicketId);
     }
   }
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService == null || !registeredService.isEnabled()) {
-    log.warn("ServiceManagement: Unauthorized Service Access. Service [" + service.getId() + "] not found in Service Registry.");
+    log.warn("ServiceManagement: Unauthorized Service Access. Service [{}] is not found in service registry.",service.getId());
     throw new UnauthorizedServiceException();
   }
   if (!registeredService.isSsoEnabled() && credentials == null && ticketGrantingTicket.getCountOfUses() > 0) {
-    log.warn("ServiceManagement: Service Not Allowed to use SSO.  Service [" + service.getId() + "]");
+    log.warn("ServiceManagement: Service [{}] is not allowed to use SSO.",service.getId());
     throw new UnauthorizedSsoServiceException();
   }
   final List<Authentication> authns=ticketGrantingTicket.getChainedAuthentications();
   if (authns.size() > 1) {
     if (!registeredService.isAllowedToProxy()) {
-      final String message=String.format("ServiceManagement: Service Attempted to Proxy, but is not allowed. Service: [%s] | Registered Service: [%s]",service.getId(),registeredService.toString());
+      final String message=String.format("ServiceManagement: Proxy attempt by service [%s] (registered service [%s]) is not allowed.",service.getId(),registeredService.toString());
       log.warn(message);
       throw new UnauthorizedProxyingException(message);
     }
