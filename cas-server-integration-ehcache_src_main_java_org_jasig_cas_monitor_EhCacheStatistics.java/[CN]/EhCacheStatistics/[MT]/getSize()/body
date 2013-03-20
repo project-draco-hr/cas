@@ -1,5 +1,5 @@
 {
-  final LiveCacheStatistics statistics=cache.getLiveCacheStatistics();
+  final StatisticsGateway statistics=cache.getStatistics();
   if (useBytes) {
     diskSize=statistics.getLocalDiskSizeInBytes();
     heapSize=statistics.getLocalHeapSizeInBytes();
