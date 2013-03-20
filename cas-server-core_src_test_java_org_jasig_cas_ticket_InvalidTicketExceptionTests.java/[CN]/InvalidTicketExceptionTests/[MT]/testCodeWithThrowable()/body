@@ -1,5 +1,5 @@
 {
   final AuthenticationException a=new BadCredentialsAuthenticationException();
-  final TicketException t=new InvalidTicketException(a);
+  final TicketException t=new InvalidTicketException(a,"InvalidTicketId");
   assertEquals(a.toString(),t.getCode());
 }
