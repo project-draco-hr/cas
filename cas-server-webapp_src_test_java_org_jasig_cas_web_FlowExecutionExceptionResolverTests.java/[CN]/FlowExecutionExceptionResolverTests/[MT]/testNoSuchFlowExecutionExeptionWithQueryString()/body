@@ -2,18 +2,18 @@
   MockHttpServletRequest request=new MockHttpServletRequest();
   request.setRequestURI("test");
   request.setQueryString("test=test");
-  ModelAndView model=(this.resolver.resolveException(request,new MockHttpServletResponse(),null,new NoSuchFlowExecutionException(new FlowExecutionKey(){
+  ModelAndView model=this.resolver.resolveException(request,new MockHttpServletResponse(),null,new NoSuchFlowExecutionException(new FlowExecutionKey(){
     private static final long serialVersionUID=-4750073902540974152L;
-    public String toString(){
+    @Override public String toString(){
       return "test";
     }
-    @Override public boolean equals(    Object o){
+    @Override public boolean equals(    final Object o){
       return true;
     }
     @Override public int hashCode(){
       return 0;
     }
   }
-,new RuntimeException())));
+,new RuntimeException()));
   assertEquals(request.getRequestURI() + "?" + request.getQueryString(),((RedirectView)model.getView()).getUrl());
 }

@@ -1,7 +1,7 @@
 {
   loginUnsuccessfully("mog","1.2.3.4").getStatus();
   for (int i=0; i < trials; i++) {
-    logger.debug("Waiting for {} ms",period);
+    log.debug("Waiting for {} ms",period);
     Thread.sleep(period);
     assertEquals(expected,loginUnsuccessfully("mog","1.2.3.4").getStatus());
   }

@@ -1,9 +1,5 @@
 {
   this.serviceValidateController.setValidationSpecificationClass(MockValidationSpecification.class);
-  try {
-    assertEquals(CONST_FAILURE_VIEW,this.serviceValidateController.handleRequestInternal(getHttpServletRequest(),new MockHttpServletResponse()).getViewName());
-    fail(TestUtils.CONST_EXCEPTION_EXPECTED);
-  }
- catch (  RuntimeException e) {
-  }
+  assertEquals(CONST_FAILURE_VIEW,this.serviceValidateController.handleRequestInternal(getHttpServletRequest(),new MockHttpServletResponse()).getViewName());
+  fail(TestUtils.CONST_EXCEPTION_EXPECTED);
 }
