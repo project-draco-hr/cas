@@ -1,10 +1,14 @@
 {
-  if (value == null)   return null;
+  if (value == null) {
+    return null;
+  }
   try {
     final Cipher cipher=getCipherObject();
     cipher.init(Cipher.ENCRYPT_MODE,this.key);
     AlgorithmParameters params=cipher.getParameters();
-    if (hashedKey != null)     algorithmParametersHashMap.put(hashedKey,params.getParameterSpec(IvParameterSpec.class));
+    if (hashedKey != null) {
+      algorithmParametersHashMap.put(hashedKey,params.getParameterSpec(IvParameterSpec.class));
+    }
     byte[] valueByteArray=value.getBytes();
     byte[] encryptedByteArray=cipher.doFinal(valueByteArray);
     byte[] encrypted64ByteValue=new Base64().encode(encryptedByteArray);

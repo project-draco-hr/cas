@@ -1,5 +1,7 @@
 {
-  if (value == null)   return null;
+  if (value == null) {
+    return null;
+  }
   try {
     final Cipher cipher=getCipherObject();
     byte[] ivByteArray=algorithmParametersHashMap.get(hashedKey).getIV();
