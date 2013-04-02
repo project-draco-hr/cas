@@ -12,7 +12,7 @@
     kryo.register(SamlService.class,new SamlServiceSerializer(kryo,fieldHelper));
   }
  catch (  NoClassDefFoundError e) {
-    logger.warn("SAML serialization won't be supported by Kryo : please check that the cas-server-support-saml module is in the classpath if necessary");
+    log.warn("SAML serialization won't be supported by Kryo : please check that the cas-server-support-saml module is in the classpath if necessary");
   }
   kryo.register(ServiceTicketImpl.class);
   kryo.register(SimplePrincipal.class,new SimplePrincipalSerializer(kryo));

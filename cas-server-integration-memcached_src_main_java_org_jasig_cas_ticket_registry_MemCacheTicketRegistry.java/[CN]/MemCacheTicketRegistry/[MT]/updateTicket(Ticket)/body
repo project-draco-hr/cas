@@ -6,7 +6,7 @@
     }
   }
  catch (  final InterruptedException e) {
-    log.warn("Interrupted while waiting for response to async replace operation for ticket {}. " + "Cannot determine whether update was successful.",ticket);
+    log.warn("Interrupted while waiting for response to async replace operation for ticket {}. Cannot determine whether update was successful.",ticket);
   }
 catch (  final Exception e) {
     log.error("Failed updating {}",ticket,e);

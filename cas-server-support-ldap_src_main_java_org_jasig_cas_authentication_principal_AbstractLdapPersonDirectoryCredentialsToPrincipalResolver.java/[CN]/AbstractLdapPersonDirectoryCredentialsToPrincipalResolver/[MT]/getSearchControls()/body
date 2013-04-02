@@ -1,8 +1,6 @@
 {
   final SearchControls constraints=new SearchControls();
-  if (log.isDebugEnabled()) {
-    log.debug("returning searchcontrols: scope=" + this.scope + "; search base="+ this.searchBase+ "; attributes="+ Arrays.toString(this.attributeIds)+ "; timeout="+ this.timeout);
-  }
+  log.debug("returning search controls: scope={}; search base={}; attributes={}; timeout=",this.scope,this.searchBase,Arrays.toString(this.attributeIds),this.timeout);
   constraints.setSearchScope(this.scope);
   constraints.setReturningAttributes(this.attributeIds);
   constraints.setTimeLimit(this.timeout);

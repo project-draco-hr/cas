@@ -1,8 +1,12 @@
 {
   DateTime dateValue=null;
-  if (isUsingActiveDirectory())   dateValue=convertDateToActiveDirectoryFormat(ldapDateResult);
- else   dateValue=formatDateByPattern(ldapDateResult);
+  if (isUsingActiveDirectory()) {
+    dateValue=convertDateToActiveDirectoryFormat(ldapDateResult);
+  }
+ else {
+    dateValue=formatDateByPattern(ldapDateResult);
+  }
   DateTime expireDate=dateValue.plusDays(this.validDays);
-  logDebug("Retrieved date value " + dateValue.toString() + " for date attribute "+ this.dateAttribute+ " and added "+ this.validDays+ " days. The final expiration date is "+ expireDate.toString());
+  log.debug("Retrieved date value {} for date attribute {} and added {} days. The final expiration date is {}",dateValue.toString(),this.dateAttribute,this.validDays,expireDate.toString());
   return expireDate;
 }
