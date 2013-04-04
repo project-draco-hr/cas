@@ -5,11 +5,11 @@
   }
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService == null) {
-    logger.warn("Unauthorized Service Access for Service: [ {} ] - service is not defined in the service registry.",service.getId());
+    log.warn("Unauthorized Service Access for Service: [ {} ] - service is not defined in the service registry.",service.getId());
     throw new UnauthorizedServiceException();
   }
  else   if (!registeredService.isEnabled()) {
-    logger.warn("Unauthorized Service Access for Service: [ {} ] - service is not enabled in the service registry.",service.getId());
+    log.warn("Unauthorized Service Access for Service: [ {} ] - service is not enabled in the service registry.",service.getId());
     throw new UnauthorizedServiceException();
   }
   return success();

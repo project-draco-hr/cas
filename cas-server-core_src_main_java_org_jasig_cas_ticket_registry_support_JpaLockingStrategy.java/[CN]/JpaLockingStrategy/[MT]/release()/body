@@ -7,7 +7,7 @@
   if (uniqueId.equals(owner)) {
     lock.setUniqueId(null);
     lock.setExpirationDate(null);
-    logger.debug("Releasing {} lock held by {}.",applicationId,uniqueId);
+    log.debug("Releasing {} lock held by {}.",applicationId,uniqueId);
     entityManager.persist(lock);
   }
  else {

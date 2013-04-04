@@ -1,21 +1,15 @@
 {
   final String transformedUsername=getPrincipalNameTransformer().transform(credentials.getUsername());
   try {
-    if (log.isDebugEnabled()) {
-      log.debug("Attempting authentication for: " + transformedUsername);
-    }
+    log.debug("Attempting authentication for: {}",transformedUsername);
     final LoginContext lc=new LoginContext(this.realm,new UsernamePasswordCallbackHandler(transformedUsername,credentials.getPassword()));
     lc.login();
     lc.logout();
   }
  catch (  final LoginException fle) {
-    if (log.isDebugEnabled()) {
-      log.debug("Authentication failed for: " + transformedUsername);
-    }
+    log.debug("Authentication failed for: {}",transformedUsername);
     return false;
   }
-  if (log.isDebugEnabled()) {
-    log.debug("Authentication succeeded for: " + transformedUsername);
-  }
+  log.debug("Authentication succeeded for: {}",transformedUsername);
   return true;
 }

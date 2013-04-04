@@ -1,5 +1,5 @@
 {
-  if ("POST".equals(request.getMethod()) && (("check_authentication".equals(request.getParameter("openid.mode"))) || ("associate".equals(request.getParameter("openid.mode"))))) {
+  if ("POST".equals(request.getMethod()) && ("check_authentication".equals(request.getParameter("openid.mode")) || "associate".equals(request.getParameter("openid.mode")))) {
     return super.lookupHandler(urlPath,request);
   }
   return null;

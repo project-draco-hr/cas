@@ -9,11 +9,8 @@
   final String ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
   try {
     getCentralAuthenticationService().grantServiceTicket(ticketId,TestUtils.getService());
-    fail(TestUtils.CONST_EXCEPTION_EXPECTED);
   }
- catch (  TicketException e) {
-  }
- finally {
+  finally {
     ((CentralAuthenticationServiceImpl)getCentralAuthenticationService()).setTicketGrantingTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
   }
 }

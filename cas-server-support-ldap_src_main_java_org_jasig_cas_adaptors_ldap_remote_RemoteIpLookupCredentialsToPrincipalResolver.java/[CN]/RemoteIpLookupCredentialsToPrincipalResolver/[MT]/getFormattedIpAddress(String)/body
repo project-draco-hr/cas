@@ -4,8 +4,7 @@
     if (this.ipAddressFormat.compareTo(ADDR_EDIR87) == 0) {
       String networkAddress="\\31\\23";
       String[] octets=formattedAddress.replace('.','_').split("_");
-      for (int i=0; i < octets.length; i++) {
-        String octet=octets[i];
+      for (      String octet : octets) {
         networkAddress+="\\" + getHexadecimal(octet);
       }
       return networkAddress;

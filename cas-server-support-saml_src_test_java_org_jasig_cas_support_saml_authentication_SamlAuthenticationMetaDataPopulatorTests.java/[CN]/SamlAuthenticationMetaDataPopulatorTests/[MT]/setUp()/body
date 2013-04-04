@@ -1,4 +1,3 @@
 {
   this.populator=new SamlAuthenticationMetaDataPopulator();
-  super.setUp();
 }

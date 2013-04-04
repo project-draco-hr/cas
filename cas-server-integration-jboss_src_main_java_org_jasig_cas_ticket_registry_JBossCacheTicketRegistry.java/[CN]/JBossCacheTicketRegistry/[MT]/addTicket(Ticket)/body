@@ -1,8 +1,6 @@
 {
   try {
-    if (log.isDebugEnabled()) {
-      log.debug("Adding ticket to registry for: " + ticket.getId());
-    }
+    log.debug("Adding ticket to registry for: {}",ticket.getId());
     this.cache.put(FQN_TICKET,ticket.getId(),ticket);
   }
  catch (  final CacheException e) {

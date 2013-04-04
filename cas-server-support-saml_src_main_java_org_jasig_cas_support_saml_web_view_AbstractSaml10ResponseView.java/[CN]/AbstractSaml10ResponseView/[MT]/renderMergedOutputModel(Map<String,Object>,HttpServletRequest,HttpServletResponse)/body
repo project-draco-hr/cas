@@ -21,7 +21,7 @@
     this.encoder.encode(messageContext);
   }
  catch (  final Exception e) {
-    this.log.error("Error generating SAML response for service {}.",serviceId);
+    log.error("Error generating SAML response for service {}.",serviceId);
     throw e;
   }
 }

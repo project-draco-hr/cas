@@ -13,7 +13,7 @@
     }
   }
  catch (  Exception e) {
-    logger.debug("testConcurrentServiceTicketGeneration produced an error",e);
+    log.debug("testConcurrentServiceTicketGeneration produced an error",e);
     fail("testConcurrentServiceTicketGeneration failed.");
   }
  finally {

@@ -7,10 +7,10 @@
   try {
     final RadiusPacket response=radiusClient.authenticate(request,this.radiusAuthenticator,this.retries);
     if (response instanceof AccessAccept) {
-      LOG.debug("Authentication request suceeded for host:" + this.inetAddress.getCanonicalHostName() + " and username "+ usernamePasswordCredentials.getUsername());
+      log.debug("Authentication request suceeded for host:" + this.inetAddress.getCanonicalHostName() + " and username "+ usernamePasswordCredentials.getUsername());
       return true;
     }
-    LOG.debug("Authentication request failed for host:" + this.inetAddress.getCanonicalHostName() + " and username "+ usernamePasswordCredentials.getUsername());
+    log.debug("Authentication request failed for host:" + this.inetAddress.getCanonicalHostName() + " and username "+ usernamePasswordCredentials.getUsername());
     return false;
   }
  catch (  final UnknownAttributeException e) {

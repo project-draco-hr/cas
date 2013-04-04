@@ -1,9 +1,12 @@
 {
   final String[] objectclasses=ctx.getStringAttributes(OBJECTCLASS_ATTRIBUTE);
-  if (objectclasses == null || objectclasses.length == 0)   return false;
-  for (int i=0; i < objectclasses.length; i++) {
-    final String ocls=objectclasses[i];
-    if (ocls.equalsIgnoreCase(objectclass))     return true;
+  if (objectclasses == null || objectclasses.length == 0) {
+    return false;
+  }
+  for (  final String ocls : objectclasses) {
+    if (ocls.equalsIgnoreCase(objectclass)) {
+      return true;
+    }
   }
   return false;
 }

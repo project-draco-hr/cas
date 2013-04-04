@@ -2,7 +2,7 @@
   for (  final RadiusServer radiusServer : this.servers) {
     try {
       final boolean response=radiusServer.authenticate(credentials);
-      if (response || (!response && !this.failoverOnAuthenticationFailure)) {
+      if (response || !response && !this.failoverOnAuthenticationFailure) {
         return response;
       }
       log.debug("Failing over to next handler because failoverOnAuthenticationFailure is set to true.");

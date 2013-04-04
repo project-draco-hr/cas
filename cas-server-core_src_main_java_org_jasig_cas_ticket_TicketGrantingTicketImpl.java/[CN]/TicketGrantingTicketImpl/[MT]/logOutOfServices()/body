@@ -1,7 +1,7 @@
 {
   for (  final Entry<String,Service> entry : this.services.entrySet()) {
     if (!entry.getValue().logOutOfService(entry.getKey())) {
-      LOG.warn("Logout message not sent to [" + entry.getValue().getId() + "]; Continuing processing...");
+      log.warn("Logout message not sent to [[]]; Continuing processing...",entry.getValue().getId());
     }
   }
 }

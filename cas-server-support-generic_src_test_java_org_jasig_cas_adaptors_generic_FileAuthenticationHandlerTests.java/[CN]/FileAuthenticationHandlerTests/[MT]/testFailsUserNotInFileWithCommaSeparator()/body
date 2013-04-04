@@ -4,9 +4,5 @@
   this.authenticationHandler.setSeparator(",");
   c.setUsername("fds");
   c.setPassword("rutgers");
-  try {
-    assertFalse(this.authenticationHandler.authenticate(c));
-  }
- catch (  AuthenticationException e) {
-  }
+  assertFalse(this.authenticationHandler.authenticate(c));
 }

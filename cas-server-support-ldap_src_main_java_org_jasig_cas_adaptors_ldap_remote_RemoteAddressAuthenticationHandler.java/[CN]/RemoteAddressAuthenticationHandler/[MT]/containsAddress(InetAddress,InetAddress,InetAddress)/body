@@ -1,27 +1,19 @@
 {
-  if (log.isDebugEnabled()) {
-    log.debug("Checking IP address: " + ip + " in "+ network+ " / "+ netmask);
-  }
+  log.debug("Checking IP address: {} in ",ip,network,netmask);
   byte[] networkBytes=network.getAddress();
   byte[] netmaskBytes=netmask.getAddress();
   byte[] ipBytes=ip.getAddress();
   if (networkBytes.length != netmaskBytes.length || netmaskBytes.length != ipBytes.length) {
-    if (log.isDebugEnabled()) {
-      log.debug("Network address " + network + ", subnet mask "+ netmask+ " and/or host address "+ ip+ " have different sizes! (return false ...)");
-    }
+    log.debug("Network address {}, subnet mask {} and/or host address {}" + " have different sizes! (return false ...)",network,netmask,ip);
     return false;
   }
   for (int i=0; i < netmaskBytes.length; i++) {
     int mask=netmaskBytes[i] & 0xff;
     if ((networkBytes[i] & mask) != (ipBytes[i] & mask)) {
-      if (log.isDebugEnabled()) {
-        log.debug(ip + " is not in " + network+ " / "+ netmask);
-      }
+      log.debug("{} is not in {}/{}",ip,network,netmask);
       return false;
     }
   }
-  if (log.isDebugEnabled()) {
-    log.debug(ip + " is in " + network+ " / "+ netmask);
-  }
+  log.debug("{} is in {}/{}",ip,network,netmask);
   return true;
 }

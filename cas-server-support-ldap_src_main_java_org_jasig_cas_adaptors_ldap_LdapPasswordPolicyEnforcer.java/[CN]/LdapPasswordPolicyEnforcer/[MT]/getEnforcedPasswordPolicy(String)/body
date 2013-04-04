@@ -5,7 +5,7 @@
     String msgToLog="No entry was found for user " + userId + ". Verify your LPPE settings. ";
     msgToLog+="If you are not using LPPE, set the 'enabled' property to false. ";
     msgToLog+="Password policy enforcement is currently turned on but not configured.";
-    if (this.logger.isWarnEnabled())     this.logger.warn(msgToLog);
+    log.warn(msgToLog);
   }
   return ldapResult;
 }
