@@ -19,7 +19,7 @@
       }
     }
  else {
-      log.warn(location + " not supported.  String or GeneralNameList expected.");
+      log.warn("{} not supported. String or GeneralNameList expected.",location);
     }
   }
   return urls.toArray(new URL[urls.size()]);

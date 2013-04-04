@@ -1,6 +1,6 @@
 {
   return new Principal(){
-    public String getName(){
+    @Override public String getName(){
       return "CN=Jasig,DC=jasig,DC=org";
     }
   }

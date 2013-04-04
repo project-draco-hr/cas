@@ -15,7 +15,7 @@
       }
       if (rootCause instanceof BufferOverflowException) {
         buffer=ByteBuffer.allocate(bufferSize * ++factor);
-        logger.warn("Buffer overflow while encoding " + o);
+        log.warn("Buffer overflow while encoding {}",o);
       }
  else {
         throw e;

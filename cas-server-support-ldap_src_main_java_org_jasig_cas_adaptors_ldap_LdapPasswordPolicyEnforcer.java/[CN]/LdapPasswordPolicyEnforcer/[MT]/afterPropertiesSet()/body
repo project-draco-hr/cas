@@ -7,6 +7,10 @@
   Assert.notNull(this.dateFormat,"dateFormat cannot be null");
   Assert.isTrue(this.filter.contains("%u") || this.filter.contains("%U"),"filter must contain %u");
   this.ldapTemplate.setIgnorePartialResultException(this.ignorePartialResultException);
-  for (  final int element : VALID_SCOPE_VALUES)   if (this.scope == element)   return;
+  for (  final int element : VALID_SCOPE_VALUES) {
+    if (this.scope == element) {
+      return;
+    }
+  }
   throw new IllegalStateException("You must set a valid scope. Valid scope values are: " + Arrays.toString(VALID_SCOPE_VALUES));
 }

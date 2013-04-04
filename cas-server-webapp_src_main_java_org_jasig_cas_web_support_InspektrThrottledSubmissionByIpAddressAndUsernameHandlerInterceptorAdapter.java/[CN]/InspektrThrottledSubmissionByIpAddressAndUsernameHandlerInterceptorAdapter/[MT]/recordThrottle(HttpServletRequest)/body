@@ -4,7 +4,7 @@
   final ClientInfo clientInfo=ClientInfoHolder.getClientInfo();
   final AuditPointRuntimeInfo auditPointRuntimeInfo=new AuditPointRuntimeInfo(){
     private static final long serialVersionUID=1L;
-    public String asString(){
+    @Override public String asString(){
       return String.format("%s.recordThrottle()",this.getClass().getName());
     }
   }

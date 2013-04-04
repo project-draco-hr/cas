@@ -1,4 +1,3 @@
 {
-  super.setUp();
   this.authentication=new ImmutableAuthentication(TestUtils.getPrincipal(),this.attributes);
 }

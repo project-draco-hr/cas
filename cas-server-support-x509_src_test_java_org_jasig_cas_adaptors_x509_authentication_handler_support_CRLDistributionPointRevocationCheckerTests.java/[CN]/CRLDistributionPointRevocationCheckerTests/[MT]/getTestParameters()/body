@@ -16,7 +16,7 @@
   cache=new Cache("crlCache-4",100,false,false,20,10);
   cache.initialise();
   params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),new RevocationPolicy<X509CRL>(){
-    public void apply(    X509CRL crl){
+    @Override public void apply(    final X509CRL crl){
     }
   }
 ,new String[]{"user-valid-distcrl.crt"},"userCA-expired.crl",null});

@@ -1,4 +1,3 @@
 {
-  super.setUp();
   this.ticketRegistry=this.getNewTicketRegistry();
 }

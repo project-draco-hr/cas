@@ -1,14 +1,10 @@
 {
   if ((System.currentTimeMillis() - ticketState.getCreationTime() >= maxTimeToLiveInMilliSeconds)) {
-    if (log.isDebugEnabled()) {
-      log.debug("Ticket is expired due to the time since creation being greater than the maxTimeToLiveInMilliSeconds");
-    }
+    log.debug("Ticket is expired because the time since creation is greater than maxTimeToLiveInMilliSeconds");
     return true;
   }
   if ((System.currentTimeMillis() - ticketState.getLastTimeUsed() >= timeToKillInMilliSeconds)) {
-    if (log.isDebugEnabled()) {
-      log.debug("Ticket is expired due to the time since last use being greater than the timeToKillInMilliseconds");
-    }
+    log.debug("Ticket is expired because the time since last use is greater than timeToKillInMilliseconds");
     return true;
   }
   return false;

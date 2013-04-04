@@ -22,14 +22,14 @@
       }
     }
  catch (    MessageException me) {
-      LOG.error("Message exception : " + me.getMessage(),me);
+      log.error("Message exception : {}",me.getMessage(),me);
     }
     boolean successFullAuthentication=true;
     try {
       if (associated) {
         if (associationValid) {
           cas.validateServiceTicket(ticketId,this);
-          LOG.info("Validated openid ticket");
+          log.info("Validated openid ticket");
         }
  else {
           successFullAuthentication=false;
@@ -37,7 +37,7 @@
       }
     }
  catch (    TicketException te) {
-      LOG.error("Could not validate ticket : " + te.getMessage(),te);
+      log.error("Could not validate ticket : {}",te.getMessage(),te);
       successFullAuthentication=false;
     }
     Message response=manager.authResponse(requestParameters,this.identity,this.identity,successFullAuthentication,true);

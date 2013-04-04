@@ -4,13 +4,10 @@
   if (!StringUtils.hasText(formattedIpAddress)) {
     return null;
   }
-  if (log.isDebugEnabled()) {
-    log.debug("Original IP address: " + c.getRemoteAddress());
-    log.debug("Formatted IP address: " + formattedIpAddress);
-  }
+  log.debug("Original IP address: {}, formatted IP address {}",c.getRemoteAddress(),formattedIpAddress);
   final String attributeId=getAttributeIds()[0];
-  final List principalList=this.getLdapTemplate().search(getSearchBase(),LdapUtils.getFilterWithValues(getFilter(),formattedIpAddress),getSearchControls(),new AttributesMapper(){
-    public Object mapFromAttributes(    final Attributes attrs) throws NamingException {
+  final List<?> principalList=this.getLdapTemplate().search(getSearchBase(),LdapUtils.getFilterWithValues(getFilter(),formattedIpAddress),getSearchControls(),new AttributesMapper(){
+    @Override public Object mapFromAttributes(    final Attributes attrs) throws NamingException {
       final Attribute attribute=attrs.get(attributeId);
       return attribute == null ? null : attribute.get();
     }

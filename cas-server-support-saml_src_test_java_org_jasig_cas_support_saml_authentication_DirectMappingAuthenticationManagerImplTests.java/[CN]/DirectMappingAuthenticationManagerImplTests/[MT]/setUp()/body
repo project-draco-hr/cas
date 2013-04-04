@@ -9,5 +9,4 @@
   d.setCredentialsToPrincipalResolver(new UsernamePasswordCredentialsToPrincipalResolver());
   mappings.put(UsernamePasswordCredentials.class,d);
   this.manager.setCredentialsMapping(mappings);
-  super.setUp();
 }

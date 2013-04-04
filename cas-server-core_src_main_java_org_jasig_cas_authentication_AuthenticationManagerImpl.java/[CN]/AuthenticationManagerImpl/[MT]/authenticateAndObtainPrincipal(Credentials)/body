@@ -38,7 +38,7 @@ catch (      Exception e) {
   for (  final CredentialsToPrincipalResolver credentialsToPrincipalResolver : this.credentialsToPrincipalResolvers) {
     if (credentialsToPrincipalResolver.supports(credentials)) {
       final Principal principal=credentialsToPrincipalResolver.resolvePrincipal(credentials);
-      log.info("Resolved principal " + principal);
+      log.info("Resolved principal {}",principal);
       foundSupported=true;
       if (principal != null) {
         return new Pair<AuthenticationHandler,Principal>(authenticatedClass,principal);
@@ -46,11 +46,9 @@ catch (      Exception e) {
     }
   }
   if (foundSupported) {
-    if (log.isDebugEnabled()) {
-      log.debug("CredentialsToPrincipalResolver found but no principal returned.");
-    }
+    log.debug("CredentialsToPrincipalResolver found but no principal returned.");
     throw BadCredentialsAuthenticationException.ERROR;
   }
-  log.error("CredentialsToPrincipalResolver not found for " + credentials.getClass().getName());
+  log.error("CredentialsToPrincipalResolver not found for {}",credentials.getClass().getName());
   throw UnsupportedCredentialsException.ERROR;
 }

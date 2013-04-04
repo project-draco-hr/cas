@@ -1,6 +1,4 @@
 {
-  if (log.isDebugEnabled()) {
-    log.debug("Trusting credentials for: " + credentials);
-  }
+  log.debug("Trusting credentials for: {}",credentials);
   return true;
 }

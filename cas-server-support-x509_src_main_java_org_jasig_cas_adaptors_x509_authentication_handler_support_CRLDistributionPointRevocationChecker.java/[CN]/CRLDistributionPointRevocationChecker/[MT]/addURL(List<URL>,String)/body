@@ -5,6 +5,6 @@
     list.add(uri.toURL());
   }
  catch (  final Exception e) {
-    log.warn(uriString + " is not a valid distribution point URI.");
+    log.warn("{} is not a valid distribution point URI.",uriString);
   }
 }

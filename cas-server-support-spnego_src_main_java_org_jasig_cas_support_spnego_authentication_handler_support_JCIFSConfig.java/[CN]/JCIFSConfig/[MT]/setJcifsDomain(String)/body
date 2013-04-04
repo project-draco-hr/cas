@@ -1,4 +1,4 @@
 {
-  log.debug("jcifsDomain is set to " + jcifsDomain);
+  log.debug("jcifsDomain is set to {}",jcifsDomain);
   Config.setProperty(JCIFS_PROP_CLIENT_DOMAIN,jcifsDomain);
 }

@@ -13,7 +13,8 @@
   }
  catch (  final CloneNotSupportedException e) {
     this.cloneNotSupported=true;
-    log.warn("Could not clone MessageDigest using algorithm '" + this.messageDigest.getAlgorithm() + "'. MessageDigest.getInstance will be used from now on which will be much more expensive.",e);
+    final String msg=String.format("Could not clone MessageDigest using algorithm '%s'. " + "MessageDigest.getInstance will be used from now on which will be much more expensive.",this.messageDigest.getAlgorithm());
+    log.warn(msg,e);
     return this.getMessageDigest();
   }
 }

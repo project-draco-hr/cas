@@ -1,7 +1,7 @@
 {
   this.fetcher.fetch(true);
   final Runnable scheduledFetcher=new Runnable(){
-    public void run(){
+    @Override public void run(){
       getFetcher().fetch(false);
     }
   }

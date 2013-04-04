@@ -14,5 +14,4 @@
   this.extractor=new GoogleAccountsArgumentExtractor();
   this.extractor.setPrivateKey((PrivateKey)privKeyFactoryBean.getObject());
   this.extractor.setPublicKey((PublicKey)pubKeyFactoryBean.getObject());
-  super.setUp();
 }

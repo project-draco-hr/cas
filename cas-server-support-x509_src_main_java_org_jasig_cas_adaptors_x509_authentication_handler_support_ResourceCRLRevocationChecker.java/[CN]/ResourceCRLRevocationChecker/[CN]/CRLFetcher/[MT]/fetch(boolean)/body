@@ -1,6 +1,6 @@
 {
   for (  Resource r : this.resources) {
-    this.logger.debug("Fetching CRL data from " + r);
+    log.debug("Fetching CRL data from {}",r);
     try {
       addCrl(CertUtils.fetchCRL(r));
     }
