@@ -18,4 +18,5 @@
   builder.append("MB off-heap, ");
   builder.append(free).append("% free, ");
   builder.append(getEvictions()).append(" evictions");
+  formatter.close();
 }
