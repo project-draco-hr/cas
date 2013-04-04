@@ -15,10 +15,6 @@
     return null;
   }
  finally {
-    try {
-      iis.close();
-    }
- catch (    final Exception e) {
-    }
+    IOUtils.closeQuietly(iis);
   }
 }

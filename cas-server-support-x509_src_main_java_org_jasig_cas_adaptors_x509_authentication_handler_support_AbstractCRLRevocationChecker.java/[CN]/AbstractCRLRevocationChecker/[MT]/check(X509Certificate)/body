@@ -2,17 +2,15 @@
   if (cert == null) {
     throw new IllegalArgumentException("Certificate cannot be null.");
   }
-  if (log.isDebugEnabled()) {
-    log.debug("Evaluating certificate revocation status for " + CertUtils.toString(cert));
-  }
+  log.debug("Evaluating certificate revocation status for {}",CertUtils.toString(cert));
   final X509CRL crl=getCRL(cert);
   if (crl == null) {
-    log.warn("CRL data is not available for " + CertUtils.toString(cert));
+    log.warn("CRL data is not available for {}",CertUtils.toString(cert));
     this.unavailableCRLPolicy.apply(null);
     return;
   }
   if (CertUtils.isExpired(crl)) {
-    log.warn("CRL data expired on " + crl.getNextUpdate());
+    log.warn("CRL data expired on ",crl.getNextUpdate());
     this.expiredCRLPolicy.apply(crl);
   }
   final X509CRLEntry entry=crl.getRevokedCertificate(cert);

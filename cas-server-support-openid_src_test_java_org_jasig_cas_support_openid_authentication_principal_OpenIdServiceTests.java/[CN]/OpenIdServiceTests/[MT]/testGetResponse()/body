@@ -7,6 +7,7 @@
     verify(cas,never()).validateServiceTicket("test",openIdService);
   }
  catch (  Exception e) {
+    log.debug("Exception during verification of service ticket",e);
   }
   assertNotNull(response);
   assertEquals("test",response.getAttributes().get("openid.assoc_handle"));

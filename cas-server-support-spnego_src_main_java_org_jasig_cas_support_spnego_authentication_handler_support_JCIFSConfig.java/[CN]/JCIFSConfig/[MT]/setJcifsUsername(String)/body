@@ -1,4 +1,4 @@
 {
-  log.debug("jcifsUsername is set to " + jcifsUsername);
+  log.debug("jcifsUsername is set to {}",jcifsUsername);
   Config.setProperty(JCIFS_PROP_CLIENT_USERNAME,jcifsUsername);
 }
