@@ -2,5 +2,4 @@
   this.response=new Saml10SuccessResponseView();
   this.response.setIssuer("testIssuer");
   this.response.setIssueLength(1000);
-  super.setUp();
 }

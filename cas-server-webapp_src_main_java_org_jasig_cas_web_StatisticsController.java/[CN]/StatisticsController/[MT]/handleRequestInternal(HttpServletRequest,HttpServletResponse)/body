@@ -36,6 +36,7 @@
     }
   }
  catch (  final UnsupportedOperationException e) {
+    log.trace("The ticket registry doesn't support this information.");
   }
   final Collection<GraphingStatisticsAppender> appenders=GraphingStatisticsAppender.getAllGraphingStatisticsAppenders();
   modelAndView.addObject("unexpiredTgts",unexpiredTgts);

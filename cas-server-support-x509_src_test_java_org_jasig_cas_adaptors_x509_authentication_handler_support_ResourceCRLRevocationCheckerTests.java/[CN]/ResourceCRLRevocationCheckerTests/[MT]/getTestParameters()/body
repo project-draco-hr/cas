@@ -7,7 +7,7 @@
   params.add(new Object[]{new ResourceCRLRevocationChecker(new ClassPathResource[]{new ClassPathResource("userCA-expired.crl"),new ClassPathResource("intermediateCA-valid.crl"),new ClassPathResource("rootCA-valid.crl")}),zeroThresholdPolicy,new String[]{"user-valid.crt","userCA.crt","intermediateCA.crt","rootCA.crt"},new ExpiredCRLException("test",new Date())});
   params.add(new Object[]{new ResourceCRLRevocationChecker(new ClassPathResource[]{new ClassPathResource("userCA-valid.crl"),new ClassPathResource("intermediateCA-expired.crl"),new ClassPathResource("rootCA-valid.crl")}),zeroThresholdPolicy,new String[]{"user-valid.crt","userCA.crt","intermediateCA.crt","rootCA.crt"},new ExpiredCRLException("test",new Date())});
   params.add(new Object[]{new ResourceCRLRevocationChecker(new ClassPathResource[]{new ClassPathResource("userCA-expired.crl")}),new RevocationPolicy<X509CRL>(){
-    public void apply(    X509CRL crl){
+    @Override public void apply(    final X509CRL crl){
     }
   }
 ,new String[]{"user-valid.crt"},null});

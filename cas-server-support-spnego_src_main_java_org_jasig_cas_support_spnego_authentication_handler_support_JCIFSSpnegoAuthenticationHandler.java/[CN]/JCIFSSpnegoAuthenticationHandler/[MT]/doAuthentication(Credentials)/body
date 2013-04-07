@@ -14,26 +14,22 @@ synchronized (this) {
     throw new BadCredentialsAuthenticationException(e);
   }
   if (nextToken != null) {
-    logger.debug("Setting nextToken in credentials");
+    log.debug("Setting nextToken in credentials");
     spnegoCredentials.setNextToken(nextToken);
   }
  else {
-    logger.debug("nextToken is null");
+    log.debug("nextToken is null");
   }
   if (principal != null) {
     if (spnegoCredentials.isNtlm()) {
-      if (logger.isDebugEnabled()) {
-        logger.debug("NTLM Credentials is valid for user [" + principal.getName() + "]");
-      }
+      log.debug("NTLM Credentials is valid for user [{}]",principal.getName());
       spnegoCredentials.setPrincipal(getSimplePrincipal(principal.getName(),true));
       return this.isNTLMallowed;
     }
-    if (logger.isDebugEnabled()) {
-      logger.debug("Kerberos Credentials is valid for user [" + principal.getName() + "]");
-    }
+    log.debug("Kerberos Credentials is valid for user [{}]",principal.getName());
     spnegoCredentials.setPrincipal(getSimplePrincipal(principal.getName(),false));
     return true;
   }
-  logger.debug("Principal is null, the processing of the SPNEGO Token failed");
+  log.debug("Principal is null, the processing of the SPNEGO Token failed");
   return false;
 }

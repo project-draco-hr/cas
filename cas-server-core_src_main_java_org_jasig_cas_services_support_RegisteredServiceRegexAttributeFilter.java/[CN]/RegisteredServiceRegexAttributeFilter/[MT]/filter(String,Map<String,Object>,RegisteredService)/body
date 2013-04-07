@@ -28,6 +28,6 @@
       }
     }
   }
-  log.debug("Total number of attributes received is {} and total number of attributes filtered and released is {}",givenAttributes.size(),attributesToRelease.size());
+  log.debug("Received {} attributes. Filtered and released {}",givenAttributes.size(),attributesToRelease.size());
   return attributesToRelease;
 }

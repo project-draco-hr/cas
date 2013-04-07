@@ -4,7 +4,7 @@
     log.debug("Extractor did not generate service.");
   }
  else {
-    log.debug("Extractor generated service for: " + service.getId());
+    log.debug("Extractor generated service for: {}",service.getId());
   }
   return service;
 }

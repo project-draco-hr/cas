@@ -2,9 +2,5 @@
   final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
   c.setUsername("scott");
   c.setPassword(null);
-  try {
-    assertFalse(this.authenticationHandler.authenticate(c));
-  }
- catch (  AuthenticationException e) {
-  }
+  assertFalse(this.authenticationHandler.authenticate(c));
 }

@@ -1,4 +1,4 @@
 {
   this.validDaysAttribute=validDaysAttribute;
-  logDebug("Valid days attribute: " + validDaysAttribute);
+  log.debug("Valid days attribute: {}",validDaysAttribute);
 }
