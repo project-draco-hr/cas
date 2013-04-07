@@ -1,0 +1,43 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
+  final HttpSession session=request.getSession();
+  final WebContext webContext=new J2EContext(request,response);
+  final String clientName=request.getParameter(this.clients.getClientNameParameter());
+  log.debug("clientName : {}",clientName);
+  if (StringUtils.isNotBlank(clientName)) {
+    final BaseClient<org.pac4j.core.credentials.Credentials,CommonProfile> client=(BaseClient<org.pac4j.core.credentials.Credentials,CommonProfile>)this.clients.findClient(clientName);
+    log.debug("client : {}",client);
+    if (client.getProtocol() == Protocol.HTTP) {
+      throw new TechnicalException("HTTP protocol client not supported : " + client);
+    }
+    final org.pac4j.core.credentials.Credentials credentials;
+    try {
+      credentials=client.getCredentials(webContext);
+      log.debug("credentials : {}",credentials);
+    }
+ catch (    final RequiresHttpAction e) {
+      log.info("requires http action : {}",e);
+      response.flushBuffer();
+      return new Event(this,null);
+    }
+    final Service service=(Service)session.getAttribute(SERVICE);
+    context.getFlowScope().put(SERVICE,service);
+    restoreRequestAttribute(request,session,THEME);
+    restoreRequestAttribute(request,session,LOCALE);
+    restoreRequestAttribute(request,session,METHOD);
+    final ClientCredentials clientCredentials=new ClientCredentials(credentials);
+    try {
+      WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(clientCredentials));
+      return success();
+    }
+ catch (    final TicketException e) {
+      prepareForLoginPage(context);
+      return error();
+    }
+  }
+ else {
+    prepareForLoginPage(context);
+    return error();
+  }
+}

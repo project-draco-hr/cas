@@ -1,3 +1,0 @@
-{
-  return credentials != null && (OAuthCredentials.class.isAssignableFrom(credentials.getClass()));
-}

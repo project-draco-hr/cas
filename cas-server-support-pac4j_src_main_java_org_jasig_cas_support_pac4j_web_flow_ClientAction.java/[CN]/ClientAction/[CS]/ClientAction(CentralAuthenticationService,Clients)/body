@@ -1,0 +1,4 @@
+{
+  this.centralAuthenticationService=theCentralAuthenticationService;
+  this.clients=theClients;
+}

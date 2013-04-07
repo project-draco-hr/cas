@@ -1,6 +1,0 @@
-{
-  final String providerType=request.getParameter(this.providersDefinition.getProviderTypeParameter());
-  final OAuthProvider provider=this.providersDefinition.findProvider(providerType);
-  final String authorizationUrl=provider.getAuthorizationUrl(new HttpUserSession(request));
-  return OAuthUtils.redirectTo(authorizationUrl);
-}
