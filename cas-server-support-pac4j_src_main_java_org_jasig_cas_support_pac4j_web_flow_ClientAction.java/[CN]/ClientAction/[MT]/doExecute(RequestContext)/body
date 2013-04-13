@@ -19,7 +19,7 @@
  catch (    final RequiresHttpAction e) {
       log.info("requires http action : {}",e);
       response.flushBuffer();
-      return new Event(this,null);
+      return new Event(this,"forceBrutalStopWithUnknownEvent");
     }
     final Service service=(Service)session.getAttribute(SERVICE);
     context.getFlowScope().put(SERVICE,service);

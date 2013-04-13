@@ -11,7 +11,5 @@
     clientCredentials.setUserProfile(userProfile);
     return true;
   }
- else {
-    return false;
-  }
+  return false;
 }
