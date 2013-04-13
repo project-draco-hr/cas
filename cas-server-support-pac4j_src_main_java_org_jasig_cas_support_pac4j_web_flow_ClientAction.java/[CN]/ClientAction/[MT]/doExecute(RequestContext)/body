@@ -19,7 +19,9 @@
  catch (    final RequiresHttpAction e) {
       log.info("requires http action : {}",e);
       response.flushBuffer();
-      return new Event(this,"forceBrutalStopWithUnknownEvent");
+      ExternalContext externalContext=ExternalContextHolder.getExternalContext();
+      externalContext.recordResponseComplete();
+      return new Event(this,"stop");
     }
     final Service service=(Service)session.getAttribute(SERVICE);
     context.getFlowScope().put(SERVICE,service);
