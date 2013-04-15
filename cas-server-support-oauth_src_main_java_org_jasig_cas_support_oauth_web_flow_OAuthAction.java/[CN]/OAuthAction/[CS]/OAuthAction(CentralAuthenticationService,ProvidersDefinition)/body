@@ -1,4 +1,0 @@
-{
-  this.centralAuthenticationService=centralAuthenticationService;
-  this.providersDefinition=providersDefinition;
-}

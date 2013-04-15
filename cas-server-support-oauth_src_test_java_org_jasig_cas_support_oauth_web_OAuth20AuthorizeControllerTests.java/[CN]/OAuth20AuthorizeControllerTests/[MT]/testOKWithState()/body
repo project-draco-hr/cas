@@ -27,5 +27,5 @@
   final View view=modelAndView.getView();
   assertTrue(view instanceof RedirectView);
   final RedirectView redirectView=(RedirectView)view;
-  assertEquals(CAS_URL + "?service=" + OAuthEncoder.encode(CAS_URL + CONTEXT + OAuthConstants.CALLBACK_AUTHORIZE_URL),redirectView.getUrl());
+  assertEquals(OAuthUtils.addParameter(CAS_URL,"service",CAS_URL + CONTEXT + OAuthConstants.CALLBACK_AUTHORIZE_URL),redirectView.getUrl());
 }
