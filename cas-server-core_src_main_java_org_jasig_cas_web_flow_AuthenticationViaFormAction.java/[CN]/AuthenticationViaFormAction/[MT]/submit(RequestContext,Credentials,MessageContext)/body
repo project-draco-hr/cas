@@ -2,7 +2,7 @@
   final String authoritativeLoginTicket=WebUtils.getLoginTicketFromFlowScope(context);
   final String providedLoginTicket=WebUtils.getLoginTicketFromRequest(context);
   if (!authoritativeLoginTicket.equals(providedLoginTicket)) {
-    this.logger.warn("Invalid login ticket {}",providedLoginTicket);
+    log.warn("Invalid login ticket {}",providedLoginTicket);
     messageContext.addMessage(new MessageBuilder().code("error.invalid.loginticket").build());
     return newEvent(ERROR);
   }
@@ -19,7 +19,7 @@
       return newEvent(AUTHENTICATION_FAILURE,e);
     }
 catch (    final TicketCreationException e) {
-      logger.warn("Invalid attempt to access service using renew=true with different credentials. Ending SSO session.");
+      log.warn("Invalid attempt to access service using renew=true with different credentials. Ending SSO session.");
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
     }
 catch (    final TicketException e) {

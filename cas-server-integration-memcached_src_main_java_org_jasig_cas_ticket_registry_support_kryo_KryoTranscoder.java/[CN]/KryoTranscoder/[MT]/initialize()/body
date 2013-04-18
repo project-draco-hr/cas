@@ -8,7 +8,12 @@
   kryo.register(MutableAuthentication.class,new MutableAuthenticationSerializer(kryo,fieldHelper));
   kryo.register(NeverExpiresExpirationPolicy.class,new FieldSerializer(kryo,NeverExpiresExpirationPolicy.class));
   kryo.register(RememberMeDelegatingExpirationPolicy.class,new FieldSerializer(kryo,RememberMeDelegatingExpirationPolicy.class));
-  kryo.register(SamlService.class,new SamlServiceSerializer(kryo,fieldHelper));
+  try {
+    kryo.register(SamlService.class,new SamlServiceSerializer(kryo,fieldHelper));
+  }
+ catch (  NoClassDefFoundError e) {
+    log.warn("SAML serialization won't be supported by Kryo : please check that the cas-server-support-saml module is in the classpath if necessary");
+  }
   kryo.register(ServiceTicketImpl.class);
   kryo.register(SimplePrincipal.class,new SimplePrincipalSerializer(kryo));
   kryo.register(SimpleWebApplicationServiceImpl.class,new SimpleWebApplicationServiceSerializer(kryo));

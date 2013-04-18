@@ -1,5 +1,4 @@
 {
-  super.setUp();
   this.lphaah=new LegacyPasswordHandlerAdaptorAuthenticationHandler();
   this.lphaah.setPasswordHandler(new MockPasswordHandler());
 }

@@ -1,0 +1,4 @@
+{
+  final Service s=(Service)argument;
+  return s != null && s.getId().equals(this.id);
+}

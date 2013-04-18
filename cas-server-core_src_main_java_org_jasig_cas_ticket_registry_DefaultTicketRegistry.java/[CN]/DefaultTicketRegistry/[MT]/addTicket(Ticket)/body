@@ -1,7 +1,5 @@
 {
   Assert.notNull(ticket,"ticket cannot be null");
-  if (log.isDebugEnabled()) {
-    log.debug("Added ticket [" + ticket.getId() + "] to registry.");
-  }
+  log.debug("Added ticket [{}] to registry.",ticket.getId());
   this.cache.put(ticket.getId(),ticket);
 }

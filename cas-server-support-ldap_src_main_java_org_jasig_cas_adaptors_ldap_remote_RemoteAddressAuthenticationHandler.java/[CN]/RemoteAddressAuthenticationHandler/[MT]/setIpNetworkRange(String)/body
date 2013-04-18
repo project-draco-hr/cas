@@ -6,21 +6,17 @@
       final String netmask=splitAddress[1].trim();
       try {
         this.inetNetwork=InetAddress.getByName(network);
-        if (log.isDebugEnabled()) {
-          log.debug("InetAddress network: " + this.inetNetwork.toString());
-        }
+        log.debug("InetAddress network: {}",this.inetNetwork.toString());
       }
  catch (      final UnknownHostException e) {
-        log.error("The network address was not valid: " + e.getMessage());
+        log.error("The network address was not valid: {}",e.getMessage());
       }
       try {
         this.inetNetmask=InetAddress.getByName(netmask);
-        if (log.isDebugEnabled()) {
-          log.debug("InetAddress netmask: " + this.inetNetmask.toString());
-        }
+        log.debug("InetAddress netmask: {}",this.inetNetmask.toString());
       }
  catch (      final UnknownHostException e) {
-        log.error("The network netmask was not valid: " + e.getMessage());
+        log.error("The network netmask was not valid: {}",e.getMessage());
       }
     }
   }

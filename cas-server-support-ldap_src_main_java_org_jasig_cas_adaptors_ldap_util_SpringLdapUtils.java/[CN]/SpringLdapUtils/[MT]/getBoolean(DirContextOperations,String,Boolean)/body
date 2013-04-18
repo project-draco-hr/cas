@@ -1,5 +1,7 @@
 {
   final String v=ctx.getStringAttribute(attribute);
-  if (v != null)   return v.equalsIgnoreCase(LDAP_BOOLEAN_TRUE);
+  if (v != null) {
+    return v.equalsIgnoreCase(LDAP_BOOLEAN_TRUE);
+  }
   return nullValue;
 }

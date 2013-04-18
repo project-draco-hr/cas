@@ -1,6 +1,6 @@
 {
   return this.jdbcTemplate.query(this.validationQuery,new ResultSetExtractor<StatusCode>(){
-    public StatusCode extractData(    final ResultSet rs) throws SQLException, DataAccessException {
+    public StatusCode extractData(    final ResultSet rs) throws SQLException {
       if (rs.next()) {
         return StatusCode.OK;
       }

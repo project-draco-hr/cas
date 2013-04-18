@@ -1,0 +1,27 @@
+{
+  this.manager=new DirectMappingAuthenticationManagerImpl();
+  final Map<Class<? extends Credentials>,DirectAuthenticationHandlerMappingHolder> mappings=new HashMap<Class<? extends Credentials>,DirectAuthenticationHandlerMappingHolder>();
+  final List<AuthenticationMetaDataPopulator> populators=new ArrayList<AuthenticationMetaDataPopulator>();
+  populators.add(new SamlAuthenticationMetaDataPopulator());
+  this.manager.setAuthenticationMetaDataPopulators(populators);
+  final DirectAuthenticationHandlerMappingHolder d=new DirectAuthenticationHandlerMappingHolder();
+  d.setAuthenticationHandler(new AuthenticationHandler(){
+    @Override public HandlerResult authenticate(    Credentials credential) throws GeneralSecurityException, PreventedException {
+      final UsernamePasswordCredentials up=(UsernamePasswordCredentials)credential;
+      if (up.getUsername().equals(up.getPassword())) {
+        return new HandlerResult(this);
+      }
+      throw new FailedLoginException();
+    }
+    @Override public boolean supports(    Credentials credential){
+      return credential instanceof UsernamePasswordCredentials;
+    }
+    @Override public String getName(){
+      return "Test";
+    }
+  }
+);
+  d.setCredentialsToPrincipalResolver(new UsernamePasswordCredentialsToPrincipalResolver());
+  mappings.put(UsernamePasswordCredentials.class,d);
+  this.manager.setCredentialsMapping(mappings);
+}

@@ -1,8 +1,6 @@
 {
   try {
-    if (log.isDebugEnabled()) {
-      log.debug("Retrieving ticket from registry for: " + ticketId);
-    }
+    log.debug("Retrieving ticket from registry for: {}",ticketId);
     return getProxiedTicketInstance(this.cache.get(FQN_TICKET,ticketId));
   }
  catch (  final CacheException e) {

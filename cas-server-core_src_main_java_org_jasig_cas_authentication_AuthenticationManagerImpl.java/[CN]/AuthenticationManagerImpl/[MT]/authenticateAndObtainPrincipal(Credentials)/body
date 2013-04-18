@@ -32,7 +32,7 @@
   for (  final CredentialsToPrincipalResolver credentialsToPrincipalResolver : this.credentialsToPrincipalResolvers) {
     if (credentialsToPrincipalResolver.supports(credentials)) {
       final Principal principal=credentialsToPrincipalResolver.resolvePrincipal(credentials);
-      log.info("Resolved principal " + principal);
+      log.info("Resolved principal {}",principal);
       foundSupported=true;
       if (principal != null) {
         return new Pair<AuthenticationHandler,Principal>(authenticatedClass,principal);

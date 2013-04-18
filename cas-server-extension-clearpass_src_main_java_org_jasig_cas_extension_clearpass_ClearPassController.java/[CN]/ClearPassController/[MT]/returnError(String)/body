@@ -1,5 +1,5 @@
 {
-  ModelAndView mv=new ModelAndView(this.failureView);
+  final ModelAndView mv=new ModelAndView(this.failureView);
   mv.addObject(MODEL_FAILURE_DESCRIPTION,description);
-  return (mv);
+  return mv;
 }

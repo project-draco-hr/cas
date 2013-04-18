@@ -15,13 +15,9 @@
   stringBuffer.append("&pgtId=");
   stringBuffer.append(proxyGrantingTicketId);
   if (this.httpClient.isValidEndPoint(stringBuffer.toString())) {
-    if (log.isDebugEnabled()) {
-      log.debug("Sent ProxyIou of " + proxyIou + " for service: "+ serviceCredentials.toString());
-    }
+    log.debug("Sent ProxyIou of {} for service: {}",proxyIou,serviceCredentials.toString());
     return proxyIou;
   }
-  if (log.isDebugEnabled()) {
-    log.debug("Failed to send ProxyIou of " + proxyIou + " for service: "+ serviceCredentials.toString());
-  }
+  log.debug("Failed to send ProxyIou of {} for service: {}",proxyIou,serviceCredentials.toString());
   return null;
 }

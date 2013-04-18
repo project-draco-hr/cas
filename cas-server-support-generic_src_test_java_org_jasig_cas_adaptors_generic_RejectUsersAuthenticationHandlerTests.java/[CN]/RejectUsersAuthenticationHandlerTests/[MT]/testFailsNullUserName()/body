@@ -5,7 +5,7 @@
   try {
     assertTrue(this.authenticationHandler.authenticate(c));
   }
- catch (  AuthenticationException e) {
+ catch (  final AuthenticationException e) {
     fail("Exception expected as null should never be in map.");
   }
 }

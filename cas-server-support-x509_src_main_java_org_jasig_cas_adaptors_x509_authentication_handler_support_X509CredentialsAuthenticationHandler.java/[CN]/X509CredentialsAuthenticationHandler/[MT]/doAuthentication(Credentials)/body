@@ -7,32 +7,30 @@
   for (int i=certificates.length - 1; i >= 0; i--) {
     final X509Certificate certificate=certificates[i];
     try {
-      if (this.log.isDebugEnabled()) {
-        this.log.debug("Evaluating " + CertUtils.toString(certificate));
-      }
+      log.debug("Evaluating {}",CertUtils.toString(certificate));
       validate(certificate);
       if (!hasTrustedIssuer) {
         hasTrustedIssuer=isCertificateFromTrustedIssuer(certificate);
       }
       int pathLength=certificate.getBasicConstraints();
       if (pathLength < 0) {
-        this.log.debug("Found valid client certificate");
+        log.debug("Found valid client certificate");
         clientCert=certificate;
       }
  else {
-        this.log.debug("Found valid CA certificate");
+        log.debug("Found valid CA certificate");
       }
     }
  catch (    final GeneralSecurityException e) {
-      this.log.warn("Failed to validate " + CertUtils.toString(certificate),e);
+      log.warn("Failed to validate {}",CertUtils.toString(certificate),e);
       valid=false;
     }
   }
   if (valid && hasTrustedIssuer && clientCert != null) {
     x509Credentials.setCertificate(clientCert);
-    this.log.info("Successfully authenticated " + credentials);
+    log.info("Successfully authenticated {}",credentials);
     return true;
   }
-  this.log.info("Failed to authenticate " + credentials);
+  log.info("Failed to authenticate {}",credentials);
   return false;
 }

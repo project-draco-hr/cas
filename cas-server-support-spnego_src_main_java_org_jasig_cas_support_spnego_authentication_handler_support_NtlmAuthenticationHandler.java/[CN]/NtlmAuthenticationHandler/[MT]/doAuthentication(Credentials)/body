@@ -6,14 +6,16 @@
     if (this.loadBalance) {
       if (this.includePattern != null) {
         NbtAddress[] dcs=NbtAddress.getAllByName(this.domainController,0x1C,null,null);
-        for (int i=0; i < dcs.length; i++) {
-          if (dcs[i].getHostAddress().matches(this.includePattern)) {
-            dc=new UniAddress(dcs[i]);
+        for (        NbtAddress dc2 : dcs) {
+          if (dc2.getHostAddress().matches(this.includePattern)) {
+            dc=new UniAddress(dc2);
             break;
           }
         }
       }
- else       dc=new UniAddress(NbtAddress.getByName(this.domainController,0x1C,null));
+ else {
+        dc=new UniAddress(NbtAddress.getByName(this.domainController,0x1C,null));
+      }
     }
  else {
       dc=UniAddress.getByName(this.domainController,true);
@@ -33,7 +35,7 @@ final Type3Message type3=new Type3Message(src);
 final byte[] lmResponse=type3.getLMResponse() == null ? new byte[0] : type3.getLMResponse();
 byte[] ntResponse=type3.getNTResponse() == null ? new byte[0] : type3.getNTResponse();
 final NtlmPasswordAuthentication ntlm=new NtlmPasswordAuthentication(type3.getDomain(),type3.getUser(),challenge,lmResponse,ntResponse);
-log.debug("Trying to authenticate " + type3.getUser() + " with domain controller");
+log.debug("Trying to authenticate {} with domain controller",type3.getUser());
 try {
 SmbSession.logon(dc,ntlm);
 ntlmCredentials.setPrincipal(new SimplePrincipal(type3.getUser()));

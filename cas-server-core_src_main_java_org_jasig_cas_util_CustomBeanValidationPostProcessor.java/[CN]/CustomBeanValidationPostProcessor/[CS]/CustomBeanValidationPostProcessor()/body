@@ -1,10 +1,10 @@
 {
-  final Configuration configuration=Validation.byDefaultProvider().configure();
+  final Configuration<?> configuration=Validation.byDefaultProvider().configure();
   configuration.traversableResolver(new TraversableResolver(){
-    public boolean isReachable(    final Object o,    final Path.Node node,    final Class<?> aClass,    final Path path,    final ElementType elementType){
+    @Override public boolean isReachable(    final Object traversableObject,    final Node traversableProperty,    final Class<?> rootBeanType,    final Path pathToTraversableObject,    final ElementType elementType){
       return true;
     }
-    public boolean isCascadable(    final Object o,    final Path.Node node,    final Class<?> aClass,    final Path path,    final ElementType elementType){
+    @Override public boolean isCascadable(    final Object traversableObject,    final Node traversableProperty,    final Class<?> rootBeanType,    final Path pathToTraversableObject,    final ElementType elementType){
       return true;
     }
   }

@@ -8,12 +8,6 @@
     throw new RuntimeException("Error reading certificate " + file,e);
   }
  finally {
-    if (in != null) {
-      try {
-        in.close();
-      }
- catch (      IOException e) {
-      }
-    }
+    IOUtils.closeQuietly(in);
   }
 }
