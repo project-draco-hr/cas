@@ -1,0 +1,25 @@
+{
+  String[] values;
+  String password;
+  String expected;
+  for (  String username : testCredentials.stringPropertyNames()) {
+    values=testCredentials.get(username).toString().split("\\|");
+    password=values[0];
+    expected=values[1];
+    if (Boolean.TRUE.toString().equalsIgnoreCase(expected)) {
+      final HandlerResult result=this.handler.authenticate(newCredentials(username,password));
+      assertEquals(this.handler.getName(),result.getHandlerName());
+      assertNotNull(result.getPrincipal());
+      assertEquals(username,result.getPrincipal().getId());
+    }
+ else {
+      try {
+        handler.authenticate(newCredentials(username,password));
+        fail("Should have thrown " + expected);
+      }
+ catch (      Exception e) {
+        assertEquals(expected,e.getClass().getSimpleName());
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  final List<String> attributes=new ArrayList<String>();
+  if (this.principalIdAttribute != null) {
+    attributes.add(this.principalIdAttribute);
+  }
+  attributes.addAll(this.principalAttributeMap.keySet());
+  this.authenticatedEntryAttributes=new String[attributes.size()];
+  this.authenticatedEntryAttributes=attributes.toArray(this.authenticatedEntryAttributes);
+}

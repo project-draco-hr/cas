@@ -1,0 +1,13 @@
+{
+  final Resource[] resources=propertyResourceMap.get(s);
+  String result=FALSE;
+  if (resources != null) {
+    for (    Resource res : resources) {
+      if (!res.exists()) {
+        return result;
+      }
+    }
+    result=TRUE;
+  }
+  return result;
+}

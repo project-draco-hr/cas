@@ -1,0 +1,24 @@
+{
+  final LdapAttribute principalAttr=ldapEntry.getAttribute(this.principalIdAttribute);
+  if (principalAttr == null || principalAttr.size() == 0) {
+    return null;
+  }
+  if (principalAttr.size() > 1) {
+    log.warn("Found multiple values for principal ID attribute: {}.  Using first value.",principalAttr);
+  }
+  final Map<String,Object> attributeMap=new LinkedHashMap<String,Object>(this.principalAttributeMap.size());
+  for (  String ldapAttrName : this.principalAttributeMap.keySet()) {
+    final LdapAttribute attr=ldapEntry.getAttribute(ldapAttrName);
+    if (attr != null) {
+      log.debug("Found principal attribute: {}",attr);
+      final String principalAttrName=this.principalAttributeMap.get(ldapAttrName);
+      if (attr.size() > 1) {
+        attributeMap.put(principalAttrName,attr.getStringValues());
+      }
+ else {
+        attributeMap.put(principalAttrName,attr.getStringValue());
+      }
+    }
+  }
+  return new SimplePrincipal(principalAttr.getStringValue(),attributeMap);
+}
