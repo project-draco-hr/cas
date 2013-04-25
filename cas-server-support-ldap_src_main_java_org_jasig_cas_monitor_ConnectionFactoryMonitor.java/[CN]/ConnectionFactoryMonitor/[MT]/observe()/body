@@ -1,0 +1,19 @@
+{
+  Connection conn=null;
+  try {
+    conn=this.connectionFactory.getConnection();
+    if (!conn.isOpen()) {
+      conn.open();
+    }
+    return this.validator.validate(conn) ? OK : ERROR;
+  }
+ catch (  LdapException e) {
+    log.warn("Validation failed with error.",e);
+  }
+ finally {
+    if (conn != null && conn.isOpen()) {
+      conn.close();
+    }
+  }
+  return ERROR;
+}
