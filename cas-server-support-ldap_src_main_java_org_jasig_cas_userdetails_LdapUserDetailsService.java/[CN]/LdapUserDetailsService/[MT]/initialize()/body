@@ -1,0 +1,10 @@
+{
+  final String userSearchFilter=this.userSearchExecutor.getSearchFilter().getFilter();
+  if (!userSearchFilter.contains(USER_PLACEHOLDER)) {
+    throw new IllegalArgumentException("Search filter expression must container user name placeholder " + USER_PLACEHOLDER);
+  }
+  final String roleSearchFilter=this.userSearchExecutor.getSearchFilter().getFilter();
+  if (!roleSearchFilter.contains(USER_PLACEHOLDER)) {
+    throw new IllegalArgumentException("Search filter expression must container user name placeholder " + USER_PLACEHOLDER);
+  }
+}

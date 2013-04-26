@@ -1,0 +1,45 @@
+{
+  final SearchResult userResult;
+  try {
+    log.debug("Attempting to get details for user {}.",username);
+    final Response<SearchResult> response=this.userSearchExecutor.search(this.connectionFactory,filterWithParams(this.userSearchExecutor,username));
+    log.debug("LDAP user search response: {}",response);
+    userResult=response.getResult();
+  }
+ catch (  LdapException e) {
+    throw new RuntimeException("LDAP error fetching details for user.",e);
+  }
+  if (userResult.size() == 0) {
+    throw new UsernameNotFoundException(username + " not found.");
+  }
+  if (userResult.size() > 1 && !this.allowMultipleResults) {
+    throw new IllegalStateException("Found multiple results for user which is not allowed (allowMultipleResults=false).");
+  }
+  final String userDn=userResult.getEntry().getDn();
+  final LdapAttribute userAttribute=userResult.getEntry().getAttribute(this.userAttributeName);
+  if (userAttribute == null) {
+    throw new IllegalStateException(this.userAttributeName + " attribute not found in results.");
+  }
+  final String id=userAttribute.getStringValue();
+  final SearchResult roleResult;
+  try {
+    log.debug("Attempting to get roles for user {}.",userDn);
+    final Response<SearchResult> response=this.roleSearchExecutor.search(this.connectionFactory,filterWithParams(this.roleSearchExecutor,userDn));
+    log.debug("LDAP role search response: {}",response);
+    roleResult=response.getResult();
+  }
+ catch (  LdapException e) {
+    throw new RuntimeException("LDAP error fetching roles for user.",e);
+  }
+  LdapAttribute roleAttribute;
+  final Collection<SimpleGrantedAuthority> roles=new ArrayList<SimpleGrantedAuthority>(roleResult.size());
+  for (  final LdapEntry entry : roleResult.getEntries()) {
+    roleAttribute=entry.getAttribute(this.roleAttributeName);
+    if (roleAttribute == null) {
+      log.warn("Role attribute not found on entry {}",entry);
+      continue;
+    }
+    roles.add(new SimpleGrantedAuthority(this.rolePrefix + roleAttribute.getStringValue().toUpperCase()));
+  }
+  return new User(id,UNKNOWN_PASSWORD,roles);
+}

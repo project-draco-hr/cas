@@ -1,0 +1,5 @@
+ConnectionFactory factory
+SearchExecutor userSearchExecutor
+SearchExecutor roleSearchExecutor
+String userAttributeName
+String roleAttributeName
