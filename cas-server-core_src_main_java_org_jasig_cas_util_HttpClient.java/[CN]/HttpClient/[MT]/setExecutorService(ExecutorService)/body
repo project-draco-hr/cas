@@ -1,4 +1,4 @@
 {
-  Assert.notNull(executorService);
-  EXECUTOR_SERVICE=executorService;
+  Assert.notNull(svc);
+  executorService=svc;
 }
