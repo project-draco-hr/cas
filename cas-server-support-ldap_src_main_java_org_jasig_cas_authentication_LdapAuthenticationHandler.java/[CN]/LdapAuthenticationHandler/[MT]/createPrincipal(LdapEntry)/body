@@ -4,7 +4,12 @@
     return null;
   }
   if (principalAttr.size() > 1) {
-    log.warn("Found multiple values for principal ID attribute: {}.  Using first value.",principalAttr);
+    if (this.allowMultiplePrincipalAttributeValues) {
+      log.warn("Found multiple values for principal ID attribute: {}.  Using first value.",principalAttr);
+    }
+ else {
+      throw new LoginException("Multiple principal values not allowed: " + principalAttr);
+    }
   }
   final Map<String,Object> attributeMap=new LinkedHashMap<String,Object>(this.principalAttributeMap.size());
   for (  String ldapAttrName : this.principalAttributeMap.keySet()) {
