@@ -2,6 +2,7 @@
   final Resource ldaptiveProperties=new FileSystemResource("ldaptive.properties");
   final Resource extraConfig=new FileSystemResource("extraConfigContext.xml");
   this.propertyResourceMap.put("authenticationConfig",new Resource[]{ldaptiveProperties,extraConfig,new FileSystemResource("credentials.properties")});
+  this.propertyResourceMap.put("resolverConfig",new Resource[]{ldaptiveProperties,extraConfig,new FileSystemResource("principals.properties")});
   this.propertyResourceMap.put("monitorConfig",new Resource[]{ldaptiveProperties,extraConfig});
   this.propertyResourceMap.put("userDetailsConfig",new Resource[]{ldaptiveProperties,extraConfig,new FileSystemResource("userdetails.properties")});
 }
