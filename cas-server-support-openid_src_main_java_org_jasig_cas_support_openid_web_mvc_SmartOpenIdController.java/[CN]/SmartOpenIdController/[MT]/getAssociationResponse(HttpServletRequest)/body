@@ -1,6 +1,6 @@
 {
   ParameterList parameters=new ParameterList(request.getParameterMap());
-  String mode=parameters.hasParameter("openid.mode") ? parameters.getParameterValue("openid.mode") : null;
+  final String mode=parameters.hasParameter("openid.mode") ? parameters.getParameterValue("openid.mode") : null;
   Message response=null;
   if (mode != null && mode.equals("associate")) {
     response=serverManager.associationResponse(parameters);
