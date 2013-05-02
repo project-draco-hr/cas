@@ -1,5 +1,5 @@
 {
-  final long l=Long.parseLong(pswValue.trim());
+  final long l=Long.parseLong(dateValue.trim());
   final long totalSecondsSince1601=l / 10000000;
   final long totalSecondsSince1970=totalSecondsSince1601 - TOTAL_SECONDS_FROM_1601_1970;
   final DateTime dt=new DateTime(totalSecondsSince1970 * 1000,DEFAULT_TIME_ZONE);
