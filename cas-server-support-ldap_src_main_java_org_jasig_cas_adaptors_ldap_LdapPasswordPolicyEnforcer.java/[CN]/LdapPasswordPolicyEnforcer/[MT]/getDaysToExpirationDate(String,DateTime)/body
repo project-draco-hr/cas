@@ -5,10 +5,11 @@
   final Days d=Days.daysBetween(currentTime,expireDate);
   int daysToExpirationDate=d.getDays();
   if (expireDate.equals(currentTime) || expireDate.isBefore(currentTime)) {
-    String msgToLog="Authentication failed because account password has expired with " + daysToExpirationDate + " to expiration date. ";
-    msgToLog+="Verify the value of the " + this.dateAttribute + " attribute and make sure it's not before the current date, which is "+ currentTime.toString();
-    final LdapPasswordPolicyEnforcementException exc=new LdapPasswordPolicyEnforcementException(msgToLog);
-    log.error(msgToLog,exc);
+    final Formatter fmt=new Formatter();
+    fmt.format("Authentication failed because account password has expired with %s ",daysToExpirationDate).format("to expiration date. Verify the value of the %s attribute ",this.dateAttribute).format("and ensure it's not before the current date, which is %s",currentTime.toString());
+    final LdapPasswordPolicyEnforcementException exc=new LdapPasswordPolicyEnforcementException(fmt.toString());
+    log.error(fmt.toString(),exc);
+    IOUtils.closeQuietly(fmt);
     throw exc;
   }
   DateTime warnPeriod=new DateTime(DateTime.parse(expireDate.toString()),DEFAULT_TIME_ZONE);
