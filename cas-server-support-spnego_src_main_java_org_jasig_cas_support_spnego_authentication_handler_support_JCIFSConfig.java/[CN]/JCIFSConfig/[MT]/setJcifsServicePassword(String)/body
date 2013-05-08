@@ -1,4 +1,4 @@
 {
-  log.debug("jcifsServicePassword is set to *****");
+  logger.debug("jcifsServicePassword is set to *****");
   Config.setProperty(JCIFS_PROP_SERVICE_PASSWORD,jcifsServicePassword);
 }

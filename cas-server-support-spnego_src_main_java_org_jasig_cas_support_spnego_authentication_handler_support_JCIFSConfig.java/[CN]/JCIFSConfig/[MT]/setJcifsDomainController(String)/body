@@ -1,4 +1,4 @@
 {
-  log.debug("jcifsDomainController is set to {}",jcifsDomainController);
+  logger.debug("jcifsDomainController is set to {}",jcifsDomainController);
   Config.setProperty(JCIFS_PROP_DOMAIN_CONTROLLER,jcifsDomainController);
 }
