@@ -13,7 +13,7 @@
   for (  final Client client : this.clients.findAllClients()) {
     final String key=client.getName() + "Url";
     final String redirectionUrl=client.getRedirectionUrl(webContext);
-    log.debug("{} -> {}",key,redirectionUrl);
+    logger.debug("{} -> {}",key,redirectionUrl);
     context.getFlowScope().put(key,redirectionUrl);
   }
 }

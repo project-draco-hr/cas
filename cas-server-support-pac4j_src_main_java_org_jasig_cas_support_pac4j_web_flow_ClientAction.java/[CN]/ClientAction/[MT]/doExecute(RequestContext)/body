@@ -4,20 +4,20 @@
   final HttpSession session=request.getSession();
   final WebContext webContext=new J2EContext(request,response);
   final String clientName=request.getParameter(this.clients.getClientNameParameter());
-  log.debug("clientName : {}",clientName);
+  logger.debug("clientName : {}",clientName);
   if (StringUtils.isNotBlank(clientName)) {
     final BaseClient<org.pac4j.core.credentials.Credentials,CommonProfile> client=(BaseClient<org.pac4j.core.credentials.Credentials,CommonProfile>)this.clients.findClient(clientName);
-    log.debug("client : {}",client);
+    logger.debug("client : {}",client);
     if (client.getProtocol() == Protocol.HTTP) {
       throw new TechnicalException("HTTP protocol client not supported : " + client);
     }
     final org.pac4j.core.credentials.Credentials credentials;
     try {
       credentials=client.getCredentials(webContext);
-      log.debug("credentials : {}",credentials);
+      logger.debug("credentials : {}",credentials);
     }
  catch (    final RequiresHttpAction e) {
-      log.info("requires http action : {}",e);
+      logger.info("requires http action : {}",e);
       response.flushBuffer();
       ExternalContext externalContext=ExternalContextHolder.getExternalContext();
       externalContext.recordResponseComplete();
