@@ -3,6 +3,6 @@
     this.serverSocket.close();
   }
  catch (  IOException e) {
-    log.trace("Exception when closing the server socket: {}",e.getMessage());
+    logger.trace("Exception when closing the server socket: {}",e.getMessage());
   }
 }
