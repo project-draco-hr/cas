@@ -22,22 +22,22 @@
       }
     }
  catch (    MessageException me) {
-      log.error("Message exception : {}",me.getMessage(),me);
+      LOGGER.error("Message exception : {}",me.getMessage(),me);
     }
     boolean successFullAuthentication=true;
     try {
       if (associated) {
         if (associationValid) {
           cas.validateServiceTicket(ticketId,this);
-          log.info("Validated openid ticket");
+          LOGGER.info("Validated openid ticket");
         }
  else {
           successFullAuthentication=false;
         }
       }
     }
- catch (    TicketException te) {
-      log.error("Could not validate ticket : {}",te.getMessage(),te);
+ catch (    final TicketException te) {
+      LOGGER.error("Could not validate ticket : {}",te.getMessage(),te);
       successFullAuthentication=false;
     }
     Message response=manager.authResponse(requestParameters,this.identity,this.identity,successFullAuthentication,true);
