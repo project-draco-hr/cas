@@ -3,30 +3,30 @@
   Assert.notNull(service,"service cannot be null");
   final TicketGrantingTicket ticketGrantingTicket=this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   if (ticketGrantingTicket == null) {
-    log.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
+    logger.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
     throw new InvalidTicketException(ticketGrantingTicketId);
   }
 synchronized (ticketGrantingTicket) {
     if (ticketGrantingTicket.isExpired()) {
       this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
-      log.debug("TicketGrantingTicket[{}] has expired and is now deleted from the ticket registry.",ticketGrantingTicketId);
+      logger.debug("TicketGrantingTicket[{}] has expired and is now deleted from the ticket registry.",ticketGrantingTicketId);
       throw new InvalidTicketException(ticketGrantingTicketId);
     }
   }
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService == null || !registeredService.isEnabled()) {
-    log.warn("ServiceManagement: Unauthorized Service Access. Service [{}] is not found in service registry.",service.getId());
+    logger.warn("ServiceManagement: Unauthorized Service Access. Service [{}] is not found in service registry.",service.getId());
     throw new UnauthorizedServiceException();
   }
   if (!registeredService.isSsoEnabled() && credentials == null && ticketGrantingTicket.getCountOfUses() > 0) {
-    log.warn("ServiceManagement: Service [{}] is not allowed to use SSO.",service.getId());
+    logger.warn("ServiceManagement: Service [{}] is not allowed to use SSO.",service.getId());
     throw new UnauthorizedSsoServiceException();
   }
   final List<Authentication> authns=ticketGrantingTicket.getChainedAuthentications();
   if (authns.size() > 1) {
     if (!registeredService.isAllowedToProxy()) {
       final String message=String.format("ServiceManagement: Proxy attempt by service [%s] (registered service [%s]) is not allowed.",service.getId(),registeredService.toString());
-      log.warn(message);
+      logger.warn(message);
       throw new UnauthorizedProxyingException(message);
     }
   }
@@ -45,7 +45,7 @@ synchronized (ticketGrantingTicket) {
   final UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(service.getClass().getName());
   final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),service,this.serviceTicketExpirationPolicy,credentials != null);
   this.serviceTicketRegistry.addTicket(serviceTicket);
-  if (log.isInfoEnabled()) {
+  if (logger.isInfoEnabled()) {
     final List<Authentication> authentications=serviceTicket.getGrantingTicket().getChainedAuthentications();
     final String formatString="Granted %s ticket [%s] for service [%s] for user [%s]";
     final String type;
@@ -56,7 +56,7 @@ synchronized (ticketGrantingTicket) {
  else {
       type="proxy";
     }
-    log.info(String.format(formatString,type,serviceTicket.getId(),service.getId(),principalId));
+    logger.info(String.format(formatString,type,serviceTicket.getId(),service.getId(),principalId));
   }
   return serviceTicket.getId();
 }

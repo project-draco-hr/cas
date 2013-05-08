@@ -2,9 +2,12 @@
   if (this.loggedOutAlready) {
     return true;
   }
-  log.debug("Sending logout request for: {}",getId());
-  final String logoutRequest="<samlp:LogoutRequest xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" ID=\"" + GENERATOR.getNewTicketId("LR") + "\" Version=\"2.0\" IssueInstant=\""+ SamlDateUtils.getCurrentDateAndTime()+ "\"><saml:NameID xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\">@NOT_USED@</saml:NameID><samlp:SessionIndex>"+ sessionIdentifier+ "</samlp:SessionIndex></samlp:LogoutRequest>";
+  LOGGER.debug("Sending logout request for: {}",getId());
+  final Formatter fmt=new Formatter();
+  fmt.format("<samlp:LogoutRequest xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" ID=\"%s",GENERATOR.getNewTicketId("LR")).format("\" Version=\"2.0\" IssueInstant=\"%s",SamlDateUtils.getCurrentDateAndTime()).format("\"><saml:NameID xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\">@NOT_USED@</saml:NameID><samlp:SessionIndex>").format("%s</samlp:SessionIndex></samlp:LogoutRequest>",sessionIdentifier);
   this.loggedOutAlready=true;
+  final String logoutRequest=fmt.toString();
+  IOUtils.closeQuietly(fmt);
   if (this.httpClient != null) {
     return this.httpClient.sendMessageToEndPoint(getOriginalUrl(),logoutRequest,true);
   }

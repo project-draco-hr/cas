@@ -1,12 +1,12 @@
 {
   Assert.notNull(ticketGrantingTicketId);
-  log.debug("Removing ticket [{}] from registry.",ticketGrantingTicketId);
+  logger.debug("Removing ticket [{}] from registry.",ticketGrantingTicketId);
   final TicketGrantingTicket ticket=this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   if (ticket == null) {
-    log.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
+    logger.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
     return;
   }
-  log.debug("Ticket found. Expiring and then deleting.");
+  logger.debug("Ticket found. Expiring and then deleting.");
   ticket.expire();
   this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
 }
