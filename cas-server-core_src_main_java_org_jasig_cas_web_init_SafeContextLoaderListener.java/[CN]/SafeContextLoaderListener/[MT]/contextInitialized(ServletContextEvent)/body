@@ -4,7 +4,7 @@
   }
  catch (  Throwable t) {
     final String message="SafeContextLoaderListener: \n" + "The Spring ContextLoaderListener we wrap threw on contextInitialized.\n" + "But for our having caught this error, the web application context would not have initialized.";
-    log.error(message,t);
+    logger.error(message,t);
     System.err.println(message);
     t.printStackTrace();
     ServletContext context=sce.getServletContext();
