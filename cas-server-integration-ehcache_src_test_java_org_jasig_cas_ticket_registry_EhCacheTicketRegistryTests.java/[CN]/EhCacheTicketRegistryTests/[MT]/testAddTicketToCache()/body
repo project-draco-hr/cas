@@ -3,7 +3,7 @@
     this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",getAuthentication(),new NeverExpiresExpirationPolicy()));
   }
  catch (  Exception e) {
-    log.error(e.getMessage(),e);
+    logger.error(e.getMessage(),e);
     fail("Caught an exception. But no exception should have been thrown.");
   }
 }
