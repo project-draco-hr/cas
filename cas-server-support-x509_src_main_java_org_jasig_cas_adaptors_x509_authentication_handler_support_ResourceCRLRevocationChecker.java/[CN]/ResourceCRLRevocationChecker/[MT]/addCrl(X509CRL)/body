@@ -1,5 +1,5 @@
 {
   final X500Principal issuer=crl.getIssuerX500Principal();
-  log.debug("Adding CRL for issuer {}",issuer);
+  logger.debug("Adding CRL for issuer {}",issuer);
   this.crlIssuerMap.put(issuer,crl);
 }

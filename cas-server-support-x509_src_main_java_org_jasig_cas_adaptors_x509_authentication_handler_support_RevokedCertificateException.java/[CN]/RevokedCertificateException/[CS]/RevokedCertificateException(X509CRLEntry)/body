@@ -9,7 +9,7 @@
       }
     }
  catch (    final Exception e) {
-      log.trace("An exception occurred when resolving extension value: {}",e.getMessage());
+      logger.trace("An exception occurred when resolving extension value: {}",e.getMessage());
     }
   }
 }

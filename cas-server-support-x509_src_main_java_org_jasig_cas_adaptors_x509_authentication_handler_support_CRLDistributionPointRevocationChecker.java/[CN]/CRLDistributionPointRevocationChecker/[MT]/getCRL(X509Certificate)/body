@@ -1,24 +1,24 @@
 {
   final URL[] urls=getDistributionPoints(cert);
-  log.debug(String.format("Distribution points for %s: %s.",CertUtils.toString(cert),Arrays.asList(urls)));
+  logger.debug(String.format("Distribution points for %s: %s.",CertUtils.toString(cert),Arrays.asList(urls)));
   Element item;
   for (  URL url : urls) {
     item=this.crlCache.get(url);
     if (item != null) {
-      log.debug("Found CRL in cache for {}",CertUtils.toString(cert));
+      logger.debug("Found CRL in cache for {}",CertUtils.toString(cert));
       return (X509CRL)item.getObjectValue();
     }
   }
   X509CRL crl=null;
   for (int i=0; i < urls.length && crl == null; i++) {
-    log.info("Attempting to fetch CRL at {}",urls[i]);
+    logger.info("Attempting to fetch CRL at {}",urls[i]);
     try {
       crl=CertUtils.fetchCRL(new UrlResource(urls[i]));
-      log.info("Success. Caching fetched CRL.");
+      logger.info("Success. Caching fetched CRL.");
       this.crlCache.put(new Element(urls[i],crl));
     }
  catch (    Exception e) {
-      log.error("Error fetching CRL at {}",urls[i],e);
+      logger.error("Error fetching CRL at {}",urls[i],e);
     }
   }
   return crl;

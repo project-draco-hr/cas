@@ -4,7 +4,7 @@
     points=new ExtensionReader(cert).readCRLDistributionPoints();
   }
  catch (  final Exception e) {
-    log.error("Error reading CRLDistributionPoints extension field on " + CertUtils.toString(cert),e);
+    logger.error("Error reading CRLDistributionPoints extension field on " + CertUtils.toString(cert),e);
     return new URL[0];
   }
   final List<URL> urls=new ArrayList<URL>();
@@ -19,7 +19,7 @@
       }
     }
  else {
-      log.warn("{} not supported. String or GeneralNameList expected.",location);
+      logger.warn("{} not supported. String or GeneralNameList expected.",location);
     }
   }
   return urls.toArray(new URL[urls.size()]);
