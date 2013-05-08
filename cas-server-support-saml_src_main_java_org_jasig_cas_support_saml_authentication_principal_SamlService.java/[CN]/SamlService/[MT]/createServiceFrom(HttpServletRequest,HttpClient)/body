@@ -28,9 +28,9 @@
     artifactId=null;
     requestId=null;
   }
-  log.debug("Attempted to extract Request from HttpServletRequest. Results:");
-  log.debug(String.format("Request Body: %s",requestBody));
-  log.debug(String.format("Extracted ArtifactId: %s",artifactId));
-  log.debug(String.format("Extracted Request Id: %s",requestId));
+  LOGGER.debug("Attempted to extract Request from HttpServletRequest. Results:");
+  LOGGER.debug(String.format("Request Body: %s",requestBody));
+  LOGGER.debug(String.format("Extracted ArtifactId: %s",artifactId));
+  LOGGER.debug(String.format("Extracted Request Id: %s",requestId));
   return new SamlService(id,service,artifactId,httpClient,requestId);
 }
