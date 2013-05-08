@@ -11,7 +11,7 @@
   if (OAuthConstants.PROFILE_URL.equals(method)) {
     return profileController.handleRequest(request,response);
   }
-  log.error("Unknown method : {}",method);
+  logger.error("Unknown method : {}",method);
   OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,200);
   return null;
 }
