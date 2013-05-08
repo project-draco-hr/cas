@@ -6,6 +6,6 @@
   messageDigest.update(this.salt);
   messageDigest.update(key.getBytes());
   final String hash=getFormattedText(messageDigest.digest());
-  log.debug(String.format("Generated hash of value [%s] for key [%s].",hash,key));
+  logger.debug(String.format("Generated hash of value [%s] for key [%s].",hash,key));
   return hash;
 }
