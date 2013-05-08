@@ -13,7 +13,7 @@
     assertNull(getOwner(appId));
   }
  catch (  Exception e) {
-    log.debug("testLockExpiration produced an error",e);
+    logger.debug("testLockExpiration produced an error",e);
     fail("testLockExpiration failed");
   }
 }

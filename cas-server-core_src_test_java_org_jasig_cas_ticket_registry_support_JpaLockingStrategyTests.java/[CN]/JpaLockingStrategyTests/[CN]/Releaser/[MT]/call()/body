@@ -4,7 +4,7 @@
     return true;
   }
  catch (  Exception e) {
-    log.debug("{} failed to release lock",lock,e);
+    logger.debug("{} failed to release lock",lock,e);
     return false;
   }
 }

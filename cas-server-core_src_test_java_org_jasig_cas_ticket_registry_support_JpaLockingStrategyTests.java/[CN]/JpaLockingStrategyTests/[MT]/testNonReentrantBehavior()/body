@@ -10,7 +10,7 @@
     assertNull(getOwner(appId));
   }
  catch (  Exception e) {
-    log.debug("testNonReentrantBehavior produced an error",e);
+    logger.debug("testNonReentrantBehavior produced an error",e);
     fail("testNonReentrantBehavior failed.");
   }
 }

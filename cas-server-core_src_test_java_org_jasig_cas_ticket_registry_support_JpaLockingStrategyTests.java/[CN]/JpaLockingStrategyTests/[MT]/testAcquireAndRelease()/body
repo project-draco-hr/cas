@@ -9,7 +9,7 @@
     assertNull(getOwner(appId));
   }
  catch (  Exception e) {
-    log.debug("testAcquireAndRelease produced an error",e);
+    logger.debug("testAcquireAndRelease produced an error",e);
     fail("testAcquireAndRelease failed");
   }
 }
