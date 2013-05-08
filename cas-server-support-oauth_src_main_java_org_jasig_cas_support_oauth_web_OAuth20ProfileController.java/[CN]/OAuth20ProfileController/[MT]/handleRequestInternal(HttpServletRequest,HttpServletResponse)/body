@@ -1,41 +1,41 @@
 {
   final String accessToken=request.getParameter(OAuthConstants.ACCESS_TOKEN);
-  log.debug("accessToken : {}",accessToken);
+  log.debug("{} : {}",OAuthConstants.ACCESS_TOKEN,accessToken);
   final JsonFactory jsonFactory=new JsonFactory();
   final JsonGenerator jsonGenerator=jsonFactory.createJsonGenerator(response.getWriter());
-  response.setContentType("application/json");
-  if (StringUtils.isBlank(accessToken)) {
-    log.error("missing accessToken");
+  try {
+    response.setContentType("application/json");
+    if (StringUtils.isBlank(accessToken)) {
+      log.error("Missing {}",OAuthConstants.ACCESS_TOKEN);
+      jsonGenerator.writeStartObject();
+      jsonGenerator.writeStringField("error",OAuthConstants.MISSING_ACCESS_TOKEN);
+      jsonGenerator.writeEndObject();
+      return null;
+    }
+    final TicketGrantingTicket ticketGrantingTicket=(TicketGrantingTicket)this.ticketRegistry.getTicket(accessToken);
+    if (ticketGrantingTicket == null || ticketGrantingTicket.isExpired()) {
+      log.error("expired accessToken : {}",accessToken);
+      jsonGenerator.writeStartObject();
+      jsonGenerator.writeStringField("error",OAuthConstants.EXPIRED_ACCESS_TOKEN);
+      jsonGenerator.writeEndObject();
+      return null;
+    }
+    final Principal principal=ticketGrantingTicket.getAuthentication().getPrincipal();
     jsonGenerator.writeStartObject();
-    jsonGenerator.writeStringField("error",OAuthConstants.MISSING_ACCESS_TOKEN);
+    jsonGenerator.writeStringField(ID,principal.getId());
+    jsonGenerator.writeArrayFieldStart(ATTRIBUTES);
+    final Map<String,Object> attributes=principal.getAttributes();
+    for (    final String key : attributes.keySet()) {
+      jsonGenerator.writeStartObject();
+      jsonGenerator.writeObjectField(key,attributes.get(key));
+      jsonGenerator.writeEndObject();
+    }
+    jsonGenerator.writeEndArray();
     jsonGenerator.writeEndObject();
-    jsonGenerator.close();
-    response.flushBuffer();
     return null;
   }
-  final TicketGrantingTicket ticketGrantingTicket=(TicketGrantingTicket)this.ticketRegistry.getTicket(accessToken);
-  if (ticketGrantingTicket == null || ticketGrantingTicket.isExpired()) {
-    log.error("expired accessToken : {}",accessToken);
-    jsonGenerator.writeStartObject();
-    jsonGenerator.writeStringField("error",OAuthConstants.EXPIRED_ACCESS_TOKEN);
-    jsonGenerator.writeEndObject();
-    jsonGenerator.close();
+  finally {
+    IOUtils.closeQuietly(jsonGenerator);
     response.flushBuffer();
-    return null;
   }
-  final Principal principal=ticketGrantingTicket.getAuthentication().getPrincipal();
-  jsonGenerator.writeStartObject();
-  jsonGenerator.writeStringField(ID,principal.getId());
-  jsonGenerator.writeArrayFieldStart(ATTRIBUTES);
-  final Map<String,Object> attributes=principal.getAttributes();
-  for (  final String key : attributes.keySet()) {
-    jsonGenerator.writeStartObject();
-    jsonGenerator.writeObjectField(key,attributes.get(key));
-    jsonGenerator.writeEndObject();
-  }
-  jsonGenerator.writeEndArray();
-  jsonGenerator.writeEndObject();
-  jsonGenerator.close();
-  response.flushBuffer();
-  return null;
 }
