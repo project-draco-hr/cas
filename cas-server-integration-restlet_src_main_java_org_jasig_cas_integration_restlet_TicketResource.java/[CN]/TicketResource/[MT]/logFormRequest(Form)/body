@@ -1,5 +1,5 @@
 {
-  if (log.isDebugEnabled()) {
+  if (LOGGER.isDebugEnabled()) {
     final Set<String> pairs=new HashSet<String>();
     for (    final String name : form.getNames()) {
       final StringBuilder builder=new StringBuilder();
@@ -13,6 +13,6 @@
       }
       pairs.add(builder.toString());
     }
-    log.debug(StringUtils.join(pairs,", "));
+    LOGGER.debug(StringUtils.join(pairs,", "));
   }
 }
