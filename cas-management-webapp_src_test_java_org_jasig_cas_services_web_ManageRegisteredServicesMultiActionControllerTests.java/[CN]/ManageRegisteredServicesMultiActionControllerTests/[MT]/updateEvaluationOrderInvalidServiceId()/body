@@ -12,6 +12,6 @@
     this.controller.updateRegisteredServiceEvaluationOrder(request,new MockHttpServletResponse());
   }
  catch (  IllegalArgumentException e) {
-    log.debug(e.getMessage(),e);
+    logger.debug(e.getMessage(),e);
   }
 }
