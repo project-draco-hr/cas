@@ -1,4 +1,4 @@
 {
   Assert.notNull(getPasswordPolicyEnforcer(),"password policy enforcer cannot be null");
-  log.debug("Initialized the action with password policy enforcer {}",getPasswordPolicyEnforcer().getClass().getName());
+  logger.debug("Initialized the action with password policy enforcer {}",getPasswordPolicyEnforcer().getClass().getName());
 }

@@ -5,7 +5,7 @@
     return true;
   }
  catch (  final Exception e) {
-    log.warn("Error deleting Registered Service",e);
+    logger.warn("Error deleting Registered Service",e);
     return false;
   }
 }

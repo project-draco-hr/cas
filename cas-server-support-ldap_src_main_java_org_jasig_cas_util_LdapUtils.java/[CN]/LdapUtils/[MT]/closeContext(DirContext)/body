@@ -4,7 +4,7 @@
       context.close();
     }
  catch (    NamingException ex) {
-      log.warn("Could not close context",ex);
+      LOGGER.warn("Could not close context",ex);
     }
   }
 }
