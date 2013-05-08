@@ -12,7 +12,7 @@
     return formattedAddress;
   }
  catch (  final UnknownHostException e) {
-    log.error(e.toString(),e);
+    logger.error(e.toString(),e);
     return null;
   }
 }

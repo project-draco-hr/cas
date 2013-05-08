@@ -1,4 +1,4 @@
 {
   this.warningDays=warningDays;
-  log.debug("Default warningDays: {}",warningDays);
+  logger.debug("Default warningDays: {}",warningDays);
 }

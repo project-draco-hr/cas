@@ -1,4 +1,4 @@
 {
   this.warningDaysAttribute=warnDays;
-  log.debug("Warning days attribute: {}",warnDays);
+  logger.debug("Warning days attribute: {}",warnDays);
 }

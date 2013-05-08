@@ -2,28 +2,28 @@
   String msgToLog=null;
   final LdapPasswordPolicyResult ldapResult=getEnforcedPasswordPolicy(userId);
   if (ldapResult == null) {
-    log.debug("Ldap password policy cannot be established for [{}]. Skipping all checks...",userId);
+    logger.debug("Ldap password policy cannot be established for [{}]. Skipping all checks...",userId);
     return PASSWORD_STATUS_PASS;
   }
   if (StringUtils.isBlank(ldapResult.getDateResult())) {
-    log.debug("Ldap password policy could not determine the date value for {}. Skipping all checks for [{}]...",this.dateAttribute,userId);
+    logger.debug("Ldap password policy could not determine the date value for {}. Skipping all checks for [{}]...",this.dateAttribute,userId);
     return PASSWORD_STATUS_PASS;
   }
   if (!StringUtils.isEmpty(this.noWarnAttribute)) {
-    log.debug("No warning attribute value for {} is set to ",this.noWarnAttribute,ldapResult.getNoWarnAttributeResult());
+    logger.debug("No warning attribute value for {} is set to ",this.noWarnAttribute,ldapResult.getNoWarnAttributeResult());
   }
   if (isPasswordSetToNeverExpire(ldapResult.getNoWarnAttributeResult())) {
-    log.debug("Account password will never expire. Skipping password warning check...");
+    logger.debug("Account password will never expire. Skipping password warning check...");
     return PASSWORD_STATUS_PASS;
   }
   if (StringUtils.isEmpty(ldapResult.getWarnDaysResult())) {
-    log.debug("No warning days value is found for {}. Using system default of {}",userId,this.warningDays);
+    logger.debug("No warning days value is found for {}. Using system default of {}",userId,this.warningDays);
   }
  else {
     this.warningDays=Integer.parseInt(ldapResult.getWarnDaysResult());
   }
   if (StringUtils.isEmpty(ldapResult.getValidDaysResult())) {
-    log.debug("No maximum password valid days found for {}. Using system default of {} days",ldapResult.getUserId(),this.validDays);
+    logger.debug("No maximum password valid days found for {}. Using system default of {} days",ldapResult.getUserId(),this.validDays);
   }
  else {
     this.validDays=Integer.parseInt(ldapResult.getValidDaysResult());
@@ -32,7 +32,7 @@
   if (expireTime == null) {
     msgToLog="Expiration date cannot be determined for date " + ldapResult.getDateResult();
     final LdapPasswordPolicyEnforcementException exc=new LdapPasswordPolicyEnforcementException(msgToLog);
-    log.error(msgToLog,exc);
+    logger.error(msgToLog,exc);
     throw exc;
   }
   return getDaysToExpirationDate(userId,expireTime);
