@@ -1,12 +1,12 @@
 {
   try {
-    if (log.isDebugEnabled()) {
+    if (logger.isDebugEnabled()) {
       final Date creationDate=new Date(ticket.getCreationTime());
-      log.debug("Removing Ticket [{}] created: {}",ticket,creationDate.toString());
+      logger.debug("Removing Ticket [{}] created: {}",ticket,creationDate.toString());
     }
     entityManager.remove(ticket);
   }
  catch (  final Exception e) {
-    log.error("Error removing {} from registry.",ticket,e);
+    logger.error("Error removing {} from registry.",ticket,e);
   }
 }

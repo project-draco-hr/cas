@@ -2,7 +2,7 @@
   final Map<String,Object> attributesToRelease=new HashMap<String,Object>();
   for (  final String attributeName : givenAttributes.keySet()) {
     final Object attributeValue=givenAttributes.get(attributeName);
-    log.debug("Received attribute [{}] with value [{}]",attributeName,attributeValue);
+    logger.debug("Received attribute [{}] with value [{}]",attributeName,attributeValue);
     if (attributeValue != null) {
       if (attributeValue instanceof Collection) {
         final String[] filteredAttributes=filterArrayAttributes(((Collection<String>)attributeValue).toArray(new String[]{}),attributeName);
@@ -28,6 +28,6 @@
       }
     }
   }
-  log.debug("Received {} attributes. Filtered and released {}",givenAttributes.size(),attributesToRelease.size());
+  logger.debug("Received {} attributes. Filtered and released {}",givenAttributes.size(),attributesToRelease.size());
   return attributesToRelease;
 }
