@@ -1,10 +1,10 @@
 {
-  log.debug("Deleting ticket {}",ticketId);
+  logger.debug("Deleting ticket {}",ticketId);
   try {
     return this.client.delete(ticketId).get();
   }
  catch (  final Exception e) {
-    log.error("Failed deleting {}",ticketId,e);
+    logger.error("Failed deleting {}",ticketId,e);
   }
   return false;
 }
