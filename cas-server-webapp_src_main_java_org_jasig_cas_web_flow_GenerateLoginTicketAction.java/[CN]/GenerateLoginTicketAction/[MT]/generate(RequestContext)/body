@@ -1,6 +1,6 @@
 {
   final String loginTicket=this.ticketIdGenerator.getNewTicketId(PREFIX);
-  log.debug("Generated login ticket {}",loginTicket);
+  logger.debug("Generated login ticket {}",loginTicket);
   WebUtils.putLoginTicket(context,loginTicket);
   return "generated";
 }
