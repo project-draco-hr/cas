@@ -2,7 +2,7 @@
   try {
     this.ticketRegistry.getTicket("FALALALALALAL");
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     logger.error(e.getMessage(),e);
     fail("Exception caught.  None expected.");
   }

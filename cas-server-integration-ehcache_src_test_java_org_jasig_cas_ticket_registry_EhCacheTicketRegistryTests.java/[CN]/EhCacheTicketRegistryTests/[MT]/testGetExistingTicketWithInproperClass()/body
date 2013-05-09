@@ -3,7 +3,7 @@
     this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",getAuthentication(),new NeverExpiresExpirationPolicy()));
     this.ticketRegistry.getTicket("TEST",ServiceTicket.class);
   }
- catch (  ClassCastException e) {
+ catch (  final ClassCastException e) {
     return;
   }
   fail("ClassCastException expected.");
