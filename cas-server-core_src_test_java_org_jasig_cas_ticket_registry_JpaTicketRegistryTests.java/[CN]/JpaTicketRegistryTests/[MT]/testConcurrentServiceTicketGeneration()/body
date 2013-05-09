@@ -12,7 +12,7 @@
       assertNotNull(result.get());
     }
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     logger.debug("testConcurrentServiceTicketGeneration produced an error",e);
     fail("testConcurrentServiceTicketGeneration failed.");
   }

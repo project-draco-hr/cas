@@ -3,7 +3,7 @@
     this.remoteCentralAuthenticationService.createTicketGrantingTicket(TestUtils.getCredentialsWithDifferentUsernameAndPassword());
     fail("TicketException expected.");
   }
- catch (  TicketException e) {
+ catch (  final TicketException e) {
     return;
   }
 }

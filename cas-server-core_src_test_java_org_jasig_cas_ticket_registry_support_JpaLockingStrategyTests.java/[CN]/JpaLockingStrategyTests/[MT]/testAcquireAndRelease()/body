@@ -8,7 +8,7 @@
     lock.release();
     assertNull(getOwner(appId));
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     logger.debug("testAcquireAndRelease produced an error",e);
     fail("testAcquireAndRelease failed");
   }

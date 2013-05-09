@@ -3,7 +3,7 @@
   try {
     this.callbackHandler.handle(callbacks);
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     throw new LoginException();
   }
   final String userName=((NameCallback)callbacks[0]).getName();

@@ -12,7 +12,7 @@
     lock.release();
     assertNull(getOwner(appId));
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     logger.debug("testLockExpiration produced an error",e);
     fail("testLockExpiration failed");
   }

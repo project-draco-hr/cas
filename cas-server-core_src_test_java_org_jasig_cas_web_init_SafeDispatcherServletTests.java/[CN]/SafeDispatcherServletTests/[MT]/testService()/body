@@ -5,7 +5,7 @@
   try {
     this.safeServlet.service(mockRequest,mockResponse);
   }
- catch (  ApplicationContextException ace) {
+ catch (  final ApplicationContextException ace) {
     return;
   }
   fail("Should have thrown ApplicationContextException since init() failed.");
