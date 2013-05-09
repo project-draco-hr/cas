@@ -2,7 +2,7 @@
   try {
     this.worker=new Worker(new ServerSocket(port),resource,contentType);
   }
- catch (  IOException e) {
+ catch (  final IOException e) {
     throw new RuntimeException("Cannot create Web server",e);
   }
 }
