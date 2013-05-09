@@ -1,4 +1,0 @@
-{
-  super(id,originalUrl,artifactId,httpClient);
-  this.responseType=responseType;
-}

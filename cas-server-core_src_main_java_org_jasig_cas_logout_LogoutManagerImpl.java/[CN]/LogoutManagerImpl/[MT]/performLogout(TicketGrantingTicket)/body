@@ -1,0 +1,30 @@
+{
+  final Collection<TicketedService> services;
+synchronized (ticket) {
+    services=ticket.getServices();
+    ticket.removeAllServices();
+  }
+  ticket.setExpired();
+  List<TicketedService> frontServices=new ArrayList<TicketedService>();
+  if (!disableSingleSignOut) {
+    for (    TicketedService ticketedService : services) {
+      Service service=ticketedService.getService();
+      String ticketId=ticketedService.getTicketId();
+      if (service instanceof AbstractWebApplicationService) {
+        AbstractWebApplicationService webAppService=(AbstractWebApplicationService)service;
+        if (!webAppService.isLoggedOutAlready()) {
+          RegisteredService registeredService=servicesManager.findServiceBy(service);
+          if (registeredService.getLogoutType() == LogoutType.FRONT_CHANNEL) {
+            frontServices.add(ticketedService);
+          }
+ else {
+            if (!logOutOfService(webAppService,ticketId)) {
+              log.warn("Logout message not sent to [[]]; Continuing processing...",webAppService.getId());
+            }
+          }
+        }
+      }
+    }
+  }
+  return frontServices.iterator();
+}

@@ -1,0 +1,7 @@
+{
+  final List<TicketedService> list=new ArrayList<TicketedService>(services.size());
+  for (  String ticket : services.keySet()) {
+    list.add(new TicketedService(ticket,services.get(ticket)));
+  }
+  return Collections.unmodifiableCollection(list);
+}
