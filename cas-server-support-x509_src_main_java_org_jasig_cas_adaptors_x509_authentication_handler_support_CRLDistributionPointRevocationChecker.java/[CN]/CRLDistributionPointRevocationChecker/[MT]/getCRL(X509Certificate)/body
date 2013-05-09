@@ -17,7 +17,7 @@
       logger.info("Success. Caching fetched CRL.");
       this.crlCache.put(new Element(urls[i],crl));
     }
- catch (    Exception e) {
+ catch (    final Exception e) {
       logger.error("Error fetching CRL at {}",urls[i],e);
     }
   }
