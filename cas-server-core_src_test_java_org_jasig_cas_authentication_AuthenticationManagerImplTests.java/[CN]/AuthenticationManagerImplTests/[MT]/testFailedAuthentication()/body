@@ -3,7 +3,7 @@
     getAuthenticationManager().authenticate(TestUtils.getCredentialsWithDifferentUsernameAndPassword());
     fail("Authentication should have failed.");
   }
- catch (  AuthenticationException e) {
+ catch (  final AuthenticationException e) {
     return;
   }
 }

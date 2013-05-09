@@ -6,7 +6,7 @@
 );
     fail("Authentication should have failed.");
   }
- catch (  UnsupportedCredentialsException e) {
+ catch (  final UnsupportedCredentialsException e) {
     return;
   }
 }

@@ -11,7 +11,7 @@
     request.addParameter("evaluationOrder","1000");
     this.controller.updateRegisteredServiceEvaluationOrder(request,new MockHttpServletResponse());
   }
- catch (  IllegalArgumentException e) {
+ catch (  final IllegalArgumentException e) {
     logger.debug(e.getMessage(),e);
   }
 }
