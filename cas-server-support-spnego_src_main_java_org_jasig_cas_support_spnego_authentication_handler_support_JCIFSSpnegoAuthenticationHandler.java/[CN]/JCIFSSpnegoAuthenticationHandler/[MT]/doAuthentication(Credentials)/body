@@ -10,7 +10,7 @@ synchronized (this) {
       nextToken=this.authentication.getNextToken();
     }
   }
- catch (  jcifs.spnego.AuthenticationException e) {
+ catch (  final jcifs.spnego.AuthenticationException e) {
     throw new BadCredentialsAuthenticationException(e);
   }
   if (nextToken != null) {

@@ -5,7 +5,7 @@
   try {
     association=Association.generate(Association.TYPE_HMAC_SHA1,"test",60);
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     fail("Could not generate association");
   }
   when(context.getBean("serverManager")).thenReturn(manager);
@@ -15,7 +15,7 @@
   try {
     verify(cas).validateServiceTicket("test",openIdService);
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     fail("Error while validating ticket");
   }
   request.removeParameter("openid.assoc_handle");

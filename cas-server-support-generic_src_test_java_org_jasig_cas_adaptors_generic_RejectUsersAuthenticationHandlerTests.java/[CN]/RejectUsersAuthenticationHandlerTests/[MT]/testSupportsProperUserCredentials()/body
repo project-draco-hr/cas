@@ -5,7 +5,7 @@
   try {
     this.authenticationHandler.authenticate(c);
   }
- catch (  AuthenticationException e) {
+ catch (  final AuthenticationException e) {
     fail("AuthenticationException caught.");
   }
 }

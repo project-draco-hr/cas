@@ -5,10 +5,10 @@
   try {
     this.authenticationHandler.authenticate(c);
   }
- catch (  UnsupportedCredentialsException e) {
+ catch (  final UnsupportedCredentialsException e) {
     fail("UnsupportedCredentialsException caught");
   }
-catch (  AuthenticationException e) {
+catch (  final AuthenticationException e) {
     fail("AuthenticationException caught.");
   }
 }
