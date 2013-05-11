@@ -3,6 +3,6 @@
   TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
   t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),testService,new NeverExpiresExpirationPolicy(),false);
   assertFalse(t.isExpired());
-  t.setExpired();
+  t.markTicketExpired();
   assertTrue(t.isExpired());
 }

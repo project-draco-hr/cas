@@ -1,4 +1,4 @@
 {
-  final String logoutRequest="<samlp:LogoutRequest xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" ID=\"" + GENERATOR.getNewTicketId("LR") + "\" Version=\"2.0\" IssueInstant=\""+ SamlDateUtils.getCurrentDateAndTime()+ "\"><saml:NameID "+ "xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\">@NOT_USED@</saml:NameID><samlp:SessionIndex>"+ ticketId+ "</samlp:SessionIndex></samlp:LogoutRequest>";
+  final String logoutRequest=String.format(LOGOUT_REQUEST_TEMPLATE,GENERATOR.getNewTicketId("LR"),SamlDateUtils.getCurrentDateAndTime(),ticketId);
   return logoutRequest;
 }

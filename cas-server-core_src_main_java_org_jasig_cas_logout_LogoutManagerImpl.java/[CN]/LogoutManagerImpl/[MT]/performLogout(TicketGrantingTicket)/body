@@ -1,25 +1,25 @@
 {
-  final Collection<TicketedService> services;
+  final Collection<Pair<String,Service>> services;
 synchronized (ticket) {
     services=ticket.getServices();
     ticket.removeAllServices();
   }
-  ticket.setExpired();
-  List<TicketedService> frontServices=new ArrayList<TicketedService>();
+  ticket.markTicketExpired();
+  final List<Pair<String,Service>> frontServices=new ArrayList<Pair<String,Service>>();
   if (!disableSingleSignOut) {
-    for (    TicketedService ticketedService : services) {
-      Service service=ticketedService.getService();
-      String ticketId=ticketedService.getTicketId();
-      if (service instanceof AbstractWebApplicationService) {
-        AbstractWebApplicationService webAppService=(AbstractWebApplicationService)service;
-        if (!webAppService.isLoggedOutAlready()) {
-          RegisteredService registeredService=servicesManager.findServiceBy(service);
-          if (registeredService.getLogoutType() == LogoutType.FRONT_CHANNEL) {
+    for (    final Pair<String,Service> ticketedService : services) {
+      final String ticketId=ticketedService.getFirst();
+      final Service service=ticketedService.getSecond();
+      if (service instanceof SingleLogoutService) {
+        final SingleLogoutService singleLogoutService=(SingleLogoutService)service;
+        if (!singleLogoutService.isLoggedOutAlready()) {
+          final RegisteredService registeredService=servicesManager.findServiceBy(service);
+          if (registeredService != null && registeredService.getLogoutType() == LogoutType.FRONT_CHANNEL) {
             frontServices.add(ticketedService);
           }
  else {
-            if (!logOutOfService(webAppService,ticketId)) {
-              log.warn("Logout message not sent to [[]]; Continuing processing...",webAppService.getId());
+            if (!performBackChannelLogout(singleLogoutService,ticketId)) {
+              log.warn("Logout message not sent to [[]]; Continuing processing...",singleLogoutService.getId());
             }
           }
         }

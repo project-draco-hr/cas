@@ -2,10 +2,10 @@
   final MockService testService=new MockService("test");
   TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
   t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),testService,new NeverExpiresExpirationPolicy(),false);
-  Collection<TicketedService> services=t.getServices();
+  Collection<Pair<String,Service>> services=t.getServices();
   assertEquals(1,services.size());
-  TicketedService service=services.iterator().next();
-  assertEquals(testService,service.getService());
+  Pair<String,Service> service=services.iterator().next();
+  assertEquals(testService,service.getSecond());
   t.removeAllServices();
   services=t.getServices();
   assertEquals(0,services.size());
