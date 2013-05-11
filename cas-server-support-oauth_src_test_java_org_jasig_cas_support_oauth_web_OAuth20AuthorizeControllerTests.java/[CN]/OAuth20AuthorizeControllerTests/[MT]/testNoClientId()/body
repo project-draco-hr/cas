@@ -4,9 +4,6 @@
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   final OAuth20WrapperController oauth20WrapperController=new OAuth20WrapperController();
   oauth20WrapperController.afterPropertiesSet();
-  final Logger log=mock(Logger.class);
-  OAuth20AuthorizeController.setLogger(log);
   final ModelAndView modelAndView=oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   assertEquals(OAuthConstants.ERROR_VIEW,modelAndView.getViewName());
-  verify(log).error("missing clientId");
 }

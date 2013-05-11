@@ -6,10 +6,7 @@
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   final OAuth20WrapperController oauth20WrapperController=new OAuth20WrapperController();
   oauth20WrapperController.afterPropertiesSet();
-  final Logger log=mock(Logger.class);
-  OAuth20AccessTokenController.setLogger(log);
   oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   assertEquals(400,mockResponse.getStatus());
   assertEquals("error=" + OAuthConstants.INVALID_REQUEST,mockResponse.getContentAsString());
-  verify(log).error("missing redirectUri");
 }
