@@ -1,4 +1,0 @@
-{
-  this.dateFormat=dateFormat;
-  log.debug("Date format: {}",dateFormat);
-}

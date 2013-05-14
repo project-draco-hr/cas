@@ -1,4 +1,0 @@
-{
-  this.validDays=validDays;
-  log.debug("Password valid days: {}",validDays);
-}
