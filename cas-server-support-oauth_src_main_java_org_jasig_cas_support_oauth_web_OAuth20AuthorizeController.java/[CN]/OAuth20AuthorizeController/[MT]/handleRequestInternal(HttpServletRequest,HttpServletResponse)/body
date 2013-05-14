@@ -13,26 +13,19 @@
     LOGGER.error("Missing {}",OAuthConstants.REDIRECT_URI);
     return new ModelAndView(OAuthConstants.ERROR_VIEW);
   }
-  final Collection<RegisteredService> services=servicesManager.getAllServices();
-  RegisteredService service=null;
-  for (  final RegisteredService aService : services) {
-    if (StringUtils.equals(aService.getName(),clientId)) {
-      service=aService;
-      break;
-    }
-  }
+  final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
   if (service == null) {
     LOGGER.error("Unknown {} : {}",OAuthConstants.CLIENT_ID,clientId);
     return new ModelAndView(OAuthConstants.ERROR_VIEW);
   }
   final String serviceId=service.getServiceId();
-  if (!StringUtils.startsWith(redirectUri,serviceId)) {
+  if (!redirectUri.matches(serviceId)) {
     LOGGER.error("Unsupported {} : {} for serviceId : {}",OAuthConstants.REDIRECT_URI,redirectUri,serviceId);
     return new ModelAndView(OAuthConstants.ERROR_VIEW);
   }
   final HttpSession session=request.getSession();
   session.setAttribute(OAuthConstants.OAUTH20_CALLBACKURL,redirectUri);
-  session.setAttribute(OAuthConstants.OAUTH20_SERVICE_NAME,service.getTheme());
+  session.setAttribute(OAuthConstants.OAUTH20_SERVICE_NAME,service.getName());
   session.setAttribute(OAuthConstants.OAUTH20_STATE,state);
   final String callbackAuthorizeUrl=request.getRequestURL().toString().replace("/" + OAuthConstants.AUTHORIZE_URL,"/" + OAuthConstants.CALLBACK_AUTHORIZE_URL);
   LOGGER.debug("{} : {}",OAuthConstants.CALLBACK_AUTHORIZE_URL,callbackAuthorizeUrl);

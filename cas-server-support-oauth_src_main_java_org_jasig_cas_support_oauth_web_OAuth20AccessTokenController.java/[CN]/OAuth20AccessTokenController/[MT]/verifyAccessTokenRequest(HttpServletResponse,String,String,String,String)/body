@@ -1,0 +1,33 @@
+{
+  if (StringUtils.isBlank(clientId)) {
+    LOGGER.error("Missing {}",OAuthConstants.CLIENT_ID);
+    return false;
+  }
+  if (StringUtils.isBlank(redirectUri)) {
+    LOGGER.error("Missing {}",OAuthConstants.REDIRECT_URI);
+    return false;
+  }
+  if (StringUtils.isBlank(clientSecret)) {
+    LOGGER.error("Missing {}",OAuthConstants.CLIENT_SECRET);
+    return false;
+  }
+  if (StringUtils.isBlank(code)) {
+    LOGGER.error("Missing {}",OAuthConstants.CODE);
+    return false;
+  }
+  final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+  if (service == null) {
+    log.error("Unknown {} : {}",OAuthConstants.CLIENT_ID,clientId);
+    return false;
+  }
+  final String serviceId=service.getServiceId();
+  if (redirectUri.matches(serviceId)) {
+    log.error("Unsupported {} : {} for serviceId : {}",OAuthConstants.REDIRECT_URI,redirectUri,serviceId);
+    return false;
+  }
+  if (!StringUtils.equals(service.getClientSecret(),clientSecret)) {
+    log.error("Wrong client secret for service {}",service);
+    return false;
+  }
+  return true;
+}
