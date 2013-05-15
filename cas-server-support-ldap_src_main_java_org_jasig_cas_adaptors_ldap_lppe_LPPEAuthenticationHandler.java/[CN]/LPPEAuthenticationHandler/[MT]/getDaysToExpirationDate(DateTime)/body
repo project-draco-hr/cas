@@ -1,0 +1,26 @@
+{
+  final DateTimeZone timezone=this.configuration.getDateConverter().getTimeZone();
+  final DateTime currentTime=new DateTime(this.configuration.getDateConverter().getTimeZone());
+  log.debug("Current date is {}. Expiration date is {}",currentTime,expireDate);
+  final Days d=Days.daysBetween(currentTime,expireDate);
+  int daysToExpirationDate=d.getDays();
+  log.debug("Days left to the expiration date: {}",daysToExpirationDate);
+  if (expireDate.equals(currentTime) || expireDate.isBefore(currentTime)) {
+    final String msgToLog=String.format("Password expiration date %s is on/before the current time %s and has expired.",daysToExpirationDate,currentTime);
+    log.debug(msgToLog);
+    return 0;
+  }
+  final DateTime warnPeriod=new DateTime(DateTime.parse(expireDate.toString()),timezone).minusDays(this.configuration.getPasswordWarningNumberOfDays());
+  log.debug("Warning period begins on {}",warnPeriod);
+  if (this.configuration.isAlwaysDisplayPasswordExpirationWarning()) {
+    log.debug("Warning all. The password for {} will expire in {} day(s)",this.configuration.getDn(),daysToExpirationDate);
+  }
+ else   if (currentTime.equals(warnPeriod) || currentTime.isAfter(warnPeriod)) {
+    log.debug("Password will expire in {} day(s)",daysToExpirationDate);
+  }
+ else {
+    log.debug("Password is not expiring. {} day(s) left to the warning",daysToExpirationDate);
+    daysToExpirationDate=-1;
+  }
+  return daysToExpirationDate;
+}

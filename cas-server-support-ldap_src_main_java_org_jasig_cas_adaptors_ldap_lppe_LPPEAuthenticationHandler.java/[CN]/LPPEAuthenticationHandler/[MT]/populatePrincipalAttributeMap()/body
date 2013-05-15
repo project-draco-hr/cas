@@ -1,0 +1,26 @@
+{
+  if (!StringUtils.isBlank(this.configuration.getUserAccountControlAttributeName())) {
+    principalAttributeMap.put(this.configuration.getUserAccountControlAttributeName(),this.configuration.getUserAccountControlAttributeName());
+  }
+  if (!StringUtils.isBlank(this.configuration.getAccountDisabledAttributeName())) {
+    principalAttributeMap.put(this.configuration.getAccountDisabledAttributeName(),this.configuration.getAccountDisabledAttributeName());
+  }
+  if (!StringUtils.isBlank(this.configuration.getAccountLockedAttributeName())) {
+    principalAttributeMap.put(this.configuration.getAccountLockedAttributeName(),this.configuration.getAccountLockedAttributeName());
+  }
+  if (!StringUtils.isBlank(this.configuration.getAccountPasswordMustChangeAttributeName())) {
+    principalAttributeMap.put(this.configuration.getAccountPasswordMustChangeAttributeName(),this.configuration.getAccountPasswordMustChangeAttributeName());
+  }
+  if (!StringUtils.isBlank(this.configuration.getIgnorePasswordExpirationWarningAttributeName())) {
+    principalAttributeMap.put(this.configuration.getIgnorePasswordExpirationWarningAttributeName(),this.configuration.getIgnorePasswordExpirationWarningAttributeName());
+  }
+  if (!StringUtils.isBlank(this.configuration.getPasswordExpirationDateAttributeName())) {
+    principalAttributeMap.put(this.configuration.getPasswordExpirationDateAttributeName(),this.configuration.getPasswordExpirationDateAttributeName());
+  }
+  if (!StringUtils.isBlank(this.configuration.getPasswordWarningNumberOfDaysAttributeName())) {
+    principalAttributeMap.put(this.configuration.getPasswordWarningNumberOfDaysAttributeName(),this.configuration.getPasswordWarningNumberOfDaysAttributeName());
+  }
+  if (!StringUtils.isBlank(this.configuration.getValidPasswordNumberOfDaysAttributeName())) {
+    principalAttributeMap.put(this.configuration.getValidPasswordNumberOfDaysAttributeName(),this.configuration.getValidPasswordNumberOfDaysAttributeName());
+  }
+}

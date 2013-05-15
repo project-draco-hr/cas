@@ -1,0 +1,45 @@
+{
+  final String expirationDate=getPasswordPolicyAttributeValue(entry,this.passwordExpirationDateAttributeName);
+  if (StringUtils.isBlank(expirationDate)) {
+    LOGGER.warn("Password expiration policy cannot be established because the password expiration date is blank.");
+    return null;
+  }
+  setDn(entry.getDn());
+  setPasswordExpirationDateAttributeName(this.passwordExpirationDateAttributeName);
+  setPasswordExpirationDate(expirationDate);
+  setPasswordWarningNumberOfDays(this.defaultPasswordWarningNumberOfDays);
+  setValidPasswordNumberOfDays(this.defaultValidPasswordNumberOfDays);
+  String attributeValue=getPasswordPolicyAttributeValue(entry,this.passwordWarningNumberOfDaysAttributeName);
+  if (attributeValue != null) {
+    if (NumberUtils.isNumber(attributeValue)) {
+      setPasswordWarningNumberOfDays(Integer.parseInt(attributeValue));
+    }
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,this.ignorePasswordExpirationWarningAttributeName);
+  if (attributeValue != null) {
+    setIgnorePasswordExpirationWarningAttributeName(attributeValue);
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,this.validPasswordNumberOfDaysAttributeName);
+  if (attributeValue != null) {
+    if (NumberUtils.isNumber(attributeValue)) {
+      setValidPasswordNumberOfDays(Integer.parseInt(attributeValue));
+    }
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,this.accountDisabledAttributeName);
+  if (attributeValue != null) {
+    setAccountDisabled(Boolean.valueOf(attributeValue));
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,this.accountLockedAttributeName);
+  if (attributeValue != null) {
+    setAccountLocked(Boolean.valueOf(attributeValue));
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,this.accountPasswordMustChangeAttributeName);
+  if (attributeValue != null) {
+    setAccountPasswordMustChange(Boolean.valueOf(attributeValue));
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,this.userAccountControlAttributeName);
+  if (attributeValue != null) {
+    setUserAccountControl(attributeValue);
+  }
+  return this;
+}

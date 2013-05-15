@@ -1,0 +1,3 @@
+{
+  return isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.UAC_FLAG_ACCOUNT_DISABLED);
+}
