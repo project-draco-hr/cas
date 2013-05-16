@@ -6,12 +6,8 @@
   mockRequest.setParameter(OAuthConstants.CODE,CODE);
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   final ServicesManager servicesManager=mock(ServicesManager.class);
-  final RegisteredServiceImpl registeredServiceImpl=new RegisteredServiceImpl();
-  registeredServiceImpl.setName(CLIENT_ID);
-  registeredServiceImpl.setServiceId(REDIRECT_URI);
-  registeredServiceImpl.setDescription(CLIENT_SECRET);
   final List<RegisteredService> services=new ArrayList<RegisteredService>();
-  services.add(registeredServiceImpl);
+  services.add(getRegisteredService(REDIRECT_URI,CLIENT_SECRET));
   when(servicesManager.getAllServices()).thenReturn(services);
   final TicketRegistry ticketRegistry=mock(TicketRegistry.class);
   when(ticketRegistry.getTicket(CODE)).thenReturn(null);
