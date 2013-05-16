@@ -1,5 +1,4 @@
 {
-  this.cas=new CentralAuthenticationServiceImpl();
   final ServiceTicket stMock=mock(ServiceTicket.class);
   when(stMock.getId()).thenReturn("st-id");
   when(stMock.getService()).thenReturn(TestUtils.getService());
@@ -22,6 +21,5 @@
   final ServicesManager smMock=mock(ServicesManager.class);
   when(smMock.findServiceBy(argThat(new VerifyServiceByIdMatcher("test1")))).thenReturn(mockRegSvc1);
   when(smMock.findServiceBy(argThat(new VerifyServiceByIdMatcher("test")))).thenReturn(mockRegSvc2);
-  this.cas.setTicketRegistry(ticketRegMock);
-  this.cas.setServicesManager(smMock);
+  this.cas=new CentralAuthenticationServiceImpl(ticketRegMock,null,mock(AuthenticationManager.class),mock(UniqueTicketIdGenerator.class),mock(Map.class),mock(ExpirationPolicy.class),mock(ExpirationPolicy.class),smMock,mock(LogoutManager.class));
 }

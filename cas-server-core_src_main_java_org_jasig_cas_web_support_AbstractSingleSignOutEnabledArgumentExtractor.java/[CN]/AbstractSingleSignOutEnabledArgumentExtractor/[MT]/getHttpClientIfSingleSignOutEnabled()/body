@@ -1,3 +1,0 @@
-{
-  return !this.disableSingleSignOut ? this.httpClient : null;
-}
