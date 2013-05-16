@@ -1,27 +1,27 @@
 {
-  final String uid=this.configuration.getDn();
-  if (this.configuration.isUserAccountControlSetToDisableAccount()) {
+  final String uid=configuration.getDn();
+  if (configuration.isUserAccountControlSetToDisableAccount()) {
     final String msg=String.format("User account control flag is set. Account %s is disabled",uid);
     throw new AccountDisabledException(msg);
   }
-  if (this.configuration.isUserAccountControlSetToLockAccount()) {
+  if (configuration.isUserAccountControlSetToLockAccount()) {
     final String msg=String.format("User account control flag is set. Account %s is locked",uid);
     throw new AccountLockedException(msg);
   }
-  if (this.configuration.isUserAccountControlSetToExpirePassword()) {
+  if (configuration.isUserAccountControlSetToExpirePassword()) {
     final String msg=String.format("User account control flag is set. Account %s has expired",uid);
     throw new CredentialExpiredException(msg);
   }
-  if (this.configuration.isAccountDisabled()) {
-    final String msg=String.format("Password policy attribute %s is set. Account %s is disabled",this.configuration.getAccountDisabledAttributeName(),uid);
+  if (configuration.isAccountDisabled()) {
+    final String msg=String.format("Password policy attribute %s is set. Account %s is disabled",configuration.getAccountDisabledAttributeName(),uid);
     throw new AccountDisabledException(msg);
   }
-  if (this.configuration.isAccountLocked()) {
-    final String msg=String.format("Password policy attribute %s is set. Account %s is locked",this.configuration.getAccountLockedAttributeName(),uid);
+  if (configuration.isAccountLocked()) {
+    final String msg=String.format("Password policy attribute %s is set. Account %s is locked",configuration.getAccountLockedAttributeName(),uid);
     throw new AccountLockedException(msg);
   }
-  if (this.configuration.isAccountPasswordMustChange()) {
-    final String msg=String.format("Password policy attribute %s is set. Account %s must change it password",this.configuration.getAccountPasswordMustChangeAttributeName(),uid);
+  if (configuration.isAccountPasswordMustChange()) {
+    final String msg=String.format("Password policy attribute %s is set. Account %s must change it password",configuration.getAccountPasswordMustChangeAttributeName(),uid);
     throw new AccountPasswordMustChangeException(msg);
   }
 }
