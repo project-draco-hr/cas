@@ -4,11 +4,10 @@
   final TicketGrantingTicket ticket=this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   if (ticket == null) {
     log.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
-    List<Pair<String,Service>> list=Collections.emptyList();
-    return list.iterator();
+    return Collections.emptyMap();
   }
   log.debug("Ticket found. Deleting and then performing back channel logout.");
   this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
-  Iterator<Pair<String,Service>> servicesIterator=logoutManager.performLogout(ticket);
-  return servicesIterator;
+  final Map<String,Service> services=logoutManager.performLogout(ticket);
+  return services;
 }

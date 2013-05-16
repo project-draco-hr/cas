@@ -1,21 +1,20 @@
 {
-  final Collection<Pair<String,Service>> services;
+  final Map<String,Service> services;
 synchronized (ticket) {
     services=ticket.getServices();
     ticket.removeAllServices();
   }
   ticket.markTicketExpired();
-  final List<Pair<String,Service>> frontServices=new ArrayList<Pair<String,Service>>();
+  final Map<String,Service> frontServices=new HashMap<String,Service>();
   if (!disableSingleSignOut) {
-    for (    final Pair<String,Service> ticketedService : services) {
-      final String ticketId=ticketedService.getFirst();
-      final Service service=ticketedService.getSecond();
+    for (    final String ticketId : services.keySet()) {
+      final Service service=services.get(ticketId);
       if (service instanceof SingleLogoutService) {
         final SingleLogoutService singleLogoutService=(SingleLogoutService)service;
         if (!singleLogoutService.isLoggedOutAlready()) {
           final RegisteredService registeredService=servicesManager.findServiceBy(service);
           if (registeredService != null && registeredService.getLogoutType() == LogoutType.FRONT_CHANNEL) {
-            frontServices.add(ticketedService);
+            frontServices.put(ticketId,service);
           }
  else {
             if (!performBackChannelLogout(singleLogoutService,ticketId)) {
@@ -26,5 +25,5 @@ synchronized (ticket) {
       }
     }
   }
-  return frontServices.iterator();
+  return frontServices;
 }
