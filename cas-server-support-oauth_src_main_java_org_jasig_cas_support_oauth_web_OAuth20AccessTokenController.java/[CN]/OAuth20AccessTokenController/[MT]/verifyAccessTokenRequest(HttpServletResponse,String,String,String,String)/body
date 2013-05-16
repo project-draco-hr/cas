@@ -21,7 +21,7 @@
     return false;
   }
   final String serviceId=service.getServiceId();
-  if (redirectUri.matches(serviceId)) {
+  if (!redirectUri.matches(serviceId)) {
     LOGGER.error("Unsupported {} : {} for serviceId : {}",OAuthConstants.REDIRECT_URI,redirectUri,serviceId);
     return false;
   }

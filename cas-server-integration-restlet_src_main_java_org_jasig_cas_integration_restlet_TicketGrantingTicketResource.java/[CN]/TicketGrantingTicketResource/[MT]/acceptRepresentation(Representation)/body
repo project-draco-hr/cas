@@ -2,7 +2,7 @@
   final Form form=new Form(entity);
   final String serviceUrl=form.getFirstValue("service");
   try {
-    final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(this.ticketGrantingTicketId,new SimpleWebApplicationServiceImpl(serviceUrl,this.httpClient));
+    final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(this.ticketGrantingTicketId,new SimpleWebApplicationServiceImpl(serviceUrl));
     getResponse().setEntity(serviceTicketId,MediaType.TEXT_PLAIN);
   }
  catch (  final InvalidTicketException e) {
