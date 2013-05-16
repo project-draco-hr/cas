@@ -1,0 +1,29 @@
+{
+  final Map<String,Service> services;
+synchronized (ticket) {
+    services=ticket.getServices();
+    ticket.removeAllServices();
+  }
+  ticket.markTicketExpired();
+  final Map<String,Service> frontServices=new HashMap<String,Service>();
+  if (!disableSingleSignOut) {
+    for (    final String ticketId : services.keySet()) {
+      final Service service=services.get(ticketId);
+      if (service instanceof SingleLogoutService) {
+        final SingleLogoutService singleLogoutService=(SingleLogoutService)service;
+        if (!singleLogoutService.isLoggedOutAlready()) {
+          final RegisteredService registeredService=servicesManager.findServiceBy(service);
+          if (registeredService != null && registeredService.getLogoutType() == LogoutType.FRONT_CHANNEL) {
+            frontServices.put(ticketId,service);
+          }
+ else {
+            if (!performBackChannelLogout(singleLogoutService,ticketId)) {
+              LOGGER.warn("Logout message not sent to [[]]; Continuing processing...",singleLogoutService.getId());
+            }
+          }
+        }
+      }
+    }
+  }
+  return frontServices;
+}

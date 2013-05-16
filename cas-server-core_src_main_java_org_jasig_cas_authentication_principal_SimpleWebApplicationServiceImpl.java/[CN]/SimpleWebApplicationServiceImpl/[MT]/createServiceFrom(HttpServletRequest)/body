@@ -1,3 +1,11 @@
 {
-  return createServiceFrom(request,null);
+  final String targetService=request.getParameter(CONST_PARAM_TARGET_SERVICE);
+  final String method=request.getParameter(CONST_PARAM_METHOD);
+  final String serviceToUse=StringUtils.hasText(targetService) ? targetService : request.getParameter(CONST_PARAM_SERVICE);
+  if (!StringUtils.hasText(serviceToUse)) {
+    return null;
+  }
+  final String id=cleanupUrl(serviceToUse);
+  final String artifactId=request.getParameter(CONST_PARAM_TICKET);
+  return new SimpleWebApplicationServiceImpl(id,serviceToUse,artifactId,"POST".equals(method) ? ResponseType.POST : ResponseType.REDIRECT);
 }
