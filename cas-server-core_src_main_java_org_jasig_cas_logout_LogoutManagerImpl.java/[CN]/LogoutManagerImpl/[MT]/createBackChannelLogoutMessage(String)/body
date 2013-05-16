@@ -1,0 +1,4 @@
+{
+  final String logoutRequest=String.format(LOGOUT_REQUEST_TEMPLATE,GENERATOR.getNewTicketId("LR"),SamlDateUtils.getCurrentDateAndTime(),ticketId);
+  return logoutRequest;
+}

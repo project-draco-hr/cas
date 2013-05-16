@@ -1,16 +1,10 @@
 {
   this.action=new PrincipalFromRequestRemoteUserNonInteractiveCredentialsAction();
-  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl();
-  centralAuthenticationService.setTicketRegistry(new DefaultTicketRegistry());
   final Map<String,UniqueTicketIdGenerator> idGenerators=new HashMap<String,UniqueTicketIdGenerator>();
   idGenerators.put(SimpleWebApplicationServiceImpl.class.getName(),new DefaultUniqueTicketIdGenerator());
   final AuthenticationManagerImpl authenticationManager=new AuthenticationManagerImpl();
   authenticationManager.setAuthenticationHandlers(Arrays.asList(new AuthenticationHandler[]{new PrincipalBearingCredentialsAuthenticationHandler()}));
   authenticationManager.setCredentialsToPrincipalResolvers(Arrays.asList(new CredentialsToPrincipalResolver[]{new PrincipalBearingCredentialsToPrincipalResolver()}));
-  centralAuthenticationService.setTicketGrantingTicketUniqueTicketIdGenerator(new DefaultUniqueTicketIdGenerator());
-  centralAuthenticationService.setUniqueTicketIdGeneratorsForService(idGenerators);
-  centralAuthenticationService.setServiceTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
-  centralAuthenticationService.setTicketGrantingTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
-  centralAuthenticationService.setAuthenticationManager(authenticationManager);
+  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),null,authenticationManager,new DefaultUniqueTicketIdGenerator(),idGenerators,new NeverExpiresExpirationPolicy(),new NeverExpiresExpirationPolicy(),mock(ServicesManager.class),mock(LogoutManager.class));
   this.action.setCentralAuthenticationService(centralAuthenticationService);
 }

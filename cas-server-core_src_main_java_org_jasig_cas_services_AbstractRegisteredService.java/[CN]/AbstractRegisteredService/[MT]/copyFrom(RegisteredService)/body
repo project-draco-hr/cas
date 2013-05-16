@@ -12,4 +12,5 @@
   this.setIgnoreAttributes(source.isIgnoreAttributes());
   this.setEvaluationOrder(source.getEvaluationOrder());
   this.setUsernameAttribute(source.getUsernameAttribute());
+  this.setLogoutType(source.getLogoutType());
 }
