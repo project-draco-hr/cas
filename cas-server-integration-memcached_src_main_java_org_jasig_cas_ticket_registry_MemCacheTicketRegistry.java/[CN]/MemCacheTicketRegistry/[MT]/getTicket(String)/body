@@ -6,7 +6,7 @@
     }
   }
  catch (  final Exception e) {
-    log.error("Failed fetching {} ",ticketId,e);
+    logger.error("Failed fetching {} ",ticketId,e);
   }
   return null;
 }

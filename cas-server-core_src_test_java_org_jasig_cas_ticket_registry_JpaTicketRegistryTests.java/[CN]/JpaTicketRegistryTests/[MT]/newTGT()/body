@@ -1,4 +1,4 @@
 {
   final Principal principal=new SimplePrincipal("bob",Collections.singletonMap("displayName",(Object)"Bob"));
-  return new TicketGrantingTicketImpl(idGenerator.getNewTicketId("TGT"),new ImmutableAuthentication(principal,null),expirationPolicyTGT);
+  return new TicketGrantingTicketImpl(ID_GENERATOR.getNewTicketId("TGT"),new ImmutableAuthentication(principal,null),EXPIRATION_POLICY_TGT);
 }

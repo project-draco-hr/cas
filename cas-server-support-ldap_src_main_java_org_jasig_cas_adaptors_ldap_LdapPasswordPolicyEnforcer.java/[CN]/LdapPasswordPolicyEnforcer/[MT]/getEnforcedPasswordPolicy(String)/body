@@ -1,7 +1,7 @@
 {
   final LdapPasswordPolicyResult ldapResult=getResultsFromLdap(userId);
   if (ldapResult == null) {
-    log.warn("Ldap password policy could not be established for user {}.",userId);
+    logger.warn("Ldap password policy could not be established for user {}.",userId);
   }
   return ldapResult;
 }

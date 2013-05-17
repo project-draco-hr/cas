@@ -2,7 +2,7 @@
   HttpURLConnection connection=null;
   BufferedReader in=null;
   try {
-    log.debug("Attempting to access {}",url);
+    LOGGER.debug("Attempting to access {}",url);
     final URL logoutUrl=new URL(url);
     final String output="logoutRequest=" + URLEncoder.encode(message,"UTF-8");
     connection=(HttpURLConnection)logoutUrl.openConnection();
@@ -23,15 +23,15 @@
     while (readInput) {
       readInput=StringUtils.isNotBlank(in.readLine());
     }
-    log.debug("Finished sending message to {}",url);
+    LOGGER.debug("Finished sending message to {}",url);
     return true;
   }
  catch (  final SocketTimeoutException e) {
-    log.warn("Socket Timeout Detected while attempting to send message to [{}]",url);
+    LOGGER.warn("Socket Timeout Detected while attempting to send message to [{}]",url);
     return false;
   }
 catch (  final Exception e) {
-    log.warn("Error Sending message to url endpoint [{}]. Error is [{}]",url,e.getMessage());
+    LOGGER.warn("Error Sending message to url endpoint [{}]. Error is [{}]",url,e.getMessage());
     return false;
   }
  finally {

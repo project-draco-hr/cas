@@ -3,7 +3,7 @@
     Thread.sleep(TIMEOUT + 100);
     assertTrue(this.ticket.isExpired());
   }
- catch (  InterruptedException e) {
+ catch (  final InterruptedException e) {
     fail(e.getMessage());
   }
 }

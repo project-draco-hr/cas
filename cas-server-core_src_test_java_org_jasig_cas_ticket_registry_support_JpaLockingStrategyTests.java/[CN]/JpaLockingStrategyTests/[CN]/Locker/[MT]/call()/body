@@ -2,8 +2,8 @@
   try {
     return lock.acquire();
   }
- catch (  Exception e) {
-    log.debug("{} failed to acquire lock",lock,e);
+ catch (  final Exception e) {
+    logger.debug("{} failed to acquire lock",lock,e);
     return false;
   }
 }

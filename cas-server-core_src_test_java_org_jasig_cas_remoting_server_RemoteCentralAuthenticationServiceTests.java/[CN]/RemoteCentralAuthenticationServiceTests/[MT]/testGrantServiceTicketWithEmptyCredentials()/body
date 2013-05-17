@@ -4,7 +4,7 @@
     this.remoteCentralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,TestUtils.getService(),TestUtils.getCredentialsWithDifferentUsernameAndPassword("",""));
     fail("IllegalArgumentException expected.");
   }
- catch (  IllegalArgumentException e) {
+ catch (  final IllegalArgumentException e) {
     return;
   }
 }

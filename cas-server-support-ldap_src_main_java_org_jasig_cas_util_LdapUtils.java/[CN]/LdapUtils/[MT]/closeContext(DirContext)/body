@@ -3,8 +3,8 @@
     try {
       context.close();
     }
- catch (    NamingException ex) {
-      log.warn("Could not close context",ex);
+ catch (    final NamingException ex) {
+      LOGGER.warn("Could not close context",ex);
     }
   }
 }

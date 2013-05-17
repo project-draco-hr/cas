@@ -1,10 +1,10 @@
 {
-  log.debug("Attempting to resolve a principal...");
+  logger.debug("Attempting to resolve a principal...");
   final String principalId=extractPrincipalId(credentials);
   if (principalId == null) {
     return null;
   }
-  log.debug("Creating SimplePrincipal for [{}]",principalId);
+  logger.debug("Creating SimplePrincipal for [{}]",principalId);
   final IPersonAttributes personAttributes=this.attributeRepository.getPerson(principalId);
   final Map<String,List<Object>> attributes;
   if (personAttributes == null) {

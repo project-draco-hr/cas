@@ -2,7 +2,7 @@
   final String authoritativeLoginTicket=WebUtils.getLoginTicketFromFlowScope(context);
   final String providedLoginTicket=WebUtils.getLoginTicketFromRequest(context);
   if (!authoritativeLoginTicket.equals(providedLoginTicket)) {
-    log.warn("Invalid login ticket {}",providedLoginTicket);
+    logger.warn("Invalid login ticket {}",providedLoginTicket);
     final String code="INVALID_TICKET";
     messageContext.addMessage(new MessageBuilder().error().code(code).arg(providedLoginTicket).defaultText(code).build());
     return "error";
@@ -22,7 +22,7 @@
         return getAuthenticationExceptionEventId(e);
       }
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
-      log.debug("Attempted to generate a ServiceTicket using renew=true with different credentials",e);
+      logger.debug("Attempted to generate a ServiceTicket using renew=true with different credentials",e);
     }
   }
   try {

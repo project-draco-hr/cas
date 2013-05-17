@@ -1,5 +1,5 @@
 {
-  log.debug("Obtaining credentials...");
+  LOGGER.debug("Obtaining credentials...");
   final Credentials c=obtainCredentials();
   Formatter fmt=null;
   try {
@@ -13,7 +13,7 @@
     getResponse().setEntity(fmt.toString(),MediaType.TEXT_HTML);
   }
  catch (  final TicketException e) {
-    log.error(e.getMessage(),e);
+    LOGGER.error(e.getMessage(),e);
     getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST,e.getMessage());
   }
  finally {

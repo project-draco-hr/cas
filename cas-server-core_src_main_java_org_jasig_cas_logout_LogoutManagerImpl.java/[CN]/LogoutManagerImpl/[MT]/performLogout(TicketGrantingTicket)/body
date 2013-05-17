@@ -18,7 +18,7 @@ synchronized (ticket) {
           }
  else {
             if (!performBackChannelLogout(singleLogoutService,ticketId)) {
-              log.warn("Logout message not sent to [[]]; Continuing processing...",singleLogoutService.getId());
+              LOGGER.warn("Logout message not sent to [[]]; Continuing processing...",singleLogoutService.getId());
             }
           }
         }

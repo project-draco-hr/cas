@@ -6,7 +6,7 @@
   try {
     this.workerThread.join();
   }
- catch (  InterruptedException e) {
+ catch (  final InterruptedException e) {
     e.printStackTrace();
   }
 }

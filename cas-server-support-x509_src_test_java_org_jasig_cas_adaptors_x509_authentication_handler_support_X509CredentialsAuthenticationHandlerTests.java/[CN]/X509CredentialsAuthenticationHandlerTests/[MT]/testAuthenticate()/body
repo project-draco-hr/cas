@@ -2,7 +2,7 @@
   try {
     Assert.assertEquals(this.expectedAuthenticate,this.handler.authenticate(this.credentials));
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     if (this.handler.supports(this.credentials)) {
       e.printStackTrace();
       Assert.fail("Unexpected authentication error: " + e);

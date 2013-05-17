@@ -1,4 +1,4 @@
 {
   this.warnAll=warnAll;
-  log.debug("warnAll: {}",warnAll);
+  logger.debug("warnAll: {}",warnAll);
 }

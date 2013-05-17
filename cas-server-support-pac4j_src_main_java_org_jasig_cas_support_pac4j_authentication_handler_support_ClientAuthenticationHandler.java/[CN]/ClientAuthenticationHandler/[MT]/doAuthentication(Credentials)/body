@@ -1,12 +1,12 @@
 {
   final ClientCredentials clientCredentials=(ClientCredentials)credentials;
-  log.debug("clientCredentials : {}",clientCredentials);
+  logger.debug("clientCredentials : {}",clientCredentials);
   final String clientName=clientCredentials.getCredentials().getClientName();
-  log.debug("clientName : {}",clientName);
+  logger.debug("clientName : {}",clientName);
   final Client<org.pac4j.core.credentials.Credentials,UserProfile> client=this.clients.findClient(clientName);
-  log.debug("client : {}",client);
+  logger.debug("client : {}",client);
   final UserProfile userProfile=client.getUserProfile(clientCredentials.getCredentials());
-  log.debug("userProfile : {}",userProfile);
+  logger.debug("userProfile : {}",userProfile);
   if (userProfile != null && StringUtils.isNotBlank(userProfile.getId())) {
     clientCredentials.setUserProfile(userProfile);
     return true;

@@ -2,8 +2,8 @@
   try {
     this.ticketRegistry.getTicket(null);
   }
- catch (  Exception e) {
-    log.error(e.getMessage(),e);
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
     fail("Exception caught.  None expected.");
   }
 }

@@ -18,7 +18,7 @@
     }
   }
  catch (  final Exception e) {
-    log.error(e.getMessage(),e);
+    logger.error(e.getMessage(),e);
   }
  finally {
     try {
@@ -27,7 +27,7 @@
       }
     }
  catch (    final IOException e) {
-      log.error(e.getMessage(),e);
+      logger.error(e.getMessage(),e);
     }
   }
   return false;

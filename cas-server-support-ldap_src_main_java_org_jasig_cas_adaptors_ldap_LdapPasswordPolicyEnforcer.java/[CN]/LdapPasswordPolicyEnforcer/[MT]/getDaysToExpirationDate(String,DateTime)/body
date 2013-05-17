@@ -1,28 +1,28 @@
 {
-  log.debug("Calculating number of days left to the expiration date for user {}",userId);
+  logger.debug("Calculating number of days left to the expiration date for user {}",userId);
   final DateTime currentTime=new DateTime(DEFAULT_TIME_ZONE);
-  log.info("Current date is {}, expiration date is {}",currentTime.toString(),expireDate.toString());
+  logger.info("Current date is {}, expiration date is {}",currentTime.toString(),expireDate.toString());
   final Days d=Days.daysBetween(currentTime,expireDate);
   int daysToExpirationDate=d.getDays();
   if (expireDate.equals(currentTime) || expireDate.isBefore(currentTime)) {
     final Formatter fmt=new Formatter();
     fmt.format("Authentication failed because account password has expired with %s ",daysToExpirationDate).format("to expiration date. Verify the value of the %s attribute ",this.dateAttribute).format("and ensure it's not before the current date, which is %s",currentTime.toString());
     final LdapPasswordPolicyEnforcementException exc=new LdapPasswordPolicyEnforcementException(fmt.toString());
-    log.error(fmt.toString(),exc);
+    logger.error(fmt.toString(),exc);
     IOUtils.closeQuietly(fmt);
     throw exc;
   }
   DateTime warnPeriod=new DateTime(DateTime.parse(expireDate.toString()),DEFAULT_TIME_ZONE);
   warnPeriod=warnPeriod.minusDays(this.warningDays);
-  log.info("Warning period begins on {}",warnPeriod.toString());
+  logger.info("Warning period begins on {}",warnPeriod.toString());
   if (this.warnAll) {
-    log.info("Warning all. The password for {} will expire in {} days.",userId,daysToExpirationDate);
+    logger.info("Warning all. The password for {} will expire in {} days.",userId,daysToExpirationDate);
   }
  else   if (currentTime.equals(warnPeriod) || currentTime.isAfter(warnPeriod)) {
-    log.info("Password will expire in {} days.",daysToExpirationDate);
+    logger.info("Password will expire in {} days.",daysToExpirationDate);
   }
  else {
-    log.info("Password is not expiring. {} days left to the warning",daysToExpirationDate);
+    logger.info("Password is not expiring. {} days left to the warning",daysToExpirationDate);
     daysToExpirationDate=PASSWORD_STATUS_PASS;
   }
   return daysToExpirationDate;
