@@ -7,4 +7,5 @@
   builder.append("MB used, ");
   builder.append(getPercentFree()).append("% free, ");
   builder.append(this.evictions).append(" evictions");
+  IOUtils.closeQuietly(formatter);
 }
