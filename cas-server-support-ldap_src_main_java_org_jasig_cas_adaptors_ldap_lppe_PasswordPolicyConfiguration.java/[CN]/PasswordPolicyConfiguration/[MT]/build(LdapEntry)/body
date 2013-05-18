@@ -1,7 +1,7 @@
 {
   final String expirationDate=getPasswordPolicyAttributeValue(entry,this.passwordExpirationDateAttributeName);
   if (StringUtils.isBlank(expirationDate)) {
-    LOGGER.warn("Password expiration policy cannot be established because the password expiration date is blank.");
+    log.warn("Password expiration date is null.");
     return false;
   }
   setDn(entry.getDn());

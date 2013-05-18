@@ -2,7 +2,7 @@
   if (attrName != null) {
     final LdapAttribute attribute=entry.getAttribute(attrName);
     if (attribute != null) {
-      LOGGER.debug("Retrieved attribute [{}] with value [{}]",attrName,attribute.getStringValue());
+      log.debug("Retrieved attribute [{}] with value [{}]",attrName,attribute.getStringValue());
       return attribute.getStringValue();
     }
   }

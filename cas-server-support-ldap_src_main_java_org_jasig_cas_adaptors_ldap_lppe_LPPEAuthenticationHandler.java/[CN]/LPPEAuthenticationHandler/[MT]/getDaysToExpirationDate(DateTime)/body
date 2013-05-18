@@ -6,7 +6,7 @@
   int daysToExpirationDate=d.getDays();
   log.debug("Days left to the expiration date: {}",daysToExpirationDate);
   if (expireDate.equals(currentTime) || expireDate.isBefore(currentTime)) {
-    final String msgToLog=String.format("Password expiration date %s is on/before the current time %s and has expired.",daysToExpirationDate,currentTime);
+    final String msgToLog=String.format("Password expiration date %s is on/before the current time %s.",daysToExpirationDate,currentTime);
     log.debug(msgToLog);
     return 0;
   }
