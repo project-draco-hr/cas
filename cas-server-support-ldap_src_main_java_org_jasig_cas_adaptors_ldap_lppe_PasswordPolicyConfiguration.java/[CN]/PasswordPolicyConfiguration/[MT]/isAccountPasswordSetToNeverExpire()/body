@@ -1,11 +1,14 @@
 {
-  final String ignoreCheckValue=getIgnorePasswordExpirationWarningAttributeName();
+  final String ignoreCheckValue=getIgnorePasswordExpirationWarning();
   boolean ignoreChecks=false;
   if (!StringUtils.isBlank(ignoreCheckValue) && this.ignorePasswordExpirationWarningFlags != null) {
     ignoreChecks=this.ignorePasswordExpirationWarningFlags.contains(ignoreCheckValue);
   }
   if (!ignoreChecks) {
-    ignoreChecks=isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.UAC_FLAG_DONT_EXPIRE_PASSWD);
+    ignoreChecks=isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.ADS_UF_DONT_EXPIRE_PASSWD) || isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.ADS_UF_PASSWD_CANT_CHANGE);
+  }
+  if (!ignoreChecks) {
+    ignoreChecks=NumberUtils.isNumber(getPasswordExpirationDate()) && NumberUtils.toLong(getPasswordExpirationDate()) <= 0;
   }
   return ignoreChecks;
 }

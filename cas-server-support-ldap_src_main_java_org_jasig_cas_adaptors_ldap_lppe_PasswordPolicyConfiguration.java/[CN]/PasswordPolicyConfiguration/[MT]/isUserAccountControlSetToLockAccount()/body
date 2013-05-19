@@ -1,3 +1,3 @@
 {
-  return isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.UAC_FLAG_LOCKOUT);
+  return isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.ADS_UF_LOCKOUT);
 }

@@ -1,0 +1,5 @@
+{
+  if (msg.equalsIgnoreCase("INVALID_LOGON_HOURS")) {
+    throw new InvalidLoginTimeException(msg);
+  }
+}

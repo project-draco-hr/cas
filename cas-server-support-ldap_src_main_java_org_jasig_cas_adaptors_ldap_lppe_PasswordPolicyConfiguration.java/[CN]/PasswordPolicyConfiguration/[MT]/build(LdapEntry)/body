@@ -1,43 +1,42 @@
 {
-  final String expirationDate=getPasswordPolicyAttributeValue(entry,this.passwordExpirationDateAttributeName);
+  final String expirationDate=getPasswordPolicyAttributeValue(entry,getPasswordExpirationDateAttributeName());
   if (StringUtils.isBlank(expirationDate)) {
-    log.warn("Password expiration date is null.");
+    log.warn("Password expiration date [{}] is null.",getPasswordExpirationDateAttributeName());
     return false;
   }
   setDn(entry.getDn());
-  setPasswordExpirationDateAttributeName(this.passwordExpirationDateAttributeName);
   setPasswordExpirationDate(expirationDate);
   setPasswordWarningNumberOfDays(this.defaultPasswordWarningNumberOfDays);
   setValidPasswordNumberOfDays(this.defaultValidPasswordNumberOfDays);
-  String attributeValue=getPasswordPolicyAttributeValue(entry,this.passwordWarningNumberOfDaysAttributeName);
+  String attributeValue=getPasswordPolicyAttributeValue(entry,getPasswordWarningNumberOfDaysAttributeName());
   if (attributeValue != null) {
     if (NumberUtils.isNumber(attributeValue)) {
       setPasswordWarningNumberOfDays(Integer.parseInt(attributeValue));
     }
   }
-  attributeValue=getPasswordPolicyAttributeValue(entry,this.ignorePasswordExpirationWarningAttributeName);
+  attributeValue=getPasswordPolicyAttributeValue(entry,getIgnorePasswordExpirationWarningAttributeName());
   if (attributeValue != null) {
-    setIgnorePasswordExpirationWarningAttributeName(attributeValue);
+    setIgnorePasswordExpirationWarning(attributeValue);
   }
-  attributeValue=getPasswordPolicyAttributeValue(entry,this.validPasswordNumberOfDaysAttributeName);
+  attributeValue=getPasswordPolicyAttributeValue(entry,getValidPasswordNumberOfDaysAttributeName());
   if (attributeValue != null) {
     if (NumberUtils.isNumber(attributeValue)) {
       setValidPasswordNumberOfDays(Integer.parseInt(attributeValue));
     }
   }
-  attributeValue=getPasswordPolicyAttributeValue(entry,this.accountDisabledAttributeName);
+  attributeValue=getPasswordPolicyAttributeValue(entry,getAccountDisabledAttributeName());
   if (attributeValue != null) {
     setAccountDisabled(Boolean.valueOf(attributeValue));
   }
-  attributeValue=getPasswordPolicyAttributeValue(entry,this.accountLockedAttributeName);
+  attributeValue=getPasswordPolicyAttributeValue(entry,getAccountLockedAttributeName());
   if (attributeValue != null) {
     setAccountLocked(Boolean.valueOf(attributeValue));
   }
-  attributeValue=getPasswordPolicyAttributeValue(entry,this.accountPasswordMustChangeAttributeName);
+  attributeValue=getPasswordPolicyAttributeValue(entry,getAccountPasswordMustChangeAttributeName());
   if (attributeValue != null) {
     setAccountPasswordMustChange(Boolean.valueOf(attributeValue));
   }
-  attributeValue=getPasswordPolicyAttributeValue(entry,this.userAccountControlAttributeName);
+  attributeValue=getPasswordPolicyAttributeValue(entry,getUserAccountControlAttributeName());
   if (attributeValue != null) {
     setUserAccountControl(attributeValue);
   }

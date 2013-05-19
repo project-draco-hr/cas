@@ -10,8 +10,9 @@
     throw new PreventedException("Unexpected LDAP error",e);
   }
   log.debug("LDAP response: {}",response);
-  examineAccountStatePostAuthentication(response);
+  examineAccountState(response);
   if (response.getResult()) {
+    doPostAuthentication(response);
     return new HandlerResult(this,createPrincipal(response.getLdapEntry()));
   }
   throw new FailedLoginException("LDAP authentication failed.");

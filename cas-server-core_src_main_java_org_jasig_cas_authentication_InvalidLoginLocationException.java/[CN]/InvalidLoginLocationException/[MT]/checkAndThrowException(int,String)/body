@@ -1,0 +1,5 @@
+{
+  if (msg.equalsIgnoreCase("INVALID_WORKSTATION")) {
+    throw new InvalidLoginLocationException(msg);
+  }
+}

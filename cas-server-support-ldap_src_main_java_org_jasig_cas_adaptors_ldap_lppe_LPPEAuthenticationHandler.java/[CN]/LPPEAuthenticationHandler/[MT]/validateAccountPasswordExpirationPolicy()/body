@@ -6,7 +6,7 @@
   final DateTime expireTime=getExpirationDateToUse();
   final int days=getDaysToExpirationDate(expireTime);
   if (days != -1) {
-    final String msg=String.format("Password expires in %d days",days);
+    final String msg=String.format("Password expires in [%d] days",days);
     log.debug(msg);
     throw new AccountPasswordExpiringException(msg,days);
   }

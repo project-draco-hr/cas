@@ -1,4 +1,5 @@
 {
+  afterPropertiesSetInternal();
   final List<String> attributes=new ArrayList<String>();
   if (this.principalIdAttribute != null) {
     attributes.add(this.principalIdAttribute);

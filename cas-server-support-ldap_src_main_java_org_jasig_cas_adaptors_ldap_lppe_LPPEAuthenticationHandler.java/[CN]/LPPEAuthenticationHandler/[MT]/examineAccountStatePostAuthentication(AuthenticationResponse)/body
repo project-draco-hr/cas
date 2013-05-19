@@ -1,7 +1,0 @@
-{
-  super.examineAccountStatePostAuthentication(response);
-  if (!configuration.build(response.getLdapEntry())) {
-    this.examineAccountStatus(response);
-    this.validateAccountPasswordExpirationPolicy();
-  }
-}

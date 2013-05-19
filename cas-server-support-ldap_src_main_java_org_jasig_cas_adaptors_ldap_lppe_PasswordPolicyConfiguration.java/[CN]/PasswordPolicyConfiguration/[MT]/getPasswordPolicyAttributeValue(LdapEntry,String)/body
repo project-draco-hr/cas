@@ -1,5 +1,6 @@
 {
   if (attrName != null) {
+    log.debug("Retrieving attribute [{}]",attrName);
     final LdapAttribute attribute=entry.getAttribute(attrName);
     if (attribute != null) {
       log.debug("Retrieved attribute [{}] with value [{}]",attrName,attribute.getStringValue());
