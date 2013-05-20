@@ -4,6 +4,11 @@
     return;
   }
   final DateTime expireTime=getExpirationDateToUse();
+  if (configuration.getStaticPasswordExpirationDate() != null && (expireTime.equals(configuration.getStaticPasswordExpirationDate()) || expireTime.isAfter(configuration.getStaticPasswordExpirationDate()))) {
+    final String msg=String.format("Account password has expired beyond the static expiration date [{}]",configuration.getStaticPasswordExpirationDate());
+    log.debug(msg);
+    throw new CredentialExpiredException(msg);
+  }
   final int days=getDaysToExpirationDate(expireTime);
   if (days != -1) {
     final String msg=String.format("Password expires in [%d] days",days);
