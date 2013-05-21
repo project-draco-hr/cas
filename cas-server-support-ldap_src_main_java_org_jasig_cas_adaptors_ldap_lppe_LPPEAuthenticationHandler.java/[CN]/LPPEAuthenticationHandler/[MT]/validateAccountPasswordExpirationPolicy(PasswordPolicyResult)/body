@@ -1,0 +1,18 @@
+{
+  if (result.isAccountPasswordSetToNeverExpire()) {
+    log.debug("Account password will never expire. Skipping password policy...");
+    return;
+  }
+  final DateTime expireTime=getExpirationDateToUse(result);
+  if (configuration.getStaticPasswordExpirationDate() != null && (expireTime.equals(configuration.getStaticPasswordExpirationDate()) || expireTime.isAfter(configuration.getStaticPasswordExpirationDate()))) {
+    final String msg=String.format("Account password has expired beyond the static expiration date [{}]",configuration.getStaticPasswordExpirationDate());
+    log.debug(msg);
+    throw new CredentialExpiredException(msg);
+  }
+  final int days=getDaysToExpirationDate(expireTime,result);
+  if (days != -1) {
+    final String msg=String.format("Password expires in [%d] days",days);
+    log.debug(msg);
+    throw new AccountPasswordExpiringException(msg,days);
+  }
+}

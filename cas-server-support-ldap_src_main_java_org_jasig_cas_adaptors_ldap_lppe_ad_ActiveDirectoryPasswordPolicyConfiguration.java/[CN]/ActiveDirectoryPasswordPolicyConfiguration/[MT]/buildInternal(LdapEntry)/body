@@ -1,7 +1,0 @@
-{
-  final String attributeValue=getPasswordPolicyAttributeValue(entry,getUserAccountControlAttributeName());
-  if (attributeValue != null) {
-    setUserAccountControl(attributeValue);
-  }
-  return super.buildInternal(entry);
-}

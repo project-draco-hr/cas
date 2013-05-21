@@ -1,6 +1,0 @@
-{
-  if (getStaticPasswordExpirationDate() != null) {
-    setValidPasswordNumberOfDays(0);
-    log.debug("Static password expiration date is configured. Number of valid " + "password days is now set to [{}]",getValidPasswordNumberOfDays());
-  }
-}

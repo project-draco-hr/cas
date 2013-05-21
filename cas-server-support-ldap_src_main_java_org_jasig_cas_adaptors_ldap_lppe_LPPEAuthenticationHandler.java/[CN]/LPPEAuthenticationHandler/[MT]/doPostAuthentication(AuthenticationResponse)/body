@@ -1,23 +1,13 @@
 {
-  if (!configuration.build(response.getLdapEntry())) {
-    if (configuration.isCritical()) {
-      throw new FailedLoginException("LPPE authentication failed. Configuration cannot be determined.");
-    }
- else {
-      log.warn("LPPE configuration cannot be determined.");
-      return;
-    }
+  final PasswordPolicyResult result=configuration.build(response.getLdapEntry());
+  if (result == null) {
+    throw new FailedLoginException("LPPE authentication failed. Configuration cannot be determined.");
   }
   try {
-    this.examineAccountStatus(response);
-    this.validateAccountPasswordExpirationPolicy();
+    this.examineAccountStatus(response,result);
+    this.validateAccountPasswordExpirationPolicy(result);
   }
  catch (  final LoginException e) {
-    if (configuration.isCritical()) {
-      throw e;
-    }
- else {
-      log.warn("LPPE authentication failed. Skipped policy checks.");
-    }
+    throw e;
   }
 }
