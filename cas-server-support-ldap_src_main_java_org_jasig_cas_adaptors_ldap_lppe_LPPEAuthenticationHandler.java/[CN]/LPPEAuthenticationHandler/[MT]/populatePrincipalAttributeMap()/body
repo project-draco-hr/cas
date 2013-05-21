@@ -1,26 +1,3 @@
 {
-  if (!StringUtils.isBlank(configuration.getUserAccountControlAttributeName())) {
-    principalAttributeMap.put(configuration.getUserAccountControlAttributeName(),configuration.getUserAccountControlAttributeName());
-  }
-  if (!StringUtils.isBlank(configuration.getAccountDisabledAttributeName())) {
-    principalAttributeMap.put(configuration.getAccountDisabledAttributeName(),configuration.getAccountDisabledAttributeName());
-  }
-  if (!StringUtils.isBlank(configuration.getAccountLockedAttributeName())) {
-    principalAttributeMap.put(configuration.getAccountLockedAttributeName(),configuration.getAccountLockedAttributeName());
-  }
-  if (!StringUtils.isBlank(configuration.getAccountPasswordMustChangeAttributeName())) {
-    principalAttributeMap.put(configuration.getAccountPasswordMustChangeAttributeName(),configuration.getAccountPasswordMustChangeAttributeName());
-  }
-  if (!StringUtils.isBlank(configuration.getIgnorePasswordExpirationWarningAttributeName())) {
-    principalAttributeMap.put(configuration.getIgnorePasswordExpirationWarningAttributeName(),configuration.getIgnorePasswordExpirationWarningAttributeName());
-  }
-  if (!StringUtils.isBlank(configuration.getPasswordExpirationDateAttributeName())) {
-    principalAttributeMap.put(configuration.getPasswordExpirationDateAttributeName(),configuration.getPasswordExpirationDateAttributeName());
-  }
-  if (!StringUtils.isBlank(configuration.getPasswordWarningNumberOfDaysAttributeName())) {
-    principalAttributeMap.put(configuration.getPasswordWarningNumberOfDaysAttributeName(),configuration.getPasswordWarningNumberOfDaysAttributeName());
-  }
-  if (!StringUtils.isBlank(configuration.getValidPasswordNumberOfDaysAttributeName())) {
-    principalAttributeMap.put(configuration.getValidPasswordNumberOfDaysAttributeName(),configuration.getValidPasswordNumberOfDaysAttributeName());
-  }
+  principalAttributeMap.putAll(configuration.getPasswordPolicyAttributesMap());
 }

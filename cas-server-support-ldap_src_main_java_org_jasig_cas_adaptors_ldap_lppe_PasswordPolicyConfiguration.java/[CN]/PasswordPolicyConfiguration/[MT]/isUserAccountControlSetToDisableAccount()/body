@@ -1,3 +1,0 @@
-{
-  return isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.ADS_UF_ACCOUNT_DISABLE);
-}

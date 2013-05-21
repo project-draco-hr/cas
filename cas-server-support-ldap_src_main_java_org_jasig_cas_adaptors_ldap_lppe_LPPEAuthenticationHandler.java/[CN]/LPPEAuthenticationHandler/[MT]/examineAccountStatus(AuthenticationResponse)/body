@@ -1,27 +1,19 @@
 {
   final String uid=configuration.getDn();
-  if (configuration.isUserAccountControlSetToDisableAccount()) {
-    final String msg=String.format("User account control flag is set. Account %s is disabled",uid);
-    throw new AccountDisabledException(msg);
-  }
-  if (configuration.isUserAccountControlSetToLockAccount()) {
-    final String msg=String.format("User account control flag is set. Account %s is locked",uid);
-    throw new AccountLockedException(msg);
-  }
-  if (configuration.isUserAccountControlSetToExpirePassword()) {
-    final String msg=String.format("User account control flag is set. Account %s has expired",uid);
+  if (configuration.isAccountExpired()) {
+    final String msg=String.format("Account %s has expired",uid);
     throw new CredentialExpiredException(msg);
   }
   if (configuration.isAccountDisabled()) {
-    final String msg=String.format("Password policy attribute %s is set. Account %s is disabled",configuration.getAccountDisabledAttributeName(),uid);
+    final String msg=String.format("Account %s is disabled",uid);
     throw new AccountDisabledException(msg);
   }
   if (configuration.isAccountLocked()) {
-    final String msg=String.format("Password policy attribute %s is set. Account %s is locked",configuration.getAccountLockedAttributeName(),uid);
+    final String msg=String.format("Account %s is locked",uid);
     throw new AccountLockedException(msg);
   }
   if (configuration.isAccountPasswordMustChange()) {
-    final String msg=String.format("Password policy attribute %s is set. Account %s must change it password",configuration.getAccountPasswordMustChangeAttributeName(),uid);
+    final String msg=String.format("Account %s must change it password",uid);
     throw new AccountPasswordMustChangeException(msg);
   }
 }
