@@ -13,7 +13,6 @@
   examineAccountState(response);
   if (response.getResult()) {
     doPostAuthentication(response);
-    return new HandlerResult(this,createPrincipal(response.getLdapEntry()));
   }
   throw new FailedLoginException("LDAP authentication failed.");
 }

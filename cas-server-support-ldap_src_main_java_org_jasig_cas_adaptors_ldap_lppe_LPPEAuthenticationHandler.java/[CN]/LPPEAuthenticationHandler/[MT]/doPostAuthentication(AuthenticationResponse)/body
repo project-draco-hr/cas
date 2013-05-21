@@ -1,13 +1,10 @@
 {
-  final PasswordPolicyResult result=configuration.build(response.getLdapEntry());
+  final LdapEntry entry=response.getLdapEntry();
+  final PasswordPolicyResult result=configuration.build(entry);
   if (result == null) {
     throw new FailedLoginException("LPPE authentication failed. Configuration cannot be determined.");
   }
-  try {
-    this.examineAccountStatus(response,result);
-    this.validateAccountPasswordExpirationPolicy(result);
-  }
- catch (  final LoginException e) {
-    throw e;
-  }
+  this.examineAccountStatus(response,result);
+  final List<Message> warnings=this.validateAccountPasswordExpirationPolicy(result);
+  return new HandlerResult(this,super.createPrincipal(entry),warnings);
 }
