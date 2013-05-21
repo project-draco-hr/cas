@@ -20,21 +20,19 @@
   }
   attributeValue=getPasswordPolicyAttributeValue(entry,getValidPasswordNumberOfDaysAttributeName());
   if (attributeValue != null) {
-    if (NumberUtils.isNumber(attributeValue)) {
-      setValidPasswordNumberOfDays(Integer.parseInt(attributeValue));
-    }
+    setValidPasswordNumberOfDays(NumberUtils.toInt(attributeValue));
   }
   attributeValue=getPasswordPolicyAttributeValue(entry,getAccountDisabledAttributeName());
   if (attributeValue != null) {
-    setAccountDisabled(Boolean.valueOf(attributeValue));
+    setAccountDisabled(translateValueToBoolean(attributeValue));
   }
   attributeValue=getPasswordPolicyAttributeValue(entry,getAccountLockedAttributeName());
   if (attributeValue != null) {
-    setAccountLocked(Boolean.valueOf(attributeValue));
+    setAccountLocked(translateValueToBoolean(attributeValue));
   }
   attributeValue=getPasswordPolicyAttributeValue(entry,getAccountPasswordMustChangeAttributeName());
   if (attributeValue != null) {
-    setAccountPasswordMustChange(Boolean.valueOf(attributeValue));
+    setAccountPasswordMustChange(translateValueToBoolean(attributeValue));
   }
   attributeValue=getPasswordPolicyAttributeValue(entry,getUserAccountControlAttributeName());
   if (attributeValue != null) {

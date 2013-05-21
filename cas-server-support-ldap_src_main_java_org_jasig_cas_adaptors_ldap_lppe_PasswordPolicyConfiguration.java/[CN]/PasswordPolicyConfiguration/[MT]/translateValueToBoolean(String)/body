@@ -1,0 +1,3 @@
+{
+  return Boolean.valueOf(value) || (NumberUtils.toLong(value) > 0);
+}
