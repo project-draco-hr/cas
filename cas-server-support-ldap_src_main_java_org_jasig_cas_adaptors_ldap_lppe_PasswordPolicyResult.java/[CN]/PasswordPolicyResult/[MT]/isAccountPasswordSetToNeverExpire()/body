@@ -1,8 +1,8 @@
 {
   final String ignoreCheckValue=getIgnorePasswordExpirationWarning();
   boolean ignoreChecks=false;
-  if (!StringUtils.isBlank(ignoreCheckValue) && configuration.getIgnorePasswordExpirationWarningFlags() != null) {
-    ignoreChecks=configuration.getIgnorePasswordExpirationWarningFlags().contains(ignoreCheckValue);
+  if (!StringUtils.isBlank(ignoreCheckValue)) {
+    ignoreChecks=this.ignorePasswordExpirationWarningFlags.contains(ignoreCheckValue);
   }
   if (!ignoreChecks) {
     ignoreChecks=NumberUtils.isNumber(getPasswordExpirationDate()) && NumberUtils.toLong(getPasswordExpirationDate()) <= 0;

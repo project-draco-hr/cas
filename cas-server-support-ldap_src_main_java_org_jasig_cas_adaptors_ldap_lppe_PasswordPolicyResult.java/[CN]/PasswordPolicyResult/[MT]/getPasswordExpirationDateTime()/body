@@ -1,3 +1,3 @@
 {
-  return configuration.getDateConverter().convert(getPasswordExpirationDate());
+  return this.passwordExpirationDateTime;
 }
