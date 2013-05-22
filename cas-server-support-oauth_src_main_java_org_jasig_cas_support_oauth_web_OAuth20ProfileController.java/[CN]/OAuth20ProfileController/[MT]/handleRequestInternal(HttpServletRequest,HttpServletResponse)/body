@@ -1,8 +1,7 @@
 {
   final String accessToken=request.getParameter(OAuthConstants.ACCESS_TOKEN);
   LOGGER.debug("{} : {}",OAuthConstants.ACCESS_TOKEN,accessToken);
-  final JsonFactory jsonFactory=new JsonFactory();
-  final JsonGenerator jsonGenerator=jsonFactory.createJsonGenerator(response.getWriter());
+  final JsonGenerator jsonGenerator=this.jsonFactory.createJsonGenerator(response.getWriter());
   try {
     response.setContentType("application/json");
     if (StringUtils.isBlank(accessToken)) {

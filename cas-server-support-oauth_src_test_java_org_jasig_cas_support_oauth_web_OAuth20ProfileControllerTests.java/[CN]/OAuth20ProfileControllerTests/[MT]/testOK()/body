@@ -12,6 +12,8 @@
   when(principal.getId()).thenReturn(ID);
   final Map<String,Object> map=new HashMap<String,Object>();
   map.put(NAME,VALUE);
+  List<String> list=Arrays.asList(VALUE,VALUE);
+  map.put(NAME2,list);
   when(principal.getAttributes()).thenReturn(map);
   when(authentication.getPrincipal()).thenReturn(principal);
   when(ticketGrantingTicket.getAuthentication()).thenReturn(authentication);
@@ -20,5 +22,5 @@
   oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   assertEquals(200,mockResponse.getStatus());
   assertEquals(CONTENT_TYPE,mockResponse.getContentType());
-  assertEquals("{\"id\":\"" + ID + "\",\"attributes\":[{\""+ NAME+ "\":\""+ VALUE+ "\"}]}",mockResponse.getContentAsString());
+  assertEquals("{\"id\":\"" + ID + "\",\"attributes\":[{\""+ NAME+ "\":\""+ VALUE+ "\"},{\""+ NAME2+ "\":[\""+ VALUE+ "\",\""+ VALUE+ "\"]}]}",mockResponse.getContentAsString());
 }
