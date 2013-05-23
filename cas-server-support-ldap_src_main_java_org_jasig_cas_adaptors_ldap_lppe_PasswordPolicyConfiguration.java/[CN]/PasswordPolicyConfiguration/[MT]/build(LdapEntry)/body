@@ -1,0 +1,39 @@
+{
+  final String expirationDate=getPasswordPolicyAttributeValue(entry,getPasswordExpirationDateAttributeName());
+  if (StringUtils.isBlank(expirationDate)) {
+    log.warn("Password expiration date [{}] is null.",getPasswordExpirationDateAttributeName());
+    return null;
+  }
+  final PasswordPolicyResult result=getPasswordPolicyResultInstance();
+  result.setDn(entry.getDn());
+  result.setPasswordExpirationDate(expirationDate);
+  result.setPasswordWarningNumberOfDays(this.defaultPasswordWarningNumberOfDays);
+  result.setValidPasswordNumberOfDays(this.defaultValidPasswordNumberOfDays);
+  String attributeValue=getPasswordPolicyAttributeValue(entry,getPasswordWarningNumberOfDaysAttributeName());
+  if (attributeValue != null) {
+    if (NumberUtils.isNumber(attributeValue)) {
+      result.setPasswordWarningNumberOfDays(Integer.parseInt(attributeValue));
+    }
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,getIgnorePasswordExpirationWarningAttributeName());
+  if (attributeValue != null) {
+    result.setIgnorePasswordExpirationWarning(attributeValue);
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,getValidPasswordNumberOfDaysAttributeName());
+  if (attributeValue != null) {
+    result.setValidPasswordNumberOfDays(NumberUtils.toInt(attributeValue));
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,getAccountDisabledAttributeName());
+  if (attributeValue != null) {
+    result.setAccountDisabled(translateValueToBoolean(attributeValue));
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,getAccountLockedAttributeName());
+  if (attributeValue != null) {
+    result.setAccountLocked(translateValueToBoolean(attributeValue));
+  }
+  attributeValue=getPasswordPolicyAttributeValue(entry,getAccountPasswordMustChangeAttributeName());
+  if (attributeValue != null) {
+    result.setAccountPasswordMustChange(translateValueToBoolean(attributeValue));
+  }
+  return buildInternal(entry,result);
+}

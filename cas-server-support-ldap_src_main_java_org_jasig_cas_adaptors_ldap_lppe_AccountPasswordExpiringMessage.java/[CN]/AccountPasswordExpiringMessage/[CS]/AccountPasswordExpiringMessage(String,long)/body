@@ -1,0 +1,4 @@
+{
+  super(CODE,defaultMsg);
+  this.numberOfDaysToPasswordExpiration=days;
+}

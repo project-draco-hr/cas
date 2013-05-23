@@ -1,0 +1,3 @@
+{
+  return isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.ADS_UF_PASSWORD_EXPIRED);
+}

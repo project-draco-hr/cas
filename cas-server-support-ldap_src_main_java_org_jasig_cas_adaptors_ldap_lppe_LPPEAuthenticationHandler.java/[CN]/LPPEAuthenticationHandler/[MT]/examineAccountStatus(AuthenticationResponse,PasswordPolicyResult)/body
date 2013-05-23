@@ -1,0 +1,19 @@
+{
+  final String uid=result.getDn();
+  if (result.isAccountExpired()) {
+    final String msg=String.format("Account %s has expired",uid);
+    throw new CredentialExpiredException(msg);
+  }
+  if (result.isAccountDisabled()) {
+    final String msg=String.format("Account %s is disabled",uid);
+    throw new AccountDisabledException(msg);
+  }
+  if (result.isAccountLocked()) {
+    final String msg=String.format("Account %s is locked",uid);
+    throw new AccountLockedException(msg);
+  }
+  if (result.isAccountPasswordMustChange()) {
+    final String msg=String.format("Account %s must change it password",uid);
+    throw new AccountPasswordMustChangeException(msg);
+  }
+}

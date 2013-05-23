@@ -1,4 +1,0 @@
-{
-  final Matcher matcher=getLdapPattern().matcher(msg);
-  return matcher.find();
-}

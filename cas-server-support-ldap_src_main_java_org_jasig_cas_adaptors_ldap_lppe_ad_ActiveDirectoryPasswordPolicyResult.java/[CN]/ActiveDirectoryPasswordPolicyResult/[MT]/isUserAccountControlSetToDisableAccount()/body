@@ -1,0 +1,7 @@
+{
+  if (isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.ADS_UF_ACCOUNT_DISABLE)) {
+    logger.debug("User account control flag is set. Account [{}] is disabled",getDn());
+    return true;
+  }
+  return false;
+}
