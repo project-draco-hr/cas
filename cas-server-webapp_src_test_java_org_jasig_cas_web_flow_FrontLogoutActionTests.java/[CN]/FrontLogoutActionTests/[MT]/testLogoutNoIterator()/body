@@ -1,0 +1,4 @@
+{
+  final Event event=this.frontLogoutAction.doExecute(this.requestContext);
+  assertEquals(FrontLogoutAction.FINISH_EVENT,event.getId());
+}

@@ -1,5 +1,0 @@
-{
-  this.request.addParameter("service","TestService");
-  this.logoutController.setFollowServiceRedirects(false);
-  assertTrue(!(this.logoutController.handleRequestInternal(request,new MockHttpServletResponse()).getView() instanceof RedirectView));
-}

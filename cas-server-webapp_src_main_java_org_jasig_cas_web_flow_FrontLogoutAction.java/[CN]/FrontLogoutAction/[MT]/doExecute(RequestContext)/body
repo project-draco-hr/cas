@@ -1,0 +1,19 @@
+{
+  final Iterator<LogoutRequest> logoutRequests=(Iterator<LogoutRequest>)context.getFlowScope().get(LOGOUT_REQUESTS);
+  if (logoutRequests != null) {
+    while (logoutRequests.hasNext()) {
+      final LogoutRequest logoutRequest=logoutRequests.next();
+      if (logoutRequest.getStatus() == LogoutRequestStatus.NOT_ATTEMPTED) {
+        logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
+        final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
+        preventCaching(response);
+        context.getFlowScope().put(LOGOUT_REQUESTS,logoutRequests);
+        final UriComponentsBuilder builder=UriComponentsBuilder.fromHttpUrl(logoutRequest.getService().getId());
+        builder.queryParam("SAMLRequest",logoutManager.createFrontChannelLogoutMessage(logoutRequest));
+        builder.queryParam("RelayState",context.getFlowExecutionContext().getKey());
+        return result(REDIRECT_APP_EVENT,"logoutUrl",builder.build().toUriString());
+      }
+    }
+  }
+  return new Event(this,FINISH_EVENT);
+}

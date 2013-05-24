@@ -1,0 +1,11 @@
+{
+  final String logoutMessage=createBackChannelLogoutMessage(logoutRequest.getTicketId());
+  final Deflater deflater=new Deflater();
+  deflater.setInput(logoutMessage.getBytes(ASCII));
+  deflater.finish();
+  final byte[] buffer=new byte[logoutMessage.length()];
+  final int resultSize=deflater.deflate(buffer);
+  final byte[] output=new byte[resultSize];
+  System.arraycopy(buffer,0,output,0,resultSize);
+  return Base64.encodeBase64String(output);
+}

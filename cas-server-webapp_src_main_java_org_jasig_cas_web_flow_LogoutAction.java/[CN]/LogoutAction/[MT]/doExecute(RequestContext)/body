@@ -1,0 +1,32 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
+  preventCaching(response);
+  final String ticketGrantingTicketId=this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request);
+  boolean needFrontSlo=false;
+  if (ticketGrantingTicketId != null) {
+    final Collection<LogoutRequest> logoutRequests=this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
+    context.getFlowScope().put(LOGOUT_REQUESTS,logoutRequests.iterator());
+    for (    LogoutRequest logoutRequest : logoutRequests) {
+      if (logoutRequest.getStatus() == LogoutRequestStatus.NOT_ATTEMPTED) {
+        needFrontSlo=true;
+        break;
+      }
+    }
+    this.ticketGrantingTicketCookieGenerator.removeCookie(response);
+    this.warnCookieGenerator.removeCookie(response);
+  }
+  final String service=request.getParameter("service");
+  if (this.followServiceRedirects && service != null) {
+    final RegisteredService rService=this.servicesManager.findServiceBy(new SimpleWebApplicationServiceImpl(service));
+    if (rService != null && rService.isEnabled()) {
+      context.getFlowScope().put("logoutRedirectUrl",service);
+    }
+  }
+  if (needFrontSlo) {
+    return new Event(this,FRONT_EVENT);
+  }
+ else {
+    return new Event(this,FINISH_EVENT);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  final LogoutRequest logoutRequest=new LogoutRequest("",null);
+  logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
+  this.requestContext.getFlowScope().put(FrontLogoutAction.LOGOUT_REQUESTS,Arrays.asList(logoutRequest).iterator());
+  final Event event=this.frontLogoutAction.doExecute(this.requestContext);
+  assertEquals(FrontLogoutAction.FINISH_EVENT,event.getId());
+}

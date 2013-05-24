@@ -1,0 +1,11 @@
+{
+  final ServicesManager servicesManager=mock(ServicesManager.class);
+  this.logoutManager=new LogoutManagerImpl(servicesManager,new HttpClient());
+  this.tgt=mock(TicketGrantingTicket.class);
+  this.services=new HashMap<String,Service>();
+  this.simpleWebApplicationServiceImpl=new SimpleWebApplicationServiceImpl(URL);
+  this.services.put(ID,this.simpleWebApplicationServiceImpl);
+  when(this.tgt.getServices()).thenReturn(this.services);
+  this.registeredService=new RegisteredServiceImpl();
+  when(servicesManager.findServiceBy(this.simpleWebApplicationServiceImpl)).thenReturn(this.registeredService);
+}

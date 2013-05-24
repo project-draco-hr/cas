@@ -1,0 +1,3 @@
+{
+  return handler instanceof FlowHandler && supportedFlowIds.contains(((FlowHandler)handler).getFlowId());
+}
