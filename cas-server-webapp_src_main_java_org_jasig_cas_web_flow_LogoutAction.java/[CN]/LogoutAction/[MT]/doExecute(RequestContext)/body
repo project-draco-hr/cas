@@ -5,8 +5,9 @@
   final String ticketGrantingTicketId=this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request);
   boolean needFrontSlo=false;
   if (ticketGrantingTicketId != null) {
-    final Collection<LogoutRequest> logoutRequests=this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
-    context.getFlowScope().put(LOGOUT_REQUESTS,logoutRequests.iterator());
+    final List<LogoutRequest> logoutRequests=this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
+    context.getFlowScope().put(LOGOUT_REQUESTS,logoutRequests);
+    context.getFlowScope().put(LOGOUT_INDEX,0);
     for (    LogoutRequest logoutRequest : logoutRequests) {
       if (logoutRequest.getStatus() == LogoutRequestStatus.NOT_ATTEMPTED) {
         needFrontSlo=true;

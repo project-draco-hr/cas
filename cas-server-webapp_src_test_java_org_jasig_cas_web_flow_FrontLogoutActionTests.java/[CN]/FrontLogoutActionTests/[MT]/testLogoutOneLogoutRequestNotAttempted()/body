@@ -1,11 +1,12 @@
 {
   final String FAKE_URL="http://url";
   LogoutRequest logoutRequest=new LogoutRequest(TICKET_ID,new SimpleWebApplicationServiceImpl(FAKE_URL));
-  this.requestContext.getFlowScope().put(FrontLogoutAction.LOGOUT_REQUESTS,Arrays.asList(logoutRequest).iterator());
+  this.requestContext.getFlowScope().put(FrontLogoutAction.LOGOUT_REQUESTS,Arrays.asList(logoutRequest));
+  this.requestContext.getFlowScope().put(FrontLogoutAction.LOGOUT_INDEX,0);
   final Event event=this.frontLogoutAction.doExecute(this.requestContext);
   assertEquals(FrontLogoutAction.REDIRECT_APP_EVENT,event.getId());
-  Iterator<LogoutRequest> iterator=(Iterator<LogoutRequest>)this.requestContext.getFlowScope().get(FrontLogoutAction.LOGOUT_REQUESTS);
-  assertFalse(iterator.hasNext());
+  List<LogoutRequest> list=(List<LogoutRequest>)this.requestContext.getFlowScope().get(FrontLogoutAction.LOGOUT_REQUESTS);
+  assertEquals(1,list.size());
   final String url=(String)event.getAttributes().get("logoutUrl");
   assertTrue(url.startsWith(FAKE_URL + "?SAMLRequest="));
   assertTrue(url.endsWith("&RelayState=" + FLOW_EXECUTION_KEY));

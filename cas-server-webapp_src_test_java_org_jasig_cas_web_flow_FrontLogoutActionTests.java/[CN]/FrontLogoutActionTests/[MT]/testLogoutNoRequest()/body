@@ -1,0 +1,5 @@
+{
+  this.requestContext.getFlowScope().put(FrontLogoutAction.LOGOUT_INDEX,0);
+  final Event event=this.frontLogoutAction.doExecute(this.requestContext);
+  assertEquals(FrontLogoutAction.FINISH_EVENT,event.getId());
+}
