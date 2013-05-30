@@ -4,6 +4,6 @@
   Service svc=TestUtils.getService("eduPersonTestInvalid");
   final String serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket,svc);
   final Assertion assertion=getCentralAuthenticationService().validateServiceTicket(serviceTicket,svc);
-  final Authentication auth=assertion.getChainedAuthentications().get(0);
+  final Authentication auth=assertion.getPrimaryAuthentication();
   assertEquals(auth.getPrincipal().getId(),cred.getUsername());
 }

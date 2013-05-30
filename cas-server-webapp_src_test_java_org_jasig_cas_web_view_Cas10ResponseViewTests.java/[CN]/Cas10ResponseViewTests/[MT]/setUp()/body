@@ -2,5 +2,5 @@
   this.model=new HashMap<String,Object>();
   List<Authentication> list=new ArrayList<Authentication>();
   list.add(TestUtils.getAuthentication());
-  this.model.put("assertion",new ImmutableAssertionImpl(list,TestUtils.getService("TestService"),true));
+  this.model.put("assertion",new ImmutableAssertion(TestUtils.getAuthentication(),list,TestUtils.getService("TestService"),true));
 }

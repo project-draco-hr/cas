@@ -12,6 +12,10 @@
     throw new UnauthorizedProxyingException();
   }
   final Authentication authentication=this.authenticationManager.authenticate(credentials);
+  final AuthenticationPolicy policy=serviceContextAuthenticationPolicyFactory.createPolicy(new ServiceContext(serviceTicket.getService(),registeredService));
+  if (!policy.isSatisfiedBy(authentication)) {
+    throw new UnsatisfiedAuthenticationPolicyException();
+  }
   final TicketGrantingTicket ticketGrantingTicket=serviceTicket.grantTicketGrantingTicket(this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),authentication,this.ticketGrantingTicketExpirationPolicy);
   this.ticketRegistry.addTicket(ticketGrantingTicket);
   return ticketGrantingTicket.getId();

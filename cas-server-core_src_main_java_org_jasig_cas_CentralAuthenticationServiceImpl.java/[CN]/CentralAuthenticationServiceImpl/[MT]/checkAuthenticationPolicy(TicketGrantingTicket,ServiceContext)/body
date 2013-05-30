@@ -1,0 +1,12 @@
+{
+  final AuthenticationPolicy policy=serviceContextAuthenticationPolicyFactory.createPolicy(context);
+  if (policy.isSatisfiedBy(ticket.getAuthentication())) {
+    return;
+  }
+  for (  final Authentication auth : ticket.getSupplementalAuthentications()) {
+    if (policy.isSatisfiedBy(auth)) {
+      return;
+    }
+  }
+  throw new UnsatisfiedAuthenticationPolicyException();
+}

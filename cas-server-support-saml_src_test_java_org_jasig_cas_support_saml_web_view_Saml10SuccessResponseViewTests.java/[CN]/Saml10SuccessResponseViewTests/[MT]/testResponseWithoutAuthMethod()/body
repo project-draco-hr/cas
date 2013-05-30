@@ -3,9 +3,8 @@
   final Map<String,Object> attributes=new HashMap<String,Object>();
   attributes.put("testAttribute","testValue");
   final SimplePrincipal principal=new SimplePrincipal("testPrincipal",attributes);
-  final List<Authentication> authentications=new ArrayList<Authentication>();
-  authentications.add(TestUtils.getAuthentication(principal));
-  final Assertion assertion=new ImmutableAssertionImpl(authentications,TestUtils.getService(),true);
+  final Authentication primary=TestUtils.getAuthentication(principal);
+  final Assertion assertion=new ImmutableAssertion(primary,Collections.singletonList(primary),TestUtils.getService(),true);
   model.put("assertion",assertion);
   final MockHttpServletResponse servletResponse=new MockHttpServletResponse();
   this.response.renderMergedOutputModel(model,new MockHttpServletRequest(),servletResponse);

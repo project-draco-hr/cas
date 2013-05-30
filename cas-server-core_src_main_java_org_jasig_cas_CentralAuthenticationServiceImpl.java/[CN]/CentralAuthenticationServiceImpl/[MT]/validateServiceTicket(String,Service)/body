@@ -23,8 +23,8 @@ synchronized (serviceTicket) {
         throw new TicketValidationException(serviceTicket.getService());
       }
     }
-    final List<Authentication> chainedAuthenticationsList=serviceTicket.getGrantingTicket().getChainedAuthentications();
-    final Authentication authentication=chainedAuthenticationsList.get(chainedAuthenticationsList.size() - 1);
+    final TicketGrantingTicket root=serviceTicket.getGrantingTicket().getRoot();
+    final Authentication authentication=getAuthenticationSatisfiedByPolicy(root,new ServiceContext(serviceTicket.getService(),registeredService));
     final Principal principal=authentication.getPrincipal();
     Map<String,Object> attributesToRelease=this.defaultAttributeFilter.filter(principal.getId(),principal.getAttributes(),registeredService);
     if (registeredService.getAttributeFilter() != null) {
@@ -34,13 +34,7 @@ synchronized (serviceTicket) {
     final Principal modifiedPrincipal=new SimplePrincipal(principalId,attributesToRelease);
     final AuthenticationBuilder builder=AuthenticationBuilder.newInstance(authentication);
     builder.setPrincipal(modifiedPrincipal);
-    final Authentication authToUse=builder.build();
-    final List<Authentication> authentications=new ArrayList<Authentication>();
-    for (int i=0; i < chainedAuthenticationsList.size() - 1; i++) {
-      authentications.add(serviceTicket.getGrantingTicket().getChainedAuthentications().get(i));
-    }
-    authentications.add(authToUse);
-    return new ImmutableAssertionImpl(authentications,serviceTicket.getService(),serviceTicket.isFromNewLogin());
+    return new ImmutableAssertion(builder.build(),root.getChainedAuthentications(),serviceTicket.getService(),serviceTicket.isFromNewLogin());
   }
   finally {
     if (serviceTicket.isExpired()) {
