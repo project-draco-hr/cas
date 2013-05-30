@@ -17,7 +17,7 @@
   }
   if (StringUtils.hasText(username) && StringUtils.hasText(password) && username.equals(password)) {
     log.debug("User [{}] was successfully authenticated.",username);
-    return new HandlerResult(this);
+    return new HandlerResult(this,new BasicCredentialMetaData(credential));
   }
   log.debug("User [{}] failed authentication",username);
   throw new FailedLoginException();

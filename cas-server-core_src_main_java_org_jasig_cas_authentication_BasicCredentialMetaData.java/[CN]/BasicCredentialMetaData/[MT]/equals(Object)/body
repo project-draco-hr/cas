@@ -1,0 +1,3 @@
+{
+  return other instanceof CredentialMetaData && this.id.equals(((CredentialMetaData)other).getId());
+}

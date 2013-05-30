@@ -1,4 +1,0 @@
-{
-  super(principal,attributes == null || attributes.isEmpty() ? EMPTY_MAP : Collections.unmodifiableMap(attributes));
-  this.authenticatedDate=new Date();
-}

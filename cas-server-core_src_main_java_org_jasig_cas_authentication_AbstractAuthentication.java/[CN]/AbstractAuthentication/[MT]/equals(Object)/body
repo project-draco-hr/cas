@@ -1,7 +1,0 @@
-{
-  if (o == null || !this.getClass().isAssignableFrom(o.getClass())) {
-    return false;
-  }
-  Authentication a=(Authentication)o;
-  return this.principal.equals(a.getPrincipal()) && this.getAuthenticatedDate().equals(a.getAuthenticatedDate()) && this.attributes.equals(a.getAttributes());
-}

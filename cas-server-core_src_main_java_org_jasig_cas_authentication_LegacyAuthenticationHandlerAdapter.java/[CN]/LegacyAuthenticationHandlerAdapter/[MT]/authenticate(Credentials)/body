@@ -1,7 +1,7 @@
 {
   try {
     if (this.legacyHandler.authenticate(credential)) {
-      return this.result;
+      return new HandlerResult(this,new BasicCredentialMetaData(credential));
     }
  else {
       throw new GeneralSecurityException(String.format("%s failed to authenticate %s",this.getName(),credential));

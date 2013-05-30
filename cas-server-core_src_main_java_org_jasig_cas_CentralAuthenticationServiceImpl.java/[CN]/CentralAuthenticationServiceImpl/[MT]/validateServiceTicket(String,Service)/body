@@ -32,7 +32,9 @@ synchronized (serviceTicket) {
     }
     final String principalId=determinePrincipalIdForRegisteredService(principal,registeredService,serviceTicket);
     final Principal modifiedPrincipal=new SimplePrincipal(principalId,attributesToRelease);
-    final Authentication authToUse=new MutableAuthentication(modifiedPrincipal,authentication.getAuthenticatedDate(),authentication.getAttributes());
+    final AuthenticationBuilder builder=AuthenticationBuilder.newInstance(authentication);
+    builder.setPrincipal(modifiedPrincipal);
+    final Authentication authToUse=builder.build();
     final List<Authentication> authentications=new ArrayList<Authentication>();
     for (int i=0; i < chainedAuthenticationsList.size() - 1; i++) {
       authentications.add(serviceTicket.getGrantingTicket().getChainedAuthentications().get(i));

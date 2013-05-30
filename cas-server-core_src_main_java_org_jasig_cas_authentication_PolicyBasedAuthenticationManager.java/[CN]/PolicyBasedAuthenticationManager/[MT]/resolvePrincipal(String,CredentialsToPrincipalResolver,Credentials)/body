@@ -1,0 +1,16 @@
+{
+  if (resolver.supports(credential)) {
+    try {
+      final Principal p=resolver.resolvePrincipal(credential);
+      log.debug("{} resolved {} from {}",resolver,p,credential);
+      return p;
+    }
+ catch (    final Exception e) {
+      log.error("{} failed to resolve principal from {}",resolver,credential,e);
+    }
+  }
+ else {
+    log.warn("{} is configured to use {} but it does not support {}, which suggests a configuration problem.",handlerName,resolver,credential);
+  }
+  return null;
+}

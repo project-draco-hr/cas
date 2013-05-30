@@ -6,5 +6,5 @@
   }
   this.examineAccountStatus(response,result);
   final List<Message> warnings=this.validateAccountPasswordExpirationPolicy(result);
-  return new HandlerResult(this,super.createPrincipal(entry),warnings);
+  return new HandlerResult(this,new BasicCredentialMetaData(new UsernamePasswordCredentials()),super.createPrincipal(entry),warnings);
 }

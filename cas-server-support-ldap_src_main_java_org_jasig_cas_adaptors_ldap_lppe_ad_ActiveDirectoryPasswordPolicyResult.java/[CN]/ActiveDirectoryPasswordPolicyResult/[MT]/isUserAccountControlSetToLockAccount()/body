@@ -1,6 +1,6 @@
 {
   if (isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.ADS_UF_LOCKOUT)) {
-    logger.debug("User account control flag is set. Account [{}] is locked",getDn());
+    log.debug("User account control flag is set. Account [{}] is locked",getDn());
     return true;
   }
   return false;
