@@ -4,6 +4,11 @@
       return context;
     }
     @Override public boolean isSatisfiedBy(    final Authentication authentication){
+      for (      final String required : context.getRegisteredService().getRequiredHandlers()) {
+        if (!authentication.getSuccesses().containsKey(required)) {
+          return false;
+        }
+      }
       return true;
     }
   }

@@ -1,5 +1,5 @@
 {
-  final AuthenticationPolicy policy=serviceContextAuthenticationPolicyFactory.createPolicy(context);
+  final ContextualAuthenticationPolicy<ServiceContext> policy=serviceContextAuthenticationPolicyFactory.createPolicy(context);
   if (policy.isSatisfiedBy(ticket.getAuthentication())) {
     return;
   }
@@ -8,5 +8,5 @@
       return;
     }
   }
-  throw new UnsatisfiedAuthenticationPolicyException();
+  throw new UnsatisfiedAuthenticationPolicyException(policy);
 }
