@@ -38,7 +38,7 @@ synchronized (ticketGrantingTicket) {
     }
     ticketGrantingTicket.getSupplementalAuthentications().add(current);
   }
-  checkAuthenticationPolicy(ticketGrantingTicket,new ServiceContext(service,registeredService));
+  getAuthenticationSatisfiedByPolicy(ticketGrantingTicket,new ServiceContext(service,registeredService));
   final UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(service.getClass().getName());
   final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),service,this.serviceTicketExpirationPolicy,credentials != null);
   this.serviceTicketRegistry.addTicket(serviceTicket);
