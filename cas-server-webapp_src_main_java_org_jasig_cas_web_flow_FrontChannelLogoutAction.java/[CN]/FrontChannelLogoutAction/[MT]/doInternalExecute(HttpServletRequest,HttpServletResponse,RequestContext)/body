@@ -6,8 +6,6 @@
       final LogoutRequest logoutRequest=logoutRequests.get(i);
       if (logoutRequest.getStatus() == LogoutRequestStatus.NOT_ATTEMPTED) {
         logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
-        final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
-        preventCaching(response);
         context.getFlowScope().put(LOGOUT_INDEX,i + 1);
         final UriComponentsBuilder builder=UriComponentsBuilder.fromHttpUrl(logoutRequest.getService().getId());
         builder.queryParam("SAMLRequest",URLEncoder.encode(logoutManager.createFrontChannelLogoutMessage(logoutRequest),"UTF-8"));

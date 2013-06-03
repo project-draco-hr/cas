@@ -1,7 +1,4 @@
 {
-  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
-  final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
-  preventCaching(response);
   final String ticketGrantingTicketId=this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request);
   boolean needFrontSlo=false;
   if (ticketGrantingTicketId != null) {

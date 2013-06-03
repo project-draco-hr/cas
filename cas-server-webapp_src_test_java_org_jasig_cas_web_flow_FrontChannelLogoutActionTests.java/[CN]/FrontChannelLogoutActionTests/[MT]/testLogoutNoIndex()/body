@@ -1,0 +1,5 @@
+{
+  this.requestContext.getFlowScope().put(FrontChannelLogoutAction.LOGOUT_REQUESTS,Collections.emptyList());
+  final Event event=this.frontChannelLogoutAction.doExecute(this.requestContext);
+  assertEquals(FrontChannelLogoutAction.FINISH_EVENT,event.getId());
+}
