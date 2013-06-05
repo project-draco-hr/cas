@@ -1,8 +1,0 @@
-{
-  if (e instanceof GeneralSecurityException) {
-    log.info("{} failed authenticating {}",handlerName,credentials);
-  }
- else {
-    log.error("{} threw error authenticating {}",handlerName,credentials,e);
-  }
-}

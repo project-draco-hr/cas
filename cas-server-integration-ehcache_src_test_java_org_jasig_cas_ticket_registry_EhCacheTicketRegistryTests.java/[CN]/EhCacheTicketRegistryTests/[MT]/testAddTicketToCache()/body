@@ -1,6 +1,6 @@
 {
   try {
-    this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",getAuthentication(),new NeverExpiresExpirationPolicy()));
+    this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
   }
  catch (  Exception e) {
     log.error(e.getMessage(),e);

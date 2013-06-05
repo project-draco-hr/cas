@@ -1,0 +1,3 @@
+{
+  builder.addAttribute(SUCCESSFUL_AUTHENTICATION_HANDLERS,builder.getSuccesses().keySet());
+}

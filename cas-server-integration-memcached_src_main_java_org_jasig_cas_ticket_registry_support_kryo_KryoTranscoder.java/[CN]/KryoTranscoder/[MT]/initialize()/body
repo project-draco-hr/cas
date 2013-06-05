@@ -3,9 +3,8 @@
   kryo.register(Date.class,new DateSerializer());
   kryo.register(HardTimeoutExpirationPolicy.class,new HardTimeoutExpirationPolicySerializer(fieldHelper));
   kryo.register(HashMap.class);
-  kryo.register(ImmutableAuthentication.class,new ImmutableAuthenticationSerializer(kryo,fieldHelper));
+  kryo.register(ImmutableAuthentication.class);
   kryo.register(MultiTimeUseOrTimeoutExpirationPolicy.class,new MultiTimeUseOrTimeoutExpirationPolicySerializer(fieldHelper));
-  kryo.register(MutableAuthentication.class,new MutableAuthenticationSerializer(kryo,fieldHelper));
   kryo.register(NeverExpiresExpirationPolicy.class,new FieldSerializer(kryo,NeverExpiresExpirationPolicy.class));
   kryo.register(RememberMeDelegatingExpirationPolicy.class,new FieldSerializer(kryo,RememberMeDelegatingExpirationPolicy.class));
   kryo.register(ServiceTicketImpl.class);

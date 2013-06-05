@@ -31,12 +31,14 @@ synchronized (ticketGrantingTicket) {
     }
   }
   if (credentials != null) {
-    final Authentication authentication=this.authenticationManager.authenticate(credentials);
-    final Authentication originalAuthentication=ticketGrantingTicket.getAuthentication();
-    if (!(authentication.getPrincipal().equals(originalAuthentication.getPrincipal()) && authentication.getAttributes().equals(originalAuthentication.getAttributes()))) {
-      throw new TicketCreationException();
+    final Authentication current=this.authenticationManager.authenticate(credentials);
+    final Authentication original=ticketGrantingTicket.getAuthentication();
+    if (!(current.getPrincipal().equals(original.getPrincipal()) && current.getAttributes().equals(current.getAttributes()))) {
+      throw new MixedPrincipalException(current,current.getPrincipal(),original.getPrincipal());
     }
+    ticketGrantingTicket.getSupplementalAuthentications().add(current);
   }
+  getAuthenticationSatisfiedByPolicy(ticketGrantingTicket,new ServiceContext(service,registeredService));
   final UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(service.getClass().getName());
   final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),service,this.serviceTicketExpirationPolicy,credentials != null);
   this.serviceTicketRegistry.addTicket(serviceTicket);

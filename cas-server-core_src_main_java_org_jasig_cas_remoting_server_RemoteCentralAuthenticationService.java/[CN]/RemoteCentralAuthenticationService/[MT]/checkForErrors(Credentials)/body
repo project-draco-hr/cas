@@ -2,8 +2,10 @@
   if (credentials == null) {
     return;
   }
-  final Set<ConstraintViolation<Credentials>> errors=this.validator.validate(credentials);
-  if (!errors.isEmpty()) {
-    throw new IllegalArgumentException("Error validating credentials: " + errors.toString());
+  for (  final Credentials c : credentials) {
+    final Set<ConstraintViolation<Credentials>> errors=this.validator.validate(c);
+    if (!errors.isEmpty()) {
+      throw new IllegalArgumentException("Error validating credentials: " + errors.toString());
+    }
   }
 }

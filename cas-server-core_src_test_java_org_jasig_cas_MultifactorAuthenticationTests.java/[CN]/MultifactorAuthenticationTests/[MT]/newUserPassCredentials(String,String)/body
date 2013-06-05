@@ -1,0 +1,6 @@
+{
+  final UsernamePasswordCredentials userpass=new UsernamePasswordCredentials();
+  userpass.setUsername(user);
+  userpass.setPassword(pass);
+  return userpass;
+}

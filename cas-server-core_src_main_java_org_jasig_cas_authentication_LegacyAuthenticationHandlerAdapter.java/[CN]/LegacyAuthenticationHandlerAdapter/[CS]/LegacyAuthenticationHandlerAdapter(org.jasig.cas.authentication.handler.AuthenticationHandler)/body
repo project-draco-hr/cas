@@ -1,4 +1,3 @@
 {
   this.legacyHandler=legacy;
-  this.result=new HandlerResult(this);
 }
