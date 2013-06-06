@@ -1,3 +1,0 @@
-{
-  return credential != null && X509CertificateCredential.class.isAssignableFrom(credential.getClass());
-}

@@ -1,4 +1,0 @@
-{
-  final HttpBasedServiceCredential serviceCredentials=(HttpBasedServiceCredential)credential;
-  return new SimpleWebApplicationServiceImpl(serviceCredentials.getCallbackUrl().toExternalForm());
-}

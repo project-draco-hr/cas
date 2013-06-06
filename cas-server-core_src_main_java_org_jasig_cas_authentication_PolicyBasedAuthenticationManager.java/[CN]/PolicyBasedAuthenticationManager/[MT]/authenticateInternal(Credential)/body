@@ -5,7 +5,7 @@
   }
   boolean found;
   Principal principal;
-  CredentialsToPrincipalResolver resolver;
+  PrincipalResolver resolver;
   for (  final Credential credential : credentials) {
     found=false;
     for (    final AuthenticationHandler handler : this.handlerResolverMap.keySet()) {
