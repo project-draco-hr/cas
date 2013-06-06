@@ -1,5 +1,5 @@
 {
-  final RememberMePasswordCredential c=new RememberMePasswordCredential();
+  final RememberMeUsernamePasswordCredential c=new RememberMeUsernamePasswordCredential();
   c.setPassword("password");
   c.setUsername("username");
   c.setRememberMe(true);

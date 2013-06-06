@@ -1,0 +1,16 @@
+{
+  if (this == obj) {
+    return true;
+  }
+  if (!super.equals(obj)) {
+    return false;
+  }
+  if (getClass() != obj.getClass()) {
+    return false;
+  }
+  final RememberMeUsernamePasswordCredential other=(RememberMeUsernamePasswordCredential)obj;
+  if (this.rememberMe != other.rememberMe) {
+    return false;
+  }
+  return true;
+}

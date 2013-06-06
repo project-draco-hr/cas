@@ -1,7 +1,7 @@
 {
-  final PasswordCredential passwordCredential=(PasswordCredential)credential;
-  final String username=passwordCredential.getUsername();
-  final String password=passwordCredential.getPassword();
+  final UsernamePasswordCredential usernamePasswordCredential=(UsernamePasswordCredential)credential;
+  final String username=usernamePasswordCredential.getUsername();
+  final String password=usernamePasswordCredential.getPassword();
   final Exception exception=this.usernameErrorMap.get(username);
   if (exception instanceof GeneralSecurityException) {
     throw (GeneralSecurityException)exception;

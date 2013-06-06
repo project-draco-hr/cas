@@ -1,5 +1,5 @@
 {
-  final PasswordCredential c=new PasswordCredential();
+  final UsernamePasswordCredential c=new UsernamePasswordCredential();
   this.authenticationHandler.setFileName(new ClassPathResource("fff"));
   c.setUsername("scott");
   c.setPassword("rutgers");

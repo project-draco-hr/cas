@@ -1,5 +1,5 @@
 {
   PrincipalBearingCredential credentials=new PrincipalBearingCredential(new SimplePrincipal("scott"));
   assertTrue(this.handler.supports(credentials));
-  assertFalse(this.handler.supports(new PasswordCredential()));
+  assertFalse(this.handler.supports(new UsernamePasswordCredential()));
 }

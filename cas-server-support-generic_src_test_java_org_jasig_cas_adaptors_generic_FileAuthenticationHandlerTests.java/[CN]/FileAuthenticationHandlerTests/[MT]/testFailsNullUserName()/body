@@ -1,5 +1,5 @@
 {
-  final PasswordCredential c=new PasswordCredential();
+  final UsernamePasswordCredential c=new UsernamePasswordCredential();
   c.setUsername(null);
   c.setPassword("user");
   assertFalse(this.authenticationHandler.authenticate(c));

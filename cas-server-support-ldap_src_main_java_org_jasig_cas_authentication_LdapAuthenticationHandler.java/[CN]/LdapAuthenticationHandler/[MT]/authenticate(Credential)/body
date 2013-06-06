@@ -1,6 +1,6 @@
 {
   final AuthenticationResponse response;
-  final PasswordCredential upc=(PasswordCredential)credential;
+  final UsernamePasswordCredential upc=(UsernamePasswordCredential)credential;
   try {
     log.debug("Attempting LDAP authentication for {}",credential);
     final AuthenticationRequest request=new AuthenticationRequest(upc.getUsername(),new org.ldaptive.Credential(upc.getPassword()),this.authenticatedEntryAttributes);

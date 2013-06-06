@@ -3,7 +3,7 @@
   X509CredentialsAuthenticationHandler handler;
   handler=new X509CredentialsAuthenticationHandler();
   handler.setTrustedIssuerDnPattern(".*");
-  params.add(new Object[]{handler,new PasswordCredential(),false,false});
+  params.add(new Object[]{handler,new UsernamePasswordCredential(),false,false});
   handler=new X509CredentialsAuthenticationHandler();
   handler.setTrustedIssuerDnPattern(".*");
   params.add(new Object[]{handler,new X509CertificateCredential(createCertificates("user-valid.crt")),true,true});

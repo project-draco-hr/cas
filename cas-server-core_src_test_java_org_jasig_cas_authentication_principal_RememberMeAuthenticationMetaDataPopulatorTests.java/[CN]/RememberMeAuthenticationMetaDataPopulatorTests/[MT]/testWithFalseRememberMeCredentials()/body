@@ -1,5 +1,5 @@
 {
-  final RememberMePasswordCredential c=new RememberMePasswordCredential();
+  final RememberMeUsernamePasswordCredential c=new RememberMeUsernamePasswordCredential();
   c.setRememberMe(false);
   final AuthenticationBuilder builder=newBuilder(c);
   final Authentication auth=builder.build();

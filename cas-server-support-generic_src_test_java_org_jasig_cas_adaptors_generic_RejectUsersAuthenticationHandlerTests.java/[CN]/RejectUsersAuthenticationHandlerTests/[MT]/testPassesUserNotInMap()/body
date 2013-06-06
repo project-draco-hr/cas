@@ -1,5 +1,5 @@
 {
-  final PasswordCredential c=new PasswordCredential();
+  final UsernamePasswordCredential c=new UsernamePasswordCredential();
   c.setUsername("fds");
   c.setPassword("rutgers");
   try {

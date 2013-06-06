@@ -1,5 +1,5 @@
 {
-  final PasswordCredential credentials=new PasswordCredential();
+  final UsernamePasswordCredential credentials=new UsernamePasswordCredential();
   credentials.setUsername(user);
   credentials.setPassword(pass);
   return credentials;
