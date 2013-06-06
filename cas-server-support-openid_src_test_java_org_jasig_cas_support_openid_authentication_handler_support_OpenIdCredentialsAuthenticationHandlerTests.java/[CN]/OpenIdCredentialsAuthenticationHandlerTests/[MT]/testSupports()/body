@@ -1,4 +1,4 @@
 {
-  assertTrue(this.openIdCredentialsAuthenticationHandler.supports(new OpenIdCredentials("test","test")));
-  assertFalse(this.openIdCredentialsAuthenticationHandler.supports(new UsernamePasswordCredentials()));
+  assertTrue(this.openIdCredentialsAuthenticationHandler.supports(new OpenIdCredential("test","test")));
+  assertFalse(this.openIdCredentialsAuthenticationHandler.supports(new PasswordCredential()));
 }

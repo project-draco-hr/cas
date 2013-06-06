@@ -1,6 +1,6 @@
 {
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.addParameter(RememberMeCredentials.REQUEST_PARAMETER_REMEMBER_ME,"true");
+  request.addParameter(RememberMeCredential.REQUEST_PARAMETER_REMEMBER_ME,"true");
   final MockHttpServletResponse response=new MockHttpServletResponse();
   this.g.addCookie(request,response,"test");
   final Cookie c=response.getCookie("test");

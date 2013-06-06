@@ -3,7 +3,7 @@
   final String remoteUser=request.getRemoteUser();
   if (StringUtils.hasText(remoteUser)) {
     log.debug("Remote  User [{}] found in HttpServletRequest",remoteUser);
-    return new PrincipalBearingCredentials(new SimplePrincipal(remoteUser));
+    return new PrincipalBearingCredential(new SimplePrincipal(remoteUser));
   }
   log.debug("Remote User not found in HttpServletRequest.");
   return null;

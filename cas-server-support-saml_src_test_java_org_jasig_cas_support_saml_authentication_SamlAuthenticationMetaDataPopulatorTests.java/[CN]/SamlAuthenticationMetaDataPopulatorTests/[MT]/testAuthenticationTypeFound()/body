@@ -1,5 +1,5 @@
 {
-  final UsernamePasswordCredentials credentials=new UsernamePasswordCredentials();
+  final PasswordCredential credentials=new PasswordCredential();
   final AuthenticationBuilder builder=newAuthenticationBuilder(TestUtils.getPrincipal());
   this.populator.populateAttributes(builder,credentials);
   final Authentication auth=builder.build();

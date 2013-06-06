@@ -1,3 +1,0 @@
-{
-  return credentials != null && HttpBasedServiceCredentials.class.isAssignableFrom(credentials.getClass());
-}

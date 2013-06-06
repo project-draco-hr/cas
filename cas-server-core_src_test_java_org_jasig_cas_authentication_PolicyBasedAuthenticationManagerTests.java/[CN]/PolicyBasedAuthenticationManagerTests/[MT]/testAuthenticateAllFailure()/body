@@ -1,6 +1,6 @@
 {
   final PolicyBasedAuthenticationManager manager=new PolicyBasedAuthenticationManager(newMockHandler(false),newMockHandler(false));
   manager.setAuthenticationPolicy(new AllAuthenticationPolicy());
-  manager.authenticate(mock(Credentials.class),mock(Credentials.class));
+  manager.authenticate(mock(Credential.class),mock(Credential.class));
   fail("Should have thrown AuthenticationException");
 }

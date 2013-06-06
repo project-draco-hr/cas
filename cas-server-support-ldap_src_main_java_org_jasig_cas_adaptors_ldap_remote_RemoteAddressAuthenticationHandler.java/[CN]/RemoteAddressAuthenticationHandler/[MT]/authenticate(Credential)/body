@@ -1,0 +1,10 @@
+{
+  final RemoteAddressCredential c=(RemoteAddressCredential)credential;
+  try {
+    final InetAddress inetAddress=InetAddress.getByName(c.getRemoteAddress().trim());
+    return containsAddress(this.inetNetwork,this.inetNetmask,inetAddress);
+  }
+ catch (  final UnknownHostException e) {
+    return false;
+  }
+}

@@ -1,5 +1,5 @@
 {
-  final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  final PasswordCredential c=new PasswordCredential();
   c.setUsername(this.fastBindTestConfig.getNotExistsCredential());
   c.setPassword("");
   assertFalse(this.fastBindAuthHandler.authenticate(c));

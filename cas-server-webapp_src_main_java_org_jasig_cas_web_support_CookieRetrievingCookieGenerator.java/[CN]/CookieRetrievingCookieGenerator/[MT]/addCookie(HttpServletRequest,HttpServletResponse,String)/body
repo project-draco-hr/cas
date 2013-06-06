@@ -1,5 +1,5 @@
 {
-  if (!StringUtils.hasText(request.getParameter(RememberMeCredentials.REQUEST_PARAMETER_REMEMBER_ME))) {
+  if (!StringUtils.hasText(request.getParameter(RememberMeCredential.REQUEST_PARAMETER_REMEMBER_ME))) {
     super.addCookie(response,cookieValue);
   }
  else {

@@ -3,7 +3,7 @@
   final AnyAuthenticationPolicy any=new AnyAuthenticationPolicy();
   any.setTryAll(true);
   manager.setAuthenticationPolicy(any);
-  final Authentication auth=manager.authenticate(mock(Credentials.class),mock(Credentials.class));
+  final Authentication auth=manager.authenticate(mock(Credential.class),mock(Credential.class));
   assertEquals(1,auth.getSuccesses().size());
   assertEquals(1,auth.getFailures().size());
   assertEquals(2,auth.getCredentials().size());

@@ -1,3 +1,0 @@
-{
-  return credentials != null && credentials.getClass().equals(PrincipalBearingCredentials.class);
-}

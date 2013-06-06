@@ -1,0 +1,4 @@
+{
+  this.id=credential.getId();
+  this.credentialClass=credential.getClass();
+}

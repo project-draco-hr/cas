@@ -1,4 +1,4 @@
 {
-  final SpnegoCredentials credentials=new SpnegoCredentials(new byte[]{});
+  final SpnegoCredential credentials=new SpnegoCredential(new byte[]{});
   assertTrue(credentials.toString().contains("unknown"));
 }

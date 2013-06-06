@@ -1,7 +1,0 @@
-{
-  final CredentialMetaData meta=new BasicCredentialMetaData(new UsernamePasswordCredentials());
-  final AuthenticationHandler handler=new SimpleTestUsernamePasswordAuthenticationHandler();
-  final AuthenticationBuilder builder=new AuthenticationBuilder(TestUtils.getPrincipal()).addCredential(meta).addSuccess("test",new HandlerResult(handler,meta));
-  this.p.populateAttributes(builder,credentials);
-  return builder;
-}

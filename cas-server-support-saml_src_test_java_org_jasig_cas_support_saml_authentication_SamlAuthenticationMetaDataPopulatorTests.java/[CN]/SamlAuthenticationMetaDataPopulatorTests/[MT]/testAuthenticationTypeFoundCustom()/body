@@ -1,7 +1,7 @@
 {
-  final CustomCredentials credentials=new CustomCredentials();
+  final CustomCredential credentials=new CustomCredential();
   final Map<String,String> added=new HashMap<String,String>();
-  added.put(CustomCredentials.class.getName(),"FF");
+  added.put(CustomCredential.class.getName(),"FF");
   this.populator.setUserDefinedMappings(added);
   final AuthenticationBuilder builder=newAuthenticationBuilder(TestUtils.getPrincipal());
   this.populator.populateAttributes(builder,credentials);

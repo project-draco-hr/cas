@@ -1,5 +1,5 @@
 {
-  final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  final PasswordCredential c=new PasswordCredential();
   final WebRequestDataBinder binder=new WebRequestDataBinder(c);
   final RestletWebRequest webRequest=new RestletWebRequest(getRequest());
   logFormRequest(new Form(getRequest().getEntity()));

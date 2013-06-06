@@ -1,0 +1,18 @@
+{
+  final AuthenticationResponse response;
+  final PasswordCredential upc=(PasswordCredential)credential;
+  try {
+    log.debug("Attempting LDAP authentication for {}",credential);
+    final AuthenticationRequest request=new AuthenticationRequest(upc.getUsername(),new org.ldaptive.Credential(upc.getPassword()),this.authenticatedEntryAttributes);
+    response=this.authenticator.authenticate(request);
+  }
+ catch (  final LdapException e) {
+    throw new PreventedException("Unexpected LDAP error",e);
+  }
+  log.debug("LDAP response: {}",response);
+  examineAccountState(response);
+  if (response.getResult()) {
+    doPostAuthentication(response);
+  }
+  throw new FailedLoginException("LDAP authentication failed.");
+}

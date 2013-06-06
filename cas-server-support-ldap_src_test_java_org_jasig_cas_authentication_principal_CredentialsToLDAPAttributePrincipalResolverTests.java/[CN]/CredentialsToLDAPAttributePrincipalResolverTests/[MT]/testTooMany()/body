@@ -1,5 +1,5 @@
 {
-  final UsernamePasswordCredentials credentials=new UsernamePasswordCredentials();
+  final PasswordCredential credentials=new PasswordCredential();
   credentials.setUsername(this.resolverTestConfig.getTooManyCredential());
   final Principal p=this.ldapResolver.resolvePrincipal(credentials);
   assertNull(p);

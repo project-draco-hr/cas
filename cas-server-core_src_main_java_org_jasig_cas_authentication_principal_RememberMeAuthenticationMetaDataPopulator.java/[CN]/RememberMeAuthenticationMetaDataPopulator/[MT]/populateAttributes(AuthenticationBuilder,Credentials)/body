@@ -1,8 +1,0 @@
-{
-  if (credentials instanceof RememberMeCredentials) {
-    final RememberMeCredentials r=(RememberMeCredentials)credentials;
-    if (r.isRememberMe()) {
-      builder.addAttribute(RememberMeCredentials.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME,true);
-    }
-  }
-}

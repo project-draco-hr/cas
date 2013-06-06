@@ -1,0 +1,9 @@
+{
+  final HttpBasedServiceCredential serviceCredentials=(HttpBasedServiceCredential)credential;
+  if (this.requireSecure && !serviceCredentials.getCallbackUrl().getProtocol().equals(PROTOCOL_HTTPS)) {
+    log.debug("Authentication failed because url was not secure.");
+    return false;
+  }
+  log.debug("Attempting to resolve credential for " + serviceCredentials);
+  return this.httpClient.isValidEndPoint(serviceCredentials.getCallbackUrl());
+}
