@@ -1,0 +1,11 @@
+{
+  final LdapAttribute attr=ctx.getAttribute(attribute);
+  if (attr == null) {
+    return nullValue;
+  }
+  final String v=attr.getStringValue();
+  if (v != null) {
+    return v;
+  }
+  return nullValue;
+}

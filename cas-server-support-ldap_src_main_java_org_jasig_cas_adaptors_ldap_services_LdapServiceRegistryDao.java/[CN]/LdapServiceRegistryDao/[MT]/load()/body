@@ -1,9 +1,23 @@
 {
+  Connection connection=null;
+  final List<RegisteredService> list=new LinkedList<RegisteredService>();
   try {
-    return this.ldapTemplate.search(this.serviceBaseDn,this.ldapServiceMapper.getLoadFilter().encode(),this.cachedSearchControls,this.ldapServiceMapper);
+    connection=this.connectionFactory.getConnection();
+    final Response<SearchResult> result=executeSearchOperation(connection);
+    if (result.getResult() != null) {
+      for (      final LdapEntry entry : result.getResult().getEntries()) {
+        final RegisteredService svc=this.ldapServiceMapper.mapToRegisteredService(entry);
+        list.add(svc);
+      }
+    }
   }
- catch (  final Exception e) {
-    log.error("Exception while loading Registered Services from LDAP Directory...",e);
-    return new ArrayList<RegisteredService>();
+ catch (  final LdapException e) {
+    log.error(e.getMessage(),e);
   }
+ finally {
+    if (connection != null) {
+      connection.close();
+    }
+  }
+  return list;
 }

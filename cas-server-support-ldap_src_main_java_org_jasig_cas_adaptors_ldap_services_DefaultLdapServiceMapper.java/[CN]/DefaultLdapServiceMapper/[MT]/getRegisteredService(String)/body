@@ -1,0 +1,6 @@
+{
+  if (isValidRegexPattern(id)) {
+    return new RegexRegisteredService();
+  }
+  return new RegisteredServiceImpl();
+}

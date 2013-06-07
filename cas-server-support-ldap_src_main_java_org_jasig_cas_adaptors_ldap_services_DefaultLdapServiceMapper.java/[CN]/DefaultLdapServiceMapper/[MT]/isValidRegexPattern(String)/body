@@ -1,0 +1,10 @@
+{
+  try {
+    Pattern.compile(pattern);
+  }
+ catch (  final PatternSyntaxException e) {
+    LOGGER.debug("Failed to identify [{}] as a regular expression. Falling back to ant patterns",pattern);
+    return new AntPathMatcher().isPattern(pattern);
+  }
+  return true;
+}

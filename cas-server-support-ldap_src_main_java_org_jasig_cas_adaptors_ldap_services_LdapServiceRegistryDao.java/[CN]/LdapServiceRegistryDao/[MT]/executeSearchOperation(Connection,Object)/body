@@ -1,0 +1,18 @@
+{
+  final SearchOperation searchOperation=new SearchOperation(connection,this.cacheStrategy);
+  final SearchFilter filter=new SearchFilter(this.searchFilter);
+  for (int i=0; i < params.length; i++) {
+    filter.setParameter(i,params[i]);
+  }
+  final SearchRequest searchRequest=new SearchRequest(this.baseDn,this.searchFilter,this.attributesToReturn);
+  searchRequest.setReturnAttributes(this.attributesToReturn);
+  searchRequest.setSearchEntryHandlers(this.searchEntryHandlers);
+  searchRequest.setDerefAliases(this.derefAliases);
+  searchRequest.setFollowReferrals(this.followReferrals);
+  searchRequest.setSearchScope(this.searchScope);
+  searchRequest.setSizeLimit(this.sizeLimit);
+  searchRequest.setSortBehavior(this.sortBehavior);
+  searchRequest.setTypesOnly(this.typesOnly);
+  searchRequest.setTimeLimit(this.timeLimit);
+  return searchOperation.execute(searchRequest);
+}

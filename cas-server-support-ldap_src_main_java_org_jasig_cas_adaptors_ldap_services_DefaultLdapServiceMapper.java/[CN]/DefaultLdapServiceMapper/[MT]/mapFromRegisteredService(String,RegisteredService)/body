@@ -1,0 +1,16 @@
+{
+  final Collection<LdapAttribute> attrs=new LinkedList<LdapAttribute>();
+  attrs.add(new LdapAttribute(this.idAttribute,String.valueOf(svc.getId())));
+  attrs.add(new LdapAttribute(this.evaluationOrderAttribute,String.valueOf(svc.getEvaluationOrder())));
+  attrs.add(new LdapAttribute(this.serviceEnabledAttribute,Boolean.toString(svc.isEnabled())));
+  attrs.add(new LdapAttribute(this.serviceAllowedToProxyAttribute,Boolean.toString(svc.isAllowedToProxy())));
+  attrs.add(new LdapAttribute(this.serviceAnonymousAccessAttribute,Boolean.toString(svc.isAnonymousAccess())));
+  attrs.add(new LdapAttribute(this.serviceSsoEnabledAttribute,Boolean.toString(svc.isSsoEnabled())));
+  attrs.add(new LdapAttribute(this.serviceIdAttribute,svc.getServiceId()));
+  attrs.add(new LdapAttribute(this.serviceThemeAttribute,svc.getTheme()));
+  attrs.add(new LdapAttribute(this.serviceDescriptionAttribute,svc.getDescription()));
+  attrs.add(new LdapAttribute(this.usernameAttribute,svc.getUsernameAttribute()));
+  attrs.add(new LdapAttribute(this.serviceAllowedAttributesAttribute,svc.getAllowedAttributes().toArray(new String[]{})));
+  attrs.add(new LdapAttribute(LdapUtils.OBJECTCLASS_ATTRIBUTE,this.objectclass));
+  return new LdapEntry(dn,attrs);
+}

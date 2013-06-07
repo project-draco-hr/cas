@@ -1,3 +1,0 @@
-{
-  return new AndFilter().and(getLoadFilter()).and(new EqualsFilter(this.idAttribute,String.valueOf(id)));
-}

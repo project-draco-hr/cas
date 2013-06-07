@@ -1,3 +1,19 @@
 {
-  return (RegisteredService)this.ldapTemplate.lookup(findDn(this.ldapServiceMapper.getSearchFilter(id).encode()),this.ldapServiceMapper);
+  Connection connection=null;
+  try {
+    connection=this.connectionFactory.getConnection();
+    final Response<SearchResult> result=executeSearchOperation(connection,id);
+    if (result.getResult() != null) {
+      return this.ldapServiceMapper.mapToRegisteredService(result.getResult().getEntry());
+    }
+  }
+ catch (  final LdapException e) {
+    log.error(e.getMessage(),e);
+  }
+ finally {
+    if (connection != null) {
+      connection.close();
+    }
+  }
+  return null;
 }
