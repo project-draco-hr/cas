@@ -1,6 +1,0 @@
-{
-  final UsernamePasswordCredential c=new UsernamePasswordCredential();
-  c.setUsername(this.fastBindTestConfig.getExistsCredential());
-  c.setPassword(this.fastBindTestConfig.getExistsSuccessPassword());
-  assertTrue(this.fastBindAuthHandler.authenticate(c));
-}

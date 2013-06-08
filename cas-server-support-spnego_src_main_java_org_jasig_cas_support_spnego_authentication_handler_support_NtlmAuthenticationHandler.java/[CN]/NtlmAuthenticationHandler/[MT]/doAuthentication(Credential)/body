@@ -1,7 +1,8 @@
 {
-  final SpnegoCredential ntlmCredentials=(SpnegoCredential)credential;
-  final byte[] src=ntlmCredentials.getInitToken();
+  final SpnegoCredential ntlmCredential=(SpnegoCredential)credential;
+  final byte[] src=ntlmCredential.getInitToken();
   UniAddress dc=null;
+  boolean success=false;
   try {
     if (this.loadBalance) {
       if (this.includePattern != null) {
@@ -27,8 +28,7 @@ case 1:
     final Type1Message type1=new Type1Message(src);
   final Type2Message type2=new Type2Message(type1,challenge,null);
 log.debug("Type 2 returned. Setting next token.");
-ntlmCredentials.setNextToken(type2.toByteArray());
-return false;
+ntlmCredential.setNextToken(type2.toByteArray());
 case 3:
 log.debug("Type 3 received");
 final Type3Message type3=new Type3Message(src);
@@ -38,18 +38,19 @@ final NtlmPasswordAuthentication ntlm=new NtlmPasswordAuthentication(type3.getDo
 log.debug("Trying to authenticate {} with domain controller",type3.getUser());
 try {
 SmbSession.logon(dc,ntlm);
-ntlmCredentials.setPrincipal(new SimplePrincipal(type3.getUser()));
-return true;
+ntlmCredential.setPrincipal(new SimplePrincipal(type3.getUser()));
+success=true;
 }
  catch (final SmbAuthException sae) {
-log.debug("Authentication failed",sae);
-return false;
+throw new FailedLoginException(sae.getMessage());
 }
 }
 }
  catch (final Exception e) {
-log.error(e.getMessage(),e);
-throw new BadCredentialsAuthenticationException(e);
+throw new FailedLoginException(e.getMessage());
 }
-return false;
+if (!success) {
+throw new FailedLoginException();
+}
+return new HandlerResult(this,new BasicCredentialMetaData(ntlmCredential),ntlmCredential.getPrincipal());
 }

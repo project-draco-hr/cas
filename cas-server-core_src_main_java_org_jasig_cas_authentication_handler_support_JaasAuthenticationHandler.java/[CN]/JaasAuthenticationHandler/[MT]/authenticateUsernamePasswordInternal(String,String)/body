@@ -1,0 +1,15 @@
+{
+  final LoginContext lc=new LoginContext(this.realm,new UsernamePasswordCallbackHandler(username,password));
+  try {
+    log.debug("Attempting authentication for: {}",username);
+    lc.login();
+  }
+  finally {
+    lc.logout();
+  }
+  Principal principal=null;
+  if (lc.getSubject().getPrincipals() != null && lc.getSubject().getPrincipals().size() > 0) {
+    principal=new SimplePrincipal(lc.getSubject().getPrincipals().iterator().next().getName());
+  }
+  return principal;
+}

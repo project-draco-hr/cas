@@ -1,0 +1,7 @@
+{
+  if (!legacy.supports(new UsernamePasswordCredentials())) {
+    throw new IllegalArgumentException("Cannot infer credential conversion strategy - specify CredentialsAdapter explicitly.");
+  }
+  this.legacyHandler=legacy;
+  this.credentialsAdapter=new UsernamePasswordCredentialsAdapter();
+}

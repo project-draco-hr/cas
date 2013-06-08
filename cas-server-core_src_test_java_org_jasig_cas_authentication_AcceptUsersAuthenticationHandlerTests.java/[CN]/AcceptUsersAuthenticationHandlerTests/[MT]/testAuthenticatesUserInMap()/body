@@ -3,9 +3,9 @@
   c.setUsername("scott");
   c.setPassword("rutgers");
   try {
-    assertTrue(this.authenticationHandler.authenticate(c));
+    assertEquals("scott",this.authenticationHandler.authenticate(c).getPrincipal().getId());
   }
- catch (  AuthenticationException e) {
+ catch (  GeneralSecurityException e) {
     fail("AuthenticationException caught but it should not have been thrown.");
   }
 }

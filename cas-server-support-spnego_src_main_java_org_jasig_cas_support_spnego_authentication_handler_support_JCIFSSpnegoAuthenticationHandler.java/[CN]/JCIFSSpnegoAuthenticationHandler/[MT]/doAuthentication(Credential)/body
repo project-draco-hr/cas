@@ -1,35 +1,38 @@
 {
-  final SpnegoCredential spnegoCredentials=(SpnegoCredential)credential;
+  final SpnegoCredential spnegoCredential=(SpnegoCredential)credential;
   Principal principal;
   byte[] nextToken;
   try {
 synchronized (this) {
       this.authentication.reset();
-      this.authentication.process(spnegoCredentials.getInitToken());
+      this.authentication.process(spnegoCredential.getInitToken());
       principal=this.authentication.getPrincipal();
       nextToken=this.authentication.getNextToken();
     }
   }
  catch (  jcifs.spnego.AuthenticationException e) {
-    throw new BadCredentialsAuthenticationException(e);
+    throw new FailedLoginException(e.getMessage());
   }
   if (nextToken != null) {
     log.debug("Setting nextToken in credential");
-    spnegoCredentials.setNextToken(nextToken);
+    spnegoCredential.setNextToken(nextToken);
   }
  else {
     log.debug("nextToken is null");
   }
+  boolean success=false;
   if (principal != null) {
-    if (spnegoCredentials.isNtlm()) {
+    if (spnegoCredential.isNtlm()) {
       log.debug("NTLM Credential is valid for user [{}]",principal.getName());
-      spnegoCredentials.setPrincipal(getSimplePrincipal(principal.getName(),true));
-      return this.isNTLMallowed;
+      spnegoCredential.setPrincipal(getSimplePrincipal(principal.getName(),true));
+      success=this.isNTLMallowed;
     }
     log.debug("Kerberos Credential is valid for user [{}]",principal.getName());
-    spnegoCredentials.setPrincipal(getSimplePrincipal(principal.getName(),false));
-    return true;
+    spnegoCredential.setPrincipal(getSimplePrincipal(principal.getName(),false));
+    success=true;
   }
-  log.debug("Principal is null, the processing of the SPNEGO Token failed");
-  return false;
+  if (!success) {
+    throw new FailedLoginException("Principal is null, the processing of the SPNEGO Token failed");
+  }
+  return new HandlerResult(this,new BasicCredentialMetaData(credential),spnegoCredential.getPrincipal());
 }

@@ -1,0 +1,6 @@
+{
+  if (this.users.contains(username)) {
+    throw new FailedLoginException();
+  }
+  return new SimplePrincipal(username);
+}

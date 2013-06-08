@@ -1,9 +1,12 @@
 {
-  final HttpBasedServiceCredential serviceCredentials=(HttpBasedServiceCredential)credential;
-  if (this.requireSecure && !serviceCredentials.getCallbackUrl().getProtocol().equals(PROTOCOL_HTTPS)) {
+  final HttpBasedServiceCredential httpCredential=(HttpBasedServiceCredential)credential;
+  if (this.requireSecure && !httpCredential.getCallbackUrl().getProtocol().equals(PROTOCOL_HTTPS)) {
     log.debug("Authentication failed because url was not secure.");
-    return false;
+    throw new FailedLoginException();
   }
-  log.debug("Attempting to resolve credential for " + serviceCredentials);
-  return this.httpClient.isValidEndPoint(serviceCredentials.getCallbackUrl());
+  log.debug("Attempting to resolve credential for {}",httpCredential);
+  if (!this.httpClient.isValidEndPoint(httpCredential.getCallbackUrl())) {
+    throw new FailedLoginException();
+  }
+  return new HandlerResult(this,httpCredential,new SimplePrincipal(httpCredential.getId()));
 }

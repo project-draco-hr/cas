@@ -1,0 +1,16 @@
+{
+  final String encryptedPassword=this.getPasswordEncoder().encode(password);
+  try {
+    final String dbPassword=getJdbcTemplate().queryForObject(this.sql,String.class,username);
+    if (!dbPassword.equals(encryptedPassword)) {
+      throw new FailedLoginException();
+    }
+  }
+ catch (  final IncorrectResultSizeDataAccessException e) {
+    throw new AccountNotFoundException();
+  }
+catch (  final DataAccessException e) {
+    throw new PreventedException(e);
+  }
+  return new SimplePrincipal(username);
+}

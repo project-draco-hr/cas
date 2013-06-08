@@ -1,7 +1,0 @@
-{
-  final String transformedUsername=getPrincipalNameTransformer().transform(credentials.getUsername());
-  if (this.users.contains(transformedUsername)) {
-    throw new BlockedCredentialsAuthenticationException();
-  }
-  return true;
-}

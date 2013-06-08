@@ -1,6 +1,0 @@
-{
-  final UsernamePasswordCredential c=new UsernamePasswordCredential();
-  c.setUsername(this.bindTestConfig.getExistsCredential());
-  c.setPassword(this.bindTestConfig.getExistsFailurePassword());
-  assertFalse(this.bindAuthHandler.authenticate(c));
-}

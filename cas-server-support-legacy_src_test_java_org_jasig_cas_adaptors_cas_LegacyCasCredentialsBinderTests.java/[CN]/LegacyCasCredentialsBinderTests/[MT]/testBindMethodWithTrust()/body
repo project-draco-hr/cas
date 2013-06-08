@@ -1,6 +1,0 @@
-{
-  HttpServletRequest request=new MockHttpServletRequest();
-  LegacyCasTrustedCredential credentials=new LegacyCasTrustedCredential();
-  this.credentialsBinder.bind(request,credentials);
-  assertEquals(request,credentials.getServletRequest());
-}

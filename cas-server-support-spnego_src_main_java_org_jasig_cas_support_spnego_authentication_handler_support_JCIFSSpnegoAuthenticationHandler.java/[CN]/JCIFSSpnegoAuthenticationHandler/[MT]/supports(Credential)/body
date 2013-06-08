@@ -1,3 +1,3 @@
 {
-  return credential != null && SpnegoCredential.class.equals(credential.getClass());
+  return credential instanceof SpnegoCredential;
 }

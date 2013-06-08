@@ -1,0 +1,6 @@
+{
+  if (other instanceof Credential && getClass().equals(other.getClass())) {
+    return getId().equals(((Credential)other).getId());
+  }
+  return false;
+}

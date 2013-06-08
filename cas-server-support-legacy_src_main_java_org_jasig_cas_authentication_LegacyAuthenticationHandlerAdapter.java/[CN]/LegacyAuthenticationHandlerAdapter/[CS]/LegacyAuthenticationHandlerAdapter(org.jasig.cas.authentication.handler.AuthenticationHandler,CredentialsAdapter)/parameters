@@ -1,0 +1,2 @@
+org.jasig.cas.authentication.handler.AuthenticationHandler legacy
+CredentialsAdapter adapter

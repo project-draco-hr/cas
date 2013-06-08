@@ -1,0 +1,20 @@
+{
+  try {
+    if (this.legacyHandler.authenticate(credentialsAdapter.convert(credential))) {
+      final CredentialMetaData md;
+      if (credential instanceof CredentialMetaData) {
+        md=(CredentialMetaData)credential;
+      }
+ else {
+        md=new BasicCredentialMetaData(credential);
+      }
+      return new HandlerResult(this,md);
+    }
+ else {
+      throw new GeneralSecurityException(String.format("%s failed to authenticate %s",this.getName(),credential));
+    }
+  }
+ catch (  AuthenticationException e) {
+    throw new GeneralSecurityException(String.format("%s failed to authenticate %s",this.getName(),credential),e);
+  }
+}

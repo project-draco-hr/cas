@@ -1,0 +1,3 @@
+{
+  return this.legacyHandler.supports(credentialsAdapter.convert(credential));
+}

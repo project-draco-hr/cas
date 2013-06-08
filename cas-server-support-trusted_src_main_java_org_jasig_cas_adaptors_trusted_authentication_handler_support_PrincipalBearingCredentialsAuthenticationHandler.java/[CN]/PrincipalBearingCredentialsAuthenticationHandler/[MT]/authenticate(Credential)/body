@@ -1,4 +1,4 @@
 {
   log.debug("Trusting credential for: {}",credential);
-  return true;
+  return new HandlerResult(this,(PrincipalBearingCredential)credential,new SimplePrincipal(credential.getId()));
 }

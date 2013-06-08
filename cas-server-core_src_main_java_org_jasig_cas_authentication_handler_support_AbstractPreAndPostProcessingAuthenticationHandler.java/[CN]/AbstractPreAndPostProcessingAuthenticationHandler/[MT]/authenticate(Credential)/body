@@ -1,7 +1,6 @@
 {
   if (!preAuthenticate(credential)) {
-    return false;
+    throw new FailedLoginException();
   }
-  final boolean authenticated=doAuthentication(credential);
-  return postAuthenticate(credential,authenticated);
+  return postAuthenticate(credential,doAuthentication(credential));
 }

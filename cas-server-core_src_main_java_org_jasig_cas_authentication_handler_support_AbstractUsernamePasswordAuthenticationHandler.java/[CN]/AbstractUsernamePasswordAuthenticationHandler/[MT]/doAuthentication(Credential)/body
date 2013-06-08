@@ -1,3 +1,12 @@
 {
-  return authenticateUsernamePasswordInternal((UsernamePasswordCredential)credential);
+  final UsernamePasswordCredential userPass=(UsernamePasswordCredential)credential;
+  if (userPass.getUsername() == null) {
+    throw new AccountNotFoundException();
+  }
+  final String transformedUsename=this.principalNameTransformer.transform(userPass.getUsername());
+  if (transformedUsename == null) {
+    throw new AccountNotFoundException();
+  }
+  final Principal principal=authenticateUsernamePasswordInternal(transformedUsename,userPass.getPassword());
+  return new HandlerResult(this,new BasicCredentialMetaData(credential),principal);
 }

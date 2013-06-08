@@ -1,0 +1,14 @@
+{
+  final String encyptedPassword=getPasswordEncoder().encode(password);
+  final int count;
+  try {
+    count=getJdbcTemplate().queryForObject(this.sql,Integer.class,username,encyptedPassword);
+  }
+ catch (  final DataAccessException e) {
+    throw new PreventedException(e);
+  }
+  if (count == 0) {
+    throw new FailedLoginException();
+  }
+  return new SimplePrincipal(username);
+}

@@ -1,0 +1,15 @@
+{
+  try {
+    final String passwordOnRecord=getPasswordOnRecord(username);
+    if (passwordOnRecord == null) {
+      throw new AccountNotFoundException();
+    }
+    if (password != null && this.getPasswordEncoder().encode(password).equals(passwordOnRecord)) {
+      return new SimplePrincipal(username);
+    }
+  }
+ catch (  final IOException e) {
+    throw new PreventedException(e);
+  }
+  throw new FailedLoginException();
+}

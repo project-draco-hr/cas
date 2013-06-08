@@ -2,5 +2,5 @@
   final UsernamePasswordCredential c=new UsernamePasswordCredential();
   c.setUsername("scott");
   c.setPassword("rutgers");
-  this.authenticationHandler.authenticate(c);
+  assertTrue(this.authenticationHandler.supports(c));
 }

@@ -1,0 +1,6 @@
+{
+  final HashCodeBuilder builder=new HashCodeBuilder(11,41);
+  builder.append(getClass().getName());
+  builder.append(getId());
+  return builder.toHashCode();
+}
