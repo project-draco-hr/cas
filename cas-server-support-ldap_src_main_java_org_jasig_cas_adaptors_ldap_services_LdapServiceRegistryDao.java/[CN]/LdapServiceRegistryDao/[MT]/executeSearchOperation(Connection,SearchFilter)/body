@@ -1,10 +1,6 @@
 {
   final SearchOperation searchOperation=new SearchOperation(connection,this.cacheStrategy);
-  final SearchFilter filter=new SearchFilter(this.searchFilter);
-  for (int i=0; i < params.length; i++) {
-    filter.setParameter(i,params[i]);
-  }
-  final SearchRequest searchRequest=new SearchRequest(this.baseDn,this.searchFilter,this.attributesToReturn);
+  final SearchRequest searchRequest=new SearchRequest(this.baseDn,filter,this.attributesToReturn);
   searchRequest.setReturnAttributes(this.attributesToReturn);
   searchRequest.setSearchEntryHandlers(this.searchEntryHandlers);
   searchRequest.setDerefAliases(this.derefAliases);
@@ -14,5 +10,6 @@
   searchRequest.setSortBehavior(this.sortBehavior);
   searchRequest.setTypesOnly(this.typesOnly);
   searchRequest.setTimeLimit(this.timeLimit);
+  log.debug("Using search request [{}]",searchRequest.toString());
   return searchOperation.execute(searchRequest);
 }

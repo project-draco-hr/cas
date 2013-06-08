@@ -3,7 +3,8 @@
   final List<RegisteredService> list=new LinkedList<RegisteredService>();
   try {
     connection=this.connectionFactory.getConnection();
-    final Response<SearchResult> result=executeSearchOperation(connection);
+    final SearchFilter filter=new SearchFilter(this.loadFilter);
+    final Response<SearchResult> result=executeSearchOperation(connection,filter);
     if (result.getResult() != null) {
       for (      final LdapEntry entry : result.getResult().getEntries()) {
         final RegisteredService svc=this.ldapServiceMapper.mapToRegisteredService(entry);
@@ -15,9 +16,7 @@
     log.error(e.getMessage(),e);
   }
  finally {
-    if (connection != null) {
-      connection.close();
-    }
+    LdapUtils.closeConnection(connection);
   }
   return list;
 }

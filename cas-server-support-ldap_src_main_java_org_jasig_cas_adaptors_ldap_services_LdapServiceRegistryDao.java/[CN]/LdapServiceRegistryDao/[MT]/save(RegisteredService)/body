@@ -14,9 +14,7 @@
     log.error(e.getMessage(),e);
   }
  finally {
-    if (connection != null) {
-      connection.close();
-    }
+    LdapUtils.closeConnection(connection);
   }
   return null;
 }

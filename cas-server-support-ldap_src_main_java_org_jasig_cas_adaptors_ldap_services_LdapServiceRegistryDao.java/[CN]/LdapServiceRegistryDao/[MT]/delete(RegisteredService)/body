@@ -2,7 +2,7 @@
   Connection connection=null;
   try {
     connection=this.connectionFactory.getConnection();
-    final Response<SearchResult> result=executeSearchOperation(connection,registeredService.getId());
+    final Response<SearchResult> result=searchForServiceById(connection,registeredService.getId());
     if (result.getResult() != null) {
       final LdapEntry entry=result.getResult().getEntry();
       final DeleteOperation delete=new DeleteOperation(connection);
@@ -15,9 +15,7 @@
     log.error(e.getMessage(),e);
   }
  finally {
-    if (connection != null) {
-      connection.close();
-    }
+    LdapUtils.closeConnection(connection);
   }
   return false;
 }

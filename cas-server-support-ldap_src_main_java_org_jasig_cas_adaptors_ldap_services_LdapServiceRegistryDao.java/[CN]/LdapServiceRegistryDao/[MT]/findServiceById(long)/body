@@ -2,7 +2,7 @@
   Connection connection=null;
   try {
     connection=this.connectionFactory.getConnection();
-    final Response<SearchResult> result=executeSearchOperation(connection,id);
+    final Response<SearchResult> result=searchForServiceById(connection,id);
     if (result.getResult() != null) {
       return this.ldapServiceMapper.mapToRegisteredService(result.getResult().getEntry());
     }
@@ -11,9 +11,7 @@
     log.error(e.getMessage(),e);
   }
  finally {
-    if (connection != null) {
-      connection.close();
-    }
+    LdapUtils.closeConnection(connection);
   }
   return null;
 }
