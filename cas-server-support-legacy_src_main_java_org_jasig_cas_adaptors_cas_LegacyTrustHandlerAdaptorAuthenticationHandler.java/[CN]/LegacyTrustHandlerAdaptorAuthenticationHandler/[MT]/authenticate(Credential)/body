@@ -1,0 +1,4 @@
+{
+  final LegacyCasTrustedCredential casCredentials=(LegacyCasTrustedCredential)credential;
+  return StringUtils.hasText(this.trustHandler.getUsername(casCredentials.getServletRequest()));
+}

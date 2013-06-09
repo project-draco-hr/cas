@@ -1,0 +1,13 @@
+{
+  X509Certificate cert=null;
+  if (getCertificate() != null) {
+    cert=getCertificate();
+  }
+ else   if (getCertificates() != null && getCertificates().length > 1) {
+    cert=getCertificates()[0];
+  }
+  if (cert != null) {
+    return CertUtils.toString(cert);
+  }
+  return UNKNOWN_ID;
+}

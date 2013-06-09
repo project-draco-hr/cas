@@ -1,0 +1,24 @@
+{
+  final AuthenticationBuilder builder=authenticateInternal(credentials);
+  final Authentication authentication=builder.build();
+  final Principal principal=authentication.getPrincipal();
+  if (principal instanceof NullPrincipal) {
+    throw new UnresolvedPrincipalException(authentication);
+  }
+  for (  final HandlerResult result : authentication.getSuccesses().values()) {
+    if (result.getPrincipal() != null && !result.getPrincipal().equals(principal)) {
+      throw new MixedPrincipalException(authentication,principal,result.getPrincipal());
+    }
+  }
+  for (  final HandlerResult result : authentication.getSuccesses().values()) {
+    builder.addAttribute(AUTHENTICATION_METHOD_ATTRIBUTE,result.getHandlerName());
+  }
+  log.info("Authenticated {} with credentials {}.",principal,Arrays.asList(credentials));
+  log.debug("Attribute map for {}: {}",principal.getId(),principal.getAttributes());
+  for (  final AuthenticationMetaDataPopulator populator : this.authenticationMetaDataPopulators) {
+    for (    final Credential credential : credentials) {
+      populator.populateAttributes(builder,credential);
+    }
+  }
+  return builder.build();
+}

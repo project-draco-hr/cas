@@ -1,5 +1,5 @@
 {
   assertFalse(this.resolver.supports(null));
   assertTrue(this.resolver.supports(this.spnegoCredentials));
-  assertFalse(this.resolver.supports(new UsernamePasswordCredentials()));
+  assertFalse(this.resolver.supports(new UsernamePasswordCredential()));
 }

@@ -1,5 +1,5 @@
 {
-  final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  final UsernamePasswordCredential c=new UsernamePasswordCredential();
   c.setUsername(this.bindTestConfig.getNotExistsCredential());
   c.setPassword("");
   assertFalse(this.bindAuthHandler.authenticate(c));

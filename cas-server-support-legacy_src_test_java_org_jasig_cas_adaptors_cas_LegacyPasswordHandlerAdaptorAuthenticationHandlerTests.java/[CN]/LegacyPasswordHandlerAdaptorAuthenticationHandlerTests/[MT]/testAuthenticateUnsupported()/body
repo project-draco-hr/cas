@@ -1,3 +1,3 @@
 {
-  this.lphaah.supports(new LegacyCasTrustedCredentials());
+  this.lphaah.supports(new LegacyCasTrustedCredential());
 }

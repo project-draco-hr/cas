@@ -1,5 +1,5 @@
 {
-  final X509CertificateCredentials c=new X509CertificateCredentials(new X509Certificate[]{VALID_CERTIFICATE});
+  final X509CertificateCredential c=new X509CertificateCredential(new X509Certificate[]{VALID_CERTIFICATE});
   c.setCertificate(VALID_CERTIFICATE);
   assertEquals(VALID_CERTIFICATE.getSubjectDN().getName(),this.resolver.resolvePrincipal(c).getId());
 }

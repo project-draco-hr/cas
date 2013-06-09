@@ -1,0 +1,7 @@
+{
+  if (credential instanceof UsernamePasswordCredential) {
+    final UsernamePasswordCredential c=(UsernamePasswordCredential)credential;
+    final Authentication authentication=builder.build();
+    this.credentialCache.put(authentication.getPrincipal().getId(),c.getPassword());
+  }
+}

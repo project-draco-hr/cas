@@ -1,5 +1,5 @@
 {
-  final UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  final UsernamePasswordCredential c=new UsernamePasswordCredential();
   c.setUsername(this.saslMd5FastBindTestConfig.getExistsCredential());
   c.setPassword(this.saslMd5FastBindTestConfig.getExistsSuccessPassword());
   assertTrue(this.saslMd5FastBindAuthHandler.authenticate(c));

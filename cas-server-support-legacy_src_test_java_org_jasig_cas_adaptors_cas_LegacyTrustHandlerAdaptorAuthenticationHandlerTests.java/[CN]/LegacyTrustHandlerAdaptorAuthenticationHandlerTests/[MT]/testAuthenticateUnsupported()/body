@@ -1,4 +1,4 @@
 {
-  LegacyCasCredentials badCredentials=new LegacyCasCredentials();
+  LegacyCasCredential badCredentials=new LegacyCasCredential();
   assertFalse(this.legacyTrustAdaptor.supports(badCredentials));
 }

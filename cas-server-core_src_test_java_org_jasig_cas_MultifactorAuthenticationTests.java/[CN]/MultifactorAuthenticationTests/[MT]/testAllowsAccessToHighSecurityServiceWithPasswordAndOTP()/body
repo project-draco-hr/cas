@@ -1,5 +1,5 @@
 {
-  final String tgt=cas.createTicketGrantingTicket(newUserPassCredentials("alice","alice"),new OneTimePasswordCredentials("alice","31415"));
+  final String tgt=cas.createTicketGrantingTicket(newUserPassCredentials("alice","alice"),new OneTimePasswordCredential("alice","31415"));
   assertNotNull(tgt);
   final String st=cas.grantServiceTicket(tgt,newService("https://example.com/high/"));
   assertNotNull(st);
