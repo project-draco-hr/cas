@@ -1,4 +1,0 @@
-{
-  assertEquals("Principals are not equal",TestUtils.getPrincipal(),this.authentication.getPrincipal());
-  assertEquals("Authentication Attributes not equal.",this.authentication.getAttributes(),this.attributes);
-}

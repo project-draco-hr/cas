@@ -1,3 +1,0 @@
-{
-  return 15 * this.service.hashCode() ^ this.principals.hashCode();
-}

@@ -1,0 +1,3 @@
+{
+  return credential != null && UsernamePasswordCredential.class.isAssignableFrom(credential.getClass());
+}

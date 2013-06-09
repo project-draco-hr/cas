@@ -1,3 +1,0 @@
-{
-  return "[remote IP Address: " + this.remoteAddress + "]";
-}

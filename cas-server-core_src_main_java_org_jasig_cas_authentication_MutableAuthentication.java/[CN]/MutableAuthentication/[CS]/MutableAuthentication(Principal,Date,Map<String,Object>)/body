@@ -1,4 +1,0 @@
-{
-  super(principal,authenticationAttributes);
-  this.authenticatedDate=date;
-}

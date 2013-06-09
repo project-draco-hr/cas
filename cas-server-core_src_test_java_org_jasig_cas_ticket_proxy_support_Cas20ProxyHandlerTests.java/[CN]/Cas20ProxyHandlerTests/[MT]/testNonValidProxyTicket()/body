@@ -2,5 +2,5 @@
   final HttpClient httpClient=new HttpClient();
   httpClient.setAcceptableCodes(new int[]{900});
   this.handler.setHttpClient(httpClient);
-  assertNull(this.handler.handle(new HttpBasedServiceCredentials(new URL("http://www.rutgers.edu")),"proxyGrantingTicketId"));
+  assertNull(this.handler.handle(new HttpBasedServiceCredential(new URL("http://www.rutgers.edu")),"proxyGrantingTicketId"));
 }

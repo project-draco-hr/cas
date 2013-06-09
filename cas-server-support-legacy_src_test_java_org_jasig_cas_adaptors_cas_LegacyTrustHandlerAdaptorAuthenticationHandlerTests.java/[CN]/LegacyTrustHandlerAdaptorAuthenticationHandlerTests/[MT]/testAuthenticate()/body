@@ -1,5 +1,5 @@
 {
-  LegacyCasTrustedCredentials trustedCredentials=new LegacyCasTrustedCredentials();
+  LegacyCasTrustedCredential trustedCredentials=new LegacyCasTrustedCredential();
   ServletRequest request=new MockHttpServletRequest();
   trustedCredentials.setServletRequest(request);
   MockTrustHandler mockTrustHandler=new MockTrustHandler();

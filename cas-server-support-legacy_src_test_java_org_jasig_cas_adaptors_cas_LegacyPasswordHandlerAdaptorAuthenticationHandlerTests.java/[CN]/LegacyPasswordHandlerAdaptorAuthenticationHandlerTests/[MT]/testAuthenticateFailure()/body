@@ -2,7 +2,7 @@
   MockPasswordHandler mockHandler=new MockPasswordHandler();
   mockHandler.setSucceed(false);
   this.lphaah.setPasswordHandler(mockHandler);
-  LegacyCasCredentials credentials=new LegacyCasCredentials();
+  LegacyCasCredential credentials=new LegacyCasCredential();
   credentials.setUsername("testUser");
   credentials.setPassword("testPassword");
   ServletRequest servletRequest=new MockHttpServletRequest();

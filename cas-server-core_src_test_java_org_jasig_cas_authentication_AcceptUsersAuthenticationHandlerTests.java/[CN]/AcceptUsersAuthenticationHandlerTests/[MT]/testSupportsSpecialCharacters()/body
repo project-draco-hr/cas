@@ -1,0 +1,6 @@
+{
+  final UsernamePasswordCredential c=new UsernamePasswordCredential();
+  c.setUsername("brian");
+  c.setPassword("t???st");
+  assertTrue(this.authenticationHandler.authenticate(c));
+}

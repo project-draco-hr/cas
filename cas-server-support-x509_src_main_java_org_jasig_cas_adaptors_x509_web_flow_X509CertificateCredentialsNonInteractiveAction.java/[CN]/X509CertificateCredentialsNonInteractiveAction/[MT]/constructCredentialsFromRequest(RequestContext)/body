@@ -9,5 +9,5 @@
   if (logger.isDebugEnabled()) {
     logger.debug("Certificate found in request.");
   }
-  return new X509CertificateCredentials(certificates);
+  return new X509CertificateCredential(certificates);
 }

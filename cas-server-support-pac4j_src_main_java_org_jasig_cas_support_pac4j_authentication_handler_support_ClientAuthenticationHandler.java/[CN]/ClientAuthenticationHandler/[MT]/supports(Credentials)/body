@@ -1,3 +1,0 @@
-{
-  return credentials != null && ClientCredentials.class.isAssignableFrom(credentials.getClass());
-}

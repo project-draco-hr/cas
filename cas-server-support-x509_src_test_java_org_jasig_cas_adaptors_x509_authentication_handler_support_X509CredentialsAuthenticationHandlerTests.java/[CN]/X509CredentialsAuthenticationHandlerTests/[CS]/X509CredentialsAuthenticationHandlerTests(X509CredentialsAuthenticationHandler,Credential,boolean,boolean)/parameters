@@ -1,0 +1,4 @@
+X509CredentialsAuthenticationHandler handler
+Credential credential
+boolean supports
+boolean authenticationSuccess

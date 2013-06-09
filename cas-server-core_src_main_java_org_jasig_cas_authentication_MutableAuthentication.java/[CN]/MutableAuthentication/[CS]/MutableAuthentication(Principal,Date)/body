@@ -1,3 +1,0 @@
-{
-  this(principal,date,new HashMap<String,Object>());
-}

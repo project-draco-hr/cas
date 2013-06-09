@@ -1,0 +1,7 @@
+{
+  if (!preAuthenticate(credential)) {
+    return false;
+  }
+  final boolean authenticated=doAuthentication(credential);
+  return postAuthenticate(credential,authenticated);
+}

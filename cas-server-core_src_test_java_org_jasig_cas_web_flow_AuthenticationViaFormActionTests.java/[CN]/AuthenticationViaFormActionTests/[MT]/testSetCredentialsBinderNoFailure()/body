@@ -1,6 +1,6 @@
 {
   final CredentialsBinder c=new CredentialsBinder(){
-    public void bind(    final HttpServletRequest request,    final Credentials credentials){
+    public void bind(    final HttpServletRequest request,    final Credential credentials){
     }
     public boolean supports(    final Class<?> clazz){
       return true;

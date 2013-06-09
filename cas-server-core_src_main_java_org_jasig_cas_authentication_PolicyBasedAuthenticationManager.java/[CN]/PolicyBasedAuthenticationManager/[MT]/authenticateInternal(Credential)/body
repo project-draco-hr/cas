@@ -1,0 +1,53 @@
+{
+  final AuthenticationBuilder builder=new AuthenticationBuilder(NULL_PRINCIPAL);
+  for (  final Credential c : credentials) {
+    builder.addCredential(new BasicCredentialMetaData(c));
+  }
+  boolean found;
+  Principal principal;
+  CredentialsToPrincipalResolver resolver;
+  for (  final Credential credential : credentials) {
+    found=false;
+    for (    final AuthenticationHandler handler : this.handlerResolverMap.keySet()) {
+      if (handler.supports(credential)) {
+        found=true;
+        try {
+          final HandlerResult result=handler.authenticate(credential);
+          builder.addSuccess(handler.getName(),result);
+          log.info("{} successfully authenticated {}",handler.getName(),credential);
+          resolver=this.handlerResolverMap.get(handler);
+          if (resolver == null) {
+            principal=result.getPrincipal();
+            log.debug("No resolver configured for {}. Falling back to handler principal {}",handler.getName(),principal);
+          }
+ else {
+            principal=resolvePrincipal(handler.getName(),resolver,credential);
+          }
+          if (principal != null) {
+            builder.setPrincipal(principal);
+          }
+          if (this.authenticationPolicy.isSatisfiedBy(builder.build())) {
+            return builder;
+          }
+        }
+ catch (        final GeneralSecurityException e) {
+          log.info("{} failed authenticating {}",handler.getName(),credential);
+          builder.addFailure(handler.getName(),e);
+        }
+catch (        final PreventedException e) {
+          builder.addFailure(handler.getName(),e);
+        }
+      }
+    }
+    if (!found) {
+      log.warn("Cannot find authentication handler that supports {}, which suggests a configuration problem.",credential);
+    }
+  }
+  if (builder.getSuccesses().isEmpty()) {
+    throw new AuthenticationException(builder.getFailures(),builder.getSuccesses());
+  }
+  if (!this.authenticationPolicy.isSatisfiedBy(builder.build())) {
+    throw new AuthenticationException(builder.getFailures(),builder.getSuccesses());
+  }
+  return builder;
+}

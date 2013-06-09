@@ -1,6 +1,6 @@
 {
   log.debug("Obtaining credentials...");
-  final Credentials c=obtainCredentials();
+  final Credential c=obtainCredentials();
   try {
     final String ticketGrantingTicketId=this.centralAuthenticationService.createTicketGrantingTicket(c);
     getResponse().setStatus(determineStatus());
