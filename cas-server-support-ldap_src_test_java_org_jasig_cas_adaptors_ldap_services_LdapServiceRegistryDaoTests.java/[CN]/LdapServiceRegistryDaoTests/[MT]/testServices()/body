@@ -26,6 +26,7 @@
   rs.setUsernameAttribute("uid");
   rs.setEvaluationOrder(123);
   rs.setAllowedAttributes(Arrays.asList("test1","test2"));
+  rs.setRequiredHandlers(new HashSet<String>(Arrays.asList("handler1","handler2")));
   this.dao.save(rs);
   list1=this.dao.load();
   assertEquals(2,list1.size());
