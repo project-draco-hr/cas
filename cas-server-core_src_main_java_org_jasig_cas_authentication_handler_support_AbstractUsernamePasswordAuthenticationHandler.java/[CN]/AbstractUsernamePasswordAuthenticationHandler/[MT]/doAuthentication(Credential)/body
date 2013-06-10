@@ -3,10 +3,10 @@
   if (userPass.getUsername() == null) {
     throw new AccountNotFoundException();
   }
-  final String transformedUsename=this.principalNameTransformer.transform(userPass.getUsername());
-  if (transformedUsename == null) {
+  final String transformedUsername=this.principalNameTransformer.transform(userPass.getUsername());
+  if (transformedUsername == null) {
     throw new AccountNotFoundException();
   }
-  final Principal principal=authenticateUsernamePasswordInternal(transformedUsename,userPass.getPassword());
+  final Principal principal=authenticateUsernamePasswordInternal(transformedUsername,userPass.getPassword());
   return new HandlerResult(this,new BasicCredentialMetaData(credential),principal);
 }
