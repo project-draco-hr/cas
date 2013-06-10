@@ -8,6 +8,6 @@
     throw new FailedLoginException(e.getMessage());
   }
 catch (  final Exception e) {
-    throw new PreventedException(e);
+    throw new PreventedException("Unexpected SQL connection error",e);
   }
 }

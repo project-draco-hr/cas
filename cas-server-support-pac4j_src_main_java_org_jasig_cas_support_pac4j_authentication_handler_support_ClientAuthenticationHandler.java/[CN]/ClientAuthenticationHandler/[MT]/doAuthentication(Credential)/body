@@ -11,5 +11,5 @@
     clientCredentials.setUserProfile(userProfile);
     return new HandlerResult(this,new BasicCredentialMetaData(credential),new SimplePrincipal(userProfile.getId(),userProfile.getAttributes()));
   }
-  throw new FailedLoginException();
+  throw new FailedLoginException("Provider did not produce profile for " + clientCredentials);
 }
