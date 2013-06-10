@@ -7,14 +7,13 @@
       final String currentDn=result.getResult().getEntry().getDn();
       connection=this.connectionFactory.getConnection();
       final ModifyOperation operation=new ModifyOperation(connection);
-      final List<AttributeModification> mods=new LinkedList<AttributeModification>();
-      final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.baseDn,rs);
+      final List<AttributeModification> mods=new ArrayList<AttributeModification>();
+      final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.searchRequest.getBaseDn(),rs);
       for (      final LdapAttribute attr : entry.getAttributes()) {
         mods.add(new AttributeModification(AttributeModificationType.REPLACE,attr));
       }
       final ModifyRequest request=new ModifyRequest(currentDn,mods.toArray(new AttributeModification[]{}));
       operation.execute(request);
-      return rs;
     }
   }
  catch (  final LdapException e) {
@@ -23,5 +22,5 @@
  finally {
     LdapUtils.closeConnection(connection);
   }
-  return null;
+  return rs;
 }

@@ -14,11 +14,8 @@
       s.setAllowedToProxy(LdapUtils.getBoolean(entry,this.serviceAllowedToProxyAttribute));
       s.setAnonymousAccess(LdapUtils.getBoolean(entry,this.serviceAnonymousAccessAttribute));
       s.setSsoEnabled(LdapUtils.getBoolean(entry,this.serviceSsoEnabledAttribute));
-      final LdapAttribute attrs=entry.getAttribute(this.serviceAllowedAttributesAttribute);
-      if (attrs != null) {
-        final Collection<String> attributes=attrs.getStringValues();
-        s.setAllowedAttributes(new LinkedList<String>(attributes));
-      }
+      s.setAllowedAttributes(new ArrayList<String>(getMultiValuedAttributeValues(entry,this.serviceAllowedAttributesAttribute)));
+      s.setRequiredHandlers(new HashSet<String>(getMultiValuedAttributeValues(entry,this.requiredHandlersAttribute)));
     }
     return s;
   }

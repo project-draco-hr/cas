@@ -1,14 +1,13 @@
 {
-  if (rs.getId() != -1) {
+  if (rs.getId() != RegisteredService.INITIAL_IDENTIFIER_VALUE) {
     return update(rs);
   }
   Connection connection=null;
   try {
     connection=this.connectionFactory.getConnection();
     final AddOperation operation=new AddOperation(connection);
-    final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.baseDn,rs);
+    final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.searchRequest.getBaseDn(),rs);
     operation.execute(new AddRequest(entry.getDn(),entry.getAttributes()));
-    return rs;
   }
  catch (  final LdapException e) {
     log.error(e.getMessage(),e);
@@ -16,5 +15,5 @@
  finally {
     LdapUtils.closeConnection(connection);
   }
-  return null;
+  return rs;
 }
