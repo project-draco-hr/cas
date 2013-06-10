@@ -8,8 +8,9 @@
     lc.logout();
   }
   Principal principal=null;
-  if (lc.getSubject().getPrincipals() != null && lc.getSubject().getPrincipals().size() > 0) {
-    principal=new SimplePrincipal(lc.getSubject().getPrincipals().iterator().next().getName());
+  final Set<java.security.Principal> principals=lc.getSubject().getPrincipals();
+  if (principals != null && principals.size() > 0) {
+    principal=new SimplePrincipal(principals.iterator().next().getName());
   }
   return principal;
 }
