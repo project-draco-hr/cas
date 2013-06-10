@@ -1,12 +1,19 @@
 {
-  final RegisteredServiceImpl registeredService=(RegisteredServiceImpl)rs;
-  if (registeredService.getId() != -1) {
-    return update(registeredService);
+  if (rs.getId() != RegisteredService.INITIAL_IDENTIFIER_VALUE) {
+    return update(rs);
   }
-  final DirContextAdapter ctx=this.ldapServiceMapper.createCtx(this.serviceBaseDn,registeredService);
-  final String dn=ctx.getNameInNamespace();
-  registeredService.setId(dn.hashCode());
-  this.ldapServiceMapper.doMapToContext(registeredService,ctx);
-  this.ldapTemplate.bind(ctx.getNameInNamespace(),ctx,null);
-  return registeredService;
+  Connection connection=null;
+  try {
+    connection=this.connectionFactory.getConnection();
+    final AddOperation operation=new AddOperation(connection);
+    final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.searchRequest.getBaseDn(),rs);
+    operation.execute(new AddRequest(entry.getDn(),entry.getAttributes()));
+  }
+ catch (  final LdapException e) {
+    log.error(e.getMessage(),e);
+  }
+ finally {
+    LdapUtils.closeConnection(connection);
+  }
+  return rs;
 }

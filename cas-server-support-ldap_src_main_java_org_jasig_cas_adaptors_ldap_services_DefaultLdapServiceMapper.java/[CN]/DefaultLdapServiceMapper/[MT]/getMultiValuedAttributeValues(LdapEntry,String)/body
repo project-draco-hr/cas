@@ -1,0 +1,7 @@
+{
+  final LdapAttribute attrs=entry.getAttribute(attrName);
+  if (attrs != null) {
+    return attrs.getStringValues();
+  }
+  return Collections.emptyList();
+}

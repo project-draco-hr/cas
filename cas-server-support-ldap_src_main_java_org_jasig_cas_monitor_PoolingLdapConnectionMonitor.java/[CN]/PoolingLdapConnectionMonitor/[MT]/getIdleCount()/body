@@ -1,0 +1,3 @@
+{
+  return connectionPool.availableCount() - this.getActiveCount();
+}

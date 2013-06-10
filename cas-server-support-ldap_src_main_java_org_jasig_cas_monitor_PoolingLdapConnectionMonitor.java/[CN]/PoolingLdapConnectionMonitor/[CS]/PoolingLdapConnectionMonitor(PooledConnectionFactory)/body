@@ -1,0 +1,4 @@
+{
+  this.poolingContextSource=pool;
+  this.connectionPool=pool.getConnectionPool();
+}

@@ -1,0 +1,3 @@
+{
+  return getLong(ctx,attribute,Long.MIN_VALUE);
+}

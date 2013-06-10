@@ -1,0 +1,7 @@
+{
+  final String v=getString(ctx,attribute,nullValue.toString());
+  if (v != null && NumberUtils.isNumber(v)) {
+    return Long.valueOf(v);
+  }
+  return nullValue;
+}

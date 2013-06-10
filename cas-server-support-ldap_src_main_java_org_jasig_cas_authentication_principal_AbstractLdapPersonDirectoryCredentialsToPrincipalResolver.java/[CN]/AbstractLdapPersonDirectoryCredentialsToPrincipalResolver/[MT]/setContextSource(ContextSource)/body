@@ -1,4 +1,0 @@
-{
-  this.ldapTemplate=new LdapTemplate(contextSource);
-  this.ldapTemplate.setIgnorePartialResultException(true);
-}
