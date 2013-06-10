@@ -1,3 +1,0 @@
-{
-  return new EqualsFilter(SpringLdapUtils.OBJECTCLASS_ATTRIBUTE,this.objectclass);
-}

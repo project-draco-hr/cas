@@ -1,3 +1,0 @@
-{
-  ctx.setAttributeValue(attribute,value ? LDAP_BOOLEAN_TRUE : LDAP_BOOLEAN_FALSE);
-}

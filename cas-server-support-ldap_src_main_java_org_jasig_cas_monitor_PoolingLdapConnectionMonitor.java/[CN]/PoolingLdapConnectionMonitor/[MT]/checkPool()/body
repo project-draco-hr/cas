@@ -1,0 +1,11 @@
+{
+  Connection c=null;
+  try {
+    final Validator<Connection> validator=this.connectionPool.getValidator();
+    final boolean success=validator.validate(this.poolingContextSource.getConnection());
+    return success ? StatusCode.OK : StatusCode.ERROR;
+  }
+  finally {
+    LdapUtils.closeConnection(c);
+  }
+}

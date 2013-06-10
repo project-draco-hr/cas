@@ -1,0 +1,26 @@
+{
+  Connection connection=null;
+  try {
+    connection=this.connectionFactory.getConnection();
+    final Response<SearchResult> result=searchForServiceById(connection,rs.getId());
+    if (result.getResult() != null) {
+      final String currentDn=result.getResult().getEntry().getDn();
+      connection=this.connectionFactory.getConnection();
+      final ModifyOperation operation=new ModifyOperation(connection);
+      final List<AttributeModification> mods=new ArrayList<AttributeModification>();
+      final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.searchRequest.getBaseDn(),rs);
+      for (      final LdapAttribute attr : entry.getAttributes()) {
+        mods.add(new AttributeModification(AttributeModificationType.REPLACE,attr));
+      }
+      final ModifyRequest request=new ModifyRequest(currentDn,mods.toArray(new AttributeModification[]{}));
+      operation.execute(request);
+    }
+  }
+ catch (  final LdapException e) {
+    log.error(e.getMessage(),e);
+  }
+ finally {
+    LdapUtils.closeConnection(connection);
+  }
+  return rs;
+}

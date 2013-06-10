@@ -1,0 +1,7 @@
+{
+  final String v=getString(ctx,attribute,nullValue.toString());
+  if (v != null) {
+    return v.equalsIgnoreCase(Boolean.TRUE.toString());
+  }
+  return nullValue;
+}

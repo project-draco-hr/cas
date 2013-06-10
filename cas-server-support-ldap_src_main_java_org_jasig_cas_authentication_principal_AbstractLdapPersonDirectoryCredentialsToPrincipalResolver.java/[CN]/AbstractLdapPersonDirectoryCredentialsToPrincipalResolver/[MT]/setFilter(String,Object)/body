@@ -1,0 +1,3 @@
+{
+  this.searchFilter=new SearchFilter(filter,parameters);
+}

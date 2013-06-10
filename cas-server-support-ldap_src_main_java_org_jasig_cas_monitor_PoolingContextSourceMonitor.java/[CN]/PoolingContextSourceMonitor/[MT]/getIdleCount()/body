@@ -1,3 +1,0 @@
-{
-  return poolingContextSource.getNumIdle();
-}
