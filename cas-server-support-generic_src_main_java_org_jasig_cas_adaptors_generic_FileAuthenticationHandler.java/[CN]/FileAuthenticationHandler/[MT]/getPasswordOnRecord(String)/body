@@ -14,14 +14,7 @@
     }
   }
   finally {
-    try {
-      if (bufferedReader != null) {
-        bufferedReader.close();
-      }
-    }
- catch (    final IOException e) {
-      log.error("Error closing credential file",e);
-    }
+    IOUtils.closeQuietly(bufferedReader);
   }
   return null;
 }
