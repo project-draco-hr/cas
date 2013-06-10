@@ -1,0 +1,4 @@
+{
+  final String localName=attributeMapping.get(ldapName);
+  return localName != null ? localName : ldapName;
+}

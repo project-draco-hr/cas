@@ -1,0 +1,15 @@
+{
+  final Principal principal=this.credentialsToPrincipalResolver.resolvePrincipal(credentials);
+  if (principal == null) {
+    log.warn("Initial principal could not be resolved from request via {}, returning null",this.credentialsToPrincipalResolver.getClass().getSimpleName());
+    return null;
+  }
+  log.debug("Resolved {}. Trying LDAP resolve now...",principal);
+  final Principal ldapPrincipal=resolveFromLDAP(principal);
+  if (ldapPrincipal == null) {
+    log.info("Initial principal {} was not found in LDAP, returning null",principal.getId());
+    return null;
+  }
+  log.debug("Resolved {} to {}",principal,ldapPrincipal);
+  return ldapPrincipal.getId();
+}

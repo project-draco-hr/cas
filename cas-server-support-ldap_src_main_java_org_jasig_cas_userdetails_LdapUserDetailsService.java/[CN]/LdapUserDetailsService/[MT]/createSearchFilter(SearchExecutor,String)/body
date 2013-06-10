@@ -1,0 +1,6 @@
+{
+  final SearchFilter filter=new SearchFilter();
+  filter.setFilter(executor.getSearchFilter().getFilter());
+  filter.setParameter(this.userAttributeName.getUsernameAttribute(),username);
+  return filter;
+}
