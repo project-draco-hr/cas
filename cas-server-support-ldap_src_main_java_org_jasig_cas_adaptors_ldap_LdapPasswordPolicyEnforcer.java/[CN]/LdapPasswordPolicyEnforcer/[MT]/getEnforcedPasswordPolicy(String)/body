@@ -1,11 +1,7 @@
 {
-  LdapPasswordPolicyResult ldapResult=null;
-  ldapResult=getResultsFromLdap(userId);
+  final LdapPasswordPolicyResult ldapResult=getResultsFromLdap(userId);
   if (ldapResult == null) {
-    String msgToLog="No entry was found for user " + userId + ". Verify your LPPE settings. ";
-    msgToLog+="If you are not using LPPE, set the 'enabled' property to false. ";
-    msgToLog+="Password policy enforcement is currently turned on but not configured.";
-    log.warn(msgToLog);
+    logger.warn("Ldap password policy could not be established for user {}.",userId);
   }
   return ldapResult;
 }

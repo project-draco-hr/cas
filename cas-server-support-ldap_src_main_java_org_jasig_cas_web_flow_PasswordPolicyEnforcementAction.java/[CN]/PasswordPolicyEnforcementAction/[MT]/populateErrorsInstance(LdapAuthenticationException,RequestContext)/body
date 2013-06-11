@@ -4,8 +4,6 @@
     reqCtx.getMessageContext().addMessage(new MessageBuilder().error().code(code).defaultText(code).build());
   }
  catch (  final Exception fe) {
-    if (this.logger.isErrorEnabled()) {
-      this.logger.error(fe.getMessage(),fe);
-    }
+    logger.error(fe.getMessage(),fe);
   }
 }

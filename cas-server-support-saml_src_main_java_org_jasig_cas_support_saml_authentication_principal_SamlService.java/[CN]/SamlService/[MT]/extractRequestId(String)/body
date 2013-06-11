@@ -8,7 +8,7 @@
     return requestBody.substring(position,nextPosition);
   }
  catch (  final Exception e) {
-    log.debug("Exception parsing RequestID from request.",e);
+    LOGGER.debug("Exception parsing RequestID from request.",e);
     return null;
   }
 }

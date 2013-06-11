@@ -1,17 +1,17 @@
 {
-  log.debug("Checking certificate keyUsage extension");
+  logger.debug("Checking certificate keyUsage extension");
   final boolean[] keyUsage=certificate.getKeyUsage();
   if (keyUsage == null) {
-    log.warn("Configuration specifies checkKeyUsage but keyUsage extension not found in certificate.");
+    logger.warn("Configuration specifies checkKeyUsage but keyUsage extension not found in certificate.");
     return !this.requireKeyUsage;
   }
   final boolean valid;
   if (isCritical(certificate,KEY_USAGE_OID) || this.requireKeyUsage) {
-    log.debug("KeyUsage extension is marked critical or required by configuration.");
+    logger.debug("KeyUsage extension is marked critical or required by configuration.");
     valid=keyUsage[0];
   }
  else {
-    log.debug("KeyUsage digitalSignature=%s, Returning true since keyUsage validation not required by configuration.");
+    logger.debug("KeyUsage digitalSignature=%s, Returning true since keyUsage validation not required by configuration.");
     valid=true;
   }
   return valid;

@@ -1,4 +1,4 @@
 {
-  log.debug("useSubjectCredsOnly is set to {}",useSubjectCredsOnly);
+  logger.debug("useSubjectCredsOnly is set to {}",useSubjectCredsOnly);
   System.setProperty(SYS_PROP_USE_SUBJECT_CRED_ONLY,Boolean.toString(useSubjectCredsOnly));
 }

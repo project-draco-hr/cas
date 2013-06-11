@@ -3,11 +3,11 @@
     try {
       writeResponse(this.serverSocket.accept());
     }
- catch (    SocketException se) {
-      System.out.println("Stopping on socket close.");
+ catch (    final SocketException se) {
+      logger.debug("Stopping on socket close.");
       this.running=false;
     }
-catch (    IOException ioe) {
+catch (    final IOException ioe) {
       ioe.printStackTrace();
     }
   }

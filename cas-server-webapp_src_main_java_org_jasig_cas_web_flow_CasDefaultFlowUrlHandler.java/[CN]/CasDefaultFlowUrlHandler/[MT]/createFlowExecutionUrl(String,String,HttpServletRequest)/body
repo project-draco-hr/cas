@@ -2,6 +2,8 @@
   final StringBuffer builder=new StringBuffer();
   builder.append(request.getRequestURI());
   builder.append("?");
-  appendQueryParameters(builder,request.getParameterMap(),getEncodingScheme(request));
+  @SuppressWarnings("unchecked") final Map<String,Object> flowParams=new LinkedHashMap<String,Object>(request.getParameterMap());
+  flowParams.put(this.flowExecutionKeyParameter,flowExecutionKey);
+  appendQueryParameters(builder,flowParams,getEncodingScheme(request));
   return builder.toString();
 }

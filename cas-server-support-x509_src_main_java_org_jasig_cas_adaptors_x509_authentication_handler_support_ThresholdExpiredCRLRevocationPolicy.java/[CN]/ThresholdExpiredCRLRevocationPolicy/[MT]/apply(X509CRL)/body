@@ -5,6 +5,6 @@
     if (CertUtils.isExpired(crl,cutoff.getTime())) {
       throw new ExpiredCRLException(crl.toString(),cutoff.getTime(),this.threshold);
     }
-    log.info(String.format("CRL expired on %s but is within threshold period, %s seconds.",crl.getNextUpdate(),this.threshold));
+    logger.info(String.format("CRL expired on %s but is within threshold period, %s seconds.",crl.getNextUpdate(),this.threshold));
   }
 }

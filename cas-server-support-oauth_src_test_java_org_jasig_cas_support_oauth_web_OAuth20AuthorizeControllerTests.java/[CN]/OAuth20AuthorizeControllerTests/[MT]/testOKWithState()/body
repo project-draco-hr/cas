@@ -8,12 +8,8 @@
   mockRequest.setScheme(CAS_SCHEME);
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   final ServicesManager servicesManager=mock(ServicesManager.class);
-  final RegisteredServiceImpl registeredServiceImpl=new RegisteredServiceImpl();
-  registeredServiceImpl.setName(CLIENT_ID);
-  registeredServiceImpl.setServiceId(REDIRECT_URI);
-  registeredServiceImpl.setTheme(SERVICE_NAME);
   final List<RegisteredService> services=new ArrayList<RegisteredService>();
-  services.add(registeredServiceImpl);
+  services.add(getRegisteredService(REDIRECT_URI,SERVICE_NAME));
   when(servicesManager.getAllServices()).thenReturn(services);
   final OAuth20WrapperController oauth20WrapperController=new OAuth20WrapperController();
   oauth20WrapperController.setLoginUrl(CAS_URL);
@@ -27,5 +23,5 @@
   final View view=modelAndView.getView();
   assertTrue(view instanceof RedirectView);
   final RedirectView redirectView=(RedirectView)view;
-  assertEquals(CAS_URL + "?service=" + OAuthEncoder.encode(CAS_URL + CONTEXT + OAuthConstants.CALLBACK_AUTHORIZE_URL),redirectView.getUrl());
+  assertEquals(OAuthUtils.addParameter(CAS_URL,"service",CAS_URL + CONTEXT + OAuthConstants.CALLBACK_AUTHORIZE_URL),redirectView.getUrl());
 }

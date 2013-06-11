@@ -2,6 +2,7 @@
   final Collection<Object[]> params=new ArrayList<Object[]>();
   Map<String,Object> attrMap;
   attrMap=new LinkedHashMap<String,Object>(){
+    private static final long serialVersionUID=1L;
 {
       put("altUsername","fhqwhgads");
     }
@@ -13,6 +14,7 @@
   names.add("homsar");
   names.add("eh-steve");
   attrMap=new LinkedHashMap<String,Object>(){
+    private static final long serialVersionUID=1L;
 {
       put("altUsernames",names);
     }
@@ -20,6 +22,7 @@
 ;
   params.add(new Object[]{attrMap});
   attrMap=new LinkedHashMap<String,Object>(){
+    private static final long serialVersionUID=1L;
 {
       put("altUsername",null);
     }

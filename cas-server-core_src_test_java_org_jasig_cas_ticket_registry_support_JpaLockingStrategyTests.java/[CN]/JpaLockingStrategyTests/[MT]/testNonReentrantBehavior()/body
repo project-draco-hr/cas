@@ -9,8 +9,8 @@
     lock.release();
     assertNull(getOwner(appId));
   }
- catch (  Exception e) {
-    log.debug("testNonReentrantBehavior produced an error",e);
+ catch (  final Exception e) {
+    logger.debug("testNonReentrantBehavior produced an error",e);
     fail("testNonReentrantBehavior failed.");
   }
 }

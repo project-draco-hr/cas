@@ -2,10 +2,10 @@
   if (ticketId == null) {
     return null;
   }
-  log.debug("Attempting to retrieve ticket [{}]",ticketId);
+  logger.debug("Attempting to retrieve ticket [{}]",ticketId);
   final Ticket ticket=this.cache.get(ticketId);
   if (ticket != null) {
-    log.debug("Ticket [{}] found in registry.",ticketId);
+    logger.debug("Ticket [{}] found in registry.",ticketId);
   }
   return ticket;
 }

@@ -7,7 +7,10 @@
     final Set<String> keys=node.getKeys();
     final List<Ticket> list=new ArrayList<Ticket>();
     for (    final String key : keys) {
-      list.add(node.get(key));
+      final Ticket ticket=node.get(key);
+      if (ticket != null) {
+        list.add(node.get(key));
+      }
     }
     return list;
   }

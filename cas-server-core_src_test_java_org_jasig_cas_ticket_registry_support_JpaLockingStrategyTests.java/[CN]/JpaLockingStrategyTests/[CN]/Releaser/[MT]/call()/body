@@ -3,8 +3,8 @@
     lock.release();
     return true;
   }
- catch (  Exception e) {
-    log.debug("{} failed to release lock",lock,e);
+ catch (  final Exception e) {
+    logger.debug("{} failed to release lock",lock,e);
     return false;
   }
 }

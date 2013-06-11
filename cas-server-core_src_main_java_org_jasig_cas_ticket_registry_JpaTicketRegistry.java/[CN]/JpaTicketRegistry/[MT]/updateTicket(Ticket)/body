@@ -1,4 +1,4 @@
 {
   entityManager.merge(ticket);
-  log.debug("Updated ticket [{}].",ticket);
+  logger.debug("Updated ticket [{}].",ticket);
 }

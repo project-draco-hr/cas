@@ -1,22 +1,26 @@
 {
   final String ticket=request.getParameter(OAuthConstants.TICKET);
-  log.debug("ticket : {}",ticket);
+  logger.debug("{} : {}",OAuthConstants.TICKET,ticket);
   final HttpSession session=request.getSession();
   String callbackUrl=(String)session.getAttribute(OAuthConstants.OAUTH20_CALLBACKURL);
-  log.debug("callbackUrl : {}",callbackUrl);
+  logger.debug("{} : {}",OAuthConstants.OAUTH20_CALLBACKURL,callbackUrl);
   session.removeAttribute(OAuthConstants.OAUTH20_CALLBACKURL);
+  if (StringUtils.isBlank(callbackUrl)) {
+    logger.error("{} is missing from the session and can not be retrieved.",OAuthConstants.OAUTH20_CALLBACKURL);
+    return new ModelAndView(OAuthConstants.ERROR_VIEW);
+  }
   final String state=(String)session.getAttribute(OAuthConstants.OAUTH20_STATE);
-  log.debug("state : {}",state);
+  logger.debug("{} : {}",OAuthConstants.OAUTH20_STATE,state);
   session.removeAttribute(OAuthConstants.OAUTH20_STATE);
   callbackUrl=OAuthUtils.addParameter(callbackUrl,OAuthConstants.CODE,ticket);
   if (state != null) {
     callbackUrl=OAuthUtils.addParameter(callbackUrl,OAuthConstants.STATE,state);
   }
-  log.debug("callbackUrl : {}",callbackUrl);
+  logger.debug("{} : {}",OAuthConstants.OAUTH20_CALLBACKURL,callbackUrl);
   final Map<String,Object> model=new HashMap<String,Object>();
   model.put("callbackUrl",callbackUrl);
   final String serviceName=(String)session.getAttribute(OAuthConstants.OAUTH20_SERVICE_NAME);
-  log.debug("serviceName : {}",serviceName);
+  logger.debug("serviceName : {}",serviceName);
   model.put("serviceName",serviceName);
   return new ModelAndView(OAuthConstants.CONFIRM_VIEW,model);
 }

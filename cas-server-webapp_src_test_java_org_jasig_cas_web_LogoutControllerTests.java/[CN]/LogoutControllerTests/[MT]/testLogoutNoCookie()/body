@@ -1,3 +1,0 @@
-{
-  assertNotNull(this.logoutController.handleRequestInternal(this.request,new MockHttpServletResponse()));
-}

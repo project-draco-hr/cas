@@ -11,13 +11,7 @@
   credentialsMapping.put(OpenIdCredentials.class,holder);
   final Map<String,UniqueTicketIdGenerator> generator=new HashMap<String,UniqueTicketIdGenerator>();
   generator.put(OpenIdService.class.getName(),new DefaultUniqueTicketIdGenerator());
-  this.impl.setAuthenticationManager(this.authenticationManager);
-  this.impl.setServicesManager(new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl()));
-  this.impl.setServiceTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
-  this.impl.setTicketGrantingTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
-  this.impl.setTicketGrantingTicketUniqueTicketIdGenerator(new DefaultUniqueTicketIdGenerator());
-  this.impl.setTicketRegistry(this.ticketRegistry);
-  this.impl.setUniqueTicketIdGeneratorsForService(generator);
+  impl=new CentralAuthenticationServiceImpl(this.ticketRegistry,null,this.authenticationManager,new DefaultUniqueTicketIdGenerator(),generator,new NeverExpiresExpirationPolicy(),new NeverExpiresExpirationPolicy(),new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl()),mock(LogoutManager.class));
   this.action=new OpenIdSingleSignOnAction();
   this.action.setCentralAuthenticationService(this.impl);
   this.action.setExtractor(new DefaultOpenIdUserNameExtractor());

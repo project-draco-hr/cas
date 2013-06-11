@@ -3,7 +3,7 @@
   attrStatement.setSubject(subject);
   for (  final Entry<String,Object> e : attributes.entrySet()) {
     if (e.getValue() instanceof Collection<?> && ((Collection<?>)e.getValue()).isEmpty()) {
-      log.info("Skipping attribute {} because it does not have any values.",e.getKey());
+      logger.info("Skipping attribute {} because it does not have any values.",e.getKey());
       continue;
     }
     final Attribute attribute=newSamlObject(Attribute.class);

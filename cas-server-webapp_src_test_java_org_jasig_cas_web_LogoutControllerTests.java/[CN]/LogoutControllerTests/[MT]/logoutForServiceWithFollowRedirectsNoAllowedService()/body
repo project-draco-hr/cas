@@ -1,9 +1,0 @@
-{
-  this.request.addParameter("service","TestService");
-  final RegisteredServiceImpl impl=new RegisteredServiceImpl();
-  impl.setServiceId("http://FooBar");
-  impl.setName("FooBar");
-  this.serviceManager.save(impl);
-  this.logoutController.setFollowServiceRedirects(true);
-  assertTrue(!(this.logoutController.handleRequestInternal(request,new MockHttpServletResponse()).getView() instanceof RedirectView));
-}

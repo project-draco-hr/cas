@@ -1,7 +1,5 @@
 {
-  if (this.logger.isDebugEnabled()) {
-    this.logger.debug("Checking account status for password...");
-  }
+  logger.debug("Checking account status for password...");
   final String ticket=context.getRequestScope().getString("serviceTicketId");
   final UsernamePasswordCredentials credentials=(UsernamePasswordCredentials)context.getFlowScope().get("credentials");
   final String userId=credentials.getUsername();
@@ -10,48 +8,35 @@
   try {
     if (userId == null && ticket == null) {
       msgToLog="No user principal or service ticket available.";
-      if (this.logger.isErrorEnabled()) {
-        this.logger.error(msgToLog);
-      }
+      logger.error(msgToLog);
       throw new LdapPasswordPolicyEnforcementException(BadCredentialsAuthenticationException.CODE,msgToLog);
     }
     if (userId == null && ticket != null) {
       returnedEvent=success();
-      if (this.logger.isDebugEnabled()) {
-        this.logger.debug("Received service ticket " + ticket + " but no user id. This is not a login attempt, so skip password enforcement.");
-      }
+      logger.debug("Received service ticket {} but no user id. Skipping password enforcement.",ticket);
     }
  else {
-      if (this.logger.isDebugEnabled()) {
-        this.logger.debug("Retrieving number of days to password expiration date for user " + userId);
-      }
+      logger.debug("Retrieving number of days to password expiration date for user {}",userId);
       final long daysToExpirationDate=getPasswordPolicyEnforcer().getNumberOfDaysToPasswordExpirationDate(userId);
       if (daysToExpirationDate == -1) {
         returnedEvent=success();
-        if (this.logger.isDebugEnabled()) {
-          this.logger.debug("Password for " + userId + " is not expiring");
-        }
+        logger.debug("Password for {} is not expiring",userId);
       }
  else {
         returnedEvent=warning();
-        if (this.logger.isDebugEnabled()) {
-          this.logger.debug("Password for " + userId + " is expiring in "+ daysToExpirationDate+ " days");
-        }
+        logger.debug("Password for {} is expiring in {} days",userId,daysToExpirationDate);
         context.getFlowScope().put("expireDays",daysToExpirationDate);
+        context.getFlowScope().put("redirectTimeout",this.redirectTimeout);
       }
     }
   }
  catch (  final LdapAuthenticationException e) {
-    if (this.logger.isErrorEnabled()) {
-      this.logger.error(e.getMessage(),e);
-    }
+    logger.error(e.getMessage(),e);
     populateErrorsInstance(e,context);
     returnedEvent=error();
   }
  finally {
-    if (this.logger.isDebugEnabled()) {
-      this.logger.debug("Switching to flow event id " + returnedEvent.getId() + " for user "+ userId);
-    }
+    logger.debug("Switching to flow event id {} for user {}",returnedEvent.getId(),userId);
   }
   return returnedEvent;
 }

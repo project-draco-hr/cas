@@ -1,4 +1,4 @@
 {
-  log.info("Shutting down TreeCache service.");
+  logger.info("Shutting down TreeCache service.");
   this.cache.destroy();
 }

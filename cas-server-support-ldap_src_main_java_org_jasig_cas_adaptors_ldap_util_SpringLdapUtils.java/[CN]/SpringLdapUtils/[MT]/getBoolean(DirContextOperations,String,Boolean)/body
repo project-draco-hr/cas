@@ -1,7 +1,7 @@
 {
   final String v=ctx.getStringAttribute(attribute);
   if (v != null) {
-    return v.equalsIgnoreCase(LDAP_BOOLEAN_TRUE);
+    return v.equalsIgnoreCase(Boolean.TRUE.toString());
   }
   return nullValue;
 }

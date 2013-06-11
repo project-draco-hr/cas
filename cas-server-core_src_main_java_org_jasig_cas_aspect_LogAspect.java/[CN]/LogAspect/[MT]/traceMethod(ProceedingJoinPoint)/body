@@ -1,9 +1,9 @@
 {
   Object returnVal=null;
-  final Logger log=getLog(proceedingJoinPoint);
+  final Logger logger=this.getLog(proceedingJoinPoint);
   final String methodName=proceedingJoinPoint.getSignature().getName();
   try {
-    if (log.isTraceEnabled()) {
+    if (logger.isTraceEnabled()) {
       final Object[] args=proceedingJoinPoint.getArgs();
       final String arguments;
       if (args == null || args.length == 0) {
@@ -12,12 +12,12 @@
  else {
         arguments=Arrays.deepToString(args);
       }
-      log.trace("Entering method [{}] with arguments [{}]",methodName,arguments);
+      logger.trace("Entering method [{}] with arguments [{}]",methodName,arguments);
     }
     returnVal=proceedingJoinPoint.proceed();
     return returnVal;
   }
   finally {
-    log.trace("Leaving method [{}] with return value [{}].",methodName,(returnVal != null ? returnVal.toString() : "null"));
+    logger.trace("Leaving method [{}] with return value [{}].",methodName,(returnVal != null ? returnVal.toString() : "null"));
   }
 }

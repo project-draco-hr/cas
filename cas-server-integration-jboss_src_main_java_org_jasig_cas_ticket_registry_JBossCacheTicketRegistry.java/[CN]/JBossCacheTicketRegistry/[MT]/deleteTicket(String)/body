@@ -1,10 +1,10 @@
 {
   try {
-    log.debug("Removing ticket from registry for: ",ticketId);
+    logger.debug("Removing ticket from registry for: ",ticketId);
     return this.cache.remove(FQN_TICKET,ticketId) != null;
   }
  catch (  final CacheException e) {
-    log.error(e.getMessage(),e);
+    logger.error(e.getMessage(),e);
     return false;
   }
 }

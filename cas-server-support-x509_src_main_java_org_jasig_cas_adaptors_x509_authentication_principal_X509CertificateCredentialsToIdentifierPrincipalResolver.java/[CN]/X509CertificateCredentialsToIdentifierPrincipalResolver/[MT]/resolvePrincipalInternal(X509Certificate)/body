@@ -1,6 +1,6 @@
 {
   String username=this.identifier;
-  log.info("Creating principal for: {}",certificate.getSubjectDN().getName());
+  logger.info("Creating principal for: {}",certificate.getSubjectDN().getName());
   for (final Matcher regexMatcher=this.subjectRegex.matcher(certificate.getSubjectDN().getName()); regexMatcher.find(); ) {
     final String name=regexMatcher.group(1).trim();
     final String value;
@@ -10,7 +10,7 @@
  else {
       value=regexMatcher.group(3);
     }
-    log.debug(String.format("Parsed: %s - %s",name,value));
+    logger.debug(String.format("Parsed: %s - %s",name,value));
     username=username.replaceAll(new StringBuilder("\\$").append(name).toString(),value);
   }
   if (this.identifier.equals(username)) {

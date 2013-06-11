@@ -1,0 +1,13 @@
+{
+  final Cookie cookie=new Cookie(COOKIE_TGC_ID,"test");
+  this.request.setCookies(new Cookie[]{cookie});
+  final CentralAuthenticationService centralAuthenticationService=mock(CentralAuthenticationService.class);
+  final LogoutRequest logoutRequest=new LogoutRequest("",null);
+  when(centralAuthenticationService.destroyTicketGrantingTicket("test")).thenReturn(Arrays.asList(logoutRequest));
+  this.logoutAction.setCentralAuthenticationService(centralAuthenticationService);
+  final Event event=this.logoutAction.doExecute(this.requestContext);
+  assertEquals(LogoutAction.FRONT_EVENT,event.getId());
+  List<LogoutRequest> logoutRequests=(List<LogoutRequest>)this.requestContext.getFlowScope().get(LogoutAction.LOGOUT_REQUESTS);
+  assertEquals(1,logoutRequests.size());
+  assertEquals(logoutRequest,logoutRequests.get(0));
+}

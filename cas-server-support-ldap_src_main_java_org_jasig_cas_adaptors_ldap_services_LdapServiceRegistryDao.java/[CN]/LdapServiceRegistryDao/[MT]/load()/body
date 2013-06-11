@@ -3,7 +3,7 @@
     return this.ldapTemplate.search(this.serviceBaseDn,this.ldapServiceMapper.getLoadFilter().encode(),this.cachedSearchControls,this.ldapServiceMapper);
   }
  catch (  final Exception e) {
-    log.error("Exception while loading Registered Services from LDAP Directory...",e);
+    logger.error("Exception while loading Registered Services from LDAP Directory...",e);
     return new ArrayList<RegisteredService>();
   }
 }

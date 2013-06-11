@@ -1,0 +1,6 @@
+{
+  final ClientCredentials clientCredentials=(ClientCredentials)credentials;
+  final String principalId=clientCredentials.getUserProfile().getTypedId();
+  logger.debug("principalId : {}",principalId);
+  return principalId;
+}

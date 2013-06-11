@@ -6,10 +6,10 @@
   this.ldapServiceMapper.doMapToContext(registeredService,ctx);
   final String dn=ctx.getNameInNamespace();
   final ModificationItem[] modItems=ctx.getModificationItems();
-  if (log.isDebugEnabled()) {
-    log.debug("Attemting to perform modify operations on {}",dn);
+  if (logger.isDebugEnabled()) {
+    logger.debug("Attemting to perform modify operations on {}",dn);
     for (    final ModificationItem modItem : modItems) {
-      log.debug(modItem.toString());
+      logger.debug(modItem.toString());
     }
   }
   this.ldapTemplate.modifyAttributes(dn,modItems);

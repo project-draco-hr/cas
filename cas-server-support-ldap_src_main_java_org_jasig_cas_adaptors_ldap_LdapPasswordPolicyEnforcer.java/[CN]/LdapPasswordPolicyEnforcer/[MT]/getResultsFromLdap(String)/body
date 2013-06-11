@@ -14,12 +14,12 @@
   attributeIds=new String[attributeList.size()];
   attributeList.toArray(attributeIds);
   final String searchFilter=LdapUtils.getFilterWithValues(this.filter,userId);
-  log.debug("Starting search with searchFilter: {}",searchFilter);
+  logger.debug("Starting search with searchFilter: {}",searchFilter);
   String attributeListLog=attributeIds[0];
   for (int i=1; i < attributeIds.length; i++) {
     attributeListLog=attributeListLog.concat(":" + attributeIds[i]);
   }
-  log.debug("Returning attributes {}",attributeListLog);
+  logger.debug("Returning attributes {}",attributeListLog);
   try {
     final AttributesMapper mapper=new AttributesMapper(){
       @Override public Object mapFromAttributes(      final Attributes attrs) throws NamingException {
@@ -50,13 +50,13 @@
       }
     }
 ;
-    final List<?> LdapResultList=this.ldapTemplate.search(this.searchBase,searchFilter,getSearchControls(attributeIds),mapper);
-    if (LdapResultList.size() > 0) {
-      return (LdapPasswordPolicyResult)LdapResultList.get(0);
+    final List<?> resultList=this.ldapTemplate.search(this.searchBase,searchFilter,getSearchControls(attributeIds),mapper);
+    if (resultList.size() > 0) {
+      return (LdapPasswordPolicyResult)resultList.get(0);
     }
   }
  catch (  final Exception e) {
-    log.error(e.getMessage(),e);
+    logger.error(e.getMessage(),e);
   }
   return null;
 }

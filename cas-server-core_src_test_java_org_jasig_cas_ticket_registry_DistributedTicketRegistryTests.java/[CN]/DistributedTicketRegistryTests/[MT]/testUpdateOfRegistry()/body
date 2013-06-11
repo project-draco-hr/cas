@@ -8,6 +8,6 @@
   assertNotNull(s2.grantTicketGrantingTicket("ff",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
   assertTrue(s2.isValidFor(TestUtils.getService()));
   assertTrue(this.wasTicketUpdated);
-  returned.expire();
+  returned.markTicketExpired();
   assertTrue(t.isExpired());
 }

@@ -13,6 +13,5 @@
   beginAt("/serviceValidate?ticket=" + secondServiceTicket + "&service="+ encodedService);
   assertTextPresent("<cas:user>" + getAlternateUsername() + "</cas:user>");
   beginAt("/serviceValidate?ticket=" + firstServiceTicket + "&service="+ encodedService);
-  System.out.println(getDialog().getResponseText());
   assertTextPresent("<cas:authenticationFailure");
 }

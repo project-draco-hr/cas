@@ -1,3 +1,3 @@
 {
-  return SamlService.createServiceFrom(request,getHttpClientIfSingleSignOutEnabled());
+  return SamlService.createServiceFrom(request);
 }

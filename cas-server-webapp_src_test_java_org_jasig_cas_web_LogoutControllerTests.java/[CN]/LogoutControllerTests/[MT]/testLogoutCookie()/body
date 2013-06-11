@@ -1,5 +1,0 @@
-{
-  Cookie cookie=new Cookie(COOKIE_TGC_ID,"test");
-  this.request.setCookies(new Cookie[]{cookie});
-  assertNotNull(this.logoutController.handleRequestInternal(request,new MockHttpServletResponse()));
-}

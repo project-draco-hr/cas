@@ -1,5 +1,5 @@
 {
   final String method=getMethod(request);
-  log.debug("method : {}",method);
+  logger.debug("method : {}",method);
   return internalHandleRequest(method,request,response);
 }

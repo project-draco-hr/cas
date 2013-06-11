@@ -6,8 +6,8 @@
   try {
     testConcurrency(executor,locks);
   }
- catch (  Exception e) {
-    log.debug("testConcurrentAcquireAndReleaseOnExistingLock produced an error",e);
+ catch (  final Exception e) {
+    logger.debug("testConcurrentAcquireAndReleaseOnExistingLock produced an error",e);
     fail("testConcurrentAcquireAndReleaseOnExistingLock failed.");
   }
  finally {

@@ -1,0 +1,6 @@
+{
+  if (!url.endsWith(OAuthConstants.CALLBACK_AUTHORIZE_URL)) {
+    throw new IllegalArgumentException("Calllback authorize url must end with " + OAuthConstants.CALLBACK_AUTHORIZE_URL);
+  }
+  super.setServiceId(url);
+}

@@ -1,0 +1,5 @@
+{
+  this.logoutManager.setDisableSingleSignOut(true);
+  final Collection<LogoutRequest> logoutRequests=this.logoutManager.performLogout(tgt);
+  assertEquals(0,logoutRequests.size());
+}
