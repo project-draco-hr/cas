@@ -3,7 +3,7 @@
   try {
     connection=this.connectionFactory.getConnection();
   }
- catch (  LdapException e) {
+ catch (  final LdapException e) {
     throw new RuntimeException("Failed getting LDAP connection",e);
   }
   final Response<SearchResult> response;

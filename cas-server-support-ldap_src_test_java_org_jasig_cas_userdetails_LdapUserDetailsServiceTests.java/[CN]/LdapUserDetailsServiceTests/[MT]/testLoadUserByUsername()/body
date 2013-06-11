@@ -1,5 +1,4 @@
 {
-  String[] roles;
   User expected;
   for (  String user : testUserDetails.stringPropertyNames()) {
     expected=parseUserDetails(testUserDetails.get(user).toString());

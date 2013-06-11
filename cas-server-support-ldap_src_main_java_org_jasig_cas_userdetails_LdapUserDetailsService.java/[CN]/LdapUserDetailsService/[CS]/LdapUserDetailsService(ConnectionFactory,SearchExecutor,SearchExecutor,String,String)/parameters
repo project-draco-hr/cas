@@ -1,5 +1,5 @@
 ConnectionFactory factory
 SearchExecutor userSearchExecutor
 SearchExecutor roleSearchExecutor
-IUsernameAttributeProvider userAttributeName
-IUsernameAttributeProvider roleAttributeName
+String userAttributeName
+String roleAttributeName

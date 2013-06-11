@@ -3,7 +3,7 @@
   try {
     log.debug("Attempting to resolve LDAP principal for {}.",resolvedPrincipal);
     final Set<String> attributesToReturn=new HashSet<String>(this.attributeMapping.keySet());
-    attributesToReturn.add(this.usernameProvider.getUsernameAttribute());
+    attributesToReturn.add(usernameAttribute);
     final String[] attrs=attributesToReturn.toArray(new String[]{});
     final Response<SearchResult> response=searchExecutor.search(connectionFactory,createSearchFilter(resolvedPrincipal),attrs);
     log.debug("LDAP response: {}",response);
