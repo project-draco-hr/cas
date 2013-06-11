@@ -1,0 +1,29 @@
+{
+  final SearchResult result;
+  try {
+    log.debug("Attempting to resolve LDAP principal for {}.",resolvedPrincipal);
+    final Set<String> attributesToReturn=new HashSet<String>(this.attributeMapping.keySet());
+    attributesToReturn.add(usernameAttribute);
+    final String[] attrs=attributesToReturn.toArray(new String[]{});
+    final Response<SearchResult> response=searchExecutor.search(connectionFactory,createSearchFilter(resolvedPrincipal),attrs);
+    log.debug("LDAP response: {}",response);
+    result=response.getResult();
+  }
+ catch (  final LdapException e) {
+    log.error("LDAP error resolving principal from {}.",resolvedPrincipal,e);
+    return null;
+  }
+  if (result.getEntries().size() > 1 && !allowMultipleResults) {
+    throw new IllegalStateException("Multiple search results found but not allowed.");
+  }
+  final Principal ldapPrincipal;
+  if (result.getEntries().isEmpty()) {
+    log.debug("No results found for {}.",resolvedPrincipal);
+    ldapPrincipal=null;
+  }
+ else {
+    ldapPrincipal=principalFromEntry(result.getEntry());
+  }
+  log.debug("Resolved principal {}",ldapPrincipal);
+  return ldapPrincipal;
+}

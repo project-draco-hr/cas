@@ -2,7 +2,7 @@
   final SearchResult userResult;
   try {
     log.debug("Attempting to get details for user {}.",username);
-    final Response<SearchResult> response=this.userSearchExecutor.search(this.connectionFactory,filterWithParams(this.userSearchExecutor,username));
+    final Response<SearchResult> response=this.userSearchExecutor.search(this.connectionFactory,createSearchFilter(this.userSearchExecutor,username));
     log.debug("LDAP user search response: {}",response);
     userResult=response.getResult();
   }
@@ -24,7 +24,7 @@
   final SearchResult roleResult;
   try {
     log.debug("Attempting to get roles for user {}.",userDn);
-    final Response<SearchResult> response=this.roleSearchExecutor.search(this.connectionFactory,filterWithParams(this.roleSearchExecutor,userDn));
+    final Response<SearchResult> response=this.roleSearchExecutor.search(this.connectionFactory,createSearchFilter(this.roleSearchExecutor,userDn));
     log.debug("LDAP role search response: {}",response);
     roleResult=response.getResult();
   }
