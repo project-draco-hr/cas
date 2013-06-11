@@ -6,11 +6,6 @@
     throw new UnresolvedPrincipalException(authentication);
   }
   for (  final HandlerResult result : authentication.getSuccesses().values()) {
-    if (result.getPrincipal() != null && !result.getPrincipal().equals(principal)) {
-      throw new MixedPrincipalException(authentication,principal,result.getPrincipal());
-    }
-  }
-  for (  final HandlerResult result : authentication.getSuccesses().values()) {
     builder.addAttribute(AUTHENTICATION_METHOD_ATTRIBUTE,result.getHandlerName());
   }
   log.info("Authenticated {} with credentials {}.",principal,Arrays.asList(credentials));

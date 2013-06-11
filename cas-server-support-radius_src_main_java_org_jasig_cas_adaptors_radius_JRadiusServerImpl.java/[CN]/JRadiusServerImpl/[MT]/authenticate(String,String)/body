@@ -1,0 +1,22 @@
+{
+  final RadiusClient radiusClient=getNewRadiusClient();
+  final AttributeList attributeList=new AttributeList();
+  attributeList.add(new Attr_UserName(username));
+  attributeList.add(new Attr_UserPassword(password));
+  final AccessRequest request=new AccessRequest(radiusClient,attributeList);
+  try {
+    final RadiusPacket response=radiusClient.authenticate(request,this.radiusAuthenticator,this.retries);
+    if (response instanceof AccessAccept) {
+      log.debug("Authentication request suceeded for host {} and username {}",this.inetAddress.getCanonicalHostName(),username);
+      return true;
+    }
+    log.debug("Authentication request failed for host {} and username {}",this.inetAddress.getCanonicalHostName(),username);
+    return false;
+  }
+ catch (  final UnknownAttributeException e) {
+    throw new PreventedException(e);
+  }
+catch (  final RadiusException e) {
+    throw new PreventedException(e);
+  }
+}

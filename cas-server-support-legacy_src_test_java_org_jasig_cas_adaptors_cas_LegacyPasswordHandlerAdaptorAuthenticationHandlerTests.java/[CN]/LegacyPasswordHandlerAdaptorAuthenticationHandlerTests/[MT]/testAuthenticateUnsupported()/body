@@ -1,3 +1,0 @@
-{
-  this.lphaah.supports(new LegacyCasTrustedCredential());
-}

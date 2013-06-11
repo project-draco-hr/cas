@@ -1,3 +1,3 @@
 {
-  return credential != null && HttpBasedServiceCredential.class.isAssignableFrom(credential.getClass());
+  return credential instanceof HttpBasedServiceCredential;
 }

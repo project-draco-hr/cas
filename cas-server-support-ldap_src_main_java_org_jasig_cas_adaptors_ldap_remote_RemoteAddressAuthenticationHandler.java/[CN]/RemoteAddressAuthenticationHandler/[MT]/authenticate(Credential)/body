@@ -2,9 +2,12 @@
   final RemoteAddressCredential c=(RemoteAddressCredential)credential;
   try {
     final InetAddress inetAddress=InetAddress.getByName(c.getRemoteAddress().trim());
-    return containsAddress(this.inetNetwork,this.inetNetmask,inetAddress);
+    if (containsAddress(this.inetNetwork,this.inetNetmask,inetAddress)) {
+      return new HandlerResult(this,c,new SimplePrincipal(c.getId()));
+    }
   }
  catch (  final UnknownHostException e) {
-    return false;
+    log.debug("Unknown host {}",c.getRemoteAddress());
   }
+  throw new FailedLoginException(c.getRemoteAddress() + " not in allowed range.");
 }

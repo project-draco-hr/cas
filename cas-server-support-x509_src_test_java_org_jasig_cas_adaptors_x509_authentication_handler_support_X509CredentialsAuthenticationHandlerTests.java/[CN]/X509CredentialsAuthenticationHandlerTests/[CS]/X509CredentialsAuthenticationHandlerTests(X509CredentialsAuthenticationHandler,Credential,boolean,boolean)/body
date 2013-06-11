@@ -1,6 +1,0 @@
-{
-  this.handler=handler;
-  this.credential=credential;
-  this.expectedSupports=supports;
-  this.expectedAuthenticate=authenticationSuccess;
-}

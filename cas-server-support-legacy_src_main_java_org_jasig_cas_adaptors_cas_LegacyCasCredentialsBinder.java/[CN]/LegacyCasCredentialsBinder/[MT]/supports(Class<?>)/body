@@ -1,3 +1,0 @@
-{
-  return !(clazz == null) && (clazz.equals(LegacyCasCredential.class) || clazz.equals(LegacyCasTrustedCredential.class));
-}

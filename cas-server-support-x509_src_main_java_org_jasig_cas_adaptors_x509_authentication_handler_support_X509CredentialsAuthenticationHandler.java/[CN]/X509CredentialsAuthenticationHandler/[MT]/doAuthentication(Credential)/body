@@ -1,36 +1,27 @@
 {
-  final X509CertificateCredential x509Credentials=(X509CertificateCredential)credential;
-  final X509Certificate[] certificates=x509Credentials.getCertificates();
+  final X509CertificateCredential x509Credential=(X509CertificateCredential)credential;
+  final X509Certificate[] certificates=x509Credential.getCertificates();
   X509Certificate clientCert=null;
-  boolean valid=true;
   boolean hasTrustedIssuer=false;
   for (int i=certificates.length - 1; i >= 0; i--) {
     final X509Certificate certificate=certificates[i];
-    try {
-      log.debug("Evaluating {}",CertUtils.toString(certificate));
-      validate(certificate);
-      if (!hasTrustedIssuer) {
-        hasTrustedIssuer=isCertificateFromTrustedIssuer(certificate);
-      }
-      int pathLength=certificate.getBasicConstraints();
-      if (pathLength < 0) {
-        log.debug("Found valid client certificate");
-        clientCert=certificate;
-      }
+    log.debug("Evaluating {}",CertUtils.toString(certificate));
+    validate(certificate);
+    if (!hasTrustedIssuer) {
+      hasTrustedIssuer=isCertificateFromTrustedIssuer(certificate);
+    }
+    int pathLength=certificate.getBasicConstraints();
+    if (pathLength < 0) {
+      log.debug("Found valid client certificate");
+      clientCert=certificate;
+    }
  else {
-        log.debug("Found valid CA certificate");
-      }
-    }
- catch (    final GeneralSecurityException e) {
-      log.warn("Failed to validate {}",CertUtils.toString(certificate),e);
-      valid=false;
+      log.debug("Found valid CA certificate");
     }
   }
-  if (valid && hasTrustedIssuer && clientCert != null) {
-    x509Credentials.setCertificate(clientCert);
-    log.info("Successfully authenticated {}",credential);
-    return true;
+  if (hasTrustedIssuer && clientCert != null) {
+    x509Credential.setCertificate(clientCert);
+    return new HandlerResult(this,x509Credential,new SimplePrincipal(x509Credential.getId()));
   }
-  log.info("Failed to authenticate {}",credential);
-  return false;
+  throw new FailedLoginException();
 }

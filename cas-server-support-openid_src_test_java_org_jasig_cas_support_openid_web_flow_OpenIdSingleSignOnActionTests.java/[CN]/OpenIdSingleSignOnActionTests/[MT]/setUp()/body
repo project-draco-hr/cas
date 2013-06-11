@@ -2,7 +2,7 @@
   this.ticketRegistry=new DefaultTicketRegistry();
   final OpenIdCredentialsAuthenticationHandler handler=new OpenIdCredentialsAuthenticationHandler();
   handler.setTicketRegistry(this.ticketRegistry);
-  this.authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,CredentialsToPrincipalResolver>singletonMap(new LegacyAuthenticationHandlerAdapter(handler),new OpenIdCredentialsToPrincipalResolver()));
+  this.authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,CredentialsToPrincipalResolver>singletonMap(handler,new OpenIdCredentialsToPrincipalResolver()));
   final Map<String,UniqueTicketIdGenerator> generator=new HashMap<String,UniqueTicketIdGenerator>();
   generator.put(OpenIdService.class.getName(),new DefaultUniqueTicketIdGenerator());
   this.impl.setAuthenticationManager(this.authenticationManager);

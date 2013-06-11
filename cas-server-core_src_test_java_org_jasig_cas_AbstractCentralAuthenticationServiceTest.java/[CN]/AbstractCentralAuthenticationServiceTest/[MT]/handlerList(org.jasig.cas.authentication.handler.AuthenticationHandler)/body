@@ -1,7 +1,0 @@
-{
-  final List<AuthenticationHandler> handlers=new ArrayList<AuthenticationHandler>();
-  for (  org.jasig.cas.authentication.handler.AuthenticationHandler ah : legacyHandlers) {
-    handlers.add(new LegacyAuthenticationHandlerAdapter(ah));
-  }
-  return handlers;
-}

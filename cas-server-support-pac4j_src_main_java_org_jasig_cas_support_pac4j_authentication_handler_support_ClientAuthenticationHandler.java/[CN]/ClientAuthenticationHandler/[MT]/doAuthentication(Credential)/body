@@ -9,7 +9,7 @@
   log.debug("userProfile : {}",userProfile);
   if (userProfile != null && StringUtils.isNotBlank(userProfile.getId())) {
     clientCredentials.setUserProfile(userProfile);
-    return true;
+    return new HandlerResult(this,new BasicCredentialMetaData(credential),new SimplePrincipal(userProfile.getId(),userProfile.getAttributes()));
   }
-  return false;
+  throw new FailedLoginException("Provider did not produce profile for " + clientCredentials);
 }

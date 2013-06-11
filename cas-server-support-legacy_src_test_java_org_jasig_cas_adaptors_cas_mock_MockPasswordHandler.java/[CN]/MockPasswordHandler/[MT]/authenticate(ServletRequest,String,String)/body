@@ -1,6 +1,0 @@
-{
-  this.request=requestArg;
-  this.username=usernameArg;
-  this.password=passwordArg;
-  return this.succeed;
-}

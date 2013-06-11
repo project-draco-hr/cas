@@ -2,13 +2,5 @@
   UsernamePasswordCredential c=new UsernamePasswordCredential();
   c.setUsername("scott");
   c.setPassword("rutgers");
-  try {
-    this.authenticationHandler.authenticate(c);
-  }
- catch (  UnsupportedCredentialsException e) {
-    fail("UnsupportedCredentialsException caught");
-  }
-catch (  AuthenticationException e) {
-    fail("AuthenticationException caught.");
-  }
+  assertNotNull(this.authenticationHandler.authenticate(c));
 }
