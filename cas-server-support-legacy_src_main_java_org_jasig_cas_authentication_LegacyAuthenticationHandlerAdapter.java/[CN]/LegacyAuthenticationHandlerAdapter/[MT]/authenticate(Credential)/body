@@ -11,7 +11,7 @@
       return new HandlerResult(this,md);
     }
  else {
-      throw new GeneralSecurityException(String.format("%s failed to authenticate %s",this.getName(),credential));
+      throw new FailedLoginException(String.format("%s failed to authenticate %s",this.getName(),credential));
     }
   }
  catch (  AuthenticationException e) {

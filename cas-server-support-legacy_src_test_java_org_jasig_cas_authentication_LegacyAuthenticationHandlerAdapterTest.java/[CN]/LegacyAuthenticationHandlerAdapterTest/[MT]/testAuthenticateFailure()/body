@@ -1,0 +1,3 @@
+{
+  alwaysFailHandler.authenticate(new UsernamePasswordCredential("a","b"));
+}
