@@ -3,7 +3,7 @@
     Pattern.compile(pattern);
   }
  catch (  final PatternSyntaxException e) {
-    LOGGER.debug("Failed to identify [{}] as a regular expression",pattern);
+    log.debug("Failed to identify [{}] as a regular expression",pattern);
     return false;
   }
   return true;

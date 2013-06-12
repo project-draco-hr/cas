@@ -1,6 +1,6 @@
 {
   final String newDn=getDnForRegisteredService(dn,svc);
-  LOGGER.debug("Creating new DN entry [{}]",newDn);
+  log.debug("Creating new DN entry [{}]",newDn);
   if (svc.getId() == RegisteredService.INITIAL_IDENTIFIER_VALUE) {
     ((AbstractRegisteredService)svc).setId(newDn.hashCode());
   }
