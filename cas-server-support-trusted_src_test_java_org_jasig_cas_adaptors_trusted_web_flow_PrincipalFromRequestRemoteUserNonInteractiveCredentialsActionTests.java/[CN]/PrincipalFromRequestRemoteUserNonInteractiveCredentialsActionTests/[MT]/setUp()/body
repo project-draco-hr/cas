@@ -4,7 +4,7 @@
   centralAuthenticationService.setTicketRegistry(new DefaultTicketRegistry());
   final Map<String,UniqueTicketIdGenerator> idGenerators=new HashMap<String,UniqueTicketIdGenerator>();
   idGenerators.put(SimpleWebApplicationServiceImpl.class.getName(),new DefaultUniqueTicketIdGenerator());
-  final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,CredentialsToPrincipalResolver>singletonMap(new PrincipalBearingCredentialsAuthenticationHandler(),new PrincipalBearingCredentialsToPrincipalResolver()));
+  final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(new PrincipalBearingCredentialsAuthenticationHandler(),new PrincipalBearingPrincipalResolver()));
   centralAuthenticationService.setTicketGrantingTicketUniqueTicketIdGenerator(new DefaultUniqueTicketIdGenerator());
   centralAuthenticationService.setUniqueTicketIdGeneratorsForService(idGenerators);
   centralAuthenticationService.setServiceTicketExpirationPolicy(new NeverExpiresExpirationPolicy());

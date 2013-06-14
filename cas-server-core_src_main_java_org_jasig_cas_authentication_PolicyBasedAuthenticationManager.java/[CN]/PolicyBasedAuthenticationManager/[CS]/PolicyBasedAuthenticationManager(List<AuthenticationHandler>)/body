@@ -1,6 +1,6 @@
 {
   Assert.notEmpty(handlers,"At least one authentication handler is required");
-  this.handlerResolverMap=new LinkedHashMap<AuthenticationHandler,CredentialsToPrincipalResolver>(handlers.size());
+  this.handlerResolverMap=new LinkedHashMap<AuthenticationHandler,PrincipalResolver>(handlers.size());
   for (  final AuthenticationHandler handler : handlers) {
     this.handlerResolverMap.put(handler,null);
   }

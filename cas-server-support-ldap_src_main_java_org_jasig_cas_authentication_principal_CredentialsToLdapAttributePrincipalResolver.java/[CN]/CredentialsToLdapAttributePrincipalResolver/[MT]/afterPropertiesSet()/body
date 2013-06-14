@@ -1,5 +1,5 @@
 {
-  Assert.notNull(this.credentialsToPrincipalResolver,"credentialsToPrincipalResolver cannot be null");
+  Assert.notNull(this.principalResolver,"principalResolver cannot be null");
   Assert.notNull(searchExecutor.getSearchFilter(),"SearchExecutor#searchFilter cannot be null.");
   final String filterString=searchExecutor.getSearchFilter().getFilter();
   Assert.notNull(filterString,"SearchExecutor#searchFilter#filter cannot be null.");

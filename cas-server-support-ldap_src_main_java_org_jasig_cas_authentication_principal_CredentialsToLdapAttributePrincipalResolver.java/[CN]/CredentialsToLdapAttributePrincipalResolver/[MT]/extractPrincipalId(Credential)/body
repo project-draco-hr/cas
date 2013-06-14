@@ -1,7 +1,7 @@
 {
-  final Principal principal=this.credentialsToPrincipalResolver.resolvePrincipal(credentials);
+  final Principal principal=this.principalResolver.resolve(credential);
   if (principal == null) {
-    log.warn("Initial principal could not be resolved from request via {}, returning null",this.credentialsToPrincipalResolver.getClass().getSimpleName());
+    log.warn("Initial principal could not be resolved from request via {}, returning null",this.principalResolver.getClass().getSimpleName());
     return null;
   }
   log.debug("Resolved {}. Trying LDAP resolve now...",principal);

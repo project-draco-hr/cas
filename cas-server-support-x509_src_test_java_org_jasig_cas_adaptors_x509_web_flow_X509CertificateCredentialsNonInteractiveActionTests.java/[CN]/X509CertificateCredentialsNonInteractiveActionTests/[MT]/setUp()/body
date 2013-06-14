@@ -6,7 +6,7 @@
   idGenerators.put(SimpleWebApplicationServiceImpl.class.getName(),new DefaultUniqueTicketIdGenerator());
   final X509CredentialsAuthenticationHandler handler=new X509CredentialsAuthenticationHandler();
   handler.setTrustedIssuerDnPattern("CN=\\w+,DC=jasig,DC=org");
-  final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,CredentialsToPrincipalResolver>singletonMap(handler,new X509CertificateCredentialsToSerialNumberPrincipalResolver()));
+  final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(handler,new X509SerialNumberPrincipalResolver()));
   centralAuthenticationService.setTicketGrantingTicketUniqueTicketIdGenerator(new DefaultUniqueTicketIdGenerator());
   centralAuthenticationService.setUniqueTicketIdGeneratorsForService(idGenerators);
   centralAuthenticationService.setServiceTicketExpirationPolicy(new NeverExpiresExpirationPolicy());
