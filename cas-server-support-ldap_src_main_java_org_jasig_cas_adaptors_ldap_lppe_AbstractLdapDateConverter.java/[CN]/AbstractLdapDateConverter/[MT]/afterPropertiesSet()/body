@@ -1,0 +1,3 @@
+{
+  logger.debug("Initialized Ldap date converter [{}] with timezone [{}]",this.getClass().getSimpleName(),this.timeZone);
+}

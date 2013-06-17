@@ -1,4 +1,0 @@
-{
-  this.authentication=new MutableAuthentication(TestUtils.getPrincipal());
-  this.attributes=this.authentication.getAttributes();
-}

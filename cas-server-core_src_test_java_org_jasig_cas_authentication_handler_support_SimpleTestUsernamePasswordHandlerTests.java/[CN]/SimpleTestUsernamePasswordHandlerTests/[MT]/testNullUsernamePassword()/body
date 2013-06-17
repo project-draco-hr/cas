@@ -1,8 +1,0 @@
-{
-  try {
-    assertFalse(this.authenticationHandler.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword(null)));
-  }
- catch (  final AuthenticationException ae) {
-    ae.printStackTrace();
-  }
-}

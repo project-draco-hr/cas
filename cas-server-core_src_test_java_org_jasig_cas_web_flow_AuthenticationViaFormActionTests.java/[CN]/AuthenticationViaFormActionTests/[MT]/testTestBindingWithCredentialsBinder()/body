@@ -2,9 +2,9 @@
   final MockRequestContext context=new MockRequestContext();
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),new MockHttpServletRequest(),new MockHttpServletResponse()));
   final CredentialsBinder cb=new CredentialsBinder(){
-    public void bind(    final HttpServletRequest request,    final Credentials credentials){
-      ((UsernamePasswordCredentials)credentials).setUsername("test2");
-      ((UsernamePasswordCredentials)credentials).setPassword("test2");
+    public void bind(    final HttpServletRequest request,    final Credential credentials){
+      ((UsernamePasswordCredential)credentials).setUsername("test2");
+      ((UsernamePasswordCredential)credentials).setPassword("test2");
     }
     public boolean supports(    final Class<?> clazz){
       return true;

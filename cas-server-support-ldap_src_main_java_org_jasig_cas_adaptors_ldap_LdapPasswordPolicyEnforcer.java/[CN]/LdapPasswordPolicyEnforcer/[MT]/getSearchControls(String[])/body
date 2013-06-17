@@ -1,8 +1,0 @@
-{
-  final SearchControls constraints=new SearchControls();
-  constraints.setSearchScope(this.scope);
-  constraints.setReturningAttributes(attributeIds);
-  constraints.setTimeLimit(this.timeout);
-  constraints.setCountLimit(this.maxNumberResults);
-  return constraints;
-}

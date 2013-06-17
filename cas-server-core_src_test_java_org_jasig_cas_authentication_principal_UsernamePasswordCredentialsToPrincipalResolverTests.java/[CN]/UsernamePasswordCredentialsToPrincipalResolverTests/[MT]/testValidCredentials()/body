@@ -1,4 +1,0 @@
-{
-  Principal p=this.resolver.resolvePrincipal(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  assertEquals(p.getId(),TestUtils.getCredentialsWithSameUsernameAndPassword().getUsername());
-}

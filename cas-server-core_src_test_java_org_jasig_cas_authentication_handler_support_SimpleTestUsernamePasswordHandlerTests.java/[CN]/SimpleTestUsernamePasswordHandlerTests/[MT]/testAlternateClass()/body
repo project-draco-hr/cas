@@ -1,4 +1,0 @@
-{
-  this.authenticationHandler.setClassToSupport(UsernamePasswordCredentials.class);
-  assertTrue(this.authenticationHandler.supports(new UsernamePasswordCredentials()));
-}

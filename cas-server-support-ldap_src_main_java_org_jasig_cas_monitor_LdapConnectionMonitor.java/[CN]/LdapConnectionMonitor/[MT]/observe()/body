@@ -1,0 +1,15 @@
+{
+  Connection c=null;
+  try {
+    c=factory.getConnection();
+    c.open();
+    return validator.validate(c) ? Status.OK : Status.ERROR;
+  }
+ catch (  final LdapException e) {
+    logger.debug(e.getMessage(),e);
+  }
+ finally {
+    LdapUtils.closeConnection(c);
+  }
+  return Status.ERROR;
+}

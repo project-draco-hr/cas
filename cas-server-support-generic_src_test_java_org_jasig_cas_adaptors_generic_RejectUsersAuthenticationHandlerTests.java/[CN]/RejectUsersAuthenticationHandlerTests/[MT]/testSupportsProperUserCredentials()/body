@@ -1,11 +1,6 @@
 {
-  UsernamePasswordCredentials c=new UsernamePasswordCredentials();
+  UsernamePasswordCredential c=new UsernamePasswordCredential();
   c.setUsername("fff");
   c.setPassword("rutgers");
-  try {
-    this.authenticationHandler.authenticate(c);
-  }
- catch (  final AuthenticationException e) {
-    fail("AuthenticationException caught.");
-  }
+  assertNotNull(this.authenticationHandler.authenticate(c));
 }

@@ -1,14 +1,8 @@
 {
   this.ticketRegistry=new DefaultTicketRegistry();
-  this.authenticationManager=new DirectMappingAuthenticationManagerImpl();
-  final Map<Class<? extends Credentials>,DirectAuthenticationHandlerMappingHolder> credentialsMapping=new HashMap<Class<? extends Credentials>,DirectAuthenticationHandlerMappingHolder>();
-  final DirectAuthenticationHandlerMappingHolder holder=new DirectAuthenticationHandlerMappingHolder();
   final OpenIdCredentialsAuthenticationHandler handler=new OpenIdCredentialsAuthenticationHandler();
   handler.setTicketRegistry(this.ticketRegistry);
-  holder.setAuthenticationHandler(handler);
-  holder.setCredentialsToPrincipalResolver(new OpenIdCredentialsToPrincipalResolver());
-  this.authenticationManager.setCredentialsMapping(credentialsMapping);
-  credentialsMapping.put(OpenIdCredentials.class,holder);
+  this.authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(handler,new OpenIdPrincipalResolver()));
   final Map<String,UniqueTicketIdGenerator> generator=new HashMap<String,UniqueTicketIdGenerator>();
   generator.put(OpenIdService.class.getName(),new DefaultUniqueTicketIdGenerator());
   impl=new CentralAuthenticationServiceImpl(this.ticketRegistry,null,this.authenticationManager,new DefaultUniqueTicketIdGenerator(),generator,new NeverExpiresExpirationPolicy(),new NeverExpiresExpirationPolicy(),new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl()),mock(LogoutManager.class));

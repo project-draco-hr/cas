@@ -1,0 +1,38 @@
+{
+  final SpnegoCredential spnegoCredential=(SpnegoCredential)credential;
+  Principal principal;
+  byte[] nextToken;
+  try {
+synchronized (this) {
+      this.authentication.reset();
+      this.authentication.process(spnegoCredential.getInitToken());
+      principal=this.authentication.getPrincipal();
+      nextToken=this.authentication.getNextToken();
+    }
+  }
+ catch (  final jcifs.spnego.AuthenticationException e) {
+    throw new FailedLoginException(e.getMessage());
+  }
+  if (nextToken != null) {
+    logger.debug("Setting nextToken in credential");
+    spnegoCredential.setNextToken(nextToken);
+  }
+ else {
+    logger.debug("nextToken is null");
+  }
+  boolean success=false;
+  if (principal != null) {
+    if (spnegoCredential.isNtlm()) {
+      logger.debug("NTLM Credential is valid for user [{}]",principal.getName());
+      spnegoCredential.setPrincipal(getSimplePrincipal(principal.getName(),true));
+      success=this.isNTLMallowed;
+    }
+    logger.debug("Kerberos Credential is valid for user [{}]",principal.getName());
+    spnegoCredential.setPrincipal(getSimplePrincipal(principal.getName(),false));
+    success=true;
+  }
+  if (!success) {
+    throw new FailedLoginException("Principal is null, the processing of the SPNEGO Token failed");
+  }
+  return new HandlerResult(this,new BasicCredentialMetaData(credential),spnegoCredential.getPrincipal());
+}

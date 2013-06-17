@@ -9,7 +9,7 @@
     if (logger.isDebugEnabled()) {
       logger.debug("Obtained token: " + new String(token));
     }
-    return new SpnegoCredentials(token);
+    return new SpnegoCredential(token);
   }
   return null;
 }

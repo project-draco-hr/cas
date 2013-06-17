@@ -1,0 +1,5 @@
+{
+  final String credentialsClass=credential.getClass().getName();
+  final String authenticationMethod=this.authenticationMethods.get(credentialsClass);
+  builder.addAttribute(ATTRIBUTE_AUTHENTICATION_METHOD,authenticationMethod);
+}

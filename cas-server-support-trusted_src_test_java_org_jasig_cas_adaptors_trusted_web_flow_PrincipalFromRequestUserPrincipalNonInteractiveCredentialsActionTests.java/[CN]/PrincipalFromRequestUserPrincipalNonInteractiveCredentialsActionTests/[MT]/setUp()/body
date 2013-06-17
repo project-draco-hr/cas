@@ -2,9 +2,7 @@
   this.action=new PrincipalFromRequestUserPrincipalNonInteractiveCredentialsAction();
   final Map<String,UniqueTicketIdGenerator> idGenerators=new HashMap<String,UniqueTicketIdGenerator>();
   idGenerators.put(SimpleWebApplicationServiceImpl.class.getName(),new DefaultUniqueTicketIdGenerator());
-  final AuthenticationManagerImpl authenticationManager=new AuthenticationManagerImpl();
-  authenticationManager.setAuthenticationHandlers(Arrays.asList(new AuthenticationHandler[]{new PrincipalBearingCredentialsAuthenticationHandler()}));
-  authenticationManager.setCredentialsToPrincipalResolvers(Arrays.asList(new CredentialsToPrincipalResolver[]{new PrincipalBearingCredentialsToPrincipalResolver()}));
+  final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(new PrincipalBearingCredentialsAuthenticationHandler(),new PrincipalBearingPrincipalResolver()));
   final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),null,authenticationManager,new DefaultUniqueTicketIdGenerator(),idGenerators,new NeverExpiresExpirationPolicy(),new NeverExpiresExpirationPolicy(),mock(ServicesManager.class),mock(LogoutManager.class));
   this.action.setCentralAuthenticationService(centralAuthenticationService);
 }

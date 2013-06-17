@@ -1,3 +1,0 @@
-{
-  return 49 * this.principal.hashCode() ^ this.getAuthenticatedDate().hashCode();
-}

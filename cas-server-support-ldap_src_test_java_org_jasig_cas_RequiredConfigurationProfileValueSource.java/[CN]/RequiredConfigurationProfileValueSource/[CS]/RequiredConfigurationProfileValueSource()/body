@@ -1,0 +1,8 @@
+{
+  final Resource ldaptiveProperties=new ClassPathResource("ldaptive.properties");
+  final Resource extraConfig=new ClassPathResource("extraConfigContext.xml");
+  this.propertyResourceMap.put("authenticationConfig",new Resource[]{ldaptiveProperties,extraConfig,new ClassPathResource("credentials.properties")});
+  this.propertyResourceMap.put("resolverConfig",new Resource[]{ldaptiveProperties,extraConfig,new ClassPathResource("principals.json")});
+  this.propertyResourceMap.put("monitorConfig",new Resource[]{ldaptiveProperties,extraConfig});
+  this.propertyResourceMap.put("userDetailsConfig",new Resource[]{ldaptiveProperties,extraConfig,new ClassPathResource("userdetails.properties")});
+}

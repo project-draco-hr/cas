@@ -1,7 +1,0 @@
-{
-  if (obj == null || !obj.getClass().equals(this.getClass())) {
-    return false;
-  }
-  final SpnegoCredentials c=(SpnegoCredentials)obj;
-  return Arrays.equals(this.initToken,c.getInitToken()) && this.principal.equals(c.getPrincipal()) && Arrays.equals(this.nextToken,c.getNextToken());
-}

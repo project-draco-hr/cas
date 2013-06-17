@@ -1,8 +1,0 @@
-{
-  try {
-    assertFalse(this.authenticationHandler.supports(new HttpBasedServiceCredentials(new URL("http://www.rutgers.edu"))));
-  }
- catch (  final MalformedURLException e) {
-    fail("Could not resolve URL.");
-  }
-}

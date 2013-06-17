@@ -1,3 +1,0 @@
-{
-  return this.dateFormat.equalsIgnoreCase("ActiveDirectory") || this.dateFormat.equalsIgnoreCase("AD");
-}

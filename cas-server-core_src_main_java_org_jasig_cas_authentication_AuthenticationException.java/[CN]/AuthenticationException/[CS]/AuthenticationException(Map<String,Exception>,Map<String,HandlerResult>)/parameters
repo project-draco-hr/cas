@@ -1,0 +1,2 @@
+Map<String,Exception> handlerErrors
+Map<String,HandlerResult> handlerSuccesses

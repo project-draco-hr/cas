@@ -28,7 +28,7 @@
     restoreRequestAttribute(request,session,THEME);
     restoreRequestAttribute(request,session,LOCALE);
     restoreRequestAttribute(request,session,METHOD);
-    final ClientCredentials clientCredentials=new ClientCredentials(credentials);
+    final ClientCredential clientCredentials=new ClientCredential(credentials);
     try {
       WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(clientCredentials));
       return success();

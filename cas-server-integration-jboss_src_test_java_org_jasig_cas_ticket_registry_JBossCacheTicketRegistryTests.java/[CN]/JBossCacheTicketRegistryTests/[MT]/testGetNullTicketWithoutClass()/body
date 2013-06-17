@@ -2,7 +2,7 @@
   try {
     this.ticketRegistry.getTicket(null);
   }
- catch (  final Exception e) {
+ catch (  Exception e) {
     fail("Exception caught.  None expected.");
   }
 }

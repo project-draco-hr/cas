@@ -1,34 +1,32 @@
 {
-  final Credentials credentials=constructCredentialsFromRequest(context);
-  if (credentials == null) {
+  final Credential credential=constructCredentialsFromRequest(context);
+  if (credential == null) {
     return error();
   }
   final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
   final Service service=WebUtils.getService(context);
   if (isRenewPresent(context) && ticketGrantingTicketId != null && service != null) {
     try {
-      final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credentials);
+      final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
       WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
       return result("warn");
     }
- catch (    final TicketException e) {
-      if (e.getCause() != null && AuthenticationException.class.isAssignableFrom(e.getCause().getClass())) {
-        onError(context,credentials);
-        return error();
-      }
+ catch (    final AuthenticationException e) {
+      onError(context,credential);
+      return error();
+    }
+catch (    final TicketException e) {
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
-      if (logger.isDebugEnabled()) {
-        logger.debug("Attempted to generate a ServiceTicket using renew=true with different credentials",e);
-      }
+      logger.debug("Attempted to generate a ServiceTicket using renew=true with different credential",e);
     }
   }
   try {
-    WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credentials));
-    onSuccess(context,credentials);
+    WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credential));
+    onSuccess(context,credential);
     return success();
   }
- catch (  final TicketException e) {
-    onError(context,credentials);
+ catch (  final Exception e) {
+    onError(context,credential);
     return error();
   }
 }

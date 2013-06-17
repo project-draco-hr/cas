@@ -1,0 +1,8 @@
+{
+  final ActiveDirectoryPasswordPolicyResult adResult=(ActiveDirectoryPasswordPolicyResult)result;
+  final String attributeValue=getPasswordPolicyAttributeValue(entry,getUserAccountControlAttributeName());
+  if (attributeValue != null) {
+    adResult.setUserAccountControl(attributeValue);
+  }
+  return super.buildInternal(entry,result);
+}

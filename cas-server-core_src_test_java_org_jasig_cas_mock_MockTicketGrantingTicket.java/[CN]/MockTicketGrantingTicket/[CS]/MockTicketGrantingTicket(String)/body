@@ -1,5 +1,5 @@
 {
   id=ID_GENERATOR.getNewTicketId("TGT");
-  authentication=new ImmutableAuthentication(new SimplePrincipal(principal));
+  authentication=new AuthenticationBuilder(new SimplePrincipal(principal)).build();
   created=new Date();
 }

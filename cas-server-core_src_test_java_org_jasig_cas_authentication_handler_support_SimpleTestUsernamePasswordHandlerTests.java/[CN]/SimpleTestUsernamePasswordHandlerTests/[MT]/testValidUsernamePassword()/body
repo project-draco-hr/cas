@@ -1,3 +1,4 @@
 {
-  assertTrue(this.authenticationHandler.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword()));
+  final HandlerResult result=authenticationHandler.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  assertEquals("SimpleTestUsernamePasswordAuthenticationHandler",result.getHandlerName());
 }

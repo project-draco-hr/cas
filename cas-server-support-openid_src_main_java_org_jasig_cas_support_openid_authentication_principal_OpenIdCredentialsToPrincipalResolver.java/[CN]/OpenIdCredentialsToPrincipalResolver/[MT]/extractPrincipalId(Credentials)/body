@@ -1,3 +1,0 @@
-{
-  return ((OpenIdCredentials)credentials).getUsername();
-}

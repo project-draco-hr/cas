@@ -1,7 +1,7 @@
 {
-  final OpenIdCredentials c=new OpenIdCredentials("test","test");
+  final OpenIdCredential c=new OpenIdCredential("test","test");
   final TicketGrantingTicket t=getTicketGrantingTicket();
   this.ticketRegistry.addTicket(t);
   t.markTicketExpired();
-  assertFalse(this.openIdCredentialsAuthenticationHandler.authenticate(c));
+  this.openIdCredentialsAuthenticationHandler.authenticate(c);
 }

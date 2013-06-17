@@ -1,0 +1,4 @@
+{
+  assertTrue(alwaysPassHandler.supports(new UsernamePasswordCredential("a","b")));
+  assertTrue(alwaysFailHandler.supports(new UsernamePasswordCredential("a","b")));
+}

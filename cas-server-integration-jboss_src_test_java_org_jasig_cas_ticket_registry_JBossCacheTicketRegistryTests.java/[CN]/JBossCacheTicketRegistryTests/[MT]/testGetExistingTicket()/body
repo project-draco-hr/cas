@@ -1,9 +1,9 @@
 {
   try {
-    this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",getAuthentication(),new NeverExpiresExpirationPolicy()));
+    this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
     this.ticketRegistry.getTicket("TEST");
   }
- catch (  final Exception e) {
+ catch (  Exception e) {
     e.printStackTrace();
     fail("Caught an exception. But no exception should have been thrown.");
   }

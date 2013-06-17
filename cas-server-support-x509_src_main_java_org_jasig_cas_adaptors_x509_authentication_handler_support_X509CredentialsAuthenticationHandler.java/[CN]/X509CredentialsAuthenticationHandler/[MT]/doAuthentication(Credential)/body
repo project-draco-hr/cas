@@ -1,0 +1,27 @@
+{
+  final X509CertificateCredential x509Credential=(X509CertificateCredential)credential;
+  final X509Certificate[] certificates=x509Credential.getCertificates();
+  X509Certificate clientCert=null;
+  boolean hasTrustedIssuer=false;
+  for (int i=certificates.length - 1; i >= 0; i--) {
+    final X509Certificate certificate=certificates[i];
+    logger.debug("Evaluating {}",CertUtils.toString(certificate));
+    validate(certificate);
+    if (!hasTrustedIssuer) {
+      hasTrustedIssuer=isCertificateFromTrustedIssuer(certificate);
+    }
+    int pathLength=certificate.getBasicConstraints();
+    if (pathLength < 0) {
+      logger.debug("Found valid client certificate");
+      clientCert=certificate;
+    }
+ else {
+      logger.debug("Found valid CA certificate");
+    }
+  }
+  if (hasTrustedIssuer && clientCert != null) {
+    x509Credential.setCertificate(clientCert);
+    return new HandlerResult(this,x509Credential,new SimplePrincipal(x509Credential.getId()));
+  }
+  throw new FailedLoginException();
+}

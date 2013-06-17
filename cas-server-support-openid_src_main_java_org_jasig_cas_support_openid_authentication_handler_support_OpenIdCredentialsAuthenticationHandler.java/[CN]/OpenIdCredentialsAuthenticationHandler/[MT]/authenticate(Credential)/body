@@ -1,0 +1,12 @@
+{
+  final OpenIdCredential c=(OpenIdCredential)credential;
+  final TicketGrantingTicket t=this.ticketRegistry.getTicket(c.getTicketGrantingTicketId(),TicketGrantingTicket.class);
+  if (t == null || t.isExpired()) {
+    throw new FailedLoginException("TGT is null or expired.");
+  }
+  final Principal principal=t.getAuthentication().getPrincipal();
+  if (!principal.getId().equals(c.getUsername())) {
+    throw new FailedLoginException("Principal ID mismatch");
+  }
+  return new HandlerResult(this,new BasicCredentialMetaData(c),principal);
+}

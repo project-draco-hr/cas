@@ -1,0 +1,9 @@
+{
+  final Connection conn=this.connectionFactory.getConnection();
+  try {
+    return this.validator.validate(conn) ? StatusCode.OK : StatusCode.ERROR;
+  }
+  finally {
+    conn.close();
+  }
+}
