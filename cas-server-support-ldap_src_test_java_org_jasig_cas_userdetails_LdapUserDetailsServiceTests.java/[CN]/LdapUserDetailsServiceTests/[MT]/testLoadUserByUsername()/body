@@ -1,0 +1,7 @@
+{
+  User expected;
+  for (  String user : testUserDetails.stringPropertyNames()) {
+    expected=parseUserDetails(testUserDetails.get(user).toString());
+    assertEquals(expected,userDetailsService.loadUserByUsername(user));
+  }
+}

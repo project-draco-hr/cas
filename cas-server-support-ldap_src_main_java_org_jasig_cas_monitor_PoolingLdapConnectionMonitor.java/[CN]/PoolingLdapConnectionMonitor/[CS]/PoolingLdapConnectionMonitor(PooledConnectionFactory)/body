@@ -1,0 +1,4 @@
+{
+  this.pooledConnectionFactory=pool;
+  this.connectionPool=pool.getConnectionPool();
+}

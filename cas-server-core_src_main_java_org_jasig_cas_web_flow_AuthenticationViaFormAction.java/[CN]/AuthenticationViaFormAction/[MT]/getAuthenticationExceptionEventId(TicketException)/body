@@ -1,5 +1,0 @@
-{
-  final AuthenticationException authEx=getAuthenticationExceptionAsCause(e);
-  logger.debug("An authentication error has occurred. Returning the event id {}",authEx.getType());
-  return authEx.getType();
-}

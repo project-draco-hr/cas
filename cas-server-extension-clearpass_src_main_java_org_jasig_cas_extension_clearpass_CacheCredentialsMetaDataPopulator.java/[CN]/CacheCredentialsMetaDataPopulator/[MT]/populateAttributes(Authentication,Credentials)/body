@@ -1,7 +1,0 @@
-{
-  if (credentials instanceof UsernamePasswordCredentials) {
-    final UsernamePasswordCredentials c=(UsernamePasswordCredentials)credentials;
-    this.credentialCache.put(authentication.getPrincipal().getId(),c.getPassword());
-  }
-  return authentication;
-}

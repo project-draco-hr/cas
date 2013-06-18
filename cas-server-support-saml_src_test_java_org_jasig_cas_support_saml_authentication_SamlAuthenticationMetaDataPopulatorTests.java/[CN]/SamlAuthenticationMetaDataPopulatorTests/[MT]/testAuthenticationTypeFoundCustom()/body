@@ -1,9 +1,10 @@
 {
-  final CustomCredentials credentials=new CustomCredentials();
+  final CustomCredential credentials=new CustomCredential();
   final Map<String,String> added=new HashMap<String,String>();
-  added.put(CustomCredentials.class.getName(),"FF");
+  added.put(CustomCredential.class.getName(),"FF");
   this.populator.setUserDefinedMappings(added);
-  final MutableAuthentication ma=new MutableAuthentication(TestUtils.getPrincipal());
-  final Authentication m2=this.populator.populateAttributes(ma,credentials);
-  assertEquals("FF",m2.getAttributes().get("samlAuthenticationStatementAuthMethod"));
+  final AuthenticationBuilder builder=newAuthenticationBuilder(TestUtils.getPrincipal());
+  this.populator.populateAttributes(builder,credentials);
+  final Authentication auth=builder.build();
+  assertEquals("FF",auth.getAttributes().get(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD));
 }

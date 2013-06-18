@@ -1,0 +1,8 @@
+{
+  for (  final SearchScope scope : SearchScope.values()) {
+    if (scope.ordinal() == this.searchControls.getSearchScope()) {
+      this.searchScope=scope;
+    }
+  }
+  this.attributes=getResultAttributeMapping().keySet().toArray(new String[getResultAttributeMapping().size()]);
+}

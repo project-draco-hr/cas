@@ -1,6 +1,6 @@
 {
   LOGGER.debug("Obtaining credentials...");
-  final Credentials c=obtainCredentials();
+  final Credential c=obtainCredentials();
   Formatter fmt=null;
   try {
     final String ticketGrantingTicketId=this.centralAuthenticationService.createTicketGrantingTicket(c);
@@ -12,7 +12,7 @@
     fmt.format("%s %s",getResponse().getStatus().getCode(),getResponse().getStatus().getDescription()).format("</title></head><body><h1>TGT Created</h1><form action=\"%s",ticketReference).format("\" method=\"POST\">Service:<input type=\"text\" name=\"service\" value=\"\">").format("<br><input type=\"submit\" value=\"Submit\"></form></body></html>");
     getResponse().setEntity(fmt.toString(),MediaType.TEXT_HTML);
   }
- catch (  final TicketException e) {
+ catch (  final Exception e) {
     LOGGER.error(e.getMessage(),e);
     getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST,e.getMessage());
   }

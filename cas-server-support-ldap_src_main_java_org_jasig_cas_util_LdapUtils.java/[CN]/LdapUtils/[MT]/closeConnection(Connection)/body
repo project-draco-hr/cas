@@ -1,0 +1,10 @@
+{
+  if (context != null) {
+    try {
+      context.close();
+    }
+ catch (    final Exception ex) {
+      LOGGER.warn("Could not close ldap connection",ex);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  final SearchRequest request=new SearchRequest();
+  request.setFollowReferrals(getFollowReferrals());
+  request.setBaseDn(getSearchBase());
+  request.setSearchFilter(getSearchFilter());
+  request.setReturnAttributes(getAttributeIds());
+  request.setTimeLimit(getTimeout());
+  request.setSizeLimit(getSize());
+  request.setSortBehavior(getSortBehavior());
+  request.setSearchScope(getSearchScope());
+  request.setDerefAliases(getDerefAliases());
+  final SearchEntryHandler[] handlers=getSearchEntryHandlers().toArray(new SearchEntryHandler[]{});
+  request.setSearchEntryHandlers(handlers);
+  return request;
+}

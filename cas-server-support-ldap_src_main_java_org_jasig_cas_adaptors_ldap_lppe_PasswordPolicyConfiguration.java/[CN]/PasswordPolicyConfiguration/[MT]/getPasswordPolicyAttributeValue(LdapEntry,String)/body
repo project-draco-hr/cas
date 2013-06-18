@@ -1,0 +1,11 @@
+{
+  if (attrName != null) {
+    logger.debug("Retrieving attribute [{}]",attrName);
+    final LdapAttribute attribute=entry.getAttribute(attrName);
+    if (attribute != null) {
+      logger.debug("Retrieved attribute [{}] with value [{}]",attrName,attribute.getStringValue());
+      return attribute.getStringValue();
+    }
+  }
+  return null;
+}

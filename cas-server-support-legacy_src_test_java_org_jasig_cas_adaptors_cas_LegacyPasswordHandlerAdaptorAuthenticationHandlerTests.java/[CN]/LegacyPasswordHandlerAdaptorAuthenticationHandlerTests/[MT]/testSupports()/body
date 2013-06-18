@@ -1,5 +1,0 @@
-{
-  assertFalse(this.lphaah.supports(null));
-  assertTrue(this.lphaah.supports(new LegacyCasCredentials()));
-  assertFalse(this.lphaah.supports(new LegacyCasTrustedCredentials()));
-}

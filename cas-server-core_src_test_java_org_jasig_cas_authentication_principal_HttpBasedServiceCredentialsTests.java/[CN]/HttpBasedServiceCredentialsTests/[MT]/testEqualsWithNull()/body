@@ -1,4 +1,0 @@
-{
-  final HttpBasedServiceCredentials c=new HttpBasedServiceCredentials(new URL("http://www.cnn.com"));
-  assertFalse(c.equals(null));
-}

@@ -1,0 +1,6 @@
+{
+  if (getUserAccountControl() > 0) {
+    return ((getUserAccountControl() & bit.getValue()) == bit.getValue());
+  }
+  return false;
+}

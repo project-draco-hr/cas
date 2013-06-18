@@ -9,5 +9,5 @@
   if (ticketGrantingTicketId == null || userName == null) {
     return null;
   }
-  return new OpenIdCredentials(ticketGrantingTicketId,userName);
+  return new OpenIdCredential(ticketGrantingTicketId,userName);
 }

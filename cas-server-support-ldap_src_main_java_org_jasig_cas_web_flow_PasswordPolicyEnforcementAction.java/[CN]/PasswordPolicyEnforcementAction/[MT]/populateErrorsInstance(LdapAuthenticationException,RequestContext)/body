@@ -1,9 +1,0 @@
-{
-  try {
-    final String code=e.getCode();
-    reqCtx.getMessageContext().addMessage(new MessageBuilder().error().code(code).defaultText(code).build());
-  }
- catch (  final Exception fe) {
-    logger.error(fe.getMessage(),fe);
-  }
-}

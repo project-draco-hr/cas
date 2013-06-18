@@ -1,6 +1,0 @@
-{
-  Assert.notNull(principal,"principal cannot be null");
-  Assert.notNull(attributes,"attributes cannot be null");
-  this.principal=principal;
-  this.attributes=attributes;
-}

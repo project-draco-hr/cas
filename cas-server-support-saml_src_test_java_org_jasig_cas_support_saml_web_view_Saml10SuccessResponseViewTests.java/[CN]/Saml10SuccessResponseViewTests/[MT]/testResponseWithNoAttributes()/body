@@ -1,12 +1,11 @@
 {
   final Map<String,Object> model=new HashMap<String,Object>();
   final SimplePrincipal principal=new SimplePrincipal("testPrincipal");
-  final MutableAuthentication authentication=new MutableAuthentication(principal);
-  authentication.getAttributes().put(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD,SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_SSL_TLS_CLIENT);
-  authentication.getAttributes().put("testSamlAttribute","value");
-  final List<Authentication> authentications=new ArrayList<Authentication>();
-  authentications.add(authentication);
-  final Assertion assertion=new ImmutableAssertionImpl(authentications,TestUtils.getService(),true);
+  final Map<String,Object> authAttributes=new HashMap<String,Object>();
+  authAttributes.put(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD,SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_SSL_TLS_CLIENT);
+  authAttributes.put("testSamlAttribute","value");
+  final Authentication primary=TestUtils.getAuthentication(principal,authAttributes);
+  final Assertion assertion=new ImmutableAssertion(primary,Collections.singletonList(primary),TestUtils.getService(),true);
   model.put("assertion",assertion);
   final MockHttpServletResponse servletResponse=new MockHttpServletResponse();
   this.response.renderMergedOutputModel(model,new MockHttpServletRequest(),servletResponse);

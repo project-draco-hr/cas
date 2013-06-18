@@ -1,0 +1,11 @@
+{
+  try {
+    final Class<?> exception=MAPPINGS.get(this.error);
+    final Constructor<?> ctor=exception.getDeclaredConstructor(String.class);
+    final LoginException e=(LoginException)ctor.newInstance(this.getMessage() + ":" + this.getCode());
+    return e;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

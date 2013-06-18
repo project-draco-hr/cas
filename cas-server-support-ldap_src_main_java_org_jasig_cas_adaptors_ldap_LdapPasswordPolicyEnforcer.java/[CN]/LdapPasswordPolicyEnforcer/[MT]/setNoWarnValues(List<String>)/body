@@ -1,4 +1,0 @@
-{
-  this.noWarnValues=noWarnValues;
-  logger.debug("Value to flag warning bypass: {}",noWarnValues.toString());
-}

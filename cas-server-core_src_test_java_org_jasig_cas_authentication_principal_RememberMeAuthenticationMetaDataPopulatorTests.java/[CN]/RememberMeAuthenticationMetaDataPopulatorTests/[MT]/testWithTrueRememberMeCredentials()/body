@@ -1,7 +1,7 @@
 {
-  final Authentication auth=new MutableAuthentication(TestUtils.getPrincipal());
-  final RememberMeUsernamePasswordCredentials c=new RememberMeUsernamePasswordCredentials();
+  final RememberMeUsernamePasswordCredential c=new RememberMeUsernamePasswordCredential();
   c.setRememberMe(true);
-  final Authentication auth2=this.p.populateAttributes(auth,c);
-  assertEquals(Boolean.TRUE,auth2.getAttributes().get(RememberMeCredentials.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME));
+  final AuthenticationBuilder builder=newBuilder(c);
+  final Authentication auth=builder.build();
+  assertEquals(true,auth.getAttributes().get(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME));
 }

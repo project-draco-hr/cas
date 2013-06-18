@@ -1,8 +1,0 @@
-{
-  if (e instanceof AuthenticationException) {
-    logger.info("{} failed authenticating {}",handlerName,credentials);
-  }
- else {
-    logger.error("{} threw error authenticating {}",handlerName,credentials,e);
-  }
-}

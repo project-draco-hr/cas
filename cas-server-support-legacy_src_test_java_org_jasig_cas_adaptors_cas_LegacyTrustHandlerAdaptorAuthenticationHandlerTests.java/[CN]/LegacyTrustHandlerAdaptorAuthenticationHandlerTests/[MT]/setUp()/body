@@ -1,4 +1,0 @@
-{
-  this.legacyTrustAdaptor=new LegacyTrustHandlerAdaptorAuthenticationHandler();
-  this.legacyTrustAdaptor.setTrustHandler(new MockTrustHandler());
-}

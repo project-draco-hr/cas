@@ -1,3 +1,0 @@
-{
-  return ((PrincipalBearingCredentials)credentials).getPrincipal().getId();
-}

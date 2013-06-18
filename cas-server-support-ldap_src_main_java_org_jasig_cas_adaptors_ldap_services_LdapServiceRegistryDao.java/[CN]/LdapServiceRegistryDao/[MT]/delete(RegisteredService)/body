@@ -1,11 +1,21 @@
 {
-  final String dn=findDn(this.ldapServiceMapper.getSearchFilter(registeredService.getId()).encode());
+  Connection connection=null;
   try {
-    this.ldapTemplate.unbind(dn,false);
-    return true;
+    connection=this.connectionFactory.getConnection();
+    final Response<SearchResult> result=searchForServiceById(connection,registeredService.getId());
+    if (result.getResult() != null) {
+      final LdapEntry entry=result.getResult().getEntry();
+      final DeleteOperation delete=new DeleteOperation(connection);
+      final DeleteRequest request=new DeleteRequest(entry.getDn());
+      final Response<Void> res=delete.execute(request);
+      return res.getResultCode() == ResultCode.SUCCESS;
+    }
   }
- catch (  final Exception e) {
-    logger.warn("Error deleting Registered Service",e);
-    return false;
+ catch (  final LdapException e) {
+    logger.error(e.getMessage(),e);
   }
+ finally {
+    LdapUtils.closeConnection(connection);
+  }
+  return false;
 }

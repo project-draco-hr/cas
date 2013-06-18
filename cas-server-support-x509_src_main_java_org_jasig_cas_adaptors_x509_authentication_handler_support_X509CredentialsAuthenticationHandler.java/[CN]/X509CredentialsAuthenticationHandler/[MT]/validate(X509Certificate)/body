@@ -4,18 +4,18 @@
   int pathLength=cert.getBasicConstraints();
   if (pathLength < 0) {
     if (!isCertificateAllowed(cert)) {
-      throw new GeneralSecurityException("Certificate subject does not match pattern " + this.regExSubjectDnPattern.pattern());
+      throw new FailedLoginException("Certificate subject does not match pattern " + this.regExSubjectDnPattern.pattern());
     }
     if (this.checkKeyUsage && !isValidKeyUsage(cert)) {
-      throw new GeneralSecurityException("Certificate keyUsage constraint forbids SSL client authentication.");
+      throw new FailedLoginException("Certificate keyUsage constraint forbids SSL client authentication.");
     }
   }
  else {
-    if (pathLength == Integer.MAX_VALUE && !this.maxPathLengthAllowUnspecified) {
-      throw new GeneralSecurityException("Unlimited certificate path length not allowed by configuration.");
+    if (pathLength == Integer.MAX_VALUE && this.maxPathLengthAllowUnspecified != true) {
+      throw new FailedLoginException("Unlimited certificate path length not allowed by configuration.");
     }
  else     if (pathLength > this.maxPathLength && pathLength < Integer.MAX_VALUE) {
-      throw new GeneralSecurityException(String.format("Certificate path length %s exceeds maximum value %s.",pathLength,this.maxPathLength));
+      throw new FailedLoginException(String.format("Certificate path length %s exceeds maximum value %s.",pathLength,this.maxPathLength));
     }
   }
 }

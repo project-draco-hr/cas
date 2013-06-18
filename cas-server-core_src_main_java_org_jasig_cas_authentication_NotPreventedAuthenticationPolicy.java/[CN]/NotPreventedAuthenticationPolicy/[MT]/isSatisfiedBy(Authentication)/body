@@ -1,0 +1,8 @@
+{
+  for (  final String handler : authentication.getFailures().keySet()) {
+    if (authentication.getFailures().get(handler) instanceof PreventedException) {
+      return false;
+    }
+  }
+  return super.isSatisfiedBy(authentication);
+}

@@ -1,4 +1,0 @@
-{
-  this.cachedSearchControls=new SearchControls();
-  this.cachedSearchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
-}

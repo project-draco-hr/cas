@@ -1,0 +1,6 @@
+{
+  if (password == null) {
+    throw new IllegalArgumentException("One-time password cannot be null.");
+  }
+  this.password=password;
+}

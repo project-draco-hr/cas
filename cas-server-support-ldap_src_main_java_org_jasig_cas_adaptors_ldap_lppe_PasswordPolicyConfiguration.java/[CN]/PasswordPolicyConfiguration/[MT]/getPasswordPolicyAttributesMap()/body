@@ -1,0 +1,25 @@
+{
+  final Map<String,String> principalAttributeMap=new HashMap<String,String>();
+  if (!StringUtils.isBlank(getAccountDisabledAttributeName())) {
+    principalAttributeMap.put(getAccountDisabledAttributeName(),getAccountDisabledAttributeName());
+  }
+  if (!StringUtils.isBlank(getAccountLockedAttributeName())) {
+    principalAttributeMap.put(getAccountLockedAttributeName(),getAccountLockedAttributeName());
+  }
+  if (!StringUtils.isBlank(getAccountPasswordMustChangeAttributeName())) {
+    principalAttributeMap.put(getAccountPasswordMustChangeAttributeName(),getAccountPasswordMustChangeAttributeName());
+  }
+  if (!StringUtils.isBlank(getIgnorePasswordExpirationWarningAttributeName())) {
+    principalAttributeMap.put(getIgnorePasswordExpirationWarningAttributeName(),getIgnorePasswordExpirationWarningAttributeName());
+  }
+  if (!StringUtils.isBlank(getPasswordExpirationDateAttributeName())) {
+    principalAttributeMap.put(getPasswordExpirationDateAttributeName(),getPasswordExpirationDateAttributeName());
+  }
+  if (!StringUtils.isBlank(getPasswordWarningNumberOfDaysAttributeName())) {
+    principalAttributeMap.put(getPasswordWarningNumberOfDaysAttributeName(),getPasswordWarningNumberOfDaysAttributeName());
+  }
+  if (!StringUtils.isBlank(getValidPasswordNumberOfDaysAttributeName())) {
+    principalAttributeMap.put(getValidPasswordNumberOfDaysAttributeName(),getValidPasswordNumberOfDaysAttributeName());
+  }
+  return principalAttributeMap;
+}

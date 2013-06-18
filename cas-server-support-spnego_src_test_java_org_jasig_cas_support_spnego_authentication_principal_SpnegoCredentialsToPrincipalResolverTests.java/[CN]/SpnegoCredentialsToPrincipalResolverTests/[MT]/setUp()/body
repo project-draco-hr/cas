@@ -1,4 +1,4 @@
 {
-  this.resolver=new SpnegoCredentialsToPrincipalResolver();
-  this.spnegoCredentials=new SpnegoCredentials(new byte[]{0,1,2});
+  this.resolver=new SpnegoPrincipalResolver();
+  this.spnegoCredentials=new SpnegoCredential(new byte[]{0,1,2});
 }

@@ -1,5 +1,5 @@
 {
-  final Authentication auth=new MutableAuthentication(TestUtils.getPrincipal());
-  final Authentication auth2=this.p.populateAttributes(auth,TestUtils.getCredentialsWithSameUsernameAndPassword());
-  assertNull(auth2.getAttributes().get(RememberMeCredentials.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME));
+  final AuthenticationBuilder builder=newBuilder(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final Authentication auth=builder.build();
+  assertNull(auth.getAttributes().get(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME));
 }

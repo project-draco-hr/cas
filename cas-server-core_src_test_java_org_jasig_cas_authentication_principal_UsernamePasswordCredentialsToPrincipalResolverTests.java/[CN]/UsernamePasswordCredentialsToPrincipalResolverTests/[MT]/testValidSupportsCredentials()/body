@@ -1,3 +1,0 @@
-{
-  assertTrue(this.resolver.supports(TestUtils.getCredentialsWithSameUsernameAndPassword()));
-}

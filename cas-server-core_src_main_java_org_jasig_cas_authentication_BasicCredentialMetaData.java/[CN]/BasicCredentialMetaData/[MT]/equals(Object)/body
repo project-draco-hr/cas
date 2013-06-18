@@ -1,0 +1,7 @@
+{
+  if (!(other instanceof BasicCredentialMetaData)) {
+    return false;
+  }
+  final BasicCredentialMetaData md=(BasicCredentialMetaData)other;
+  return this.id.equals(md.getId()) && this.credentialClass.equals(md.getCredentialClass());
+}

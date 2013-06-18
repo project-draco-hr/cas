@@ -6,14 +6,17 @@
     return generateErrorView("INVALID_REQUEST","INVALID_REQUEST",null);
   }
   try {
-    final Credentials serviceCredentials=getServiceCredentialsFromRequest(request);
+    final Credential serviceCredential=getServiceCredentialsFromRequest(request);
     String proxyGrantingTicketId=null;
-    if (serviceCredentials != null) {
+    if (serviceCredential != null) {
       try {
-        proxyGrantingTicketId=this.centralAuthenticationService.delegateTicketGrantingTicket(serviceTicketId,serviceCredentials);
+        proxyGrantingTicketId=this.centralAuthenticationService.delegateTicketGrantingTicket(serviceTicketId,serviceCredential);
       }
- catch (      final TicketException e) {
-        logger.error("TicketException generating ticket for: " + serviceCredentials,e);
+ catch (      final AuthenticationException e) {
+        logger.info("Failed to authenticate " + serviceCredential);
+      }
+catch (      final TicketException e) {
+        logger.error("TicketException generating ticket for: " + serviceCredential,e);
       }
     }
     final Assertion assertion=this.centralAuthenticationService.validateServiceTicket(serviceTicketId,service);
@@ -30,8 +33,8 @@
     onSuccessfulValidation(serviceTicketId,assertion);
     final ModelAndView success=new ModelAndView(this.successView);
     success.addObject(MODEL_ASSERTION,assertion);
-    if (serviceCredentials != null && proxyGrantingTicketId != null) {
-      final String proxyIou=this.proxyHandler.handle(serviceCredentials,proxyGrantingTicketId);
+    if (serviceCredential != null && proxyGrantingTicketId != null) {
+      final String proxyIou=this.proxyHandler.handle(serviceCredential,proxyGrantingTicketId);
       success.addObject(MODEL_PROXY_GRANTING_TICKET_IOU,proxyIou);
     }
     if (logger.isDebugEnabled()) {

@@ -1,0 +1,4 @@
+{
+  final X509CertificateCredential c=new X509CertificateCredential(new X509Certificate[]{VALID_CERTIFICATE});
+  assertTrue(this.resolver.supports(c));
+}

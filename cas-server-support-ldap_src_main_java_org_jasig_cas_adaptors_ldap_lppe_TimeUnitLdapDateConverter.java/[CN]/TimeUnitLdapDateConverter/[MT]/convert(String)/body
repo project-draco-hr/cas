@@ -1,0 +1,8 @@
+{
+  final long longDate=Long.parseLong(dateValue);
+  final Long dateInMillis=TimeUnit.MILLISECONDS.convert(longDate,this.timeUnit);
+  if (sinceDateTime == null) {
+    return new DateTime(dateInMillis,this.getTimeZone());
+  }
+  return sinceDateTime.plusMillis(dateInMillis.intValue());
+}

@@ -1,0 +1,39 @@
+{
+  final AuthenticationHandler authenticationHandler=new SimpleTestUsernamePasswordAuthenticationHandler();
+  final CredentialMetaData credential1=new BasicCredentialMetaData(new UsernamePasswordCredential());
+  final CredentialMetaData credential2=new BasicCredentialMetaData(new UsernamePasswordCredential());
+  final List<CredentialMetaData> credentials=new ArrayList<CredentialMetaData>();
+  credentials.add(credential1);
+  credentials.add(credential2);
+  final Map<String,Object> attributes=new HashMap<String,Object>();
+  attributes.put("authenticationMethod","password");
+  final Map<String,HandlerResult> successes=new HashMap<String,HandlerResult>();
+  successes.put("handler1",new HandlerResult(authenticationHandler,credential1));
+  final Map<String,Exception> failures=new HashMap<String,Exception>();
+  failures.put("handler2",new FailedLoginException());
+  final ImmutableAuthentication auth=new ImmutableAuthentication(new Date(),credentials,new SimplePrincipal("test"),attributes,successes,failures);
+  try {
+    auth.getAuthenticatedDate().setTime(100);
+    fail("Should have failed");
+  }
+ catch (  RuntimeException e) {
+  }
+  try {
+    auth.getCredentials().add(new BasicCredentialMetaData(new UsernamePasswordCredential()));
+    fail("Should have failed");
+  }
+ catch (  RuntimeException e) {
+  }
+  try {
+    auth.getSuccesses().put("test",new HandlerResult(authenticationHandler,credential1));
+    fail("Should have failed");
+  }
+ catch (  RuntimeException e) {
+  }
+  try {
+    auth.getFailures().put("test",new FailedLoginException());
+    fail("Should have failed");
+  }
+ catch (  RuntimeException e) {
+  }
+}

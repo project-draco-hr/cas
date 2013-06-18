@@ -1,3 +1,8 @@
 {
-  return this.grantServiceTicket(ticketGrantingTicketId,service,null);
+  try {
+    return this.grantServiceTicket(ticketGrantingTicketId,service,null);
+  }
+ catch (  final AuthenticationException e) {
+    throw new IllegalStateException("Unexpected authentication exception",e);
+  }
 }

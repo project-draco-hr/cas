@@ -1,4 +1,0 @@
-{
-  logger.debug("Trusting credentials for: {}",credentials);
-  return true;
-}

@@ -1,0 +1,9 @@
+{
+  IPersonAttributes actual;
+  for (  TestPrincipal expected : TestPrincipal.loadFromResource(testPrincipals)) {
+    actual=attributeDao.getPerson(expected.getUserName());
+    assertNotNull(actual);
+    assertEquals(expected.getId(),actual.getName());
+    assertAttributesSame(expected.getAttributes(),actual.getAttributes());
+  }
+}

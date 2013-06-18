@@ -1,0 +1,7 @@
+{
+  final SearchFilter filter=new SearchFilter();
+  filter.setFilter(searchExecutor.getSearchFilter().getFilter());
+  filter.setParameter(0,principal.getId());
+  logger.debug("Constructed LDAP search filter [{}] for principal id [{}]",filter.format(),principal.getId());
+  return filter;
+}

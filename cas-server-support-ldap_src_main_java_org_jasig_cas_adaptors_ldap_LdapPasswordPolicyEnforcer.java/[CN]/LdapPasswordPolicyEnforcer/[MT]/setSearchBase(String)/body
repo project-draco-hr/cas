@@ -1,4 +1,0 @@
-{
-  this.searchBase=searchBase;
-  logger.debug("Search base: {}",searchBase);
-}

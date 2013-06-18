@@ -1,6 +1,6 @@
 {
   final Object arg1=joinPoint.getArgs()[0];
-  if (arg1 instanceof Credentials) {
+  if (arg1 instanceof Credential) {
     return arg1.toString();
   }
  else   if (arg1 instanceof String) {

@@ -1,4 +1,0 @@
-{
-  this.validDaysAttribute=validDaysAttribute;
-  logger.debug("Valid days attribute: {}",validDaysAttribute);
-}

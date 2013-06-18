@@ -1,4 +1,0 @@
-{
-  this.filter=filter;
-  logger.debug("Search filter: {}",filter);
-}

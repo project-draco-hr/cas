@@ -1,6 +1,0 @@
-{
-  final X509CertificateCredentials c=new X509CertificateCredentials(new X509Certificate[]{VALID_CERTIFICATE});
-  c.setCertificate(VALID_CERTIFICATE);
-  final String value="SERIALNUMBER=" + VALID_CERTIFICATE.getSerialNumber().toString() + ", "+ VALID_CERTIFICATE.getIssuerDN().getName();
-  assertEquals(value,this.resolver.resolvePrincipal(c).getId());
-}
