@@ -16,8 +16,5 @@
   this.ticketGrantingTicketCookieGenerator=new CookieRetrievingCookieGenerator();
   this.ticketGrantingTicketCookieGenerator.setCookieName(COOKIE_TGC_ID);
   this.logoutAction=new LogoutAction();
-  this.logoutAction.setCentralAuthenticationService(getCentralAuthenticationService());
-  this.logoutAction.setWarnCookieGenerator(this.warnCookieGenerator);
-  this.logoutAction.setTicketGrantingTicketCookieGenerator(this.ticketGrantingTicketCookieGenerator);
   this.logoutAction.setServicesManager(this.serviceManager);
 }

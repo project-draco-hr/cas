@@ -4,20 +4,5 @@
     return new Event(this,NOT_EXISTS);
   }
   final Ticket ticket=this.ticketRegistry.getTicket(tgtId);
-  boolean valid=false;
-  if (ticket != null) {
-    if (ticket.isExpired()) {
-      logger.debug("Removing expired ticket {}",tgtId);
-      this.ticketRegistry.deleteTicket(tgtId);
-      this.tgtCookieGenerator.removeCookie(WebUtils.getHttpServletResponse(requestContext));
-    }
- else {
-      valid=true;
-    }
-  }
- else {
-    logger.debug("Removing cookie for non-existent ticket {}",tgtId);
-    this.tgtCookieGenerator.removeCookie(WebUtils.getHttpServletResponse(requestContext));
-  }
-  return new Event(this,valid ? VALID : INVALID);
+  return new Event(this,ticket != null && !ticket.isExpired() ? VALID : INVALID);
 }

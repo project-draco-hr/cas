@@ -1,4 +1,0 @@
-{
-  this.ticketRegistry=registry;
-  this.tgtCookieGenerator=tgtCookieGenerator;
-}
