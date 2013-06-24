@@ -1,11 +1,9 @@
 {
   final Cookie cookie=new Cookie(COOKIE_TGC_ID,"test");
   this.request.setCookies(new Cookie[]{cookie});
-  CentralAuthenticationService centralAuthenticationService=mock(CentralAuthenticationService.class);
   LogoutRequest logoutRequest=new LogoutRequest("",null);
   logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
-  when(centralAuthenticationService.destroyTicketGrantingTicket("test")).thenReturn(Arrays.asList(logoutRequest));
-  this.logoutAction.setCentralAuthenticationService(centralAuthenticationService);
+  WebUtils.putLogoutRequests(this.requestContext,Arrays.asList(logoutRequest));
   final Event event=this.logoutAction.doExecute(this.requestContext);
   assertEquals(LogoutAction.FINISH_EVENT,event.getId());
 }

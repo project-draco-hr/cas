@@ -1,0 +1,4 @@
+{
+  final Object value=context.getFlowScope().get(LOGOUT_INDEX);
+  return value == null ? 0 : (Integer)value;
+}

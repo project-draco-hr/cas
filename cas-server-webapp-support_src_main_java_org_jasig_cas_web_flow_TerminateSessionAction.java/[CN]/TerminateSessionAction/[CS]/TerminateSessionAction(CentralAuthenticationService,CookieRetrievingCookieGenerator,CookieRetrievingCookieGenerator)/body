@@ -1,0 +1,5 @@
+{
+  this.centralAuthenticationService=cas;
+  this.ticketGrantingTicketCookieGenerator=tgtCookieGenerator;
+  this.warnCookieGenerator=warnCookieGenerator;
+}

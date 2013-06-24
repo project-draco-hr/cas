@@ -1,18 +1,14 @@
 {
-  final String ticketGrantingTicketId=this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request);
   boolean needFrontSlo=false;
-  if (ticketGrantingTicketId != null) {
-    final List<LogoutRequest> logoutRequests=this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
-    context.getFlowScope().put(LOGOUT_REQUESTS,logoutRequests);
-    context.getFlowScope().put(LOGOUT_INDEX,0);
+  putLogoutIndex(context,0);
+  final List<LogoutRequest> logoutRequests=WebUtils.getLogoutRequests(context);
+  if (logoutRequests != null) {
     for (    LogoutRequest logoutRequest : logoutRequests) {
       if (logoutRequest.getStatus() == LogoutRequestStatus.NOT_ATTEMPTED) {
         needFrontSlo=true;
         break;
       }
     }
-    this.ticketGrantingTicketCookieGenerator.removeCookie(response);
-    this.warnCookieGenerator.removeCookie(response);
   }
   final String service=request.getParameter("service");
   if (this.followServiceRedirects && service != null) {

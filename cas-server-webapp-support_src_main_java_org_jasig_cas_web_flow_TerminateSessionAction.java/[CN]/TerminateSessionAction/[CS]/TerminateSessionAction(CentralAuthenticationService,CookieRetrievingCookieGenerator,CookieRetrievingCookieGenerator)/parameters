@@ -1,0 +1,3 @@
+CentralAuthenticationService cas
+CookieRetrievingCookieGenerator tgtCookieGenerator
+CookieRetrievingCookieGenerator warnCookieGenerator
