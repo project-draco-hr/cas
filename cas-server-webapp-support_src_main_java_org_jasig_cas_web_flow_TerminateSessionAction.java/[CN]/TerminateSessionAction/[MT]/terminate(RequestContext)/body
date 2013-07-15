@@ -1,5 +1,9 @@
 {
-  final String tgtId=WebUtils.getTicketGrantingTicketId(context);
+  String tgtId=WebUtils.getTicketGrantingTicketId(context);
+  if (tgtId == null) {
+    final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+    tgtId=this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request);
+  }
   if (tgtId != null) {
     WebUtils.putLogoutRequests(context,this.centralAuthenticationService.destroyTicketGrantingTicket(tgtId));
   }
