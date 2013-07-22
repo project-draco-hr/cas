@@ -13,7 +13,7 @@
       try {
         result=this.handler.authenticate(newCredentials(username,password));
       }
- catch (      GeneralSecurityException e) {
+ catch (      final GeneralSecurityException e) {
         fail(username + " authentication should have succeeded but failed with error: " + e);
         continue;
       }
