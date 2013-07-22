@@ -10,7 +10,7 @@
       }
     }
   }
- catch (  Exception e) {
+ catch (  final Exception e) {
     if (this.expectedResult instanceof Exception) {
       assertEquals(this.expectedResult.getClass(),e.getClass());
     }
