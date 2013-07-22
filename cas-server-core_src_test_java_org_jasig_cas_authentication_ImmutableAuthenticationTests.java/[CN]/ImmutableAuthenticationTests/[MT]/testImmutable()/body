@@ -16,24 +16,28 @@
     auth.getAuthenticatedDate().setTime(100);
     fail("Should have failed");
   }
- catch (  RuntimeException e) {
+ catch (  final RuntimeException e) {
+    logger.debug("Setting authenticate date/time failed correctly");
   }
   try {
     auth.getCredentials().add(new BasicCredentialMetaData(new UsernamePasswordCredential()));
     fail("Should have failed");
   }
- catch (  RuntimeException e) {
+ catch (  final RuntimeException e) {
+    logger.debug("Adding authentication credential metadata failed correctly");
   }
   try {
     auth.getSuccesses().put("test",new HandlerResult(authenticationHandler,credential1));
     fail("Should have failed");
   }
- catch (  RuntimeException e) {
+ catch (  final RuntimeException e) {
+    logger.debug("Adding authentication success event failed correctly");
   }
   try {
     auth.getFailures().put("test",new FailedLoginException());
     fail("Should have failed");
   }
- catch (  RuntimeException e) {
+ catch (  final RuntimeException e) {
+    logger.debug("Adding authentication failure event failed correctly");
   }
 }
