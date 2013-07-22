@@ -5,7 +5,7 @@
     this.authenticationHandler.authenticate(credentials);
     fail("An AuthenticationException should have been thrown");
   }
- catch (  GeneralSecurityException e) {
+ catch (  final GeneralSecurityException e) {
     assertNull(credentials.getNextToken());
     assertNull(credentials.getPrincipal());
   }
