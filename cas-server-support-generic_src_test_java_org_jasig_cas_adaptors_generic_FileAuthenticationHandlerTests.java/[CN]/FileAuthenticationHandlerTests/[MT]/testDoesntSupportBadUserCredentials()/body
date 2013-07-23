@@ -3,7 +3,7 @@
     final HttpBasedServiceCredential c=new HttpBasedServiceCredential(new URL("http://www.rutgers.edu"));
     assertFalse(this.authenticationHandler.supports(c));
   }
- catch (  MalformedURLException e) {
+ catch (  final MalformedURLException e) {
     fail("MalformedURLException caught.");
   }
 }

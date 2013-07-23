@@ -1,7 +1,7 @@
 {
   final List<TestPrincipal> principals;
   try {
-    LOG.info("Loading test principals from {}",resource);
+    LOGGER.info("Loading test principals from {}",resource);
     principals=MAPPER.readValue(resource.getInputStream(),new TypeReference<List<TestPrincipal>>(){
     }
 );
