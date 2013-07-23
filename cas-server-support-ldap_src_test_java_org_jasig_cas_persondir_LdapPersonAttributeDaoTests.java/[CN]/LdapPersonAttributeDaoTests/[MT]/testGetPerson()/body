@@ -1,9 +1,11 @@
 {
   IPersonAttributes actual;
-  for (  TestPrincipal expected : TestPrincipal.loadFromResource(testPrincipals)) {
-    actual=attributeDao.getPerson(expected.getUserName());
+  String username;
+  for (  final LdapEntry entry : this.testEntries) {
+    username=getUsername(entry);
+    actual=attributeDao.getPerson(username);
     assertNotNull(actual);
-    assertEquals(expected.getId(),actual.getName());
-    assertAttributesSame(expected.getAttributes(),actual.getAttributes());
+    assertEquals(username,actual.getName());
+    assertSameValues(entry.getAttribute("mail").getStringValues(),actual.getAttributes().get("mail"));
   }
 }

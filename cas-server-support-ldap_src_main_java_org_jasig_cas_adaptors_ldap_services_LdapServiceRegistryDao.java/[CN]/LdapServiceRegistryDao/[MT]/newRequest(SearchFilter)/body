@@ -1,0 +1,16 @@
+{
+  final SearchRequest sr=new SearchRequest(this.searchRequest.getBaseDn(),filter);
+  sr.setBinaryAttributes(this.searchRequest.getBinaryAttributes());
+  sr.setDerefAliases(this.searchRequest.getDerefAliases());
+  sr.setSearchEntryHandlers(this.searchRequest.getSearchEntryHandlers());
+  sr.setSearchReferenceHandlers(this.searchRequest.getSearchReferenceHandlers());
+  sr.setFollowReferrals(this.searchRequest.getFollowReferrals());
+  sr.setReturnAttributes(this.searchRequest.getReturnAttributes());
+  sr.setSearchScope(this.searchRequest.getSearchScope());
+  sr.setSizeLimit(this.searchRequest.getSizeLimit());
+  sr.setSortBehavior(this.searchRequest.getSortBehavior());
+  sr.setTimeLimit(this.searchRequest.getTimeLimit());
+  sr.setTypesOnly(this.searchRequest.getTypesOnly());
+  sr.setControls(this.searchRequest.getControls());
+  return sr;
+}

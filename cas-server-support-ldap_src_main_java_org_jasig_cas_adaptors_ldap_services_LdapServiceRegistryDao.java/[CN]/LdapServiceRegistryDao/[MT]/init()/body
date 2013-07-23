@@ -1,0 +1,4 @@
+{
+  this.searchFilter='(' + this.ldapServiceMapper.getIdAttribute() + "={0})";
+  this.loadFilter="(objectClass=" + this.ldapServiceMapper.getObjectClass() + ')';
+}

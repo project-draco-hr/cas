@@ -2,9 +2,9 @@
   Connection connection=null;
   try {
     connection=this.connectionFactory.getConnection();
-    final Response<SearchResult> result=searchForServiceById(connection,rs.getId());
-    if (result.getResult() != null) {
-      final String currentDn=result.getResult().getEntry().getDn();
+    final Response<SearchResult> response=searchForServiceById(connection,rs.getId());
+    if (hasResults(response)) {
+      final String currentDn=response.getResult().getEntry().getDn();
       connection=this.connectionFactory.getConnection();
       final ModifyOperation operation=new ModifyOperation(connection);
       final List<AttributeModification> mods=new ArrayList<AttributeModification>();

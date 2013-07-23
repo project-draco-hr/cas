@@ -1,7 +1,11 @@
 {
-  User expected;
-  for (  String user : testUserDetails.stringPropertyNames()) {
-    expected=parseUserDetails(testUserDetails.get(user).toString());
-    assertEquals(expected,userDetailsService.loadUserByUsername(user));
+  UserDetails user;
+  String username;
+  for (  final LdapEntry entry : this.testEntries) {
+    username=getUsername(entry);
+    user=userDetailsService.loadUserByUsername(username);
+    assertEquals(username,user.getUsername());
+    assertTrue(hasAuthority(user,"ROLE_ADMINISTRATORS"));
+    assertTrue(hasAuthority(user,"ROLE_USERS"));
   }
 }

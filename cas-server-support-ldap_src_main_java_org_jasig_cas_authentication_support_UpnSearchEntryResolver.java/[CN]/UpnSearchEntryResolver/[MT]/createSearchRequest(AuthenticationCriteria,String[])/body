@@ -1,0 +1,7 @@
+{
+  final SearchRequest sr=new SearchRequest();
+  sr.setBaseDn(this.baseDn);
+  sr.setSearchFilter(new SearchFilter(UPN_ATTR + '=' + ac.getDn()));
+  sr.setReturnAttributes(getReturnAttributes());
+  return sr;
+}

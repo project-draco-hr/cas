@@ -1,0 +1,8 @@
+{
+  for (  final GrantedAuthority authority : user.getAuthorities()) {
+    if (authority.getAuthority().equals(name)) {
+      return true;
+    }
+  }
+  return false;
+}

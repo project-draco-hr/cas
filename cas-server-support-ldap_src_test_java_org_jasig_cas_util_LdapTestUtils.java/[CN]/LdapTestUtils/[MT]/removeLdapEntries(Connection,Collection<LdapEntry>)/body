@@ -1,0 +1,10 @@
+{
+  for (  final LdapEntry entry : entries) {
+    try {
+      new DeleteOperation(connection).execute(new DeleteRequest(entry.getDn()));
+    }
+ catch (    final LdapException e) {
+      LOGGER.warn("LDAP error removing entry {}",entry,e);
+    }
+  }
+}

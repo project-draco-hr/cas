@@ -5,16 +5,17 @@
     if (s != null) {
       s.setId(LdapUtils.getLong(entry,this.idAttribute,Long.valueOf(entry.getDn().hashCode())));
       s.setServiceId(LdapUtils.getString(entry,this.serviceIdAttribute));
-      s.setName(LdapUtils.getString(entry,this.namingAttribute));
+      s.setName(LdapUtils.getString(entry,this.serviceNameAttribute));
       s.setDescription(LdapUtils.getString(entry,this.serviceDescriptionAttribute));
+      s.setEnabled(LdapUtils.getBoolean(entry,this.serviceEnabledAttribute));
       s.setTheme(LdapUtils.getString(entry,this.serviceThemeAttribute));
       s.setEvaluationOrder(LdapUtils.getLong(entry,this.evaluationOrderAttribute).intValue());
       s.setUsernameAttribute(LdapUtils.getString(entry,this.usernameAttribute));
-      s.setEnabled(LdapUtils.getBoolean(entry,this.serviceEnabledAttribute));
       s.setAllowedToProxy(LdapUtils.getBoolean(entry,this.serviceAllowedToProxyAttribute));
       s.setAnonymousAccess(LdapUtils.getBoolean(entry,this.serviceAnonymousAccessAttribute));
       s.setSsoEnabled(LdapUtils.getBoolean(entry,this.serviceSsoEnabledAttribute));
       s.setAllowedAttributes(new ArrayList<String>(getMultiValuedAttributeValues(entry,this.serviceAllowedAttributesAttribute)));
+      s.setIgnoreAttributes(LdapUtils.getBoolean(entry,this.ignoreAttributesAttribute));
       s.setRequiredHandlers(new HashSet<String>(getMultiValuedAttributeValues(entry,this.requiredHandlersAttribute)));
     }
     return s;
