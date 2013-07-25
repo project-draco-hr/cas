@@ -1,8 +1,6 @@
 {
   if (credential instanceof ClientCredential) {
-    final ClientCredential clientCredentials=(ClientCredential)credential;
-    final Authentication temp=builder.build();
-    builder.setPrincipal(new SimplePrincipal(temp.getPrincipal().getId(),clientCredentials.getUserProfile().getAttributes()));
-    builder.addAttribute(CLIENT_NAME,clientCredentials.getCredentials().getClientName());
+    final ClientCredential clientCredential=(ClientCredential)credential;
+    builder.addAttribute(CLIENT_NAME,clientCredential.getCredentials().getClientName());
   }
 }

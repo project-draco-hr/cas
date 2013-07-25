@@ -6,12 +6,12 @@
   final String clientName=request.getParameter(this.clients.getClientNameParameter());
   logger.debug("clientName : {}",clientName);
   if (StringUtils.isNotBlank(clientName)) {
-    final BaseClient<org.pac4j.core.credentials.Credentials,CommonProfile> client=(BaseClient<org.pac4j.core.credentials.Credentials,CommonProfile>)this.clients.findClient(clientName);
+    final BaseClient<Credentials,CommonProfile> client=(BaseClient<Credentials,CommonProfile>)this.clients.findClient(clientName);
     logger.debug("client : {}",client);
     if (client.getProtocol() == Protocol.HTTP) {
       throw new TechnicalException("HTTP protocol client not supported : " + client);
     }
-    final org.pac4j.core.credentials.Credentials credentials;
+    final Credentials credentials;
     try {
       credentials=client.getCredentials(webContext);
       logger.debug("credentials : {}",credentials);
@@ -28,18 +28,11 @@
     restoreRequestAttribute(request,session,THEME);
     restoreRequestAttribute(request,session,LOCALE);
     restoreRequestAttribute(request,session,METHOD);
-    final ClientCredential clientCredentials=new ClientCredential(credentials);
-    try {
-      WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(clientCredentials));
+    if (credentials != null) {
+      WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(new ClientCredential(credentials)));
       return success();
     }
- catch (    final TicketException e) {
-      prepareForLoginPage(context);
-      return error();
-    }
   }
- else {
-    prepareForLoginPage(context);
-    return error();
-  }
+  prepareForLoginPage(context);
+  return error();
 }
