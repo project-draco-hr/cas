@@ -1,3 +1,0 @@
-{
-  return new HandlerResult(this,new BasicCredentialMetaData(new UsernamePasswordCredential()),createPrincipal(response.getLdapEntry()));
-}

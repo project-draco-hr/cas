@@ -1,6 +1,6 @@
 {
-  final SearchOperation searchOperation=new SearchOperation(connection,this.cacheStrategy);
-  this.searchRequest.setSearchFilter(filter);
-  logger.debug("Using search request [{}]",searchRequest.toString());
-  return searchOperation.execute(searchRequest);
+  final SearchOperation searchOperation=new SearchOperation(connection);
+  final SearchRequest request=newRequest(filter);
+  logger.debug("Using search request {}",request.toString());
+  return searchOperation.execute(request);
 }

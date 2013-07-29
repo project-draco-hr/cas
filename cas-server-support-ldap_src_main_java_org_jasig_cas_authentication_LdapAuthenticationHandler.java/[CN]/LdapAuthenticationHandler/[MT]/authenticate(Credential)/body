@@ -4,6 +4,9 @@
   try {
     logger.debug("Attempting LDAP authentication for {}",credential);
     final AuthenticationRequest request=new AuthenticationRequest(upc.getUsername(),new org.ldaptive.Credential(upc.getPassword()),this.authenticatedEntryAttributes);
+    if (this.authenticator.getEntryResolver() instanceof SearchEntryResolver) {
+      ((SearchEntryResolver)this.authenticator.getEntryResolver()).setReturnAttributes(this.authenticatedEntryAttributes);
+    }
     response=this.authenticator.authenticate(request);
   }
  catch (  final LdapException e) {
@@ -12,7 +15,10 @@
   logger.debug("LDAP response: {}",response);
   examineAccountState(response);
   if (response.getResult()) {
-    doPostAuthentication(response);
+    return doPostAuthentication(upc,response);
   }
-  throw new FailedLoginException("LDAP authentication failed.");
+  if (AuthenticationResultCode.DN_RESOLUTION_FAILURE == response.getAuthenticationResultCode()) {
+    throw new AccountNotFoundException(upc.getUsername() + " not found.");
+  }
+  throw new FailedLoginException("Invalid credentials.");
 }

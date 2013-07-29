@@ -1,0 +1,14 @@
+{
+  super.tearDown();
+  if (!this.enableLdapTests) {
+    return;
+  }
+  final Connection connection=getConnection();
+  try {
+    connection.open();
+    LdapTestUtils.removeLdapEntries(connection,this.groupEntries);
+  }
+  finally {
+    connection.close();
+  }
+}

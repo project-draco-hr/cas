@@ -1,9 +1,0 @@
-{
-  final String[] userRoles=s.split(":");
-  final String[] roles=userRoles[1].split("\\|");
-  final Collection<SimpleGrantedAuthority> roleAuthorities=new ArrayList<SimpleGrantedAuthority>(roles.length);
-  for (  String role : roles) {
-    roleAuthorities.add(new SimpleGrantedAuthority(role));
-  }
-  return new User(userRoles[0],LdapUserDetailsService.UNKNOWN_PASSWORD,roleAuthorities);
-}

@@ -1,4 +1,0 @@
-{
-  monitor.setMaxWait(5);
-  assertEquals(StatusCode.WARN,monitor.observe().getCode());
-}

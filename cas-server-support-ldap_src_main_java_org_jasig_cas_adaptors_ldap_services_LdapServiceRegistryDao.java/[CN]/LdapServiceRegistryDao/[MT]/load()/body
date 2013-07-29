@@ -3,10 +3,9 @@
   final List<RegisteredService> list=new LinkedList<RegisteredService>();
   try {
     connection=this.connectionFactory.getConnection();
-    final SearchFilter filter=new SearchFilter(this.loadFilter);
-    final Response<SearchResult> result=executeSearchOperation(connection,filter);
-    if (result.getResult() != null) {
-      for (      final LdapEntry entry : result.getResult().getEntries()) {
+    final Response<SearchResult> response=executeSearchOperation(connection,new SearchFilter(this.loadFilter));
+    if (hasResults(response)) {
+      for (      final LdapEntry entry : response.getResult().getEntries()) {
         final RegisteredService svc=this.ldapServiceMapper.mapToRegisteredService(entry);
         list.add(svc);
       }

@@ -1,4 +1,0 @@
-{
-  monitor=new PoolingLdapConnectionMonitor(poolingContextSource);
-  monitor.setExecutor(executor);
-}

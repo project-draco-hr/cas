@@ -1,0 +1,18 @@
+{
+  this.enableLdapTests=System.getProperty("enableLdapTests") != null;
+  Assume.assumeTrue("enableLdapTests system property not set",this.enableLdapTests);
+  this.context=new ClassPathXmlApplicationContext(this.contextPaths);
+  this.baseDn=this.context.getBean("baseDn",String.class);
+  this.usersLdif=this.context.getBean("usersLdif",Resource.class);
+  this.usernameAttribute=this.context.getBean("usernameAttribute",String.class);
+  this.provisioningConnectionFactory=this.context.getBean("provisioningConnectionFactory",ConnectionFactory.class);
+  this.testEntries=LdapTestUtils.readLdif(this.usersLdif,this.baseDn);
+  final Connection connection=getConnection();
+  try {
+    connection.open();
+    LdapTestUtils.createLdapEntries(connection,this.directoryType,this.testEntries);
+  }
+  finally {
+    connection.close();
+  }
+}
