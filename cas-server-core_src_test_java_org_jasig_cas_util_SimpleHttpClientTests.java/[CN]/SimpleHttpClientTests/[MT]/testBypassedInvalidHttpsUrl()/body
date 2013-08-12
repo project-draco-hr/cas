@@ -1,5 +1,5 @@
 {
-  final HttpClient client=this.getHttpClient();
+  final SimpleHttpClient client=this.getHttpClient();
   client.setSSLSocketFactory(this.getFriendlyToAllSSLSocketFactory());
   client.setHostnameVerifier(this.getFriendlyToAllHostnameVerifier());
   client.setAcceptableCodes(new int[]{200,403});
