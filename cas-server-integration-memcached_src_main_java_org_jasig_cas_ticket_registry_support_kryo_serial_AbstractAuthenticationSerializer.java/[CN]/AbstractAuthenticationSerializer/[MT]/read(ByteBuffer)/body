@@ -1,3 +1,0 @@
-{
-  return createAuthentication(new Date(buffer.getLong()),(Principal)kryo.readClassAndObject(buffer),attrSerializer.read(buffer));
-}

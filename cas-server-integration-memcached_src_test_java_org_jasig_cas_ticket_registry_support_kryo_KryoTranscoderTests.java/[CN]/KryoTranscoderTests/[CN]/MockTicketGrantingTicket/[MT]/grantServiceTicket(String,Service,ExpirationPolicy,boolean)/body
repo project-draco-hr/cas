@@ -1,0 +1,4 @@
+{
+  this.usageCount++;
+  return new MockServiceTicket(id);
+}

@@ -1,4 +1,0 @@
-{
-  this.kryo=kryo;
-  attrSerializer=new AttributeMapSerializer(kryo);
-}

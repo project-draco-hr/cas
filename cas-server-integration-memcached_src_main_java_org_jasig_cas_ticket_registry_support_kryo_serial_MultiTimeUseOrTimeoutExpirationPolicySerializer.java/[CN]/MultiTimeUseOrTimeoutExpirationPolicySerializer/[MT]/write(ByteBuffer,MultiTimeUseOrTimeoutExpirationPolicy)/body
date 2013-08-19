@@ -1,4 +1,0 @@
-{
-  buffer.putInt((Integer)fieldHelper.getFieldValue(policy,"numberOfUses"));
-  buffer.putLong((Long)fieldHelper.getFieldValue(policy,"timeToKillInMilliSeconds"));
-}

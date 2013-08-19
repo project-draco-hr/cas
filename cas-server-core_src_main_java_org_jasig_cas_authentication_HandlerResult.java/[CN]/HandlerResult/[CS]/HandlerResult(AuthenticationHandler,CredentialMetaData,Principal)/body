@@ -1,3 +1,3 @@
 {
-  this(source,metaData,p,Collections.<Message>emptyList());
+  this(source,metaData,p,null);
 }
