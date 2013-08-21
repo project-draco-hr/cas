@@ -1,5 +1,5 @@
 {
   Assert.notNull(id,"id cannot be null");
   this.id=id;
-  this.attributes=attributes == null || attributes.isEmpty() ? EMPTY_MAP : Collections.unmodifiableMap(attributes);
+  this.attributes=attributes;
 }

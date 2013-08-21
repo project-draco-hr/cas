@@ -1,19 +1,21 @@
 {
   kryo.register(ArrayList.class);
+  kryo.register(BasicCredentialMetaData.class);
+  kryo.register(Class.class,new ClassSerializer(kryo));
   kryo.register(Date.class,new DateSerializer());
-  kryo.register(HardTimeoutExpirationPolicy.class,new HardTimeoutExpirationPolicySerializer(fieldHelper));
+  kryo.register(HardTimeoutExpirationPolicy.class);
   kryo.register(HashMap.class);
+  kryo.register(HandlerResult.class);
   kryo.register(ImmutableAuthentication.class);
-  kryo.register(MultiTimeUseOrTimeoutExpirationPolicy.class,new MultiTimeUseOrTimeoutExpirationPolicySerializer(fieldHelper));
-  kryo.register(NeverExpiresExpirationPolicy.class,new FieldSerializer(kryo,NeverExpiresExpirationPolicy.class));
-  kryo.register(RememberMeDelegatingExpirationPolicy.class,new FieldSerializer(kryo,RememberMeDelegatingExpirationPolicy.class));
+  kryo.register(MultiTimeUseOrTimeoutExpirationPolicy.class);
+  kryo.register(NeverExpiresExpirationPolicy.class);
+  kryo.register(RememberMeDelegatingExpirationPolicy.class);
   kryo.register(ServiceTicketImpl.class);
-  kryo.register(SimplePrincipal.class,new SimplePrincipalSerializer(kryo));
   kryo.register(SimpleWebApplicationServiceImpl.class,new SimpleWebApplicationServiceSerializer(kryo));
+  kryo.register(ThrottledUseAndTimeoutExpirationPolicy.class);
+  kryo.register(TicketGrantingTicketExpirationPolicy.class);
   kryo.register(TicketGrantingTicketImpl.class);
-  kryo.register(ThrottledUseAndTimeoutExpirationPolicy.class,new FieldSerializer(kryo,ThrottledUseAndTimeoutExpirationPolicy.class));
-  kryo.register(TicketGrantingTicketExpirationPolicy.class,new FieldSerializer(kryo,TicketGrantingTicketExpirationPolicy.class));
-  kryo.register(TimeoutExpirationPolicy.class,new TimeoutExpirationPolicySerializer(fieldHelper));
+  kryo.register(TimeoutExpirationPolicy.class);
   if (serializerMap != null) {
     for (    final Class<?> clazz : serializerMap.keySet()) {
       kryo.register(clazz,serializerMap.get(clazz));

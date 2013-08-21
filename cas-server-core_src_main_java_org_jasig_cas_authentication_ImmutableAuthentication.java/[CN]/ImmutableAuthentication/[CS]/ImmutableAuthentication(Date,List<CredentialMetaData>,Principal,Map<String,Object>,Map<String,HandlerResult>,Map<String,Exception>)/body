@@ -5,7 +5,7 @@
   Assert.notNull(successes,"Successes cannot be null");
   Assert.notEmpty(credentials,"Credential cannot be empty");
   Assert.notEmpty(successes,"Successes cannot be empty");
-  this.authenticatedDate=new ImmutableDate(date.getTime());
+  this.authenticatedDate=date.getTime();
   this.credentials=credentials;
   this.principal=principal;
   this.attributes=attributes.isEmpty() ? null : attributes;

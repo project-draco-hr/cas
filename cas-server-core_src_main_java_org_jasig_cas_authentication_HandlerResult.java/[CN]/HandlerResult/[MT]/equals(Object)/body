@@ -6,5 +6,10 @@
     return true;
   }
   final HandlerResult other=(HandlerResult)obj;
-  return this.handlerName.equals(other.getHandlerName()) && this.credentialMetaData.equals(other.getCredentialMetaData()) && this.principal.equals(other.getPrincipal())&& this.warnings.equals(other.getWarnings());
+  final EqualsBuilder builder=new EqualsBuilder();
+  builder.append(this.handlerName,other.handlerName);
+  builder.append(this.credentialMetaData,other.credentialMetaData);
+  builder.append(this.principal,other.principal);
+  builder.append(this.warnings,other.warnings);
+  return builder.isEquals();
 }

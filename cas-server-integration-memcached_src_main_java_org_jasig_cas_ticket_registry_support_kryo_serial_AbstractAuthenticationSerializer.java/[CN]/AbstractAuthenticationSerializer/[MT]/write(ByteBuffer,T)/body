@@ -1,5 +1,0 @@
-{
-  buffer.putLong(auth.getAuthenticatedDate().getTime());
-  kryo.writeClassAndObject(buffer,auth.getPrincipal());
-  attrSerializer.write(buffer,auth.getAttributes());
-}

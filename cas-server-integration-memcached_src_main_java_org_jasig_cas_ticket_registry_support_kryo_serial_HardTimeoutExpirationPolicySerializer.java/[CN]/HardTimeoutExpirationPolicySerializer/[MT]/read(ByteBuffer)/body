@@ -1,3 +1,0 @@
-{
-  return new HardTimeoutExpirationPolicy(buffer.getLong());
-}

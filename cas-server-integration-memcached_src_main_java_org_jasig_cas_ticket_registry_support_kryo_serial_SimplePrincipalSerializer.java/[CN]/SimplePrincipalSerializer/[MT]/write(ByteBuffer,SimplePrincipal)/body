@@ -1,4 +1,0 @@
-{
-  kryo.writeObjectData(buffer,principal.getId());
-  attrSerializer.write(buffer,principal.getAttributes());
-}
