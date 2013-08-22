@@ -5,7 +5,7 @@
   final RadiusClient client=this.radiusClientFactory.newInstance();
   try {
     final AccessRequest request=new AccessRequest(client,attributeList);
-    final RadiusPacket response=client.authenticate(request,RadiusClient.getAuthProtocol(this.protocol.name()),this.retries);
+    final RadiusPacket response=client.authenticate(request,RadiusClient.getAuthProtocol(this.protocol.getName()),this.retries);
     LOGGER.debug("RADIUS response from {}: {}",client.getRemoteInetAddress().getCanonicalHostName(),response.getClass().getName());
     if (response instanceof AccessAccept) {
       return true;
