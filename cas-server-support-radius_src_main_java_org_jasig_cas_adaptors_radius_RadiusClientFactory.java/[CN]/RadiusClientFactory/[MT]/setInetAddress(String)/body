@@ -1,0 +1,8 @@
+{
+  try {
+    this.inetAddress=InetAddress.getByName(address);
+  }
+ catch (  final UnknownHostException e) {
+    throw new RuntimeException("Invalid address " + address);
+  }
+}

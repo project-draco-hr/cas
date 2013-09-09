@@ -1,7 +1,0 @@
-String hostName
-String sharedSecret
-RadiusAuthenticator radiusAuthenticator
-int authenticationPort
-int accountingPort
-int socketTimeout
-int retries

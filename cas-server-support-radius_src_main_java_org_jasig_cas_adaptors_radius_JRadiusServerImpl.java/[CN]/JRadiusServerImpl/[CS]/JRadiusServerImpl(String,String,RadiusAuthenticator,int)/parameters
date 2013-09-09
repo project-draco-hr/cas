@@ -1,4 +1,0 @@
-String hostName
-String sharedSecret
-RadiusAuthenticator radiusAuthenticator
-int authenticationPort
