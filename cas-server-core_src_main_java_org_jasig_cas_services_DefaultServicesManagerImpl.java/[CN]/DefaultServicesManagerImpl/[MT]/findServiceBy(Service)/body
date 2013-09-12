@@ -1,8 +1,5 @@
 {
   final Collection<RegisteredService> c=convertToTreeSet();
-  if (c.isEmpty()) {
-    return this.disabledRegisteredService;
-  }
   for (  final RegisteredService r : c) {
     if (r.matches(service)) {
       return r;
