@@ -1,4 +1,0 @@
-{
-  UnauthorizedServiceException e=new UnauthorizedServiceException();
-  assertEquals(CODE,e.getMessage());
-}

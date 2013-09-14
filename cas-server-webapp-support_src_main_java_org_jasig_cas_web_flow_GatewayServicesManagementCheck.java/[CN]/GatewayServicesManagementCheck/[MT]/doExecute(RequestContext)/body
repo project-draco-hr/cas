@@ -4,5 +4,6 @@
   if (match) {
     return success();
   }
-  throw new UnauthorizedServiceException(String.format("Service [%s] is not authorized to use CAS.",service.getId()));
+  logger.warn("Service [{}] is not authorized to use CAS.",service.getId());
+  throw UnauthorizedServiceException.UNAUTHZ_SVC_EXCEPTION;
 }

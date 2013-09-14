@@ -4,9 +4,9 @@
   final ServiceTicket serviceTicket=this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService == null || !registeredService.isEnabled()) {
-    final String msg=String.format("ServiceManagement: Service [%s] does not exist or is not enabled, and thus not allowed to validate tickets.",service.getId());
+    final String msg=String.format("ServiceManagement: Service [%s] does not exist or is not enabled" + " and thus not allowed to validate tickets.",service.getId());
     logger.warn(msg);
-    throw new UnauthorizedServiceException(msg);
+    throw UnauthorizedServiceException.UNAUTHZ_SVC_EXCEPTION;
   }
   if (serviceTicket == null) {
     logger.info("ServiceTicket [{}] does not exist.",serviceTicketId);
