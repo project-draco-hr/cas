@@ -4,6 +4,7 @@
   if (match) {
     return success();
   }
-  logger.warn("Service [{}] is not authorized to use CAS.",service.getId());
-  throw UnauthorizedServiceException.UNAUTHZ_SVC_EXCEPTION;
+  final String msg=String.format("ServiceManagement: Unauthorized Service Access. " + "Service [%s] does not match entries in service registry.",service.getId());
+  logger.warn(msg);
+  throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE,msg);
 }
