@@ -1,5 +1,4 @@
 {
   this.serviceRegistryDao=serviceRegistryDao;
-  this.disabledRegisteredService=constructDefaultRegisteredService(defaultAttributes);
   load();
 }

@@ -14,10 +14,7 @@ synchronized (ticketGrantingTicket) {
     }
   }
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-  if (registeredService == null || !registeredService.isEnabled()) {
-    logger.warn("ServiceManagement: Unauthorized Service Access. Service [{}] is not found in service registry.",service.getId());
-    throw new UnauthorizedServiceException();
-  }
+  verifyRegisteredServiceProperties(registeredService,service);
   if (!registeredService.isSsoEnabled() && credentials == null && ticketGrantingTicket.getCountOfUses() > 0) {
     logger.warn("ServiceManagement: Service [{}] is not allowed to use SSO.",service.getId());
     throw new UnauthorizedSsoServiceException();

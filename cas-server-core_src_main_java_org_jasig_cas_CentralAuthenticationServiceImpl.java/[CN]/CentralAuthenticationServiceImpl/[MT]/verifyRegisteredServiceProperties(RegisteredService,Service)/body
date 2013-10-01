@@ -1,14 +1,4 @@
 {
-  final Service service=WebUtils.getService(context);
-  if (service == null) {
-    return success();
-  }
-  if (this.servicesManager.getAllServices().size() == 0) {
-    final String msg=String.format("No service definitions are found in the service manager. " + "Service [%s] will not be automatically authorized to request authentication.",service.getId());
-    logger.warn(msg);
-    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_EMPTY_SVC_MGMR);
-  }
-  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService == null) {
     final String msg=String.format("ServiceManagement: Unauthorized Service Access. " + "Service [%s] is not found in service registry.",service.getId());
     logger.warn(msg);
@@ -19,5 +9,4 @@
     logger.warn(msg);
     throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE,msg);
   }
-  return success();
 }
