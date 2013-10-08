@@ -10,7 +10,9 @@
       }
       response.setHeader(SpnegoConstants.HEADER_AUTHENTICATE,this.ntlm ? SpnegoConstants.NTLM : SpnegoConstants.NEGOTIATE);
       response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-      context.getExternalContext().recordResponseComplete();
+      if (!this.mixedModeAuthentication) {
+        context.getExternalContext().recordResponseComplete();
+      }
     }
   }
   return success();
