@@ -1,0 +1,4 @@
+{
+  this.loader.setUseCodeAsDefaultMessage(false);
+  this.loader.getMessage("does.not.exist",null,Locale.FRENCH);
+}

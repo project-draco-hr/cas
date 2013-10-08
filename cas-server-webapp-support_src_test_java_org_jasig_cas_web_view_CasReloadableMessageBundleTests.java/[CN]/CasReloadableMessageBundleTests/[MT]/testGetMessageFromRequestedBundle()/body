@@ -1,0 +1,4 @@
+{
+  final String msg=this.loader.getMessage("screen.blocked.header",null,Locale.FRENCH);
+  assertNotNull(msg);
+}

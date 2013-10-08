@@ -1,0 +1,7 @@
+{
+  final String messageToReturn=super.getDefaultMessage(code);
+  if (!StringUtils.isBlank(messageToReturn) && messageToReturn.equals(code)) {
+    logger.warn("The key [{}] cannot be found in the requested and default language bundles. The " + "code [{}] itself will be used.",code,code);
+  }
+  return messageToReturn;
+}
