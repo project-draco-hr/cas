@@ -1,6 +1,6 @@
 {
   this.expirationPolicy=new ThrottledUseAndTimeoutExpirationPolicy();
   this.expirationPolicy.setTimeToKillInMilliSeconds(TIMEOUT);
-  this.expirationPolicy.setTimeInBetweenUsesInMilliSeconds(1000);
+  this.expirationPolicy.setTimeInBetweenUsesInMilliSeconds(TIMEOUT / 5);
   this.ticket=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),this.expirationPolicy);
 }
