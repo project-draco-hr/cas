@@ -30,7 +30,7 @@ synchronized (serviceTicket) {
     final Principal modifiedPrincipal=new SimplePrincipal(principalId,attributesToRelease);
     final AuthenticationBuilder builder=AuthenticationBuilder.newInstance(authentication);
     builder.setPrincipal(modifiedPrincipal);
-    return new ImmutableAssertion(builder.build(),root.getChainedAuthentications(),serviceTicket.getService(),serviceTicket.isFromNewLogin());
+    return new ImmutableAssertion(builder.build(),serviceTicket.getGrantingTicket().getChainedAuthentications(),serviceTicket.getService(),serviceTicket.isFromNewLogin());
   }
   finally {
     if (serviceTicket.isExpired()) {
