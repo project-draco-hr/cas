@@ -1,0 +1,8 @@
+{
+  final String filename=this.basename + "_" + locale.getLanguage();
+  final PropertiesHolder holder=this.getProperties(filename);
+  if (holder == null || holder.getProperty(code) == null) {
+    logger.warn("The code [{}] cannot be found in the language bundle for the locale [{}]",code,locale);
+  }
+  return super.getMessageInternal(code,args,locale);
+}
