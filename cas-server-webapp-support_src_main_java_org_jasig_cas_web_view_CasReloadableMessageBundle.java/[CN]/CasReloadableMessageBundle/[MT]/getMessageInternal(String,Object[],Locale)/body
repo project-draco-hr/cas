@@ -5,7 +5,7 @@
       final String filename=this.basenames[i] + "_" + locale.getLanguage();
       logger.debug("Examining language bundle [{}] for the code [{}]",filename,code);
       final PropertiesHolder holder=this.getProperties(filename);
-      foundCode=holder != null && holder.getProperties() != null && holder.getProperties().size() > 0 && holder.getProperty(code) != null;
+      foundCode=holder != null && holder.getProperties() != null && holder.getProperty(code) != null;
     }
     if (!foundCode) {
       logger.warn("The code [{}] cannot be found in the language bundle for the locale [{}]",code,locale);
