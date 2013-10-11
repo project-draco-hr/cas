@@ -1,0 +1,11 @@
+{
+  CentralAuthenticationService cas=getCentralAuthenticationService();
+  Service svc=TestUtils.getService("testDefault");
+  UsernamePasswordCredential goodCredential=TestUtils.getCredentialsWithSameUsernameAndPassword();
+  String tgtId=cas.createTicketGrantingTicket(goodCredential);
+  cas.grantServiceTicket(tgtId,svc);
+  String st2Id=cas.grantServiceTicket(tgtId,svc,goodCredential);
+  Assertion assertion=cas.validateServiceTicket(st2Id,svc);
+  ValidationSpecification validationSpecification=new Cas20WithoutProxyingValidationSpecification();
+  assertTrue(validationSpecification.isSatisfiedBy(assertion));
+}
