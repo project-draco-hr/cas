@@ -1,4 +1,0 @@
-{
-  this.basename=basename;
-  super.setBasename(basename);
-}
