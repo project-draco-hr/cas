@@ -1,6 +1,7 @@
 {
   HttpURLConnection connection=null;
   BufferedReader in=null;
+  DataOutputStream printout=null;
   try {
     LOGGER.debug("Attempting to access {}",url);
     final URL logoutUrl=new URL(url);
@@ -14,10 +15,9 @@
     connection.setInstanceFollowRedirects(this.followRedirects);
     connection.setRequestProperty("Content-Length",Integer.toString(output.getBytes().length));
     connection.setRequestProperty("Content-Type",this.contentType);
-    final DataOutputStream printout=new DataOutputStream(connection.getOutputStream());
+    printout=new DataOutputStream(connection.getOutputStream());
     printout.writeBytes(output);
     printout.flush();
-    printout.close();
     in=new BufferedReader(new InputStreamReader(connection.getInputStream()));
     boolean readInput=true;
     while (readInput) {
@@ -35,6 +35,7 @@ catch (  final Exception e) {
     return false;
   }
  finally {
+    IOUtils.closeQuietly(printout);
     IOUtils.closeQuietly(in);
     if (connection != null) {
       connection.disconnect();
