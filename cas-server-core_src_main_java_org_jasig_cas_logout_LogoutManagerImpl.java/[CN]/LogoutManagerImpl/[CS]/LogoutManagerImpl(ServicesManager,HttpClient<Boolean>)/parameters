@@ -1,2 +1,2 @@
 ServicesManager servicesManager
-HttpClient httpClient
+HttpClient<Boolean> httpClient

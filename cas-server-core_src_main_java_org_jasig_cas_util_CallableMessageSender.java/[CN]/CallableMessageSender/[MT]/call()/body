@@ -4,7 +4,7 @@
   try {
     LOGGER.debug("Attempting to access {}",url);
     final URL logoutUrl=new URL(url);
-    final String output="logoutRequest=" + URLEncoder.encode(message,"UTF-8");
+    final String output=formatOutputMessageInternal(this.message);
     connection=(HttpURLConnection)logoutUrl.openConnection();
     connection.setDoInput(true);
     connection.setDoOutput(true);
@@ -13,7 +13,7 @@
     connection.setConnectTimeout(this.connectionTimeout);
     connection.setInstanceFollowRedirects(this.followRedirects);
     connection.setRequestProperty("Content-Length",Integer.toString(output.getBytes().length));
-    connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+    connection.setRequestProperty("Content-Type",this.contentType);
     final DataOutputStream printout=new DataOutputStream(connection.getOutputStream());
     printout.writeBytes(output);
     printout.flush();
