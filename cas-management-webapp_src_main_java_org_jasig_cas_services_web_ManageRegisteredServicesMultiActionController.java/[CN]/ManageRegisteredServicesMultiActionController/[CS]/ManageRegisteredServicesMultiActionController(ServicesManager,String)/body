@@ -1,5 +1,0 @@
-{
-  super();
-  this.servicesManager=servicesManager;
-  this.defaultServiceUrl=defaultServiceUrl;
-}
