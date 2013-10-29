@@ -1,9 +1,0 @@
-{
-  RegisteredService regexService=(RegisteredService)submittedService;
-  this.servicesManager.save(regexService);
-  LOGGER.info("Saved changes to service " + regexService.getId());
-  final ModelAndView modelAndView=new ModelAndView(new RedirectView("manage.html#" + regexService.getId(),true));
-  modelAndView.addObject("action","add");
-  modelAndView.addObject("id",regexService.getId());
-  return modelAndView;
-}
