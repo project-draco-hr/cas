@@ -9,6 +9,5 @@
   model.addAttribute("availableUsernameAttributes",possibleUsernameAttributeNames);
   final String path=request.getServletPath().replace("/","").replace(".html","").concat("ServiceView");
   model.addAttribute("pageTitle",path);
-  model.addAttribute("commandName",COMMAND_NAME);
   return new ModelAndView(VIEW_NAME);
 }

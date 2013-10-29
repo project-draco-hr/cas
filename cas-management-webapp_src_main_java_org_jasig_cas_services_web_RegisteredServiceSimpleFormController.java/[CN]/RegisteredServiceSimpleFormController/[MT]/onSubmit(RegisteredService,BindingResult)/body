@@ -1,4 +1,8 @@
 {
+  this.validator.validate(service,result);
+  if (result.hasErrors()) {
+    return new ModelAndView(VIEW_NAME);
+  }
   RegisteredService svcToUse=service;
   if (service.getId() == RegisteredService.INITIAL_IDENTIFIER_VALUE && service.getServiceId().startsWith("^")) {
     LOGGER.debug("Detected regular expression starting with ^");
