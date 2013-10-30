@@ -1,0 +1,12 @@
+{
+  final List<String> possibleAttributeNames=new ArrayList<String>();
+  possibleAttributeNames.addAll(this.personAttributeDao.getPossibleUserAttributeNames());
+  Collections.sort(possibleAttributeNames);
+  model.addAttribute("availableAttributes",possibleAttributeNames);
+  final List<String> possibleUsernameAttributeNames=new ArrayList<String>();
+  possibleUsernameAttributeNames.addAll(possibleAttributeNames);
+  possibleUsernameAttributeNames.add(0,"");
+  model.addAttribute("availableUsernameAttributes",possibleUsernameAttributeNames);
+  final String path=request.getServletPath().replace("/","").replace(".html","").concat("ServiceView");
+  model.addAttribute("pageTitle",path);
+}

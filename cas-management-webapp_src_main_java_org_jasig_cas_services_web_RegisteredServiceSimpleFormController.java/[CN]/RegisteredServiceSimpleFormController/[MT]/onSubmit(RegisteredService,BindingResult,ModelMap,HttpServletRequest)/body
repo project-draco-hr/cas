@@ -1,4 +1,5 @@
 {
+  updateModelMap(model,request);
   this.validator.validate(service,result);
   if (result.hasErrors()) {
     return new ModelAndView(VIEW_NAME);
