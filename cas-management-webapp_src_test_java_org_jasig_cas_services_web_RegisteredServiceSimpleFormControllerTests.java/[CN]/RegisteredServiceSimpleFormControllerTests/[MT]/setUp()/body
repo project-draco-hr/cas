@@ -1,0 +1,8 @@
+{
+  final Map<String,List<Object>> attributes=new HashMap<String,List<Object>>();
+  attributes.put("test",Arrays.asList(new Object[]{"test"}));
+  this.repository=new StubPersonAttributeDao();
+  this.repository.setBackingMap(attributes);
+  this.manager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
+  this.controller=new RegisteredServiceSimpleFormController(this.manager,this.repository,new RegisteredServiceValidator(this.manager,this.repository));
+}

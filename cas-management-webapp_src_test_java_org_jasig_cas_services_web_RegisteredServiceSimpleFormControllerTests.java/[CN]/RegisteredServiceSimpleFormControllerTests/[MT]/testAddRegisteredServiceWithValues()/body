@@ -1,0 +1,14 @@
+{
+  final RegisteredServiceImpl svc=new RegisteredServiceImpl();
+  svc.setDescription("description");
+  svc.setServiceId("serviceId");
+  svc.setName("name");
+  svc.setEvaluationOrder(123);
+  assertTrue(this.manager.getAllServices().isEmpty());
+  this.controller.onSubmit(svc,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
+  final Collection<RegisteredService> services=this.manager.getAllServices();
+  assertEquals(1,services.size());
+  for (  RegisteredService rs : this.manager.getAllServices()) {
+    assertTrue(rs instanceof RegisteredServiceImpl);
+  }
+}

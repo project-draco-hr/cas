@@ -1,0 +1,8 @@
+{
+  final BindingResult result=mock(BindingResult.class);
+  when(result.getModel()).thenReturn(new HashMap<String,Object>());
+  when(result.hasErrors()).thenReturn(true);
+  final ModelMap model=new ModelMap();
+  this.controller.onSubmit(mock(RegisteredService.class),result,model,new MockHttpServletRequest());
+  assertTrue(result.hasErrors());
+}
