@@ -3,7 +3,8 @@
   impl.setServiceId("test");
   impl.setDescription("fasdfdsafsafsafdsa");
   final BindException exception=new BindException(impl,"registeredService");
-  final Validator validator=getValidator(false);
+  final RegisteredServiceValidator validator=getValidator(false);
+  validator.setMaxDescriptionLength(1);
   validator.validate(impl,exception);
   assertEquals(1,exception.getErrorCount());
 }
