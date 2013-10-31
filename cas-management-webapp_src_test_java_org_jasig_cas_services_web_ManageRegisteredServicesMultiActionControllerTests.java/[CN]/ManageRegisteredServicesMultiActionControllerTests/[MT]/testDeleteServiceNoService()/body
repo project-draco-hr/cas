@@ -1,0 +1,7 @@
+{
+  final ModelAndView modelAndView=this.controller.deleteRegisteredService(1200);
+  assertNotNull(modelAndView);
+  assertNull(this.servicesManager.findServiceBy(1200));
+  assertEquals("deleted",modelAndView.getModel().get("status"));
+  assertEquals("",modelAndView.getModelMap().get("serviceName"));
+}

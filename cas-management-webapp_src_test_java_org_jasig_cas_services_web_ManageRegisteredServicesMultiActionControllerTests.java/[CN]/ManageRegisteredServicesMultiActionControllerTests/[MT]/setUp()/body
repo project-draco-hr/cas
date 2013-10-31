@@ -1,0 +1,4 @@
+{
+  this.servicesManager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
+  this.controller=new ManageRegisteredServicesMultiActionController(this.servicesManager,"foo");
+}
