@@ -1,4 +1,0 @@
-{
-  final Format dateFormat=FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss'Z'");
-  return dateFormat.format(date);
-}

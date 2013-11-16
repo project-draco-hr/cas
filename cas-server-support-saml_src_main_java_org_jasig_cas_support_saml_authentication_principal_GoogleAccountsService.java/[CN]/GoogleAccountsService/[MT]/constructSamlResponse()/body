@@ -16,7 +16,7 @@
       userId=attributeValue;
     }
   }
-  final String currentDateTime=CalendarUtils.getCurrentDateAndTime();
+  final String currentDateTime=ISOStandardDateFormatUtils.getInstance().getCurrentDateAndTime();
   samlResponse=samlResponse.replace("<USERNAME_STRING>",userId);
   samlResponse=samlResponse.replace("<RESPONSE_ID>",createID());
   samlResponse=samlResponse.replace("<ISSUE_INSTANT>",currentDateTime);
