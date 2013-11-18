@@ -1,3 +1,0 @@
-{
-  return getInstance().format(new Date());
-}
