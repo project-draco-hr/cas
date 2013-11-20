@@ -4,11 +4,11 @@
   }
   try {
     final Cipher cipher=getCipherObject();
-    byte[] ivByteArray=algorithmParametersHashMap.get(hashedKey).getIV();
-    IvParameterSpec ivSpec=new IvParameterSpec(ivByteArray);
+    byte[] iv_ciphertext=decode(value.getBytes());
+    byte[] iv=Arrays.copyOfRange(iv_ciphertext,0,IV_LEN);
+    byte[] decrypted64ByteValue=Arrays.copyOfRange(iv_ciphertext,IV_LEN,iv_ciphertext.length);
+    IvParameterSpec ivSpec=new IvParameterSpec(iv);
     cipher.init(Cipher.DECRYPT_MODE,this.key,ivSpec);
-    byte[] valueByteArray=value.getBytes();
-    byte[] decrypted64ByteValue=new Base64().decode(valueByteArray);
     byte[] decryptedByteArray=cipher.doFinal(decrypted64ByteValue);
     return new String(decryptedByteArray);
   }
