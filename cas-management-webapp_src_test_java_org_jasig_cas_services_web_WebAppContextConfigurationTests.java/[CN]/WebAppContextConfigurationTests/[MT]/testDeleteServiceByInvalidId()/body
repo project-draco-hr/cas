@@ -1,0 +1,3 @@
+{
+  this.mvc.perform(get("/deleteRegisteredService.html").param("id","invalid")).andExpect(status().isBadRequest());
+}
