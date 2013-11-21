@@ -4,13 +4,14 @@
   }
   try {
     final Cipher cipher=getCipherObject();
-    byte[] iv=generateIV();
-    IvParameterSpec ivSpec=new IvParameterSpec(iv);
-    cipher.init(Cipher.ENCRYPT_MODE,this.key,ivSpec);
+    byte[] iv_value=generateIV(getInt(this.iv_size));
+    IvParameterSpec iv_spec=new IvParameterSpec(iv_value);
+    cipher.init(Cipher.ENCRYPT_MODE,this.key,iv_spec);
     byte[] ciphertext=cipher.doFinal(value.getBytes());
-    byte[] iv_ciphertext=new byte[iv.length + ciphertext.length];
-    System.arraycopy(iv,0,iv_ciphertext,0,iv.length);
-    System.arraycopy(ciphertext,0,iv_ciphertext,iv.length,ciphertext.length);
+    byte[] iv_ciphertext=new byte[INTEGER_LEN + getInt(this.iv_size) + ciphertext.length];
+    System.arraycopy(this.iv_size,0,iv_ciphertext,0,INTEGER_LEN);
+    System.arraycopy(iv_value,0,iv_ciphertext,INTEGER_LEN,getInt(this.iv_size));
+    System.arraycopy(ciphertext,0,iv_ciphertext,INTEGER_LEN + getInt(this.iv_size),ciphertext.length);
     return new String(encode(iv_ciphertext));
   }
  catch (  final Exception e) {
