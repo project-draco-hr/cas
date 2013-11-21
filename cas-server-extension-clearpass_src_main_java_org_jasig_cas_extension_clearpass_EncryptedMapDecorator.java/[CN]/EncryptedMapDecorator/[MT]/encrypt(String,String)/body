@@ -8,11 +8,11 @@
     IvParameterSpec iv_spec=new IvParameterSpec(iv_value);
     cipher.init(Cipher.ENCRYPT_MODE,this.key,iv_spec);
     byte[] ciphertext=cipher.doFinal(value.getBytes());
-    byte[] iv_ciphertext=new byte[INTEGER_LEN + getInt(this.iv_size) + ciphertext.length];
-    System.arraycopy(this.iv_size,0,iv_ciphertext,0,INTEGER_LEN);
-    System.arraycopy(iv_value,0,iv_ciphertext,INTEGER_LEN,getInt(this.iv_size));
-    System.arraycopy(ciphertext,0,iv_ciphertext,INTEGER_LEN + getInt(this.iv_size),ciphertext.length);
-    return new String(encode(iv_ciphertext));
+    byte[] ivCiphertext=new byte[INTEGER_LEN + getInt(this.iv_size) + ciphertext.length];
+    System.arraycopy(this.iv_size,0,ivCiphertext,0,INTEGER_LEN);
+    System.arraycopy(iv_value,0,ivCiphertext,INTEGER_LEN,getInt(this.iv_size));
+    System.arraycopy(ciphertext,0,ivCiphertext,INTEGER_LEN + getInt(this.iv_size),ciphertext.length);
+    return new String(encode(ivCiphertext));
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);
