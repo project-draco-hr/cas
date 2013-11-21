@@ -11,7 +11,7 @@
     IvParameterSpec iv_spec=new IvParameterSpec(iv_value);
     cipher.init(Cipher.DECRYPT_MODE,this.key,iv_spec);
     byte[] plaintext=cipher.doFinal(ciphertext);
-    return new String(decryptedByteArray);
+    return new String(plaintext);
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);
