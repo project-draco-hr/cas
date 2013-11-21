@@ -5,7 +5,7 @@
   this.secretKeyAlgorithm=secretKeyAlgorithm;
   this.messageDigest=MessageDigest.getInstance(hashAlgorithm);
   try {
-    this.iv_size=getIvLen();
+    this.ivSize=getIvLen();
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);

@@ -1,6 +1,6 @@
 {
   SecureRandom srand=new SecureRandom();
-  byte[] iv_value=new byte[size];
-  srand.nextBytes(iv_value);
-  return iv_value;
+  byte[] ivValue=new byte[size];
+  srand.nextBytes(ivValue);
+  return ivValue;
 }

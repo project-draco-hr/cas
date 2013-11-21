@@ -5,11 +5,11 @@
   try {
     final Cipher cipher=getCipherObject();
     byte[] ivCiphertext=decode(value.getBytes());
-    byte[] iv_size=Arrays.copyOfRange(ivCiphertext,0,INTEGER_LEN);
-    byte[] iv_value=Arrays.copyOfRange(ivCiphertext,INTEGER_LEN,(INTEGER_LEN + getInt(iv_size)));
-    byte[] ciphertext=Arrays.copyOfRange(ivCiphertext,INTEGER_LEN + getInt(iv_size),ivCiphertext.length);
-    IvParameterSpec iv_spec=new IvParameterSpec(iv_value);
-    cipher.init(Cipher.DECRYPT_MODE,this.key,iv_spec);
+    byte[] ivSize=Arrays.copyOfRange(ivCiphertext,0,INTEGER_LEN);
+    byte[] ivValue=Arrays.copyOfRange(ivCiphertext,INTEGER_LEN,(INTEGER_LEN + getInt(ivSize)));
+    byte[] ciphertext=Arrays.copyOfRange(ivCiphertext,INTEGER_LEN + getInt(ivSize),ivCiphertext.length);
+    IvParameterSpec ivSpec=new IvParameterSpec(ivValue);
+    cipher.init(Cipher.DECRYPT_MODE,this.key,ivSpec);
     byte[] plaintext=cipher.doFinal(ciphertext);
     return new String(plaintext);
   }
