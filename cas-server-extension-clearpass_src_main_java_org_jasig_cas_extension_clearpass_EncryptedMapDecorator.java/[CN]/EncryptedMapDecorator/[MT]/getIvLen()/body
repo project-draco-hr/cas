@@ -1,3 +1,0 @@
-{
-  return ByteBuffer.allocate(4).putInt(Cipher.getInstance(CIPHER_ALGORITHM).getBlockSize()).array();
-}

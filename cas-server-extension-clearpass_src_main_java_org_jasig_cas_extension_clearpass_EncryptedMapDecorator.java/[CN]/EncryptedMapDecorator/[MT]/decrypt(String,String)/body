@@ -5,9 +5,9 @@
   try {
     final Cipher cipher=getCipherObject();
     byte[] ivCiphertext=decode(value.getBytes());
-    byte[] ivSize=Arrays.copyOfRange(ivCiphertext,0,INTEGER_LEN);
-    byte[] ivValue=Arrays.copyOfRange(ivCiphertext,INTEGER_LEN,(INTEGER_LEN + getInt(ivSize)));
-    byte[] ciphertext=Arrays.copyOfRange(ivCiphertext,INTEGER_LEN + getInt(ivSize),ivCiphertext.length);
+    int ivSize=byte2int(Arrays.copyOfRange(ivCiphertext,0,INTEGER_LEN));
+    byte[] ivValue=Arrays.copyOfRange(ivCiphertext,INTEGER_LEN,(INTEGER_LEN + ivSize));
+    byte[] ciphertext=Arrays.copyOfRange(ivCiphertext,INTEGER_LEN + ivSize,ivCiphertext.length);
     IvParameterSpec ivSpec=new IvParameterSpec(ivValue);
     cipher.init(Cipher.DECRYPT_MODE,this.key,ivSpec);
     byte[] plaintext=cipher.doFinal(ciphertext);
