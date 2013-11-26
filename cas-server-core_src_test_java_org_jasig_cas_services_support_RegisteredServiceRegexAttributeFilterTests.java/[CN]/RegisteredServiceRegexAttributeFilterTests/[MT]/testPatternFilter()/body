@@ -1,13 +1,13 @@
 {
   when(this.registeredService.isIgnoreAttributes()).thenReturn(false);
-  final Map<String,Object> attrs=this.filter.filter("test",this.givenAttributesMap,this.registeredService);
+  final Map<String,Object> attrs=this.filter.filter("test",this.givenAttributesMap);
   assertEquals(attrs.size(),7);
   assertFalse(attrs.containsKey("phone"));
   assertFalse(attrs.containsKey("givenName"));
   assertTrue(attrs.containsKey("uid"));
   assertTrue(attrs.containsKey("memberOf"));
   assertTrue(attrs.containsKey("mapAttribute"));
-  final Map<String,String> mapAttributes=(Map<String,String>)attrs.get("mapAttribute");
+  @SuppressWarnings("unchecked") final Map<String,String> mapAttributes=(Map<String,String>)attrs.get("mapAttribute");
   assertTrue(mapAttributes.containsKey("uid"));
   assertTrue(mapAttributes.containsKey("familyName"));
   assertFalse(mapAttributes.containsKey("phone"));
