@@ -22,11 +22,7 @@ synchronized (serviceTicket) {
     final TicketGrantingTicket root=serviceTicket.getGrantingTicket().getRoot();
     final Authentication authentication=getAuthenticationSatisfiedByPolicy(root,new ServiceContext(serviceTicket.getService(),registeredService));
     final Principal principal=authentication.getPrincipal();
-    final RegisteredServiceAttributeFilter defaultAttributeFilter=new RegisteredServiceDefaultAttributeFilter(registeredService);
-    Map<String,Object> attributesToRelease=defaultAttributeFilter.filter(principal.getId(),principal.getAttributes());
-    if (registeredService.getAttributeFilter() != null) {
-      attributesToRelease=registeredService.getAttributeFilter().filter(principal.getId(),attributesToRelease);
-    }
+    final Map<String,Object> attributesToRelease=filterAllowedAttributesForPrincipal(principal,registeredService);
     final String principalId=determinePrincipalIdForRegisteredService(principal,registeredService,serviceTicket);
     final Principal modifiedPrincipal=new SimplePrincipal(principalId,attributesToRelease);
     final AuthenticationBuilder builder=AuthenticationBuilder.newInstance(authentication);

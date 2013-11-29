@@ -1,7 +1,0 @@
-{
-  MockitoAnnotations.initMocks(this);
-  when(this.registeredService.getName()).thenReturn("sample test service");
-  when(this.registeredService.getServiceId()).thenReturn("https://www.jasig.org");
-  when(this.registeredService.getAllowedAttributes()).thenReturn(Arrays.asList("uid","givenName","memberOf","isNotAllowed"));
-  this.filter=new RegisteredServiceDefaultAttributeFilter(this.registeredService);
-}
