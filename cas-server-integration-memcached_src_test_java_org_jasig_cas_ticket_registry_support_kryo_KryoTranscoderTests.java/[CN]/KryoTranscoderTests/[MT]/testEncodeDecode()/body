@@ -1,7 +1,12 @@
 {
-  final ServiceTicket expectedST=new MockServiceTicket("ST-1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890ABCDEFGHIJK");
+  final ServiceTicket expectedST=new MockServiceTicket(ST_ID);
   assertEquals(expectedST,transcoder.decode(transcoder.encode(expectedST)));
-  final TicketGrantingTicket expectedTGT=new MockTicketGrantingTicket("TGT-1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890ABCDEFGHIJK-cas1");
-  expectedTGT.grantServiceTicket("ST-1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890ABCDEFGHIJK",null,null,false);
+  final Credential userPassCredential=new UsernamePasswordCredential("handymanbob","foo");
+  final TicketGrantingTicket expectedTGT=new MockTicketGrantingTicket(TGT_ID,userPassCredential);
+  expectedTGT.grantServiceTicket(ST_ID,null,null,false);
   assertEquals(expectedTGT,transcoder.decode(transcoder.encode(expectedTGT)));
+  final Credential proxyCredential=new HttpBasedServiceCredential(new URL("http://localhost"));
+  final TicketGrantingTicket expectedTGT2=new MockTicketGrantingTicket(TGT_ID,proxyCredential);
+  expectedTGT2.grantServiceTicket(ST_ID,null,null,false);
+  assertEquals(expectedTGT2,transcoder.decode(transcoder.encode(expectedTGT2)));
 }

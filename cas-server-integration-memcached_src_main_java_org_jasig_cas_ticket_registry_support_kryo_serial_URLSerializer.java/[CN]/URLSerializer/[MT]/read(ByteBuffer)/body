@@ -1,0 +1,12 @@
+{
+  final String protocol=kryo.readObjectData(buffer,String.class);
+  final String host=kryo.readObjectData(buffer,String.class);
+  final int port=kryo.readObjectData(buffer,Integer.class);
+  final String file=kryo.readObjectData(buffer,String.class);
+  try {
+    return new URL(protocol,host,port,file);
+  }
+ catch (  final MalformedURLException e) {
+    throw new RuntimeException(e);
+  }
+}
