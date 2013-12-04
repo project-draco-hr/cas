@@ -1,6 +1,3 @@
 {
-  kryo.writeObjectData(buffer,url.getProtocol());
-  kryo.writeObjectData(buffer,url.getHost());
-  kryo.writeObjectData(buffer,url.getPort());
-  kryo.writeObjectData(buffer,url.getFile());
+  kryo.writeObjectData(buffer,url.toExternalForm());
 }
