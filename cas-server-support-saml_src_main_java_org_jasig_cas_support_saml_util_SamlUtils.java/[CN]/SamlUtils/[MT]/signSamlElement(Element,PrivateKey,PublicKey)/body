@@ -2,7 +2,7 @@
   try {
     final String providerName=System.getProperty("jsr105Provider",JSR_105_PROVIDER);
     final XMLSignatureFactory sigFactory=XMLSignatureFactory.getInstance("DOM",(Provider)Class.forName(providerName).newInstance());
-    final List envelopedTransform=Collections.singletonList(sigFactory.newTransform(Transform.ENVELOPED,(TransformParameterSpec)null));
+    final List<Transform> envelopedTransform=Collections.singletonList(sigFactory.newTransform(Transform.ENVELOPED,(TransformParameterSpec)null));
     final Reference ref=sigFactory.newReference("",sigFactory.newDigestMethod(DigestMethod.SHA1,null),envelopedTransform,null,null);
     SignatureMethod signatureMethod;
     if (pubKey instanceof DSAPublicKey) {
