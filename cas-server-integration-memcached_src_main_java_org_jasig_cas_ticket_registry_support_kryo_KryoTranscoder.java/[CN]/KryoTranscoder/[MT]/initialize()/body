@@ -16,6 +16,7 @@
   kryo.register(TicketGrantingTicketExpirationPolicy.class);
   kryo.register(TicketGrantingTicketImpl.class);
   kryo.register(TimeoutExpirationPolicy.class);
+  kryo.register(URL.class,new URLSerializer(kryo));
   if (serializerMap != null) {
     for (    final Class<?> clazz : serializerMap.keySet()) {
       kryo.register(clazz,serializerMap.get(clazz));

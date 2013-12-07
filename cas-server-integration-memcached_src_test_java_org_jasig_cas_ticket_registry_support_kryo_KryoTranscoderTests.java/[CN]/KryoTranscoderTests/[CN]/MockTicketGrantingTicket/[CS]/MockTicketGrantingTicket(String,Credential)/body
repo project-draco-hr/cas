@@ -1,7 +1,6 @@
 {
   this.id=id;
-  final Credential credental=new UsernamePasswordCredential("handymanbob","foo");
-  final CredentialMetaData credentialMetaData=new BasicCredentialMetaData(credental);
+  final CredentialMetaData credentialMetaData=new BasicCredentialMetaData(credential);
   final AuthenticationBuilder builder=new AuthenticationBuilder();
   final Map<String,Object> attributes=new HashMap<String,Object>();
   attributes.put("nickname","bob");
@@ -10,7 +9,7 @@
   builder.addCredential(credentialMetaData);
   final AuthenticationHandler handler=new MockAuthenticationHandler();
   try {
-    builder.addSuccess(handler.getName(),handler.authenticate(credental));
+    builder.addSuccess(handler.getName(),handler.authenticate(credential));
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);
