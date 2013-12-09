@@ -1,5 +1,0 @@
-{
-  when(this.registeredService.isIgnoreAttributes()).thenReturn(true);
-  final Map<String,Object> attrs=this.filter.filter("test",this.givenAttributesMap);
-  assertEquals(attrs.size(),7);
-}
