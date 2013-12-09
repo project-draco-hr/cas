@@ -48,6 +48,9 @@ catch (      final TicketException e) {
 catch (  final TicketException te) {
     return generateErrorView(te.getCode(),te.getCode(),new Object[]{serviceTicketId});
   }
+catch (  final UnauthorizedProxyingException e) {
+    return generateErrorView(e.getMessage(),e.getMessage(),new Object[]{service.getId()});
+  }
 catch (  final UnauthorizedServiceException e) {
     return generateErrorView(e.getMessage(),e.getMessage(),null);
   }
