@@ -7,6 +7,6 @@
   request.addParameter("ticket",sId);
   request.addParameter("pgtUrl","http://www.acs.rutgers.edu");
   final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
-  assertEquals(CONST_SUCCESS_VIEW,modelAndView.getViewName());
+  assertEquals(ServiceValidateController.DEFAULT_SERVICE_SUCCESS_VIEW_NAME,modelAndView.getViewName());
   assertNull(modelAndView.getModel().get("pgtIou"));
 }
