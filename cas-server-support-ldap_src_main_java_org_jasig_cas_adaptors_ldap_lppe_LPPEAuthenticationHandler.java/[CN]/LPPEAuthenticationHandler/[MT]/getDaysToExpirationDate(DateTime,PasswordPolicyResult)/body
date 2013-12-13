@@ -1,5 +1,5 @@
 {
-  final DateTimeZone timezone=configuration.getDateConverter().getTimeZone();
+  final DateTimeZone timezone=configuration.getLdapDateConverter().getTimeZone();
   final DateTime currentTime=new DateTime(timezone);
   logger.debug("Current date is {}. Expiration date is {}",currentTime,expireDate);
   final Days d=Days.daysBetween(currentTime,expireDate);
