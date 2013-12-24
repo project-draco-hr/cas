@@ -1,0 +1,5 @@
+{
+  final SingleLogoutService service=mock(SingleLogoutService.class);
+  final LogoutRequest request=new LogoutRequest("TICKET-ID",service);
+  builder.build(request);
+}
