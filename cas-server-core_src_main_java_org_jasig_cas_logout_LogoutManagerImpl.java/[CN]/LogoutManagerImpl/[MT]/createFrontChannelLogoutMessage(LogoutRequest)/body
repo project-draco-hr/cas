@@ -1,5 +1,5 @@
 {
-  final String logoutMessage=this.logoutMessageBuilder.build(logoutRequest);
+  final String logoutMessage=this.logoutMessageBuilder.create(logoutRequest);
   final Deflater deflater=new Deflater();
   deflater.setInput(logoutMessage.getBytes(ASCII));
   deflater.finish();
