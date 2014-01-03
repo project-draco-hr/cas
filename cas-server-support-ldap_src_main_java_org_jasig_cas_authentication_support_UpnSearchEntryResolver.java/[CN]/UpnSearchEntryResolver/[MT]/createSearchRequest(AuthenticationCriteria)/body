@@ -1,0 +1,9 @@
+{
+  final SearchRequest sr=new SearchRequest();
+  sr.setSearchScope(SearchScope.OBJECT);
+  sr.setBaseDn(this.baseDn);
+  sr.setSearchFilter(new SearchFilter(UPN_ATTR + '=' + ac.getDn()));
+  sr.setSearchEntryHandlers(getSearchEntryHandlers());
+  sr.setReturnAttributes(ac.getAuthenticationRequest().getReturnAttributes());
+  return sr;
+}
