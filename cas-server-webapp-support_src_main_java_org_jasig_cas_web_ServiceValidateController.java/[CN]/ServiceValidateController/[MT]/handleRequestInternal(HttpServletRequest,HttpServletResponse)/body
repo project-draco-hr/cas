@@ -2,7 +2,7 @@
   final WebApplicationService service=this.argumentExtractor.extractService(request);
   final String serviceTicketId=service != null ? service.getArtifactId() : null;
   if (service == null || serviceTicketId == null) {
-    logger.debug(String.format("Could not process request; Service: %s, Service Ticket Id: %s",service,serviceTicketId));
+    logger.debug("Could not identify service and/or service ticket. Service: {}, Service ticket id: {}",service,serviceTicketId);
     return generateErrorView("INVALID_REQUEST","INVALID_REQUEST",null);
   }
   try {
@@ -13,10 +13,13 @@
         proxyGrantingTicketId=this.centralAuthenticationService.delegateTicketGrantingTicket(serviceTicketId,serviceCredential);
       }
  catch (      final AuthenticationException e) {
-        logger.info("Failed to authenticate " + serviceCredential);
+        logger.info("Failed to authenticate service credential {}",serviceCredential);
       }
 catch (      final TicketException e) {
-        logger.error("TicketException generating ticket for: " + serviceCredential,e);
+        logger.error("Failed to create proxy granting ticket for {}",serviceCredential,e);
+      }
+      if (StringUtils.isEmpty(proxyGrantingTicketId)) {
+        return generateErrorView("INVALID_PROXY_CALLBACK","INVALID_PROXY_CALLBACK",new Object[]{serviceCredential.getId()});
       }
     }
     final Assertion assertion=this.centralAuthenticationService.validateServiceTicket(serviceTicketId,service);
@@ -25,22 +28,19 @@ catch (      final TicketException e) {
     initBinder(request,binder);
     binder.bind(request);
     if (!validationSpecification.isSatisfiedBy(assertion)) {
-      if (logger.isDebugEnabled()) {
-        logger.debug("ServiceTicket [" + serviceTicketId + "] does not satisfy validation specification.");
-      }
+      logger.debug("Service ticket [{}] does not satisfy validation specification.",serviceTicketId);
       return generateErrorView("INVALID_TICKET","INVALID_TICKET_SPEC",null);
     }
+    String proxyIou=null;
+    if (serviceCredential != null && proxyGrantingTicketId != null && this.proxyHandler.canHandle(serviceCredential)) {
+      proxyIou=this.proxyHandler.handle(serviceCredential,proxyGrantingTicketId);
+      if (StringUtils.isEmpty(proxyIou)) {
+        return generateErrorView("INVALID_PROXY_CALLBACK","INVALID_PROXY_CALLBACK",new Object[]{serviceCredential.getId()});
+      }
+    }
     onSuccessfulValidation(serviceTicketId,assertion);
-    final ModelAndView success=new ModelAndView(this.successView);
-    success.addObject(MODEL_ASSERTION,assertion);
-    if (serviceCredential != null && proxyGrantingTicketId != null) {
-      final String proxyIou=this.proxyHandler.handle(serviceCredential,proxyGrantingTicketId);
-      success.addObject(MODEL_PROXY_GRANTING_TICKET_IOU,proxyIou);
-    }
-    if (logger.isDebugEnabled()) {
-      logger.debug(String.format("Successfully validated service ticket [%s] for service [%s]",serviceTicketId,service.getId()));
-    }
-    return success;
+    logger.debug("Successfully validated service ticket {} for service [{}]",serviceTicketId,service.getId());
+    return generateSuccessView(assertion,proxyIou);
   }
  catch (  final TicketValidationException e) {
     return generateErrorView(e.getCode(),e.getCode(),new Object[]{serviceTicketId,e.getOriginalService().getId(),service.getId()});
