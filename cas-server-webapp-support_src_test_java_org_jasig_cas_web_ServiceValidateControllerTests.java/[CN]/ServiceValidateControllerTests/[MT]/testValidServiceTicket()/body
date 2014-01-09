@@ -4,5 +4,5 @@
   MockHttpServletRequest request=new MockHttpServletRequest();
   request.addParameter("service",TestUtils.getService().getId());
   request.addParameter("ticket",sId);
-  assertEquals(CONST_SUCCESS_VIEW,this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse()).getViewName());
+  assertEquals(ServiceValidateController.DEFAULT_SERVICE_SUCCESS_VIEW_NAME,this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse()).getViewName());
 }

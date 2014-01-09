@@ -1,4 +1,4 @@
 {
-  this.passwordExpirationDateTime=configuration.getDateConverter().convert(getPasswordExpirationDate());
+  this.passwordExpirationDateTime=configuration.getLdapDateConverter().convert(getPasswordExpirationDate());
   this.ignorePasswordExpirationWarningFlags=configuration.getIgnorePasswordExpirationWarningFlags();
 }
