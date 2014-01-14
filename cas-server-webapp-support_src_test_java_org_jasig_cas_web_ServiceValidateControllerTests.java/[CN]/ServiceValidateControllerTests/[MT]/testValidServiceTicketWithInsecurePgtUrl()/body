@@ -1,9 +1,11 @@
 {
+  this.serviceValidateController.setProxyHandler(new Cas10ProxyHandler());
   final String tId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
   final String sId=getCentralAuthenticationService().grantServiceTicket(tId,TestUtils.getService());
-  getCentralAuthenticationService().destroyTicketGrantingTicket(tId);
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.addParameter("service",TestUtils.getService().getId());
   request.addParameter("ticket",sId);
-  assertEquals(ServiceValidateController.DEFAULT_SERVICE_FAILURE_VIEW_NAME,this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse()).getViewName());
+  request.addParameter("pgtUrl","http://www.github.com");
+  final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
+  assertEquals(ServiceValidateController.DEFAULT_SERVICE_FAILURE_VIEW_NAME,modelAndView.getViewName());
 }
