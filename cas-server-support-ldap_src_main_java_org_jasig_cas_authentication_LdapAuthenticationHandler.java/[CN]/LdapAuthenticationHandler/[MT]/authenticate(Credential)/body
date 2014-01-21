@@ -4,16 +4,12 @@
   try {
     logger.debug("Attempting LDAP authentication for {}",credential);
     final AuthenticationRequest request=new AuthenticationRequest(upc.getUsername(),new org.ldaptive.Credential(upc.getPassword()),this.authenticatedEntryAttributes);
-    if (this.authenticator.getEntryResolver() instanceof SearchEntryResolver) {
-      ((SearchEntryResolver)this.authenticator.getEntryResolver()).setReturnAttributes(this.authenticatedEntryAttributes);
-    }
     response=this.authenticator.authenticate(request);
   }
  catch (  final LdapException e) {
     throw new PreventedException("Unexpected LDAP error",e);
   }
   logger.debug("LDAP response: {}",response);
-  examineAccountState(response);
   if (response.getResult()) {
     return doPostAuthentication(upc,response);
   }

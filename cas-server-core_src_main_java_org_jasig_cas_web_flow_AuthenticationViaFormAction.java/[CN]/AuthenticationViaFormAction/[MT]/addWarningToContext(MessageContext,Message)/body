@@ -1,0 +1,4 @@
+{
+  final MessageBuilder builder=new MessageBuilder().warning().code(warning.getCode()).defaultText(warning.getDefaultMessage()).args(warning.getParams());
+  context.addMessage(builder.build());
+}

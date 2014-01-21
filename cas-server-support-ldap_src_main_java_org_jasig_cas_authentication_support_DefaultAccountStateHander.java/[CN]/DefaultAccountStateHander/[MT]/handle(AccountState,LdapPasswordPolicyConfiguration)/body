@@ -1,0 +1,13 @@
+{
+  final LoginException error=ERROR_MAP.get(state.getError());
+  if (error != null) {
+    throw error;
+  }
+  final List<Message> messages=new ArrayList<Message>();
+  if (state.getWarning() != null) {
+    final Calendar expDate=state.getWarning().getExpiration();
+    final Days ttl=Days.daysBetween(new Instant(expDate),Instant.now());
+    messages.add(new PasswordExpiringWarningMessage("Password expires in {0} day(s). Please change your password at <href=\"{1}\">{1}</a>",ttl.getDays(),configuration.getPasswordPolicyUrl()));
+  }
+  return messages;
+}
