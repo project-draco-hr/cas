@@ -11,7 +11,21 @@
   }
   logger.debug("LDAP response: {}",response);
   if (response.getResult()) {
-    return doPostAuthentication(upc,response);
+    final List<Message> messageList;
+    if (this.ldapPasswordPolicyConfiguration != null) {
+      logger.debug("Applying password policy to {}",response);
+      messageList=this.ldapPasswordPolicyConfiguration.getAccountStateHandler().handle(response,ldapPasswordPolicyConfiguration);
+    }
+ else {
+      messageList=Collections.emptyList();
+    }
+    return new HandlerResult(this,new BasicCredentialMetaData(credential),createPrincipal(upc.getUsername(),response.getLdapEntry()),messageList);
+  }
+ else {
+    if (this.ldapPasswordPolicyConfiguration != null) {
+      logger.debug("Applying password policy to {}",response);
+      this.ldapPasswordPolicyConfiguration.getAccountStateHandler().handle(response,ldapPasswordPolicyConfiguration);
+    }
   }
   if (AuthenticationResultCode.DN_RESOLUTION_FAILURE == response.getAuthenticationResultCode()) {
     throw new AccountNotFoundException(upc.getUsername() + " not found.");

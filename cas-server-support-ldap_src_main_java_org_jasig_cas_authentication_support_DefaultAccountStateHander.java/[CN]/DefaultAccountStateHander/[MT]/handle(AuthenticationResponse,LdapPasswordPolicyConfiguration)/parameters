@@ -1,2 +1,2 @@
-AccountState state
+AuthenticationResponse response
 LdapPasswordPolicyConfiguration configuration
