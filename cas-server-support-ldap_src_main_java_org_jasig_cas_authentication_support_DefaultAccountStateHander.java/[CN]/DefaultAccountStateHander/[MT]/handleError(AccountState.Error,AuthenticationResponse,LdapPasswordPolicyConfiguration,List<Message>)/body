@@ -1,0 +1,6 @@
+{
+  final LoginException ex=ERROR_MAP.get(error);
+  if (ex != null) {
+    throw ex;
+  }
+}

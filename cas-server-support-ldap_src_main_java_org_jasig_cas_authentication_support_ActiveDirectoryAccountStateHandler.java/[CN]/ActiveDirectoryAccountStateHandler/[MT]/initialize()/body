@@ -1,0 +1,14 @@
+{
+  final SearchExecutor se=new SearchExecutor();
+  se.setBaseDn(rootDN);
+  se.setSearchFilter(new SearchFilter("(objectClass=*)"));
+  se.setReturnAttributes("maxPwdAge");
+  se.setSearchScope(SearchScope.OBJECT);
+  try {
+    final Response<SearchResult> response=se.search(connectionFactory);
+    maxPasswordAge=parseDeltaTime(response.getResult().getEntry().getAttribute("maxPwdAge").getStringValue());
+  }
+ catch (  final LdapException e) {
+    throw new IllegalStateException("LDAP error searching for maxPwdAge",e);
+  }
+}

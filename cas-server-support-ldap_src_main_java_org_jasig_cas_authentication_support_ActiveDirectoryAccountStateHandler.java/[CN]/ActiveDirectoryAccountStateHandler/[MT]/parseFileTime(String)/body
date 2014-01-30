@@ -1,0 +1,3 @@
+{
+  return new Instant(Long.parseLong(fileTimeString) / 10000L - ERA_OFFSET);
+}

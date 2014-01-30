@@ -4,5 +4,6 @@
     attributes.add(this.principalIdAttribute);
   }
   attributes.addAll(this.principalAttributeMap.keySet());
+  attributes.addAll(this.additionalAttributes);
   this.authenticatedEntryAttributes=attributes.toArray(new String[attributes.size()]);
 }

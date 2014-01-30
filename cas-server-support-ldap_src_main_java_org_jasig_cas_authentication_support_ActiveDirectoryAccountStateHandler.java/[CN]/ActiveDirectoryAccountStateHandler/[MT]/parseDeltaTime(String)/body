@@ -1,0 +1,4 @@
+{
+  final long deltaTime=-Long.parseLong(deltaTimeString);
+  return new Duration(deltaTime / 10000L);
+}
