@@ -11,9 +11,7 @@
     logger.warn("Validation failed with error.",e);
   }
  finally {
-    if (conn != null && conn.isOpen()) {
-      conn.close();
-    }
+    LdapUtils.closeConnection(conn);
   }
   return ERROR;
 }
