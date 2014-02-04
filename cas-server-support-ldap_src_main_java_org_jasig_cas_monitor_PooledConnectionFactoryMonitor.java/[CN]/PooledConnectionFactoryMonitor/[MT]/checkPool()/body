@@ -4,6 +4,6 @@
     return this.validator.validate(conn) ? StatusCode.OK : StatusCode.ERROR;
   }
   finally {
-    conn.close();
+    LdapUtils.closeConnection(conn);
   }
 }
