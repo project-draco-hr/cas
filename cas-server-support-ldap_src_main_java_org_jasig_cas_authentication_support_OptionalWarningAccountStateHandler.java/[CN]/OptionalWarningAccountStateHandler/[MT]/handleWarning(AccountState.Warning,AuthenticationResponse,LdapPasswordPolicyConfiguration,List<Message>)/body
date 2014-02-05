@@ -1,0 +1,10 @@
+{
+  final LdapAttribute attribute=response.getLdapEntry().getAttribute(this.warningAttributeName);
+  boolean matches=false;
+  if (attribute != null) {
+    matches=this.warningAttributeValue.equals(attribute.getStringValue());
+  }
+  if (displayWarningOnMatch == matches) {
+    super.handleWarning(warning,response,configuration,messages);
+  }
+}
