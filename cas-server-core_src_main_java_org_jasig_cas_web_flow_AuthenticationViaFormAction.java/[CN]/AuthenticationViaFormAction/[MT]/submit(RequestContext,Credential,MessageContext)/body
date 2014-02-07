@@ -36,7 +36,7 @@ catch (    final TicketException e) {
         addWarningToContext(messageContext,message);
       }
     }
-    if (hasWarningMessages(messageContext)) {
+    if (this.hasWarningMessages) {
       return newEvent(SUCCESS_WITH_WARNINGS);
     }
     return newEvent(SUCCESS);

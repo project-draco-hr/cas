@@ -1,9 +1,0 @@
-{
-  final org.springframework.binding.message.Message[] warnings=context.getMessagesByCriteria(new MessageCriteria(){
-    @Override public boolean test(    final org.springframework.binding.message.Message message){
-      return message.getSeverity() == Severity.WARNING;
-    }
-  }
-);
-  return warnings.length > 0;
-}
