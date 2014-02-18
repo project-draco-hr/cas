@@ -1,9 +1,9 @@
 {
-  initializeInternal();
   final List<String> attributes=new ArrayList<String>();
   if (this.principalIdAttribute != null) {
     attributes.add(this.principalIdAttribute);
   }
   attributes.addAll(this.principalAttributeMap.keySet());
+  attributes.addAll(this.additionalAttributes);
   this.authenticatedEntryAttributes=attributes.toArray(new String[attributes.size()]);
 }

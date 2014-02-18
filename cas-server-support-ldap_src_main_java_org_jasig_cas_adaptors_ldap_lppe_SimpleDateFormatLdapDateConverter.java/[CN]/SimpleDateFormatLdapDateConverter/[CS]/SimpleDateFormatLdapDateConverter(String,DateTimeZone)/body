@@ -1,4 +1,0 @@
-{
-  this(passwordExpirationDateFormat);
-  this.timeZone=timeZone;
-}

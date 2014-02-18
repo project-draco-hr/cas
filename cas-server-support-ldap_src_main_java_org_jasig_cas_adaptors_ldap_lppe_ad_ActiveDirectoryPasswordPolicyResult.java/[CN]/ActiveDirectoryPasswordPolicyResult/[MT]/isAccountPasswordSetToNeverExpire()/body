@@ -1,7 +1,0 @@
-{
-  boolean ignoreChecks=super.isAccountPasswordSetToNeverExpire();
-  if (!ignoreChecks) {
-    ignoreChecks=isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.ADS_UF_DONT_EXPIRE_PASSWD) || isUserAccountControlBitSet(ActiveDirectoryUserAccountControlFlags.ADS_UF_PASSWD_CANT_CHANGE);
-  }
-  return ignoreChecks;
-}
