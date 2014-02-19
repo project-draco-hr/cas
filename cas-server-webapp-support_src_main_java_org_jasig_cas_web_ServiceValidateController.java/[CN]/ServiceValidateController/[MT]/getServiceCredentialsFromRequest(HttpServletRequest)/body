@@ -1,5 +1,5 @@
 {
-  final String pgtUrl=request.getParameter("pgtUrl");
+  final String pgtUrl=request.getParameter(PARAMETER_PROXY_CALLBACK_URL);
   if (StringUtils.hasText(pgtUrl)) {
     try {
       return new HttpBasedServiceCredential(new URL(pgtUrl));

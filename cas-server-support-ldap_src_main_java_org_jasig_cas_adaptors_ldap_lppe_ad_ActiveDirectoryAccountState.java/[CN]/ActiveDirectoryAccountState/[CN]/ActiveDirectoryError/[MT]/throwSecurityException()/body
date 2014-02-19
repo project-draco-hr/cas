@@ -1,9 +1,0 @@
-{
-  if (MAPPINGS.containsKey(this.error)) {
-    final LoginException e=createException();
-    throw e;
-  }
- else {
-    this.error.throwSecurityException();
-  }
-}

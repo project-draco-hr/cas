@@ -1,4 +1,0 @@
-{
-  final ActiveDirectoryAccountState state=new ActiveDirectoryAccountState(org.ldaptive.auth.ext.ActiveDirectoryAccountState.Error.PASSWORD_MUST_CHANGE);
-  state.getError().throwSecurityException();
-}

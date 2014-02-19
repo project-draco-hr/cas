@@ -1,3 +1,0 @@
-{
-  principalAttributeMap.putAll(configuration.getPasswordPolicyAttributesMap());
-}
