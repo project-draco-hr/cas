@@ -8,7 +8,7 @@
     }
     final Attribute attribute=newSamlObject(Attribute.class);
     attribute.setAttributeName(e.getKey());
-    attribute.setAttributeNamespace(NAMESPACE);
+    attribute.setAttributeNamespace(CasProtocolConstants.VALIDATION_SAML_ATTRIBUTE_NAMESPACE);
     if (e.getValue() instanceof Collection<?>) {
       final Collection<?> c=(Collection<?>)e.getValue();
       for (      final Object value : c) {
@@ -23,7 +23,7 @@
   if (isRemembered) {
     final Attribute attribute=newSamlObject(Attribute.class);
     attribute.setAttributeName(this.rememberMeAttributeName);
-    attribute.setAttributeNamespace(NAMESPACE);
+    attribute.setAttributeNamespace(CasProtocolConstants.VALIDATION_SAML_ATTRIBUTE_NAMESPACE);
     attribute.getAttributeValues().add(newAttributeValue(REMEMBER_ME_ATTRIBUTE_VALUE));
     attrStatement.getAttributes().add(attribute);
   }
