@@ -1,3 +1,0 @@
-String message
-Map<String,Exception> handlerErrors
-Map<String,HandlerResult> handlerSuccesses
