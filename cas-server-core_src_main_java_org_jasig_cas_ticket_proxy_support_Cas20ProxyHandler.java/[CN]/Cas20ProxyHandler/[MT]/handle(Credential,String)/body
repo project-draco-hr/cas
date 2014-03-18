@@ -1,0 +1,27 @@
+{
+  final HttpBasedServiceCredential serviceCredentials=(HttpBasedServiceCredential)credential;
+  final String proxyIou=this.uniqueTicketIdGenerator.getNewTicketId(PGTIOU_PREFIX);
+  final String serviceCredentialsAsString=serviceCredentials.getCallbackUrl().toExternalForm();
+  final int bufferLength=serviceCredentialsAsString.length() + proxyIou.length() + proxyGrantingTicketId.length()+ 15;
+  final StringBuilder stringBuffer=new StringBuilder(bufferLength);
+  stringBuffer.append(serviceCredentialsAsString);
+  if (serviceCredentials.getCallbackUrl().getQuery() != null) {
+    stringBuffer.append("&");
+  }
+ else {
+    stringBuffer.append("?");
+  }
+  stringBuffer.append(PARAMETER_PROXY_GRANTING_TICKET_IOU);
+  stringBuffer.append("=");
+  stringBuffer.append(proxyIou);
+  stringBuffer.append("&");
+  stringBuffer.append(PARAMETER_PROXY_GRANTING_TICKET_ID);
+  stringBuffer.append("=");
+  stringBuffer.append(proxyGrantingTicketId);
+  if (this.httpClient.isValidEndPoint(stringBuffer.toString())) {
+    logger.debug("Sent ProxyIou of {} for service: {}",proxyIou,serviceCredentials.toString());
+    return proxyIou;
+  }
+  logger.debug("Failed to send ProxyIou of {} for service: {}",proxyIou,serviceCredentials.toString());
+  return null;
+}
