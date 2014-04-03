@@ -1,0 +1,11 @@
+{
+  MockRequestContext context=new MockRequestContext();
+  context.getFlowScope().put("service",TestUtils.getService());
+  MockHttpServletRequest request=new MockHttpServletRequest();
+  context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
+  request.addParameter("service","service");
+  WebUtils.putTicketGrantingTicketInRequestScope(context,this.ticketGrantingTicket);
+  final TicketGrantingTicket tgt=this.getTicketRegistry().getTicket(this.ticketGrantingTicket,TicketGrantingTicket.class);
+  tgt.markTicketExpired();
+  assertEquals("error",this.action.execute(context).getId());
+}
