@@ -1,0 +1,21 @@
+{
+  for (  final RadiusServer radiusServer : this.servers) {
+    logger.debug("Attempting to authenticate {} at {}",credential.getUsername(),radiusServer);
+    try {
+      if (radiusServer.authenticate(credential.getUsername(),credential.getPassword())) {
+        return createHandlerResult(credential,new SimplePrincipal(credential.getUsername()),null);
+      }
+      if (!this.failoverOnAuthenticationFailure) {
+        throw new FailedLoginException();
+      }
+      logger.debug("failoverOnAuthenticationFailure enabled -- trying next server");
+    }
+ catch (    final PreventedException e) {
+      if (!this.failoverOnException) {
+        throw e;
+      }
+      logger.warn("failoverOnException enabled -- trying next server.",e);
+    }
+  }
+  throw new FailedLoginException();
+}

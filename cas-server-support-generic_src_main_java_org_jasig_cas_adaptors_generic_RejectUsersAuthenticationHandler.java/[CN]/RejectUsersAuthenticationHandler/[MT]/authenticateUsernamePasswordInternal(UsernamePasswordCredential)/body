@@ -1,0 +1,6 @@
+{
+  if (this.users.contains(credential.getUsername())) {
+    throw new FailedLoginException();
+  }
+  return createHandlerResult(credential,new SimplePrincipal(credential.getUsername()),null);
+}

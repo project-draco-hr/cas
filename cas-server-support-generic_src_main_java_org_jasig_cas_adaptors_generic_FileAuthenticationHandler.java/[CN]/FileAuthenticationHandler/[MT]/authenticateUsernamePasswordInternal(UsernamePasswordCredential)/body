@@ -1,0 +1,15 @@
+{
+  try {
+    final String passwordOnRecord=getPasswordOnRecord(credential.getUsername());
+    if (passwordOnRecord == null) {
+      throw new AccountNotFoundException(credential.getUsername() + " not found in backing file.");
+    }
+    if (credential.getPassword() != null && this.getPasswordEncoder().encode(credential.getPassword()).equals(passwordOnRecord)) {
+      return createHandlerResult(credential,new SimplePrincipal(credential.getUsername()),null);
+    }
+  }
+ catch (  final IOException e) {
+    throw new PreventedException("IO error reading backing file",e);
+  }
+  throw new FailedLoginException();
+}
