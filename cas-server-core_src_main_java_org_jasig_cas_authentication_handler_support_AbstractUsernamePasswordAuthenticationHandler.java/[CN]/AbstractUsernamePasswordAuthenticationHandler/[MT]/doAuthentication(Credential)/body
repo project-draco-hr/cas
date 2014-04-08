@@ -7,6 +7,6 @@
   if (transformedUsername == null) {
     throw new AccountNotFoundException("Transformed username is null.");
   }
-  final UsernamePasswordCredential transformedUpc=new UsernamePasswordCredential(transformedUsername,userPass.getPassword());
-  return authenticateUsernamePasswordInternal(transformedUpc);
+  userPass.setUsername(transformedUsername);
+  return authenticateUsernamePasswordInternal(userPass);
 }
