@@ -1,4 +1,0 @@
-{
-  final ActiveDirectoryAccountState state=new ActiveDirectoryAccountState(org.ldaptive.auth.ext.ActiveDirectoryAccountState.Error.INVALID_WORKSTATION);
-  state.getError().throwSecurityException();
-}

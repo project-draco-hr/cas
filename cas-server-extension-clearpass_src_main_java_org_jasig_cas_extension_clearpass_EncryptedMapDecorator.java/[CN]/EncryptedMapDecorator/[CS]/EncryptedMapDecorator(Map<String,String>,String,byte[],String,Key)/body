@@ -4,4 +4,10 @@
   this.salt=salt;
   this.secretKeyAlgorithm=secretKeyAlgorithm;
   this.messageDigest=MessageDigest.getInstance(hashAlgorithm);
+  try {
+    this.ivSize=getIvSize();
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
 }

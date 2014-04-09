@@ -1,6 +1,0 @@
-{
-  final AccountState state=response.getAccountState();
-  if (state != null && state.getError() != null) {
-    state.getError().throwSecurityException();
-  }
-}

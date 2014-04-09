@@ -1,8 +1,0 @@
-{
-  if (response.getMessage() != null) {
-    final org.ldaptive.auth.ext.ActiveDirectoryAccountState.Error adError=org.ldaptive.auth.ext.ActiveDirectoryAccountState.Error.parse(response.getMessage());
-    if (adError != null) {
-      response.setAccountState(new ActiveDirectoryAccountState(adError));
-    }
-  }
-}
