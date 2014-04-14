@@ -1,9 +1,10 @@
 {
+  final String username=credential.getUsername();
   for (  final RadiusServer radiusServer : this.servers) {
-    logger.debug("Attempting to authenticate {} at {}",credential.getUsername(),radiusServer);
+    logger.debug("Attempting to authenticate {} at {}",username,radiusServer);
     try {
-      if (radiusServer.authenticate(credential.getUsername(),credential.getPassword())) {
-        return createHandlerResult(credential,new SimplePrincipal(credential.getUsername()),null);
+      if (radiusServer.authenticate(username,credential.getPassword())) {
+        return createHandlerResult(credential,new SimplePrincipal(username),null);
       }
       if (!this.failoverOnAuthenticationFailure) {
         throw new FailedLoginException();

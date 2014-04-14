@@ -1,7 +1,8 @@
 {
-  final LoginContext lc=new LoginContext(this.realm,new UsernamePasswordCallbackHandler(credential.getUsername(),credential.getPassword()));
+  final String username=credential.getUsername();
+  final LoginContext lc=new LoginContext(this.realm,new UsernamePasswordCallbackHandler(username,credential.getPassword()));
   try {
-    logger.debug("Attempting authentication for: {}",credential.getUsername());
+    logger.debug("Attempting authentication for: {}",username);
     lc.login();
   }
   finally {

@@ -1,11 +1,12 @@
 {
   try {
-    final String passwordOnRecord=getPasswordOnRecord(credential.getUsername());
+    final String username=credential.getUsername();
+    final String passwordOnRecord=getPasswordOnRecord(username);
     if (passwordOnRecord == null) {
-      throw new AccountNotFoundException(credential.getUsername() + " not found in backing file.");
+      throw new AccountNotFoundException(username + " not found in backing file.");
     }
     if (credential.getPassword() != null && this.getPasswordEncoder().encode(credential.getPassword()).equals(passwordOnRecord)) {
-      return createHandlerResult(credential,new SimplePrincipal(credential.getUsername()),null);
+      return createHandlerResult(credential,new SimplePrincipal(username),null);
     }
   }
  catch (  final IOException e) {
