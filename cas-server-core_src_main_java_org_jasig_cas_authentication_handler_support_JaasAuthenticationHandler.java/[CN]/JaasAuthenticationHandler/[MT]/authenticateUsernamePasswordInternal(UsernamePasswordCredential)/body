@@ -1,0 +1,17 @@
+{
+  final String username=credential.getUsername();
+  final LoginContext lc=new LoginContext(this.realm,new UsernamePasswordCallbackHandler(username,credential.getPassword()));
+  try {
+    logger.debug("Attempting authentication for: {}",username);
+    lc.login();
+  }
+  finally {
+    lc.logout();
+  }
+  Principal principal=null;
+  final Set<java.security.Principal> principals=lc.getSubject().getPrincipals();
+  if (principals != null && principals.size() > 0) {
+    principal=new SimplePrincipal(principals.iterator().next().getName());
+  }
+  return createHandlerResult(credential,principal,null);
+}
