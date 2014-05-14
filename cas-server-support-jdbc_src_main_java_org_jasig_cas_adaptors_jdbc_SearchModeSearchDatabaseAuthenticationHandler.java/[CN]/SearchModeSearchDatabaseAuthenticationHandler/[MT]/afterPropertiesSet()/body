@@ -1,3 +1,3 @@
 {
-  this.sql=SQL_PREFIX + this.tableUsers + " Where "+ this.fieldUser+ " = ? And "+ this.fieldPassword+ " = ?";
+  this.sql=SQL_PREFIX + this.tableUsers + " WHERE "+ this.fieldUser+ " = ? AND "+ this.fieldPassword+ " = ?";
 }

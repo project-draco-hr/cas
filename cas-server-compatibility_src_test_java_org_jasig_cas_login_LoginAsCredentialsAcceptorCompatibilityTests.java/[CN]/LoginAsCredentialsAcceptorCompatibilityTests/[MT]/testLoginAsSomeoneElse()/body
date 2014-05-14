@@ -1,15 +1,15 @@
 {
-  String encodedService=URLEncoder.encode(getServiceUrl(),"UTF-8");
+  final String encodedService=URLEncoder.encode(getServiceUrl(),"UTF-8");
   beginAt("/login?service=" + encodedService);
   setFormElement(FORM_USERNAME,getUsername());
   setFormElement(FORM_PASSWORD,getGoodPassword());
   submit();
-  String firstServiceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  final String firstServiceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
   beginAt("/login?renew=true&service=" + encodedService);
   setFormElement(FORM_USERNAME,getAlternateUsername());
   setFormElement(FORM_PASSWORD,getAlternatePassword());
   submit();
-  String secondServiceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  final String secondServiceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
   beginAt("/serviceValidate?ticket=" + secondServiceTicket + "&service="+ encodedService);
   assertTextPresent("<cas:user>" + getAlternateUsername() + "</cas:user>");
   beginAt("/serviceValidate?ticket=" + firstServiceTicket + "&service="+ encodedService);

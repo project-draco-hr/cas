@@ -1,7 +1,7 @@
 {
   cert.checkValidity();
   this.revocationChecker.check(cert);
-  int pathLength=cert.getBasicConstraints();
+  final int pathLength=cert.getBasicConstraints();
   if (pathLength < 0) {
     if (!isCertificateAllowed(cert)) {
       throw new FailedLoginException("Certificate subject does not match pattern " + this.regExSubjectDnPattern.pattern());
