@@ -1,11 +1,11 @@
 {
   String serviceTicket;
-  String queryString=webResponse.getURL().getQuery();
-  int ticketIndex=queryString.indexOf("ticket=");
+  final String queryString=webResponse.getURL().getQuery();
+  final int ticketIndex=queryString.indexOf("ticket=");
   if (ticketIndex == -1) {
-    String response=webResponse.getText();
-    int declarationStartsAt=response.indexOf("window.location.href");
-    String responseAfterWindowLocHref=response.substring(declarationStartsAt + "window.location.href12".length());
+    final String response=webResponse.getText();
+    final int declarationStartsAt=response.indexOf("window.location.href");
+    final String responseAfterWindowLocHref=response.substring(declarationStartsAt + "window.location.href12".length());
     final int endDoubleQuoteIndex=responseAfterWindowLocHref.indexOf("\"");
     final int endSingleQuoteIndex=responseAfterWindowLocHref.indexOf("\'");
     int endQuoteIndex=0;
@@ -18,7 +18,7 @@
  else {
       endQuoteIndex=endSingleQuoteIndex;
     }
-    int ticketEqualsIndex=responseAfterWindowLocHref.indexOf("ticket=");
+    final int ticketEqualsIndex=responseAfterWindowLocHref.indexOf("ticket=");
     serviceTicket=responseAfterWindowLocHref.substring(ticketEqualsIndex + "ticket=".length(),endQuoteIndex);
   }
  else {

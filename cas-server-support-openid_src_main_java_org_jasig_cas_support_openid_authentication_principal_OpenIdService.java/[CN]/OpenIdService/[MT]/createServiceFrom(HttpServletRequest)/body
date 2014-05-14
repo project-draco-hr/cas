@@ -7,6 +7,6 @@
   }
   final String id=cleanupUrl(service);
   final String artifactId=request.getParameter("openid.assoc_handle");
-  ParameterList paramList=new ParameterList(request.getParameterMap());
+  final ParameterList paramList=new ParameterList(request.getParameterMap());
   return new OpenIdService(id,service,artifactId,openIdIdentity,signature,paramList);
 }
