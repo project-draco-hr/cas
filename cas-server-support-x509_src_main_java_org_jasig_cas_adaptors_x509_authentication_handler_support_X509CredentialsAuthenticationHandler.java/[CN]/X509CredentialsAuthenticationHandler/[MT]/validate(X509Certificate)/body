@@ -11,7 +11,7 @@
     }
   }
  else {
-    if (pathLength == Integer.MAX_VALUE && this.maxPathLengthAllowUnspecified != true) {
+    if (pathLength == Integer.MAX_VALUE && !this.maxPathLengthAllowUnspecified) {
       throw new FailedLoginException("Unlimited certificate path length not allowed by configuration.");
     }
  else     if (pathLength > this.maxPathLength && pathLength < Integer.MAX_VALUE) {
