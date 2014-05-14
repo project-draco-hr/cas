@@ -1,7 +1,7 @@
 {
   final Assertion assertion=getAssertionFrom(model);
   if (this.successResponse) {
-    response.getWriter().print("yes\n" + assertion.getChainedAuthentications().get(0).getPrincipal().getId() + "\n");
+    response.getWriter().print("yes\n" + assertion.getPrimaryAuthentication().getPrincipal().getId() + "\n");
   }
  else {
     response.getWriter().print("no\n\n");

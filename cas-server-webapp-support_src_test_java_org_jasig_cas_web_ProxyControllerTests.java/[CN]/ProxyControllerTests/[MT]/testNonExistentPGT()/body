@@ -1,5 +1,5 @@
 {
-  MockHttpServletRequest request=new MockHttpServletRequest();
+  final MockHttpServletRequest request=new MockHttpServletRequest();
   request.addParameter("pgt","TestService");
   request.addParameter("targetService","testDefault");
   assertTrue(this.proxyController.handleRequestInternal(request,new MockHttpServletResponse()).getModel().containsKey("code"));

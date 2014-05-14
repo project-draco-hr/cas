@@ -1,10 +1,10 @@
 {
   final MockService testService=new MockService("test");
-  TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
   t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),testService,new NeverExpiresExpirationPolicy(),false);
   Map<String,Service> services=t.getServices();
   assertEquals(1,services.size());
-  String ticketId=services.keySet().iterator().next();
+  final String ticketId=services.keySet().iterator().next();
   assertEquals(testService,services.get(ticketId));
   t.removeAllServices();
   services=t.getServices();
