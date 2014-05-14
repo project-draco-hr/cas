@@ -10,7 +10,7 @@
     if (!hasTrustedIssuer) {
       hasTrustedIssuer=isCertificateFromTrustedIssuer(certificate);
     }
-    int pathLength=certificate.getBasicConstraints();
+    final int pathLength=certificate.getBasicConstraints();
     if (pathLength < 0) {
       logger.debug("Found valid client certificate");
       clientCert=certificate;
