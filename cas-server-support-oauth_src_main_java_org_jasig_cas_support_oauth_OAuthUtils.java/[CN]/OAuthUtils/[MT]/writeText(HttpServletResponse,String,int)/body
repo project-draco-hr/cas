@@ -1,5 +1,5 @@
 {
-  PrintWriter printWriter;
+  PrintWriter printWriter=null;
   try {
     printWriter=response.getWriter();
     response.setStatus(status);
@@ -7,6 +7,9 @@
   }
  catch (  final IOException e) {
     LOGGER.error("Failed to write to response",e);
+  }
+ finally {
+    IOUtils.closeQuietly(printWriter);
   }
   return null;
 }

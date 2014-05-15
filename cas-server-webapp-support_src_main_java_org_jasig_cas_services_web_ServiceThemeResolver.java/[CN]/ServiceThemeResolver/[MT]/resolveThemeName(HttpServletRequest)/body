@@ -4,7 +4,7 @@
   }
   final Service service=WebUtils.getService(this.argumentExtractors,request);
   final RegisteredService rService=this.servicesManager.findServiceBy(service);
-  String userAgent=request.getHeader("User-Agent");
+  final String userAgent=request.getHeader("User-Agent");
   if (userAgent == null) {
     return getDefaultThemeName();
   }

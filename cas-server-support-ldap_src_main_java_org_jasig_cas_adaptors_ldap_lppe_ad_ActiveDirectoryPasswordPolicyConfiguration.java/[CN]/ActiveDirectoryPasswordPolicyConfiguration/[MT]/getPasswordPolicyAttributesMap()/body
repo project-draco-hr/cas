@@ -1,7 +1,0 @@
-{
-  final Map<String,String> map=super.getPasswordPolicyAttributesMap();
-  if (!StringUtils.isBlank(getUserAccountControlAttributeName())) {
-    map.put(getUserAccountControlAttributeName(),getUserAccountControlAttributeName());
-  }
-  return map;
-}
