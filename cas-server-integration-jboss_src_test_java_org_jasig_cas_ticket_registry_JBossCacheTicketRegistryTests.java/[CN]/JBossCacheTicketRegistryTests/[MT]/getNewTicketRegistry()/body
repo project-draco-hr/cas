@@ -1,8 +1,7 @@
 {
-  final ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_FILE_NAME);
+  this.context=new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_FILE_NAME);
   this.registry=(JBossCacheTicketRegistry)context.getBean(APPLICATION_CONTEXT_CACHE_BEAN_NAME);
   this.treeCache=(Cache<String,Ticket>)context.getBean("cache");
   this.treeCache.removeNode("/ticket");
-  IOUtils.closeQuietly(context);
   return this.registry;
 }
