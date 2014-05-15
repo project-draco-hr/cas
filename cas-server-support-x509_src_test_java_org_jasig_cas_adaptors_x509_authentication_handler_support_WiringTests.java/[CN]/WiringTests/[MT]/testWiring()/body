@@ -1,4 +1,5 @@
 {
-  final ApplicationContext context=new ClassPathXmlApplicationContext("deployerConfigContext.xml");
+  final ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("deployerConfigContext.xml");
   Assert.assertTrue(context.getBeanDefinitionCount() > 0);
+  IOUtils.closeQuietly(context);
 }
