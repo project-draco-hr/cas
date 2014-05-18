@@ -1,5 +1,0 @@
-{
-  final Calendar calendar=Calendar.getInstance();
-  calendar.setTime(date);
-  return calendar;
-}

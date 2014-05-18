@@ -1,6 +1,6 @@
 {
   populateRegistryWithExpiredTickets();
-  TicketGrantingTicket ticket=new TicketGrantingTicketImpl("testNoExpire",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+  final TicketGrantingTicket ticket=new TicketGrantingTicketImpl("testNoExpire",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
   this.ticketRegistry.addTicket(ticket);
   this.registryCleaner.clean();
   assertEquals(this.ticketRegistry.getTickets().size(),1);

@@ -1,3 +1,3 @@
 {
-  return Cipher.getInstance(CIPHER_ALGORITHM).getBlockSize();
+  return getCipherObject().getBlockSize();
 }

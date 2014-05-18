@@ -1,6 +1,6 @@
 {
-  RegexRegisteredService regexRegisteredService=new RegexRegisteredService();
+  final RegexRegisteredService regexRegisteredService=new RegexRegisteredService();
   assertFalse(regexRegisteredService.isAllowedToProxy());
-  RegisteredServiceImpl registeredServiceImpl=new RegisteredServiceImpl();
+  final RegisteredServiceImpl registeredServiceImpl=new RegisteredServiceImpl();
   assertFalse(registeredServiceImpl.isAllowedToProxy());
 }
