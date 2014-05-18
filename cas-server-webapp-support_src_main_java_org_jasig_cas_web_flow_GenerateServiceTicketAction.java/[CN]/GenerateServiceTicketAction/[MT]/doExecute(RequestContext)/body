@@ -7,6 +7,9 @@
     return success();
   }
  catch (  final TicketException e) {
+    if (e instanceof InvalidTicketException) {
+      this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicket);
+    }
     if (isGatewayPresent(context)) {
       return result("gateway");
     }
