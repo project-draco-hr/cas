@@ -7,6 +7,6 @@
   if (transformedUsername == null) {
     throw new AccountNotFoundException("Transformed username is null.");
   }
-  final Principal principal=authenticateUsernamePasswordInternal(transformedUsername,userPass.getPassword());
-  return new HandlerResult(this,new BasicCredentialMetaData(credential),principal);
+  userPass.setUsername(transformedUsername);
+  return authenticateUsernamePasswordInternal(userPass);
 }

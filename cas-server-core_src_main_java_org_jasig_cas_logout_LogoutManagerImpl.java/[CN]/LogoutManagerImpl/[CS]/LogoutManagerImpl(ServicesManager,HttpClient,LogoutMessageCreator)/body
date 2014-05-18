@@ -1,0 +1,5 @@
+{
+  this.servicesManager=servicesManager;
+  this.httpClient=httpClient;
+  this.logoutMessageBuilder=logoutMessageBuilder;
+}

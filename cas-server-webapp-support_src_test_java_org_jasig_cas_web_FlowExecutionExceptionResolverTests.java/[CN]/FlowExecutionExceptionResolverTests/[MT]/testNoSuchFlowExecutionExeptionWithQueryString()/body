@@ -1,5 +1,5 @@
 {
-  MockHttpServletRequest request=new MockHttpServletRequest();
+  final MockHttpServletRequest request=new MockHttpServletRequest();
   request.setRequestURI("test");
   request.setQueryString("test=test");
   ModelAndView model=this.resolver.resolveException(request,new MockHttpServletResponse(),null,new NoSuchFlowExecutionException(new FlowExecutionKey(){
