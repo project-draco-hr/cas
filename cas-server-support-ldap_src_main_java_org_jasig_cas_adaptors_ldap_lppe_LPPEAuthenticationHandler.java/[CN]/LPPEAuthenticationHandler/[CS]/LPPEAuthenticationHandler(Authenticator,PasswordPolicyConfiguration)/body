@@ -1,4 +1,0 @@
-{
-  super(authenticator);
-  this.configuration=configuration;
-}

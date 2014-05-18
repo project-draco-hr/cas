@@ -1,0 +1,3 @@
+String svcId
+boolean enabled
+boolean canProxy

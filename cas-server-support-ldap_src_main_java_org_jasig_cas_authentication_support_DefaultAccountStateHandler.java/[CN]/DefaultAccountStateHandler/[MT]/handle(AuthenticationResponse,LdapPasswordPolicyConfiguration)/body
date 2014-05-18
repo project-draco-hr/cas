@@ -1,0 +1,18 @@
+{
+  final AccountState state=response.getAccountState();
+  final AccountState.Error error;
+  final AccountState.Warning warning;
+  if (state != null) {
+    error=state.getError();
+    warning=state.getWarning();
+  }
+ else {
+    logger.debug("Account state not defined");
+    error=null;
+    warning=null;
+  }
+  final List<Message> messages=new ArrayList<Message>();
+  handleError(error,response,configuration,messages);
+  handleWarning(warning,response,configuration,messages);
+  return messages;
+}

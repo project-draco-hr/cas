@@ -1,9 +1,0 @@
-{
-  final DateTime dateValue=result.getPasswordExpirationDateTime();
-  if (configuration.getStaticPasswordExpirationDate() == null) {
-    final DateTime expireDate=dateValue.plusDays(result.getValidPasswordNumberOfDays());
-    logger.debug("Retrieved date value [{}] for date attribute [{}] and added {} valid days. " + "The final expiration date is [{}]",dateValue,configuration.getPasswordExpirationDateAttributeName(),result.getValidPasswordNumberOfDays(),expireDate);
-    return expireDate;
-  }
-  return dateValue;
-}

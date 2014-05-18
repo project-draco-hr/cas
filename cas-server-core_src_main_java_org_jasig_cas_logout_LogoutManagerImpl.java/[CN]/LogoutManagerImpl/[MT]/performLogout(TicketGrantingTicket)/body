@@ -12,16 +12,16 @@ synchronized (ticket) {
       if (service instanceof SingleLogoutService) {
         final SingleLogoutService singleLogoutService=(SingleLogoutService)service;
         if (!singleLogoutService.isLoggedOutAlready()) {
-          final LogoutRequest logoutRequest=new LogoutRequest(ticketId,service);
+          final LogoutRequest logoutRequest=new LogoutRequest(ticketId,singleLogoutService);
           logoutRequests.add(logoutRequest);
           final RegisteredService registeredService=servicesManager.findServiceBy(service);
           if (registeredService == null || registeredService.getLogoutType() == null || registeredService.getLogoutType() == LogoutType.BACK_CHANNEL) {
-            if (performBackChannelLogout(singleLogoutService,ticketId)) {
+            if (performBackChannelLogout(logoutRequest)) {
               logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
             }
  else {
               logoutRequest.setStatus(LogoutRequestStatus.FAILURE);
-              LOGGER.warn("Logout message not sent to [[]]; Continuing processing...",singleLogoutService.getId());
+              LOGGER.warn("Logout message not sent to [{}]; Continuing processing...",singleLogoutService.getId());
             }
           }
         }
