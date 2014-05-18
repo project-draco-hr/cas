@@ -1,8 +1,8 @@
 {
-  RegisteredServiceImpl authorizedRegisteredService=new RegisteredServiceImpl();
-  RegisteredServiceImpl unauthorizedRegisteredService=new RegisteredServiceImpl();
+  final RegisteredServiceImpl authorizedRegisteredService=new RegisteredServiceImpl();
+  final RegisteredServiceImpl unauthorizedRegisteredService=new RegisteredServiceImpl();
   unauthorizedRegisteredService.setEnabled(false);
-  List<RegisteredService> list=new ArrayList<RegisteredService>();
+  final List<RegisteredService> list=new ArrayList<RegisteredService>();
   list.add(authorizedRegisteredService);
   list.add(unauthorizedRegisteredService);
   when(this.servicesManager.findServiceBy(this.authorizedService)).thenReturn(authorizedRegisteredService);
