@@ -6,7 +6,7 @@ synchronized (ticket) {
   }
   ticket.markTicketExpired();
   final List<LogoutRequest> logoutRequests=new ArrayList<LogoutRequest>();
-  if (!disableSingleSignOut) {
+  if (!this.singleLogoutCallbacksDisabled) {
     for (    final String ticketId : services.keySet()) {
       final Service service=services.get(ticketId);
       if (service instanceof SingleLogoutService) {
