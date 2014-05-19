@@ -1,5 +1,5 @@
 {
-  TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
   assertFalse(t.equals(null));
   assertFalse(t.equals(new Object()));
   assertTrue(t.equals(t));

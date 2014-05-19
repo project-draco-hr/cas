@@ -1,5 +1,5 @@
 {
-  RegisteredServiceImpl r=new RegisteredServiceImpl();
+  final RegisteredServiceImpl r=new RegisteredServiceImpl();
   r.setId(1200);
   r.setName("name");
   r.setServiceId("test");

@@ -1,5 +1,5 @@
 {
-  RegisteredServiceImpl r=new RegisteredServiceImpl();
+  final RegisteredServiceImpl r=new RegisteredServiceImpl();
   r.setId(1200);
   r.setName("name");
   r.setServiceId("test");
@@ -8,6 +8,6 @@
   final ModelAndView modelAndView=this.controller.updateRegisteredServiceEvaluationOrder(r.getId(),100);
   assertNotNull(modelAndView);
   assertEquals("jsonView",modelAndView.getViewName());
-  RegisteredService result=this.servicesManager.findServiceBy(r.getId());
+  final RegisteredService result=this.servicesManager.findServiceBy(r.getId());
   assertEquals(result.getEvaluationOrder(),100);
 }
