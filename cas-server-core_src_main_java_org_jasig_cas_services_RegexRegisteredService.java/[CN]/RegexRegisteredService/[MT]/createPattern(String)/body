@@ -2,8 +2,5 @@
   if (pattern == null) {
     throw new IllegalArgumentException("Pattern cannot be null.");
   }
-  if (!this.caseSensitive) {
-    return Pattern.compile(pattern,Pattern.CASE_INSENSITIVE);
-  }
-  return Pattern.compile(pattern);
+  return Pattern.compile(pattern,Pattern.CASE_INSENSITIVE);
 }
