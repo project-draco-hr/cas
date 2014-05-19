@@ -13,6 +13,6 @@
     LdapTestUtils.createLdapEntries(connection,this.directoryType,this.testEntries);
   }
   finally {
-    connection.close();
+    LdapUtils.closeConnection(connection);
   }
 }

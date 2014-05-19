@@ -1,17 +1,17 @@
 {
-  String serviceUrl=getServiceUrl();
-  String encodedService=URLEncoder.encode(serviceUrl,"UTF-8");
+  final String serviceUrl=getServiceUrl();
+  final String encodedService=URLEncoder.encode(serviceUrl,"UTF-8");
   beginAt("/login?service=" + encodedService);
   assertFormElementPresent(LOGIN_TOKEN);
   setFormElement("username",getUsername());
   setFormElement("password",getGoodPassword());
   submit();
-  String firstServiceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  final String firstServiceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
   assertNotNull(firstServiceTicket);
   beginAt("/serviceValidate?service=" + encodedService + "&ticket="+ firstServiceTicket);
   assertTextPresent("<cas:authenticationSuccess");
   beginAt("/login?service=" + encodedService);
-  String secondServiceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  final String secondServiceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
   assertNotNull(secondServiceTicket);
   assertFalse(firstServiceTicket.equals(secondServiceTicket));
   beginAt("/logout");
