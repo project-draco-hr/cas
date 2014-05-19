@@ -1,0 +1,4 @@
+{
+  this.callbackUrl=null;
+  this.callbackUrlAsString=null;
+}

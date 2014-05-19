@@ -1,8 +1,10 @@
 {
-  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
-  final HttpSession webSession=request.getSession(false);
-  if (webSession != null) {
-    LOGGER.debug("Terminate web session {} in {} seconds",webSession.getId(),this.timeToDieInSeconds);
-    webSession.setMaxInactiveInterval(this.timeToDieInSeconds);
+  if (session.isRoot()) {
+    final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+    final HttpSession webSession=request.getSession(false);
+    if (webSession != null) {
+      LOGGER.debug("Terminate web session {} in {} seconds",webSession.getId(),this.timeToDieInSeconds);
+      webSession.setMaxInactiveInterval(this.timeToDieInSeconds);
+    }
   }
 }
