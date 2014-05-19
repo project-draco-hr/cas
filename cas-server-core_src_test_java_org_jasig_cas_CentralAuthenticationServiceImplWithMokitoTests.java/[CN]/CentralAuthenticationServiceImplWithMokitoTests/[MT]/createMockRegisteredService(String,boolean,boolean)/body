@@ -1,0 +1,9 @@
+{
+  final RegisteredService mockRegSvc=mock(RegisteredService.class);
+  when(mockRegSvc.getServiceId()).thenReturn(svcId);
+  when(mockRegSvc.isEnabled()).thenReturn(enabled);
+  when(mockRegSvc.isAllowedToProxy()).thenReturn(canProxy);
+  when(mockRegSvc.getName()).thenReturn(svcId);
+  when(mockRegSvc.matches(argThat(new VerifyServiceByIdMatcher(svcId)))).thenReturn(true);
+  return mockRegSvc;
+}
