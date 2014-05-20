@@ -1,7 +1,5 @@
 {
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.setParameter("id","1200");
-  final ModelAndView modelAndView=this.controller.deleteRegisteredService(request,new MockHttpServletResponse());
+  final ModelAndView modelAndView=this.controller.deleteRegisteredService(1200);
   assertNotNull(modelAndView);
   assertNull(this.servicesManager.findServiceBy(1200));
   assertEquals("deleted",modelAndView.getModel().get("status"));

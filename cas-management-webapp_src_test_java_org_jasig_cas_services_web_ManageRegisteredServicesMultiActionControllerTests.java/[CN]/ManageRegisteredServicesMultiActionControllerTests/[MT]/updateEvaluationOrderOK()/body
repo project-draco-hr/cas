@@ -5,10 +5,7 @@
   r.setServiceId("test");
   r.setEvaluationOrder(2);
   this.servicesManager.save(r);
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.addParameter("id",String.valueOf(r.getId()));
-  request.addParameter("evaluationOrder","100");
-  final ModelAndView modelAndView=this.controller.updateRegisteredServiceEvaluationOrder(request,new MockHttpServletResponse());
+  final ModelAndView modelAndView=this.controller.updateRegisteredServiceEvaluationOrder(r.getId(),100);
   assertNotNull(modelAndView);
   assertEquals("jsonView",modelAndView.getViewName());
   final RegisteredService result=this.servicesManager.findServiceBy(r.getId());
