@@ -1,5 +1,0 @@
-{
-  logger.debug("Loaded service " + service.getServiceId() + " with command class set to "+ this.getCommandClass());
-  updateModelMap(model,request);
-  return new ModelAndView(VIEW_NAME);
-}

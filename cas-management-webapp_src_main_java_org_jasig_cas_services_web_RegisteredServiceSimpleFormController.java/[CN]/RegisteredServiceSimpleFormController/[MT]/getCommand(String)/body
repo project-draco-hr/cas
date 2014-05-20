@@ -1,12 +1,12 @@
 {
   if (!StringUtils.hasText(id)) {
     final RegisteredService service=new RegisteredServiceImpl();
-    LOGGER.debug("Created new service of type " + service.getClass().getName());
+    LOGGER.debug("Created new service of type {}",service.getClass().getName());
     return service;
   }
   final RegisteredService service=this.servicesManager.findServiceBy(Long.parseLong(id));
   if (service != null) {
-    LOGGER.debug("Loaded service " + service.getServiceId());
+    LOGGER.debug("Loaded service {}",service.getServiceId());
   }
  else {
     LOGGER.debug("Invalid service id specified.");
