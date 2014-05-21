@@ -1,3 +1,4 @@
 {
-  this(null);
+  this.id=null;
+  this.authentication=null;
 }

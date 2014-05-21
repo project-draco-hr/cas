@@ -1,7 +1,8 @@
 {
   final StringBuilder builder=new StringBuilder();
+  BufferedReader reader=null;
   try {
-    final BufferedReader reader=request.getReader();
+    reader=request.getReader();
     String line;
     while ((line=reader.readLine()) != null) {
       builder.append(line);
@@ -10,5 +11,8 @@
   }
  catch (  final Exception e) {
     return null;
+  }
+ finally {
+    IOUtils.closeQuietly(reader);
   }
 }

@@ -27,8 +27,18 @@ catch (    final TicketException e) {
     }
   }
   try {
-    WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credential));
+    final String tgtId=this.centralAuthenticationService.createTicketGrantingTicket(credential);
+    WebUtils.putTicketGrantingTicketInFlowScope(context,tgtId);
     putWarnCookieIfRequestParameterPresent(context);
+    final TicketGrantingTicket tgt=(TicketGrantingTicket)this.ticketRegistry.getTicket(tgtId);
+    for (    final Map.Entry<String,HandlerResult> entry : tgt.getAuthentication().getSuccesses().entrySet()) {
+      for (      final Message message : entry.getValue().getWarnings()) {
+        addWarningToContext(messageContext,message);
+      }
+    }
+    if (this.hasWarningMessages) {
+      return newEvent(SUCCESS_WITH_WARNINGS);
+    }
     return newEvent(SUCCESS);
   }
  catch (  final AuthenticationException e) {

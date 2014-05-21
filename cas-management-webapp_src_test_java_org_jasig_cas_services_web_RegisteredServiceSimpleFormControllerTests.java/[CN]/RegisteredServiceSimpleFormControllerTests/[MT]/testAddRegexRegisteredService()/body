@@ -1,18 +1,11 @@
 {
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  final MockHttpServletResponse response=new MockHttpServletResponse();
-  request.addParameter("description","description");
-  request.addParameter("serviceId","^https://.*");
-  request.addParameter("name","name");
-  request.addParameter("theme","theme");
-  request.addParameter("allowedToProxy","true");
-  request.addParameter("enabled","true");
-  request.addParameter("ssoEnabled","true");
-  request.addParameter("anonymousAccess","false");
-  request.addParameter("evaluationOrder","1");
-  request.setMethod("POST");
-  assertTrue(this.manager.getAllServices().isEmpty());
-  this.controller.handleRequest(request,response);
+  final RegexRegisteredService svc=new RegexRegisteredService();
+  svc.setDescription("description");
+  svc.setServiceId("^serviceId");
+  svc.setName("name");
+  svc.setId(1000);
+  svc.setEvaluationOrder(1000);
+  this.controller.onSubmit(svc,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
   final Collection<RegisteredService> services=this.manager.getAllServices();
   assertEquals(1,services.size());
   for (  RegisteredService rs : this.manager.getAllServices()) {

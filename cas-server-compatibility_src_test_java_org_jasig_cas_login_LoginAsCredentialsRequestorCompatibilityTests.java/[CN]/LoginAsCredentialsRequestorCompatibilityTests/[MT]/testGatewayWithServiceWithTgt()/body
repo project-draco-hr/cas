@@ -9,11 +9,11 @@
   setFormElement(FORM_PASSWORD,getGoodPassword());
   submit();
   beginAt(URLGW);
-  String st=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  final String st=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
   assertNotNull(st);
   beginAt("/validate?ticket=" + st + "&service="+ encodedService);
-  HttpUnitDialog htDialog=getDialog();
-  String validateOutput=htDialog.getResponseText();
-  String expected="yes\n" + getUsername() + "\n";
+  final HttpUnitDialog htDialog=getDialog();
+  final String validateOutput=htDialog.getResponseText();
+  final String expected="yes\n" + getUsername() + "\n";
   assertEquals(expected,validateOutput);
 }
