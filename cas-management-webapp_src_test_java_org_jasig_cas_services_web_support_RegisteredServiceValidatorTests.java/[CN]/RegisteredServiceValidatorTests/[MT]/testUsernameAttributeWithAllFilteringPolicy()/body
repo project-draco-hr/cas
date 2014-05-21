@@ -1,0 +1,12 @@
+{
+  final RegisteredServiceImpl impl=new RegisteredServiceImpl();
+  impl.setServiceId("test");
+  impl.setDescription("fasdfdsafsafsafdsa");
+  impl.setUsernameAttribute("k3");
+  impl.setAttributeFilteringPolicy(new ReturnAllAttributeFilteringPolicy());
+  final BindException exception=new BindException(impl,"registeredService");
+  final RegisteredServiceValidator validator=getValidator(false);
+  validator.setMaxDescriptionLength(100);
+  validator.validate(impl,exception);
+  assertEquals(0,exception.getErrorCount());
+}
