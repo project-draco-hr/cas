@@ -5,7 +5,7 @@
   r.setServiceId("test");
   r.setEvaluationOrder(2);
   this.servicesManager.save(r);
-  final ModelAndView modelAndView=this.controller.manage(new MockHttpServletRequest(),new MockHttpServletResponse());
+  final ModelAndView modelAndView=this.controller.manage();
   assertNotNull(modelAndView);
   assertEquals("manageServiceView",modelAndView.getViewName());
   final Collection<?> c=(Collection<?>)modelAndView.getModel().get("services");

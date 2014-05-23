@@ -1,17 +1,9 @@
 {
-  RegisteredServiceImpl r=new RegisteredServiceImpl();
+  final RegisteredServiceImpl r=new RegisteredServiceImpl();
   r.setId(1200);
   r.setName("name");
   r.setServiceId("test");
   r.setEvaluationOrder(2);
   this.servicesManager.save(r);
-  try {
-    MockHttpServletRequest request=new MockHttpServletRequest();
-    request.addParameter("id","5000");
-    request.addParameter("evaluationOrder","1000");
-    this.controller.updateRegisteredServiceEvaluationOrder(request,new MockHttpServletResponse());
-  }
- catch (  final IllegalArgumentException e) {
-    logger.debug(e.getMessage(),e);
-  }
+  this.controller.updateRegisteredServiceEvaluationOrder(5000,1000);
 }

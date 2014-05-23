@@ -1,0 +1,6 @@
+{
+  final ModelAndView mv=this.mvc.perform(get("/deleteRegisteredService.html").param("id","0")).andExpect(status().isFound()).andReturn().getModelAndView();
+  assertNotNull(mv);
+  assertNotNull(mv.getModel().get("serviceName"));
+  assertEquals(mv.getModel().get("serviceName"),"HTTP and IMAP");
+}

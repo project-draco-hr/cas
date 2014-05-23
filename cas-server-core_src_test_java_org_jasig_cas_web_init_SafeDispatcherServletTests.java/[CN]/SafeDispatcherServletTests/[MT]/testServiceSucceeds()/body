@@ -1,8 +1,8 @@
 {
   this.mockConfig=new MockServletConfig(this.mockContext,"cas");
   this.safeServlet.init(this.mockConfig);
-  ServletRequest mockRequest=new MockHttpServletRequest();
-  ServletResponse mockResponse=new MockHttpServletResponse();
+  final ServletRequest mockRequest=new MockHttpServletRequest();
+  final ServletResponse mockResponse=new MockHttpServletResponse();
   try {
     this.safeServlet.service(mockRequest,mockResponse);
   }
