@@ -9,7 +9,7 @@
   rs.setTheme("the theme name");
   rs.setUsernameAttribute("uid");
   rs.setEvaluationOrder(123);
-  rs.setAllowedAttributes(Arrays.asList("test1","test2"));
+  rs.setAttributeFilteringPolicy(new ReturnAllAttributeFilteringPolicy());
   this.dao.save(rs);
   rs=new RegexRegisteredService();
   rs.setName("Service Name Regex");
@@ -20,7 +20,6 @@
   rs.setTheme("the theme name");
   rs.setUsernameAttribute("uid");
   rs.setEvaluationOrder(123);
-  rs.setAllowedAttributes(Arrays.asList("test1","test2"));
   rs.setRequiredHandlers(new HashSet<String>(Arrays.asList("handler1","handler2")));
   this.dao.save(rs);
   final List<RegisteredService> services=this.dao.load();
@@ -28,7 +27,6 @@
   AbstractRegisteredService rs2=(AbstractRegisteredService)this.dao.findServiceById(services.get(0).getId());
   assertNotNull(rs2);
   rs2.setEvaluationOrder(9999);
-  rs2.setAllowedAttributes(Arrays.asList("test3"));
   rs2.setName("Another Test Service");
   rs2=(AbstractRegisteredService)this.dao.save(rs2);
   assertNotNull(rs2);

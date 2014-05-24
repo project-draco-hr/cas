@@ -10,6 +10,6 @@
   assertTrue(mapAttributes.containsKey("uid"));
   assertTrue(mapAttributes.containsKey("familyName"));
   assertFalse(mapAttributes.containsKey("phone"));
-  final String[] arrayAttrs=(String[])attrs.get("memberOf");
-  assertEquals(arrayAttrs.length,2);
+  final List<?> obj=(List<?>)attrs.get("memberOf");
+  assertEquals(2,obj.size());
 }

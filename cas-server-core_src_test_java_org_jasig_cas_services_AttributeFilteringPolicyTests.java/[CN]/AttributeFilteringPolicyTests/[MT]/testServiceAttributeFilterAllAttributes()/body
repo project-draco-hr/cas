@@ -9,4 +9,7 @@
   when(p.getId()).thenReturn("principalId");
   final Map<String,Object> attr=policy.getAttributes(p);
   assertEquals(attr.size(),map.size());
+  final byte[] data=SerializationUtils.serialize(policy);
+  final ReturnAllAttributeFilteringPolicy p2=(ReturnAllAttributeFilteringPolicy)SerializationUtils.deserialize(data);
+  assertNotNull(p2);
 }
