@@ -3,7 +3,7 @@
   final String serviceTicketId=service != null ? service.getArtifactId() : null;
   if (service == null || serviceTicketId == null) {
     logger.debug("Could not identify service and/or service ticket. Service: {}, Service ticket id: {}",service,serviceTicketId);
-    return generateErrorView("INVALID_REQUEST","INVALID_REQUEST",null);
+    return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_REQUEST,CasProtocolConstants.ERROR_CODE_INVALID_REQUEST,null);
   }
   try {
     final Credential serviceCredential=getServiceCredentialsFromRequest(request);
@@ -19,7 +19,7 @@ catch (      final TicketException e) {
         logger.error("Failed to create proxy granting ticket for {}",serviceCredential,e);
       }
       if (StringUtils.isEmpty(proxyGrantingTicketId)) {
-        return generateErrorView("INVALID_PROXY_CALLBACK","INVALID_PROXY_CALLBACK",new Object[]{serviceCredential.getId()});
+        return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_PROXY_CALLBACK,CasProtocolConstants.ERROR_CODE_INVALID_PROXY_CALLBACK,new Object[]{serviceCredential.getId()});
       }
     }
     final Assertion assertion=this.centralAuthenticationService.validateServiceTicket(serviceTicketId,service);
@@ -29,13 +29,13 @@ catch (      final TicketException e) {
     binder.bind(request);
     if (!validationSpecification.isSatisfiedBy(assertion)) {
       logger.debug("Service ticket [{}] does not satisfy validation specification.",serviceTicketId);
-      return generateErrorView("INVALID_TICKET","INVALID_TICKET_SPEC",null);
+      return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_TICKET,CasProtocolConstants.ERROR_CODE_INVALID_TICKET,null);
     }
     String proxyIou=null;
     if (serviceCredential != null && proxyGrantingTicketId != null && this.proxyHandler.canHandle(serviceCredential)) {
       proxyIou=this.proxyHandler.handle(serviceCredential,proxyGrantingTicketId);
       if (StringUtils.isEmpty(proxyIou)) {
-        return generateErrorView("INVALID_PROXY_CALLBACK","INVALID_PROXY_CALLBACK",new Object[]{serviceCredential.getId()});
+        return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_PROXY_CALLBACK,CasProtocolConstants.ERROR_CODE_INVALID_PROXY_CALLBACK,new Object[]{serviceCredential.getId()});
       }
     }
     onSuccessfulValidation(serviceTicketId,assertion);
