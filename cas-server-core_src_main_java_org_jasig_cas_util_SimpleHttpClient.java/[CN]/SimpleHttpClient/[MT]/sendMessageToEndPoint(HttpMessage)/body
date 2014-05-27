@@ -3,7 +3,7 @@
   task.setFollowRedirects(this.followRedirects);
   task.setReadTimeout(this.readTimeout);
   final Future<Boolean> result=EXECUTOR_SERVICE.submit(task);
-  if (async) {
+  if (task.isIssueAsynchronousCallbacks()) {
     return true;
   }
   try {

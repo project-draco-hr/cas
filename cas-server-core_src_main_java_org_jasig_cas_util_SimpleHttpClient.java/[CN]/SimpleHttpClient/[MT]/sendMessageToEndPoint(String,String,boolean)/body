@@ -1,3 +1,0 @@
-{
-  return sendMessageToEndPoint(async,new CallableMessageSender(url,message));
-}
