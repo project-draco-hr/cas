@@ -5,10 +5,10 @@
   setFormElement("password",getGoodPassword());
   submit();
   HttpUnitDialog htDialog=getDialog();
-  String serviceTicket=LoginHelper.serviceTicketFromResponse(htDialog.getResponse());
+  final String serviceTicket=LoginHelper.serviceTicketFromResponse(htDialog.getResponse());
   beginAt("/validate?ticket=" + serviceTicket);
   assertTextPresent("no");
   htDialog=getDialog();
-  String validateOutput=htDialog.getResponseText();
+  final String validateOutput=htDialog.getResponseText();
   assertEquals(LEGACY_NO_RESPONSE,validateOutput);
 }

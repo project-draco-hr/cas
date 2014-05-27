@@ -1,0 +1,5 @@
+{
+  final IPersonAttributeDao dao=new StubPersonAttributeDao();
+  final RegisteredServiceValidator validator=new RegisteredServiceValidator(new TestServicesManager(returnValue),dao);
+  return validator;
+}

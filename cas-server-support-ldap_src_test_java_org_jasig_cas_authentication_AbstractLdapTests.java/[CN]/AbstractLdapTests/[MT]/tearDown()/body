@@ -8,6 +8,6 @@
     LdapTestUtils.removeLdapEntries(connection,this.testEntries);
   }
   finally {
-    connection.close();
+    LdapUtils.closeConnection(connection);
   }
 }

@@ -1,5 +1,5 @@
 {
-  StaticApplicationContext context=new StaticApplicationContext();
+  final StaticApplicationContext context=new StaticApplicationContext();
   context.refresh();
   this.serviceValidateController=new ServiceValidateController();
   this.serviceValidateController.setCentralAuthenticationService(getCentralAuthenticationService());

@@ -1,7 +1,0 @@
-{
-  LOGGER.debug("Sending logout request for: {}",service.getId());
-  final String logoutRequest=createBackChannelLogoutMessage(ticketId);
-  service.setLoggedOutAlready(true);
-  final CallableLogoutMessageSender sender=new CallableLogoutMessageSender(service.getOriginalUrl(),logoutRequest);
-  return this.httpClient.sendMessageToEndPoint(true,sender);
-}

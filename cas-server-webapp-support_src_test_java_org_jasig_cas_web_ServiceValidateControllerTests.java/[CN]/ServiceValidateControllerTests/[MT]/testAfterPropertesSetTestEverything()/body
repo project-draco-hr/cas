@@ -1,6 +1,4 @@
 {
   this.serviceValidateController.setValidationSpecificationClass(Cas20ProtocolValidationSpecification.class);
-  this.serviceValidateController.setSuccessView(CONST_SUCCESS_VIEW);
-  this.serviceValidateController.setFailureView(CONST_FAILURE_VIEW);
   this.serviceValidateController.setProxyHandler(new Cas20ProxyHandler());
 }

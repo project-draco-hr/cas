@@ -1,0 +1,5 @@
+String id
+ServiceTicket svcTicket
+boolean isExpired
+TicketGrantingTicket root
+List<Authentication> chainedAuthnList
