@@ -9,7 +9,7 @@
   rs.setTheme("the theme name");
   rs.setUsernameAttribute("uid");
   rs.setEvaluationOrder(123);
-  rs.setAttributeFilteringPolicy(new ReturnAllAttributeFilteringPolicy());
+  rs.setAttributeReleasePolicy(new ReturnAllAttributeReleasePolicy());
   this.dao.save(rs);
   rs=new RegexRegisteredService();
   rs.setName("Service Name Regex");

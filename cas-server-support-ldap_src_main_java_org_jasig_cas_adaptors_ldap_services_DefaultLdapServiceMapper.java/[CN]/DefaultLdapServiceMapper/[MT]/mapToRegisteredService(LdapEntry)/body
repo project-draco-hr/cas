@@ -15,10 +15,10 @@
       s.setAnonymousAccess(LdapUtils.getBoolean(entry,this.serviceAnonymousAccessAttribute));
       s.setSsoEnabled(LdapUtils.getBoolean(entry,this.serviceSsoEnabledAttribute));
       s.setRequiredHandlers(new HashSet<String>(getMultiValuedAttributeValues(entry,this.requiredHandlersAttribute)));
-      final byte[] data=LdapUtils.getBinary(entry,this.attributeFilteringPolicyAttribute);
+      final byte[] data=LdapUtils.getBinary(entry,this.attributeReleasePolicyAttribute);
       if (data != null && data.length > 0) {
-        final AttributeFilteringPolicy policy=(AttributeFilteringPolicy)SerializationUtils.deserialize(data);
-        s.setAttributeFilteringPolicy(policy);
+        final AttributeReleasePolicy policy=(AttributeReleasePolicy)SerializationUtils.deserialize(data);
+        s.setAttributeReleasePolicy(policy);
       }
     }
     return s;

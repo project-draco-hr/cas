@@ -16,9 +16,9 @@
   attrs.add(new LdapAttribute(this.evaluationOrderAttribute,String.valueOf(svc.getEvaluationOrder())));
   attrs.add(new LdapAttribute(this.serviceThemeAttribute,svc.getTheme()));
   attrs.add(new LdapAttribute(this.usernameAttribute,svc.getUsernameAttribute()));
-  if (svc.getAttributeFilteringPolicy() != null) {
-    final byte[] data=SerializationUtils.serialize(svc.getAttributeFilteringPolicy());
-    final LdapAttribute attr=new LdapAttribute(this.attributeFilteringPolicyAttribute,data);
+  if (svc.getAttributeReleasePolicy() != null) {
+    final byte[] data=SerializationUtils.serialize(svc.getAttributeReleasePolicy());
+    final LdapAttribute attr=new LdapAttribute(this.attributeReleasePolicyAttribute,data);
     attrs.add(attr);
   }
   if (svc.getRequiredHandlers().size() > 0) {
