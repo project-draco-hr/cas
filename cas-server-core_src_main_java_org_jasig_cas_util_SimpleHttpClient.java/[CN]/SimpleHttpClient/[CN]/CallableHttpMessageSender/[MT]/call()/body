@@ -3,18 +3,18 @@
   BufferedReader in=null;
   DataOutputStream printout=null;
   try {
-    LOGGER.debug("Attempting to access {}",url);
-    final URL logoutUrl=new URL(url);
-    final String output=formatOutputMessageInternal(this.message);
+    LOGGER.debug("Attempting to access {}",message.getUrl());
+    final URL logoutUrl=new URL(message.getUrl());
+    final String output=message.getMessage();
     connection=(HttpURLConnection)logoutUrl.openConnection();
     connection.setDoInput(true);
     connection.setDoOutput(true);
     connection.setRequestMethod("POST");
-    connection.setReadTimeout(this.readTimeout);
-    connection.setConnectTimeout(this.connectionTimeout);
-    connection.setInstanceFollowRedirects(this.followRedirects);
+    connection.setReadTimeout(SimpleHttpClient.this.readTimeout);
+    connection.setConnectTimeout(SimpleHttpClient.this.connectionTimeout);
+    connection.setInstanceFollowRedirects(SimpleHttpClient.this.followRedirects);
     connection.setRequestProperty("Content-Length",Integer.toString(output.getBytes().length));
-    connection.setRequestProperty("Content-Type",this.contentType);
+    connection.setRequestProperty("Content-Type",message.getContentType());
     printout=new DataOutputStream(connection.getOutputStream());
     printout.writeBytes(output);
     printout.flush();
@@ -23,15 +23,15 @@
     while (readInput) {
       readInput=StringUtils.isNotBlank(in.readLine());
     }
-    LOGGER.debug("Finished sending message to {}",url);
+    LOGGER.debug("Finished sending message to {}",message.getUrl());
     return true;
   }
  catch (  final SocketTimeoutException e) {
-    LOGGER.warn("Socket Timeout Detected while attempting to send message to [{}]",url);
+    LOGGER.warn("Socket Timeout Detected while attempting to send message to [{}]",message.getUrl());
     return false;
   }
 catch (  final Exception e) {
-    LOGGER.warn("Error Sending message to url endpoint [{}]. Error is [{}]",url,e.getMessage());
+    LOGGER.warn("Error Sending message to url endpoint [{}]. Error is [{}]",message.getUrl(),e.getMessage());
     return false;
   }
  finally {

@@ -1,9 +1,7 @@
 {
-  task.setConnectionTimeout(this.connectionTimeout);
-  task.setFollowRedirects(this.followRedirects);
-  task.setReadTimeout(this.readTimeout);
-  final Future<Boolean> result=EXECUTOR_SERVICE.submit(task);
-  if (task.isIssueAsynchronousCallbacks()) {
+  final Callable<Boolean> callable=new CallableHttpMessageSender(message);
+  final Future<Boolean> result=EXECUTOR_SERVICE.submit(callable);
+  if (message.isIssueAsynchronousCallbacks()) {
     return true;
   }
   try {

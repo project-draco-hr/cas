@@ -1,3 +1,0 @@
-{
-  return LogoutManagerImpl.this.issueAsynchronousCallbacks;
-}

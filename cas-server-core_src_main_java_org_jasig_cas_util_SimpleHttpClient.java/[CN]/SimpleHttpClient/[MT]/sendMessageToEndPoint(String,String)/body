@@ -1,3 +1,0 @@
-{
-  return sendMessageToEndPoint(new HttpMessage(url,message));
-}
