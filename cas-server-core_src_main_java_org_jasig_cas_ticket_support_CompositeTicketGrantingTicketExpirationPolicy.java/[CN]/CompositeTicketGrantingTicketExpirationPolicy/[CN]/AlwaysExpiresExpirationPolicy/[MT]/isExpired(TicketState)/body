@@ -1,0 +1,4 @@
+{
+  logger.debug("Ticket is ALWAYS considered expired.");
+  return true;
+}
