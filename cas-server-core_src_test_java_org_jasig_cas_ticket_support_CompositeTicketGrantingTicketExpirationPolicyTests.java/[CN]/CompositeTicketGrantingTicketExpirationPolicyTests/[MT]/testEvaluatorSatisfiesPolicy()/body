@@ -1,0 +1,12 @@
+{
+  final Map<TicketExpirationPolicyEvaluator,ExpirationPolicy> evaluators=new HashMap<TicketExpirationPolicyEvaluator,ExpirationPolicy>();
+  final TicketExpirationPolicyEvaluator evaluator=new TicketExpirationPolicyEvaluator(){
+    @Override public boolean satisfiesTicketExpirationPolicy(    final HttpServletRequest request,    final TicketState state){
+      return true;
+    }
+  }
+;
+  evaluators.put(evaluator,new NeverExpiresExpirationPolicy());
+  final ExpirationPolicy policy=new CompositeTicketGrantingTicketExpirationPolicy(evaluators);
+  assertTrue(!policy.isExpired(getTicketState()));
+}

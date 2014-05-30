@@ -1,0 +1,5 @@
+{
+  final Map<TicketExpirationPolicyEvaluator,ExpirationPolicy> evaluators=Collections.emptyMap();
+  final ExpirationPolicy policy=new CompositeTicketGrantingTicketExpirationPolicy(evaluators);
+  assertTrue(policy.isExpired(getTicketState()));
+}

@@ -1,0 +1,6 @@
+{
+  final HttpRequestRemoteAddrExpirationPolicyEvaluator evaluator=new HttpRequestRemoteAddrExpirationPolicyEvaluator("1\\.2.+");
+  final HttpServletRequest request=mock(HttpServletRequest.class);
+  when(request.getRemoteAddr()).thenReturn("1.2.5.4");
+  assertTrue(evaluator.satisfiesTicketExpirationPolicy(request,getTicketState()));
+}

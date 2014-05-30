@@ -1,0 +1,7 @@
+{
+  final TicketState state=mock(TicketState.class);
+  when(state.getAuthentication()).thenReturn(mock(Authentication.class));
+  when(state.getCreationTime()).thenReturn(new Date(2013,1,1).getTime());
+  when(state.getLastTimeUsed()).thenReturn(new Date(2014,1,1).getTime());
+  return state;
+}
