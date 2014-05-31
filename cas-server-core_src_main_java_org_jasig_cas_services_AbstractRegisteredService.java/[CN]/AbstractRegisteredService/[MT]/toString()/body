@@ -5,5 +5,7 @@
   toStringBuilder.append("description",this.description);
   toStringBuilder.append("serviceId",this.serviceId);
   toStringBuilder.append("usernameAttribute",this.usernameAttribute);
+  toStringBuilder.append("enabled",this.enabled);
+  toStringBuilder.append("ssoEnabled",this.ssoEnabled);
   return toStringBuilder.toString();
 }

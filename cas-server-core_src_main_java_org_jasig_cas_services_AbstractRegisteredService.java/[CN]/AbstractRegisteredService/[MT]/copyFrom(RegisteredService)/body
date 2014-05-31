@@ -11,4 +11,5 @@
   this.setEvaluationOrder(source.getEvaluationOrder());
   this.setUsernameAttribute(source.getUsernameAttribute());
   this.setLogoutType(source.getLogoutType());
+  this.setAttributeReleasePolicy(source.getAttributeReleasePolicy());
 }
