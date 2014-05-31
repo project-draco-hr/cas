@@ -21,7 +21,7 @@ synchronized (ticketGrantingTicket) {
   }
   final List<Authentication> authns=ticketGrantingTicket.getChainedAuthentications();
   if (authns.size() > 1) {
-    if (!registeredService.isAllowedToProxy()) {
+    if (!registeredService.getProxyPolicy().isAllowedToProxy()) {
       final String message=String.format("ServiceManagement: Proxy attempt by service [%s] (registered service [%s]) is not allowed.",service.getId(),registeredService.toString());
       logger.warn(message);
       throw new UnauthorizedProxyingException(message);

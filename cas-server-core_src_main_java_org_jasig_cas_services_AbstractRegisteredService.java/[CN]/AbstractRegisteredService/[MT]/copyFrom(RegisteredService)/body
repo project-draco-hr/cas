@@ -1,7 +1,7 @@
 {
   this.setId(source.getId());
   this.setAllowedAttributes(new ArrayList<String>(source.getAllowedAttributes()));
-  this.setAllowedToProxy(source.isAllowedToProxy());
+  this.setProxyPolicy(source.getProxyPolicy());
   this.setDescription(source.getDescription());
   this.setEnabled(source.isEnabled());
   this.setName(source.getName());

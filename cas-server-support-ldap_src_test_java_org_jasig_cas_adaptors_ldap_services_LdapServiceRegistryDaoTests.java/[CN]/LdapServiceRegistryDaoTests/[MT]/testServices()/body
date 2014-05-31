@@ -2,7 +2,7 @@
   assertEquals(0,this.dao.load().size());
   AbstractRegisteredService rs=new RegisteredServiceImpl();
   rs.setName("Service Name1");
-  rs.setAllowedToProxy(false);
+  rs.setProxyPolicy(new RefuseRegisteredServiceProxyPolicy());
   rs.setAnonymousAccess(true);
   rs.setDescription("Service description");
   rs.setServiceId("https://?.edu/**");
@@ -13,7 +13,7 @@
   this.dao.save(rs);
   rs=new RegexRegisteredService();
   rs.setName("Service Name Regex");
-  rs.setAllowedToProxy(false);
+  rs.setProxyPolicy(new RefuseRegisteredServiceProxyPolicy());
   rs.setAnonymousAccess(true);
   rs.setDescription("Service description");
   rs.setServiceId("^http?://.+");
