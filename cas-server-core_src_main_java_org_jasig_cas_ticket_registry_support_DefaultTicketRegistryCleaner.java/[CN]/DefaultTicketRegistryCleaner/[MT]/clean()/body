@@ -15,10 +15,10 @@
         ticketsToRemove.add(ticket);
       }
     }
-    logger.info("{} tickets found to be removed.",ticketsToRemove.size());
+    logger.info("{} expired tickets found to be removed.",ticketsToRemove.size());
     for (    final Ticket ticket : ticketsToRemove) {
-      if (this.logUserOutOfServices && ticket instanceof TicketGrantingTicket) {
-        logoutManager.performLogout((TicketGrantingTicket)ticket);
+      if (ticket instanceof TicketGrantingTicket) {
+        this.logoutManager.performLogout((TicketGrantingTicket)ticket);
       }
       this.ticketRegistry.deleteTicket(ticket.getId());
     }
