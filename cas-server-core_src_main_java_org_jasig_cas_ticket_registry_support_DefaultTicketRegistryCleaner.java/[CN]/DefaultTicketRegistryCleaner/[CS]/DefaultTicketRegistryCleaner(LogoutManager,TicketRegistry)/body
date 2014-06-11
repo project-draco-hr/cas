@@ -1,0 +1,4 @@
+{
+  this.logoutManager=logoutManager;
+  this.ticketRegistry=ticketRegistry;
+}

@@ -1,0 +1,4 @@
+{
+  super(url,message,LogoutManagerImpl.this.asynchronous);
+  setContentType("application/xml");
+}

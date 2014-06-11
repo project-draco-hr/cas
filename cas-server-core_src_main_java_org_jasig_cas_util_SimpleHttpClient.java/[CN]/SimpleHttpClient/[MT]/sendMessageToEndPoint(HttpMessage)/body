@@ -1,0 +1,13 @@
+{
+  final Callable<Boolean> callable=new CallableHttpMessageSender(message);
+  final Future<Boolean> result=EXECUTOR_SERVICE.submit(callable);
+  if (message.isAsynchronous()) {
+    return true;
+  }
+  try {
+    return result.get();
+  }
+ catch (  final Exception e) {
+    return false;
+  }
+}

@@ -1,7 +1,0 @@
-{
-  this.url=url;
-  this.message=message;
-  this.readTimeout=readTimeout;
-  this.connectionTimeout=connectionTimeout;
-  this.followRedirects=followRedirects;
-}
