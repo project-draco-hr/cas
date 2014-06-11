@@ -1,0 +1,44 @@
+{
+  HttpURLConnection connection=null;
+  BufferedReader in=null;
+  DataOutputStream printout=null;
+  try {
+    LOGGER.debug("Attempting to access {}",message.getUrl());
+    final URL logoutUrl=new URL(message.getUrl());
+    final String output=message.getMessage();
+    connection=(HttpURLConnection)logoutUrl.openConnection();
+    connection.setDoInput(true);
+    connection.setDoOutput(true);
+    connection.setRequestMethod("POST");
+    connection.setReadTimeout(SimpleHttpClient.this.readTimeout);
+    connection.setConnectTimeout(SimpleHttpClient.this.connectionTimeout);
+    connection.setInstanceFollowRedirects(SimpleHttpClient.this.followRedirects);
+    connection.setRequestProperty("Content-Length",Integer.toString(output.getBytes().length));
+    connection.setRequestProperty("Content-Type",message.getContentType());
+    printout=new DataOutputStream(connection.getOutputStream());
+    printout.writeBytes(output);
+    printout.flush();
+    in=new BufferedReader(new InputStreamReader(connection.getInputStream()));
+    boolean readInput=true;
+    while (readInput) {
+      readInput=StringUtils.isNotBlank(in.readLine());
+    }
+    LOGGER.debug("Finished sending message to {}",message.getUrl());
+    return true;
+  }
+ catch (  final SocketTimeoutException e) {
+    LOGGER.warn("Socket Timeout Detected while attempting to send message to [{}]",message.getUrl());
+    return false;
+  }
+catch (  final Exception e) {
+    LOGGER.warn("Error Sending message to url endpoint [{}]. Error is [{}]",message.getUrl(),e.getMessage());
+    return false;
+  }
+ finally {
+    IOUtils.closeQuietly(printout);
+    IOUtils.closeQuietly(in);
+    if (connection != null) {
+      connection.disconnect();
+    }
+  }
+}

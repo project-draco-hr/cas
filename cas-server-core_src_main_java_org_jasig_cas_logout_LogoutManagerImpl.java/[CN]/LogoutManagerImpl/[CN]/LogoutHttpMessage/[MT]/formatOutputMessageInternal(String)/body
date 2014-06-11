@@ -1,0 +1,3 @@
+{
+  return "logoutRequest=" + super.formatOutputMessageInternal(message);
+}
