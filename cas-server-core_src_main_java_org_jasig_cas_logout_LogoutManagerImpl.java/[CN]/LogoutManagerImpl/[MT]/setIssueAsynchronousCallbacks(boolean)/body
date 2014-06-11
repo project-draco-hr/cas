@@ -1,0 +1,4 @@
+{
+  this.asynchronous=asyncCallbacks;
+  LOGGER.warn("setIssueAsynchronousCallbacks() is deprecated. Use setAsynchronous() instead.");
+}
