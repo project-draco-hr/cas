@@ -1,0 +1,22 @@
+{
+  logger.debug("Resolving principal from Subject Alternative Name UPN for {}",certificate);
+  try {
+    final Collection<List<?>> subjectAltNames=certificate.getSubjectAlternativeNames();
+    if (subjectAltNames != null) {
+      for (      final List<?> sanItem : subjectAltNames) {
+        final ASN1Sequence seq=getAltnameSequence(sanItem);
+        final String upnString=getUPNStringFromSequence(seq);
+        if (upnString != null) {
+          return upnString;
+        }
+      }
+    }
+  }
+ catch (  final CertificateParsingException e) {
+    return onError(e);
+  }
+catch (  final IOException e) {
+    return onError(e);
+  }
+  return null;
+}

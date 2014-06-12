@@ -1,0 +1,8 @@
+{
+  final Integer itemType=(Integer)sanItem.get(0);
+  if (itemType == 0) {
+    final byte[] altName=(byte[])sanItem.get(1);
+    return getAltnameSequence(altName);
+  }
+  return null;
+}
