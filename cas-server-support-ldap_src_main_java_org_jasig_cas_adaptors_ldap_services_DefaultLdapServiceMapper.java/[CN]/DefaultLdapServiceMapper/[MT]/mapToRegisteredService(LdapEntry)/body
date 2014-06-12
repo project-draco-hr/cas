@@ -14,9 +14,12 @@
       s.setAllowedToProxy(LdapUtils.getBoolean(entry,this.serviceAllowedToProxyAttribute));
       s.setAnonymousAccess(LdapUtils.getBoolean(entry,this.serviceAnonymousAccessAttribute));
       s.setSsoEnabled(LdapUtils.getBoolean(entry,this.serviceSsoEnabledAttribute));
-      s.setAllowedAttributes(new ArrayList<String>(getMultiValuedAttributeValues(entry,this.serviceAllowedAttributesAttribute)));
-      s.setIgnoreAttributes(LdapUtils.getBoolean(entry,this.ignoreAttributesAttribute));
       s.setRequiredHandlers(new HashSet<String>(getMultiValuedAttributeValues(entry,this.requiredHandlersAttribute)));
+      final byte[] data=LdapUtils.getBinary(entry,this.attributeReleasePolicyAttribute);
+      if (data != null && data.length > 0) {
+        final AttributeReleasePolicy policy=(AttributeReleasePolicy)SerializationUtils.deserialize(data);
+        s.setAttributeReleasePolicy(policy);
+      }
     }
     return s;
   }
