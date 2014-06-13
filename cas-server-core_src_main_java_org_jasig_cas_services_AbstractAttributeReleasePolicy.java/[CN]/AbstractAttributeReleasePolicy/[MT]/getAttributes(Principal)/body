@@ -1,0 +1,7 @@
+{
+  final Map<String,Object> attributes=getAttributesInternal(p);
+  if (this.attributeFilter != null) {
+    return this.attributeFilter.filter(attributes);
+  }
+  return attributes;
+}
