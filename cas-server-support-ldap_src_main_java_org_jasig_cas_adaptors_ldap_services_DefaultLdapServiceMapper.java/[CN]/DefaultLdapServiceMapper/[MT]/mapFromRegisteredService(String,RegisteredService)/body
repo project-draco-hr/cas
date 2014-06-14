@@ -15,10 +15,19 @@
   attrs.add(new LdapAttribute(this.evaluationOrderAttribute,String.valueOf(svc.getEvaluationOrder())));
   attrs.add(new LdapAttribute(this.serviceThemeAttribute,svc.getTheme()));
   attrs.add(new LdapAttribute(this.usernameAttribute,svc.getUsernameAttribute()));
+  if (svc.getProxyPolicy() != null) {
+    final byte[] data=SerializationUtils.serialize(svc.getProxyPolicy());
+    final LdapAttribute attr=new LdapAttribute(this.serviceProxyPolicyAttribute,data);
+    attrs.add(attr);
+  }
   if (svc.getAttributeReleasePolicy() != null) {
     final byte[] data=SerializationUtils.serialize(svc.getAttributeReleasePolicy());
     final LdapAttribute attr=new LdapAttribute(this.attributeReleasePolicyAttribute,data);
     attrs.add(attr);
-    attrs.add(attr);
   }
+  if (svc.getRequiredHandlers().size() > 0) {
+    attrs.add(new LdapAttribute(this.requiredHandlersAttribute,svc.getRequiredHandlers().toArray(new String[]{})));
+  }
+  attrs.add(new LdapAttribute(LdapUtils.OBJECTCLASS_ATTRIBUTE,this.objectClass));
+  return new LdapEntry(newDn,attrs);
 }

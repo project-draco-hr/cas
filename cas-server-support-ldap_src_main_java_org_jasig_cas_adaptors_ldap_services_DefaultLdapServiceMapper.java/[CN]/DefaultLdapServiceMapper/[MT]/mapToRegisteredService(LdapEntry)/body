@@ -19,6 +19,11 @@
         final AttributeReleasePolicy policy=(AttributeReleasePolicy)SerializationUtils.deserialize(data);
         s.setAttributeReleasePolicy(policy);
       }
+      final byte[] proxyData=LdapUtils.getBinary(entry,this.serviceProxyPolicyAttribute);
+      if (proxyData != null && proxyData.length > 0) {
+        final RegisteredServiceProxyPolicy policy=(RegisteredServiceProxyPolicy)SerializationUtils.deserialize(proxyData);
+        s.setProxyPolicy(policy);
+      }
     }
     return s;
   }
