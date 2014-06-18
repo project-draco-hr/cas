@@ -8,7 +8,7 @@
   }
   final RegisteredService registeredService=this.servicesManager.findServiceBy(serviceTicket.getService());
   verifyRegisteredServiceProperties(registeredService,serviceTicket.getService());
-  if (!registeredService.isAllowedToProxy()) {
+  if (!registeredService.getProxyPolicy().isAllowedToProxy()) {
     logger.warn("ServiceManagement: Service [{}] attempted to proxy, but is not allowed.",serviceTicket.getService().getId());
     throw new UnauthorizedProxyingException();
   }

@@ -1,6 +1,6 @@
 {
   this.setId(source.getId());
-  this.setAllowedToProxy(source.isAllowedToProxy());
+  this.setProxyPolicy(source.getProxyPolicy());
   this.setDescription(source.getDescription());
   this.setEnabled(source.isEnabled());
   this.setName(source.getName());

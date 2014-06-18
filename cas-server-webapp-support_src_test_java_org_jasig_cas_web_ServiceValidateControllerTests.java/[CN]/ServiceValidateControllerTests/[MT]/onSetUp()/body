@@ -8,4 +8,5 @@
   this.serviceValidateController.setProxyHandler(proxyHandler);
   this.serviceValidateController.setApplicationContext(context);
   this.serviceValidateController.setArgumentExtractor(new CasArgumentExtractor());
+  this.serviceValidateController.setServicesManager(this.applicationContext.getBean("servicesManager",ServicesManager.class));
 }
