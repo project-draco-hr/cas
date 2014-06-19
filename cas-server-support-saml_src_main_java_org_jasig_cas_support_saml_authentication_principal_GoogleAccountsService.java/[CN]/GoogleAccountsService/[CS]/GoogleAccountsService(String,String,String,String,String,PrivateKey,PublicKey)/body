@@ -1,7 +1,0 @@
-{
-  super(id,originalUrl,artifactId);
-  this.relayState=relayState;
-  this.privateKey=privateKey;
-  this.publicKey=publicKey;
-  this.requestId=requestId;
-}

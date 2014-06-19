@@ -1,0 +1,5 @@
+{
+  final String id=this.persistentIdGenerator.generate(principal);
+  logger.debug("Resolved username [{}] for anonymous access",id);
+  return id;
+}

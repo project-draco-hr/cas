@@ -1,3 +1,0 @@
-{
-  this.persistentIdGenerator=new ShibbolethCompatiblePersistentIdGenerator();
-}

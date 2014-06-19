@@ -3,7 +3,8 @@
   final Calendar c=Calendar.getInstance();
   c.setTime(new Date());
   c.add(Calendar.YEAR,1);
-  final String userId=getPrincipal().getId();
+  final RegisteredService svc=this.servicesManager.findServiceBy(this);
+  final String userId=svc.getUsernameAttributeProvider().resolveUsername(getPrincipal());
   final String currentDateTime=new ISOStandardDateFormat().getCurrentDateAndTime();
   samlResponse=samlResponse.replace("<USERNAME_STRING>",userId);
   samlResponse=samlResponse.replace("<RESPONSE_ID>",createID());

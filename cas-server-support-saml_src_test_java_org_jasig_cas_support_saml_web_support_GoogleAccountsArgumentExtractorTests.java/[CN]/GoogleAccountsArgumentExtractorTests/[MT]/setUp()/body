@@ -11,7 +11,6 @@
   assertTrue(pubKeyFactoryBean.getObjectType().equals(PublicKey.class));
   pubKeyFactoryBean.afterPropertiesSet();
   privKeyFactoryBean.afterPropertiesSet();
-  this.extractor=new GoogleAccountsArgumentExtractor();
-  this.extractor.setPrivateKey((PrivateKey)privKeyFactoryBean.getObject());
-  this.extractor.setPublicKey((PublicKey)pubKeyFactoryBean.getObject());
+  final ServicesManager servicesManager=mock(ServicesManager.class);
+  this.extractor=new GoogleAccountsArgumentExtractor((PublicKey)pubKeyFactoryBean.getObject(),(PrivateKey)privKeyFactoryBean.getObject(),servicesManager);
 }

@@ -3,7 +3,7 @@
   Assert.notNull(service,"service cannot be null");
   final ServiceTicket serviceTicket=this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
   if (serviceTicket == null) {
-    logger.info("ServiceTicket [{}] does not exist.",serviceTicketId);
+    logger.info("Service ticket [{}] does not exist.",serviceTicketId);
     throw new InvalidTicketException(serviceTicketId);
   }
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
@@ -15,7 +15,7 @@ synchronized (serviceTicket) {
         throw new InvalidTicketException(serviceTicketId);
       }
       if (!serviceTicket.isValidFor(service)) {
-        logger.error("ServiceTicket [{}] with service [{}] does not match supplied service [{}]",serviceTicketId,serviceTicket.getService().getId(),service);
+        logger.error("Service ticket [{}] with service [{}] does not match supplied service [{}]",serviceTicketId,serviceTicket.getService().getId(),service);
         throw new TicketValidationException(serviceTicket.getService());
       }
     }
@@ -25,7 +25,7 @@ synchronized (serviceTicket) {
     final AttributeReleasePolicy attributePolicy=registeredService.getAttributeReleasePolicy();
     logger.debug("Attribute policy [{}] is associated with service [{}]",attributePolicy,registeredService);
     @SuppressWarnings("unchecked") final Map<String,Object> attributesToRelease=attributePolicy != null ? attributePolicy.getAttributes(principal) : Collections.EMPTY_MAP;
-    final String principalId=determinePrincipalIdForRegisteredService(principal,registeredService,serviceTicket);
+    final String principalId=registeredService.getUsernameAttributeProvider().resolveUsername(principal);
     final Principal modifiedPrincipal=new SimplePrincipal(principalId,attributesToRelease);
     final AuthenticationBuilder builder=AuthenticationBuilder.newInstance(authentication);
     builder.setPrincipal(modifiedPrincipal);
