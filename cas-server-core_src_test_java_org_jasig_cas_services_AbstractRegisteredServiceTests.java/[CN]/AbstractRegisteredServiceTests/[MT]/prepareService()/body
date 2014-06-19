@@ -1,5 +1,5 @@
 {
-  this.r.setAnonymousAccess(ANONYMOUS_ACCESS);
+  this.r.setUsernameAttributeProvider(new AnonymousRegisteredServiceUsernameAttributeProvider());
   this.r.setDescription(DESCRIPTION);
   this.r.setEnabled(ENABLED);
   this.r.setId(ID);

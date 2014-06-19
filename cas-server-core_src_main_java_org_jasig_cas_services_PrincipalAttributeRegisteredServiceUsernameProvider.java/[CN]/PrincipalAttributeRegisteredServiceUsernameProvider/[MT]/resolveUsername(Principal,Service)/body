@@ -1,0 +1,12 @@
+{
+  String principalId=principal.getId();
+  if (principal.getAttributes().containsKey(this.usernameAttribute)) {
+    principalId=principal.getAttributes().get(this.usernameAttribute).toString();
+  }
+ else {
+    final Object[] errorLogParameters=new Object[]{principalId,this.usernameAttribute,principal.getAttributes(),service.getId(),principalId};
+    logger.warn("Principal [{}] did not have attribute [{}] among attributes [{}] so CAS cannot " + "provide the user attribute the service [{}] expects. " + "CAS will instead return the default principal id [{}]",errorLogParameters);
+  }
+  logger.debug("Principal id to return for service [{}] is [{}]. The default principal id is [{}].",new Object[]{service.getId(),principal.getId(),principalId});
+  return principalId;
+}
