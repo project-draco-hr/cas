@@ -10,5 +10,5 @@
   }
   final String assertionConsumerServiceUrl=document.getRootElement().getAttributeValue("AssertionConsumerServiceURL");
   final String requestId=document.getRootElement().getAttributeValue("ID");
-  return new GoogleAccountsService(assertionConsumerServiceUrl,relayState,requestId,privateKey,publicKey,alternateUserName);
+  return new GoogleAccountsService(assertionConsumerServiceUrl,relayState,requestId,privateKey,publicKey);
 }

@@ -4,5 +4,4 @@
   this.privateKey=privateKey;
   this.publicKey=publicKey;
   this.requestId=requestId;
-  this.alternateUserName=alternateUserName;
 }
