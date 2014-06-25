@@ -1,5 +1,0 @@
-{
-  logger.error("Error is encountered while trying to retrieve subject alternative names collection from certificate",e);
-  logger.debug("Returning null principal id...");
-  return null;
-}
