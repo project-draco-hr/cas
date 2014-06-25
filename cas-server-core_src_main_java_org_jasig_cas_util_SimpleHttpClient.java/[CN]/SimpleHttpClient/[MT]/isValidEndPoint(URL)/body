@@ -1,43 +1,27 @@
 {
-  HttpURLConnection connection=null;
-  InputStream is=null;
+  CloseableHttpResponse response=null;
   try {
-    connection=(HttpURLConnection)url.openConnection();
-    connection.setConnectTimeout(this.connectionTimeout);
-    connection.setReadTimeout(this.readTimeout);
-    connection.setInstanceFollowRedirects(this.followRedirects);
-    if (connection instanceof HttpsURLConnection) {
-      final HttpsURLConnection httpsConnection=(HttpsURLConnection)connection;
-      if (this.sslSocketFactory != null) {
-        httpsConnection.setSSLSocketFactory(this.sslSocketFactory);
-      }
-      if (this.hostnameVerifier != null) {
-        httpsConnection.setHostnameVerifier(this.hostnameVerifier);
-      }
-    }
-    connection.connect();
-    final int responseCode=connection.getResponseCode();
+    final HttpGet request=new HttpGet(url.toURI());
+    response=this.httpClient.execute(request);
+    final int responseCode=response.getStatusLine().getStatusCode();
     for (    final int acceptableCode : this.acceptableCodes) {
       if (responseCode == acceptableCode) {
         LOGGER.debug("Response code from server matched {}.",responseCode);
         return true;
       }
     }
-    LOGGER.debug("Response Code did not match any of the acceptable response codes. Code returned was {}",responseCode);
-    if (responseCode == 500) {
-      is=connection.getInputStream();
-      final String value=IOUtils.toString(is);
+    LOGGER.debug("Response code did not match any of the acceptable response codes. Code returned was {}",responseCode);
+    if (responseCode == HttpStatus.SC_INTERNAL_SERVER_ERROR) {
+      final String value=response.getStatusLine().getReasonPhrase();
       LOGGER.error("There was an error contacting the endpoint: {}; The error was:\n{}",url.toExternalForm(),value);
     }
   }
- catch (  final IOException e) {
+ catch (  final Exception e) {
     LOGGER.error(e.getMessage(),e);
   }
  finally {
-    IOUtils.closeQuietly(is);
-    if (connection != null) {
-      connection.disconnect();
-    }
+    EntityUtils.consumeQuietly(response.getEntity());
+    IOUtils.closeQuietly(response);
   }
   return false;
 }

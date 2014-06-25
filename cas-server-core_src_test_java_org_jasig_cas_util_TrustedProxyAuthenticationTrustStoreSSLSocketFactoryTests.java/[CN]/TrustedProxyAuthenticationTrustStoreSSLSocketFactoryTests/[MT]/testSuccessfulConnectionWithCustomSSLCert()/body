@@ -1,0 +1,4 @@
+{
+  final boolean valid=client.isValidEndPoint("https://testssl-expire.disig.sk/index.en.html");
+  assertTrue(valid);
+}

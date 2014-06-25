@@ -1,3 +1,4 @@
 {
   EXECUTOR_SERVICE.shutdown();
+  IOUtils.closeQuietly(this.httpClient);
 }

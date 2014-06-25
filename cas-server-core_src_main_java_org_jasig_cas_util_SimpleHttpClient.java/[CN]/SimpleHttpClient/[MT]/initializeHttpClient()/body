@@ -1,0 +1,17 @@
+{
+  try {
+    final PoolingHttpClientConnectionManager connMgmr=new PoolingHttpClientConnectionManager();
+    connMgmr.setMaxTotal(MAX_POOLED_CONNECTIONS);
+    connMgmr.setDefaultMaxPerRoute(MAX_CONNECTIONS_PER_ROUTE);
+    final HttpHost httpHost=new HttpHost(InetAddress.getLocalHost());
+    final HttpRoute httpRoute=new HttpRoute(httpHost);
+    connMgmr.setMaxPerRoute(httpRoute,MAX_CONNECTIONS_PER_ROUTE);
+    final RequestConfig requestConfig=RequestConfig.custom().setSocketTimeout(this.readTimeout).setConnectTimeout(this.connectionTimeout).setConnectionRequestTimeout(this.connectionTimeout).setStaleConnectionCheckEnabled(true).setCircularRedirectsAllowed(true).build();
+    final HttpClientBuilder builder=HttpClients.custom().setSSLSocketFactory(this.sslSocketFactory).setHostnameVerifier(this.hostnameVerifier).setRedirectStrategy(this.redirectionStrategy).setDefaultRequestConfig(requestConfig).setConnectionManager(connMgmr).setDefaultCredentialsProvider(this.credentialsProvider).setDefaultCookieStore(this.cookieStore).useSystemProperties();
+    this.httpClient=builder.build();
+  }
+ catch (  final Exception e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+  return null;
+}

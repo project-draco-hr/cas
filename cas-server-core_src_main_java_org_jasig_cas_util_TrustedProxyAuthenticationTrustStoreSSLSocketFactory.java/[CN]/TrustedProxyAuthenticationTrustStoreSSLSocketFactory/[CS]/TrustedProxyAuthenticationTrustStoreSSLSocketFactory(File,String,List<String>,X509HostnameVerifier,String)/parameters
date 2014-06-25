@@ -1,0 +1,5 @@
+File trustStoreFile
+String trustStorePassword
+List<String> supportedProtocols
+X509HostnameVerifier hostnameVerifier
+String trustStoreType

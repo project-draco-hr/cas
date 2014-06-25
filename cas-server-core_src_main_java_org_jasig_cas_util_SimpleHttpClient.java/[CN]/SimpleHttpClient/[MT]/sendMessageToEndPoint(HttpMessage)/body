@@ -1,13 +1,22 @@
 {
-  final Callable<Boolean> callable=new CallableHttpMessageSender(message);
-  final Future<Boolean> result=EXECUTOR_SERVICE.submit(callable);
-  if (message.isAsynchronous()) {
-    return true;
-  }
+  FutureRequestExecutionService service=null;
   try {
-    return result.get();
+    final HttpPost request=new HttpPost(message.getUrl().toURI());
+    request.addHeader("Content-Length",Integer.toString(message.getMessage().getBytes().length));
+    request.addHeader("Content-Type",message.getContentType());
+    final StringEntity entity=new StringEntity(message.getMessage(),message.getContentType());
+    request.setEntity(entity);
+    service=new FutureRequestExecutionService(this.httpClient,EXECUTOR_SERVICE);
+    final HttpRequestFutureTask<String> task=service.execute(request,HttpClientContext.create(),new BasicResponseHandler());
+    if (message.isAsynchronous()) {
+      return true;
+    }
+    return StringUtils.isNotBlank(task.get());
   }
  catch (  final Exception e) {
     return false;
+  }
+ finally {
+    IOUtils.closeQuietly(service);
   }
 }
