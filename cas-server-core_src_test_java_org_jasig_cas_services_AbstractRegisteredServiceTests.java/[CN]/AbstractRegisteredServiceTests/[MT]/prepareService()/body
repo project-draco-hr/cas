@@ -1,0 +1,10 @@
+{
+  this.r.setAnonymousAccess(ANONYMOUS_ACCESS);
+  this.r.setDescription(DESCRIPTION);
+  this.r.setEnabled(ENABLED);
+  this.r.setId(ID);
+  this.r.setName(NAME);
+  this.r.setServiceId(SERVICEID);
+  this.r.setSsoEnabled(SSO_ENABLED);
+  this.r.setTheme(THEME);
+}

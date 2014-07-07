@@ -1,0 +1,13 @@
+{
+  if (o == null) {
+    return false;
+  }
+  if (this == o) {
+    return true;
+  }
+  if (!(o instanceof AbstractAttributeReleasePolicy)) {
+    return false;
+  }
+  final AbstractAttributeReleasePolicy that=(AbstractAttributeReleasePolicy)o;
+  return new EqualsBuilder().append(this.attributeFilter,that.attributeFilter).isEquals();
+}
