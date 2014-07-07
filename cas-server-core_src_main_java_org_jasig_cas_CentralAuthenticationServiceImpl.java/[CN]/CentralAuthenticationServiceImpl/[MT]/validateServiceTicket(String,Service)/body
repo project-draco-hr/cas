@@ -25,7 +25,7 @@ synchronized (serviceTicket) {
     final AttributeReleasePolicy attributePolicy=registeredService.getAttributeReleasePolicy();
     logger.debug("Attribute policy [{}] is associated with service [{}]",attributePolicy,registeredService);
     @SuppressWarnings("unchecked") final Map<String,Object> attributesToRelease=attributePolicy != null ? attributePolicy.getAttributes(principal) : Collections.EMPTY_MAP;
-    final String principalId=registeredService.getUsernameAttributeProvider().resolveUsername(principal);
+    final String principalId=registeredService.getUsernameAttributeProvider().resolveUsername(principal,service);
     final Principal modifiedPrincipal=new SimplePrincipal(principalId,attributesToRelease);
     final AuthenticationBuilder builder=AuthenticationBuilder.newInstance(authentication);
     builder.setPrincipal(modifiedPrincipal);

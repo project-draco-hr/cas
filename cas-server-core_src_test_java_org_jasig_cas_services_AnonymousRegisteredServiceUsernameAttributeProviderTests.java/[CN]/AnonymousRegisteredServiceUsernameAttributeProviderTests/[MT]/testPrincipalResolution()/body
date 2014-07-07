@@ -3,6 +3,6 @@
   final Service service=mock(Service.class);
   when(service.getId()).thenReturn("id");
   final Principal principal=new SimplePrincipal("uid");
-  final String id=provider.resolveUsername(principal);
+  final String id=provider.resolveUsername(principal,service);
   assertNotNull(id);
 }

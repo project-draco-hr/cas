@@ -1,6 +1,6 @@
 {
   final ShibbolethCompatiblePersistentIdGenerator generator=new ShibbolethCompatiblePersistentIdGenerator("scottssalt");
   final Principal p=TestUtils.getPrincipal();
-  final String value=generator.generate(p);
+  final String value=generator.generate(p,TestUtils.getService());
   assertNotNull(value);
 }
