@@ -1,0 +1,5 @@
+{
+  final Collection<Object[]> params=new ArrayList<Object[]>();
+  params.add(new Object[]{"/x509-san-upn-resolver.crt","test-user@some-company-domain"});
+  return params;
+}
