@@ -13,7 +13,9 @@
     throw new UnauthorizedProxyingException();
   }
   final Authentication authentication=this.authenticationManager.authenticate(credentials);
-  final TicketGrantingTicket ticketGrantingTicket=serviceTicket.grantTicketGrantingTicket(this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),authentication,this.ticketGrantingTicketExpirationPolicy);
+  final String pgtId=this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PROXY_GRANTING_TICKET_PREFIX);
+  final TicketGrantingTicket ticketGrantingTicket=serviceTicket.grantTicketGrantingTicket(pgtId,authentication,this.ticketGrantingTicketExpirationPolicy);
+  logger.debug("Generated proxy granting ticket [{}] based off of [{}]",ticketGrantingTicket,serviceTicketId);
   this.ticketRegistry.addTicket(ticketGrantingTicket);
   return ticketGrantingTicket.getId();
 }
