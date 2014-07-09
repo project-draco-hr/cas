@@ -1,3 +1,0 @@
-{
-  return getHttpBasedServiceCredentials(CONST_BAD_URL);
-}
