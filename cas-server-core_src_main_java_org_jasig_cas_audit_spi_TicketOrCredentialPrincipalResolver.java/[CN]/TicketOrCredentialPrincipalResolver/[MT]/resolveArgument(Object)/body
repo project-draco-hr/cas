@@ -13,7 +13,7 @@
       final TicketGrantingTicket tgt=(TicketGrantingTicket)ticket;
       return tgt.getAuthentication().getPrincipal().getId();
     }
-    LOGGER.debug("Could not locate ticket [{}] in the registry",ticket.getId());
+    LOGGER.debug("Could not locate ticket [{}] in the registry",arg1);
   }
  else {
     final SecurityContext securityContext=SecurityContextHolder.getContext();
