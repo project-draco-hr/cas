@@ -1,0 +1,3 @@
+{
+  this.mockMvc.perform(delete("/cas/v1/tickets/TGT-1")).andExpect(status().isOk());
+}
