@@ -1,5 +1,4 @@
 {
-  Assert.notNull(callbackUrl,"callbackUrl cannot be null");
   this.callbackUrl=callbackUrl;
   this.callbackUrlAsString=callbackUrl.toExternalForm();
   this.service=service;
