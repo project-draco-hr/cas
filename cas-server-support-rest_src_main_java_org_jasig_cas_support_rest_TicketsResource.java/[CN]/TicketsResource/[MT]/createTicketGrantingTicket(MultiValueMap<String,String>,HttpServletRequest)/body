@@ -1,0 +1,21 @@
+{
+  Formatter fmt=null;
+  try {
+    final String tgtId=this.cas.createTicketGrantingTicket(obtainCredential(requestBody));
+    final URI ticketReference=new URI(request.getRequestURL().toString() + "/" + tgtId);
+    final HttpHeaders headers=new HttpHeaders();
+    headers.setLocation(ticketReference);
+    headers.setContentType(MediaType.TEXT_HTML);
+    fmt=new Formatter();
+    fmt.format("<!DOCTYPE HTML PUBLIC \\\"-//IETF//DTD HTML 2.0//EN\\\"><html><head><title>");
+    fmt.format("%s %s",HttpStatus.CREATED,HttpStatus.CREATED.getReasonPhrase()).format("</title></head><body><h1>TGT Created</h1><form action=\"%s",ticketReference.toString()).format("\" method=\"POST\">Service:<input type=\"text\" name=\"service\" value=\"\">").format("<br><input type=\"submit\" value=\"Submit\"></form></body></html>");
+    return new ResponseEntity<String>(fmt.toString(),headers,HttpStatus.CREATED);
+  }
+ catch (  final Throwable e) {
+    LOGGER.error(e.getMessage(),e);
+    return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+  }
+ finally {
+    IOUtils.closeQuietly(fmt);
+  }
+}
