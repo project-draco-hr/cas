@@ -1,0 +1,18 @@
+{
+  final RegisteredServiceImpl s=new RegisteredServiceImpl();
+  s.setServiceId(id);
+  s.setEvaluationOrder(1);
+  s.setName("Test registered service");
+  s.setDescription("Registered service description");
+  s.setEnabled(true);
+  s.setProxyPolicy(new RegisteredServiceProxyPolicy(){
+    @Override public boolean isAllowedToProxy(){
+      return true;
+    }
+    @Override public boolean isAllowedProxyCallbackUrl(    final URL pgtUrl){
+      return true;
+    }
+  }
+);
+  return s;
+}
