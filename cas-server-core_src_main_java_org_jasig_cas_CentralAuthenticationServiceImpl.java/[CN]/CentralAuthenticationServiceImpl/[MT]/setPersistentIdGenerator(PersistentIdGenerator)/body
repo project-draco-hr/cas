@@ -1,0 +1,3 @@
+{
+  logger.warn("setPersistentIdGenerator() is deprecated and no longer available. Consider " + "configuring the an attribute provider for service definitions.");
+}
