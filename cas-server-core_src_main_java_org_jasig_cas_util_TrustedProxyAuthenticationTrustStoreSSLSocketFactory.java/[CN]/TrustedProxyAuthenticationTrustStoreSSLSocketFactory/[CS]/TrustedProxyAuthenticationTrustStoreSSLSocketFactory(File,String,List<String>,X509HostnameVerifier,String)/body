@@ -1,7 +1,0 @@
-{
-  this.trustStoreFile=trustStoreFile;
-  this.trustStorePassword=trustStorePassword;
-  this.supportedProtocols=supportedProtocols;
-  this.hostnameVerifier=hostnameVerifier;
-  this.trustStoreType=trustStoreType;
-}

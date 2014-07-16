@@ -1,0 +1,22 @@
+{
+  KeyStore trustStore=null;
+  FileInputStream instream=null;
+  try {
+    if (!trustStoreFile.exists() || !trustStoreFile.canRead()) {
+      throw new FileNotFoundException("Truststore file cannot be located at " + trustStoreFile.getCanonicalPath());
+    }
+    trustStore=KeyStore.getInstance(trustStoreType);
+    instream=new FileInputStream(trustStoreFile);
+    trustStore.load(instream,trustStorePassword.toCharArray());
+    final SSLContext sslcontext=SSLContexts.custom().loadTrustMaterial(trustStore,new TrustSelfSignedStrategy()).useTLS().useSSL().build();
+    LOGGER.debug("Loaded [{}] entries in truststore [{}] for proxy authentication",trustStore.size(),trustStoreFile);
+    return sslcontext;
+  }
+ catch (  final Exception e) {
+    LOGGER.error(e.getMessage(),e);
+    throw new RuntimeException(e);
+  }
+ finally {
+    IOUtils.closeQuietly(instream);
+  }
+}

@@ -1,0 +1,2 @@
+boolean redirectsEnabled
+boolean circularRedirectsAllowed

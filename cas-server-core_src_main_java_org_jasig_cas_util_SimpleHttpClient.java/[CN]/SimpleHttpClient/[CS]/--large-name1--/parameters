@@ -1,0 +1,17 @@
+ExecutorService executorService
+int[] acceptableCodes
+int connectionTimeout
+int readTimeout
+RedirectStrategy redirectionStrategy
+SSLConnectionSocketFactory sslSocketFactory
+X509HostnameVerifier hostnameVerifier
+CredentialsProvider credentialsProvider
+CookieStore cookieStore
+ConnectionReuseStrategy connectionReuseStrategy
+ConnectionBackoffStrategy connectionBackoffStrategy
+ServiceUnavailableRetryStrategy serviceUnavailableRetryStrategy
+Collection<? extends Header> defaultHeaders
+AuthenticationStrategy proxyAuthenticationStrategy
+boolean circularRedirectsAllowed
+boolean authenticationEnabled
+boolean redirectsEnabled

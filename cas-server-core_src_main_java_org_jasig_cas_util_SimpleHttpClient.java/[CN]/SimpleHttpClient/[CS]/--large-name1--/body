@@ -1,0 +1,20 @@
+{
+  this.executorService=executorService;
+  this.acceptableCodes=acceptableCodes;
+  this.connectionTimeout=connectionTimeout;
+  this.readTimeout=readTimeout;
+  this.redirectionStrategy=redirectionStrategy;
+  this.sslSocketFactory=sslSocketFactory;
+  this.hostnameVerifier=hostnameVerifier;
+  this.credentialsProvider=credentialsProvider;
+  this.cookieStore=cookieStore;
+  this.connectionReuseStrategy=connectionReuseStrategy;
+  this.connectionBackoffStrategy=connectionBackoffStrategy;
+  this.serviceUnavailableRetryStrategy=serviceUnavailableRetryStrategy;
+  this.defaultHeaders=defaultHeaders;
+  this.proxyAuthenticationStrategy=proxyAuthenticationStrategy;
+  this.circularRedirectsAllowed=circularRedirectsAllowed;
+  this.authenticationEnabled=authenticationEnabled;
+  this.redirectsEnabled=redirectsEnabled;
+  init();
+}

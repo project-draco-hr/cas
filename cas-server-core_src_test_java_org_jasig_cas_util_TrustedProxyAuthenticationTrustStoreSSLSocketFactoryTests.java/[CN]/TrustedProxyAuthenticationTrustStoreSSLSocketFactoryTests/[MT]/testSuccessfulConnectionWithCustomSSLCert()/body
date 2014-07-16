@@ -1,4 +1,4 @@
 {
-  final boolean valid=client.isValidEndPoint("https://testssl-expire.disig.sk/index.en.html");
+  final boolean valid=client.isValidEndPoint("https://www.cacert.org");
   assertTrue(valid);
 }

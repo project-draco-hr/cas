@@ -1,4 +1,0 @@
-{
-  final boolean valid=client.isValidEndPoint("https://tv.eurosport.com/");
-  assertTrue(valid);
-}

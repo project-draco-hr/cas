@@ -1,0 +1,4 @@
+{
+  this.sslSocketFactory=sslSocketFactory;
+  init();
+}

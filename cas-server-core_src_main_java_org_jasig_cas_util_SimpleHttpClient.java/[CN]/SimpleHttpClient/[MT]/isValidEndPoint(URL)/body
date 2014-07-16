@@ -1,5 +1,7 @@
 {
+  Assert.notNull(this.httpClient);
   CloseableHttpResponse response=null;
+  HttpEntity entity=null;
   try {
     final HttpGet request=new HttpGet(url.toURI());
     response=this.httpClient.execute(request);
@@ -15,12 +17,13 @@
       final String value=response.getStatusLine().getReasonPhrase();
       LOGGER.error("There was an error contacting the endpoint: {}; The error was:\n{}",url.toExternalForm(),value);
     }
+    entity=response.getEntity();
   }
  catch (  final Exception e) {
     LOGGER.error(e.getMessage(),e);
   }
  finally {
-    EntityUtils.consumeQuietly(response.getEntity());
+    EntityUtils.consumeQuietly(entity);
     IOUtils.closeQuietly(response);
   }
   return false;
