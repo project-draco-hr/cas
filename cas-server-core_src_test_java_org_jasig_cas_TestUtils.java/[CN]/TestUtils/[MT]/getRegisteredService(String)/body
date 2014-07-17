@@ -1,0 +1,11 @@
+{
+  final RegisteredServiceImpl s=new RegisteredServiceImpl();
+  s.setServiceId(id);
+  s.setEvaluationOrder(1);
+  s.setName("Test registered service");
+  s.setDescription("Registered service description");
+  s.setEnabled(true);
+  s.setProxyPolicy(new RegexMatchingRegisteredServiceProxyPolicy("^https?://.+"));
+  s.setId(new Random().nextInt(32));
+  return s;
+}
