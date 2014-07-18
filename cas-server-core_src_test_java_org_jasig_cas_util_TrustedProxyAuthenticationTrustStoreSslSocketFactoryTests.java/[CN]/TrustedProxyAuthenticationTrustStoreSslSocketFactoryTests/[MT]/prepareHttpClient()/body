@@ -1,0 +1,4 @@
+{
+  final TrustedProxyAuthenticationTrustStoreSslSocketFactory f=new TrustedProxyAuthenticationTrustStoreSslSocketFactory(TRUST_STORE.getFile(),TRUST_STORE_PSW);
+  this.client=new SimpleHttpClient(f);
+}

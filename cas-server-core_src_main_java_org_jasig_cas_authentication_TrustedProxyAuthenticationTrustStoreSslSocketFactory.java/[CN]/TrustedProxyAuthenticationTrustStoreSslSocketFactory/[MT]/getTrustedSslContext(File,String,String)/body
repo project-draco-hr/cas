@@ -9,7 +9,7 @@
     instream=new FileInputStream(trustStoreFile);
     trustStore.load(instream,trustStorePassword.toCharArray());
     final SSLContext sslcontext=SSLContexts.custom().loadTrustMaterial(trustStore,new TrustSelfSignedStrategy()).useTLS().useSSL().build();
-    LOGGER.debug("Loaded [{}] entries in truststore [{}] for proxy authentication",trustStore.size(),trustStoreFile);
+    LOGGER.debug("Loaded [{}] entries in truststore [{}] for proxy authentication",trustStore.size(),trustStoreFile.getCanonicalFile());
     return sslcontext;
   }
  catch (  final Exception e) {

@@ -1,0 +1,4 @@
+{
+  final boolean valid=client.isValidEndPoint("https://www.cacert.org");
+  assertTrue(valid);
+}
