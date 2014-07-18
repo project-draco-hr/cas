@@ -2,11 +2,20 @@
   final RequestContext requestContext=RequestContextHolder.getRequestContext();
   final WebApplicationService service=(WebApplicationService)WebUtils.getService(requestContext);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-  final String themeId=service != null && registeredService != null && StringUtils.hasText(registeredService.getTheme()) ? registeredService.getTheme() : defaultThemeId;
-  final String prefix=String.format("%s/%s/ui/",pathPrefix,themeId);
-  LOGGER.debug("Prefix {} set for service {} with theme {}",prefix,service,themeId);
-  super.setPrefix(prefix);
-  final AbstractUrlBasedView view=super.buildView(viewName);
+  final String themeId=service != null && registeredService != null && registeredService.isEnabled() && StringUtils.hasText(registeredService.getTheme()) ? registeredService.getTheme() : defaultThemeId;
+  final String themePrefix=String.format("%s/%s/ui/",pathPrefix,themeId);
+  LOGGER.debug("Prefix {} set for service {} with theme {}",themePrefix,service,themeId);
+  final InternalResourceView view=(InternalResourceView)BeanUtils.instantiateClass(getViewClass());
+  view.setUrl(themePrefix + viewName + getSuffix());
+  final String contentType=getContentType();
+  if (contentType != null) {
+    view.setContentType(contentType);
+  }
+  view.setRequestContextAttribute(getRequestContextAttribute());
+  view.setAttributesMap(getAttributesMap());
+  view.setAlwaysInclude(false);
+  view.setExposeContextBeansAsAttributes(false);
+  view.setPreventDispatchLoop(true);
   LOGGER.debug("View resolved: {}",view.getUrl());
   return view;
 }
