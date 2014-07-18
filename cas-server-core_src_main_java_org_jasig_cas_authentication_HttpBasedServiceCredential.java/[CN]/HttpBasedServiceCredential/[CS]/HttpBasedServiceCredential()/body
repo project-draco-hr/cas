@@ -1,4 +1,5 @@
 {
   this.callbackUrl=null;
   this.callbackUrlAsString=null;
+  this.service=null;
 }
