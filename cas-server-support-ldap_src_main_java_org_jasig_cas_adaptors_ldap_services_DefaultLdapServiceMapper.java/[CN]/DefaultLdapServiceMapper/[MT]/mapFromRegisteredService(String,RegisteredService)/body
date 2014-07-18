@@ -10,12 +10,16 @@
   attrs.add(new LdapAttribute(this.serviceNameAttribute,svc.getName()));
   attrs.add(new LdapAttribute(this.serviceDescriptionAttribute,svc.getDescription()));
   attrs.add(new LdapAttribute(this.serviceEnabledAttribute,Boolean.toString(svc.isEnabled()).toUpperCase()));
-  attrs.add(new LdapAttribute(this.serviceAllowedToProxyAttribute,Boolean.toString(svc.isAllowedToProxy()).toUpperCase()));
   attrs.add(new LdapAttribute(this.serviceAnonymousAccessAttribute,Boolean.toString(svc.isAnonymousAccess()).toUpperCase()));
   attrs.add(new LdapAttribute(this.serviceSsoEnabledAttribute,Boolean.toString(svc.isSsoEnabled()).toUpperCase()));
   attrs.add(new LdapAttribute(this.evaluationOrderAttribute,String.valueOf(svc.getEvaluationOrder())));
   attrs.add(new LdapAttribute(this.serviceThemeAttribute,svc.getTheme()));
   attrs.add(new LdapAttribute(this.usernameAttribute,svc.getUsernameAttribute()));
+  if (svc.getProxyPolicy() != null) {
+    final byte[] data=SerializationUtils.serialize(svc.getProxyPolicy());
+    final LdapAttribute attr=new LdapAttribute(this.serviceProxyPolicyAttribute,data);
+    attrs.add(attr);
+  }
   if (svc.getAttributeReleasePolicy() != null) {
     final byte[] data=SerializationUtils.serialize(svc.getAttributeReleasePolicy());
     final LdapAttribute attr=new LdapAttribute(this.attributeReleasePolicyAttribute,data);

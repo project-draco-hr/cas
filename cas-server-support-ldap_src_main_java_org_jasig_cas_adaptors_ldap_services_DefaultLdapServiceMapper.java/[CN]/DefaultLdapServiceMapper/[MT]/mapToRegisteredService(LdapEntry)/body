@@ -11,7 +11,6 @@
       s.setTheme(LdapUtils.getString(entry,this.serviceThemeAttribute));
       s.setEvaluationOrder(LdapUtils.getLong(entry,this.evaluationOrderAttribute).intValue());
       s.setUsernameAttribute(LdapUtils.getString(entry,this.usernameAttribute));
-      s.setAllowedToProxy(LdapUtils.getBoolean(entry,this.serviceAllowedToProxyAttribute));
       s.setAnonymousAccess(LdapUtils.getBoolean(entry,this.serviceAnonymousAccessAttribute));
       s.setSsoEnabled(LdapUtils.getBoolean(entry,this.serviceSsoEnabledAttribute));
       s.setRequiredHandlers(new HashSet<String>(getMultiValuedAttributeValues(entry,this.requiredHandlersAttribute)));
@@ -19,6 +18,11 @@
       if (data != null && data.length > 0) {
         final AttributeReleasePolicy policy=(AttributeReleasePolicy)SerializationUtils.deserialize(data);
         s.setAttributeReleasePolicy(policy);
+      }
+      final byte[] proxyData=LdapUtils.getBinary(entry,this.serviceProxyPolicyAttribute);
+      if (proxyData != null && proxyData.length > 0) {
+        final RegisteredServiceProxyPolicy policy=(RegisteredServiceProxyPolicy)SerializationUtils.deserialize(proxyData);
+        s.setProxyPolicy(policy);
       }
     }
     return s;
