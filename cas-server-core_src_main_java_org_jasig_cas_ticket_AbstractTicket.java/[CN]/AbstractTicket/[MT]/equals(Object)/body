@@ -5,7 +5,7 @@
   if (object == this) {
     return true;
   }
-  if (object.getClass().isAssignableFrom(Ticket.class)) {
+  if (!object.getClass().isAssignableFrom(Ticket.class)) {
     return false;
   }
   final Ticket ticket=(Ticket)object;
