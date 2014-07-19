@@ -1,6 +1,6 @@
 {
   try {
-    return new HttpBasedServiceCredential(new URL(url));
+    return new HttpBasedServiceCredential(new URL(url),TestUtils.getRegisteredService(url));
   }
  catch (  final MalformedURLException e) {
     throw new IllegalArgumentException();
