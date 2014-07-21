@@ -1,0 +1,13 @@
+{
+  if (obj == null) {
+    return false;
+  }
+  if (obj == this) {
+    return true;
+  }
+  if (obj.getClass() != getClass()) {
+    return false;
+  }
+  final RegexMatchingRegisteredServiceProxyPolicy rhs=(RegexMatchingRegisteredServiceProxyPolicy)obj;
+  return new EqualsBuilder().append(this.pattern.pattern(),rhs.pattern.pattern()).isEquals();
+}
