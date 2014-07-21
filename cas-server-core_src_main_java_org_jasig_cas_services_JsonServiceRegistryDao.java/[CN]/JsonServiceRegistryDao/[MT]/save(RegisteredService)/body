@@ -1,0 +1,20 @@
+{
+  if (service.getId() == RegisteredService.INITIAL_IDENTIFIER_VALUE && service instanceof AbstractRegisteredService) {
+    ((AbstractRegisteredService)service).setId(System.nanoTime());
+  }
+  LockedOutputStream out=null;
+  try {
+    final File f=makeFile(service);
+    out=new LockedOutputStream(new FileOutputStream(f));
+    this.objectMapper.writer(this.prettyPrinter).writeValue(out,service);
+    LOGGER.debug("Saved service to [{}]",f.getCanonicalPath());
+  }
+ catch (  final IOException e) {
+    throw new RuntimeException("IO error opening file stream.",e);
+  }
+ finally {
+    IOUtils.closeQuietly(out);
+  }
+  load();
+  return findServiceById(service.getId());
+}

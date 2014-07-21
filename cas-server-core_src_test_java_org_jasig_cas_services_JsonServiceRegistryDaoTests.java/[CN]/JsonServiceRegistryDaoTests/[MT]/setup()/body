@@ -1,0 +1,4 @@
+{
+  ClassPathResource r=new ClassPathResource("services");
+  this.dao=new JsonServiceRegistryDao(r.getFile());
+}

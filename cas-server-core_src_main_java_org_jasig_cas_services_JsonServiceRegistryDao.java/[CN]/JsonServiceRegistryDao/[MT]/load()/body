@@ -1,0 +1,27 @@
+{
+  final Map<Long,RegisteredService> temp=new ConcurrentHashMap<Long,RegisteredService>();
+  final FilenameFilter filter=new SuffixFileFilter(FILE_EXTENSION);
+  int errorCount=0;
+  for (  final File file : this.serviceRegistryDirectory.listFiles(filter)) {
+    BufferedInputStream in=null;
+    try {
+      in=new BufferedInputStream(new FileInputStream(file));
+      final Map<?,?> map=this.objectMapper.readValue(in,Map.class);
+      final Object record=map.get(SERVICE_ID_KEY);
+      final Class<? extends RegisteredService> clazz=getRegisteredServiceInstance(record.toString());
+      final RegisteredService service=this.objectMapper.convertValue(record,clazz);
+      temp.put(service.getId(),service);
+    }
+ catch (    final Exception e) {
+      errorCount++;
+      LOGGER.error("Error reading {}",file,e);
+    }
+ finally {
+      IOUtils.closeQuietly(in);
+    }
+  }
+  if (errorCount == 0) {
+    this.serviceMap=temp;
+  }
+  return new ArrayList<RegisteredService>(this.serviceMap.values());
+}

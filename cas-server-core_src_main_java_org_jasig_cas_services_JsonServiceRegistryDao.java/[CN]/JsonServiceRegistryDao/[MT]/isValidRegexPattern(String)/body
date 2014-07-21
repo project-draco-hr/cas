@@ -1,0 +1,13 @@
+{
+  boolean valid=false;
+  try {
+    if (pattern.startsWith(REGEX_PREFIX)) {
+      Pattern.compile(pattern);
+      valid=true;
+    }
+  }
+ catch (  final PatternSyntaxException e) {
+    LOGGER.debug("Failed to identify [{}] as a regular expression",pattern);
+  }
+  return valid;
+}

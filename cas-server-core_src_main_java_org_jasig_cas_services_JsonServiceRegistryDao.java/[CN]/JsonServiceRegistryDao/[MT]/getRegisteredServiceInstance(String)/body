@@ -1,0 +1,6 @@
+{
+  if (isValidRegexPattern(pattern)) {
+    return RegexRegisteredService.class;
+  }
+  return RegisteredServiceImpl.class;
+}
