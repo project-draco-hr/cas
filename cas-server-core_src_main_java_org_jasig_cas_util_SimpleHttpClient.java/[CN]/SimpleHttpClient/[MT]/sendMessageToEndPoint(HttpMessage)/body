@@ -6,16 +6,8 @@
     request.addHeader("Content-Type",message.getContentType());
     final StringEntity entity=new StringEntity(message.getMessage(),ContentType.create(message.getContentType()));
     request.setEntity(entity);
-    if (EXECUTOR_SERVICE.isTerminated()) {
-      LOGGER.error("Cannot execute http request. Executor service has terminated");
-      return false;
-    }
-    service=new FutureRequestExecutionService(this.httpClient,EXECUTOR_SERVICE);
+    service=new FutureRequestExecutionService(this.httpClient,executorService);
     final HttpRequestFutureTask<String> task=service.execute(request,HttpClientContext.create(),new BasicResponseHandler());
-    if (EXECUTOR_SERVICE.isTerminated()) {
-      LOGGER.error("Cannot execute http request. Executor service has terminated");
-      return false;
-    }
     if (message.isAsynchronous()) {
       return true;
     }

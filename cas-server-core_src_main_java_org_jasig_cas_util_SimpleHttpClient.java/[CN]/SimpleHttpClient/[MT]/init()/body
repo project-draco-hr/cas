@@ -1,6 +1,5 @@
 {
   try {
-    EXECUTOR_SERVICE=Executors.newFixedThreadPool(this.maxConnectionsPerRoute);
     final ConnectionSocketFactory plainsf=PlainConnectionSocketFactory.getSocketFactory();
     final LayeredConnectionSocketFactory sslsf=this.sslSocketFactory;
     final Registry<ConnectionSocketFactory> registry=RegistryBuilder.<ConnectionSocketFactory>create().register("http",plainsf).register("https",sslsf).build();
@@ -17,5 +16,4 @@
  catch (  final Exception e) {
     LOGGER.error(e.getMessage(),e);
   }
-  return null;
 }

@@ -1,5 +1,5 @@
 {
-  EXECUTOR_SERVICE=executorService;
+  this.executorService=executorService;
   this.acceptableCodes=acceptableCodes;
   this.connectionTimeout=connectionTimeout;
   this.readTimeout=readTimeout;
