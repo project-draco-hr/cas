@@ -1,5 +1,5 @@
 {
-  this.executorService=executorService;
+  EXECUTOR_SERVICE=executorService;
   this.acceptableCodes=acceptableCodes;
   this.connectionTimeout=connectionTimeout;
   this.readTimeout=readTimeout;
@@ -16,5 +16,7 @@
   this.circularRedirectsAllowed=circularRedirectsAllowed;
   this.authenticationEnabled=authenticationEnabled;
   this.redirectsEnabled=redirectsEnabled;
+  this.maxPooledConnections=maxConnections;
+  this.maxConnectionsPerRoute=maxConnectionsPerRoute;
   init();
 }

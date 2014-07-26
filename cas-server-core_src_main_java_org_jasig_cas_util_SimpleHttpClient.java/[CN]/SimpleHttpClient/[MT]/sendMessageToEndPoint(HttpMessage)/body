@@ -3,16 +3,19 @@
   FutureRequestExecutionService service=null;
   try {
     final HttpPost request=new HttpPost(message.getUrl().toURI());
-    request.addHeader("Content-Length",Integer.toString(message.getMessage().getBytes().length));
     request.addHeader("Content-Type",message.getContentType());
     final StringEntity entity=new StringEntity(message.getMessage(),ContentType.create(message.getContentType()));
     request.setEntity(entity);
-    if (executorService.isTerminated()) {
+    if (EXECUTOR_SERVICE.isTerminated()) {
       LOGGER.error("Cannot execute http request. Executor service has terminated");
       return false;
     }
-    service=new FutureRequestExecutionService(this.httpClient,executorService);
+    service=new FutureRequestExecutionService(this.httpClient,EXECUTOR_SERVICE);
     final HttpRequestFutureTask<String> task=service.execute(request,HttpClientContext.create(),new BasicResponseHandler());
+    if (EXECUTOR_SERVICE.isTerminated()) {
+      LOGGER.error("Cannot execute http request. Executor service has terminated");
+      return false;
+    }
     if (message.isAsynchronous()) {
       return true;
     }

@@ -1,11 +1,12 @@
 {
   try {
+    EXECUTOR_SERVICE=Executors.newFixedThreadPool(this.maxConnectionsPerRoute);
     final ConnectionSocketFactory plainsf=PlainConnectionSocketFactory.getSocketFactory();
     final LayeredConnectionSocketFactory sslsf=this.sslSocketFactory;
     final Registry<ConnectionSocketFactory> registry=RegistryBuilder.<ConnectionSocketFactory>create().register("http",plainsf).register("https",sslsf).build();
     final PoolingHttpClientConnectionManager connMgmr=new PoolingHttpClientConnectionManager(registry);
-    connMgmr.setMaxTotal(MAX_POOLED_CONNECTIONS);
-    connMgmr.setDefaultMaxPerRoute(MAX_CONNECTIONS_PER_ROUTE);
+    connMgmr.setMaxTotal(this.maxPooledConnections);
+    connMgmr.setDefaultMaxPerRoute(this.maxConnectionsPerRoute);
     final HttpHost httpHost=new HttpHost(InetAddress.getLocalHost());
     final HttpRoute httpRoute=new HttpRoute(httpHost);
     connMgmr.setMaxPerRoute(httpRoute,MAX_CONNECTIONS_PER_ROUTE);

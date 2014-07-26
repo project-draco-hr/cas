@@ -15,3 +15,5 @@ AuthenticationStrategy proxyAuthenticationStrategy
 boolean circularRedirectsAllowed
 boolean authenticationEnabled
 boolean redirectsEnabled
+int maxConnections
+int maxConnectionsPerRoute
