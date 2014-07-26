@@ -1,0 +1,9 @@
+{
+  if (this.entityManager.contains(registeredService)) {
+    this.entityManager.remove(registeredService);
+  }
+ else {
+    this.entityManager.remove(this.entityManager.merge(registeredService));
+  }
+  return true;
+}

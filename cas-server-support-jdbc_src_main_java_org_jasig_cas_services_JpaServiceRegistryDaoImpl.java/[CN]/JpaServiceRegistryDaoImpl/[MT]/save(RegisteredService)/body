@@ -1,0 +1,8 @@
+{
+  final boolean isNew=registeredService.getId() == RegisteredService.INITIAL_IDENTIFIER_VALUE;
+  final RegisteredService r=this.entityManager.merge(registeredService);
+  if (!isNew) {
+    this.entityManager.persist(r);
+  }
+  return r;
+}
