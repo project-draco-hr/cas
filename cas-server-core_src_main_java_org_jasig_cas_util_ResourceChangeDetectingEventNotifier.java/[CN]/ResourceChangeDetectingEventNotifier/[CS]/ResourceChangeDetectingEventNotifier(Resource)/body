@@ -1,0 +1,16 @@
+{
+  try {
+    this.watchedResource=watchedResource;
+    if (!this.watchedResource.exists()) {
+      throw new BeanCreationException(String.format("The 'watchedResource' [%s] must point to an existing resource. " + "Make sure such resource exists.",this.watchedResource.getURI()));
+    }
+    final FileAlterationObserver observer=new FileAlterationObserver(this.watchedResource.getFile());
+    observer.addListener(this);
+    this.monitor=new FileAlterationMonitor(this.repeatInterval);
+    this.monitor.addObserver(observer);
+    this.monitor.start();
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e.getMessage(),e);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  this.monitor.stop();
+  super.finalize();
+}

@@ -1,0 +1,8 @@
+{
+  try {
+    this.applicationEventPublisher.publishEvent(new ResourceChangedEvent(this,this.watchedResource.getURI()));
+  }
+ catch (  final IOException e) {
+    LOGGER.error("An exception is caught during 'watchedResource' access",e);
+  }
+}
