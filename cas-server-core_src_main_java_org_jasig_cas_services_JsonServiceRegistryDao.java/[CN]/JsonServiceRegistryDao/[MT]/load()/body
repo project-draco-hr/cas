@@ -5,12 +5,16 @@
   for (  final File file : this.serviceRegistryDirectory.listFiles(filter)) {
     BufferedInputStream in=null;
     try {
-      in=new BufferedInputStream(new FileInputStream(file));
-      final Map<?,?> map=this.objectMapper.readValue(in,Map.class);
-      final Object record=map.get(SERVICE_ID_KEY);
-      final Class<? extends RegisteredService> clazz=getRegisteredServiceInstance(record.toString());
-      final RegisteredService service=this.objectMapper.convertValue(record,clazz);
-      temp.put(service.getId(),service);
+      if (file.length() > 0) {
+        in=new BufferedInputStream(new FileInputStream(file));
+        Object oo=this.objectMapper.readValue(in,Object.class);
+        System.out.print(oo);
+        final Map<?,?> record=null;
+        final String serviceId=record.get(SERVICE_ID_KEY).toString();
+        final Class<? extends RegisteredService> clazz=getRegisteredServiceInstance(serviceId);
+        final RegisteredService service=this.objectMapper.convertValue(record,clazz);
+        temp.put(service.getId(),service);
+      }
     }
  catch (    final Exception e) {
       errorCount++;
