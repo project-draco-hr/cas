@@ -1,11 +1,3 @@
 {
-  this.serviceRegistryDirectory=configDirectory;
-  Assert.isTrue(this.serviceRegistryDirectory.exists(),serviceRegistryDirectory + " does not exist");
-  Assert.isTrue(this.serviceRegistryDirectory.isDirectory(),serviceRegistryDirectory + " is not a directory");
-  this.objectMapper=new ObjectMapper();
-  this.objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS,false);
-  this.objectMapper.setVisibility(PropertyAccessor.SETTER,JsonAutoDetect.Visibility.PROTECTED_AND_PUBLIC);
-  this.objectMapper.setVisibility(PropertyAccessor.GETTER,JsonAutoDetect.Visibility.PROTECTED_AND_PUBLIC);
-  this.objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL,JsonTypeInfo.As.PROPERTY);
-  this.prettyPrinter=prettyPrinter;
+  this(configDirectory,initializeObjectMapper(),prettyPrinter);
 }

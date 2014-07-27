@@ -1,6 +1,6 @@
 {
   final RegisteredServiceImpl r=new RegisteredServiceImpl();
-  r.setName("test");
+  r.setName("testSaveMethodWithNonExistentServiceAndNoAttributes");
   r.setServiceId("testId");
   r.setTheme("theme");
   r.setDescription("description");

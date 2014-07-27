@@ -1,18 +1,13 @@
 {
   final Map<Long,RegisteredService> temp=new ConcurrentHashMap<Long,RegisteredService>();
-  final FilenameFilter filter=new SuffixFileFilter(FILE_EXTENSION);
   int errorCount=0;
-  for (  final File file : this.serviceRegistryDirectory.listFiles(filter)) {
+  final Collection<File> c=FileUtils.listFiles(this.serviceRegistryDirectory,new String[]{FILE_EXTENSION},true);
+  for (  final File file : c) {
     BufferedInputStream in=null;
     try {
       if (file.length() > 0) {
         in=new BufferedInputStream(new FileInputStream(file));
-        Object oo=this.objectMapper.readValue(in,Object.class);
-        System.out.print(oo);
-        final Map<?,?> record=null;
-        final String serviceId=record.get(SERVICE_ID_KEY).toString();
-        final Class<? extends RegisteredService> clazz=getRegisteredServiceInstance(serviceId);
-        final RegisteredService service=this.objectMapper.convertValue(record,clazz);
+        final RegisteredService service=this.objectMapper.readValue(in,RegisteredService.class);
         temp.put(service.getId(),service);
       }
     }

@@ -7,5 +7,9 @@
   toStringBuilder.append("usernameAttribute",this.usernameAttribute);
   toStringBuilder.append("enabled",this.enabled);
   toStringBuilder.append("ssoEnabled",this.ssoEnabled);
+  toStringBuilder.append("theme",this.theme);
+  toStringBuilder.append("proxyPolicy",this.proxyPolicy);
+  toStringBuilder.append("attributeReleasePolicy",this.attributeReleasePolicy);
+  toStringBuilder.append("logoutType",this.logoutType);
   return toStringBuilder.toString();
 }

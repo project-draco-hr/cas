@@ -1,10 +1,10 @@
 {
   final RegisteredServiceImpl r=new RegisteredServiceImpl();
-  r.setName("testSaveAttributeReleasePolicy");
+  r.setName("testSaveAttributeReleasePolicyAllowedAttrRules");
   r.setServiceId("testId");
-  r.setTheme("theme");
-  r.setDescription("description");
-  r.setAttributeReleasePolicy(new ReturnAllAttributeReleasePolicy());
+  final ReturnAllowedAttributeReleasePolicy policy=new ReturnAllowedAttributeReleasePolicy();
+  policy.setAllowedAttributes(Arrays.asList("1","2","3"));
+  r.setAttributeReleasePolicy(policy);
   final RegisteredService r2=this.dao.save(r);
   final RegisteredService r3=this.dao.findServiceById(r2.getId());
   assertEquals(r,r2);
