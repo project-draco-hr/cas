@@ -11,6 +11,7 @@
     if (serviceCredential != null) {
       try {
         proxyGrantingTicketId=this.centralAuthenticationService.delegateTicketGrantingTicket(serviceTicketId,serviceCredential);
+        logger.debug("Generated PGT [{}] off of service ticket [{}] and credential [{}]",proxyGrantingTicketId,serviceTicketId,serviceCredential);
       }
  catch (      final AuthenticationException e) {
         logger.info("Failed to authenticate service credential {}",serviceCredential);
