@@ -1,7 +1,0 @@
-{
-  addTicketsToRegistry(this.defaultRegistry,5,10);
-  final SessionStatus status=this.monitor.observe();
-  assertEquals(5,status.getSessionCount());
-  assertEquals(10,status.getServiceTicketCount());
-  assertEquals(StatusCode.OK,status.getCode());
-}
