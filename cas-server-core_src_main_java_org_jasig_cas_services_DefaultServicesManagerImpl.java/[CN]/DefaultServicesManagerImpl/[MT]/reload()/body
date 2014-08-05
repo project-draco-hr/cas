@@ -1,4 +1,4 @@
 {
-  logger.info("Reloading registered services.");
+  LOGGER.info("Reloading registered services.");
   load();
 }
