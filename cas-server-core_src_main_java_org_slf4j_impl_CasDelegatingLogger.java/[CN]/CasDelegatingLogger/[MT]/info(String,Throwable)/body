@@ -1,3 +1,3 @@
 {
-  super.info(removeTicketIdFromMessage(msg),t);
+  delegate.info(removeTicketIdFromMessage(msg),t);
 }

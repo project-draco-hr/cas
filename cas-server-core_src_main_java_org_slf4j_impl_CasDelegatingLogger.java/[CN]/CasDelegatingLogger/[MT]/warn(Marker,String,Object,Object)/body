@@ -1,3 +1,3 @@
 {
-  super.warn(marker,removeTicketIdFromMessage(format),arg1,arg2);
+  delegate.warn(marker,removeTicketIdFromMessage(format),arg1,arg2);
 }

@@ -1,3 +1,3 @@
 {
-  super.error(removeTicketIdFromMessage(format),arg);
+  delegate.error(removeTicketIdFromMessage(format),arg);
 }

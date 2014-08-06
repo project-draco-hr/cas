@@ -1,3 +1,3 @@
 {
-  super.debug(removeTicketIdFromMessage(msg));
+  delegate.debug(removeTicketIdFromMessage(msg));
 }
