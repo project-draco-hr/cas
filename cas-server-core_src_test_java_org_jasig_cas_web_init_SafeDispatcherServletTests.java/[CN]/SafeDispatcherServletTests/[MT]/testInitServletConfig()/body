@@ -1,5 +1,0 @@
-{
-  this.safeServlet.init(this.mockConfig);
-  final BeanDefinitionStoreException bdse=(BeanDefinitionStoreException)this.mockContext.getAttribute(SafeDispatcherServlet.CAUGHT_THROWABLE_KEY);
-  assertNotNull(bdse);
-}
