@@ -1,3 +1,3 @@
 {
-  delegate.error(removeTicketIdFromMessage(format),arg1,arg2);
+  delegate.error(manipulateLogMessage(format),arg1,arg2);
 }

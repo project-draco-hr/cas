@@ -1,3 +1,3 @@
 {
-  delegate.warn(marker,removeTicketIdFromMessage(msg),t);
+  delegate.warn(marker,manipulateLogMessage(msg),t);
 }

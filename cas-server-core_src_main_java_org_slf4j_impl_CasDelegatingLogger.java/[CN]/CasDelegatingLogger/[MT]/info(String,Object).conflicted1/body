@@ -1,3 +1,3 @@
 {
-  delegate.info(removeTicketIdFromMessage(format),arguments);
+  delegate.info(manipulateLogMessage(format),arguments);
 }
