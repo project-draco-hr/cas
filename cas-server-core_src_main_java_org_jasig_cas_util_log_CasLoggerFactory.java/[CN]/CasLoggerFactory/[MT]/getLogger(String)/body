@@ -1,0 +1,9 @@
+{
+synchronized (loggerMap) {
+    if (!loggerMap.containsKey(name)) {
+      final Logger logger=getRealLoggerInstance(name);
+      loggerMap.put(name,new CasDelegatingLogger(name,logger));
+    }
+    return loggerMap.get(name);
+  }
+}

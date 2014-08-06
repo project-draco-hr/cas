@@ -1,0 +1,5 @@
+{
+  this.loggerMap=new ConcurrentHashMap<String,CasDelegatingLogger>();
+  final Set<URL> set=ClasspathHelper.forPackage(PACKAGE_TO_SCAN);
+  this.reflections=new Reflections(new ConfigurationBuilder().addUrls(set).setScanners(new SubTypesScanner()));
+}
