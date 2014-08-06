@@ -3,11 +3,10 @@
     final Set<Class<? extends ILoggerFactory>> subTypesOf=this.reflections.getSubTypesOf(ILoggerFactory.class);
     subTypesOf.remove(this.getClass());
     if (subTypesOf.size() > 1) {
-      System.err.println("Multiple ILoggerFactory bindings are found on the classpath:");
+      Util.report("Multiple ILoggerFactory bindings are found on the classpath:");
       for (      final Class<? extends ILoggerFactory> c : subTypesOf) {
-        System.err.println("- " + c.getCanonicalName());
+        Util.report("* " + c.getCanonicalName());
       }
-      System.err.println("CAS will select the ILoggerFactory: " + subTypesOf.iterator().next());
     }
     if (subTypesOf.size() > 0) {
       final Class<? extends ILoggerFactory> factoryClass=subTypesOf.iterator().next();
