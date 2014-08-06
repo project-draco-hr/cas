@@ -1,7 +1,7 @@
 {
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService == null || !registeredService.isEnabled()) {
-    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE,"Saml service " + service.getId() + " is not authorized to use CAS. Configuration is missing in the service registry.");
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE,"Saml service " + service.getId() + " is not authorized to use CAS. Servoce is disabled or missing in the service registry.");
   }
   final AttributeReleasePolicy attributePolicy=registeredService.getAttributeReleasePolicy();
   logger.debug("Attribute policy [{}] is associated with service [{}]",attributePolicy,registeredService);
