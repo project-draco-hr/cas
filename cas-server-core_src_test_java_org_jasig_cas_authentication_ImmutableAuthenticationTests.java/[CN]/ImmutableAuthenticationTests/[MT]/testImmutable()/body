@@ -13,7 +13,7 @@
   failures.put("handler2",FailedLoginException.class);
   final ImmutableAuthentication auth=new ImmutableAuthentication(new Date(),credentials,new SimplePrincipal("test"),attributes,successes,failures);
   try {
-    auth.getAuthenticatedDate().setTime(100);
+    auth.getAuthenticationDate().setTime(100);
     fail("Should have failed");
   }
  catch (  final RuntimeException e) {
