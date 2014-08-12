@@ -1,9 +1,0 @@
-{
-  final HostnameVerifier hv=new HostnameVerifier(){
-    @Override public boolean verify(    final String hostname,    final SSLSession session){
-      return true;
-    }
-  }
-;
-  return hv;
-}

@@ -1,0 +1,4 @@
+{
+  this.acceptableCodes=acceptableCodes;
+  init();
+}

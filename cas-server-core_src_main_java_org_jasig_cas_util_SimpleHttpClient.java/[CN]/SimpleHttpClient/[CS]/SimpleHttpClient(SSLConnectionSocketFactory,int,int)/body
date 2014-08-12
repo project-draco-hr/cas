@@ -1,0 +1,6 @@
+{
+  this.sslSocketFactory=sslSocketFactory;
+  this.readTimeout=readTimeout;
+  this.connectionTimeout=connectionTimeout;
+  init();
+}
