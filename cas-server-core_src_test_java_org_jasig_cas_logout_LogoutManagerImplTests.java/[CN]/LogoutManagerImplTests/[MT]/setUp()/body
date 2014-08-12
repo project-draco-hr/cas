@@ -1,6 +1,10 @@
 {
+  final HttpClient client=mock(HttpClient.class);
+  when(client.isValidEndPoint(any(String.class))).thenReturn(true);
+  when(client.isValidEndPoint(any(URL.class))).thenReturn(true);
+  when(client.sendMessageToEndPoint(any(HttpMessage.class))).thenReturn(true);
   final ServicesManager servicesManager=mock(ServicesManager.class);
-  this.logoutManager=new LogoutManagerImpl(servicesManager,new SimpleHttpClient(),new SamlCompliantLogoutMessageCreator());
+  this.logoutManager=new LogoutManagerImpl(servicesManager,client,new SamlCompliantLogoutMessageCreator());
   this.tgt=mock(TicketGrantingTicket.class);
   this.services=new HashMap<String,Service>();
   this.simpleWebApplicationServiceImpl=new SimpleWebApplicationServiceImpl(URL);
