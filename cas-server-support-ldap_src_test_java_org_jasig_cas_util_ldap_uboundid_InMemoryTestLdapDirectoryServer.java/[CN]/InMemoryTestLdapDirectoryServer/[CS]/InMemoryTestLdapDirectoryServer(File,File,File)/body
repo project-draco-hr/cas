@@ -1,0 +1,18 @@
+{
+  try {
+    final Properties p=new Properties();
+    p.load(new FileInputStream(properties));
+    final InMemoryDirectoryServerConfig config=new InMemoryDirectoryServerConfig(p.getProperty("ldap.rootDn"));
+    config.addAdditionalBindCredentials(p.getProperty("ldap.managerDn"),p.getProperty("ldap.managerPassword"));
+    config.setListenerConfigs(new InMemoryListenerConfig("ldapListener",InetAddress.getLocalHost(),10389,null,null,null));
+    final Schema s=Schema.getSchema(schemaFile.getCanonicalPath());
+    config.setSchema(s);
+    this.directoryServer=new InMemoryDirectoryServer(config);
+    LOGGER.debug("Populating directory with {}",ldifFile);
+    this.directoryServer.importFromLDIF(true,ldifFile.getCanonicalPath());
+    this.directoryServer.startListening();
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

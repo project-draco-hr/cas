@@ -1,0 +1,6 @@
+{
+  final ClassPathResource properties=new ClassPathResource("openldap.properties");
+  final ClassPathResource schema=new ClassPathResource("schema/standard-ldap.schema");
+  final ClassPathResource ldif=new ClassPathResource("ldif/ldif-users.ldif");
+  DIRECTORY=new InMemoryTestLdapDirectoryServer(properties.getFile(),schema.getFile(),ldif.getFile());
+}

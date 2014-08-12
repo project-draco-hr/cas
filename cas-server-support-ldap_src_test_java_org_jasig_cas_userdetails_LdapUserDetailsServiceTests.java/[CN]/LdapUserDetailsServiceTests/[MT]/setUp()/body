@@ -1,14 +1,4 @@
 {
   super.setUp();
-  this.groupsLdif=context.getBean("groupsLdif",Resource.class);
-  this.groupEntries=LdapTestUtils.readLdif(this.groupsLdif,this.baseDn);
-  final Connection connection=getConnection();
-  try {
-    connection.open();
-    LdapTestUtils.createLdapEntries(connection,this.directoryType,this.groupEntries);
-  }
-  finally {
-    connection.close();
-  }
   this.userDetailsService=this.context.getBean(LdapUserDetailsService.class);
 }
