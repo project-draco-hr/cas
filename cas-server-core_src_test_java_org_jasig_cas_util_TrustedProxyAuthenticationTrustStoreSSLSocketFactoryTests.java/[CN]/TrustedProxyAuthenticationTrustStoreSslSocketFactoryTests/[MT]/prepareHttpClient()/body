@@ -1,4 +1,0 @@
-{
-  final FileTrustStoreSslSocketFactory f=new FileTrustStoreSslSocketFactory(TRUST_STORE.getFile(),TRUST_STORE_PSW);
-  this.client=new SimpleHttpClient(f);
-}
