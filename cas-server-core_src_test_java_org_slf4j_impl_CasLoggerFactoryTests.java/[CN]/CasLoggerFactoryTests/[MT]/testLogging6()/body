@@ -1,0 +1,4 @@
+{
+  LOGGER.trace(getMessageToLog());
+  validateLogData();
+}

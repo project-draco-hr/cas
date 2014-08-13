@@ -1,0 +1,4 @@
+{
+  LOGGER.info(getMessageToLog());
+  validateLogData();
+}

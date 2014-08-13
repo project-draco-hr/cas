@@ -1,0 +1,5 @@
+{
+  System.out.flush();
+  System.setOut(OUT);
+  System.setErr(OUT);
+}

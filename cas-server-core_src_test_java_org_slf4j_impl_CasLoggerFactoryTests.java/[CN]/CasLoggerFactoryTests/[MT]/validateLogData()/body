@@ -1,0 +1,6 @@
+{
+  final String data=this.loggedPrintStream.getBuffer();
+  assertTrue(StringUtils.isNotBlank(data));
+  assertFalse(data.contains(ID1));
+  assertFalse(data.contains(ID2));
+}

@@ -1,0 +1,5 @@
+{
+  final String buffer=BUFFER.toString();
+  BUFFER=new StringBuilder();
+  return buffer;
+}
