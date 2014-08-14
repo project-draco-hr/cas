@@ -1,3 +1,3 @@
 {
-  return Arrays.asList(new Object[][]{{LdapTestUtils.DirectoryType.OpenLdap,new String[]{"/ldap-context.xml","/openldap-userdetails-test.xml"}}});
+  return Arrays.asList(new Object[][]{{new String[]{"/ldap-context.xml","/openldap-userdetails-test.xml"}}});
 }

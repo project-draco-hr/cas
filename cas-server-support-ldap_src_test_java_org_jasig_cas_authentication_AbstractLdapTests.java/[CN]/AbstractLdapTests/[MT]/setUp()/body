@@ -10,7 +10,7 @@
   final Connection connection=getConnection();
   try {
     connection.open();
-    LdapTestUtils.createLdapEntries(connection,this.directoryType,this.testEntries);
+    LdapTestUtils.createLdapEntries(connection,this.testEntries);
   }
   finally {
     LdapUtils.closeConnection(connection);

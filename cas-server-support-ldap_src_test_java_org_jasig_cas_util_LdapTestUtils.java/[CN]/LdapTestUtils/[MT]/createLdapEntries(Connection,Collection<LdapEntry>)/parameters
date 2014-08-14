@@ -1,3 +1,2 @@
 Connection connection
-DirectoryType dirType
 Collection<LdapEntry> entries
