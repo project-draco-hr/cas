@@ -1,4 +1,3 @@
 {
-  final Object[] args=manipulateLogArguments(arg1,arg2);
-  delegate.warn(manipulateLogMessage(format),args[0],args[1]);
+  delegate.warn(manipulateLogMessage(format),manipulateLogArguments(arg1,arg2));
 }

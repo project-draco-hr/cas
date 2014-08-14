@@ -1,13 +1,12 @@
 {
-  final Object[] results=new Object[args.length];
   for (int i=0; i < args.length; i++) {
     if (args[i] != null) {
       final String objStr=removeTicketId(args[i].toString());
-      results[i]=objStr;
+      args[i]=objStr;
     }
  else {
-      results[i]=args[i].toString();
+      args[i]=args[i];
     }
   }
-  return results;
+  return args;
 }

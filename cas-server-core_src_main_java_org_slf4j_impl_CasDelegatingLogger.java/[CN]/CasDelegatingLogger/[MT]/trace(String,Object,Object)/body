@@ -1,4 +1,3 @@
 {
-  final Object[] args=manipulateLogArguments(arg1,arg2);
-  delegate.trace(manipulateLogMessage(format),args[0],args[1]);
+  delegate.trace(manipulateLogMessage(format),manipulateLogArguments(arg1,arg2));
 }
