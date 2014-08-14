@@ -10,17 +10,4 @@
       }
     }
   }
-  if (DirectoryType.ActiveDirectory.equals(dirType)) {
-    for (    final LdapEntry entry : entries) {
-      final String password='\"' + getPassword(entry) + '\"';
-      final ModifyRequest modify=new ModifyRequest(entry.getDn(),new AttributeModification(AttributeModificationType.REPLACE,new LdapAttribute(AD_PASSWORD_ATTR,password.getBytes(AD_PASSWORD_ENCODING))),new AttributeModification(AttributeModificationType.REPLACE,new LdapAttribute(AD_ACCT_CONTROL_ATTR,AD_ACCT_ACTIVE)));
-      try {
-        new ModifyOperation(connection).execute(modify);
-      }
- catch (      final LdapException e) {
-        LOGGER.warn("LDAP error modifying entry {}",entry,e);
-        throw e;
-      }
-    }
-  }
 }
