@@ -1,16 +1,33 @@
 {
   try {
+    if (!properties.exists()) {
+      throw new FileNotFoundException("properties file does not exist");
+    }
+    if (!schemaFile.exists()) {
+      throw new FileNotFoundException("schemaFile file does not exist");
+    }
+    if (!ldifFile.exists()) {
+      throw new FileNotFoundException("ldifFile file does not exist");
+    }
     final Properties p=new Properties();
     p.load(new FileInputStream(properties));
     final InMemoryDirectoryServerConfig config=new InMemoryDirectoryServerConfig(p.getProperty("ldap.rootDn"));
     config.addAdditionalBindCredentials(p.getProperty("ldap.managerDn"),p.getProperty("ldap.managerPassword"));
-    config.setListenerConfigs(new InMemoryListenerConfig("ldapListener",InetAddress.getLocalHost(),10389,null,null,null));
+    final String serverKeyStorePath=new File(System.getProperty("java.home"),"lib/security/cacerts").getCanonicalPath();
+    final SSLUtil serverSSLUtil=new SSLUtil(new KeyStoreKeyManager(serverKeyStorePath,"changeit".toCharArray()),new TrustStoreTrustManager(serverKeyStorePath));
+    final SSLUtil clientSSLUtil=new SSLUtil(new TrustStoreTrustManager(serverKeyStorePath));
+    config.setListenerConfigs(InMemoryListenerConfig.createLDAPConfig("LDAP",null,389,serverSSLUtil.createSSLSocketFactory()),InMemoryListenerConfig.createLDAPSConfig("LDAPS",null,636,serverSSLUtil.createSSLServerSocketFactory(),clientSSLUtil.createSSLSocketFactory()));
+    config.setEnforceSingleStructuralObjectClass(false);
+    config.setEnforceAttributeSyntaxCompliance(false);
     final Schema s=Schema.getSchema(schemaFile.getCanonicalPath());
     config.setSchema(s);
     this.directoryServer=new InMemoryDirectoryServer(config);
     LOGGER.debug("Populating directory with {}",ldifFile);
     this.directoryServer.importFromLDIF(true,ldifFile.getCanonicalPath());
     this.directoryServer.startListening();
+    final LDAPConnection c=this.directoryServer.getConnection();
+    LOGGER.debug("Connected to {}:{}",c.getConnectedAddress(),c.getConnectedPort());
+    c.close();
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);

@@ -1,6 +1,18 @@
 {
+  final ClassPathResource properties=new ClassPathResource("ldap.properties");
+  final ClassPathResource schema=new ClassPathResource("schema/standard-ldap.schema");
+  directory=new InMemoryTestLdapDirectoryServer(properties.getFile(),schema.getFile(),new ClassPathResource("ldif/ldap-base.ldif").getFile());
   this.context=new ClassPathXmlApplicationContext(this.contextPaths);
   this.baseDn=this.context.getBean("baseDn",String.class);
   this.usernameAttribute=this.context.getBean("usernameAttribute",String.class);
   this.provisioningConnectionFactory=this.context.getBean("provisioningConnectionFactory",ConnectionFactory.class);
+  this.testEntries=LdapTestUtils.readLdif(new ClassPathResource("ldif/users-groups.ldif"),this.baseDn);
+  final Connection connection=getConnection();
+  try {
+    connection.open();
+    LdapTestUtils.createLdapEntries(connection,this.directoryType,this.testEntries);
+  }
+  finally {
+    LdapUtils.closeConnection(connection);
+  }
 }
