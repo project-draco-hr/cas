@@ -1,17 +1,9 @@
 {
   final SearchRequest sr=new SearchRequest();
-  sr.setSearchScope(this.searchScope);
+  sr.setSearchScope(SearchScope.SUBTREE);
   sr.setBaseDn(this.baseDn);
-  final SearchFilter filter=new SearchFilter(this.searchFilter);
-  if (this.resolveSearchEntryByFullDn) {
-    filter.setParameter("user",ac.getDn());
-  }
- else {
-    filter.setParameter("user",ac.getAuthenticationRequest().getUser());
-  }
-  sr.setSearchFilter(filter);
+  sr.setSearchFilter(new SearchFilter(SEARCH_FILTER,new Object[]{ac.getDn()}));
   sr.setSearchEntryHandlers(getSearchEntryHandlers());
   sr.setReturnAttributes(ac.getAuthenticationRequest().getReturnAttributes());
-  logger.debug("Searching entries by [{}] to return attributes [{}]",sr.getSearchFilter().format(),Arrays.toString(sr.getReturnAttributes()));
   return sr;
 }

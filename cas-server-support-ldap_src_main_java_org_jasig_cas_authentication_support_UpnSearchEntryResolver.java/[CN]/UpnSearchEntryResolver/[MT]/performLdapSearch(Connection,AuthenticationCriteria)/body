@@ -1,7 +1,0 @@
-{
-  final SearchResult result=super.performLdapSearch(conn,ac);
-  if (result.getEntries().size() == 0) {
-    logger.warn("Unable to find any entries after the search for {}",ac.getDn());
-  }
-  return result;
-}

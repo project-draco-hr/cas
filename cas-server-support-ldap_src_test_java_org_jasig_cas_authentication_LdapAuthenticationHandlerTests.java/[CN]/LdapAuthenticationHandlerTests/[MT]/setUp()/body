@@ -1,4 +1,0 @@
-{
-  super.setUp();
-  this.handler=this.context.getBean(LdapAuthenticationHandler.class);
-}

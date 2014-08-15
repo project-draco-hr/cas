@@ -1,3 +1,0 @@
-{
-  return Arrays.asList(new Object[][]{new String[]{"/ldap-context.xml","/openldap-persondir-test.xml"}});
-}

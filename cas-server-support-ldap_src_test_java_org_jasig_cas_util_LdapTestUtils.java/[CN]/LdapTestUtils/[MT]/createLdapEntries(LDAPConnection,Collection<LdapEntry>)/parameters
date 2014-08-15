@@ -1,2 +1,2 @@
-Connection connection
+LDAPConnection connection
 Collection<LdapEntry> entries

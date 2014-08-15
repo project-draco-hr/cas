@@ -1,4 +1,0 @@
-{
-  super.setUp();
-  this.userDetailsService=this.context.getBean(LdapUserDetailsService.class);
-}
