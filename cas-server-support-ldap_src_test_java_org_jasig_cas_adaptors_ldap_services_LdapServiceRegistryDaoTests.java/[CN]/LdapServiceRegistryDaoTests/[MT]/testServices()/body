@@ -10,6 +10,7 @@
   rs.setUsernameAttribute("uid");
   rs.setEvaluationOrder(123);
   rs.setAttributeReleasePolicy(new ReturnAllAttributeReleasePolicy());
+  rs.setRequiredHandlers(new HashSet<String>(Arrays.asList("handler8","handle92")));
   this.dao.save(rs);
   rs=new RegexRegisteredService();
   rs.setName("Service Name Regex");

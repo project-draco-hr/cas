@@ -1,14 +1,5 @@
 {
   try {
-    if (!properties.exists()) {
-      throw new FileNotFoundException("properties file does not exist");
-    }
-    if (!schemaFile.exists()) {
-      throw new FileNotFoundException("schemaFile file does not exist");
-    }
-    if (!ldifFile.exists()) {
-      throw new FileNotFoundException("ldifFile file does not exist");
-    }
     final Properties p=new Properties();
     p.load(new FileInputStream(properties));
     final InMemoryDirectoryServerConfig config=new InMemoryDirectoryServerConfig(p.getProperty("ldap.rootDn"));
@@ -19,8 +10,8 @@
     config.setListenerConfigs(InMemoryListenerConfig.createLDAPConfig("LDAP",null,389,serverSSLUtil.createSSLSocketFactory()),InMemoryListenerConfig.createLDAPSConfig("LDAPS",null,636,serverSSLUtil.createSSLServerSocketFactory(),clientSSLUtil.createSSLSocketFactory()));
     config.setEnforceSingleStructuralObjectClass(false);
     config.setEnforceAttributeSyntaxCompliance(false);
-    final Schema s=Schema.getSchema(schemaFile.getCanonicalPath());
-    config.setSchema(s);
+    final Schema s=Schema.mergeSchemas(Schema.getSchema(schemaFile));
+    config.setSchema(null);
     this.directoryServer=new InMemoryDirectoryServer(config);
     LOGGER.debug("Populating directory with {}",ldifFile);
     this.directoryServer.importFromLDIF(true,ldifFile.getCanonicalPath());
