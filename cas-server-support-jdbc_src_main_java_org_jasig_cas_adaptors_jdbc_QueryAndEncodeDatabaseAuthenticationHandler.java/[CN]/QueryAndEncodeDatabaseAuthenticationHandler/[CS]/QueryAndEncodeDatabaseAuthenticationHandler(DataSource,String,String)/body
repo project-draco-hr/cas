@@ -1,0 +1,5 @@
+{
+  setDataSource(datasource);
+  this.sql=sql;
+  this.messageDigest=DigestUtils.getDigest(algorithmName);
+}
