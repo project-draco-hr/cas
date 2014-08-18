@@ -1,0 +1,6 @@
+{
+  this.sslSocketFactory=sslSocketFactory;
+  this.hostnameVerifier=hostnameVerifier;
+  this.acceptableCodes=acceptableCodes;
+  init();
+}

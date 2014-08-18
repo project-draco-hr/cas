@@ -1,0 +1,3 @@
+SSLConnectionSocketFactory sslSocketFactory
+int readTimeout
+int connectionTimeout
