@@ -1,4 +1,5 @@
 {
+  this.messageDigest.reset();
   this.messageDigest.update(encodedPassword.getBytes());
   if (StringUtils.isNotBlank(this.staticSalt)) {
     this.messageDigest.update(this.staticSalt.getBytes());
@@ -7,9 +8,9 @@
   byte[] digestedPassword=this.messageDigest.digest();
   long numOfIterations=this.numberOfIterations;
   if (values.containsKey(this.numberOfIterationsFieldName)) {
-    numOfIterations=Long.decode(values.get(this.numberOfIterationsFieldName).toString());
+    numOfIterations=Long.getLong(values.get(this.numberOfIterationsFieldName).toString());
   }
-  for (int i=0; i < numOfIterations; i++) {
+  for (int i=0; i < numOfIterations - 1; i++) {
     this.messageDigest.reset();
     digestedPassword=this.messageDigest.digest(digestedPassword);
   }
