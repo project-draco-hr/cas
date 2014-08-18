@@ -1,0 +1,8 @@
+{
+  final QueryAndEncodeDatabaseAuthenticationHandler q=new QueryAndEncodeDatabaseAuthenticationHandler(this.dataSource,buildSql(),ALG_NAME);
+  q.setNumberOfIterationsFieldName("numIterations");
+  q.setStaticSalt(STATIC_SALT);
+  final HandlerResult r=q.authenticateUsernamePasswordInternal(TestUtils.getCredentialsWithSameUsernameAndPassword("user1"));
+  assertNotNull(r);
+  assertEquals(r.getPrincipal().getId(),"user1");
+}

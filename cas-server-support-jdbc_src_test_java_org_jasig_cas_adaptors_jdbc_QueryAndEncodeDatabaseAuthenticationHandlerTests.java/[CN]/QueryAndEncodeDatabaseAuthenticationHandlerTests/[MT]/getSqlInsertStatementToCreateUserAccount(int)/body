@@ -1,4 +1,5 @@
 {
-  final String sql=String.format("insert into users (username, password, salt, numIterations) values('%s', '%s', '%s', %s);","user" + i,"password" + i,"salt" + i,i);
+  final String psw=genPassword("user" + i,"salt" + i,NUM_ITERATIONS);
+  final String sql=String.format("insert into users (username, password, salt, numIterations) values('%s', '%s', '%s', %s);","user" + i,psw,"salt" + i,NUM_ITERATIONS);
   return sql;
 }
