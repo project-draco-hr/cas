@@ -1,0 +1,4 @@
+{
+  final String sql=String.format("insert into users (username, password, salt, numIterations) values('%s', '%s', '%s', %s);","user" + i,"password" + i,"salt" + i,i);
+  return sql;
+}

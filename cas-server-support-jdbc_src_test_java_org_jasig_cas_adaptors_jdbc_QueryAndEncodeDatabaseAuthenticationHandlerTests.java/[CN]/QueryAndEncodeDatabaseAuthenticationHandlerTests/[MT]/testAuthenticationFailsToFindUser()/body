@@ -1,0 +1,4 @@
+{
+  final QueryAndEncodeDatabaseAuthenticationHandler q=new QueryAndEncodeDatabaseAuthenticationHandler(this.dataSource,buildSql(),MessageDigestAlgorithms.SHA_512);
+  q.authenticateUsernamePasswordInternal(TestUtils.getCredentialsWithSameUsernameAndPassword());
+}
