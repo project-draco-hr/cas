@@ -22,7 +22,7 @@
   final String approvalPrompt=(String)session.getAttribute(OAuthConstants.APPROVAL_PROMPT);
   logger.debug("approvalPrompt : {}",approvalPrompt);
   session.removeAttribute(OAuthConstants.APPROVAL_PROMPT);
-  if (StringUtils.equals(approvalPrompt,OAuthConstants.AUTO_APPROVE)) {
+  if (OAuthConstants.AUTO_APPROVE.equals(approvalPrompt)) {
     return OAuthUtils.redirectTo(callbackUrl);
   }
   final String serviceName=(String)session.getAttribute(OAuthConstants.OAUTH20_SERVICE_NAME);
