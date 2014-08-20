@@ -1,0 +1,3 @@
+{
+  this(trustStoreFile,trustStorePassword,hostnameVerifier,trustStoreType,new DoesNotTrustStrategy());
+}
