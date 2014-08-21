@@ -10,20 +10,9 @@ synchronized (ticket) {
     for (    final String ticketId : services.keySet()) {
       final Service service=services.get(ticketId);
       if (service instanceof SingleLogoutService) {
-        final SingleLogoutService singleLogoutService=(SingleLogoutService)service;
-        if (!singleLogoutService.isLoggedOutAlready()) {
-          final LogoutRequest logoutRequest=new LogoutRequest(ticketId,singleLogoutService);
+        final LogoutRequest logoutRequest=handleLogoutForSloService((SingleLogoutService)service,ticketId);
+        if (logoutRequest != null) {
           logoutRequests.add(logoutRequest);
-          final RegisteredService registeredService=servicesManager.findServiceBy(service);
-          if (registeredService == null || registeredService.getLogoutType() == null || registeredService.getLogoutType() == LogoutType.BACK_CHANNEL) {
-            if (performBackChannelLogout(logoutRequest)) {
-              logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
-            }
- else {
-              logoutRequest.setStatus(LogoutRequestStatus.FAILURE);
-              LOGGER.warn("Logout message not sent to [{}]; Continuing processing...",singleLogoutService.getId());
-            }
-          }
         }
       }
     }
