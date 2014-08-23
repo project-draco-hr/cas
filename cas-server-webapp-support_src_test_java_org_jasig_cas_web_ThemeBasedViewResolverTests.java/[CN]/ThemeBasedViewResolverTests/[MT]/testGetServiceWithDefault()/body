@@ -3,5 +3,5 @@
   RequestContextHolder.setRequestContext(requestContext);
   WebApplicationService webApplicationService=new SimpleWebApplicationServiceImpl("myDefaultId");
   requestContext.getFlowScope().put("service",webApplicationService);
-  assertEquals("/WEB-INF/view/jsp/defaultTheme/ui/casLoginView",this.themeBasedViewResolver.buildView("casLoginView").getUrl());
+  assertEquals("/WEB-INF/view/jsp/defaultTheme/ui/casLoginView",this.registeredServiceThemeBasedViewResolver.buildView("casLoginView").getUrl());
 }
