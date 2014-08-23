@@ -11,7 +11,7 @@
   final AuthenticationStatement authnStatement=newAuthenticationStatement(authentication);
   assertion.getAuthenticationStatements().add(authnStatement);
   final Subject subject=newSubject(authentication.getPrincipal().getId());
-  final Map<String,Object> attributesToSend=prepareSamlAttributes(authentication,casAssertion);
+  final Map<String,Object> attributesToSend=prepareSamlAttributes(authentication,casAssertion,service);
   if (!attributesToSend.isEmpty()) {
     assertion.getAttributeStatements().add(newAttributeStatement(subject,attributesToSend));
   }

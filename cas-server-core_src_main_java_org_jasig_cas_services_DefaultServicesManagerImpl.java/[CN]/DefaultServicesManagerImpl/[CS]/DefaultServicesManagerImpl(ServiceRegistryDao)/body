@@ -1,3 +1,4 @@
 {
-  this(serviceRegistryDao,new ArrayList<String>());
+  this.serviceRegistryDao=serviceRegistryDao;
+  load();
 }
