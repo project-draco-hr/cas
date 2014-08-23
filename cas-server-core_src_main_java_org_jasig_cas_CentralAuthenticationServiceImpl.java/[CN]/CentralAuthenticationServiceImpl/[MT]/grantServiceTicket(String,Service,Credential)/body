@@ -9,7 +9,7 @@
 synchronized (ticketGrantingTicket) {
     if (ticketGrantingTicket.isExpired()) {
       this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
-      logger.debug("TicketGrantingTicket[{}] has expired and is now deleted from the ticket registry.",ticketGrantingTicketId);
+      logger.debug("TicketGrantingTicket [{}] has expired and is now deleted from the ticket registry.",ticketGrantingTicketId);
       throw new InvalidTicketException(ticketGrantingTicketId);
     }
   }
@@ -42,22 +42,12 @@ synchronized (ticketGrantingTicket) {
     throw new UnauthorizedSsoServiceException();
   }
   final UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(uniqueTicketIdGenKey);
-  final String generatedServiceTicketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX);
-  logger.debug("Generated service ticket id [{}] for ticket granting ticket [{}]",generatedServiceTicketId,ticketGrantingTicket.getId());
-  final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(generatedServiceTicketId,service,this.serviceTicketExpirationPolicy,credentials != null);
+  final List<Authentication> authentications=ticketGrantingTicket.getChainedAuthentications();
+  final String ticketPrefix=authentications.size() == 1 ? ServiceTicket.PREFIX : ServiceTicket.PROXY_TICKET_PREFIX;
+  final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ticketPrefix);
+  final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,credentials != null);
   this.serviceTicketRegistry.addTicket(serviceTicket);
-  if (logger.isInfoEnabled()) {
-    final List<Authentication> authentications=serviceTicket.getGrantingTicket().getChainedAuthentications();
-    final String formatString="Granted %s ticket [%s] for service [%s] for user [%s]";
-    final String type;
-    final String principalId=authentications.get(authentications.size() - 1).getPrincipal().getId();
-    if (authentications.size() == 1) {
-      type="service";
-    }
- else {
-      type="proxy";
-    }
-    logger.info(String.format(formatString,type,serviceTicket.getId(),service.getId(),principalId));
-  }
+  final String principalId=authentications.get(authentications.size() - 1).getPrincipal().getId();
+  logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principalId);
   return serviceTicket.getId();
 }

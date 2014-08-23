@@ -1,3 +1,0 @@
-{
-  this.authenticationHandler.authenticate(TestUtils.getHttpBasedServiceCredentials("http://www.jasig.org"));
-}

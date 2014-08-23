@@ -1,0 +1,3 @@
+{
+  this.cas.destroyTicketGrantingTicket(tgtId);
+}
