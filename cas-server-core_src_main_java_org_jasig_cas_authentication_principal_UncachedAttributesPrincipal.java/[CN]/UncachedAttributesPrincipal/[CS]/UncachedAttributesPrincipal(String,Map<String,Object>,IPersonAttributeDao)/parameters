@@ -1,0 +1,3 @@
+String id
+Map<String,Object> attributes
+IPersonAttributeDao attributeRepository

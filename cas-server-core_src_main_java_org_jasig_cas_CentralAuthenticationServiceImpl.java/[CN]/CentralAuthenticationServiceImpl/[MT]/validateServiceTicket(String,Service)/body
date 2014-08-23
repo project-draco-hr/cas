@@ -26,7 +26,7 @@ synchronized (serviceTicket) {
     logger.debug("Attribute policy [{}] is associated with service [{}]",attributePolicy,registeredService);
     @SuppressWarnings("unchecked") final Map<String,Object> attributesToRelease=attributePolicy != null ? attributePolicy.getAttributes(principal) : Collections.EMPTY_MAP;
     final String principalId=determinePrincipalIdForRegisteredService(principal,registeredService,serviceTicket);
-    final Principal modifiedPrincipal=new SimplePrincipal(principalId,attributesToRelease);
+    final Principal modifiedPrincipal=this.principalFactory.createPrincipal(principalId,attributesToRelease);
     final AuthenticationBuilder builder=AuthenticationBuilder.newInstance(authentication);
     builder.setPrincipal(modifiedPrincipal);
     return new ImmutableAssertion(builder.build(),serviceTicket.getGrantingTicket().getChainedAuthentications(),serviceTicket.getService(),serviceTicket.isFromNewLogin());
