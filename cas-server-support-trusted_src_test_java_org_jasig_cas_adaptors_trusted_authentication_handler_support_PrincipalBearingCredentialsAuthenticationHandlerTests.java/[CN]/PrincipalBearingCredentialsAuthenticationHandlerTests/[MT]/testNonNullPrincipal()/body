@@ -1,4 +1,4 @@
 {
-  final PrincipalBearingCredential credentials=new PrincipalBearingCredential(new SimplePrincipal("scott"));
+  final PrincipalBearingCredential credentials=new PrincipalBearingCredential(new SimplePrincipalFactory().createPrincipal("scott"));
   assertNotNull(this.handler.authenticate(credentials));
 }
