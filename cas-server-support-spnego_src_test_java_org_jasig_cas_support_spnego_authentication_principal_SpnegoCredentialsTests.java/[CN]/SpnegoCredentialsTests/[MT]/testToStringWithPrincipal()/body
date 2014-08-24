@@ -1,6 +1,6 @@
 {
   final SpnegoCredential credentials=new SpnegoCredential(new byte[]{});
-  final Principal principal=new SimplePrincipal("test");
+  final Principal principal=new SimplePrincipalFactory().createPrincipal("test");
   credentials.setPrincipal(principal);
   assertEquals("test",credentials.toString());
 }
