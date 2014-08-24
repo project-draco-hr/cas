@@ -3,7 +3,7 @@
   when(mock.getName()).thenReturn(name);
   when(mock.supports(any(Credential.class))).thenReturn(true);
   if (success) {
-    final HandlerResult result=new HandlerResult(mock,mock(CredentialMetaData.class),new SimplePrincipal("nobody"));
+    final HandlerResult result=new HandlerResult(mock,mock(CredentialMetaData.class),this.principalFactory.createPrincipal("nobody"));
     when(mock.authenticate(any(Credential.class))).thenReturn(result);
   }
  else {
