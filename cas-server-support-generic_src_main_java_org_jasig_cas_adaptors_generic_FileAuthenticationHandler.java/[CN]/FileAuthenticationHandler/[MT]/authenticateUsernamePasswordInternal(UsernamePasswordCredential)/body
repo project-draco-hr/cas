@@ -6,7 +6,7 @@
       throw new AccountNotFoundException(username + " not found in backing file.");
     }
     if (credential.getPassword() != null && this.getPasswordEncoder().encode(credential.getPassword()).equals(passwordOnRecord)) {
-      return createHandlerResult(credential,new SimplePrincipal(username),null);
+      return createHandlerResult(credential,this.principalFactory.createPrincipal(username),null);
     }
   }
  catch (  final IOException e) {
