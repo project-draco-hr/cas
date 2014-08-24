@@ -1,3 +1,3 @@
 {
-  return new NotCachingAttributesPrincipal(id,new HashMap<String,Object>(),this.attributeRepository);
+  return new NotCachingAttributesPrincipal(id,null,this.attributeRepository);
 }

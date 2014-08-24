@@ -8,5 +8,5 @@
   if (!this.httpClient.isValidEndPoint(httpCredential.getCallbackUrl())) {
     throw new FailedLoginException(httpCredential.getCallbackUrl() + " sent an unacceptable response status code");
   }
-  return new HandlerResult(this,httpCredential,new SimplePrincipal(httpCredential.getId()));
+  return new HandlerResult(this,httpCredential,this.principalFactory.createPrincipal(httpCredential.getId()));
 }
