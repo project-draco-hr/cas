@@ -1,5 +1,12 @@
 {
-  final Map<String,List<Object>> attributes=attributeRepository.getPerson(id).getAttributes();
+  final IPersonAttributes attrs=attributeRepository.getPerson(id);
+  if (attrs == null) {
+    return Collections.emptyMap();
+  }
+  final Map<String,List<Object>> attributes=attrs.getAttributes();
+  if (attributes == null) {
+    return Collections.emptyMap();
+  }
   final Map<String,Object> convertedAttributes=new HashMap<String,Object>();
   for (  final String key : attributes.keySet()) {
     final List<Object> values=attributes.get(key);

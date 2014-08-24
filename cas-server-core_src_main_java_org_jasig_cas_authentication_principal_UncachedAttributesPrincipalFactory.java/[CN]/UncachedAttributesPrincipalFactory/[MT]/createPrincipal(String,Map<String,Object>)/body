@@ -1,3 +1,0 @@
-{
-  return new UncachedAttributesPrincipal(id,new HashMap<String,Object>(),this.attributeRepository);
-}
