@@ -1,0 +1,8 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setParameter("TARGET","https://some.service.edu/path/to/app");
+  final SamlArgumentExtractor ext=new SamlArgumentExtractor();
+  final WebApplicationService service=ext.extractService(request);
+  final SamlService impl=SamlService.createServiceFrom(request);
+  assertTrue(impl.matches(service));
+}
