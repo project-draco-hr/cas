@@ -1,23 +1,19 @@
 {
-  final MessageDigest messageDigest=DigestUtils.getDigest(this.algorithmName);
-  messageDigest.reset();
-  messageDigest.update(encodedPassword.getBytes());
+  final ConfigurableHashService hashService=new DefaultHashService();
   if (StringUtils.isNotBlank(this.staticSalt)) {
-    messageDigest.update(this.staticSalt.getBytes());
+    hashService.setPrivateSalt(ByteSource.Util.bytes(this.staticSalt));
   }
-  if (!values.containsKey(this.saltFieldName)) {
-    throw new RuntimeException("Specified field name for salt does not exist in the resultset");
-  }
-  messageDigest.update(values.get(this.saltFieldName).toString().getBytes());
-  byte[] digestedPassword=messageDigest.digest();
-  long numOfIterations=this.numberOfIterations;
+  hashService.setHashAlgorithmName(this.algorithmName);
+  Long numOfIterations=this.numberOfIterations;
   if (values.containsKey(this.numberOfIterationsFieldName)) {
     final String longAsStr=values.get(this.numberOfIterationsFieldName).toString();
     numOfIterations=Long.valueOf(longAsStr);
   }
-  for (int i=0; i < numOfIterations - 1; i++) {
-    messageDigest.reset();
-    digestedPassword=messageDigest.digest(digestedPassword);
+  hashService.setHashIterations(numOfIterations.intValue());
+  if (!values.containsKey(this.saltFieldName)) {
+    throw new RuntimeException("Specified field name for salt does not exist in the results");
   }
-  return digestedPassword;
+  final String dynaSalt=values.get(this.saltFieldName).toString();
+  final HashRequest request=new HashRequest.Builder().setSalt(dynaSalt).setSource(encodedPassword).build();
+  return hashService.computeHash(request).toHex();
 }

@@ -3,8 +3,8 @@
   final String encodedPsw=this.getPasswordEncoder().encode(transformedCredential.getPassword());
   try {
     final Map<String,Object> values=getJdbcTemplate().queryForMap(this.sql,username);
-    final byte[] digestedPassword=digestEncodedPassword(encodedPsw,values);
-    if (!values.get(this.passwordFieldName).equals(Hex.encodeHexString(digestedPassword))) {
+    final String digestedPassword=digestEncodedPassword(encodedPsw,values);
+    if (!values.get(this.passwordFieldName).equals(digestedPassword)) {
       throw new FailedLoginException("Password does not match value on record.");
     }
     return createHandlerResult(transformedCredential,new SimplePrincipal(username),null);
