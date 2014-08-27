@@ -1,4 +1,4 @@
 {
-  LOGGER.warn(getMessageToLog());
+  logger.warn(getMessageToLog());
   validateLogData();
 }

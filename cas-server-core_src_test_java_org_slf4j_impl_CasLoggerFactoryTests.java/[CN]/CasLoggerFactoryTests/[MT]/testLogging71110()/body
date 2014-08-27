@@ -1,4 +1,4 @@
 {
-  LOGGER.error(getMessageToLogWithParams(),ID2,ID1);
+  logger.error(getMessageToLogWithParams(),ID2,ID1);
   validateLogData();
 }

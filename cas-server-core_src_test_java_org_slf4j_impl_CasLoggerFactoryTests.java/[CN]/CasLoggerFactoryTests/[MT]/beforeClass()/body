@@ -1,0 +1,5 @@
+{
+  if (LOG_FILE.exists()) {
+    FileUtils.write(LOG_FILE,"",false);
+  }
+}

@@ -1,6 +1,3 @@
 {
-  System.out.flush();
-  loggedPrintStream=LoggedPrintStream.create(System.out);
-  System.setOut(loggedPrintStream);
-  LOGGER=LoggerFactory.getLogger(CasLoggerFactoryTests.class);
+  logger=LoggerFactory.getLogger(CasLoggerFactoryTests.class);
 }

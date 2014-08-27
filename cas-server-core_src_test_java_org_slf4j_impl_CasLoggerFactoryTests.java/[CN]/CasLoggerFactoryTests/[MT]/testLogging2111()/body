@@ -1,4 +1,4 @@
 {
-  LOGGER.warn(mock(Marker.class),getMessageToLog());
+  logger.warn(mock(Marker.class),getMessageToLog());
   validateLogData();
 }

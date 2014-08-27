@@ -1,4 +1,4 @@
 {
-  LOGGER.debug(getMessageToLog());
+  logger.debug(getMessageToLog());
   validateLogData();
 }

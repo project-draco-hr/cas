@@ -1,4 +1,0 @@
-{
-  super(os);
-  this.underlying=ul;
-}

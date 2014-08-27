@@ -1,4 +1,4 @@
 {
-  LOGGER.info(getMessageToLog());
+  logger.info(getMessageToLog());
   validateLogData();
 }
