@@ -3,7 +3,7 @@
   logger.debug("clientCredentials : {}",clientCredentials);
   final String clientName=clientCredentials.getCredentials().getClientName();
   logger.debug("clientName : {}",clientName);
-  final Client<org.pac4j.core.credentials.Credentials,UserProfile> client=this.clients.findClient(clientName);
+  final Client<Credentials,UserProfile> client=this.clients.findClient(clientName);
   logger.debug("client : {}",client);
   final ServletExternalContext servletExternalContext=(ServletExternalContext)ExternalContextHolder.getExternalContext();
   final HttpServletRequest request=(HttpServletRequest)servletExternalContext.getNativeRequest();
@@ -11,9 +11,12 @@
   final WebContext webContext=new J2EContext(request,response);
   final UserProfile userProfile=client.getUserProfile(clientCredentials.getCredentials(),webContext);
   logger.debug("userProfile : {}",userProfile);
-  if (userProfile != null && StringUtils.isNotBlank(userProfile.getId())) {
-    clientCredentials.setUserProfile(userProfile);
-    return new HandlerResult(this,new BasicCredentialMetaData(credential),new SimplePrincipal(userProfile.getId(),userProfile.getAttributes()));
+  if (userProfile != null) {
+    final String id=userProfile.getTypedId();
+    if (StringUtils.isNotBlank(id)) {
+      clientCredentials.setUserProfile(userProfile);
+      return new HandlerResult(this,new BasicCredentialMetaData(credential),new SimplePrincipal(id,userProfile.getAttributes()));
+    }
   }
   throw new FailedLoginException("Provider did not produce profile for " + clientCredentials);
 }
