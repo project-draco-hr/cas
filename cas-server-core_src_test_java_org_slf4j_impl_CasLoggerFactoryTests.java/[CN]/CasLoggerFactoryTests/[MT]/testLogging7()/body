@@ -1,0 +1,4 @@
+{
+  logger.trace(getMessageToLogWithParams(),ID2,ID1);
+  validateLogData();
+}
