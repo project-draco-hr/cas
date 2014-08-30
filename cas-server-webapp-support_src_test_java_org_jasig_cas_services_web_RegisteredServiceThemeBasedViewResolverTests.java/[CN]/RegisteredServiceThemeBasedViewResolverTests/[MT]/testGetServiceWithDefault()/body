@@ -1,7 +1,7 @@
 {
-  MockRequestContext requestContext=new MockRequestContext();
+  final MockRequestContext requestContext=new MockRequestContext();
   RequestContextHolder.setRequestContext(requestContext);
-  WebApplicationService webApplicationService=new SimpleWebApplicationServiceImpl("myDefaultId");
+  final WebApplicationService webApplicationService=new SimpleWebApplicationServiceImpl("myDefaultId");
   requestContext.getFlowScope().put("service",webApplicationService);
   assertEquals("/WEB-INF/view/jsp/defaultTheme/ui/casLoginView",this.registeredServiceThemeBasedViewResolver.buildView("casLoginView").getUrl());
 }
