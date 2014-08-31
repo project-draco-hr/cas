@@ -1,0 +1,4 @@
+{
+  logger.trace(mock(Marker.class),getMessageToLog(),new RuntimeException(ID1,new InvalidTicketException(ID2)));
+  validateLogData();
+}

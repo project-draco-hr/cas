@@ -1,0 +1,20 @@
+{
+  this.loggerMap=new ConcurrentHashMap<String,CasDelegatingLogger>();
+  final Set<URL> set=ClasspathHelper.forPackage(PACKAGE_TO_SCAN);
+  final Reflections reflections=new Reflections(new ConfigurationBuilder().addUrls(set).setScanners(new SubTypesScanner()));
+  final Set<Class<? extends ILoggerFactory>> subTypesOf=reflections.getSubTypesOf(ILoggerFactory.class);
+  subTypesOf.remove(this.getClass());
+  if (subTypesOf.size() > 1) {
+    Util.report("Multiple ILoggerFactory bindings are found on the classpath:");
+    for (    final Class<? extends ILoggerFactory> c : subTypesOf) {
+      Util.report("* " + c.getCanonicalName());
+    }
+  }
+  if (subTypesOf.isEmpty()) {
+    final RuntimeException e=new RuntimeException("No ILoggerFactory could be found on the classpath." + " CAS cannot determine the logging framework." + " Examine the project dependencies and ensure there is one and only one logging framework is available.");
+    Util.report(e.getMessage(),e);
+    throw e;
+  }
+  this.realLoggerFactoryClass=subTypesOf.iterator().next();
+  Util.report("ILoggerFactory to be used for logging is: " + this.realLoggerFactoryClass.getName());
+}
