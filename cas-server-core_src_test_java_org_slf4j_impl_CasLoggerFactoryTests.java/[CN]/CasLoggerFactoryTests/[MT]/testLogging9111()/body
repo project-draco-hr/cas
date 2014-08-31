@@ -1,0 +1,4 @@
+{
+  logger.warn(getMessageToLog(),new RuntimeException(ID1,new InvalidTicketException(ID2)));
+  validateLogData();
+}

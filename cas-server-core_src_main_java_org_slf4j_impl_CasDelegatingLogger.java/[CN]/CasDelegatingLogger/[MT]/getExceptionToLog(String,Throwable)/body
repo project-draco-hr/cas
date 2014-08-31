@@ -1,0 +1,8 @@
+{
+  final StringWriter sW=new StringWriter();
+  final PrintWriter w=new PrintWriter(sW);
+  w.println(manipulateLogMessage(msg));
+  t.printStackTrace(w);
+  final String log=sW.getBuffer().toString();
+  return manipulateLogMessage(log);
+}
