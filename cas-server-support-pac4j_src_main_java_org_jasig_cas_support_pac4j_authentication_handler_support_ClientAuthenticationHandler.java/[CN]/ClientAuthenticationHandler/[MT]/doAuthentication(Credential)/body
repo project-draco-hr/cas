@@ -13,7 +13,7 @@
   logger.debug("userProfile : {}",userProfile);
   if (userProfile != null) {
     final String id;
-    if (useTypedId) {
+    if (typedIdUsed) {
       id=userProfile.getTypedId();
     }
  else {
