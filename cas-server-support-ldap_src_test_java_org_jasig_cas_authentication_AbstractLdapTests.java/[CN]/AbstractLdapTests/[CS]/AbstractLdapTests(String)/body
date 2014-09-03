@@ -1,0 +1,7 @@
+{
+  this.context=new XmlWebApplicationContext();
+  this.context.setServletContext(new MockServletContext());
+  this.context.setConfigLocations(configLocations);
+  this.context.refresh();
+  this.context.start();
+}

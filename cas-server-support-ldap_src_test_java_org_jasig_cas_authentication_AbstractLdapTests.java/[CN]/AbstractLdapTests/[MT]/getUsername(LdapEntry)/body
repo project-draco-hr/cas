@@ -1,3 +1,4 @@
 {
-  return entry.getAttribute(usernameAttribute).getStringValue();
+  final String unameAttr=this.context.getBean("usernameAttribute",String.class);
+  return entry.getAttribute(unameAttr).getStringValue();
 }
