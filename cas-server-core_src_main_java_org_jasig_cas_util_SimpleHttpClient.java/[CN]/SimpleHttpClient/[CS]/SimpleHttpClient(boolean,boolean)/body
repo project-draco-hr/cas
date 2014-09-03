@@ -1,0 +1,5 @@
+{
+  this.redirectsEnabled=redirectsEnabled;
+  this.circularRedirectsAllowed=circularRedirectsAllowed;
+  init();
+}

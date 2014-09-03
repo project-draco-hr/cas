@@ -1,0 +1,3 @@
+SSLConnectionSocketFactory sslSocketFactory
+X509HostnameVerifier hostnameVerifier
+int[] acceptableCodes

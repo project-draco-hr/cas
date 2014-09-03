@@ -6,6 +6,6 @@
   final String urlToRedirectTo=request.getRequestURI() + (request.getQueryString() != null ? "?" + request.getQueryString() : "");
   logger.debug("Error getting flow information for URL [{}]",urlToRedirectTo,exception);
   final Map<String,Object> model=new HashMap<String,Object>();
-  model.put(this.modelKey,StringEscapeUtils.escapeHtml(exception.getMessage()));
+  model.put(this.modelKey,StringEscapeUtils.escapeHtml4(exception.getMessage()));
   return new ModelAndView(new RedirectView(urlToRedirectTo),model);
 }

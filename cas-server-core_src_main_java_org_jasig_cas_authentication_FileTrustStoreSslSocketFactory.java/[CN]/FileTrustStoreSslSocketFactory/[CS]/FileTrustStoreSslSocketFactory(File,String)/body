@@ -1,0 +1,3 @@
+{
+  this(trustStoreFile,trustStorePassword,SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER,KeyStore.getDefaultType());
+}
