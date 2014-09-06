@@ -1,8 +1,14 @@
 {
-  final String logoutRequest=this.logoutMessageBuilder.create(request);
-  request.getService().setLoggedOutAlready(true);
-  LOGGER.debug("Sending logout request for: [{}]",request.getService().getId());
-  final String originalUrl=request.getService().getOriginalUrl();
-  final LogoutHttpMessage sender=new LogoutHttpMessage(originalUrl,logoutRequest);
-  return this.httpClient.sendMessageToEndPoint(sender);
+  try {
+    final String logoutRequest=this.logoutMessageBuilder.create(request);
+    request.getService().setLoggedOutAlready(true);
+    LOGGER.debug("Sending logout request for: [{}]",request.getService().getId());
+    final String originalUrl=request.getService().getOriginalUrl();
+    final LogoutHttpMessage sender=new LogoutHttpMessage(new URL(originalUrl),logoutRequest);
+    return this.httpClient.sendMessageToEndPoint(sender);
+  }
+ catch (  final Exception e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+  return false;
 }

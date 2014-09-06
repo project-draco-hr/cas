@@ -1,0 +1,4 @@
+{
+  logger.info(mock(Marker.class),getMessageToLog());
+  validateLogData();
+}

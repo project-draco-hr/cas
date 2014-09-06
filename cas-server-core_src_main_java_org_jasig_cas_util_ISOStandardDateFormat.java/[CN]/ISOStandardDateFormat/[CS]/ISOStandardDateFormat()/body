@@ -1,4 +1,3 @@
 {
-  super(DATE_FORMAT,null,null);
-  super.init();
+  super(DATE_FORMAT,TimeZone.getDefault(),Locale.getDefault());
 }

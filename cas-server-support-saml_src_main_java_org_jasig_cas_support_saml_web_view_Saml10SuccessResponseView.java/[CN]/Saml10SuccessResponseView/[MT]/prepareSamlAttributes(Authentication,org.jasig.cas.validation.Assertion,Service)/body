@@ -1,0 +1,21 @@
+{
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  if (registeredService == null || !registeredService.isEnabled()) {
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE,"Saml service " + service.getId() + " is not authorized to use CAS. Servoce is disabled or missing in the service registry.");
+  }
+  final AttributeReleasePolicy attributePolicy=registeredService.getAttributeReleasePolicy();
+  logger.debug("Attribute policy [{}] is associated with service [{}]",attributePolicy,registeredService);
+  final Principal principal=authentication.getPrincipal();
+  @SuppressWarnings("unchecked") final Map<String,Object> attributes=attributePolicy != null ? attributePolicy.getAttributes(principal) : Collections.EMPTY_MAP;
+  final Map<String,Object> authnAttributes=new TreeMap<String,Object>(authentication.getAttributes());
+  final Object o=authnAttributes.get(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME);
+  final boolean isRemembered=(o == Boolean.TRUE) && assertion.isFromNewLogin();
+  if (isRemembered) {
+    authnAttributes.remove(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME);
+    authnAttributes.put(this.rememberMeAttributeName,Boolean.TRUE.toString());
+  }
+  final Map<String,Object> attributesToReturn=new HashMap<String,Object>();
+  attributesToReturn.putAll(attributes);
+  attributesToReturn.putAll(authnAttributes);
+  return attributesToReturn;
+}

@@ -1,0 +1,5 @@
+{
+  this.publicKey=publicKey;
+  this.privateKey=privateKey;
+  this.servicesManager=servicesManager;
+}

@@ -1,5 +1,4 @@
 {
   this.authenticationHandler.setHttpClient(new SimpleHttpClient());
-  this.authenticationHandler.setRequireSecure(false);
-  assertNotNull(this.authenticationHandler.authenticate(TestUtils.getHttpBasedServiceCredentials("http://www.jasig.org")));
+  assertNotNull(this.authenticationHandler.authenticate(TestUtils.getHttpBasedServiceCredentials("http://www.google.com")));
 }
