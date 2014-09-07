@@ -1,0 +1,9 @@
+{
+  this.handler.setTypedIdUsed(false);
+  final FacebookProfile facebookProfile=new FacebookProfile();
+  facebookProfile.setId(ID);
+  this.fbClient.setFacebookProfile(facebookProfile);
+  final HandlerResult result=this.handler.authenticate(this.clientCredential);
+  final Principal principal=result.getPrincipal();
+  assertEquals(ID,principal.getId());
+}
