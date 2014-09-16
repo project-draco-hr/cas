@@ -5,5 +5,6 @@
   when(mockRegSvc.getProxyPolicy()).thenReturn(proxy);
   when(mockRegSvc.getName()).thenReturn(svcId);
   when(mockRegSvc.matches(argThat(new VerifyServiceByIdMatcher(svcId)))).thenReturn(true);
+  when(mockRegSvc.getUsernameAttributeProvider()).thenReturn(new DefaultRegisteredServiceUsernameProvider());
   return mockRegSvc;
 }

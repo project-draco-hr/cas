@@ -10,10 +10,13 @@
       s.setEnabled(LdapUtils.getBoolean(entry,this.serviceEnabledAttribute));
       s.setTheme(LdapUtils.getString(entry,this.serviceThemeAttribute));
       s.setEvaluationOrder(LdapUtils.getLong(entry,this.evaluationOrderAttribute).intValue());
-      s.setUsernameAttribute(LdapUtils.getString(entry,this.usernameAttribute));
-      s.setAnonymousAccess(LdapUtils.getBoolean(entry,this.serviceAnonymousAccessAttribute));
       s.setSsoEnabled(LdapUtils.getBoolean(entry,this.serviceSsoEnabledAttribute));
       s.setRequiredHandlers(new HashSet<String>(getMultiValuedAttributeValues(entry,this.requiredHandlersAttribute)));
+      final byte[] usenameAttrData=LdapUtils.getBinary(entry,this.usernameAttributeProvider);
+      if (usenameAttrData != null && usenameAttrData.length > 0) {
+        final RegisteredServiceUsernameAttributeProvider provider=(RegisteredServiceUsernameAttributeProvider)SerializationUtils.deserialize(usenameAttrData);
+        s.setUsernameAttributeProvider(provider);
+      }
       final byte[] data=LdapUtils.getBinary(entry,this.attributeReleasePolicyAttribute);
       if (data != null && data.length > 0) {
         final AttributeReleasePolicy policy=(AttributeReleasePolicy)SerializationUtils.deserialize(data);
