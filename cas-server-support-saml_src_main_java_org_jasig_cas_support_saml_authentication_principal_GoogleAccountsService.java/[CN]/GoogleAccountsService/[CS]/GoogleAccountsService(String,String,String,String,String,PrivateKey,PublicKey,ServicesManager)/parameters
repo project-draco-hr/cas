@@ -1,0 +1,8 @@
+String id
+String originalUrl
+String artifactId
+String relayState
+String requestId
+PrivateKey privateKey
+PublicKey publicKey
+ServicesManager servicesManager
