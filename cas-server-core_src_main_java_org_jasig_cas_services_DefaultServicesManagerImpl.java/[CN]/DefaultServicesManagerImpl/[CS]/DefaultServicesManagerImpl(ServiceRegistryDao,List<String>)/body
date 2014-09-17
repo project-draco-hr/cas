@@ -1,4 +1,4 @@
 {
-  this.serviceRegistryDao=serviceRegistryDao;
-  load();
+  this(serviceRegistryDao);
+  LOGGER.warn("This constructor is deprecated and will be removed in future CAS versions");
 }

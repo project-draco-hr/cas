@@ -7,9 +7,8 @@
   this.setServiceId(source.getServiceId());
   this.setSsoEnabled(source.isSsoEnabled());
   this.setTheme(source.getTheme());
-  this.setAnonymousAccess(source.isAnonymousAccess());
   this.setEvaluationOrder(source.getEvaluationOrder());
-  this.setUsernameAttribute(source.getUsernameAttribute());
+  this.setUsernameAttributeProvider(source.getUsernameAttributeProvider());
   this.setLogoutType(source.getLogoutType());
   this.setAttributeReleasePolicy(source.getAttributeReleasePolicy());
 }
