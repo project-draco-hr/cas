@@ -13,7 +13,7 @@
     }
  catch (    final Exception e) {
       errorCount++;
-      LOGGER.error("Error reading {}",file,e);
+      LOGGER.error("Error reading configuration file",e);
     }
  finally {
       IOUtils.closeQuietly(in);
