@@ -1,10 +1,4 @@
 {
-  this.numericGenerator=new DefaultLongNumericGenerator(1);
-  this.randomStringGenerator=new DefaultRandomStringGenerator(maxLength);
-  if (suffix != null) {
-    this.suffix="-" + suffix;
-  }
- else {
-    this.suffix=null;
-  }
+  this(maxLength);
+  setSuffix(suffix);
 }
