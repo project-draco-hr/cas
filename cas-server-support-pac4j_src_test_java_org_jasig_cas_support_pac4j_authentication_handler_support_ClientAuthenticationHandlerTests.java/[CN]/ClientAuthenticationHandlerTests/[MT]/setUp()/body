@@ -1,0 +1,8 @@
+{
+  this.fbClient=new MockFacebookClient();
+  final Clients clients=new Clients(CALLBACK_URL,fbClient);
+  this.handler=new ClientAuthenticationHandler(clients);
+  final Credentials credentials=new OAuthCredentials(null,MockFacebookClient.CLIENT_NAME);
+  this.clientCredential=new ClientCredential(credentials);
+  ExternalContextHolder.setExternalContext(mock(ServletExternalContext.class));
+}

@@ -1,0 +1,5 @@
+{
+  final TrustManagerFactory factory=TrustManagerFactory.getInstance(algorithm);
+  factory.init(keystore);
+  return (X509TrustManager)factory.getTrustManagers()[0];
+}
