@@ -6,7 +6,7 @@
   try {
     final File f=makeFile(service);
     out=new LockedOutputStream(new FileOutputStream(f));
-    this.objectMapper.writer(this.prettyPrinter).writeValue(out,service);
+    this.registeredServiceJsonSerializer.toJson(out,service);
     LOGGER.debug("Saved service to [{}]",f.getCanonicalPath());
   }
  catch (  final IOException e) {

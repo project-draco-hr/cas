@@ -7,7 +7,7 @@
     try {
       if (file.length() > 0) {
         in=new BufferedInputStream(new FileInputStream(file));
-        final RegisteredService service=this.objectMapper.readValue(in,RegisteredService.class);
+        final RegisteredService service=this.registeredServiceJsonSerializer.fromJson(in);
         temp.put(service.getId(),service);
       }
     }
