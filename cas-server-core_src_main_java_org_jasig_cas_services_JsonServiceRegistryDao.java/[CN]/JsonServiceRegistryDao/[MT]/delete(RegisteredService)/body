@@ -1,6 +1,5 @@
 {
   serviceMap.remove(service.getId());
   final boolean result=makeFile(service).delete();
-  load();
   return result;
 }
