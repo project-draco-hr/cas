@@ -1,8 +1,4 @@
 {
-  if (StringUtils.isNotBlank(suffix)) {
-    super.setSuffix(suffix);
-    return;
-  }
   try {
     final String hostName=InetAddress.getLocalHost().getCanonicalHostName();
     if (hostName.indexOf(".") > 0) {
