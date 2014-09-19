@@ -19,10 +19,10 @@
   logger.debug("{} : {}",OAuthConstants.OAUTH20_CALLBACKURL,callbackUrl);
   final Map<String,Object> model=new HashMap<String,Object>();
   model.put("callbackUrl",callbackUrl);
-  final String approvalPrompt=(String)session.getAttribute(OAuthConstants.APPROVAL_PROMPT);
-  logger.debug("approvalPrompt : {}",approvalPrompt);
-  session.removeAttribute(OAuthConstants.APPROVAL_PROMPT);
-  if (OAuthConstants.AUTO_APPROVE.equals(approvalPrompt)) {
+  final Boolean bypassApprovalPrompt=(Boolean)session.getAttribute(OAuthConstants.BYPASS_APPROVAL_PROMPT);
+  logger.debug("bypassApprovalPrompt : {}",bypassApprovalPrompt);
+  session.removeAttribute(OAuthConstants.BYPASS_APPROVAL_PROMPT);
+  if (bypassApprovalPrompt != null && bypassApprovalPrompt) {
     return OAuthUtils.redirectTo(callbackUrl);
   }
   final String serviceName=(String)session.getAttribute(OAuthConstants.OAUTH20_SERVICE_NAME);
