@@ -1,0 +1,19 @@
+{
+  final ConfigurableHashService hashService=new DefaultHashService();
+  if (StringUtils.isNotBlank(this.staticSalt)) {
+    hashService.setPrivateSalt(ByteSource.Util.bytes(this.staticSalt));
+  }
+  hashService.setHashAlgorithmName(this.algorithmName);
+  Long numOfIterations=this.numberOfIterations;
+  if (values.containsKey(this.numberOfIterationsFieldName)) {
+    final String longAsStr=values.get(this.numberOfIterationsFieldName).toString();
+    numOfIterations=Long.valueOf(longAsStr);
+  }
+  hashService.setHashIterations(numOfIterations.intValue());
+  if (!values.containsKey(this.saltFieldName)) {
+    throw new RuntimeException("Specified field name for salt does not exist in the results");
+  }
+  final String dynaSalt=values.get(this.saltFieldName).toString();
+  final HashRequest request=new HashRequest.Builder().setSalt(dynaSalt).setSource(encodedPassword).build();
+  return hashService.computeHash(request).toHex();
+}
