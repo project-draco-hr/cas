@@ -3,19 +3,8 @@
   final Calendar c=Calendar.getInstance();
   c.setTime(new Date());
   c.add(Calendar.YEAR,1);
-  final String userId;
-  if (this.alternateUserName == null) {
-    userId=getPrincipal().getId();
-  }
- else {
-    final String attributeValue=(String)getPrincipal().getAttributes().get(this.alternateUserName);
-    if (attributeValue == null) {
-      userId=getPrincipal().getId();
-    }
- else {
-      userId=attributeValue;
-    }
-  }
+  final RegisteredService svc=this.servicesManager.findServiceBy(this);
+  final String userId=svc.getUsernameAttributeProvider().resolveUsername(getPrincipal(),this);
   final String currentDateTime=new ISOStandardDateFormat().getCurrentDateAndTime();
   samlResponse=samlResponse.replace("<USERNAME_STRING>",userId);
   samlResponse=samlResponse.replace("<RESPONSE_ID>",createID());

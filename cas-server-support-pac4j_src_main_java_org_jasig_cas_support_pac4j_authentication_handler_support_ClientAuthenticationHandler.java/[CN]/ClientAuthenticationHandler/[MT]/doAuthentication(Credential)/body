@@ -12,7 +12,13 @@
   final UserProfile userProfile=client.getUserProfile(clientCredentials.getCredentials(),webContext);
   logger.debug("userProfile : {}",userProfile);
   if (userProfile != null) {
-    final String id=userProfile.getTypedId();
+    final String id;
+    if (typedIdUsed) {
+      id=userProfile.getTypedId();
+    }
+ else {
+      id=userProfile.getId();
+    }
     if (StringUtils.isNotBlank(id)) {
       clientCredentials.setUserProfile(userProfile);
       return new HandlerResult(this,new BasicCredentialMetaData(credential),this.principalFactory.createPrincipal(id,userProfile.getAttributes()));

@@ -1,0 +1,7 @@
+{
+  final DefaultRegisteredServiceUsernameProvider provider=new DefaultRegisteredServiceUsernameProvider();
+  final Principal principal=mock(Principal.class);
+  when(principal.getId()).thenReturn("id");
+  final String id=provider.resolveUsername(principal,TestUtils.getService());
+  assertEquals(id,principal.getId());
+}
