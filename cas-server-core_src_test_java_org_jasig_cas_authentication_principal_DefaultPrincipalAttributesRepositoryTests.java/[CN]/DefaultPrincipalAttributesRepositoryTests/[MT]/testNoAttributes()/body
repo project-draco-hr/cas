@@ -1,0 +1,4 @@
+{
+  final PrincipalAttributesRepository rep=new DefaultPrincipalAttributesRepository();
+  assertEquals(rep.getAttributes("uid").size(),0);
+}

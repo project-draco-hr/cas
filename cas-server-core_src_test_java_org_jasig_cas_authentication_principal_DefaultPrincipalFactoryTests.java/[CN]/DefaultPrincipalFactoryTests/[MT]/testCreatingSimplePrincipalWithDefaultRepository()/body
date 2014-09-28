@@ -1,0 +1,6 @@
+{
+  final PrincipalFactory f=new DefaultPrincipalFactory(new DefaultPrincipalAttributesRepository());
+  final Principal p=f.createPrincipal("uid");
+  assertEquals(p.getId(),"uid");
+  assertEquals(p.getAttributes().size(),0);
+}
