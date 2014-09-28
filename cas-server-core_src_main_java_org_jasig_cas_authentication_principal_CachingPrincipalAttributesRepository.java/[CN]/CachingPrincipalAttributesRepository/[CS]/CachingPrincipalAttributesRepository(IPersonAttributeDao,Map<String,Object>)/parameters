@@ -1,2 +1,2 @@
-String id
 IPersonAttributeDao attributeRepository
+Map<String,Object> attributes

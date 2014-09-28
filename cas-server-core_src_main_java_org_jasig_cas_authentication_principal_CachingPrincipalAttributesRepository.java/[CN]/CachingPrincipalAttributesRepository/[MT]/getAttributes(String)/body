@@ -1,7 +1,7 @@
 {
-  Map<String,Object> attributes=this.cache.get(id);
+  Map<String,Object> attributes=this.cache.get(ATTRIBUTES_CACHE_KEY);
   if (attributes == null) {
-    attributes=PrincipalUtils.convertPersonAttributesToPrincipalAttributes(id,this.attributeRepository);
+    attributes=convertPersonAttributesToPrincipalAttributes(id);
     setAttributes(attributes);
     return attributes;
   }

@@ -1,0 +1,7 @@
+{
+  this.repository=new CachingPrincipalAttributesRepository(this.dao,Collections.<String,Object>singletonMap("mail","final@example.com"),TimeUnit.SECONDS,5);
+  assertEquals(this.repository.getAttributes("uid").size(),1);
+  assertTrue(this.repository.getAttributes("uid").containsKey("mail"));
+  attributes.clear();
+  assertTrue(this.repository.getAttributes("uid").containsKey("mail"));
+}

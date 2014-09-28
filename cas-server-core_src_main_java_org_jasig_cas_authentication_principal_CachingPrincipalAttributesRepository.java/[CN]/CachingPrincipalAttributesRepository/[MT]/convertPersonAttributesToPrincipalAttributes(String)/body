@@ -1,5 +1,5 @@
 {
-  final IPersonAttributes attrs=attributeRepository.getPerson(id);
+  final IPersonAttributes attrs=this.attributeRepository.getPerson(id);
   if (attrs == null) {
     return Collections.emptyMap();
   }
