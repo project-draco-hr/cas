@@ -1,5 +1,5 @@
 {
-  assertTrue(this.resolver.supports(new PrincipalBearingCredential(new SimplePrincipalFactory().createPrincipal("test"))));
+  assertTrue(this.resolver.supports(new PrincipalBearingCredential(new DefaultPrincipalFactory().createPrincipal("test"))));
   assertFalse(this.resolver.supports(new UsernamePasswordCredential()));
   assertFalse(this.resolver.supports(null));
 }

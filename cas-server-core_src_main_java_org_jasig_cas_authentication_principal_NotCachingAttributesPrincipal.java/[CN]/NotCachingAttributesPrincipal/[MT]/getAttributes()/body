@@ -1,3 +1,0 @@
-{
-  return PrincipalUtils.convertPersonAttributesToPrincipalAttributes(getId(),this.attributeRepository);
-}

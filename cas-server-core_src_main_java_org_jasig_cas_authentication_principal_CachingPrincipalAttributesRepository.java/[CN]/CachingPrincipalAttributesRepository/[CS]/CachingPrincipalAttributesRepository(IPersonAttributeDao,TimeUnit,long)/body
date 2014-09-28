@@ -1,0 +1,3 @@
+{
+  this(attributeRepository,prepConfiguration(new Duration(timeUnit,expiryDuration)));
+}

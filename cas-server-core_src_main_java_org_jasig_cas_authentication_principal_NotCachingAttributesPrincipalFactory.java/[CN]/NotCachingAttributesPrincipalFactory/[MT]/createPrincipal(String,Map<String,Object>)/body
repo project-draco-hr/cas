@@ -1,3 +1,0 @@
-{
-  return new NotCachingAttributesPrincipal(id,null,this.attributeRepository);
-}

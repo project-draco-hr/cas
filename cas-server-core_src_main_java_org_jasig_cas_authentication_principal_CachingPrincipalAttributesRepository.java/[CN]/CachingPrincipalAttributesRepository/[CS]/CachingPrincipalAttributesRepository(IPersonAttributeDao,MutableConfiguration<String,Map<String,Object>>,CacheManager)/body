@@ -1,0 +1,3 @@
+{
+  this(attributeRepository,manager.createCache(CachingPrincipalAttributesRepository.class.getSimpleName(),config));
+}

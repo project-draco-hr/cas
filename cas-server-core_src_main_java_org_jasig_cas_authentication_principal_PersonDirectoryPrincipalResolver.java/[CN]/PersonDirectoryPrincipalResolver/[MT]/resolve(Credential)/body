@@ -15,7 +15,7 @@
     attributes=personAttributes.getAttributes();
   }
   if (attributes == null & !this.returnNullIfNoAttributes) {
-    return new SimplePrincipal(principalId);
+    return this.principalFactory.createPrincipal(principalId);
   }
   if (attributes == null) {
     return null;

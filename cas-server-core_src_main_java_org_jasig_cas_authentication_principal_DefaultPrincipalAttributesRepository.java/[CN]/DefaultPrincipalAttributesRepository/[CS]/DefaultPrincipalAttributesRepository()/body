@@ -1,0 +1,3 @@
+{
+  setAttributes(new HashMap<String,Object>());
+}
