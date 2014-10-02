@@ -1,4 +1,3 @@
 {
-  this();
-  this.randomStringGenerator=new DefaultRandomStringGenerator(maxLength);
+  this(maxLength,null);
 }
