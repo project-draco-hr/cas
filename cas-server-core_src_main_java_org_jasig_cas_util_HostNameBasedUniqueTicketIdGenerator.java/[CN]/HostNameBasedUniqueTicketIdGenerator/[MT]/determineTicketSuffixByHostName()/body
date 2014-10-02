@@ -2,11 +2,9 @@
   try {
     final String hostName=InetAddress.getLocalHost().getCanonicalHostName();
     if (hostName.indexOf(".") > 0) {
-      super.setSuffix(hostName.substring(0,hostName.indexOf(".")));
+      return (hostName.substring(0,hostName.indexOf(".")));
     }
- else {
-      super.setSuffix(hostName);
-    }
+    return hostName;
   }
  catch (  final UnknownHostException e) {
     throw new RuntimeException("Host name could not be determined automatically for the ticket suffix.",e);

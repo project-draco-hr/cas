@@ -1,8 +1,0 @@
-{
-  if (suffix != null) {
-    this.suffix="-" + suffix;
-  }
- else {
-    this.suffix=null;
-  }
-}
