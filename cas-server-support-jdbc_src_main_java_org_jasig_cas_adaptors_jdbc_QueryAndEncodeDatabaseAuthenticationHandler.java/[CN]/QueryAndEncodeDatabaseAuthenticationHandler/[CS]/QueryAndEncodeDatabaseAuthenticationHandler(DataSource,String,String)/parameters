@@ -1,0 +1,3 @@
+DataSource datasource
+String sql
+String algorithmName

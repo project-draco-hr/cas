@@ -1,0 +1,6 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setAttribute("service","service");
+  final SimpleWebApplicationServiceImpl impl=SimpleWebApplicationServiceImpl.createServiceFrom(request);
+  assertNotNull(impl);
+}
