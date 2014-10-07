@@ -1,0 +1,10 @@
+{
+  final RegexRegisteredService r=new RegexRegisteredService();
+  r.setServiceId("^https://.+");
+  r.setName("testServiceType");
+  r.setEnabled(true);
+  r.setTheme("testtheme");
+  r.setEvaluationOrder(1000);
+  final RegisteredService r2=this.dao.save(r);
+  assertTrue(r2 instanceof RegexRegisteredService);
+}
