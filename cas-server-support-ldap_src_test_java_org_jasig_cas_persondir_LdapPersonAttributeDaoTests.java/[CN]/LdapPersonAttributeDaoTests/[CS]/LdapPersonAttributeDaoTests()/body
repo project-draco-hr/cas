@@ -1,2 +1,4 @@
 {
+  super("/ldap-context.xml","/ldap-persondir-test.xml");
+  this.attributeDao=getBean("ldapPersonAttributeDao",LdapPersonAttributeDao.class);
 }
