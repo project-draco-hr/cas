@@ -5,7 +5,7 @@
   try {
     final Response samlResponse=newSamlObject(Response.class);
     samlResponse.setID(generateId());
-    samlResponse.setIssueInstant(new DateTime());
+    samlResponse.setIssueInstant(DateTime.now().minusSeconds(skewAllowance));
     samlResponse.setVersion(SAMLVersion.VERSION_11);
     samlResponse.setRecipient(serviceId);
     if (service instanceof SamlService) {

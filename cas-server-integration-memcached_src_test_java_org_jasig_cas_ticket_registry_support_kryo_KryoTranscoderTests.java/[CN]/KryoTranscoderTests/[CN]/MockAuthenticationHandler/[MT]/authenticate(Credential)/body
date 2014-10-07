@@ -1,3 +1,8 @@
 {
-  return new HandlerResult(this,new BasicCredentialMetaData(credential));
+  if (credential instanceof HttpBasedServiceCredential) {
+    return new HandlerResult(this,(HttpBasedServiceCredential)credential);
+  }
+ else {
+    return new HandlerResult(this,new BasicCredentialMetaData(credential));
+  }
 }

@@ -1,8 +1,0 @@
-{
-  if (allowedAttributes == null) {
-    this.allowedAttributes=new ArrayList<String>();
-  }
- else {
-    this.allowedAttributes=allowedAttributes;
-  }
-}

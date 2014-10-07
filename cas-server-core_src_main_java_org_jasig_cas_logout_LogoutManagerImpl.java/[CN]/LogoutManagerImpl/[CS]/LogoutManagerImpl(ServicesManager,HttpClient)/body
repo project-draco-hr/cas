@@ -1,4 +1,0 @@
-{
-  this.servicesManager=servicesManager;
-  this.httpClient=httpClient;
-}

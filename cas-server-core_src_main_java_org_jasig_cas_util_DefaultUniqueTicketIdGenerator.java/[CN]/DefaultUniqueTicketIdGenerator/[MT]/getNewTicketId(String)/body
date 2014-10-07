@@ -1,6 +1,6 @@
 {
   final String number=this.numericGenerator.getNextNumberAsString();
-  final StringBuilder buffer=new StringBuilder(prefix.length() + 2 + (this.suffix != null ? this.suffix.length() : 0)+ this.randomStringGenerator.getMaxLength()+ number.length());
+  final StringBuilder buffer=new StringBuilder(prefix.length() + 2 + (StringUtils.isNotBlank(this.suffix) ? this.suffix.length() : 0)+ this.randomStringGenerator.getMaxLength()+ number.length());
   buffer.append(prefix);
   buffer.append("-");
   buffer.append(number);

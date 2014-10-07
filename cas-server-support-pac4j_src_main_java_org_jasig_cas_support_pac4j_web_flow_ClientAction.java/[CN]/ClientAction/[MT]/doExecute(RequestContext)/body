@@ -19,12 +19,15 @@
  catch (    final RequiresHttpAction e) {
       logger.info("requires http action : {}",e);
       response.flushBuffer();
-      ExternalContext externalContext=ExternalContextHolder.getExternalContext();
+      final ExternalContext externalContext=ExternalContextHolder.getExternalContext();
       externalContext.recordResponseComplete();
       return new Event(this,"stop");
     }
     final Service service=(Service)session.getAttribute(SERVICE);
     context.getFlowScope().put(SERVICE,service);
+    if (service != null) {
+      request.setAttribute(SERVICE,service.getId());
+    }
     restoreRequestAttribute(request,session,THEME);
     restoreRequestAttribute(request,session,LOCALE);
     restoreRequestAttribute(request,session,METHOD);

@@ -1,0 +1,8 @@
+{
+  final RegisteredServiceImpl svc=new RegisteredServiceImpl();
+  svc.setServiceId("https://some.app.edu");
+  final Credential proxyCredential=new HttpBasedServiceCredential(new URL(proxyUrl),svc);
+  final TicketGrantingTicket expectedTGT=new MockTicketGrantingTicket(TGT_ID,proxyCredential);
+  expectedTGT.grantServiceTicket(ST_ID,null,null,false);
+  assertEquals(expectedTGT,transcoder.decode(transcoder.encode(expectedTGT)));
+}

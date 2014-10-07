@@ -1,0 +1,11 @@
+{
+  if (seq != null) {
+    final DERObjectIdentifier id=DERObjectIdentifier.getInstance(seq.getObjectAt(0));
+    if (id.getId().equals(UPN_OBJECTID)) {
+      final ASN1TaggedObject obj=(ASN1TaggedObject)seq.getObjectAt(1);
+      final DERUTF8String str=DERUTF8String.getInstance(obj.getObject());
+      return str.getString();
+    }
+  }
+  return null;
+}

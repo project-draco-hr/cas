@@ -1,0 +1,23 @@
+{
+  Assert.notNull(this.httpClient);
+  FutureRequestExecutionService service=null;
+  try {
+    final HttpPost request=new HttpPost(message.getUrl().toURI());
+    request.addHeader("Content-Type",message.getContentType());
+    final StringEntity entity=new StringEntity(message.getMessage(),ContentType.create(message.getContentType()));
+    request.setEntity(entity);
+    service=new FutureRequestExecutionService(this.httpClient,executorService);
+    final HttpRequestFutureTask<String> task=service.execute(request,HttpClientContext.create(),new BasicResponseHandler());
+    if (message.isAsynchronous()) {
+      return true;
+    }
+    return StringUtils.isNotBlank(task.get());
+  }
+ catch (  final Exception e) {
+    LOGGER.trace(e.getMessage(),e);
+    return false;
+  }
+ finally {
+    IOUtils.closeQuietly(service);
+  }
+}

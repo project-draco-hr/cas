@@ -1,5 +1,0 @@
-{
-  if (!StringUtils.isBlank(userAccountControl) && NumberUtils.isNumber(userAccountControl)) {
-    this.userAccountControl=Long.parseLong(userAccountControl);
-  }
-}

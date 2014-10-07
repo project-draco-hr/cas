@@ -1,0 +1,6 @@
+{
+  this.serviceRegistryDirectory=configDirectory;
+  Assert.isTrue(this.serviceRegistryDirectory.exists(),serviceRegistryDirectory + " does not exist");
+  Assert.isTrue(this.serviceRegistryDirectory.isDirectory(),serviceRegistryDirectory + " is not a directory");
+  this.registeredServiceJsonSerializer=registeredServiceJsonSerializer;
+}

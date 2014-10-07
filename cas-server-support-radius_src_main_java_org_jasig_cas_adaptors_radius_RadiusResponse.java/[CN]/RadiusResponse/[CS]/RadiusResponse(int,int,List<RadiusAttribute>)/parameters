@@ -1,0 +1,3 @@
+int code
+int identifier
+List<RadiusAttribute> attributes

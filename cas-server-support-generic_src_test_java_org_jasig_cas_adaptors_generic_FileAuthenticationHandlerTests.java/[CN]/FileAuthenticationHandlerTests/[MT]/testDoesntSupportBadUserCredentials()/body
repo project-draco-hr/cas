@@ -1,6 +1,8 @@
 {
   try {
-    final HttpBasedServiceCredential c=new HttpBasedServiceCredential(new URL("http://www.rutgers.edu"));
+    final RegisteredServiceImpl svc=new RegisteredServiceImpl();
+    svc.setServiceId("https://some.app.edu");
+    final HttpBasedServiceCredential c=new HttpBasedServiceCredential(new URL("http://www.rutgers.edu"),svc);
     assertFalse(this.authenticationHandler.supports(c));
   }
  catch (  final MalformedURLException e) {

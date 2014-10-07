@@ -1,4 +1,5 @@
 {
-  assertTrue(this.validator.supports(RegisteredServiceImpl.class));
-  assertFalse(this.validator.supports(Object.class));
+  final Validator validator=getValidator(false);
+  assertTrue(validator.supports(RegisteredServiceImpl.class));
+  assertFalse(validator.supports(Object.class));
 }

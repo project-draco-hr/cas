@@ -1,5 +1,5 @@
 {
-  StaticApplicationContext context=new StaticApplicationContext();
+  final StaticApplicationContext context=new StaticApplicationContext();
   context.refresh();
   this.serviceValidateController=new ServiceValidateController();
   this.serviceValidateController.setCentralAuthenticationService(getCentralAuthenticationService());
@@ -8,4 +8,5 @@
   this.serviceValidateController.setProxyHandler(proxyHandler);
   this.serviceValidateController.setApplicationContext(context);
   this.serviceValidateController.setArgumentExtractor(new CasArgumentExtractor());
+  this.serviceValidateController.setServicesManager(this.applicationContext.getBean("servicesManager",ServicesManager.class));
 }

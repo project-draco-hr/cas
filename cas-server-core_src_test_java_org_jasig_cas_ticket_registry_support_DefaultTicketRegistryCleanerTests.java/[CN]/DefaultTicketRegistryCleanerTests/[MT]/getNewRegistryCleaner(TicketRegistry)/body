@@ -1,7 +1,5 @@
 {
-  DefaultTicketRegistryCleaner cleaner=new DefaultTicketRegistryCleaner();
-  cleaner.setTicketRegistry(ticketRegistry);
-  LogoutManager logoutManager=mock(LogoutManager.class);
-  cleaner.setLogoutManager(logoutManager);
+  final LogoutManager logoutManager=mock(LogoutManager.class);
+  final DefaultTicketRegistryCleaner cleaner=new DefaultTicketRegistryCleaner(logoutManager,ticketRegistry);
   return cleaner;
 }
