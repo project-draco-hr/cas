@@ -1,0 +1,4 @@
+{
+  super("/ldap-context.xml","/ldap-monitor-test.xml");
+  this.monitor=getBean("monitor",ConnectionFactoryMonitor.class);
+}
