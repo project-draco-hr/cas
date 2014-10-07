@@ -9,9 +9,9 @@
     final SSLUtil clientSSLUtil=new SSLUtil(new TrustStoreTrustManager(serverKeyStorePath));
     config.setListenerConfigs(InMemoryListenerConfig.createLDAPConfig("LDAP",null,389,serverSSLUtil.createSSLSocketFactory()),InMemoryListenerConfig.createLDAPSConfig("LDAPS",null,636,serverSSLUtil.createSSLServerSocketFactory(),clientSSLUtil.createSSLSocketFactory()));
     config.setEnforceSingleStructuralObjectClass(false);
-    config.setEnforceAttributeSyntaxCompliance(false);
+    config.setEnforceAttributeSyntaxCompliance(true);
     final Schema s=Schema.mergeSchemas(Schema.getSchema(schemaFile));
-    config.setSchema(null);
+    config.setSchema(s);
     this.directoryServer=new InMemoryDirectoryServer(config);
     LOGGER.debug("Populating directory with {}",ldifFile);
     this.directoryServer.importFromLDIF(true,ldifFile.getCanonicalPath());

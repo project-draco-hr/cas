@@ -1,0 +1,4 @@
+{
+  super("/ldap-context.xml","/ldap-userdetails-test.xml");
+  this.userDetailsService=this.context.getBean("ldapUserDetailsService",LdapUserDetailsService.class);
+}
