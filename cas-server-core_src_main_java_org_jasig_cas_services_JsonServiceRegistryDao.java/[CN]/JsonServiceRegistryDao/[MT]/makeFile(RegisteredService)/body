@@ -1,0 +1,12 @@
+{
+  final String fileName=service.getName() + "-" + service.getId()+ "."+ FILE_EXTENSION;
+  final File svcFile=new File(serviceRegistryDirectory,fileName);
+  try {
+    final String path=svcFile.getCanonicalPath();
+    return svcFile;
+  }
+ catch (  final IOException e) {
+    LOGGER.warn("Service file name " + fileName + " is invalid; Examine for illegal characters in the name.",e);
+    throw new IllegalArgumentException(e);
+  }
+}
