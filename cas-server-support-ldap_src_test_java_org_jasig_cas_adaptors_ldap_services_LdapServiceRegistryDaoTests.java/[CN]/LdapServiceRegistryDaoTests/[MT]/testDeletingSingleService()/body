@@ -1,0 +1,11 @@
+{
+  final RegisteredService rs=getRegexRegisteredService();
+  this.dao.save(getRegisteredService());
+  this.dao.save(rs);
+  List<RegisteredService> services=this.dao.load();
+  this.dao.delete(services.get(0));
+  services=this.dao.load();
+  assertEquals(1,services.size());
+  assertEquals(services.get(0).getId(),rs.getId());
+  assertEquals(services.get(0).getName(),rs.getName());
+}

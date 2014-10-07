@@ -12,12 +12,17 @@
         final List<AttributeModification> mods=new ArrayList<AttributeModification>();
         final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.searchRequest.getBaseDn(),rs);
         for (        final LdapAttribute attr : entry.getAttributes()) {
-          mods.add(new AttributeModification(AttributeModificationType.ADD,attr));
+          if (!attr.getName().equals(this.ldapServiceMapper.getIdAttribute())) {
+            mods.add(new AttributeModification(AttributeModificationType.REPLACE,attr));
+          }
         }
         final ModifyRequest request=new ModifyRequest(currentDn,mods.toArray(new AttributeModification[]{}));
         operation.execute(request);
       }
-  finally {
+ catch (      final LdapException e) {
+        logger.error(e.getMessage(),e);
+      }
+ finally {
         LdapUtils.closeConnection(modifyConnection);
       }
     }

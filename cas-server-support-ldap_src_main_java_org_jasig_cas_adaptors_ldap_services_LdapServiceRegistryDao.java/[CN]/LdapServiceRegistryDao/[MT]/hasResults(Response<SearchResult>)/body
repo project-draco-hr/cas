@@ -1,3 +1,7 @@
 {
-  return response.getResult() != null && response.getResult().getEntry() != null;
+  if (response.getResult() != null && response.getResult().getEntry() != null) {
+    return true;
+  }
+  logger.trace("Requested ldap operation did not return a result or an ldap entry. Code: {}, Message: {}",response.getResultCode(),response.getMessage());
+  return false;
 }
