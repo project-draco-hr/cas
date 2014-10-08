@@ -4,10 +4,10 @@
     p.load(new FileInputStream(properties));
     final InMemoryDirectoryServerConfig config=new InMemoryDirectoryServerConfig(p.getProperty("ldap.rootDn"));
     config.addAdditionalBindCredentials(p.getProperty("ldap.managerDn"),p.getProperty("ldap.managerPassword"));
-    final String serverKeyStorePath=new File(System.getProperty("java.home"),"lib/security/cacerts").getCanonicalPath();
+    final String serverKeyStorePath=new ClassPathResource("/ldapServerTrustStore").getFile().getCanonicalPath();
     final SSLUtil serverSSLUtil=new SSLUtil(new KeyStoreKeyManager(serverKeyStorePath,"changeit".toCharArray()),new TrustStoreTrustManager(serverKeyStorePath));
     final SSLUtil clientSSLUtil=new SSLUtil(new TrustStoreTrustManager(serverKeyStorePath));
-    config.setListenerConfigs(InMemoryListenerConfig.createLDAPConfig("LDAP",null,389,serverSSLUtil.createSSLSocketFactory()),InMemoryListenerConfig.createLDAPSConfig("LDAPS",null,636,serverSSLUtil.createSSLServerSocketFactory(),clientSSLUtil.createSSLSocketFactory()));
+    config.setListenerConfigs(InMemoryListenerConfig.createLDAPConfig("LDAP",null,1389,serverSSLUtil.createSSLSocketFactory()),InMemoryListenerConfig.createLDAPSConfig("LDAPS",null,1636,serverSSLUtil.createSSLServerSocketFactory(),clientSSLUtil.createSSLSocketFactory()));
     config.setEnforceSingleStructuralObjectClass(false);
     config.setEnforceAttributeSyntaxCompliance(true);
     final Schema s=Schema.mergeSchemas(Schema.getSchema(schemaFile));

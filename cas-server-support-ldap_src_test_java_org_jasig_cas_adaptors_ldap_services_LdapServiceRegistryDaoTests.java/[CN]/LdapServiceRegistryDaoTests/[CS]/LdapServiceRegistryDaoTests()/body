@@ -1,5 +1,0 @@
-{
-  super("/ldap-context.xml","/ldap-regservice-test.xml");
-  this.dao=getBean("serviceRegistryDao",LdapServiceRegistryDao.class);
-  this.dao.init();
-}

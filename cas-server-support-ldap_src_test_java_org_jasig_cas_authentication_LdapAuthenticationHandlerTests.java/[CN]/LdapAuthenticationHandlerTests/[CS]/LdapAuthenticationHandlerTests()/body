@@ -1,4 +1,0 @@
-{
-  super("/ldap-context.xml","/authn-context.xml");
-  this.handler=getBean("ldapAuthenticationHandler",LdapAuthenticationHandler.class);
-}
