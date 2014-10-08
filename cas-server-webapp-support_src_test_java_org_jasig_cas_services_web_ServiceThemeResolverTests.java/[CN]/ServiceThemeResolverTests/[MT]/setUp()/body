@@ -3,7 +3,6 @@
   this.serviceThemeResolver=new ServiceThemeResolver();
   this.serviceThemeResolver.setDefaultThemeName("test");
   this.serviceThemeResolver.setServicesManager(this.servicesManager);
-  this.serviceThemeResolver.setArgumentExtractors(Arrays.asList((ArgumentExtractor)new CasArgumentExtractor()));
   final Map<String,String> mobileBrowsers=new HashMap<String,String>();
   mobileBrowsers.put("Mozilla","theme");
   this.serviceThemeResolver.setMobileBrowsers(mobileBrowsers);
