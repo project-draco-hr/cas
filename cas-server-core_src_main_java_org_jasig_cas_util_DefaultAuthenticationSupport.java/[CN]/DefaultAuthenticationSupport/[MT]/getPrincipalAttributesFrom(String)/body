@@ -1,4 +1,0 @@
-{
-  final Principal principal=getAuthenticatedPrincipalFrom(ticketGrantingTicketId);
-  return principal == null ? null : principal.getAttributes();
-}
