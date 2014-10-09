@@ -1,6 +1,6 @@
 {
   final String openIdMode=request.getParameter("openid.mode");
-  if (openIdMode != null && openIdMode.equals("associate")) {
+  if ("associate".equals(openIdMode)) {
     logger.info("Handling request. openid.mode : {}",openIdMode);
     return true;
   }

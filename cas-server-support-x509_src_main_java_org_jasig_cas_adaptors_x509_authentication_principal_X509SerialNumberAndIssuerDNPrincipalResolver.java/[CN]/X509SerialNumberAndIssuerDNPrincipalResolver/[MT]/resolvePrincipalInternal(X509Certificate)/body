@@ -1,3 +1,7 @@
 {
-  return this.serialNumberPrefix + certificate.getSerialNumber().toString() + this.valueDelimiter+ certificate.getIssuerDN().getName();
+  final StringBuilder builder=new StringBuilder(this.serialNumberPrefix);
+  builder.append(certificate.getSerialNumber());
+  builder.append(this.valueDelimiter);
+  builder.append(certificate.getIssuerDN());
+  return builder.toString();
 }
