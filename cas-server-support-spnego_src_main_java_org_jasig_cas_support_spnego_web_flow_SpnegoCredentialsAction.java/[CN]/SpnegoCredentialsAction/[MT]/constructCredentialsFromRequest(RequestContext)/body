@@ -4,7 +4,7 @@
   if (StringUtils.hasText(authorizationHeader) && authorizationHeader.startsWith(this.messageBeginPrefix) && authorizationHeader.length() > this.messageBeginPrefix.length()) {
     logger.debug("SPNEGO Authorization header found with {} bytes",authorizationHeader.length() - this.messageBeginPrefix.length());
     final byte[] token=Base64.decode(authorizationHeader.substring(this.messageBeginPrefix.length()));
-    logger.debug("Obtained token: {}",new String(token));
+    logger.debug("Obtained token: {}",new String(token,Charset.defaultCharset()));
     return new SpnegoCredential(token);
   }
   return null;

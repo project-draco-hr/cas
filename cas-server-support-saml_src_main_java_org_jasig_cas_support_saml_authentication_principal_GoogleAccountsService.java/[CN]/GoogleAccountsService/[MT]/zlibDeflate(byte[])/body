@@ -9,7 +9,7 @@
       baos.write(buf,0,count);
       count=iis.read(buf);
     }
-    return new String(baos.toByteArray());
+    return new String(baos.toByteArray(),Charset.defaultCharset());
   }
  catch (  final Exception e) {
     return null;
