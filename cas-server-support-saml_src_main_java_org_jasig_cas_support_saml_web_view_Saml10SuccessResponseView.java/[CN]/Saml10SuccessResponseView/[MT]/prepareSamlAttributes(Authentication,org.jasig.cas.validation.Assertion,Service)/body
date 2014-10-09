@@ -9,7 +9,7 @@
   @SuppressWarnings("unchecked") final Map<String,Object> attributes=attributePolicy != null ? attributePolicy.getAttributes(principal) : Collections.EMPTY_MAP;
   final Map<String,Object> authnAttributes=new TreeMap<String,Object>(authentication.getAttributes());
   final Object o=authnAttributes.get(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME);
-  final boolean isRemembered=(o == Boolean.TRUE) && assertion.isFromNewLogin();
+  final boolean isRemembered=o.equals(Boolean.TRUE) && assertion.isFromNewLogin();
   if (isRemembered) {
     authnAttributes.remove(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME);
     authnAttributes.put(this.rememberMeAttributeName,Boolean.TRUE.toString());
