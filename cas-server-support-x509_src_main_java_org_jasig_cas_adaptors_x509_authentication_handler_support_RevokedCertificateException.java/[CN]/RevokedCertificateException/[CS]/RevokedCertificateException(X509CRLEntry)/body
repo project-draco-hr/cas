@@ -1,5 +1,5 @@
 {
-  this.revocationDate=entry.getRevocationDate();
+  this.revocationDate=new DateTime(entry.getRevocationDate());
   this.serial=entry.getSerialNumber();
   if (entry.hasExtensions()) {
     try {
