@@ -1,5 +1,11 @@
 {
-  final String accessToken=request.getParameter(OAuthConstants.ACCESS_TOKEN);
+  String accessToken=request.getParameter(OAuthConstants.ACCESS_TOKEN);
+  if (StringUtils.isBlank(accessToken)) {
+    String authHeader=request.getHeader("Authorization");
+    if (authHeader != null && authHeader.startsWith("bearer ")) {
+      accessToken=authHeader.substring(7);
+    }
+  }
   LOGGER.debug("{} : {}",OAuthConstants.ACCESS_TOKEN,accessToken);
   final JsonGenerator jsonGenerator=this.jsonFactory.createJsonGenerator(response.getWriter());
   try {
