@@ -1,8 +1,8 @@
 {
-  String username;
-  for (  final LdapEntry entry : this.testEntries) {
-    username=getUsername(entry);
-    final HandlerResult result=this.handler.authenticate(new UsernamePasswordCredential(username,LdapTestUtils.getPassword(entry)));
+  for (  final LdapEntry entry : this.getEntries()) {
+    final String username=getUsername(entry);
+    final String psw=entry.getAttribute("userPassword").getStringValue();
+    final HandlerResult result=this.handler.authenticate(new UsernamePasswordCredential(username,psw));
     assertNotNull(result.getPrincipal());
     assertEquals(username,result.getPrincipal().getId());
     assertEquals(entry.getAttribute("displayName").getStringValue(),result.getPrincipal().getAttributes().get("displayName"));

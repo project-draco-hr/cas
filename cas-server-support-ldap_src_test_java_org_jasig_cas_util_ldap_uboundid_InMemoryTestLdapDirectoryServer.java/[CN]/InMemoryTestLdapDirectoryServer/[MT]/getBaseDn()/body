@@ -1,0 +1,3 @@
+{
+  return this.directoryServer.getBaseDNs().get(0).toNormalizedString();
+}

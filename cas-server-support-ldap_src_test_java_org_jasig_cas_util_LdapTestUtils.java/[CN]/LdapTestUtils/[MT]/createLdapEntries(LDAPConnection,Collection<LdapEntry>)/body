@@ -1,0 +1,9 @@
+{
+  for (  final LdapEntry entry : entries) {
+    final Collection<Attribute> attrs=new ArrayList<Attribute>(entry.getAttributeNames().length);
+    for (    final LdapAttribute a : entry.getAttributes()) {
+      attrs.add(new Attribute(a.getName(),a.getStringValues()));
+    }
+    connection.add(new AddRequest(entry.getDn(),attrs));
+  }
+}
