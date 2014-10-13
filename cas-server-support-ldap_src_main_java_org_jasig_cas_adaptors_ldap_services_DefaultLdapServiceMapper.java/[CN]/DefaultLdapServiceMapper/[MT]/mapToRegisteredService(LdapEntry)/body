@@ -12,9 +12,9 @@
       s.setEvaluationOrder(LdapUtils.getLong(entry,this.evaluationOrderAttribute).intValue());
       s.setSsoEnabled(LdapUtils.getBoolean(entry,this.serviceSsoEnabledAttribute));
       s.setRequiredHandlers(new HashSet<String>(getMultiValuedAttributeValues(entry,this.requiredHandlersAttribute)));
-      final byte[] usenameAttrData=LdapUtils.getBinary(entry,this.usernameAttributeProvider);
-      if (usenameAttrData != null && usenameAttrData.length > 0) {
-        final RegisteredServiceUsernameAttributeProvider provider=(RegisteredServiceUsernameAttributeProvider)SerializationUtils.deserialize(usenameAttrData);
+      final byte[] usernameAttrData=LdapUtils.getBinary(entry,this.usernameAttributeProvider);
+      if (usernameAttrData != null && usernameAttrData.length > 0) {
+        final RegisteredServiceUsernameAttributeProvider provider=(RegisteredServiceUsernameAttributeProvider)SerializationUtils.deserialize(usernameAttrData);
         s.setUsernameAttributeProvider(provider);
       }
       final byte[] data=LdapUtils.getBinary(entry,this.attributeReleasePolicyAttribute);
