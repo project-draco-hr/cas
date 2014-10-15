@@ -1,5 +1,5 @@
 {
-  final AuthenticationBuilder builder=new AuthenticationBuilder(NULL_PRINCIPAL);
+  final AuthenticationBuilder builder=new AuthenticationBuilder(NullPrincipal.getInstance());
   for (  final Credential c : credentials) {
     builder.addCredential(new BasicCredentialMetaData(c));
   }
