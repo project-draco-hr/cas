@@ -1,0 +1,4 @@
+{
+  super.putIntoModel(model,"principal",getPrincipal(model));
+  super.putIntoModel(model,"chainedAuthentications",getChainedAuthentications(model));
+}

@@ -1,0 +1,5 @@
+{
+  super.putIntoModel(model,"attributes",getPrincipalAttributes(model));
+  super.putIntoModel(model,"authenticationDate",getAuthenticationDate(model));
+  super.prepareMergedOutputModel(model,request,response);
+}

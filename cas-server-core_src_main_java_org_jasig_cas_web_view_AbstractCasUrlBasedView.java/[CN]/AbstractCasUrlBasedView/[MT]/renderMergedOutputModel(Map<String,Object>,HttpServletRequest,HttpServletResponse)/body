@@ -1,0 +1,4 @@
+{
+  prepareMergedOutputModel(model,request,response);
+  this.view.render(model,request,response);
+}
