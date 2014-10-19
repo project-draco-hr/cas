@@ -1,6 +1,6 @@
 {
   final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final String serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),TestUtils.getService());
-  final String pgt=getCentralAuthenticationService().delegateTicketGrantingTicket(serviceTicketId,TestUtils.getHttpBasedServiceCredentials());
-  assertTrue(pgt.startsWith(TicketGrantingTicket.PROXY_GRANTING_TICKET_PREFIX));
+  final ServiceTicket serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),TestUtils.getService());
+  final TicketGrantingTicket pgt=getCentralAuthenticationService().delegateTicketGrantingTicket(serviceTicketId.getId(),TestUtils.getHttpBasedServiceCredentials());
+  assertTrue(pgt.getId().startsWith(TicketGrantingTicket.PROXY_GRANTING_TICKET_PREFIX));
 }

@@ -10,7 +10,7 @@
   final Service service=WebUtils.getService(context);
   if (StringUtils.hasText(context.getRequestParameters().get("renew")) && ticketGrantingTicketId != null && service != null) {
     try {
-      final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
+      final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
       WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
       putWarnCookieIfRequestParameterPresent(context);
       return newEvent(WARN);
@@ -27,10 +27,9 @@ catch (    final TicketException e) {
     }
   }
   try {
-    final String tgtId=this.centralAuthenticationService.createTicketGrantingTicket(credential);
-    WebUtils.putTicketGrantingTicketInFlowScope(context,tgtId);
+    final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(credential);
+    WebUtils.putTicketGrantingTicketInFlowScope(context,tgt);
     putWarnCookieIfRequestParameterPresent(context);
-    final TicketGrantingTicket tgt=(TicketGrantingTicket)this.ticketRegistry.getTicket(tgtId);
     for (    final Map.Entry<String,HandlerResult> entry : tgt.getAuthentication().getSuccesses().entrySet()) {
       for (      final Message message : entry.getValue().getWarnings()) {
         addWarningToContext(messageContext,message);
