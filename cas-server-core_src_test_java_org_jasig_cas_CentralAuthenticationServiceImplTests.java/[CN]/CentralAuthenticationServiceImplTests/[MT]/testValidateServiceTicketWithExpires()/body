@@ -1,7 +1,7 @@
 {
   ((CentralAuthenticationServiceImpl)getCentralAuthenticationService()).setServiceTicketExpirationPolicy(new MultiTimeUseOrTimeoutExpirationPolicy(1,1100));
-  final String ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final String serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket,TestUtils.getService());
+  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final String serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),TestUtils.getService());
   getCentralAuthenticationService().validateServiceTicket(serviceTicket,TestUtils.getService());
   assertFalse(getTicketRegistry().deleteTicket(serviceTicket));
   ((CentralAuthenticationServiceImpl)getCentralAuthenticationService()).setServiceTicketExpirationPolicy(new NeverExpiresExpirationPolicy());

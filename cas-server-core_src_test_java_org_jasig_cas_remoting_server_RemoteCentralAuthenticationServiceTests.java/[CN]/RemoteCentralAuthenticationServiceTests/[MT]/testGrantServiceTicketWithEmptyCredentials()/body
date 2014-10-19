@@ -1,7 +1,7 @@
 {
-  final String ticketGrantingTicketId=this.remoteCentralAuthenticationService.createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final TicketGrantingTicket ticketGrantingTicketId=this.remoteCentralAuthenticationService.createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
   try {
-    this.remoteCentralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,TestUtils.getService(),TestUtils.getCredentialsWithDifferentUsernameAndPassword("",""));
+    this.remoteCentralAuthenticationService.grantServiceTicket(ticketGrantingTicketId.getId(),TestUtils.getService(),TestUtils.getCredentialsWithDifferentUsernameAndPassword("",""));
     fail("IllegalArgumentException expected.");
   }
  catch (  final IllegalArgumentException e) {

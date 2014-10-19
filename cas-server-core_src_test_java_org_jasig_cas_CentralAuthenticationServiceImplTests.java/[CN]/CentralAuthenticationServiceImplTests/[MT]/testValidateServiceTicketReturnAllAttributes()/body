@@ -1,8 +1,8 @@
 {
   final Service service=TestUtils.getService("eduPersonTest");
   final UsernamePasswordCredential cred=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  final String ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(cred);
-  final String serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket,service);
+  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(cred);
+  final String serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),service);
   final Assertion assertion=getCentralAuthenticationService().validateServiceTicket(serviceTicket,service);
   final Authentication auth=assertion.getPrimaryAuthentication();
   assertEquals(3,auth.getPrincipal().getAttributes().size());
