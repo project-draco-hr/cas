@@ -2,9 +2,9 @@
   final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(newUserPassCredentials("alice","alice"));
   assertNotNull(tgt);
   final Service service=newService("https://example.com/high/");
-  final String st=cas.grantServiceTicket(tgt.getId(),service,newUserPassCredentials("alice","alice"),new OneTimePasswordCredential("alice","31415"));
+  final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),service,newUserPassCredentials("alice","alice"),new OneTimePasswordCredential("alice","31415"));
   assertNotNull(st);
-  final Assertion assertion=cas.validateServiceTicket(st,service);
+  final Assertion assertion=cas.validateServiceTicket(st.getId(),service);
   assertEquals(2,assertion.getPrimaryAuthentication().getSuccesses().size());
   assertTrue(assertion.getPrimaryAuthentication().getSuccesses().containsKey("passwordHandler"));
   assertTrue(assertion.getPrimaryAuthentication().getSuccesses().containsKey("oneTimePasswordHandler"));
