@@ -2,7 +2,7 @@
   final HttpBasedServiceCredential serviceCredentials=(HttpBasedServiceCredential)credential;
   final String proxyIou=this.uniqueTicketIdGenerator.getNewTicketId(PGTIOU_PREFIX);
   final String serviceCredentialsAsString=serviceCredentials.getCallbackUrl().toExternalForm();
-  final int bufferLength=serviceCredentialsAsString.length() + proxyIou.length() + proxyGrantingTicketId.length()+ 15;
+  final int bufferLength=serviceCredentialsAsString.length() + proxyIou.length() + proxyGrantingTicketId.getId().length()+ BUFFER_LENGTH_ADDITIONAL_CHARGE;
   final StringBuilder stringBuffer=new StringBuilder(bufferLength);
   stringBuffer.append(serviceCredentialsAsString);
   if (serviceCredentials.getCallbackUrl().getQuery() != null) {
