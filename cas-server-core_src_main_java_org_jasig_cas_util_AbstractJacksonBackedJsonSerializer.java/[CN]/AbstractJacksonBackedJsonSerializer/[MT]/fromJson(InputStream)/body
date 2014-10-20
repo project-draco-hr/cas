@@ -1,6 +1,6 @@
 {
   try {
-    return this.objectMapper.readValue(json,RegisteredService.class);
+    return this.objectMapper.readValue(json,getTypeToSerialize().getClass());
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);
