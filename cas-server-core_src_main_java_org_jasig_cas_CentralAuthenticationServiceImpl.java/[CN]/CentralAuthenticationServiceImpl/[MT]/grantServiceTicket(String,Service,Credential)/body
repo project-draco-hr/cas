@@ -1,6 +1,6 @@
 {
   Assert.notNull(service,"service cannot be null");
-  final TicketGrantingTicket ticketGrantingTicket=getTicketGrantingTicket(ticketGrantingTicketId);
+  final TicketGrantingTicket ticketGrantingTicket=getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   verifyRegisteredServiceProperties(registeredService,service);
   Authentication currentAuthentication=null;
