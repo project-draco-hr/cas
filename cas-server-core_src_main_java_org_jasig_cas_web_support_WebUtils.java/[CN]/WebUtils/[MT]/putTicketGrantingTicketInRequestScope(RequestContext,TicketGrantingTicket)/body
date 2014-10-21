@@ -1,3 +1,3 @@
 {
-  context.getRequestScope().put("ticketGrantingTicketId",ticketValue.getId());
+  putTicketGrantingTicketIntoMap(context.getRequestScope(),ticketValue);
 }
