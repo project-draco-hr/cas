@@ -1,5 +1,7 @@
 {
-  super.putIntoModel(model,"attributes",getPrincipalAttributes(model));
-  super.putIntoModel(model,"authenticationDate",getAuthenticationDate(model));
   super.prepareMergedOutputModel(model,request,response);
+  super.putIntoModel(model,MODEL_ATTRIBUTE_NAME_ATTRIBUTES,getPrincipalAttributesAsMultiValuedAttributes(model));
+  super.putIntoModel(model,MODEL_ATTRIBUTE_NAME_AUTHENTICATION_DATE,getAuthenticationDate(model));
+  super.putIntoModel(model,MODEL_ATTRIBUTE_NAME_FROM_NEW_LOGIN,isAssertionBackedByNewLogin(model));
+  super.putIntoModel(model,CasProtocolConstants.VALIDATION_REMEMBER_ME_ATTRIBUTE_NAME,isRememberMeAuthentication(model));
 }

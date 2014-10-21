@@ -1,6 +1,5 @@
 {
-  final Map<String,Object> authnAttributes=getAuthenticationAttributes(model);
-  final Assertion assertion=getAssertionFrom(model);
+  final Map<String,Object> authnAttributes=getAuthenticationAttributesAsMultiValuedAttributes(model);
   final Collection authnMethod=(Collection)authnAttributes.get(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME);
-  return authnMethod != null && authnMethod.contains(Boolean.TRUE) && assertion.isFromNewLogin();
+  return authnMethod != null && authnMethod.contains(Boolean.TRUE) && isAssertionBackedByNewLogin(model);
 }
