@@ -1,5 +1,5 @@
 {
-  if (!isValidLoginTicket(context)) {
+  if (!checkLoginTicketIfExists(context)) {
     return returnInvalidLoginTicketEvent(context,messageContext);
   }
   if (isRequestAskingForServiceTicket(context)) {
