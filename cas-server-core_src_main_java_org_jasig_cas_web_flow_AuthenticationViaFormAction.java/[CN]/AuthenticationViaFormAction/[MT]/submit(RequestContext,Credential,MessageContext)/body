@@ -1,49 +1,9 @@
 {
-  final String authoritativeLoginTicket=WebUtils.getLoginTicketFromFlowScope(context);
-  final String providedLoginTicket=WebUtils.getLoginTicketFromRequest(context);
-  if (!authoritativeLoginTicket.equals(providedLoginTicket)) {
-    logger.warn("Invalid login ticket {}",providedLoginTicket);
-    messageContext.addMessage(new MessageBuilder().code("error.invalid.loginticket").build());
-    return newEvent(ERROR);
+  if (!checkLoginTicketIfExists(context)) {
+    return returnInvalidLoginTicketEvent(context,messageContext);
   }
-  final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
-  final Service service=WebUtils.getService(context);
-  if (StringUtils.hasText(context.getRequestParameters().get("renew")) && ticketGrantingTicketId != null && service != null) {
-    try {
-      final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
-      WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
-      putWarnCookieIfRequestParameterPresent(context);
-      return newEvent(WARN);
-    }
- catch (    final AuthenticationException e) {
-      return newEvent(AUTHENTICATION_FAILURE,e);
-    }
-catch (    final TicketCreationException e) {
-      logger.warn("Invalid attempt to access service using renew=true with different credential. " + "Ending SSO session.");
-      this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
-    }
-catch (    final TicketException e) {
-      return newEvent(ERROR,e);
-    }
+  if (isRequestAskingForServiceTicket(context)) {
+    return grantServiceTicket(context,credential);
   }
-  try {
-    final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(credential);
-    WebUtils.putTicketGrantingTicketInFlowScope(context,tgt);
-    putWarnCookieIfRequestParameterPresent(context);
-    for (    final Map.Entry<String,HandlerResult> entry : tgt.getAuthentication().getSuccesses().entrySet()) {
-      for (      final Message message : entry.getValue().getWarnings()) {
-        addWarningToContext(messageContext,message);
-      }
-    }
-    if (this.hasWarningMessages) {
-      return newEvent(SUCCESS_WITH_WARNINGS);
-    }
-    return newEvent(SUCCESS);
-  }
- catch (  final AuthenticationException e) {
-    return newEvent(AUTHENTICATION_FAILURE,e);
-  }
-catch (  final Exception e) {
-    return newEvent(ERROR,e);
-  }
+  return createTicketGrantingTicket(context,credential,messageContext);
 }

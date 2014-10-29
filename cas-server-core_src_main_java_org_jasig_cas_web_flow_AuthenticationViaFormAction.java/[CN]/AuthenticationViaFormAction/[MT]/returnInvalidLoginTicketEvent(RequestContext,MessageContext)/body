@@ -1,0 +1,6 @@
+{
+  final String loginTicketFromRequest=WebUtils.getLoginTicketFromRequest(context);
+  logger.warn("Invalid login ticket [{}]",loginTicketFromRequest);
+  messageContext.addMessage(new MessageBuilder().code("error.invalid.loginticket").build());
+  return newEvent(ERROR);
+}
