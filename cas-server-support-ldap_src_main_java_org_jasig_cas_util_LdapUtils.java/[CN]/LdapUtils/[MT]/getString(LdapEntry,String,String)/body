@@ -3,8 +3,11 @@
   if (attr == null) {
     return nullValue;
   }
-  final String v=attr.getStringValue();
+  String v=attr.getStringValue();
   if (v != null) {
+    if (Base64.isBase64(v)) {
+      v=new String(Base64.decodeBase64(v));
+    }
     return v;
   }
   return nullValue;

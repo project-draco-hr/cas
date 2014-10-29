@@ -1,0 +1,2 @@
+Collection<LdapAttribute> attrs
+RegisteredService svc

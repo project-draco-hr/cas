@@ -1,1 +1,1 @@
-AbstractJacksonBackedJsonSerializer<RegisteredServiceUsernameAttributeProvider>
+AbstractLdapJsonSerializer<RegisteredServiceUsernameAttributeProvider>

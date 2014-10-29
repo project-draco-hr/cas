@@ -1,0 +1,4 @@
+{
+  final DefaultRegisteredServiceUsernameProvider usernameAttributeProvider=new DefaultRegisteredServiceUsernameProvider();
+  attrs.add(serializeObjectToJson(new RegisteredServiceUsernameAttributeProviderJsonSerializer(),usernameAttributeProvider,this.usernameAttributeProviderAttribute));
+}

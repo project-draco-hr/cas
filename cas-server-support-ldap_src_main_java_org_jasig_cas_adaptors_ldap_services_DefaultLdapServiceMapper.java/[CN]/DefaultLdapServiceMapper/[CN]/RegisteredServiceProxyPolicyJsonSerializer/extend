@@ -1,1 +1,1 @@
-AbstractJacksonBackedJsonSerializer<RegisteredServiceProxyPolicy>
+AbstractLdapJsonSerializer<RegisteredServiceProxyPolicy>
