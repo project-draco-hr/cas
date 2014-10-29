@@ -2,7 +2,7 @@
   final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
   try {
     final Service service=WebUtils.getService(context);
-    final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
+    final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
     WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
     putWarnCookieIfRequestParameterPresent(context);
     return newEvent(WARN);

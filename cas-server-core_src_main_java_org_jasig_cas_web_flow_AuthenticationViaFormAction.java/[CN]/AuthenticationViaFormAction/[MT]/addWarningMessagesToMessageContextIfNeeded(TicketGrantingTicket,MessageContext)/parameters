@@ -1,2 +1,2 @@
-String tgtId
+TicketGrantingTicket tgtId
 MessageContext messageContext
