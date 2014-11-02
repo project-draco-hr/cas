@@ -1,0 +1,6 @@
+{
+  final QueryDatabaseAuthenticationHandler q=new QueryDatabaseAuthenticationHandler();
+  q.setDataSource(this.dataSource);
+  q.setSql(SQL);
+  assertNotNull(q.authenticateUsernamePasswordInternal(TestUtils.getCredentialsWithDifferentUsernameAndPassword("user3","psw3")));
+}
