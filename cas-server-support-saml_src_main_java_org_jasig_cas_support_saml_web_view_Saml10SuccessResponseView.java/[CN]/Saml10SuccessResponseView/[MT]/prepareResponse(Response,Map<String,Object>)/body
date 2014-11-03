@@ -1,6 +1,4 @@
 {
-  final org.jasig.cas.validation.Assertion casAssertion=getAssertionFrom(model);
-  final Authentication authentication=casAssertion.getChainedAuthentications().get(0);
   final DateTime issuedAt=response.getIssueInstant();
   final Service service=getAssertionFrom(model).getService();
   final Assertion assertion=newSamlObject(Assertion.class);
@@ -8,10 +6,10 @@
   assertion.setIssueInstant(issuedAt);
   assertion.setIssuer(this.issuer);
   assertion.setConditions(newConditions(issuedAt,service.getId()));
-  final AuthenticationStatement authnStatement=newAuthenticationStatement(authentication);
+  final AuthenticationStatement authnStatement=newAuthenticationStatement(model);
   assertion.getAuthenticationStatements().add(authnStatement);
-  final Subject subject=newSubject(authentication.getPrincipal().getId());
-  final Map<String,Object> attributesToSend=prepareSamlAttributes(authentication,casAssertion,service);
+  final Subject subject=newSubject(getPrincipal(model).getId());
+  final Map<String,Object> attributesToSend=prepareSamlAttributes(model);
   if (!attributesToSend.isEmpty()) {
     assertion.getAttributeStatements().add(newAttributeStatement(subject,attributesToSend));
   }

@@ -1,6 +1,6 @@
 {
   final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
-  if (StringUtils.hasText(context.getExternalContext().getRequestParameterMap().get("warn"))) {
+  if (StringUtils.isNotBlank(context.getExternalContext().getRequestParameterMap().get("warn"))) {
     this.warnCookieGenerator.addCookie(response,"true");
   }
  else {
