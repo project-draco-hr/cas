@@ -11,8 +11,5 @@
   if (count == 0) {
     throw new FailedLoginException(username + " not found with SQL query.");
   }
- else   if (count > 1 && !this.allowMultipleRecords) {
-    throw new FailedLoginException("Multiple records found for " + username);
-  }
   return createHandlerResult(credential,new SimplePrincipal(username),null);
 }
