@@ -1,0 +1,5 @@
+{
+  final UsernamePasswordCredential c=TestUtils.getCredentialsWithDifferentUsernameAndPassword("user0","psw0");
+  handler.setAllowMultipleRecords(false);
+  assertNotNull(this.handler.authenticateUsernamePasswordInternal(c));
+}
