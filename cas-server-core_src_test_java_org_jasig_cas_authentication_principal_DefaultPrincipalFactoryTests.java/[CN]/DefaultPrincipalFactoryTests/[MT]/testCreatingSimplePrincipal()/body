@@ -1,5 +1,5 @@
 {
-  final PrincipalFactory f=new DefaultPrincipalFactory();
+  final PrincipalFactory f=DefaultPrincipalFactory.getInstance();
   final Principal p=f.createPrincipal("uid");
   assertEquals(p.getId(),"uid");
   assertEquals(p.getAttributes().size(),0);

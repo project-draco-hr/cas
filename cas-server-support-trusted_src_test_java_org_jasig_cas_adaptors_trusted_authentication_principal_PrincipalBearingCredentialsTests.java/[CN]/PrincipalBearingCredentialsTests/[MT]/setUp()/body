@@ -1,3 +1,3 @@
 {
-  this.principalBearingCredentials=new PrincipalBearingCredential(new DefaultPrincipalFactory().createPrincipal("test"));
+  this.principalBearingCredentials=new PrincipalBearingCredential(DefaultPrincipalFactory.getInstance().createPrincipal("test"));
 }
