@@ -1,0 +1,3 @@
+{
+  return String.format("insert into casusers (username, password) values('%s', '%s');","user" + i,"psw" + i);
+}
