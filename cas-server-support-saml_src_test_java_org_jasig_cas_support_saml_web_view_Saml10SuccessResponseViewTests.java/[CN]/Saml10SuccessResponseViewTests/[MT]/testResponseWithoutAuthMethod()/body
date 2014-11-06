@@ -2,7 +2,7 @@
   final Map<String,Object> model=new HashMap<String,Object>();
   final Map<String,Object> attributes=new HashMap<String,Object>();
   attributes.put("testAttribute","testValue");
-  final Principal principal=DefaultPrincipalFactory.getInstance().createPrincipal("testPrincipal",attributes);
+  final Principal principal=new DefaultPrincipalFactory().createPrincipal("testPrincipal",attributes);
   final Map<String,Object> authnAttributes=new HashMap<String,Object>();
   authnAttributes.put("authnAttribute1","authnAttrbuteV1");
   authnAttributes.put("authnAttribute2","authnAttrbuteV2");

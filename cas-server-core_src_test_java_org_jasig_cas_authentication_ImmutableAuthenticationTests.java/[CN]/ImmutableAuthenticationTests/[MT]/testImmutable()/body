@@ -11,7 +11,7 @@
   successes.put("handler1",new HandlerResult(authenticationHandler,credential1));
   final Map<String,Class<? extends Exception>> failures=new HashMap<String,Class<? extends Exception>>();
   failures.put("handler2",FailedLoginException.class);
-  final ImmutableAuthentication auth=new ImmutableAuthentication(new Date(),credentials,DefaultPrincipalFactory.getInstance().createPrincipal("test"),attributes,successes,failures);
+  final ImmutableAuthentication auth=new ImmutableAuthentication(new Date(),credentials,new DefaultPrincipalFactory().createPrincipal("test"),attributes,successes,failures);
   try {
     auth.getAuthenticationDate().setTime(100);
     fail("Should have failed");

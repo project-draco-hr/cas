@@ -1,6 +1,0 @@
-{
-  if (INSTANCE == null) {
-    INSTANCE=DefaultPrincipalFactory.getInstance();
-  }
-  return INSTANCE;
-}

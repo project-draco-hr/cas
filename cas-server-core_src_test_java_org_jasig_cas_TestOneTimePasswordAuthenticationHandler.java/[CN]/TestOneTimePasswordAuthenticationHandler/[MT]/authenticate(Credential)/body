@@ -2,7 +2,7 @@
   final OneTimePasswordCredential otp=(OneTimePasswordCredential)credential;
   final String valueOnRecord=credentialMap.get(otp.getId());
   if (otp.getPassword().equals(credentialMap.get(otp.getId()))) {
-    return new HandlerResult(this,new BasicCredentialMetaData(otp),DefaultPrincipalFactory.getInstance().createPrincipal(otp.getId()));
+    return new HandlerResult(this,new BasicCredentialMetaData(otp),new DefaultPrincipalFactory().createPrincipal(otp.getId()));
   }
   throw new FailedLoginException();
 }

@@ -1,5 +1,5 @@
 {
-  final PrincipalFactory f=DefaultPrincipalFactory.getInstance();
+  final PrincipalFactory f=new DefaultPrincipalFactory();
   final Principal p=f.createPrincipal("uid",Collections.<String,Object>singletonMap("mail","final@example.com"));
   assertEquals(p.getId(),"uid");
   assertEquals(p.getAttributes().size(),1);
