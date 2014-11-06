@@ -1,37 +1,8 @@
 {
-  final LdapAttribute attr=entry.getAttribute(this.serviceIdAttribute);
-  if (attr != null) {
-    final AbstractRegisteredService s=getRegisteredService(attr.getStringValue());
-    if (s != null) {
-      s.setId(LdapUtils.getLong(entry,this.idAttribute,Long.valueOf(entry.getDn().hashCode())));
-      s.setServiceId(LdapUtils.getString(entry,this.serviceIdAttribute));
-      s.setName(LdapUtils.getString(entry,this.serviceNameAttribute));
-      s.setDescription(LdapUtils.getString(entry,this.serviceDescriptionAttribute));
-      s.setEnabled(LdapUtils.getBoolean(entry,this.serviceEnabledAttribute));
-      s.setTheme(LdapUtils.getString(entry,this.serviceThemeAttribute));
-      s.setEvaluationOrder(LdapUtils.getLong(entry,this.evaluationOrderAttribute).intValue());
-      s.setSsoEnabled(LdapUtils.getBoolean(entry,this.serviceSsoEnabledAttribute));
-      s.setRequiredHandlers(new HashSet<String>(getMultiValuedAttributeValues(entry,this.requiredHandlersAttribute)));
-      final String usernameAttrData=LdapUtils.getString(entry,this.usernameAttributeProviderAttribute);
-      if (StringUtils.isNotBlank(usernameAttrData)) {
-        final RegisteredServiceUsernameAttributeProviderJsonSerializer mapper=new RegisteredServiceUsernameAttributeProviderJsonSerializer();
-        final RegisteredServiceUsernameAttributeProvider provider=mapper.fromJson(usernameAttrData);
-        s.setUsernameAttributeProvider(provider);
-      }
-      final String data=LdapUtils.getString(entry,this.attributeReleasePolicyAttribute);
-      if (StringUtils.isNotBlank(data)) {
-        final AttributeReleasePolicyJsonSerializer mapper=new AttributeReleasePolicyJsonSerializer();
-        final AttributeReleasePolicy policy=mapper.fromJson(data);
-        s.setAttributeReleasePolicy(policy);
-      }
-      final String proxyData=LdapUtils.getString(entry,this.serviceProxyPolicyAttribute);
-      if (StringUtils.isNotBlank(proxyData)) {
-        final RegisteredServiceProxyPolicyJsonSerializer mapper=new RegisteredServiceProxyPolicyJsonSerializer();
-        final RegisteredServiceProxyPolicy policy=mapper.fromJson(proxyData);
-        s.setProxyPolicy(policy);
-      }
-    }
-    return s;
+  final String value=LdapUtils.getString(entry,this.serviceDefinitionAttribute);
+  if (StringUtils.hasText(value)) {
+    final RegisteredService service=this.jsonSerializer.fromJson(value);
+    return service;
   }
   return null;
 }

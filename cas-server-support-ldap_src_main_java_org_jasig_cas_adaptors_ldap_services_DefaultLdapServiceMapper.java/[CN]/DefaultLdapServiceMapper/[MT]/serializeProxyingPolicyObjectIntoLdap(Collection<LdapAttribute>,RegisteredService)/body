@@ -1,4 +1,0 @@
-{
-  final RegisteredServiceProxyPolicy proxyPolicy=svc.getProxyPolicy() != null ? svc.getProxyPolicy() : new RefuseRegisteredServiceProxyPolicy();
-  attrs.add(serializeObjectToJson(new RegisteredServiceProxyPolicyJsonSerializer(),proxyPolicy,this.serviceProxyPolicyAttribute));
-}

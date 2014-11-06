@@ -7,19 +7,9 @@
     LOGGER.debug("Creating entry {}",newDn);
     final Collection<LdapAttribute> attrs=new ArrayList<LdapAttribute>();
     attrs.add(new LdapAttribute(this.idAttribute,String.valueOf(svc.getId())));
-    attrs.add(new LdapAttribute(this.serviceIdAttribute,svc.getServiceId()));
-    attrs.add(new LdapAttribute(this.serviceNameAttribute,svc.getName()));
-    attrs.add(new LdapAttribute(this.serviceDescriptionAttribute,svc.getDescription()));
-    attrs.add(new LdapAttribute(this.serviceEnabledAttribute,Boolean.toString(svc.isEnabled()).toUpperCase()));
-    attrs.add(new LdapAttribute(this.serviceSsoEnabledAttribute,Boolean.toString(svc.isSsoEnabled()).toUpperCase()));
-    attrs.add(new LdapAttribute(this.evaluationOrderAttribute,String.valueOf(svc.getEvaluationOrder())));
-    attrs.add(new LdapAttribute(this.serviceThemeAttribute,svc.getTheme()));
-    serializeAttributePolicyObjectIntoLdap(attrs,svc);
-    serializeProxyingPolicyObjectIntoLdap(attrs,svc);
-    serializeUsernameProviderObjectIntoLdap(attrs,svc);
-    if (svc.getRequiredHandlers().size() > 0) {
-      attrs.add(new LdapAttribute(this.requiredHandlersAttribute,svc.getRequiredHandlers().toArray(new String[]{})));
-    }
+    final StringWriter writer=new StringWriter();
+    this.jsonSerializer.toJson(writer,svc);
+    attrs.add(new LdapAttribute(this.serviceDefinitionAttribute,writer.toString()));
     attrs.add(new LdapAttribute(LdapUtils.OBJECTCLASS_ATTRIBUTE,"top",this.objectClass));
     return new LdapEntry(newDn,attrs);
   }

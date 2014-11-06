@@ -1,4 +1,0 @@
-{
-  final AttributeReleasePolicy attributeReleasePolicy=svc.getAttributeReleasePolicy() != null ? svc.getAttributeReleasePolicy() : new ReturnAllowedAttributeReleasePolicy();
-  attrs.add(serializeObjectToJson(new RegisteredServiceUsernameAttributeProviderJsonSerializer(),attributeReleasePolicy,this.attributeReleasePolicyAttribute));
-}

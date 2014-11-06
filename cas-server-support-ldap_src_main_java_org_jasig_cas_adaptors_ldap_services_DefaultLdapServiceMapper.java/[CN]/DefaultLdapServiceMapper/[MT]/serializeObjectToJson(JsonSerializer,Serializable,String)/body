@@ -1,5 +1,0 @@
-{
-  final Writer writer=new StringWriter();
-  serializer.toJson(writer,object);
-  return new LdapAttribute(attrName,writer.toString());
-}

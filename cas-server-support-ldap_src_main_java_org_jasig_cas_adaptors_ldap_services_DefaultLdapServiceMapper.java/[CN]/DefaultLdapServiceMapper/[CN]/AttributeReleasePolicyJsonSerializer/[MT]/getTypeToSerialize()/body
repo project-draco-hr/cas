@@ -1,3 +1,0 @@
-{
-  return AttributeReleasePolicy.class;
-}
