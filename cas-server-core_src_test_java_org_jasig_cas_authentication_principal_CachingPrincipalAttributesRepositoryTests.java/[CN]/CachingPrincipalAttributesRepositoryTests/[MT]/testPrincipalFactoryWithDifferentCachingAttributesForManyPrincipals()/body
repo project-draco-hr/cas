@@ -1,0 +1,19 @@
+{
+  final PrincipalAttributesRepository repository1=new CachingPrincipalAttributesRepository(this.dao,Collections.<String,Object>singletonMap("address","final@example.com"),TimeUnit.MILLISECONDS,200);
+  final PrincipalAttributesRepository repository2=new CachingPrincipalAttributesRepository(this.dao,Collections.<String,Object>singletonMap("address","final@example.com"),TimeUnit.MILLISECONDS,700);
+  final DefaultPrincipalFactory factory1=new DefaultPrincipalFactory(repository1);
+  final DefaultPrincipalFactory factory2=new DefaultPrincipalFactory(repository2);
+  final Principal p1=factory1.createPrincipal("uid1");
+  final Principal p2=factory2.createPrincipal("uid2");
+  assertFalse(p1.getAttributes().containsKey("mail"));
+  assertFalse(p2.getAttributes().containsKey("mail"));
+  assertTrue(p1.getAttributes().containsKey("address"));
+  assertTrue(p2.getAttributes().containsKey("address"));
+  Thread.sleep(400);
+  assertTrue(p1.getAttributes().containsKey("mail"));
+  assertFalse(p1.getAttributes().containsKey("address"));
+  assertTrue(p2.getAttributes().containsKey("address"));
+  assertFalse(p2.getAttributes().containsKey("mail"));
+  ((Closeable)repository2).close();
+  ((Closeable)repository1).close();
+}

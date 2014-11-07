@@ -1,3 +1,0 @@
-{
-  ((Closeable)this.repository).close();
-}

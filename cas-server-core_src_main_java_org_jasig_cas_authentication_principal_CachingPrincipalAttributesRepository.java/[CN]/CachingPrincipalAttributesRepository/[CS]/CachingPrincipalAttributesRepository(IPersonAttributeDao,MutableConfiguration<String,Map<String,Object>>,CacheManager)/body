@@ -1,3 +1,4 @@
 {
-  this(attributeRepository,manager.createCache(CACHE_NAME,config));
+  this.attributeRepository=attributeRepository;
+  this.cache=manager.createCache(this.cacheName,config);
 }
