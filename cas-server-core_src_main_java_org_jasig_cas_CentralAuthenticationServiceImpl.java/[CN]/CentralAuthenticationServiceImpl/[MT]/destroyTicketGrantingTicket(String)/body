@@ -1,7 +1,7 @@
 {
   try {
     logger.debug("Removing ticket [{}] from registry...",ticketGrantingTicketId);
-    final TicketGrantingTicket ticket=getTicketGrantingTicket(ticketGrantingTicketId);
+    final TicketGrantingTicket ticket=getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
     logger.debug("Ticket found. Processing logout requests and then deleting the ticket...");
     final List<LogoutRequest> logoutRequests=logoutManager.performLogout(ticket);
     this.ticketRegistry.deleteTicket(ticketGrantingTicketId);

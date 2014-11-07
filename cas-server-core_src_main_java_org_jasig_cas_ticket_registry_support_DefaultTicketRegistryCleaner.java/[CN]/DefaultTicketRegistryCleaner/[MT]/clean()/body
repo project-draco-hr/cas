@@ -1,31 +1,33 @@
 {
-  logger.info("Beginning ticket cleanup.");
-  logger.debug("Attempting to acquire ticket cleanup lock.");
-  if (!this.lock.acquire()) {
-    logger.info("Could not obtain lock.  Aborting cleanup.");
-    return;
-  }
-  logger.debug("Acquired lock.  Proceeding with cleanup.");
   try {
-    final List<Ticket> ticketsToRemove=new ArrayList<Ticket>();
-    final Collection<Ticket> ticketsInCache;
-    ticketsInCache=this.ticketRegistry.getTickets();
-    for (    final Ticket ticket : ticketsInCache) {
-      if (ticket.isExpired()) {
-        ticketsToRemove.add(ticket);
+    logger.info("Beginning ticket cleanup.");
+    logger.debug("Attempting to acquire ticket cleanup lock.");
+    if (!this.lock.acquire()) {
+      logger.info("Could not obtain lock.  Aborting cleanup.");
+      return Collections.emptyList();
+    }
+    logger.debug("Acquired lock.  Proceeding with cleanup.");
+    final Collection<Ticket> ticketsToRemove=this.centralAuthenticationService.getTickets(new Predicate(){
+      @Override public boolean evaluate(      final Object o){
+        final Ticket ticket=(Ticket)o;
+        return ticket.isExpired();
       }
     }
+);
     logger.info("{} expired tickets found to be removed.",ticketsToRemove.size());
-    for (    final Ticket ticket : ticketsToRemove) {
-      if (ticket instanceof TicketGrantingTicket) {
-        this.logoutManager.performLogout((TicketGrantingTicket)ticket);
+    try {
+      for (      final Ticket ticket : ticketsToRemove) {
+        this.centralAuthenticationService.destroyTicketGrantingTicket(ticket.getId());
       }
-      this.ticketRegistry.deleteTicket(ticket.getId());
     }
+ catch (    final Exception e) {
+      logger.error(e.getMessage(),e);
+    }
+    return ticketsToRemove;
   }
   finally {
     logger.debug("Releasing ticket cleanup lock.");
     this.lock.release();
+    logger.info("Finished ticket cleanup.");
   }
-  logger.info("Finished ticket cleanup.");
 }
