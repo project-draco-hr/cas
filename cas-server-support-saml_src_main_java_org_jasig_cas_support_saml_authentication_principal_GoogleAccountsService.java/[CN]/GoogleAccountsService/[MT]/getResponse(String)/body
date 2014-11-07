@@ -1,7 +1,7 @@
 {
   final Map<String,String> parameters=new HashMap<String,String>();
   final String samlResponse=constructSamlResponse();
-  final String signedResponse=SamlUtils.signSamlResponse(samlResponse,this.privateKey,this.publicKey);
+  final String signedResponse=this.builder.signSamlResponse(samlResponse,this.privateKey,this.publicKey);
   parameters.put("SAMLResponse",signedResponse);
   parameters.put("RelayState",this.relayState);
   return Response.getPostResponse(getOriginalUrl(),parameters);

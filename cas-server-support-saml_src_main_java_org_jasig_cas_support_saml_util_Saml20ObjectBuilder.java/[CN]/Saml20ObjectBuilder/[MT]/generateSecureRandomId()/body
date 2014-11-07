@@ -1,0 +1,14 @@
+{
+  final SecureRandom generator=new SecureRandom();
+  final char[] CHAR_MAPPINGS={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'};
+  final byte[] bytes=new byte[20];
+  generator.nextBytes(bytes);
+  final char[] chars=new char[40];
+  for (int i=0; i < bytes.length; i++) {
+    final int left=bytes[i] >> 4 & 0x0f;
+    final int right=bytes[i] & 0x0f;
+    chars[i * 2]=CHAR_MAPPINGS[left];
+    chars[i * 2 + 1]=CHAR_MAPPINGS[right];
+  }
+  return String.valueOf(chars);
+}

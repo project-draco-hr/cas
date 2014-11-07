@@ -12,11 +12,11 @@
     if (e.getValue() instanceof Collection<?>) {
       final Collection<?> c=(Collection<?>)e.getValue();
       for (      final Object value : c) {
-        attribute.getAttributeValues().add(newAttributeValue(value));
+        attribute.getAttributeValues().add(newAttributeValue(value,AttributeValue.DEFAULT_ELEMENT_NAME));
       }
     }
  else {
-      attribute.getAttributeValues().add(newAttributeValue(e.getValue()));
+      attribute.getAttributeValues().add(newAttributeValue(e.getValue(),AttributeValue.DEFAULT_ELEMENT_NAME));
     }
     attrStatement.getAttributes().add(attribute);
   }

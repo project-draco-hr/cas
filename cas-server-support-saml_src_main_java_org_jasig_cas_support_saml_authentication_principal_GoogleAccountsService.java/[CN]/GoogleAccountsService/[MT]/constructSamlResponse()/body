@@ -1,18 +1,17 @@
 {
-  String samlResponse=TEMPLATE_SAML_RESPONSE;
-  final Calendar c=Calendar.getInstance();
-  c.setTime(new Date());
-  c.add(Calendar.YEAR,1);
+  final DateTime currentDateTime=DateTime.parse(new ISOStandardDateFormat().getCurrentDateAndTime());
   final RegisteredService svc=this.servicesManager.findServiceBy(this);
   final String userId=svc.getUsernameAttributeProvider().resolveUsername(getPrincipal(),this);
-  final String currentDateTime=new ISOStandardDateFormat().getCurrentDateAndTime();
-  samlResponse=samlResponse.replace("<USERNAME_STRING>",userId);
-  samlResponse=samlResponse.replace("<RESPONSE_ID>",createID());
-  samlResponse=samlResponse.replace("<ISSUE_INSTANT>",currentDateTime);
-  samlResponse=samlResponse.replace("<AUTHN_INSTANT>",currentDateTime);
-  samlResponse=samlResponse.replaceAll("<NOT_ON_OR_AFTER>",currentDateTime);
-  samlResponse=samlResponse.replace("<ASSERTION_ID>",createID());
-  samlResponse=samlResponse.replaceAll("<ACS_URL>",getId());
-  samlResponse=samlResponse.replace("<REQUEST_ID>",this.requestId);
-  return samlResponse;
+  final org.opensaml.saml2.core.Response response=this.builder.newResponse(this.builder.generateSecureRandomId(),currentDateTime,getId(),this);
+  response.setStatus(builder.newStatus(StatusCode.SUCCESS_URI,null));
+  final AuthnStatement authnStatement=this.builder.newAuthnStatement(AuthnContext.PASSWORD_AUTHN_CTX,currentDateTime);
+  final Assertion assertion=this.builder.newAssertion(authnStatement,"https://www.opensaml.org/IDP",currentDateTime.minusYears(3),this.builder.generateSecureRandomId());
+  final Conditions conditions=builder.newConditions(currentDateTime.minusYears(3),currentDateTime,getId());
+  assertion.setConditions(conditions);
+  final Subject subject=this.builder.newSubject(NameID.EMAIL,userId,getId(),currentDateTime,this.requestId);
+  assertion.setSubject(subject);
+  response.getAssertions().add(assertion);
+  final StringWriter writer=new StringWriter();
+  this.builder.marshalSamlXmlObject(response,writer);
+  return writer.toString();
 }
