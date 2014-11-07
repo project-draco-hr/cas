@@ -1,0 +1,4 @@
+String id
+int skewAllowance
+String recipient
+WebApplicationService service

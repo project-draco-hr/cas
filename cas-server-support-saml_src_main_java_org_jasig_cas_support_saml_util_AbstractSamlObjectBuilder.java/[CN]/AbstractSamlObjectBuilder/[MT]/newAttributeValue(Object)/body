@@ -1,0 +1,11 @@
+{
+  final XSStringBuilder attrValueBuilder=new XSStringBuilder();
+  final XSString stringValue=attrValueBuilder.buildObject(AttributeValue.DEFAULT_ELEMENT_NAME,XSString.TYPE_NAME);
+  if (value instanceof String) {
+    stringValue.setValue((String)value);
+  }
+ else {
+    stringValue.setValue(value.toString());
+  }
+  return stringValue;
+}

@@ -1,10 +1,10 @@
 {
   final Conditions conditions=newSamlObject(Conditions.class);
   conditions.setNotBefore(issuedAt);
-  conditions.setNotOnOrAfter(issuedAt.plus(this.issueLength));
+  conditions.setNotOnOrAfter(issuedAt.plus(issueLength));
   final AudienceRestrictionCondition audienceRestriction=newSamlObject(AudienceRestrictionCondition.class);
   final Audience audience=newSamlObject(Audience.class);
-  audience.setUri(serviceId);
+  audience.setUri(audienceUri);
   audienceRestriction.getAudiences().add(audience);
   conditions.getAudienceRestrictionConditions().add(audienceRestriction);
   return conditions;
