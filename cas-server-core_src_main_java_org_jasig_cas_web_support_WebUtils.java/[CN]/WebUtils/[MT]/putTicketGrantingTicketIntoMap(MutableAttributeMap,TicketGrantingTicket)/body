@@ -1,0 +1,5 @@
+{
+  if (ticketValue != null) {
+    map.put("ticketGrantingTicketId",ticketValue.getId());
+  }
+}
