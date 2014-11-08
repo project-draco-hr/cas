@@ -1,7 +1,5 @@
 {
   openIdService=OpenIdService.createServiceFrom(request);
-  when(context.getBean("serverManager")).thenReturn(manager);
-  when(context.getBean("centralAuthenticationService")).thenReturn(cas);
   final Response response=this.openIdService.getResponse("test");
   try {
     verify(cas,never()).validateServiceTicket("test",openIdService);
