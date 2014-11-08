@@ -17,5 +17,5 @@
   final TicketGrantingTicket proxyGrantingTicket=serviceTicket.grantTicketGrantingTicket(pgtId,authentication,this.ticketGrantingTicketExpirationPolicy);
   logger.debug("Generated proxy granting ticket [{}] based off of [{}]",proxyGrantingTicket,serviceTicketId);
   this.ticketRegistry.addTicket(proxyGrantingTicket);
-  return proxyGrantingTicket.getId();
+  return proxyGrantingTicket;
 }

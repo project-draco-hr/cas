@@ -1,7 +1,7 @@
 {
   try {
-    final String serviceTicketId=this.cas.grantServiceTicket(tgtId,new SimpleWebApplicationServiceImpl(requestBody.getFirst("service")));
-    return new ResponseEntity<String>(serviceTicketId,HttpStatus.OK);
+    final ServiceTicket serviceTicketId=this.cas.grantServiceTicket(tgtId,new SimpleWebApplicationServiceImpl(requestBody.getFirst("service")));
+    return new ResponseEntity<String>(serviceTicketId.getId(),HttpStatus.OK);
   }
  catch (  final InvalidTicketException e) {
     return new ResponseEntity<String>("TicketGrantingTicket could not be found",HttpStatus.NOT_FOUND);

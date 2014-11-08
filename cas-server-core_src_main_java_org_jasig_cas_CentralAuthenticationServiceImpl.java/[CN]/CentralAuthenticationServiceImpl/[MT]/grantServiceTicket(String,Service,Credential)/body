@@ -1,18 +1,6 @@
 {
-  Assert.notNull(ticketGrantingTicketId,"ticketGrantingticketId cannot be null");
   Assert.notNull(service,"service cannot be null");
-  final TicketGrantingTicket ticketGrantingTicket=this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
-  if (ticketGrantingTicket == null) {
-    logger.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
-    throw new InvalidTicketException(ticketGrantingTicketId);
-  }
-synchronized (ticketGrantingTicket) {
-    if (ticketGrantingTicket.isExpired()) {
-      this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
-      logger.debug("TicketGrantingTicket [{}] has expired and is now deleted from the ticket registry.",ticketGrantingTicketId);
-      throw new InvalidTicketException(ticketGrantingTicketId);
-    }
-  }
+  final TicketGrantingTicket ticketGrantingTicket=getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   verifyRegisteredServiceProperties(registeredService,service);
   Authentication currentAuthentication=null;
@@ -50,5 +38,5 @@ synchronized (ticketGrantingTicket) {
   this.serviceTicketRegistry.addTicket(serviceTicket);
   final String principalId=authentications.get(authentications.size() - 1).getPrincipal().getId();
   logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principalId);
-  return serviceTicket.getId();
+  return serviceTicket;
 }

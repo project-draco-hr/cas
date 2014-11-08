@@ -3,9 +3,9 @@
   final Credential c=obtainCredentials();
   Formatter fmt=null;
   try {
-    final String ticketGrantingTicketId=this.centralAuthenticationService.createTicketGrantingTicket(c);
+    final TicketGrantingTicket ticketGrantingTicketId=this.centralAuthenticationService.createTicketGrantingTicket(c);
     getResponse().setStatus(determineStatus());
-    final Reference ticketReference=getRequest().getResourceRef().addSegment(ticketGrantingTicketId);
+    final Reference ticketReference=getRequest().getResourceRef().addSegment(ticketGrantingTicketId.getId());
     getResponse().setLocationRef(ticketReference);
     fmt=new Formatter();
     fmt.format("<!DOCTYPE HTML PUBLIC \\\"-//IETF//DTD HTML 2.0//EN\\\"><html><head><title>");

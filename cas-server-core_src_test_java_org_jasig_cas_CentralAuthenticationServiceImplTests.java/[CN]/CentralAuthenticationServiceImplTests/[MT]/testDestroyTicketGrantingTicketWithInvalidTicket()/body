@@ -1,5 +1,5 @@
 {
-  final String ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final String serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId,TestUtils.getService());
-  getCentralAuthenticationService().destroyTicketGrantingTicket(serviceTicketId);
+  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final ServiceTicket serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),TestUtils.getService());
+  getCentralAuthenticationService().destroyTicketGrantingTicket(serviceTicketId.getId());
 }

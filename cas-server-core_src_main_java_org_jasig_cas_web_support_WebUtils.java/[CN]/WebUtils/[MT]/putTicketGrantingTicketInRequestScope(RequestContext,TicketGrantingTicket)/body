@@ -1,0 +1,3 @@
+{
+  putTicketGrantingTicketIntoMap(context.getRequestScope(),ticketValue);
+}

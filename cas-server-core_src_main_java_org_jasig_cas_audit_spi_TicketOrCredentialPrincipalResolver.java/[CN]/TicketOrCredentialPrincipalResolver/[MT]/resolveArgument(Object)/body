@@ -4,14 +4,19 @@
     return arg1.toString();
   }
  else   if (arg1 instanceof String) {
-    final Ticket ticket=this.ticketRegistry.getTicket((String)arg1);
-    if (ticket instanceof ServiceTicket) {
-      final ServiceTicket serviceTicket=(ServiceTicket)ticket;
-      return serviceTicket.getGrantingTicket().getAuthentication().getPrincipal().getId();
+    try {
+      final Ticket ticket=this.centralAuthenticationService.getTicket((String)arg1,Ticket.class);
+      if (ticket instanceof ServiceTicket) {
+        final ServiceTicket serviceTicket=(ServiceTicket)ticket;
+        return serviceTicket.getGrantingTicket().getAuthentication().getPrincipal().getId();
+      }
+ else       if (ticket instanceof TicketGrantingTicket) {
+        final TicketGrantingTicket tgt=(TicketGrantingTicket)ticket;
+        return tgt.getAuthentication().getPrincipal().getId();
+      }
     }
- else     if (ticket instanceof TicketGrantingTicket) {
-      final TicketGrantingTicket tgt=(TicketGrantingTicket)ticket;
-      return tgt.getAuthentication().getPrincipal().getId();
+ catch (    final InvalidTicketException e) {
+      LOGGER.trace(e.getMessage(),e);
     }
     LOGGER.debug("Could not locate ticket [{}] in the registry",arg1);
   }

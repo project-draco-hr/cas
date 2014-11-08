@@ -1,7 +1,7 @@
 {
   IPersonAttributes actual;
   String username;
-  for (  final LdapEntry entry : this.testEntries) {
+  for (  final LdapEntry entry : this.getEntries()) {
     username=getUsername(entry);
     actual=attributeDao.getPerson(username);
     assertNotNull(actual);

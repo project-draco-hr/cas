@@ -1,3 +1,0 @@
-LdapTestUtils.DirectoryType directoryType
-boolean supportsNotFound
-String contextPaths

@@ -6,9 +6,9 @@
     }
   }
 );
-  final String ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
   try {
-    getCentralAuthenticationService().grantServiceTicket(ticketId,TestUtils.getService());
+    getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),TestUtils.getService());
   }
   finally {
     ((CentralAuthenticationServiceImpl)getCentralAuthenticationService()).setTicketGrantingTicketExpirationPolicy(new NeverExpiresExpirationPolicy());

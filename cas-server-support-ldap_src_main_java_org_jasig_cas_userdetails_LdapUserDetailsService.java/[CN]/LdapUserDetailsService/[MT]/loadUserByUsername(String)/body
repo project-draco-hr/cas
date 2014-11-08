@@ -39,7 +39,9 @@
       logger.warn("Role attribute not found on entry {}",entry);
       continue;
     }
-    roles.add(new SimpleGrantedAuthority(this.rolePrefix + roleAttribute.getStringValue().toUpperCase()));
+    for (    final String role : roleAttribute.getStringValues()) {
+      roles.add(new SimpleGrantedAuthority(this.rolePrefix + role.toUpperCase()));
+    }
   }
   return new User(id,UNKNOWN_PASSWORD,roles);
 }
