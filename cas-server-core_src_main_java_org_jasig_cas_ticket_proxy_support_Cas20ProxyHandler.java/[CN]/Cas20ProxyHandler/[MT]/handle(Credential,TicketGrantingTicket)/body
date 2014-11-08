@@ -3,7 +3,7 @@
   final String proxyIou=this.uniqueTicketIdGenerator.getNewTicketId(PGTIOU_PREFIX);
   final URL callbackUrl=serviceCredentials.getCallbackUrl();
   final String serviceCredentialsAsString=callbackUrl.toExternalForm();
-  final int bufferLength=serviceCredentialsAsString.length() + proxyIou.length() + proxyGrantingTicketId.length()+ 15;
+  final int bufferLength=serviceCredentialsAsString.length() + proxyIou.length() + proxyGrantingTicketId.getId().length()+ 15;
   final StringBuilder stringBuffer=new StringBuilder(bufferLength);
   stringBuffer.append(serviceCredentialsAsString);
   if (callbackUrl.getQuery() != null) {

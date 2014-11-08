@@ -1,5 +1,5 @@
 {
-  logger.debug("Checking IP address: {} in ",ip,network,netmask);
+  logger.debug("Checking IP address: {} in {} by {}",ip,network,netmask);
   final byte[] networkBytes=network.getAddress();
   final byte[] netmaskBytes=netmask.getAddress();
   final byte[] ipBytes=ip.getAddress();
