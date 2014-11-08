@@ -3,5 +3,5 @@
   final Authentication authentication=this.authenticationManager.authenticate(credentials);
   final TicketGrantingTicket ticketGrantingTicket=new TicketGrantingTicketImpl(this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),authentication,this.ticketGrantingTicketExpirationPolicy);
   this.ticketRegistry.addTicket(ticketGrantingTicket);
-  return ticketGrantingTicket.getId();
+  return ticketGrantingTicket;
 }

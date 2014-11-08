@@ -4,6 +4,8 @@
   final MockHttpServletRequest request=new MockHttpServletRequest();
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   request.addParameter("service","service");
-  WebUtils.putTicketGrantingTicketInRequestScope(context,"bleh");
+  final TicketGrantingTicket tgt=mock(TicketGrantingTicket.class);
+  when(tgt.getId()).thenReturn("bleh");
+  WebUtils.putTicketGrantingTicketInRequestScope(context,tgt);
   assertEquals("error",this.action.execute(context).getId());
 }
