@@ -1,8 +1,0 @@
-{
-  final String tgtId=WebUtils.getTicketGrantingTicketId(requestContext);
-  if (!StringUtils.hasText(tgtId)) {
-    return new Event(this,NOT_EXISTS);
-  }
-  final Ticket ticket=this.ticketRegistry.getTicket(tgtId);
-  return new Event(this,ticket != null && !ticket.isExpired() ? VALID : INVALID);
-}

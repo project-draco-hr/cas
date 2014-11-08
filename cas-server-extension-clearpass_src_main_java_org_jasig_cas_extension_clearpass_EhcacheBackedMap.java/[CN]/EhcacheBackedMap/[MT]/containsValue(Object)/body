@@ -1,3 +1,4 @@
 {
-  throw new UnsupportedOperationException("This operation is not supported on an Ehcache-backed Map");
+  final Collection<String> col=values();
+  return col.contains(value);
 }

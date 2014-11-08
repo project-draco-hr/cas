@@ -1,0 +1,4 @@
+{
+  final UsernamePasswordCredential c=TestUtils.getCredentialsWithDifferentUsernameAndPassword("user3","psw3");
+  assertNotNull(this.handler.authenticateUsernamePasswordInternal(c));
+}

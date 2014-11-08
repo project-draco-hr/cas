@@ -1,10 +1,11 @@
 {
   final MockHttpServletResponse response=new MockHttpServletResponse();
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  final String TICKET_VALUE="test";
+  final TicketGrantingTicket tgt=mock(TicketGrantingTicket.class);
+  when(tgt.getId()).thenReturn("test");
   request.setCookies(new Cookie[]{new Cookie("TGT","test5")});
-  WebUtils.putTicketGrantingTicketInRequestScope(this.context,TICKET_VALUE);
+  WebUtils.putTicketGrantingTicketInRequestScope(this.context,tgt);
   this.context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,response));
   assertEquals("success",this.action.execute(this.context).getId());
-  assertEquals(TICKET_VALUE,response.getCookies()[0].getValue());
+  assertEquals(tgt.getId(),response.getCookies()[0].getValue());
 }

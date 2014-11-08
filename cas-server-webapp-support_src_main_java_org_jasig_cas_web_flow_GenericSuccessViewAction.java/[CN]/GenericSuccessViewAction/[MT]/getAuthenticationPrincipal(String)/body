@@ -1,6 +1,6 @@
 {
   try {
-    final TicketGrantingTicket ticketGrantingTicket=this.centralAuthenticationService.getTicketGrantingTicket(ticketGrantingTicketId);
+    final TicketGrantingTicket ticketGrantingTicket=this.centralAuthenticationService.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
     return ticketGrantingTicket.getAuthentication().getPrincipal();
   }
  catch (  final InvalidTicketException e) {

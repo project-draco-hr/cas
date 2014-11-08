@@ -1,0 +1,10 @@
+{
+  final Connection c=this.dataSource.getConnection();
+  final Statement s=c.createStatement();
+  c.setAutoCommit(true);
+  for (int i=0; i < 5; i++) {
+    final String sql=String.format("delete from casusers;");
+    s.execute(sql);
+  }
+  c.close();
+}
