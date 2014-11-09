@@ -9,5 +9,5 @@
     return false;
   }
   final AbstractRegisteredService that=(AbstractRegisteredService)o;
-  return new EqualsBuilder().append(this.proxyPolicy,that.proxyPolicy).append(this.enabled,that.enabled).append(this.evaluationOrder,that.evaluationOrder).append(this.ssoEnabled,that.ssoEnabled).append(this.description,that.description).append(this.name,that.name).append(this.serviceId,that.serviceId).append(this.theme,that.theme).append(this.usernameAttributeProvider,that.usernameAttributeProvider).append(this.logoutType,that.logoutType).append(this.attributeReleasePolicy,that.attributeReleasePolicy).isEquals();
+  return new EqualsBuilder().append(this.proxyPolicy,that.proxyPolicy).append(this.enabled,that.enabled).append(this.evaluationOrder,that.evaluationOrder).append(this.ssoEnabled,that.ssoEnabled).append(this.description,that.description).append(this.name,that.name).append(this.serviceId,that.serviceId).append(this.theme,that.theme).append(this.usernameAttributeProvider,that.usernameAttributeProvider).append(this.logoutType,that.logoutType).append(this.attributeReleasePolicy,that.attributeReleasePolicy).append(this.logo,that.logo).isEquals();
 }
