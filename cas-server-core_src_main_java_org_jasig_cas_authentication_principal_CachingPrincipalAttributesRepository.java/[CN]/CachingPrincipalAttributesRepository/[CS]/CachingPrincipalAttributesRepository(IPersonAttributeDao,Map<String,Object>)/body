@@ -1,4 +1,0 @@
-{
-  this(attributeRepository,createCacheConfiguration(new Duration(DEFAULT_CACHE_EXPIRATION_UNIT,DEFAULT_CACHE_EXPIRATION_DURATION)));
-  setAttributes(attributes);
-}

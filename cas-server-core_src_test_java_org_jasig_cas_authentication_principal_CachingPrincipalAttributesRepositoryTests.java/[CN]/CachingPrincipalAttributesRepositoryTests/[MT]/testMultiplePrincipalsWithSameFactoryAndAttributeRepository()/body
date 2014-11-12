@@ -1,0 +1,9 @@
+{
+  final PrincipalAttributesRepository repository=new CachingPrincipalAttributesRepository(this.dao,TimeUnit.SECONDS,5);
+  final DefaultPrincipalFactory factory=new DefaultPrincipalFactory(repository);
+  final Principal p1=factory.createPrincipal("uid1",Collections.<String,Object>singletonMap("mail1","email1@address.edu"));
+  final Principal p2=factory.createPrincipal("uid2",Collections.<String,Object>singletonMap("mail2","email2@address.edu"));
+  assertTrue(p1.getAttributes().containsKey("mail1"));
+  assertTrue(p2.getAttributes().containsKey("mail2"));
+  ((Closeable)repository).close();
+}

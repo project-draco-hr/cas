@@ -1,4 +1,0 @@
-{
-  this(attributeRepository,createCacheConfiguration(new Duration(timeUnit,expiryDuration)));
-  setAttributes(attributes);
-}

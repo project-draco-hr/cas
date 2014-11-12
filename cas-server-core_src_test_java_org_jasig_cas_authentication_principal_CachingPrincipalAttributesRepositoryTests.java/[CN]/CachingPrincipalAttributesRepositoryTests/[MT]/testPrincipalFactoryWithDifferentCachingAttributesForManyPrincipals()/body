@@ -1,6 +1,8 @@
 {
-  final PrincipalAttributesRepository repository1=new CachingPrincipalAttributesRepository(this.dao,Collections.<String,Object>singletonMap("address","final@example.com"),TimeUnit.MILLISECONDS,200);
-  final PrincipalAttributesRepository repository2=new CachingPrincipalAttributesRepository(this.dao,Collections.<String,Object>singletonMap("address","final@example.com"),TimeUnit.MILLISECONDS,700);
+  final PrincipalAttributesRepository repository1=new CachingPrincipalAttributesRepository(this.dao,TimeUnit.MILLISECONDS,200);
+  repository1.setAttributes("uid1",Collections.<String,Object>singletonMap("address","final@example.com"));
+  final PrincipalAttributesRepository repository2=new CachingPrincipalAttributesRepository(this.dao,TimeUnit.MILLISECONDS,700);
+  repository2.setAttributes("uid2",Collections.<String,Object>singletonMap("address","final@example.com"));
   final DefaultPrincipalFactory factory1=new DefaultPrincipalFactory(repository1);
   final DefaultPrincipalFactory factory2=new DefaultPrincipalFactory(repository2);
   final Principal p1=factory1.createPrincipal("uid1");

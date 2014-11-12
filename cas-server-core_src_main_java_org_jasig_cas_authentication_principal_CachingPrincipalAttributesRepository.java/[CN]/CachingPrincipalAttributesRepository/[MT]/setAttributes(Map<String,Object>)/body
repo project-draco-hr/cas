@@ -1,5 +1,0 @@
-{
-synchronized (this.cache) {
-    this.cache.put(ATTRIBUTES_CACHE_KEY,attributes);
-  }
-}
