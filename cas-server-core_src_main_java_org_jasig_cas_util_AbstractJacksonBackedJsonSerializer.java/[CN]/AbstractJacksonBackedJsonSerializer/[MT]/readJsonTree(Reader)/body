@@ -1,8 +1,0 @@
-{
-  try {
-    return this.objectMapper.readTree(json);
-  }
- catch (  final Exception e) {
-    throw new RuntimeException(e);
-  }
-}
