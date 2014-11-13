@@ -1,7 +1,5 @@
 {
-  if (supports(credential)) {
-    final UsernamePasswordCredential c=(UsernamePasswordCredential)credential;
-    final Authentication authentication=builder.build();
-    this.credentialCache.put(authentication.getPrincipal().getId(),c.getPassword());
-  }
+  final UsernamePasswordCredential c=(UsernamePasswordCredential)credential;
+  final Authentication authentication=builder.build();
+  this.credentialCache.put(authentication.getPrincipal().getId(),c.getPassword());
 }

@@ -1,6 +1,4 @@
 {
-  if (supports(credential)) {
-    final ClientCredential clientCredential=(ClientCredential)credential;
-    builder.addAttribute(CLIENT_NAME,clientCredential.getCredentials().getClientName());
-  }
+  final ClientCredential clientCredential=(ClientCredential)credential;
+  builder.addAttribute(CLIENT_NAME,clientCredential.getCredentials().getClientName());
 }
