@@ -12,7 +12,9 @@
   logger.debug("Attribute map for {}: {}",principal.getId(),principal.getAttributes());
   for (  final AuthenticationMetaDataPopulator populator : this.authenticationMetaDataPopulators) {
     for (    final Credential credential : credentials) {
-      populator.populateAttributes(builder,credential);
+      if (populator.supports(credential)) {
+        populator.populateAttributes(builder,credential);
+      }
     }
   }
   return builder.build();
