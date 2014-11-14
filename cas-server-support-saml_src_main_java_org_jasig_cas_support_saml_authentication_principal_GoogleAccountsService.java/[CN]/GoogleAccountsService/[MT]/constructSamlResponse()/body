@@ -3,17 +3,17 @@
   final DateTime NOT_BEFORE_ISSUE_INSTANT=DateTime.parse("2003-04-17T00:46:02Z");
   final RegisteredService svc=this.servicesManager.findServiceBy(this);
   final String userId=svc.getUsernameAttributeProvider().resolveUsername(getPrincipal(),this);
-  final org.opensaml.saml2.core.Response response=this.builder.newResponse(this.builder.generateSecureRandomId(),currentDateTime,getId(),this);
-  response.setStatus(builder.newStatus(StatusCode.SUCCESS_URI,null));
-  final AuthnStatement authnStatement=this.builder.newAuthnStatement(AuthnContext.PASSWORD_AUTHN_CTX,currentDateTime);
-  final Assertion assertion=this.builder.newAssertion(authnStatement,"https://www.opensaml.org/IDP",NOT_BEFORE_ISSUE_INSTANT,this.builder.generateSecureRandomId());
-  final Conditions conditions=builder.newConditions(NOT_BEFORE_ISSUE_INSTANT,currentDateTime,getId());
+  final org.opensaml.saml2.core.Response response=BUILDER.newResponse(BUILDER.generateSecureRandomId(),currentDateTime,getId(),this);
+  response.setStatus(BUILDER.newStatus(StatusCode.SUCCESS_URI,null));
+  final AuthnStatement authnStatement=BUILDER.newAuthnStatement(AuthnContext.PASSWORD_AUTHN_CTX,currentDateTime);
+  final Assertion assertion=BUILDER.newAssertion(authnStatement,"https://www.opensaml.org/IDP",NOT_BEFORE_ISSUE_INSTANT,BUILDER.generateSecureRandomId());
+  final Conditions conditions=BUILDER.newConditions(NOT_BEFORE_ISSUE_INSTANT,currentDateTime,getId());
   assertion.setConditions(conditions);
-  final Subject subject=this.builder.newSubject(NameID.EMAIL,userId,getId(),currentDateTime,this.requestId);
+  final Subject subject=BUILDER.newSubject(NameID.EMAIL,userId,getId(),currentDateTime,this.requestId);
   assertion.setSubject(subject);
   response.getAssertions().add(assertion);
   final StringWriter writer=new StringWriter();
-  this.builder.marshalSamlXmlObject(response,writer);
+  BUILDER.marshalSamlXmlObject(response,writer);
   logger.debug("Generated Google SAML response: {}",writer.toString());
   return writer.toString();
 }

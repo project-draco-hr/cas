@@ -1,6 +1,6 @@
 {
   final String relayState=request.getParameter(SamlProtocolConstants.PARAMETER_SAML_RELAY_STATE);
-  final String xmlRequest=Saml20ObjectBuilder.decodeSamlAuthnRequest(request.getParameter(SamlProtocolConstants.PARAMETER_SAML_REQUEST));
+  final String xmlRequest=BUILDER.decodeSamlAuthnRequest(request.getParameter(SamlProtocolConstants.PARAMETER_SAML_REQUEST));
   if (!StringUtils.hasText(xmlRequest)) {
     return null;
   }
