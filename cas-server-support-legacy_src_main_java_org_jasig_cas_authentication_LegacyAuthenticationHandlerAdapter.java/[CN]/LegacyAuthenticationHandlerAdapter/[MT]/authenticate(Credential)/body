@@ -14,7 +14,7 @@
       throw new FailedLoginException(String.format("%s failed to authenticate %s",this.getName(),credential));
     }
   }
- catch (  final AuthenticationException e) {
+ catch (  final AbstractAuthenticationException e) {
     throw new GeneralSecurityException(String.format("%s failed to authenticate %s",this.getName(),credential),e);
   }
 }
