@@ -15,7 +15,7 @@
       onError(context,credential);
       return error();
     }
-catch (    final TicketException e) {
+catch (    final AbstractTicketException e) {
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
       logger.debug("Attempted to generate a ServiceTicket using renew=true with different credential",e);
     }

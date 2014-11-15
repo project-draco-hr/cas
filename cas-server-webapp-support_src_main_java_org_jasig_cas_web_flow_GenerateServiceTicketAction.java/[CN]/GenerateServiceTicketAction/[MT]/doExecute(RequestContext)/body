@@ -6,7 +6,7 @@
     WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
     return success();
   }
- catch (  final TicketException e) {
+ catch (  final AbstractTicketException e) {
     if (e instanceof InvalidTicketException) {
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicket);
     }
