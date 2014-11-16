@@ -1,6 +1,6 @@
 {
   final SpnegoCredential credentials=new SpnegoCredential(new byte[]{0,1,2});
-  this.authenticationHandler.setAuthentication(new MockJCSIFAuthentication(false));
+  this.authenticationHandler.setAuthentication(new MockJcifsAuthentication(false));
   try {
     this.authenticationHandler.authenticate(credentials);
     fail("An AuthenticationException should have been thrown");
