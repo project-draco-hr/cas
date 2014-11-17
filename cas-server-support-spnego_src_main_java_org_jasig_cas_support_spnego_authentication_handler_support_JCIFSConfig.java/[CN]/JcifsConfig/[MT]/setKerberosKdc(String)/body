@@ -1,4 +1,0 @@
-{
-  logger.debug("kerberosKdc is set to : {}",kerberosKdc);
-  System.setProperty(SYS_PROP_KERBEROS_KDC,kerberosKdc);
-}
