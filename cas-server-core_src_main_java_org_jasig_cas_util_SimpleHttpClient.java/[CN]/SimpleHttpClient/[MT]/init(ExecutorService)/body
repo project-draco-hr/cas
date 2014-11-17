@@ -12,6 +12,14 @@
     final RequestConfig requestConfig=RequestConfig.custom().setSocketTimeout(this.readTimeout).setConnectTimeout(this.connectionTimeout).setConnectionRequestTimeout(this.connectionTimeout).setStaleConnectionCheckEnabled(true).setCircularRedirectsAllowed(this.circularRedirectsAllowed).setRedirectsEnabled(this.redirectsEnabled).setAuthenticationEnabled(this.authenticationEnabled).build();
     final HttpClientBuilder builder=HttpClients.custom().setConnectionManager(connMgmr).setDefaultRequestConfig(requestConfig).setSSLSocketFactory(this.sslSocketFactory).setHostnameVerifier(this.hostnameVerifier).setRedirectStrategy(this.redirectionStrategy).setDefaultCredentialsProvider(this.credentialsProvider).setDefaultCookieStore(this.cookieStore).setConnectionReuseStrategy(this.connectionReuseStrategy).setConnectionBackoffStrategy(this.connectionBackoffStrategy).setServiceUnavailableRetryStrategy(this.serviceUnavailableRetryStrategy).setProxyAuthenticationStrategy(this.proxyAuthenticationStrategy).setDefaultHeaders(this.defaultHeaders).useSystemProperties();
     this.httpClient=builder.build();
+    final ExecutorService definedExecutorService;
+    if (providedExecutorService == null) {
+      definedExecutorService=new ThreadPoolExecutor(200,200,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>(1));
+    }
+ else {
+      definedExecutorService=providedExecutorService;
+    }
+    service=new FutureRequestExecutionService(this.httpClient,definedExecutorService);
   }
  catch (  final Exception e) {
     LOGGER.error(e.getMessage(),e);
