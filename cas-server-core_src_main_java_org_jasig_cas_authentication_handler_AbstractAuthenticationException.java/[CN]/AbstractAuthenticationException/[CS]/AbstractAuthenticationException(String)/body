@@ -1,3 +1,3 @@
 {
-  this(code,"");
+  this(code,"",DEFAULT_TYPE);
 }
