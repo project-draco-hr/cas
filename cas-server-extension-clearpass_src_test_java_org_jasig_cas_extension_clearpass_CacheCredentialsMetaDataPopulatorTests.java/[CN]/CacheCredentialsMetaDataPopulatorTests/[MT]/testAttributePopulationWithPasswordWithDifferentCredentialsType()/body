@@ -8,6 +8,8 @@
     }
   }
 ;
-  populator.populateAttributes(AuthenticationBuilder.newInstance(auth),c);
+  if (populator.supports(c)) {
+    populator.populateAttributes(AuthenticationBuilder.newInstance(auth),c);
+  }
   assertEquals(map.size(),0);
 }

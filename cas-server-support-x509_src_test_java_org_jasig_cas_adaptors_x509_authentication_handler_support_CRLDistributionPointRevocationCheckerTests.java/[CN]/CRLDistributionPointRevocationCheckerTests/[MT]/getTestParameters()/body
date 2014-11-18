@@ -1,4 +1,5 @@
 {
+  CacheManager.getInstance().removeAllCaches();
   final Collection<Object[]> params=new ArrayList<Object[]>();
   Cache cache;
   final ThresholdExpiredCRLRevocationPolicy defaultPolicy=new ThresholdExpiredCRLRevocationPolicy();
