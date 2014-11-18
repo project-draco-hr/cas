@@ -7,7 +7,7 @@
   request.addParameter("password","test");
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   final Credential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  WebUtils.putCredentialInRequestScope(context,c);
+  putCredentialInRequestScope(context,c);
   final MessageContext messageContext=mock(MessageContext.class);
   assertEquals("success",this.action.submit(context,c,messageContext).getId());
 }

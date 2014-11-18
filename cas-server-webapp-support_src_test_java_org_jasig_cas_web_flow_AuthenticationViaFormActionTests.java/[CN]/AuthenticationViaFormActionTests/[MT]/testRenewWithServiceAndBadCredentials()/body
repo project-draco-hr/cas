@@ -8,7 +8,7 @@
   request.addParameter("service","test");
   final Credential c2=TestUtils.getCredentialsWithDifferentUsernameAndPassword();
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
-  WebUtils.putCredentialInRequestScope(context,c2);
+  putCredentialInRequestScope(context,c2);
   context.getRequestScope().put("org.springframework.validation.BindException.credentials",new BindException(c2,"credentials"));
   final MessageContext messageContext=mock(MessageContext.class);
   assertEquals("error",this.action.submit(context,c2,messageContext).getId());
