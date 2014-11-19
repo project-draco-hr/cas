@@ -16,7 +16,7 @@
  catch (      final AuthenticationException e) {
         logger.info("Failed to authenticate service credential {}",serviceCredential);
       }
-catch (      final AbstractTicketException e) {
+catch (      final TicketException e) {
         logger.error("Failed to create proxy granting ticket for {}",serviceCredential,e);
       }
       if (proxyGrantingTicketId == null) {
@@ -46,7 +46,7 @@ catch (      final AbstractTicketException e) {
  catch (  final TicketValidationException e) {
     return generateErrorView(e.getCode(),e.getCode(),new Object[]{serviceTicketId,e.getOriginalService().getId(),service.getId()});
   }
-catch (  final AbstractTicketException te) {
+catch (  final TicketException te) {
     return generateErrorView(te.getCode(),te.getCode(),new Object[]{serviceTicketId});
   }
 catch (  final UnauthorizedProxyingException e) {

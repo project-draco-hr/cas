@@ -10,7 +10,7 @@
       eventId=VALID;
     }
   }
- catch (  final AbstractTicketException e) {
+ catch (  final TicketException e) {
     logger.trace("Could not retrieve ticket id {} from registry.",e);
   }
   return new Event(this,eventId);

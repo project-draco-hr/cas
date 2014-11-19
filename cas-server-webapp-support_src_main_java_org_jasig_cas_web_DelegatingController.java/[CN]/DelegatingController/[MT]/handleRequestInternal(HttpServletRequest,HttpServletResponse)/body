@@ -1,5 +1,5 @@
 {
-  for (  AbstractDelegateController delegate : delegates) {
+  for (  DelegateController delegate : delegates) {
     if (delegate.canHandle(request,response)) {
       return delegate.handleRequest(request,response);
     }

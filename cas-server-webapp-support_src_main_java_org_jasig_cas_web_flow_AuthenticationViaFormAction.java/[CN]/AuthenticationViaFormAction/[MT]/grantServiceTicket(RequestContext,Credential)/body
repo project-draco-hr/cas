@@ -14,7 +14,7 @@ catch (  final TicketCreationException e) {
     logger.warn("Invalid attempt to access service using renew=true with different credential. " + "Ending SSO session.");
     this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
   }
-catch (  final AbstractTicketException e) {
+catch (  final TicketException e) {
     return newEvent(ERROR,e);
   }
   return newEvent(ERROR);
