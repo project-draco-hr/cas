@@ -1,0 +1,31 @@
+{
+  final CloseableHttpClient httpClient=this.builder.getHttpClient();
+  Assert.notNull(httpClient);
+  CloseableHttpResponse response=null;
+  HttpEntity entity=null;
+  try {
+    final HttpGet request=new HttpGet(url.toURI());
+    response=httpClient.execute(request);
+    final int responseCode=response.getStatusLine().getStatusCode();
+    for (    final int acceptableCode : this.builder.getAcceptableCodes()) {
+      if (responseCode == acceptableCode) {
+        LOGGER.debug("Response code from server matched {}.",responseCode);
+        return true;
+      }
+    }
+    LOGGER.debug("Response code did not match any of the acceptable response codes. Code returned was {}",responseCode);
+    if (responseCode == HttpStatus.SC_INTERNAL_SERVER_ERROR) {
+      final String value=response.getStatusLine().getReasonPhrase();
+      LOGGER.error("There was an error contacting the endpoint: {}; The error was:\n{}",url.toExternalForm(),value);
+    }
+    entity=response.getEntity();
+  }
+ catch (  final Exception e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+ finally {
+    EntityUtils.consumeQuietly(entity);
+    IOUtils.closeQuietly(response);
+  }
+  return false;
+}

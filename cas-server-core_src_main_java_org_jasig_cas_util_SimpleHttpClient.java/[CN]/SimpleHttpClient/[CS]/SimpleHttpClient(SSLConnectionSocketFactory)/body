@@ -1,4 +1,0 @@
-{
-  this.sslSocketFactory=sslSocketFactory;
-  init(null);
-}
