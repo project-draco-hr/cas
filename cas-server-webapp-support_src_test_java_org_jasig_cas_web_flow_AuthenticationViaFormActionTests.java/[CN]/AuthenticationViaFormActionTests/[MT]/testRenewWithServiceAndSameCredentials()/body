@@ -1,12 +1,17 @@
 {
-  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final Credential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
+  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(c);
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockRequestContext context=new MockRequestContext();
-  context.getFlowScope().put("ticketGrantingTicketId",ticketGrantingTicket);
+  WebUtils.putTicketGrantingTicketInFlowScope(context,ticketGrantingTicket);
+  WebUtils.putLoginTicket(context,"LOGIN");
+  request.addParameter("lt","LOGIN");
   request.addParameter("renew","true");
   request.addParameter("service","test");
   request.addParameter("username","test");
   request.addParameter("password","test");
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   context.getFlowScope().put("service",TestUtils.getService("test"));
+  final MessageContext messageContext=mock(MessageContext.class);
+  assertEquals("warn",this.action.submit(context,c,messageContext).getId());
 }
