@@ -1,5 +1,5 @@
 {
-  final StringBuilder builder=new StringBuilder(parameters.size() * 40 + 100);
+  final StringBuilder builder=new StringBuilder(parameters.size() * CONST_REDIRECT_RESPONSE_MULTIPLIER + CONST_REDIRECT_RESPONSE_BUFFER);
   boolean isFirst=true;
   final String[] fragmentSplit=sanitizeUrl(url).split("#");
   builder.append(fragmentSplit[0]);
