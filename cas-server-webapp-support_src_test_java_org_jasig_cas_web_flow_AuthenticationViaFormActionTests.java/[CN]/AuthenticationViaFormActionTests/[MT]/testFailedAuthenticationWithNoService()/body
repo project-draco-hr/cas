@@ -4,6 +4,9 @@
   request.addParameter("username","test");
   request.addParameter("password","test2");
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
-  context.getRequestScope().put("credentials",TestUtils.getCredentialsWithDifferentUsernameAndPassword());
-  context.getRequestScope().put("org.springframework.validation.BindException.credentials",new BindException(TestUtils.getCredentialsWithDifferentUsernameAndPassword(),"credentials"));
+  final Credential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
+  putCredentialInRequestScope(context,c);
+  context.getRequestScope().put("org.springframework.validation.BindException.credentials",new BindException(c,"credentials"));
+  final MessageContext messageContext=mock(MessageContext.class);
+  assertEquals("error",this.action.submit(context,c,messageContext).getId());
 }

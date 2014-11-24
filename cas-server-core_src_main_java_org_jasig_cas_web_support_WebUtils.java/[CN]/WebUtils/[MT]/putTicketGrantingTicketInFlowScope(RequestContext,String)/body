@@ -1,4 +1,3 @@
 {
-  final String ticketValue=ticket != null ? ticket.getId() : null;
   putTicketGrantingTicketIntoMap(context.getFlowScope(),ticketValue);
 }
