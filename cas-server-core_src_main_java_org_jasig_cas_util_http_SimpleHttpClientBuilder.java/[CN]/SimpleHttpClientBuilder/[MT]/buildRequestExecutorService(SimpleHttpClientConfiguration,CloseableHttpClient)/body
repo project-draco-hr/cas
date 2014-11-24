@@ -1,0 +1,12 @@
+{
+  final ExecutorService configurationExecutorService=configuration.getExecutorService();
+  final ExecutorService definedExecutorService;
+  if (configurationExecutorService == null) {
+    final int threadsNumber=configuration.getThreadsNumber();
+    definedExecutorService=new ThreadPoolExecutor(threadsNumber,threadsNumber,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>(configuration.getQueueSize()));
+  }
+ else {
+    definedExecutorService=configurationExecutorService;
+  }
+  return new FutureRequestExecutionService(httpClient,definedExecutorService);
+}

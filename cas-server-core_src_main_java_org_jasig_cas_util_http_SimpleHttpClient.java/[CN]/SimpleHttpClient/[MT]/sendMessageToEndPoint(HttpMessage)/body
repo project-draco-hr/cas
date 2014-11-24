@@ -1,11 +1,11 @@
 {
-  Assert.notNull(this.builder.getHttpClient());
+  Assert.notNull(this.httpClient);
   try {
     final HttpPost request=new HttpPost(message.getUrl().toURI());
     request.addHeader("Content-Type",message.getContentType());
     final StringEntity entity=new StringEntity(message.getMessage(),ContentType.create(message.getContentType()));
     request.setEntity(entity);
-    final HttpRequestFutureTask<String> task=this.builder.getRequestExecutionService().execute(request,HttpClientContext.create(),new BasicResponseHandler());
+    final HttpRequestFutureTask<String> task=this.requestExecutorService.execute(request,HttpClientContext.create(),new BasicResponseHandler());
     if (message.isAsynchronous()) {
       return true;
     }

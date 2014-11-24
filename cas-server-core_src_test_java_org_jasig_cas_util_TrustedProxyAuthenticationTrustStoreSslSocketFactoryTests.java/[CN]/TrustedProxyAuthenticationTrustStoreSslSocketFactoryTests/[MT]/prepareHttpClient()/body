@@ -1,6 +1,6 @@
 {
   final FileTrustStoreSslSocketFactory sslFactory=new FileTrustStoreSslSocketFactory(TRUST_STORE.getFile(),TRUST_STORE_PSW);
-  final SimpleHttpClientBuilder builder=new SimpleHttpClientBuilder();
-  builder.setSslSocketFactory(sslFactory);
-  this.client=new SimpleHttpClient(builder);
+  final SimpleHttpClientConfiguration configuration=new SimpleHttpClientConfiguration();
+  configuration.setSslSocketFactory(sslFactory);
+  this.client=new SimpleHttpClient(configuration);
 }

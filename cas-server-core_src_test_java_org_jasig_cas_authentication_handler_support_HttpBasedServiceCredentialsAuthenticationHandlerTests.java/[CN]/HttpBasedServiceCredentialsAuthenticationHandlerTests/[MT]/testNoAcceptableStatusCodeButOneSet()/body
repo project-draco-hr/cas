@@ -1,7 +1,7 @@
 {
-  final SimpleHttpClientBuilder builder=new SimpleHttpClientBuilder();
-  builder.setAcceptableCodes(new int[]{900});
-  final SimpleHttpClient httpClient=new SimpleHttpClient(builder);
+  final SimpleHttpClientConfiguration configuration=new SimpleHttpClientConfiguration();
+  configuration.setAcceptableCodes(new int[]{900});
+  final SimpleHttpClient httpClient=new SimpleHttpClient(configuration);
   this.authenticationHandler.setHttpClient(httpClient);
   this.authenticationHandler.authenticate(TestUtils.getHttpBasedServiceCredentials("https://www.ja-sig.org"));
 }

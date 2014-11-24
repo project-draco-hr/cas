@@ -1,13 +1,12 @@
 {
-  final CloseableHttpClient httpClient=this.builder.getHttpClient();
-  Assert.notNull(httpClient);
+  Assert.notNull(this.httpClient);
   CloseableHttpResponse response=null;
   HttpEntity entity=null;
   try {
     final HttpGet request=new HttpGet(url.toURI());
-    response=httpClient.execute(request);
+    response=this.httpClient.execute(request);
     final int responseCode=response.getStatusLine().getStatusCode();
-    for (    final int acceptableCode : this.builder.getAcceptableCodes()) {
+    for (    final int acceptableCode : this.configuration.getAcceptableCodes()) {
       if (responseCode == acceptableCode) {
         LOGGER.debug("Response code from server matched {}.",responseCode);
         return true;
