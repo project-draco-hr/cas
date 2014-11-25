@@ -1,4 +1,4 @@
 {
-  this(message);
+  super(message);
   this.code=code;
 }

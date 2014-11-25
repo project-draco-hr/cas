@@ -1,0 +1,14 @@
+{
+  if (entry.hasExtensions()) {
+    try {
+      final int code=Integer.parseInt(new String(entry.getExtensionValue(CRL_REASON_OID),"ASCII"));
+      if (code < Reason.values().length) {
+        return Reason.fromCode(code);
+      }
+    }
+ catch (    final Exception e) {
+      LOGGER.trace("An exception occurred when resolving extension value: {}",e.getMessage());
+    }
+  }
+  return null;
+}
