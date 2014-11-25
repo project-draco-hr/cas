@@ -1,4 +1,4 @@
 {
   this.id=id;
-  this.attributes=Collections.unmodifiableMap(attributes);
+  this.attributes=attributes;
 }
