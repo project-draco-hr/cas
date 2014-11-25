@@ -1,0 +1,6 @@
+{
+  prepTests();
+  testSaveAttributeReleasePolicyAllowedAttrRulesWithCaching();
+  testSaveAttributeReleasePolicyAllowedAttrRulesAndFilter();
+  assertEquals(this.dao.load().size(),2);
+}
