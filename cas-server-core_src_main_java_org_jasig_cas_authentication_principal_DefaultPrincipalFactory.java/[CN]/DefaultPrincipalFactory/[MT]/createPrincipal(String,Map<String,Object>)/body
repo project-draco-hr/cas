@@ -1,4 +1,3 @@
 {
-  this.attributesRepository.setAttributes(id,attributes);
-  return new SimplePrincipal(id,this.attributesRepository);
+  return new SimplePrincipal(id,attributes);
 }

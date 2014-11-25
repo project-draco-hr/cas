@@ -1,3 +1,0 @@
-{
-  setAttributes(getClass().getName(),attributes);
-}

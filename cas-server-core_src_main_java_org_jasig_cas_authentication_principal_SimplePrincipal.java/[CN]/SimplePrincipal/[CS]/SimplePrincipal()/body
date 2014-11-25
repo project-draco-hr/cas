@@ -1,4 +1,4 @@
 {
   this.id=null;
-  this.attributeRepository=new DefaultPrincipalAttributesRepository();
+  this.attributes=new HashMap<>();
 }

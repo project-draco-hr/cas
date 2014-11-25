@@ -10,4 +10,5 @@
   when(person.getName()).thenReturn("uid");
   when(person.getAttributes()).thenReturn(attributes);
   when(dao.getPerson(any(String.class))).thenReturn(person);
+  this.principal=this.principalFactory.createPrincipal("uid",Collections.<String,Object>singletonMap("mail","final@example.com"));
 }

@@ -1,3 +1,3 @@
 {
-  return new SimplePrincipal(id,this.attributesRepository);
+  return new SimplePrincipal(id,Collections.EMPTY_MAP);
 }

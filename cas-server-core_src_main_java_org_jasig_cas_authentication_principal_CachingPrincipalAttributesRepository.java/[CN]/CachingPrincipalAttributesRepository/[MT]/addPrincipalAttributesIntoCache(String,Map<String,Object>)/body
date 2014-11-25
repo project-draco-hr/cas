@@ -1,0 +1,10 @@
+{
+synchronized (this.cache) {
+    if (attributes.isEmpty()) {
+      this.cache.remove(id);
+    }
+ else {
+      this.cache.put(id,attributes);
+    }
+  }
+}

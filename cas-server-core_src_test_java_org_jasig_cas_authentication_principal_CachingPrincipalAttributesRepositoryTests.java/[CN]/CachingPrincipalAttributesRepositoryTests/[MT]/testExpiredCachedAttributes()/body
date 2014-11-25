@@ -1,9 +1,11 @@
 {
+  assertEquals(this.principal.getAttributes().size(),1);
   final PrincipalAttributesRepository repository=new CachingPrincipalAttributesRepository(this.dao,TimeUnit.MILLISECONDS,100);
-  repository.setAttributes("uid",Collections.<String,Object>singletonMap("mail","final@example.com"));
-  assertEquals(repository.getAttributes("uid").size(),1);
-  assertTrue(repository.getAttributes("uid").containsKey("mail"));
+  assertEquals(repository.getAttributes(this.principal).size(),this.attributes.size());
+  assertTrue(repository.getAttributes(this.principal).containsKey("mail"));
   Thread.sleep(200);
-  assertTrue(repository.getAttributes("uid").containsKey("a2"));
+  this.attributes.remove("mail");
+  assertTrue(repository.getAttributes(this.principal).containsKey("a2"));
+  assertFalse(repository.getAttributes(this.principal).containsKey("mail"));
   ((Closeable)repository).close();
 }

@@ -1,7 +1,0 @@
-{
-  final PrincipalAttributesRepository repository=new CachingPrincipalAttributesRepository(this.dao);
-  repository.setAttributes("uid",Collections.<String,Object>singletonMap("mail","final@example.com"));
-  assertEquals(repository.getAttributes("uid").size(),1);
-  assertTrue(repository.getAttributes("uid").containsKey("mail"));
-  ((Closeable)repository).close();
-}
