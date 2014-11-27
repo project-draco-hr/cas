@@ -1,8 +1,8 @@
 {
   final ClassPathResource resource=new ClassPathResource("truststore.jks");
   final FileTrustStoreSslSocketFactory factory=new FileTrustStoreSslSocketFactory(resource.getFile(),"changeit");
-  final SimpleHttpClientConfiguration configuration=new SimpleHttpClientConfiguration();
-  configuration.setSslSocketFactory(factory);
-  final SimpleHttpClient client=new SimpleHttpClient(configuration);
+  final SimpleHttpClientFactoryBean clientFactory=new SimpleHttpClientFactoryBean();
+  clientFactory.setSslSocketFactory(factory);
+  final SimpleHttpClient client=clientFactory.getObject();
   assertTrue(client.isValidEndPoint("https://www.cacert.org"));
 }

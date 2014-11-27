@@ -1,5 +1,0 @@
-{
-  this.configuration=configuration;
-  this.httpClient=builder.buildHttpClient(this.configuration);
-  this.requestExecutorService=builder.buildRequestExecutorService(this.configuration,this.httpClient);
-}

@@ -1,0 +1,5 @@
+{
+  this.acceptableCodes=acceptableCodes;
+  this.httpClient=httpClient;
+  this.requestExecutorService=requestExecutorService;
+}

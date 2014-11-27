@@ -1,4 +1,4 @@
 {
-  final SimpleHttpClient httpClient=new SimpleHttpClient();
+  final SimpleHttpClient httpClient=new SimpleHttpClientFactoryBean().getObject();
   return httpClient;
 }

@@ -6,7 +6,7 @@
     final HttpGet request=new HttpGet(url.toURI());
     response=this.httpClient.execute(request);
     final int responseCode=response.getStatusLine().getStatusCode();
-    for (    final int acceptableCode : this.configuration.getAcceptableCodes()) {
+    for (    final int acceptableCode : this.acceptableCodes) {
       if (responseCode == acceptableCode) {
         LOGGER.debug("Response code from server matched {}.",responseCode);
         return true;
