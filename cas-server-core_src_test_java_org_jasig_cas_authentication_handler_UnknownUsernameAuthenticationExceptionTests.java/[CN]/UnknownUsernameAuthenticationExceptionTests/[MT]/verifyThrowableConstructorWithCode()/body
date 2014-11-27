@@ -1,5 +1,4 @@
 {
-  final String MESSAGE="GG";
   final RuntimeException r=new RuntimeException();
   final UnknownUsernameAuthenticationException e=new UnknownUsernameAuthenticationException(MESSAGE,r);
   assertEquals(MESSAGE,e.getCode());

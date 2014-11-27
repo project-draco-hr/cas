@@ -1,5 +1,5 @@
 {
-  assertFalse(TestUtils.getCredentialsWithDifferentUsernameAndPassword().equals(null));
+  assertNull(TestUtils.getCredentialsWithDifferentUsernameAndPassword());
   assertFalse(TestUtils.getCredentialsWithDifferentUsernameAndPassword().equals(TestUtils.getCredentialsWithSameUsernameAndPassword()));
   assertTrue(TestUtils.getCredentialsWithDifferentUsernameAndPassword().equals(TestUtils.getCredentialsWithDifferentUsernameAndPassword()));
 }

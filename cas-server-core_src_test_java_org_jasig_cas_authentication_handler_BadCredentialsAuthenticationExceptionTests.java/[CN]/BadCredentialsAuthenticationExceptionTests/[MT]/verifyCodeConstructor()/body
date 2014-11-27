@@ -1,5 +1,4 @@
 {
-  final String MESSAGE="GG";
   final BadCredentialsAuthenticationException e=new BadCredentialsAuthenticationException(MESSAGE);
   assertEquals(MESSAGE,e.getCode());
 }

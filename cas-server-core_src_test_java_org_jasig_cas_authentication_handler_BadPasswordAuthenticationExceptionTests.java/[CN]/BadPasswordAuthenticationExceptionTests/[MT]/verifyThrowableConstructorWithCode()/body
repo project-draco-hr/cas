@@ -1,5 +1,4 @@
 {
-  final String MESSAGE="GG";
   final RuntimeException r=new RuntimeException();
   final BadPasswordAuthenticationException e=new BadPasswordAuthenticationException(MESSAGE,r);
   assertEquals(MESSAGE,e.getCode());

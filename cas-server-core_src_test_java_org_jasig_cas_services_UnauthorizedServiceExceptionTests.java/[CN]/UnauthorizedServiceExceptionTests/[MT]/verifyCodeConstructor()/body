@@ -1,5 +1,4 @@
 {
-  final String MESSAGE="GG";
   final UnauthorizedServiceException e=new UnauthorizedServiceException(MESSAGE);
   assertEquals(MESSAGE,e.getMessage());
 }
