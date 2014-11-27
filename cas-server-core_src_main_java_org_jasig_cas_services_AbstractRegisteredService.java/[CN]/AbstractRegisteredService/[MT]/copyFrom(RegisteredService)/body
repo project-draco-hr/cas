@@ -11,4 +11,5 @@
   this.setUsernameAttributeProvider(source.getUsernameAttributeProvider());
   this.setLogoutType(source.getLogoutType());
   this.setAttributeReleasePolicy(source.getAttributeReleasePolicy());
+  this.setLogo(source.getLogo());
 }

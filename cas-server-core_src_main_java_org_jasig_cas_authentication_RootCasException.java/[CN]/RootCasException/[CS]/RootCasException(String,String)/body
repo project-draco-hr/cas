@@ -1,4 +1,4 @@
 {
   super(msg);
-  initException(code);
+  this.code=code;
 }
