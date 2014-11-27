@@ -9,7 +9,6 @@
   }
  catch (  final GeneralSecurityException e) {
     if (this.expected == null) {
-      e.printStackTrace();
       Assert.fail("Revocation check failed unexpectedly with exception: " + e);
     }
  else {
