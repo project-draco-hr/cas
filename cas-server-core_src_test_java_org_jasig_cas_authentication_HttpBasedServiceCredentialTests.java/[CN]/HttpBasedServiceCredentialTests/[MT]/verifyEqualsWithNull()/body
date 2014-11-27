@@ -1,4 +1,4 @@
 {
   final HttpBasedServiceCredential c=new HttpBasedServiceCredential(new URL("http://www.cnn.com"),TestUtils.getRegisteredService("https://some.app.edu"));
-  assertFalse(c.equals(null));
+  assertNull(c);
 }
