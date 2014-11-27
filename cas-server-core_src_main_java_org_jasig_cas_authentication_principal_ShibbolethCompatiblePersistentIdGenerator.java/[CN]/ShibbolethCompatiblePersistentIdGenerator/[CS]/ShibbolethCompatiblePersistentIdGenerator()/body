@@ -1,3 +1,3 @@
 {
-  this.salt=RandomStringUtils.randomAlphanumeric(16).getBytes(Charset.defaultCharset());
+  this.salt=RandomStringUtils.randomAlphanumeric(CONST_DEFAULT_SALT_COUNT).getBytes(Charset.defaultCharset());
 }

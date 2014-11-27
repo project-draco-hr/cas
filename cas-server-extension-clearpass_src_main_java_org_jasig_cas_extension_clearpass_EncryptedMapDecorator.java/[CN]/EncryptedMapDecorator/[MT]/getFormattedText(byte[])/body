@@ -1,8 +1,8 @@
 {
   final StringBuilder buf=new StringBuilder(bytes.length * 2);
   for (  byte b : bytes) {
-    buf.append(HEX_DIGITS[b >> 4 & 0x0f]);
-    buf.append(HEX_DIGITS[b & 0x0f]);
+    buf.append(HEX_DIGITS[b >> HEX_RIGHT_SHIFT_COEFFICIENT & HEX_HIGH_BITS_BITWISE_FLAG]);
+    buf.append(HEX_DIGITS[b & HEX_HIGH_BITS_BITWISE_FLAG]);
   }
   return buf.toString();
 }

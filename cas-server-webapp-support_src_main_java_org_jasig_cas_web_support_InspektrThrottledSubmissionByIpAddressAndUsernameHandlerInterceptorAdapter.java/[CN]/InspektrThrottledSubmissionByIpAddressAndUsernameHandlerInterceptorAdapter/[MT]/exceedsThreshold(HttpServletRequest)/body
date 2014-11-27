@@ -12,5 +12,5 @@
   if (failures.size() < 2) {
     return false;
   }
-  return 1000.0 / (failures.get(0).getTime() - failures.get(1).getTime()) > getThresholdRate();
+  return NUMBER_OF_MILLISECONDS_IN_SECOND / (failures.get(0).getTime() - failures.get(1).getTime()) > getThresholdRate();
 }

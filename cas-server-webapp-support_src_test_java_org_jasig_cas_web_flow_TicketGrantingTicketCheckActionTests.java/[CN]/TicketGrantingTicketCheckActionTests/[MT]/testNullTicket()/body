@@ -1,0 +1,6 @@
+{
+  final MockRequestContext ctx=new MockRequestContext();
+  final TicketGrantingTicketCheckAction action=new TicketGrantingTicketCheckAction(this.getCentralAuthenticationService());
+  final Event event=action.doExecute(ctx);
+  assertEquals(event.getId(),TicketGrantingTicketCheckAction.NOT_EXISTS);
+}

@@ -1,6 +1,6 @@
 {
   final Inflater inflater=new Inflater(true);
-  final byte[] xmlMessageBytes=new byte[10000];
+  final byte[] xmlMessageBytes=new byte[INFLATED_BYTE_ARRAY_LENGTH];
   final byte[] extendedBytes=new byte[bytes.length + 1];
   System.arraycopy(bytes,0,extendedBytes,0,bytes.length);
   extendedBytes[bytes.length]=0;

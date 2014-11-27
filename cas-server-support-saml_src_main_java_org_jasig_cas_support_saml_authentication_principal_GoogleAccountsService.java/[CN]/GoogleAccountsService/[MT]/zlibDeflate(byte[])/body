@@ -2,7 +2,7 @@
   final ByteArrayInputStream bais=new ByteArrayInputStream(bytes);
   final ByteArrayOutputStream baos=new ByteArrayOutputStream();
   final InflaterInputStream iis=new InflaterInputStream(bais);
-  final byte[] buf=new byte[1024];
+  final byte[] buf=new byte[DEFLATED_BYTE_ARRAY_BUFFER_LENGTH];
   try {
     int count=iis.read(buf);
     while (count != -1) {
