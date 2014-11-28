@@ -1,4 +1,4 @@
 {
-  this.salt=salt.getBytes();
+  this.salt=salt.getBytes(Charset.defaultCharset());
   LOGGER.warn("setSalt() is deprecated and will be removed. Use the constructor instead.");
 }

@@ -1,4 +1,4 @@
-Date date
+DateTime date
 List<CredentialMetaData> credentials
 Principal principal
 Map<String,Object> attributes
