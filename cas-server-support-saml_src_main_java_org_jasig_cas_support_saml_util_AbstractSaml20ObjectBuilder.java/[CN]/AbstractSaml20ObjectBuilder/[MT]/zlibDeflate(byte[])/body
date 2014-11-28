@@ -1,8 +1,9 @@
 {
+  final int bufferLength=1024;
   final ByteArrayInputStream bais=new ByteArrayInputStream(bytes);
   final ByteArrayOutputStream baos=new ByteArrayOutputStream();
   final InflaterInputStream iis=new InflaterInputStream(bais);
-  final byte[] buf=new byte[1024];
+  final byte[] buf=new byte[bufferLength];
   try {
     int count=iis.read(buf);
     while (count != -1) {

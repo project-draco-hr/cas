@@ -4,7 +4,7 @@
   if (!StringUtils.hasText(xmlRequest)) {
     return null;
   }
-  final Document document=Saml20ObjectBuilder.constructDocumentFromXml(xmlRequest);
+  final Document document=AbstractSaml20ObjectBuilder.constructDocumentFromXml(xmlRequest);
   if (document == null) {
     return null;
   }

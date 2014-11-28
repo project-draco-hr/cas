@@ -1,13 +1,13 @@
 {
   final DateTime currentDateTime=DateTime.parse(new ISOStandardDateFormat().getCurrentDateAndTime());
-  final DateTime NOT_BEFORE_ISSUE_INSTANT=DateTime.parse("2003-04-17T00:46:02Z");
+  final DateTime notBeforeIssueInstant=DateTime.parse("2003-04-17T00:46:02Z");
   final RegisteredService svc=this.servicesManager.findServiceBy(this);
   final String userId=svc.getUsernameAttributeProvider().resolveUsername(getPrincipal(),this);
   final org.opensaml.saml2.core.Response response=BUILDER.newResponse(BUILDER.generateSecureRandomId(),currentDateTime,getId(),this);
   response.setStatus(BUILDER.newStatus(StatusCode.SUCCESS_URI,null));
   final AuthnStatement authnStatement=BUILDER.newAuthnStatement(AuthnContext.PASSWORD_AUTHN_CTX,currentDateTime);
-  final Assertion assertion=BUILDER.newAssertion(authnStatement,"https://www.opensaml.org/IDP",NOT_BEFORE_ISSUE_INSTANT,BUILDER.generateSecureRandomId());
-  final Conditions conditions=BUILDER.newConditions(NOT_BEFORE_ISSUE_INSTANT,currentDateTime,getId());
+  final Assertion assertion=BUILDER.newAssertion(authnStatement,"https://www.opensaml.org/IDP",notBeforeIssueInstant,BUILDER.generateSecureRandomId());
+  final Conditions conditions=BUILDER.newConditions(notBeforeIssueInstant,currentDateTime,getId());
   assertion.setConditions(conditions);
   final Subject subject=BUILDER.newSubject(NameID.EMAIL,userId,getId(),currentDateTime,this.requestId);
   assertion.setSubject(subject);
