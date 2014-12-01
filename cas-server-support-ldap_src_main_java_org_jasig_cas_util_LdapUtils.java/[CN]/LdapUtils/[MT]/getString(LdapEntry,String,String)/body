@@ -1,10 +1,17 @@
 {
-  final LdapAttribute attr=ctx.getAttribute(attribute);
+  final LdapAttribute attr=entry.getAttribute(attribute);
   if (attr == null) {
     return nullValue;
   }
-  final String v=attr.getStringValue();
-  if (v != null) {
+  String v=null;
+  if (attr.isBinary()) {
+    final byte[] b=attr.getBinaryValue();
+    v=new String(b,Charset.forName("UTF-8"));
+  }
+ else {
+    v=attr.getStringValue();
+  }
+  if (StringUtils.isNotBlank(v)) {
     return v;
   }
   return nullValue;

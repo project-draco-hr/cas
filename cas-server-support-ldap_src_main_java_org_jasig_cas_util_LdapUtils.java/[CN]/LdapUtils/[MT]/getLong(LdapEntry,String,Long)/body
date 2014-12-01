@@ -1,5 +1,5 @@
 {
-  final String v=getString(ctx,attribute,nullValue.toString());
+  final String v=getString(entry,attribute,nullValue.toString());
   if (v != null && NumberUtils.isNumber(v)) {
     return Long.valueOf(v);
   }
