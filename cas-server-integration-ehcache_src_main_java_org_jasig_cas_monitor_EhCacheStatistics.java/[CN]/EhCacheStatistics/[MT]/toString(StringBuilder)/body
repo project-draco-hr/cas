@@ -1,6 +1,7 @@
 {
-  if (getName() != null) {
-    builder.append(getName()).append(':');
+  final String name=this.getName();
+  if (StringUtils.isNotBlank(name)) {
+    builder.append(name).append(':');
   }
   final int free=getPercentFree();
   final Formatter formatter=new Formatter(builder);

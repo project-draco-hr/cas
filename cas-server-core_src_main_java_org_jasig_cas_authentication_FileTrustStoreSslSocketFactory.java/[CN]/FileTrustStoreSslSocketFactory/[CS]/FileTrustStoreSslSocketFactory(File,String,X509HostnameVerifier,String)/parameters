@@ -1,4 +1,0 @@
-File trustStoreFile
-String trustStorePassword
-X509HostnameVerifier hostnameVerifier
-String trustStoreType

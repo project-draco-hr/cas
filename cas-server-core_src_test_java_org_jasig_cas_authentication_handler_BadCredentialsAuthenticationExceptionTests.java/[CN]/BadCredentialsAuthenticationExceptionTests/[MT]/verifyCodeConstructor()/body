@@ -1,0 +1,4 @@
+{
+  final BadCredentialsAuthenticationException e=new BadCredentialsAuthenticationException(MESSAGE);
+  assertEquals(MESSAGE,e.getCode());
+}
