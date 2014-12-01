@@ -1,5 +1,0 @@
-{
-  final String MESSAGE="GG";
-  final BadUsernameOrPasswordAuthenticationException e=new BadUsernameOrPasswordAuthenticationException(MESSAGE);
-  assertEquals(MESSAGE,e.getCode());
-}

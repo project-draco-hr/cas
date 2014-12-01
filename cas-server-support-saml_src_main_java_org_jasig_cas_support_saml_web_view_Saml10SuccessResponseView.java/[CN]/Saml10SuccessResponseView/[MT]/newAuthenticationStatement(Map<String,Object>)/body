@@ -1,9 +1,0 @@
-{
-  final Authentication authentication=getPrimaryAuthenticationFrom(model);
-  final String authenticationMethod=(String)authentication.getAttributes().get(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD);
-  final AuthenticationStatement authnStatement=newSamlObject(AuthenticationStatement.class);
-  authnStatement.setAuthenticationInstant(new DateTime(authentication.getAuthenticationDate()));
-  authnStatement.setAuthenticationMethod(authenticationMethod != null ? authenticationMethod : SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_UNSPECIFIED);
-  authnStatement.setSubject(newSubject(getPrincipal(model).getId()));
-  return authnStatement;
-}

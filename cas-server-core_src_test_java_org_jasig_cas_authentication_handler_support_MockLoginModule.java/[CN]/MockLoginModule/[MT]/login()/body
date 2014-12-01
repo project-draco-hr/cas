@@ -8,7 +8,7 @@
   }
   final String userName=((NameCallback)callbacks[0]).getName();
   final String password=new String(((PasswordCallback)callbacks[1]).getPassword());
-  if (userName.equals("test") && password.equals("test")) {
+  if ("test".equals(userName) && "test".equals(password)) {
     return true;
   }
   throw new LoginException();

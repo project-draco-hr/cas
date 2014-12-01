@@ -1,3 +1,0 @@
-{
-  super(getTrustedSslContext(trustStoreFile,trustStorePassword,trustStoreType,trustStrategy),hostnameVerifier);
-}

@@ -1,0 +1,9 @@
+{
+  try {
+    final SecureRandomIdentifierGenerator idGenerator=new SecureRandomIdentifierGenerator();
+    return idGenerator.generateIdentifier();
+  }
+ catch (  final Exception e) {
+    throw new IllegalStateException("Cannot create secure random ID generator for SAML message IDs.",e);
+  }
+}
