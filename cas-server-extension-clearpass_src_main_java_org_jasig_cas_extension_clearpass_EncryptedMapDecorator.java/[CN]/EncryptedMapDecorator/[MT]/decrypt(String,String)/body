@@ -4,14 +4,14 @@
   }
   try {
     final Cipher cipher=getCipherObject();
-    final byte[] ivCiphertext=decode(value.getBytes());
+    final byte[] ivCiphertext=decode(value.getBytes(Charset.defaultCharset()));
     final int ivSize=byte2int(Arrays.copyOfRange(ivCiphertext,0,INTEGER_LEN));
     final byte[] ivValue=Arrays.copyOfRange(ivCiphertext,INTEGER_LEN,(INTEGER_LEN + ivSize));
     final byte[] ciphertext=Arrays.copyOfRange(ivCiphertext,INTEGER_LEN + ivSize,ivCiphertext.length);
     final IvParameterSpec ivSpec=new IvParameterSpec(ivValue);
     cipher.init(Cipher.DECRYPT_MODE,this.key,ivSpec);
     final byte[] plaintext=cipher.doFinal(ciphertext);
-    return new String(plaintext);
+    return new String(plaintext,Charset.defaultCharset());
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);

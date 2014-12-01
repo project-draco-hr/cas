@@ -1,0 +1,4 @@
+{
+  final UnknownUsernameAuthenticationException e=new UnknownUsernameAuthenticationException(MESSAGE);
+  assertEquals(MESSAGE,e.getCode());
+}
