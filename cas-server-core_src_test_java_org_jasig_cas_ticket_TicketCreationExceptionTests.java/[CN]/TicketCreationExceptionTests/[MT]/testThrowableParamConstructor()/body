@@ -1,5 +1,0 @@
-{
-  final Throwable THROWABLE=new Throwable();
-  final TicketCreationException t=new TicketCreationException(THROWABLE);
-  assertEquals(THROWABLE,t.getCause());
-}

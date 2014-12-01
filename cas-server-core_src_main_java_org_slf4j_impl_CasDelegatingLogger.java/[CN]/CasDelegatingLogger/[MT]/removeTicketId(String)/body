@@ -1,5 +1,4 @@
 {
-  final StringBuilder builder=new StringBuilder(msg.length());
   String modifiedMessage=msg;
   final Matcher matcher=TICKET_ID_PATTERN.matcher(msg);
   while (matcher.find()) {

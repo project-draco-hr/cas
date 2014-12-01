@@ -1,4 +1,0 @@
-File trustStoreFile
-String trustStorePassword
-String trustStoreType
-TrustStrategy trustStrategy

@@ -1,18 +1,19 @@
 {
-  String samlResponse=TEMPLATE_SAML_RESPONSE;
-  final Calendar c=Calendar.getInstance();
-  c.setTime(new Date());
-  c.add(Calendar.YEAR,1);
+  final DateTime currentDateTime=DateTime.parse(new ISOStandardDateFormat().getCurrentDateAndTime());
+  final DateTime notBeforeIssueInstant=DateTime.parse("2003-04-17T00:46:02Z");
   final RegisteredService svc=this.servicesManager.findServiceBy(this);
   final String userId=svc.getUsernameAttributeProvider().resolveUsername(getPrincipal(),this);
-  final String currentDateTime=new ISOStandardDateFormat().getCurrentDateAndTime();
-  samlResponse=samlResponse.replace("<USERNAME_STRING>",userId);
-  samlResponse=samlResponse.replace("<RESPONSE_ID>",createID());
-  samlResponse=samlResponse.replace("<ISSUE_INSTANT>",currentDateTime);
-  samlResponse=samlResponse.replace("<AUTHN_INSTANT>",currentDateTime);
-  samlResponse=samlResponse.replaceAll("<NOT_ON_OR_AFTER>",currentDateTime);
-  samlResponse=samlResponse.replace("<ASSERTION_ID>",createID());
-  samlResponse=samlResponse.replaceAll("<ACS_URL>",getId());
-  samlResponse=samlResponse.replace("<REQUEST_ID>",this.requestId);
-  return samlResponse;
+  final org.opensaml.saml2.core.Response response=BUILDER.newResponse(BUILDER.generateSecureRandomId(),currentDateTime,getId(),this);
+  response.setStatus(BUILDER.newStatus(StatusCode.SUCCESS_URI,null));
+  final AuthnStatement authnStatement=BUILDER.newAuthnStatement(AuthnContext.PASSWORD_AUTHN_CTX,currentDateTime);
+  final Assertion assertion=BUILDER.newAssertion(authnStatement,"https://www.opensaml.org/IDP",notBeforeIssueInstant,BUILDER.generateSecureRandomId());
+  final Conditions conditions=BUILDER.newConditions(notBeforeIssueInstant,currentDateTime,getId());
+  assertion.setConditions(conditions);
+  final Subject subject=BUILDER.newSubject(NameID.EMAIL,userId,getId(),currentDateTime,this.requestId);
+  assertion.setSubject(subject);
+  response.getAssertions().add(assertion);
+  final StringWriter writer=new StringWriter();
+  BUILDER.marshalSamlXmlObject(response,writer);
+  logger.debug("Generated Google SAML response: {}",writer.toString());
+  return writer.toString();
 }

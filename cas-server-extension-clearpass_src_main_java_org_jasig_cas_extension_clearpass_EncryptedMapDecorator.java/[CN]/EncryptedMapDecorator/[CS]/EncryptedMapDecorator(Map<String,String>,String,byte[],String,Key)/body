@@ -1,10 +1,10 @@
 {
-  this.decoratedMap=decoratedMap;
-  this.key=secretKey;
-  this.salt=salt;
-  this.secretKeyAlgorithm=secretKeyAlgorithm;
-  this.messageDigest=MessageDigest.getInstance(hashAlgorithm);
   try {
+    this.decoratedMap=decoratedMap;
+    this.key=secretKey;
+    this.salt=salt;
+    this.secretKeyAlgorithm=secretKeyAlgorithm;
+    this.messageDigest=MessageDigest.getInstance(hashAlgorithm);
     this.ivSize=getIvSize();
   }
  catch (  final Exception e) {

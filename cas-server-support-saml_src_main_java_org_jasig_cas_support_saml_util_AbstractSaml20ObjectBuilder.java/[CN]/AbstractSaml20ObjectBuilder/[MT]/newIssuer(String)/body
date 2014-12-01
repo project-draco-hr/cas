@@ -1,0 +1,5 @@
+{
+  final Issuer issuer=newSamlObject(Issuer.class);
+  issuer.setValue(issuerValue);
+  return issuer;
+}

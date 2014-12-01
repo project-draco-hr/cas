@@ -1,7 +1,0 @@
-{
-  final String MESSAGE="GG";
-  final RuntimeException r=new RuntimeException();
-  final UnauthorizedServiceException e=new UnauthorizedServiceException(MESSAGE,r);
-  assertEquals(MESSAGE,e.getMessage());
-  assertEquals(r,e.getCause());
-}
