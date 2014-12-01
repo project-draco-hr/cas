@@ -1,0 +1,9 @@
+{
+  final String requestId=kryo.readObject(input,String.class);
+  try {
+    return (SamlService)CONSTRUCTOR.newInstance(id,originalUrl,artifactId,new SimpleHttpClient(),requestId);
+  }
+ catch (  final Exception e) {
+    throw new IllegalStateException("Error creating SamlService",e);
+  }
+}

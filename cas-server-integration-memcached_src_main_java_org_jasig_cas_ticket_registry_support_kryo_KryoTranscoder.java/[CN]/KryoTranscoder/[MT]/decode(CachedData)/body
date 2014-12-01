@@ -1,3 +1,7 @@
 {
-  return kryo.readClassAndObject(ByteBuffer.wrap(d.getData()));
+  final byte[] bytes=d.getData();
+  final Input input=new Input(new ByteArrayInputStream(bytes));
+  final Object obj=kryo.readClassAndObject(input);
+  input.close();
+  return obj;
 }
