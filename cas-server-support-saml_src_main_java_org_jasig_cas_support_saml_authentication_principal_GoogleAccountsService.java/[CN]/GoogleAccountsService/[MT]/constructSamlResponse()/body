@@ -13,6 +13,5 @@
   samlResponse=samlResponse.replaceAll("<NOT_ON_OR_AFTER>",currentDateTime);
   samlResponse=samlResponse.replace("<ASSERTION_ID>",createID());
   samlResponse=samlResponse.replaceAll("<ACS_URL>",getId());
-  samlResponse=samlResponse.replace("<REQUEST_ID>",this.requestId);
-  return samlResponse;
+  return samlResponse.replace("<REQUEST_ID>",this.requestId);
 }

@@ -30,9 +30,9 @@
     jsonGenerator.writeStringField(ID,principal.getId());
     jsonGenerator.writeArrayFieldStart(ATTRIBUTES);
     final Map<String,Object> attributes=principal.getAttributes();
-    for (    final String key : attributes.keySet()) {
+    for (    final Map.Entry<String,Object> entry : attributes.entrySet()) {
       jsonGenerator.writeStartObject();
-      jsonGenerator.writeObjectField(key,attributes.get(key));
+      jsonGenerator.writeObjectField(entry.getKey(),entry.getValue());
       jsonGenerator.writeEndObject();
     }
     jsonGenerator.writeEndArray();

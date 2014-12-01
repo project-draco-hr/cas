@@ -1,8 +1,6 @@
 {
   Assert.notNull(credentials,"Credential cannot be null");
   this.credentials.clear();
-  for (  final CredentialMetaData c : credentials) {
-    this.credentials.add(c);
-  }
+  this.credentials.addAll(credentials);
   return this;
 }

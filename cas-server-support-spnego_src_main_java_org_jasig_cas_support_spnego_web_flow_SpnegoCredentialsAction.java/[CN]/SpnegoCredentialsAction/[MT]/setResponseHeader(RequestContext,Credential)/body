@@ -6,9 +6,7 @@
   final SpnegoCredential spnegoCredentials=(SpnegoCredential)credential;
   final byte[] nextToken=spnegoCredentials.getNextToken();
   if (nextToken != null) {
-    if (logger.isDebugEnabled()) {
-      logger.debug("Obtained output token: " + new String(nextToken));
-    }
+    logger.debug("Obtained output token: {}",new String(nextToken,Charset.defaultCharset()));
     response.setHeader(SpnegoConstants.HEADER_AUTHENTICATE,(this.ntlm ? SpnegoConstants.NTLM : SpnegoConstants.NEGOTIATE) + " " + Base64.encode(nextToken));
   }
  else {
