@@ -1,4 +1,4 @@
 {
-  this.authenticationHandler.setHttpClient(new SimpleHttpClient());
+  this.authenticationHandler.setHttpClient(new SimpleHttpClientFactoryBean().getObject());
   assertNotNull(this.authenticationHandler.authenticate(TestUtils.getHttpBasedServiceCredentials("http://www.google.com")));
 }
