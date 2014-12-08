@@ -7,10 +7,10 @@ synchronized (ticket) {
   ticket.markTicketExpired();
   final List<LogoutRequest> logoutRequests=new ArrayList<LogoutRequest>();
   if (!this.singleLogoutCallbacksDisabled) {
-    for (    final String ticketId : services.keySet()) {
-      final Service service=services.get(ticketId);
+    for (    final Map.Entry<String,Service> entry : services.entrySet()) {
+      final Service service=entry.getValue();
       if (service instanceof SingleLogoutService) {
-        final LogoutRequest logoutRequest=handleLogoutForSloService((SingleLogoutService)service,ticketId);
+        final LogoutRequest logoutRequest=handleLogoutForSloService((SingleLogoutService)service,entry.getKey());
         if (logoutRequest != null) {
           logoutRequests.add(logoutRequest);
         }
