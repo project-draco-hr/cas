@@ -1,0 +1,9 @@
+{
+  try {
+    return source.read();
+  }
+ catch (  final IOException e) {
+    logger.warn("Could not consume the byte array source",e);
+    return null;
+  }
+}
