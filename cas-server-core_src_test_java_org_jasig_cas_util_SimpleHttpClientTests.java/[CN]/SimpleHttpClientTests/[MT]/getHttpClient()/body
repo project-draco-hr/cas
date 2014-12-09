@@ -1,4 +1,0 @@
-{
-  final SimpleHttpClient httpClient=new SimpleHttpClient();
-  return httpClient;
-}
