@@ -1,9 +1,10 @@
 {
   try {
-    final byte[] xmlBytes=xml.getBytes("UTF-8");
+    final byte[] xmlBytes=data.getBytes(UTF8_ENCODING);
     return Base64.decodeBase64(xmlBytes);
   }
  catch (  final Exception e) {
+    LOGGER.error("Base64 decoding failed",e);
     return null;
   }
 }

@@ -10,9 +10,10 @@
       baos.write(buf,0,count);
       count=iis.read(buf);
     }
-    return new String(baos.toByteArray());
+    return new String(baos.toByteArray(),Charset.forName(UTF8_ENCODING));
   }
  catch (  final Exception e) {
+    LOGGER.error("An error has occurred while deflating the array",e);
     return null;
   }
  finally {
