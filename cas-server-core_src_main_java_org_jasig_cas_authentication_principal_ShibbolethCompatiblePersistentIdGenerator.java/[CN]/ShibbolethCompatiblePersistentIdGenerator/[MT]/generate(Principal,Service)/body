@@ -5,7 +5,8 @@
     md.update(CONST_SEPARATOR);
     md.update(principal.getId().getBytes(Charset.defaultCharset()));
     md.update(CONST_SEPARATOR);
-    return Base64.encodeBase64String(md.digest(this.salt)).replaceAll(System.getProperty("line.separator"),"");
+    final String result=CompressionUtils.encodeBase64(md.digest(this.salt));
+    return result.replaceAll(System.getProperty("line.separator"),"");
   }
  catch (  final NoSuchAlgorithmException e) {
     throw new RuntimeException(e);
