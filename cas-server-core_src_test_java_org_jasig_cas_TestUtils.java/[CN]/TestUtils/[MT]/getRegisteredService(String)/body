@@ -6,6 +6,6 @@
   s.setDescription("Registered service description");
   s.setEnabled(true);
   s.setProxyPolicy(new RegexMatchingRegisteredServiceProxyPolicy("^https?://.+"));
-  s.setId(new Random().nextInt(32));
+  s.setId(new SecureRandom().nextInt(32));
   return s;
 }
