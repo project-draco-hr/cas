@@ -1,3 +1,4 @@
 {
-  return deflate(bytes);
+  final String data=new String(bytes,Charset.forName(UTF8_ENCODING));
+  return deflate(data);
 }

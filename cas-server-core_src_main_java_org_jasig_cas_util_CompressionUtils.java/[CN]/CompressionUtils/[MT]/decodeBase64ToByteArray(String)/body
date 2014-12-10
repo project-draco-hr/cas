@@ -1,7 +1,7 @@
 {
   try {
     final byte[] bytes=data.getBytes(UTF8_ENCODING);
-    return decodeBase64(bytes);
+    return decodeBase64ToByteArray(bytes);
   }
  catch (  final Exception e) {
     LOGGER.error("Base64 decoding failed",e);
