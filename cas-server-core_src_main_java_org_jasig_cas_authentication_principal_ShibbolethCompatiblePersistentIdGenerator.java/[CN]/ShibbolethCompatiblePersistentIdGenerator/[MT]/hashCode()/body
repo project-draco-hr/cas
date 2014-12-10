@@ -1,3 +1,3 @@
 {
-  return new HashCodeBuilder().append(salt).toHashCode();
+  return new HashCodeBuilder().append(this.salt).toHashCode();
 }
