@@ -1,6 +1,6 @@
 {
   final Cookie cookie=new Cookie(COOKIE_TGC_ID,"test");
-  this.request.setCookies(new Cookie[]{cookie});
+  this.request.setCookies(cookie);
   final LogoutRequest logoutRequest=new LogoutRequest("",null);
   WebUtils.putLogoutRequests(this.requestContext,Arrays.asList(logoutRequest));
   final Event event=this.logoutAction.doExecute(this.requestContext);
