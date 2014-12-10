@@ -1,3 +1,3 @@
 {
-  return this.certificates;
+  return ImmutableList.copyOf(this.certificates).toArray(new X509Certificate[this.certificates.length]);
 }
