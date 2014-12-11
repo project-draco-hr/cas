@@ -1,6 +1,6 @@
 {
   final Cookie cookie=new Cookie(COOKIE_TGC_ID,"test");
-  this.request.setCookies(new Cookie[]{cookie});
+  this.request.setCookies(cookie);
   final Event event=this.logoutAction.doExecute(this.requestContext);
   assertEquals(LogoutAction.FINISH_EVENT,event.getId());
 }
