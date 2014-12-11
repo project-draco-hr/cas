@@ -3,7 +3,7 @@
   final ServiceTicket ticket=mock(ServiceTicket.class,withSettings().serializable());
   when(ticket.getId()).thenReturn(id);
   registry.addTicket(ticket);
-  Assert.assertNotNull((ServiceTicket)registry.getTicket(id));
+  Assert.assertNotNull(registry.getTicket(id,ServiceTicket.class));
   Thread.sleep(2100);
-  Assert.assertNull((ServiceTicket)registry.getTicket(id));
+  Assert.assertNull(registry.getTicket(id,ServiceTicket.class));
 }

@@ -1,6 +1,6 @@
 {
   final RequestContext requestContext=RequestContextHolder.getRequestContext();
-  final WebApplicationService service=(WebApplicationService)WebUtils.getService(requestContext);
+  final WebApplicationService service=WebUtils.getService(requestContext);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   final String themeId=service != null && registeredService != null && registeredService.isEnabled() && StringUtils.hasText(registeredService.getTheme()) ? registeredService.getTheme() : defaultThemeId;
   final String themePrefix=String.format("%s/%s/ui/",pathPrefix,themeId);
