@@ -5,4 +5,6 @@
   serializerMap.put(MockTicketGrantingTicket.class,new FieldSerializer(transcoder.getKryo(),MockTicketGrantingTicket.class));
   transcoder.setSerializerMap(serializerMap);
   transcoder.initialize();
+  this.principalAttributes=new HashMap<String,Object>();
+  this.principalAttributes.put(NICKNAME_KEY,NICKNAME_VALUE);
 }
