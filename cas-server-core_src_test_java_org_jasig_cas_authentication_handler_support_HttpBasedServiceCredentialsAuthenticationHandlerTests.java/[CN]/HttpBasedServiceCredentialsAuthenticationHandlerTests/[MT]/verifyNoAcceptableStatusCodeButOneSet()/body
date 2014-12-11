@@ -1,5 +1,7 @@
 {
-  final SimpleHttpClient httpClient=new SimpleHttpClient(new int[]{900});
+  final SimpleHttpClientFactoryBean clientFactory=new SimpleHttpClientFactoryBean();
+  clientFactory.setAcceptableCodes(new int[]{900});
+  final HttpClient httpClient=clientFactory.getObject();
   this.authenticationHandler.setHttpClient(httpClient);
   this.authenticationHandler.authenticate(TestUtils.getHttpBasedServiceCredentials("https://www.ja-sig.org"));
 }

@@ -1,0 +1,4 @@
+{
+  this.objectMapper=initializeObjectMapper();
+  this.prettyPrinter=prettyPrinter;
+}

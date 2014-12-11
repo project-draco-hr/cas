@@ -1,0 +1,3 @@
+{
+  this.acceptableCodes=Ints.asList(acceptableCodes);
+}

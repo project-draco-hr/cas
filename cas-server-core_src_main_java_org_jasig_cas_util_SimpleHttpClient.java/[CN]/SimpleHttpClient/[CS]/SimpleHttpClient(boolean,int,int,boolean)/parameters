@@ -1,4 +1,0 @@
-boolean redirectsEnabled
-int readTimeout
-int connectionTimeout
-boolean circularRedirectsAllowed

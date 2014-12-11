@@ -1,0 +1,17 @@
+{
+  final SecureRandom generator=new SecureRandom();
+  final char[] charMappings={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p'};
+  final int charsLength=40;
+  final int generatorBytesLength=20;
+  final int shiftLength=4;
+  final byte[] bytes=new byte[generatorBytesLength];
+  generator.nextBytes(bytes);
+  final char[] chars=new char[charsLength];
+  for (int i=0; i < bytes.length; i++) {
+    final int left=bytes[i] >> shiftLength & HEX_HIGH_BITS_BITWISE_FLAG;
+    final int right=bytes[i] & HEX_HIGH_BITS_BITWISE_FLAG;
+    chars[i * 2]=charMappings[left];
+    chars[i * 2 + 1]=charMappings[right];
+  }
+  return String.valueOf(chars);
+}

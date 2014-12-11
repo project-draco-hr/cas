@@ -1,9 +1,0 @@
-{
-  final Document doc=constructDocumentFromXmlString(samlResponse);
-  if (doc != null) {
-    final Element signedElement=signSamlElement(doc.getRootElement(),privateKey,publicKey);
-    doc.setRootElement((Element)signedElement.detach());
-    return new XMLOutputter().outputString(doc);
-  }
-  throw new RuntimeException("Error signing SAML Response: Null document");
-}

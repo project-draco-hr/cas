@@ -1,0 +1,7 @@
+{
+  final SAMLObjectBuilder<T> builder=(SAMLObjectBuilder<T>)Configuration.getBuilderFactory().getBuilder(qName);
+  if (builder == null) {
+    throw new IllegalStateException("No SAMLObjectBuilder registered for class " + objectType.getName());
+  }
+  return objectType.cast(builder.buildObject());
+}

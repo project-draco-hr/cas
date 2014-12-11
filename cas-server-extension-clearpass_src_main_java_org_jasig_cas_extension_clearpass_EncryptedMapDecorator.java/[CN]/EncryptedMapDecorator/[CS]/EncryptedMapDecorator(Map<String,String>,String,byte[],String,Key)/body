@@ -2,7 +2,7 @@
   try {
     this.decoratedMap=decoratedMap;
     this.key=secretKey;
-    this.salt=salt;
+    this.salt=ByteSource.wrap(salt);
     this.secretKeyAlgorithm=secretKeyAlgorithm;
     this.messageDigest=MessageDigest.getInstance(hashAlgorithm);
     this.ivSize=getIvSize();

@@ -1,0 +1,12 @@
+{
+  final byte[] token=consumeByteSourceOrNull(tokenSource);
+  if (token == null || token.length < NTLM_TOKEN_MAX_LENGTH) {
+    return false;
+  }
+  for (int i=0; i < NTLM_TOKEN_MAX_LENGTH; i++) {
+    if (SpnegoConstants.NTLMSSP_SIGNATURE[i] != token[i]) {
+      return false;
+    }
+  }
+  return true;
+}
