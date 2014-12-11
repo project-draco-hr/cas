@@ -11,4 +11,5 @@
   if (this.resources.isEmpty()) {
     throw new IllegalArgumentException("Must provide at least one non-null CRL resource.");
   }
+  this.crlRevocationChecker=crlRevocationChecker;
 }
