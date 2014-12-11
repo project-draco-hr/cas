@@ -4,7 +4,7 @@
     lock=entityManager.find(Lock.class,applicationId,LockModeType.PESSIMISTIC_WRITE);
   }
  catch (  final PersistenceException e) {
-    logger.debug("{} failed querying for {} lock.",new Object[]{uniqueId,applicationId,e});
+    logger.debug("{} failed querying for {} lock.",uniqueId,applicationId,e);
     return false;
   }
   boolean result=false;
