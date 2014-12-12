@@ -2,9 +2,11 @@
 synchronized (this.cache) {
     if (attributes.isEmpty()) {
       this.cache.remove(id);
+      LOGGER.debug("No attributes are provided, so removed principal id [{}] from the cache",id);
     }
  else {
       this.cache.put(id,attributes);
+      LOGGER.debug("Cached [{}] attributes for the principal id [{}]",attributes.size(),id);
     }
   }
 }
