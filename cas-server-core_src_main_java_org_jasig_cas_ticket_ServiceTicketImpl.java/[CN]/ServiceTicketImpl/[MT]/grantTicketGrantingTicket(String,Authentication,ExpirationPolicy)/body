@@ -5,5 +5,5 @@ synchronized (this) {
     }
     this.grantedTicketAlready=Boolean.TRUE;
   }
-  return new TicketGrantingTicketImpl(id,(TicketGrantingTicketImpl)this.getGrantingTicket(),authentication,expirationPolicy);
+  return new TicketGrantingTicketImpl(id,this.getGrantingTicket(),authentication,expirationPolicy);
 }
