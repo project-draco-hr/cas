@@ -1,18 +1,18 @@
 {
-  final int bufferLength=1024;
   final ByteArrayInputStream bais=new ByteArrayInputStream(bytes);
   final ByteArrayOutputStream baos=new ByteArrayOutputStream();
   final InflaterInputStream iis=new InflaterInputStream(bais);
-  final byte[] buf=new byte[bufferLength];
+  final byte[] buf=new byte[bytes.length];
   try {
     int count=iis.read(buf);
     while (count != -1) {
       baos.write(buf,0,count);
       count=iis.read(buf);
     }
-    return new String(baos.toByteArray());
+    return new String(baos.toByteArray(),Charset.forName(UTF8_ENCODING));
   }
  catch (  final Exception e) {
+    LOGGER.error("Base64 decoding failed",e);
     return null;
   }
  finally {
