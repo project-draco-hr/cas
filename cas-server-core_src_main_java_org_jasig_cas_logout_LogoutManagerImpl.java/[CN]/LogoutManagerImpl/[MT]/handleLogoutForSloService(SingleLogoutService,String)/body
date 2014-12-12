@@ -1,7 +1,6 @@
 {
-  final SingleLogoutService singleLogoutService=(SingleLogoutService)service;
   if (!singleLogoutService.isLoggedOutAlready()) {
-    final RegisteredService registeredService=servicesManager.findServiceBy(service);
+    final RegisteredService registeredService=servicesManager.findServiceBy(singleLogoutService);
     if (serviceSupportsSingleLogout(registeredService)) {
       final LogoutRequest logoutRequest=new LogoutRequest(ticketId,singleLogoutService);
       final LogoutType type=registeredService.getLogoutType() == null ? LogoutType.BACK_CHANNEL : registeredService.getLogoutType();

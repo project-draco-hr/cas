@@ -1,3 +1,3 @@
 {
-  return (T)this.context.getBean(id,clazz);
+  return this.context.getBean(id,clazz);
 }
