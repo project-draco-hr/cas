@@ -21,7 +21,7 @@
     }
     if (StringUtils.isNotBlank(id)) {
       clientCredentials.setUserProfile(userProfile);
-      return new HandlerResult(this,new BasicCredentialMetaData(credential),new SimplePrincipal(id,userProfile.getAttributes()));
+      return new HandlerResult(this,new BasicCredentialMetaData(credential),this.principalFactory.createPrincipal(id,userProfile.getAttributes()));
     }
   }
   throw new FailedLoginException("Provider did not produce profile for " + clientCredentials);

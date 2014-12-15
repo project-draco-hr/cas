@@ -1,6 +1,6 @@
 {
   final SpnegoCredential spnegoCredential=(SpnegoCredential)credential;
-  Principal principal;
+  java.security.Principal principal;
   byte[] nextToken;
   try {
 synchronized (this) {
@@ -24,11 +24,11 @@ synchronized (this) {
   if (principal != null) {
     if (spnegoCredential.isNtlm()) {
       logger.debug("NTLM Credential is valid for user [{}]",principal.getName());
-      spnegoCredential.setPrincipal(getSimplePrincipal(principal.getName(),true));
+      spnegoCredential.setPrincipal(getPrincipal(principal.getName(),true));
       success=this.isNTLMallowed;
     }
     logger.debug("Kerberos Credential is valid for user [{}]",principal.getName());
-    spnegoCredential.setPrincipal(getSimplePrincipal(principal.getName(),false));
+    spnegoCredential.setPrincipal(getPrincipal(principal.getName(),false));
     success=true;
   }
   if (!success) {
