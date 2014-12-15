@@ -1,6 +1,5 @@
 {
-  BufferedReader bufferedReader=null;
-  try {
+  try (BufferedReader bufferedReader=null){
     bufferedReader=new BufferedReader(new InputStreamReader(this.fileName.getInputStream(),Charset.defaultCharset()));
     String line=bufferedReader.readLine();
     while (line != null) {
@@ -13,8 +12,5 @@
       line=bufferedReader.readLine();
     }
   }
-  finally {
-    IOUtils.closeQuietly(bufferedReader);
-  }
-  return null;
+   return null;
 }

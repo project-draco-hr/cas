@@ -3,8 +3,7 @@
     LOGGER.debug("Service id not set. Calculating id based on system time...");
     ((AbstractRegisteredService)service).setId(System.nanoTime());
   }
-  LockedOutputStream out=null;
-  try {
+  try (LockedOutputStream out=null){
     final File f=makeFile(service);
     out=new LockedOutputStream(new FileOutputStream(f));
     this.registeredServiceJsonSerializer.toJson(out,service);
@@ -13,9 +12,6 @@
   }
  catch (  final IOException e) {
     throw new RuntimeException("IO error opening file stream.",e);
-  }
- finally {
-    IOUtils.closeQuietly(out);
   }
   return findServiceById(service.getId());
 }

@@ -40,7 +40,6 @@
     return null;
   }
   finally {
-    IOUtils.closeQuietly(jsonGenerator);
     response.flushBuffer();
   }
 }
