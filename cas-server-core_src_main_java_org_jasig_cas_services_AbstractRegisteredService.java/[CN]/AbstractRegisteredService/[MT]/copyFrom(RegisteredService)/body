@@ -2,14 +2,13 @@
   this.setId(source.getId());
   this.setProxyPolicy(source.getProxyPolicy());
   this.setDescription(source.getDescription());
-  this.setEnabled(source.isEnabled());
   this.setName(source.getName());
   this.setServiceId(source.getServiceId());
-  this.setSsoEnabled(source.isSsoEnabled());
   this.setTheme(source.getTheme());
   this.setEvaluationOrder(source.getEvaluationOrder());
   this.setUsernameAttributeProvider(source.getUsernameAttributeProvider());
   this.setLogoutType(source.getLogoutType());
   this.setAttributeReleasePolicy(source.getAttributeReleasePolicy());
+  this.setAuthorizationStrategy(source.getAuthorizationStrategy());
   this.setLogo(source.getLogo());
 }
