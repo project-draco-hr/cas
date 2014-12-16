@@ -1,5 +1,5 @@
 {
-  this.loggerMap=new ConcurrentHashMap<String,CasDelegatingLogger>();
+  this.loggerMap=new ConcurrentHashMap<>();
   final Set<URL> set=ClasspathHelper.forPackage(PACKAGE_TO_SCAN);
   final Reflections reflections=new Reflections(new ConfigurationBuilder().addUrls(set).setScanners(new SubTypesScanner()));
   final Set<Class<? extends ILoggerFactory>> subTypesOf=reflections.getSubTypesOf(ILoggerFactory.class);

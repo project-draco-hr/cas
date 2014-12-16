@@ -1,3 +1,3 @@
 {
-  this.cache=new ConcurrentHashMap<String,Ticket>();
+  this.cache=new ConcurrentHashMap<>();
 }
