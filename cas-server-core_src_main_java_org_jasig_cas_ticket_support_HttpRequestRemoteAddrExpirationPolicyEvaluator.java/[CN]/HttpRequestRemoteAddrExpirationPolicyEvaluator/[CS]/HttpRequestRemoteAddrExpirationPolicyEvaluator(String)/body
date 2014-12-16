@@ -1,3 +1,0 @@
-{
-  this.ipAddressPattern=Pattern.compile(ipPattern,Pattern.CASE_INSENSITIVE);
-}

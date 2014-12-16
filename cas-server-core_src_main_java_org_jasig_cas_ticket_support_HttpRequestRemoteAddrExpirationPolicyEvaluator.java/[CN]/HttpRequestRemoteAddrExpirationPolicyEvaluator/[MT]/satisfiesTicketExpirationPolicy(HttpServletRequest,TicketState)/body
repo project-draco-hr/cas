@@ -1,5 +1,0 @@
-{
-  final String currentIp=request.getRemoteAddr();
-  logger.debug("Remote address [{}] received to compare against [{}]",this.ipAddressPattern.pattern());
-  return this.ipAddressPattern.matcher(currentIp).find();
-}

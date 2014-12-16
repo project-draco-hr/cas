@@ -1,5 +1,0 @@
-{
-  final HttpServletRequest request=mock(HttpServletRequest.class);
-  final ServletRequestAttributes attributes=new ServletRequestAttributes(request);
-  RequestContextHolder.setRequestAttributes(attributes);
-}
