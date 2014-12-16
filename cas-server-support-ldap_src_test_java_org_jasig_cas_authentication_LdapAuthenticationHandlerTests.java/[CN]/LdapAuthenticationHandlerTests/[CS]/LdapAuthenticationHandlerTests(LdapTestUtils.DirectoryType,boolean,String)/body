@@ -1,5 +1,0 @@
-{
-  this.directoryType=directoryType;
-  this.supportsNotFound=supportsNotFound;
-  this.contextPaths=contextPaths;
-}

@@ -4,7 +4,7 @@
   }
   Connection connection=null;
   try {
-    connection=this.connectionFactory.getConnection();
+    connection=getConnection();
     final AddOperation operation=new AddOperation(connection);
     final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.searchRequest.getBaseDn(),rs);
     operation.execute(new AddRequest(entry.getDn(),entry.getAttributes()));

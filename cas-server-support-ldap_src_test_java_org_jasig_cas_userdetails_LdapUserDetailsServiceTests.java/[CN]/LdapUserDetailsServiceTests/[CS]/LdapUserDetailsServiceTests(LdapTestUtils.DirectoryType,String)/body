@@ -1,4 +1,0 @@
-{
-  this.directoryType=directoryType;
-  this.contextPaths=contextPaths;
-}

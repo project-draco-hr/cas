@@ -1,7 +1,0 @@
-{
-  final Authentication authentication=TestUtils.getAuthentication(new SimplePrincipal("test"),Collections.<String,Object>singletonMap(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME,true));
-  final TicketGrantingTicketImpl t=new TicketGrantingTicketImpl("111",authentication,this.p);
-  assertFalse(t.isExpired());
-  t.grantServiceTicket("55",TestUtils.getService(),this.p,false);
-  assertTrue(t.isExpired());
-}

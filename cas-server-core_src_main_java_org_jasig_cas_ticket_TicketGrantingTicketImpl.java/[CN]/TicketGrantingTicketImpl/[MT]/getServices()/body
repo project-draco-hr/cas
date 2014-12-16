@@ -1,7 +1,3 @@
 {
-  final Map<String,Service> map=new HashMap<String,Service>(services.size());
-  for (  final String ticket : services.keySet()) {
-    map.put(ticket,services.get(ticket));
-  }
-  return Collections.unmodifiableMap(map);
+  return ImmutableMap.copyOf(this.services);
 }

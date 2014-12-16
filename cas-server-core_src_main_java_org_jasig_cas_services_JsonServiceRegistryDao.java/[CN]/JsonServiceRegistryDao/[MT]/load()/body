@@ -1,0 +1,21 @@
+{
+  final Map<Long,RegisteredService> temp=new ConcurrentHashMap<Long,RegisteredService>();
+  int errorCount=0;
+  final Collection<File> c=FileUtils.listFiles(this.serviceRegistryDirectory,new String[]{FILE_EXTENSION},true);
+  for (  final File file : c) {
+    if (file.length() > 0) {
+      try (final BufferedInputStream in=new BufferedInputStream(new FileInputStream(file))){
+        final RegisteredService service=this.registeredServiceJsonSerializer.fromJson(in);
+        temp.put(service.getId(),service);
+      }
+ catch (      final Exception e) {
+        errorCount++;
+        LOGGER.error("Error reading configuration file",e);
+      }
+    }
+  }
+  if (errorCount == 0) {
+    this.serviceMap=temp;
+  }
+  return new ArrayList<RegisteredService>(this.serviceMap.values());
+}

@@ -1,8 +1,0 @@
-{
-  if (this.initSuccess) {
-    this.delegate.service(req,resp);
-  }
- else {
-    throw new ApplicationContextException("Unable to initialize application context.");
-  }
-}

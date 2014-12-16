@@ -1,0 +1,5 @@
+{
+  final ObjectMapper mapper=super.initializeObjectMapper();
+  mapper.addMixInAnnotations(RegisteredServiceProxyPolicy.class,RegisteredServiceProxyPolicyMixin.class);
+  return mapper;
+}

@@ -4,7 +4,7 @@
   final AuthenticationBuilder builder=new AuthenticationBuilder();
   final Map<String,Object> attributes=new HashMap<String,Object>();
   attributes.put("nickname","bob");
-  builder.setPrincipal(new SimplePrincipal("handymanbob",attributes));
+  builder.setPrincipal(this.principalFactory.createPrincipal("handymanbob",attributes));
   builder.setAuthenticationDate(new Date());
   builder.addCredential(credentialMetaData);
   final AuthenticationHandler handler=new MockAuthenticationHandler();

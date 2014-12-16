@@ -7,23 +7,12 @@ synchronized (ticket) {
   ticket.markTicketExpired();
   final List<LogoutRequest> logoutRequests=new ArrayList<LogoutRequest>();
   if (!this.singleLogoutCallbacksDisabled) {
-    for (    final String ticketId : services.keySet()) {
-      final Service service=services.get(ticketId);
+    for (    final Map.Entry<String,Service> entry : services.entrySet()) {
+      final Service service=entry.getValue();
       if (service instanceof SingleLogoutService) {
-        final SingleLogoutService singleLogoutService=(SingleLogoutService)service;
-        if (!singleLogoutService.isLoggedOutAlready()) {
-          final LogoutRequest logoutRequest=new LogoutRequest(ticketId,singleLogoutService);
+        final LogoutRequest logoutRequest=handleLogoutForSloService((SingleLogoutService)service,entry.getKey());
+        if (logoutRequest != null) {
           logoutRequests.add(logoutRequest);
-          final RegisteredService registeredService=servicesManager.findServiceBy(service);
-          if (registeredService == null || registeredService.getLogoutType() == null || registeredService.getLogoutType() == LogoutType.BACK_CHANNEL) {
-            if (performBackChannelLogout(logoutRequest)) {
-              logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
-            }
- else {
-              logoutRequest.setStatus(LogoutRequestStatus.FAILURE);
-              LOGGER.warn("Logout message not sent to [{}]; Continuing processing...",singleLogoutService.getId());
-            }
-          }
         }
       }
     }

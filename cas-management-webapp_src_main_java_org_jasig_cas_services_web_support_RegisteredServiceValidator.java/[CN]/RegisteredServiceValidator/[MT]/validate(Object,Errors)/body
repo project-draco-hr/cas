@@ -11,17 +11,4 @@
   if (r.getDescription() != null && r.getDescription().length() > this.maxDescriptionLength) {
     errors.rejectValue("description","registeredService.description.length",null);
   }
-  if (!StringUtils.isBlank(r.getUsernameAttribute()) && !r.isAnonymousAccess()) {
-    if (!r.isIgnoreAttributes() && !r.getAllowedAttributes().contains(r.getUsernameAttribute())) {
-      errors.rejectValue("usernameAttribute","registeredService.usernameAttribute.notAvailable","This attribute is not available for this service.");
-    }
- else {
-      final Set<String> availableAttributes=this.personAttributeDao.getPossibleUserAttributeNames();
-      if (availableAttributes != null) {
-        if (!availableAttributes.contains(r.getUsernameAttribute())) {
-          errors.rejectValue("usernameAttribute","registeredService.usernameAttribute.notAvailable","This attribute is not available from configured user attribute sources.");
-        }
-      }
-    }
-  }
 }

@@ -1,3 +1,3 @@
 {
-  this.nextToken=nextToken;
+  this.nextToken=ByteSource.wrap(nextToken);
 }

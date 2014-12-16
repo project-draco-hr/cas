@@ -2,15 +2,16 @@
   final WebApplicationService service=this.argumentExtractor.extractService(request);
   final String serviceTicketId=service != null ? service.getArtifactId() : null;
   if (service == null || serviceTicketId == null) {
-    logger.debug("Could not identify service and/or service ticket. Service: {}, Service ticket id: {}",service,serviceTicketId);
+    logger.debug("Could not identify service and/or service ticket for service: [{}]",service);
     return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_REQUEST,CasProtocolConstants.ERROR_CODE_INVALID_REQUEST,null);
   }
   try {
-    final Credential serviceCredential=getServiceCredentialsFromRequest(request);
-    String proxyGrantingTicketId=null;
+    final Credential serviceCredential=getServiceCredentialsFromRequest(service,request);
+    TicketGrantingTicket proxyGrantingTicketId=null;
     if (serviceCredential != null) {
       try {
         proxyGrantingTicketId=this.centralAuthenticationService.delegateTicketGrantingTicket(serviceTicketId,serviceCredential);
+        logger.debug("Generated PGT [{}] off of service ticket [{}] and credential [{}]",proxyGrantingTicketId.getId(),serviceTicketId,serviceCredential);
       }
  catch (      final AuthenticationException e) {
         logger.info("Failed to authenticate service credential {}",serviceCredential);
@@ -18,7 +19,7 @@
 catch (      final TicketException e) {
         logger.error("Failed to create proxy granting ticket for {}",serviceCredential,e);
       }
-      if (StringUtils.isEmpty(proxyGrantingTicketId)) {
+      if (proxyGrantingTicketId == null) {
         return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_PROXY_CALLBACK,CasProtocolConstants.ERROR_CODE_INVALID_PROXY_CALLBACK,new Object[]{serviceCredential.getId()});
       }
     }
@@ -32,7 +33,7 @@ catch (      final TicketException e) {
       return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_TICKET,CasProtocolConstants.ERROR_CODE_INVALID_TICKET,null);
     }
     String proxyIou=null;
-    if (serviceCredential != null && proxyGrantingTicketId != null && this.proxyHandler.canHandle(serviceCredential)) {
+    if (serviceCredential != null && this.proxyHandler.canHandle(serviceCredential)) {
       proxyIou=this.proxyHandler.handle(serviceCredential,proxyGrantingTicketId);
       if (StringUtils.isEmpty(proxyIou)) {
         return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_PROXY_CALLBACK,CasProtocolConstants.ERROR_CODE_INVALID_PROXY_CALLBACK,new Object[]{serviceCredential.getId()});
@@ -43,7 +44,8 @@ catch (      final TicketException e) {
     return generateSuccessView(assertion,proxyIou);
   }
  catch (  final TicketValidationException e) {
-    return generateErrorView(e.getCode(),e.getCode(),new Object[]{serviceTicketId,e.getOriginalService().getId(),service.getId()});
+    final String code=e.getCode();
+    return generateErrorView(code,code,new Object[]{serviceTicketId,e.getOriginalService().getId(),service.getId()});
   }
 catch (  final TicketException te) {
     return generateErrorView(te.getCode(),te.getCode(),new Object[]{serviceTicketId});

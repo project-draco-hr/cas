@@ -18,5 +18,5 @@
 catch (  final DataAccessException e) {
     throw new PreventedException("SQL exception while executing query for " + username,e);
   }
-  return createHandlerResult(credential,new SimplePrincipal(username),null);
+  return createHandlerResult(credential,this.principalFactory.createPrincipal(username),null);
 }

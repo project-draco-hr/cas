@@ -1,4 +1,0 @@
-{
-  final String ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  getCentralAuthenticationService().destroyTicketGrantingTicket(ticketId);
-}

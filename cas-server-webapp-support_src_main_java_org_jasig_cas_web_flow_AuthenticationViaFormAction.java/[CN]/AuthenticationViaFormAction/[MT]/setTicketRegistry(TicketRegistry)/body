@@ -1,0 +1,3 @@
+{
+  logger.warn("setTicketRegistry() has no effect and will be removed in future CAS versions.");
+}

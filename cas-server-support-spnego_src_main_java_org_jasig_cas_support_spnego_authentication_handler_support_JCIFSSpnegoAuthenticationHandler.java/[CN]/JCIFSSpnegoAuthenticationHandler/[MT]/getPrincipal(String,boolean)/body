@@ -1,0 +1,9 @@
+{
+  if (this.principalWithDomainName) {
+    return this.principalFactory.createPrincipal(name);
+  }
+  if (isNtlm) {
+    return Pattern.matches("\\S+\\\\\\S+",name) ? this.principalFactory.createPrincipal(name.split("\\\\")[1]) : this.principalFactory.createPrincipal(name);
+  }
+  return this.principalFactory.createPrincipal(name.split("@")[0]);
+}

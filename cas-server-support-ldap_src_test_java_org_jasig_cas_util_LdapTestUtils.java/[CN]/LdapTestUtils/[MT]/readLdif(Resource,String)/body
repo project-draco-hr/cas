@@ -1,7 +1,6 @@
 {
   final StringBuilder builder=new StringBuilder();
-  final BufferedReader reader=new BufferedReader(new InputStreamReader(ldif.getInputStream()));
-  try {
+  try (final BufferedReader reader=new BufferedReader(new InputStreamReader(ldif.getInputStream()))){
     String line;
     while ((line=reader.readLine()) != null) {
       if (line.contains(BASE_DN_PLACEHOLDER)) {
@@ -13,8 +12,5 @@
       builder.append(NEWLINE);
     }
   }
-  finally {
-    reader.close();
-  }
-  return new LdifReader(new StringReader(builder.toString())).read().getEntries();
+   return new LdifReader(new StringReader(builder.toString())).read().getEntries();
 }

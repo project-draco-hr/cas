@@ -2,7 +2,7 @@
   final Service service=WebUtils.getService(context);
   final String ticketGrantingTicket=WebUtils.getTicketGrantingTicketId(context);
   try {
-    final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicket,service);
+    final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicket,service);
     WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
     return success();
   }

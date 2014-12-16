@@ -1,0 +1,17 @@
+{
+  final String tgtId=WebUtils.getTicketGrantingTicketId(requestContext);
+  if (!StringUtils.hasText(tgtId)) {
+    return new Event(this,NOT_EXISTS);
+  }
+  String eventId=INVALID;
+  try {
+    final Ticket ticket=this.centralAuthenticationService.getTicket(tgtId,Ticket.class);
+    if (ticket != null && !ticket.isExpired()) {
+      eventId=VALID;
+    }
+  }
+ catch (  final TicketException e) {
+    logger.trace("Could not retrieve ticket id {} from registry.",e);
+  }
+  return new Event(this,eventId);
+}

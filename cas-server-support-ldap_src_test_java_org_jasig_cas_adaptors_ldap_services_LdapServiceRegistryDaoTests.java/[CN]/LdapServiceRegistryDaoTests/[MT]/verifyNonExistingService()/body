@@ -1,0 +1,3 @@
+{
+  assertNull(this.dao.findServiceById(9999991));
+}

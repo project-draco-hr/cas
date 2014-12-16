@@ -1,0 +1,5 @@
+{
+  final MockRequestContext requestContext=new MockRequestContext();
+  RequestContextHolder.setRequestContext(requestContext);
+  assertEquals("/WEB-INF/view/jsp/defaultTheme/ui/casLoginView",this.registeredServiceThemeBasedViewResolver.buildView("casLoginView").getUrl());
+}

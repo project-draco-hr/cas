@@ -8,7 +8,7 @@
       messageDigest.update(password.getBytes(this.characterEncoding));
     }
  else {
-      messageDigest.update(password.getBytes());
+      messageDigest.update(password.getBytes(Charset.defaultCharset()));
     }
     final byte[] digest=messageDigest.digest();
     return getFormattedText(digest);

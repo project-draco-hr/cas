@@ -1,0 +1,9 @@
+{
+  try {
+    return URLEncoder.encode(message,"UTF-8");
+  }
+ catch (  final UnsupportedEncodingException e) {
+    LOGGER.warn(e.getMessage(),e);
+  }
+  return message;
+}

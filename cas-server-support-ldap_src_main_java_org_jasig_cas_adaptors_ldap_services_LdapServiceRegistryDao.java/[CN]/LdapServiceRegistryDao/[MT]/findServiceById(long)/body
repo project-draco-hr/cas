@@ -1,7 +1,7 @@
 {
   Connection connection=null;
   try {
-    connection=this.connectionFactory.getConnection();
+    connection=getConnection();
     final Response<SearchResult> response=searchForServiceById(connection,id);
     if (hasResults(response)) {
       return this.ldapServiceMapper.mapToRegisteredService(response.getResult().getEntry());
