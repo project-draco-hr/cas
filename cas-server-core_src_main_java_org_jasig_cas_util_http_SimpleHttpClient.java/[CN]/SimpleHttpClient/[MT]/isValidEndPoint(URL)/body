@@ -1,10 +1,7 @@
 {
   Assert.notNull(this.httpClient);
-  CloseableHttpResponse response=null;
   HttpEntity entity=null;
-  try {
-    final HttpGet request=new HttpGet(url.toURI());
-    response=this.httpClient.execute(request);
+  try (final CloseableHttpResponse response=this.httpClient.execute(new HttpGet(url.toURI()))){
     final int responseCode=response.getStatusLine().getStatusCode();
     for (    final int acceptableCode : this.acceptableCodes) {
       if (responseCode == acceptableCode) {
@@ -24,7 +21,6 @@
   }
  finally {
     EntityUtils.consumeQuietly(entity);
-    IOUtils.closeQuietly(response);
   }
   return false;
 }
