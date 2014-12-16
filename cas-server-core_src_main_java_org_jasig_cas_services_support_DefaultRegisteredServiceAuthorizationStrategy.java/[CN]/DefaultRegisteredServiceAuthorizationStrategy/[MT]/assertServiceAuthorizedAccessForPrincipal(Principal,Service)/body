@@ -1,0 +1,37 @@
+{
+  if (this.requiredAttributes.isEmpty()) {
+    logger.debug("No required attributes are specified");
+    return;
+  }
+  final Map<String,Object> principalAttributes=principal.getAttributes();
+  if (principalAttributes.isEmpty()) {
+    throw new UnauthorizedServiceMissingAttributeException("No principal attributes are found to satisfy requirements");
+  }
+  logger.debug("These attributes [{}] are examined against [{}] before service [{}] can proceed.",this.requiredAttributes,principalAttributes,service.getId());
+  final Set<Map.Entry<String,List<String>>> entrySetOfRequiredAttributes=requiredAttributes.entrySet();
+  for (  final Map.Entry<String,List<String>> entry : entrySetOfRequiredAttributes) {
+    final String requiredAttributeName=entry.getKey();
+    final List<String> requiredAttributeValues=entry.getValue();
+    final Object principalAttributeValue=principalAttributes.get(requiredAttributeName);
+    if (principalAttributeValue == null && this.requireAllAttributes) {
+      throw new UnauthorizedServiceMissingAttributeException("Principal is missing the required attribute " + requiredAttributeName);
+    }
+    boolean foundMatchingAttributeValue=false;
+    if (principalAttributeValue != null) {
+      final Iterator<String> it=requiredAttributeValues.iterator();
+      while (!foundMatchingAttributeValue && it.hasNext()) {
+        final String value=it.next();
+        if (principalAttributeValue instanceof Collection) {
+          final Collection principalAttributeValueAsCol=(Collection)principalAttributes;
+          foundMatchingAttributeValue=principalAttributeValueAsCol.contains(value);
+        }
+ else {
+          foundMatchingAttributeValue=value.equals(principalAttributeValue);
+        }
+      }
+    }
+    if (!foundMatchingAttributeValue) {
+      throw new UnauthorizedServiceMissingAttributeException("None of the required attributes match " + principalAttributeValue);
+    }
+  }
+}
