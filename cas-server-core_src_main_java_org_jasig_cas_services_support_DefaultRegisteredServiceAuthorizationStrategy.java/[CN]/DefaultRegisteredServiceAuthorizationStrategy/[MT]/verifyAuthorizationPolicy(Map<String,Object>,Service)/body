@@ -1,0 +1,6 @@
+{
+  verifyIfServiceIsEnabled(service);
+  verifyIfServiceIsSsoEnabled(service);
+  verifyPresenceOfServiceRequiredAttributes(principalAttributes,service);
+  logger.debug("Authorization granted to service [{}]",service.getId());
+}

@@ -1,0 +1,4 @@
+{
+  this.enabled=true;
+  this.ssoEnabled=true;
+}

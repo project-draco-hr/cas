@@ -1,0 +1,7 @@
+{
+  if (!isEnabled()) {
+    final String msg=String.format("Service [%s] is not enabled in service registry.",service.getId());
+    logger.warn(msg);
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE,msg);
+  }
+}
