@@ -1,9 +1,8 @@
 {
   final ByteArrayInputStream bais=new ByteArrayInputStream(bytes);
   final ByteArrayOutputStream baos=new ByteArrayOutputStream();
-  final InflaterInputStream iis=new InflaterInputStream(bais);
   final byte[] buf=new byte[bytes.length];
-  try {
+  try (final InflaterInputStream iis=new InflaterInputStream(bais)){
     int count=iis.read(buf);
     while (count != -1) {
       baos.write(buf,0,count);
@@ -14,8 +13,5 @@
  catch (  final Exception e) {
     LOGGER.error("Base64 decoding failed",e);
     return null;
-  }
- finally {
-    IOUtils.closeQuietly(iis);
   }
 }
