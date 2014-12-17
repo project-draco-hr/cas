@@ -1,5 +1,5 @@
 {
-  final List<Authentication> list=new ArrayList<Authentication>();
+  final List<Authentication> list=new ArrayList<>();
   list.add(getAuthentication());
   if (getGrantingTicket() == null) {
     return Collections.unmodifiableList(list);

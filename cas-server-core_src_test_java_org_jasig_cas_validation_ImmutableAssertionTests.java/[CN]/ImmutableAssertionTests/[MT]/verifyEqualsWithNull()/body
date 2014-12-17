@@ -1,5 +1,5 @@
 {
-  final List<Authentication> list=new ArrayList<Authentication>();
+  final List<Authentication> list=new ArrayList<>();
   list.add(TestUtils.getAuthentication());
   final ImmutableAssertion assertion=new ImmutableAssertion(TestUtils.getAuthentication(),list,TestUtils.getService(),true);
   assertNotEquals(assertion,null);

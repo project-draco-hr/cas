@@ -2,7 +2,7 @@
   this.id=id;
   final CredentialMetaData credentialMetaData=new BasicCredentialMetaData(credential);
   final AuthenticationBuilder builder=new AuthenticationBuilder();
-  final Map<String,Object> attributes=new HashMap<String,Object>();
+  final Map<String,Object> attributes=new HashMap<>();
   attributes.put("nickname","bob");
   builder.setPrincipal(this.principalFactory.createPrincipal("handymanbob",attributes));
   builder.setAuthenticationDate(new Date());
