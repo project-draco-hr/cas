@@ -1,0 +1,6 @@
+{
+  if (!isSsoEnabled()) {
+    logger.warn("Service [{}] is not allowed to participate in SSO.",service.getId());
+  }
+  return isSsoEnabled();
+}

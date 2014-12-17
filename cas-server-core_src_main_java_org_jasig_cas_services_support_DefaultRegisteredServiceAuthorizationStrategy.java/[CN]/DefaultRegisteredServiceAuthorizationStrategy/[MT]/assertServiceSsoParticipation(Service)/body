@@ -1,7 +1,0 @@
-{
-  if (!isSsoEnabled()) {
-    final String msg=String.format("Service [%s] is not allowed to participate in SSO.",service.getId());
-    logger.warn(msg);
-    throw new UnauthorizedSsoServiceException(msg);
-  }
-}

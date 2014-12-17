@@ -1,0 +1,6 @@
+{
+  if (!isEnabled()) {
+    logger.warn("Service [{}] is not enabled in service registry.",service.getId());
+  }
+  return isEnabled();
+}
