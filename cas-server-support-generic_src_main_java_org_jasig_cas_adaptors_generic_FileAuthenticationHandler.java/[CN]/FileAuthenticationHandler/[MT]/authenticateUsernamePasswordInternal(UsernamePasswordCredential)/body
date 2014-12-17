@@ -7,7 +7,7 @@
     }
     final String password=credential.getPassword();
     if (StringUtils.isNotBlank(password) && this.getPasswordEncoder().encode(password).equals(passwordOnRecord)) {
-      return createHandlerResult(credential,new SimplePrincipal(username),null);
+      return createHandlerResult(credential,this.principalFactory.createPrincipal(username),null);
     }
   }
  catch (  final IOException e) {

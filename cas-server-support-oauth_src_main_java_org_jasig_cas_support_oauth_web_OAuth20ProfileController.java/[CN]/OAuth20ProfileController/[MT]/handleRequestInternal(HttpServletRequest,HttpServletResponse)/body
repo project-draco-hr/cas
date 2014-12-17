@@ -7,8 +7,7 @@
     }
   }
   LOGGER.debug("{} : {}",OAuthConstants.ACCESS_TOKEN,accessToken);
-  final JsonGenerator jsonGenerator=this.jsonFactory.createJsonGenerator(response.getWriter());
-  try {
+  try (final JsonGenerator jsonGenerator=this.jsonFactory.createJsonGenerator(response.getWriter())){
     response.setContentType("application/json");
     if (StringUtils.isBlank(accessToken)) {
       LOGGER.error("Missing {}",OAuthConstants.ACCESS_TOKEN);
@@ -40,7 +39,6 @@
     return null;
   }
   finally {
-    IOUtils.closeQuietly(jsonGenerator);
     response.flushBuffer();
   }
 }

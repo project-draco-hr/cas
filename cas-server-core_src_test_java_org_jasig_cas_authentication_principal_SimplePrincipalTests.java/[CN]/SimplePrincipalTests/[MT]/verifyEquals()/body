@@ -1,3 +1,0 @@
-{
-  assertTrue(new SimplePrincipal("test").equals(new SimplePrincipal("test")));
-}

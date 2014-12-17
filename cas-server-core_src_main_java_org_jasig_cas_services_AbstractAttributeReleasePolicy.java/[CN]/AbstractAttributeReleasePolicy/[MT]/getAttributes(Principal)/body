@@ -1,7 +1,8 @@
 {
-  final Map<String,Object> attributes=getAttributesInternal(p);
+  final Map<String,Object> principalAttributes=this.principalAttributesRepository.getAttributes(p);
+  final Map<String,Object> attributesToRelease=getAttributesInternal(principalAttributes);
   if (this.attributeFilter != null) {
-    return this.attributeFilter.filter(attributes);
+    return this.attributeFilter.filter(attributesToRelease);
   }
-  return attributes;
+  return attributesToRelease;
 }

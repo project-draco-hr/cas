@@ -1,3 +1,3 @@
 {
-  return new SimplePrincipal(name,attributes);
+  return new DefaultPrincipalFactory().createPrincipal(name,attributes);
 }

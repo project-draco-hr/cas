@@ -1,0 +1,3 @@
+{
+  return this.cache.getConfiguration(MutableConfiguration.class);
+}

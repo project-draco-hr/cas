@@ -1,6 +1,0 @@
-{
-  final List<Object[]> params=new ArrayList<Object[]>(6);
-  params.add(new Object[]{1024});
-  params.add(new Object[]{10});
-  return params;
-}

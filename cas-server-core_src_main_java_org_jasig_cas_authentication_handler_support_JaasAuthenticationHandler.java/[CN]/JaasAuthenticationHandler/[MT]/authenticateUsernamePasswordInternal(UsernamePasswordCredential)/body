@@ -20,7 +20,7 @@
   Principal principal=null;
   final Set<java.security.Principal> principals=lc.getSubject().getPrincipals();
   if (principals != null && principals.size() > 0) {
-    principal=new SimplePrincipal(principals.iterator().next().getName());
+    principal=this.principalFactory.createPrincipal(principals.iterator().next().getName());
   }
   return createHandlerResult(credential,principal,null);
 }

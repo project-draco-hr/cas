@@ -2,7 +2,7 @@
   final AnonymousRegisteredServiceUsernameAttributeProvider provider=new AnonymousRegisteredServiceUsernameAttributeProvider(new ShibbolethCompatiblePersistentIdGenerator("casrox"));
   final Service service=mock(Service.class);
   when(service.getId()).thenReturn("id");
-  final Principal principal=new SimplePrincipal("uid");
+  final Principal principal=new DefaultPrincipalFactory().createPrincipal("uid");
   final String id=provider.resolveUsername(principal,service);
   assertNotNull(id);
 }

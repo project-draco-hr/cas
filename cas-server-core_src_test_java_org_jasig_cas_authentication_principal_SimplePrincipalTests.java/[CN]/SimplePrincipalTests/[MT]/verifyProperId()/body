@@ -1,4 +1,0 @@
-{
-  final String id="test";
-  assertEquals(id,new SimplePrincipal(id).getId());
-}

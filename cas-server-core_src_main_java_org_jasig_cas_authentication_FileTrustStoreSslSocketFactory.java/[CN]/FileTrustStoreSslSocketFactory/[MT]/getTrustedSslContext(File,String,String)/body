@@ -3,12 +3,12 @@
     if (!trustStoreFile.exists() || !trustStoreFile.canRead()) {
       throw new FileNotFoundException("Truststore file cannot be located at " + trustStoreFile.getCanonicalPath());
     }
-    final FileInputStream casStream=new FileInputStream(trustStoreFile);
     final KeyStore casTrustStore=KeyStore.getInstance(trustStoreType);
     final char[] trustStorePasswordCharArray=trustStorePassword.toCharArray();
-    casTrustStore.load(casStream,trustStorePasswordCharArray);
-    IOUtils.closeQuietly(casStream);
-    final String defaultAlgorithm=KeyManagerFactory.getDefaultAlgorithm();
+    try (final FileInputStream casStream=new FileInputStream(trustStoreFile)){
+      casTrustStore.load(casStream,trustStorePasswordCharArray);
+    }
+     final String defaultAlgorithm=KeyManagerFactory.getDefaultAlgorithm();
     final X509KeyManager customKeyManager=getKeyManager("PKIX",casTrustStore,trustStorePasswordCharArray);
     final X509KeyManager jvmKeyManager=getKeyManager(defaultAlgorithm,null,null);
     final X509TrustManager customTrustManager=getTrustManager("PKIX",casTrustStore);

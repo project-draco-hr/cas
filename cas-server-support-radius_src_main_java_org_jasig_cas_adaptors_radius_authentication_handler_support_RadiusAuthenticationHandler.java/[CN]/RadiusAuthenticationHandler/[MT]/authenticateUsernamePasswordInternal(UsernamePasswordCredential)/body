@@ -6,7 +6,7 @@
     try {
       final RadiusResponse response=radiusServer.authenticate(username,password);
       if (response != null) {
-        return createHandlerResult(credential,new SimplePrincipal(username),null);
+        return createHandlerResult(credential,this.principalFactory.createPrincipal(username),null);
       }
       if (!this.failoverOnAuthenticationFailure) {
         throw new FailedLoginException("Radius authentication failed for user " + username);

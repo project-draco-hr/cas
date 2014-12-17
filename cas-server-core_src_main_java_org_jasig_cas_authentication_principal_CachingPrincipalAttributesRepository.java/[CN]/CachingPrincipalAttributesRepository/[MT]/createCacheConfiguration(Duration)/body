@@ -1,0 +1,8 @@
+{
+  final MutableConfiguration<String,Map<String,Object>> config=new MutableConfiguration<String,Map<String,Object>>();
+  config.setStatisticsEnabled(true);
+  config.setManagementEnabled(true);
+  config.setStoreByValue(true);
+  config.setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(expiryDuration));
+  return config;
+}
