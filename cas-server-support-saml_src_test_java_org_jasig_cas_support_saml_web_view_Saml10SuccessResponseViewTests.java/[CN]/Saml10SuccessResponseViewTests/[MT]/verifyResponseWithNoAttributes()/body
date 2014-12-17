@@ -1,7 +1,7 @@
 {
-  final Map<String,Object> model=new HashMap<String,Object>();
+  final Map<String,Object> model=new HashMap<>();
   final Principal principal=new DefaultPrincipalFactory().createPrincipal("testPrincipal");
-  final Map<String,Object> authAttributes=new HashMap<String,Object>();
+  final Map<String,Object> authAttributes=new HashMap<>();
   authAttributes.put(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD,SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_SSL_TLS_CLIENT);
   authAttributes.put("testSamlAttribute","value");
   final Authentication primary=TestUtils.getAuthentication(principal,authAttributes);

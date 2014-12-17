@@ -1,5 +1,5 @@
 {
-  final List<Authentication> list=new ArrayList<Authentication>();
+  final List<Authentication> list=new ArrayList<>();
   list.add(TestUtils.getAuthentication("test"));
   list.add(TestUtils.getAuthentication("test1"));
   list.add(TestUtils.getAuthentication("test2"));

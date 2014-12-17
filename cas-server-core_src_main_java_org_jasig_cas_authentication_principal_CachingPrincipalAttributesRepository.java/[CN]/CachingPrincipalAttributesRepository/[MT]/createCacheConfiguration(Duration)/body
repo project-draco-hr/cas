@@ -1,5 +1,5 @@
 {
-  final MutableConfiguration<String,Map<String,Object>> config=new MutableConfiguration<String,Map<String,Object>>();
+  final MutableConfiguration<String,Map<String,Object>> config=new MutableConfiguration<>();
   config.setStatisticsEnabled(true);
   config.setManagementEnabled(true);
   config.setStoreByValue(true);

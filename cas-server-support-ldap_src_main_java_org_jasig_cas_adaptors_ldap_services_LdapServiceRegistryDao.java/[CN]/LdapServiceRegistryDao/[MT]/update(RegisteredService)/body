@@ -9,7 +9,7 @@
       try {
         modifyConnection=getConnection();
         final ModifyOperation operation=new ModifyOperation(searchConnection);
-        final List<AttributeModification> mods=new ArrayList<AttributeModification>();
+        final List<AttributeModification> mods=new ArrayList<>();
         final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.searchRequest.getBaseDn(),rs);
         for (        final LdapAttribute attr : entry.getAttributes()) {
           if (!attr.getName().equals(this.ldapServiceMapper.getIdAttribute())) {

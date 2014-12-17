@@ -1,5 +1,5 @@
 {
-  final Collection<Object[]> params=new ArrayList<Object[]>();
+  final Collection<Object[]> params=new ArrayList<>();
   final Date now=new Date();
   final Date twoHoursAgo=new Date(now.getTime() - 7200000);
   final Date oneHourAgo=new Date(now.getTime() - 3600000);
