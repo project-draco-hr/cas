@@ -5,7 +5,7 @@
   try {
     final List<ServiceTicketGenerator> generators=new ArrayList<>(CONCURRENT_SIZE);
     for (int i=0; i < CONCURRENT_SIZE; i++) {
-      generators.add(new ServiceTicketGenerator(newTgt.getId()));
+      generators.add(new ServiceTicketGenerator(newTgt.getId(),this.jpaTicketRegistry,this.txManager));
     }
     final List<Future<String>> results=executor.invokeAll(generators);
     for (    Future<String> result : results) {
