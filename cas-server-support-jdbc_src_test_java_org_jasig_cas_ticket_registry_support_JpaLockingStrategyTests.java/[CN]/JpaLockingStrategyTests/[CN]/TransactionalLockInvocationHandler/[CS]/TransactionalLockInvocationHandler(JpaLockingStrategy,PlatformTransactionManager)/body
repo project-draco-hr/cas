@@ -1,0 +1,4 @@
+{
+  jpaLock=lock;
+  this.txManager=txManager;
+}

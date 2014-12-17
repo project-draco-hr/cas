@@ -5,7 +5,7 @@
   final RegisteredServiceImpl r=new RegisteredServiceImpl();
   r.setServiceId("test");
   r.setId(1000);
-  final ArrayList<RegisteredService> list=new ArrayList<RegisteredService>();
+  final ArrayList<RegisteredService> list=new ArrayList<>();
   list.add(r);
   return list;
 }

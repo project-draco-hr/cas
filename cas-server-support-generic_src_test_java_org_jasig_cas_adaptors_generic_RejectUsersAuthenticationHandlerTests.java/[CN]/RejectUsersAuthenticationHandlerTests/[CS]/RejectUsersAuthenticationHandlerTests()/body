@@ -1,5 +1,5 @@
 {
-  this.users=new ArrayList<String>();
+  this.users=new ArrayList<>();
   this.users.add("scott");
   this.users.add("dima");
   this.users.add("bill");

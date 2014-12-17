@@ -1,6 +1,6 @@
 {
   if (LOGGER.isDebugEnabled()) {
-    final Set<String> pairs=new HashSet<String>();
+    final Set<String> pairs=new HashSet<>();
     for (    final String name : form.getNames()) {
       final StringBuilder builder=new StringBuilder();
       builder.append(name);

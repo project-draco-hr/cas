@@ -1,5 +1,5 @@
 {
-  final List<RegisteredService> list=new ArrayList<RegisteredService>();
+  final List<RegisteredService> list=new ArrayList<>();
   final RegisteredServiceImpl regSvc=new RegisteredServiceImpl();
   regSvc.setServiceId(TestUtils.getService().getId());
   regSvc.setEnabled(true);

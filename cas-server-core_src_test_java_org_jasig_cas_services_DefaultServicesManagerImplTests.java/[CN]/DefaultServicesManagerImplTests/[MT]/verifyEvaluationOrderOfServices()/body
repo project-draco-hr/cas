@@ -17,7 +17,7 @@
   this.defaultServicesManagerImpl.save(r);
   this.defaultServicesManagerImpl.save(r3);
   this.defaultServicesManagerImpl.save(r2);
-  final List<RegisteredService> allServices=new ArrayList<RegisteredService>(this.defaultServicesManagerImpl.getAllServices());
+  final List<RegisteredService> allServices=new ArrayList<>(this.defaultServicesManagerImpl.getAllServices());
   assertEquals(4,allServices.size());
   assertEquals(allServices.get(0).getId(),r3.getId());
   assertEquals(allServices.get(1).getId(),r2.getId());

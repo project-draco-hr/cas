@@ -1,5 +1,5 @@
 {
-  final Map<Long,RegisteredService> temp=new ConcurrentHashMap<Long,RegisteredService>();
+  final Map<Long,RegisteredService> temp=new ConcurrentHashMap<>();
   int errorCount=0;
   final Collection<File> c=FileUtils.listFiles(this.serviceRegistryDirectory,new String[]{FILE_EXTENSION},true);
   for (  final File file : c) {

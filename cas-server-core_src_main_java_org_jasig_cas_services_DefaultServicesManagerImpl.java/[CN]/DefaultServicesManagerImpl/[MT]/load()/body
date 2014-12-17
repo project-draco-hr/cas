@@ -1,5 +1,5 @@
 {
-  final ConcurrentHashMap<Long,RegisteredService> localServices=new ConcurrentHashMap<Long,RegisteredService>();
+  final ConcurrentHashMap<Long,RegisteredService> localServices=new ConcurrentHashMap<>();
   for (  final RegisteredService r : this.serviceRegistryDao.load()) {
     LOGGER.debug("Adding registered service {}",r.getServiceId());
     localServices.put(r.getId(),r);
