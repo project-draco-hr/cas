@@ -3,5 +3,5 @@
   if (this.users.contains(username)) {
     throw new FailedLoginException();
   }
-  return createHandlerResult(credential,new SimplePrincipal(username),null);
+  return createHandlerResult(credential,this.principalFactory.createPrincipal(username),null);
 }

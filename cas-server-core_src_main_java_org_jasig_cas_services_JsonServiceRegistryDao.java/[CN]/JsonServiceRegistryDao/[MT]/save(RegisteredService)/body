@@ -3,19 +3,14 @@
     LOGGER.debug("Service id not set. Calculating id based on system time...");
     ((AbstractRegisteredService)service).setId(System.nanoTime());
   }
-  LockedOutputStream out=null;
-  try {
-    final File f=makeFile(service);
-    out=new LockedOutputStream(new FileOutputStream(f));
+  final File f=makeFile(service);
+  try (final LockedOutputStream out=new LockedOutputStream(new FileOutputStream(f))){
     this.registeredServiceJsonSerializer.toJson(out,service);
     this.serviceMap.put(service.getId(),service);
     LOGGER.debug("Saved service to [{}]",f.getCanonicalPath());
   }
  catch (  final IOException e) {
     throw new RuntimeException("IO error opening file stream.",e);
-  }
- finally {
-    IOUtils.closeQuietly(out);
   }
   return findServiceById(service.getId());
 }
