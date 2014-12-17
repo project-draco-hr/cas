@@ -1,4 +1,3 @@
 {
-  this.enabled=true;
-  this.ssoEnabled=true;
+  this(true,true);
 }
