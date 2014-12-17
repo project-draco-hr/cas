@@ -12,9 +12,8 @@
     }
     ticketGrantingTicket.getSupplementalAuthentications().add(currentAuthentication);
   }
-  if (!registeredService.isSsoEnabled() && currentAuthentication == null) {
-    logger.warn("ServiceManagement: Service [{}] is not allowed to use SSO.",service.getId());
-    throw new UnauthorizedSsoServiceException();
+  if (currentAuthentication == null) {
+    registeredService.getAuthorizationStrategy().assertServiceSsoParticipation(service);
   }
   final List<Authentication> authns=ticketGrantingTicket.getChainedAuthentications();
   if (authns.size() > 1) {
