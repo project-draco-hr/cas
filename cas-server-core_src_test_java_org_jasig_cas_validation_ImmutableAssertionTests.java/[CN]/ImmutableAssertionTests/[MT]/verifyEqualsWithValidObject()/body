@@ -1,6 +1,6 @@
 {
-  final List<Authentication> list1=new ArrayList<Authentication>();
-  final List<Authentication> list2=new ArrayList<Authentication>();
+  final List<Authentication> list1=new ArrayList<>();
+  final List<Authentication> list2=new ArrayList<>();
   final Authentication auth=TestUtils.getAuthentication();
   list1.add(auth);
   list2.add(auth);

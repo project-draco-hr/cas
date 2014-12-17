@@ -1,5 +1,5 @@
 {
-  final Map<String,Object> attributesToRelease=new HashMap<String,Object>(resolvedAttributes.size());
+  final Map<String,Object> attributesToRelease=new HashMap<>(resolvedAttributes.size());
   for (  final Map.Entry<String,String> entry : this.allowedAttributes.entrySet()) {
     final String key=entry.getKey();
     final Object value=resolvedAttributes.get(key);

@@ -11,7 +11,7 @@
     error=null;
     warning=null;
   }
-  final List<Message> messages=new ArrayList<Message>();
+  final List<Message> messages=new ArrayList<>();
   handleError(error,response,configuration,messages);
   handleWarning(warning,response,configuration,messages);
   return messages;

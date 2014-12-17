@@ -1,0 +1,5 @@
+{
+  parentTgtId=tgtId;
+  this.jpaTicketRegistry=jpaTicketRegistry;
+  this.txManager=txManager;
+}

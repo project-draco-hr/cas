@@ -1,4 +1,4 @@
 {
-  this.ticketRegistry=new TestDistributedTicketRegistry();
+  this.ticketRegistry=new TestDistributedTicketRegistry(this);
   this.wasTicketUpdated=false;
 }
