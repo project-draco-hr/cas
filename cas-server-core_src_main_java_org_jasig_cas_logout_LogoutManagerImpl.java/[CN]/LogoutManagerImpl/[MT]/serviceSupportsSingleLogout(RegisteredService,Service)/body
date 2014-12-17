@@ -1,0 +1,3 @@
+{
+  return registeredService != null && registeredService.getAuthorizationStrategy().isServiceAuthorized(service) && registeredService.getLogoutType() != LogoutType.NONE;
+}

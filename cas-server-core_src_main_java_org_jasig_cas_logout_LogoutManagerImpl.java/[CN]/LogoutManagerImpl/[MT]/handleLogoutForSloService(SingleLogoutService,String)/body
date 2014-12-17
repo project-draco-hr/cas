@@ -1,30 +1,24 @@
 {
   if (!singleLogoutService.isLoggedOutAlready()) {
-    try {
-      final RegisteredService registeredService=servicesManager.findServiceBy(singleLogoutService);
-      if (serviceSupportsSingleLogout(registeredService)) {
-        registeredService.getAuthorizationStrategy().assertServiceQualification(singleLogoutService);
-        final LogoutRequest logoutRequest=new LogoutRequest(ticketId,singleLogoutService);
-        final LogoutType type=registeredService.getLogoutType() == null ? LogoutType.BACK_CHANNEL : registeredService.getLogoutType();
+    final RegisteredService registeredService=servicesManager.findServiceBy(singleLogoutService);
+    if (serviceSupportsSingleLogout(registeredService,singleLogoutService)) {
+      final LogoutRequest logoutRequest=new LogoutRequest(ticketId,singleLogoutService);
+      final LogoutType type=registeredService.getLogoutType() == null ? LogoutType.BACK_CHANNEL : registeredService.getLogoutType();
 switch (type) {
 case BACK_CHANNEL:
-          if (performBackChannelLogout(logoutRequest)) {
-            logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
-          }
+        if (performBackChannelLogout(logoutRequest)) {
+          logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
+        }
  else {
-            logoutRequest.setStatus(LogoutRequestStatus.FAILURE);
-            LOGGER.warn("Logout message not sent to [{}]; Continuing processing...",singleLogoutService.getId());
-          }
-        break;
+          logoutRequest.setStatus(LogoutRequestStatus.FAILURE);
+          LOGGER.warn("Logout message not sent to [{}]; Continuing processing...",singleLogoutService.getId());
+        }
+      break;
 default :
-      logoutRequest.setStatus(LogoutRequestStatus.NOT_ATTEMPTED);
-    break;
+    logoutRequest.setStatus(LogoutRequestStatus.NOT_ATTEMPTED);
+  break;
 }
 return logoutRequest;
-}
-}
- catch (final UnauthorizedServiceException e) {
-LOGGER.trace("Service [{}] not able to handle logout request because it's not enabled",singleLogoutService.getId());
 }
 }
 return null;
