@@ -4,10 +4,9 @@
   r.setName("checkForAuthorizationStrategy");
   r.setId(42);
   final DefaultRegisteredServiceAuthorizationStrategy authz=new DefaultRegisteredServiceAuthorizationStrategy(false,false);
-  authz.setRequireAllAttributes(true);
-  final Map<String,List<String>> attrs=new HashMap<>();
-  attrs.put("cn",new ArrayList<String>(Arrays.asList("v1, v2, v3")));
-  attrs.put("memberOf",new ArrayList<String>(Arrays.asList("v4, v5, v6")));
+  final Map<String,Set<String>> attrs=new HashMap<>();
+  attrs.put("cn",Sets.newHashSet("v1, v2, v3"));
+  attrs.put("memberOf",Sets.newHashSet(Arrays.asList("v4, v5, v6")));
   authz.setRequiredAttributes(attrs);
   r.setAuthorizationStrategy(authz);
   this.dao.save(r);

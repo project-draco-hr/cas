@@ -1,5 +1,5 @@
 {
-  if (this.requiredAttributes.isEmpty()) {
+  if (getRequiredAttributes().isEmpty()) {
     logger.debug("No required attributes are specified");
     return true;
   }
@@ -7,55 +7,34 @@
     logger.warn("No principal attributes are found to satisfy requirements");
     return false;
   }
-  if (principalAttributes.size() < this.requiredAttributes.size()) {
+  if (principalAttributes.size() < getRequiredAttributes().size()) {
     logger.warn("The size of the principal attributes that are [{}] does not match requirements, " + "which means the principal is not carrying enough data to grant authorization",principalAttributes);
     return false;
   }
-  logger.debug("These required attributes [{}] are examined against [{}] before service [{}] can proceed.",this.requiredAttributes,principalAttributes,service.getId());
-  final Iterator<Map.Entry<String,List<String>>> itt=requiredAttributes.entrySet().iterator();
-  boolean atLeastOneAttributeFound=false;
-  boolean atLeastOnceAttributeValueFound=false;
-  while (itt.hasNext()) {
-    final Map.Entry<String,List<String>> entry=itt.next();
-    final String requiredAttributeName=entry.getKey();
-    final Object principalAttributeValue=principalAttributes.get(requiredAttributeName);
-    if (principalAttributeValue == null && this.requireAllAttributes) {
-      logger.warn("Principal is missing the required attribute [{}]",requiredAttributeName);
-      return false;
-    }
-    boolean foundMatchingAttributeValue=false;
-    if (principalAttributeValue != null) {
-      atLeastOneAttributeFound=true;
-      final List<String> requiredAttributeValues=entry.getValue();
-      logger.debug("Checking required attribute values [{}] against [{}]",requiredAttributeValues,principalAttributeValue);
-      final Iterator<String> it=requiredAttributeValues.iterator();
-      while (!foundMatchingAttributeValue && it.hasNext()) {
-        final String requiredAttributeValue=it.next();
-        if (principalAttributeValue instanceof Collection) {
-          final Collection principalAttributeValueAsCol=(Collection)principalAttributeValue;
-          foundMatchingAttributeValue=principalAttributeValueAsCol.contains(requiredAttributeValue);
-        }
- else {
-          foundMatchingAttributeValue=requiredAttributeValue.equals(principalAttributeValue);
-        }
-        if (foundMatchingAttributeValue) {
-          atLeastOnceAttributeValueFound=true;
-        }
-      }
-    }
-    if (foundMatchingAttributeValue && !isRequireAllAttributes()) {
-      logger.info("Principal is granted access to service [{}]",service.getId());
-      return true;
-    }
- else     if (!foundMatchingAttributeValue && isRequireAllAttributes()) {
-      logger.warn("Principal is missing the required value for attribute [{}]",requiredAttributeName);
-      return false;
-    }
-  }
-  if (!isRequireAllAttributes() && (!atLeastOneAttributeFound || !atLeastOnceAttributeValueFound)) {
-    logger.warn("Principal is missing the required attribute");
+  logger.debug("These required attributes [{}] are examined against [{}] before service [{}] can proceed.",getRequiredAttributes(),principalAttributes,service.getId());
+  final Sets.SetView<String> difference=Sets.intersection(getRequiredAttributes().keySet(),principalAttributes.keySet());
+  final Set<String> copy=difference.immutableCopy();
+  if (isRequireAllAttributes() && copy.size() < getRequiredAttributes().size()) {
+    logger.warn("Not all required attributes are available to the principal");
     return false;
   }
-  logger.info("Principal is granted access to service [{}]",service.getId());
-  return true;
+  for (  final String key : copy) {
+    final Set<?> requiredValues=getRequiredAttributes().get(key);
+    Set<?> availableValues=null;
+    final Object objVal=principalAttributes.get(key);
+    if (objVal instanceof Collection) {
+      final Collection valCol=(Collection)objVal;
+      availableValues=Sets.newHashSet(valCol.toArray());
+    }
+ else {
+      availableValues=Collections.singleton(objVal);
+    }
+    final Sets.SetView<?> differenceInValues=Sets.intersection(availableValues,requiredValues);
+    if (differenceInValues.size() > 0) {
+      logger.info("Principal is authorized to access service [{}]",service.getId());
+      return true;
+    }
+  }
+  logger.info("Principal is denied access to service [{}]",service.getId());
+  return false;
 }
