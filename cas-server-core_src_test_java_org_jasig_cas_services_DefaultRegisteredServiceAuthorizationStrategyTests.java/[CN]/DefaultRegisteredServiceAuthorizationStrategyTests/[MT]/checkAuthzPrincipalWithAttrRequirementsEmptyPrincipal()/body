@@ -1,0 +1,5 @@
+{
+  final DefaultRegisteredServiceAuthorizationStrategy authz=new DefaultRegisteredServiceAuthorizationStrategy();
+  authz.setRequiredAttributes(this.getRequiredAttributes());
+  assertFalse(authz.isServiceAccessAuthorizedForPrincipal(new HashMap<String,Object>(),TestUtils.getService()));
+}

@@ -1,0 +1,6 @@
+{
+  final Map<String,List<String>> map=new HashMap<>();
+  map.put("cn",Arrays.asList("cas","SSO"));
+  map.put("givenName",Arrays.asList("CAS","KAZ"));
+  return map;
+}

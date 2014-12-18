@@ -1,0 +1,8 @@
+{
+  final DefaultRegisteredServiceAuthorizationStrategy authz=new DefaultRegisteredServiceAuthorizationStrategy(false,false);
+  authz.setEnabled(true);
+  authz.setSsoEnabled(true);
+  assertTrue(authz.isServiceAuthorized(TestUtils.getService()));
+  assertTrue(authz.isServiceAuthorizedForSso(TestUtils.getService()));
+  assertTrue(authz.isRequireAllAttributes());
+}
