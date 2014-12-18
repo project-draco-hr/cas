@@ -1,6 +1,6 @@
 {
   final Authentication authentication=TestUtils.getAuthentication();
-  final List<Authentication> principals=new ArrayList<Authentication>();
+  final List<Authentication> principals=new ArrayList<>();
   principals.add(authentication);
   final long startTime=System.currentTimeMillis();
   final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,authentication,new NeverExpiresExpirationPolicy());

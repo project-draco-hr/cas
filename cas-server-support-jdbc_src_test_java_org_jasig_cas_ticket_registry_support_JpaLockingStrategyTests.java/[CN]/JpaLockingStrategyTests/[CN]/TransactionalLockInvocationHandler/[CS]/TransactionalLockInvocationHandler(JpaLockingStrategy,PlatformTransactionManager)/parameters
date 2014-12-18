@@ -1,0 +1,2 @@
+JpaLockingStrategy lock
+PlatformTransactionManager txManager

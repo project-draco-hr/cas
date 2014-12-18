@@ -1,6 +1,6 @@
 {
-  final Map<String,List<Object>> attrs=new HashMap<String,List<Object>>();
-  final List<Object> values=new ArrayList<Object>();
+  final Map<String,List<Object>> attrs=new HashMap<>();
+  final List<Object> values=new ArrayList<>();
   values.add("value");
   attrs.put("k1",values);
   attrs.put("k2",values);

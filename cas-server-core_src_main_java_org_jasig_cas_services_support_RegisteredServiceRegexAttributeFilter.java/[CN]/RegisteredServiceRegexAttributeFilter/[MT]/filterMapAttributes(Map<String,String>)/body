@@ -1,5 +1,5 @@
 {
-  final Map<String,String> attributesToFilter=new HashMap<String,String>(valuesToFilter.size());
+  final Map<String,String> attributesToFilter=new HashMap<>(valuesToFilter.size());
   for (  final Map.Entry<String,String> entry : valuesToFilter.entrySet()) {
     final String attributeName=entry.getKey();
     final String attributeValue=entry.getValue();

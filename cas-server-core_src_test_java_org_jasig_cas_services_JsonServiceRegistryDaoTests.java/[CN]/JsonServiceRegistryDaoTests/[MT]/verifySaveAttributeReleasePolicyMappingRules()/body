@@ -2,7 +2,7 @@
   final RegisteredServiceImpl r=new RegisteredServiceImpl();
   r.setName("testSaveAttributeReleasePolicyMappingRules");
   r.setServiceId("testId");
-  final Map<String,String> map=new HashMap<String,String>();
+  final Map<String,String> map=new HashMap<>();
   map.put("attr1","newattr1");
   map.put("attr2","newattr2");
   map.put("attr2","newattr3");

@@ -5,7 +5,7 @@
   if (StringUtils.equals(mode,ASSOCIATE)) {
     response=serverManager.associationResponse(parameters);
   }
-  final Map<String,String> responseParams=new HashMap<String,String>();
+  final Map<String,String> responseParams=new HashMap<>();
   if (response != null) {
     responseParams.putAll(response.getParameterMap());
   }

@@ -5,7 +5,7 @@ synchronized (ticket) {
     ticket.removeAllServices();
   }
   ticket.markTicketExpired();
-  final List<LogoutRequest> logoutRequests=new ArrayList<LogoutRequest>();
+  final List<LogoutRequest> logoutRequests=new ArrayList<>();
   if (!this.singleLogoutCallbacksDisabled) {
     for (    final Map.Entry<String,Service> entry : services.entrySet()) {
       final Service service=entry.getValue();
