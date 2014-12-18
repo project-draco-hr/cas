@@ -16,6 +16,14 @@
     logger.warn("ServiceManagement: Service [{}] is not allowed to use SSO.",service.getId());
     throw new UnauthorizedSsoServiceException();
   }
+  if (currentAuthentication != null) {
+    final Principal principal=currentAuthentication.getPrincipal();
+    final Map<String,Object> principalAttrs=registeredService.getAttributeReleasePolicy().getAttributes(principal);
+    if (!registeredService.getAuthorizationStrategy().isServiceAccessAuthorizedForPrincipal(principalAttrs,service)) {
+      logger.warn("ServiceManagement: Cannot grant service ticket because Service [{}] is not authorized for use by [{}].",service.getId(),principal);
+      throw new UnauthorizedServiceForPrincipalException();
+    }
+  }
   final List<Authentication> authns=ticketGrantingTicket.getChainedAuthentications();
   if (authns.size() > 1) {
     if (!registeredService.getProxyPolicy().isAllowedToProxy()) {
