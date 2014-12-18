@@ -8,11 +8,13 @@
     return false;
   }
   if (principalAttributes.size() < this.requiredAttributes.size()) {
-    logger.warn("The size of the principal attributes, that are [{}] does not match requirements, " + "which means the principal is not carrying enough data to grant authorization",principalAttributes);
+    logger.warn("The size of the principal attributes that are [{}] does not match requirements, " + "which means the principal is not carrying enough data to grant authorization",principalAttributes);
     return false;
   }
   logger.debug("These required attributes [{}] are examined against [{}] before service [{}] can proceed.",this.requiredAttributes,principalAttributes,service.getId());
   final Iterator<Map.Entry<String,List<String>>> itt=requiredAttributes.entrySet().iterator();
+  boolean atLeastOneAttributeFound=false;
+  boolean atLeastOnceAttributeValueFound=false;
   while (itt.hasNext()) {
     final Map.Entry<String,List<String>> entry=itt.next();
     final String requiredAttributeName=entry.getKey();
@@ -23,6 +25,7 @@
     }
     boolean foundMatchingAttributeValue=false;
     if (principalAttributeValue != null) {
+      atLeastOneAttributeFound=true;
       final List<String> requiredAttributeValues=entry.getValue();
       logger.debug("Checking required attribute values [{}] against [{}]",requiredAttributeValues,principalAttributeValue);
       final Iterator<String> it=requiredAttributeValues.iterator();
@@ -35,6 +38,9 @@
  else {
           foundMatchingAttributeValue=requiredAttributeValue.equals(principalAttributeValue);
         }
+        if (foundMatchingAttributeValue) {
+          atLeastOnceAttributeValueFound=true;
+        }
       }
     }
     if (foundMatchingAttributeValue && !isRequireAllAttributes()) {
@@ -45,6 +51,10 @@
       logger.warn("Principal is missing the required value for attribute [{}]",requiredAttributeName);
       return false;
     }
+  }
+  if (!isRequireAllAttributes() && (!atLeastOneAttributeFound || !atLeastOnceAttributeValueFound)) {
+    logger.warn("Principal is missing the required attribute");
+    return false;
   }
   logger.info("Principal is granted access to service [{}]",service.getId());
   return true;
