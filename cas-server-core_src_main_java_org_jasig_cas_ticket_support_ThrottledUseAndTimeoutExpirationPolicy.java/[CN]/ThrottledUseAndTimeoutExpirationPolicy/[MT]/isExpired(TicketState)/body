@@ -1,14 +1,16 @@
 {
-  if (ticketState.getCountOfUses() == 0 && (System.currentTimeMillis() - ticketState.getLastTimeUsed() < this.timeToKillInMilliSeconds)) {
-    LOGGER.debug("Ticket is not expired due to a count of zero and the time being less " + "than the timeToKillInMilliseconds");
+  final long currentTimeInMillis=System.currentTimeMillis();
+  final long lastTimeTicketWasUsed=ticketState.getLastTimeUsed();
+  if (ticketState.getCountOfUses() == 0 && (currentTimeInMillis - lastTimeTicketWasUsed < this.timeToKillInMilliSeconds)) {
+    logger.debug("Ticket is not expired due to a count of zero and the time being less " + "than the timeToKillInMilliseconds");
     return false;
   }
-  if ((System.currentTimeMillis() - ticketState.getLastTimeUsed() >= this.timeToKillInMilliSeconds)) {
-    LOGGER.debug("Ticket is expired due to the time being greater than the timeToKillInMilliseconds");
+  if ((currentTimeInMillis - lastTimeTicketWasUsed >= this.timeToKillInMilliSeconds)) {
+    logger.debug("Ticket is expired due to the time being greater than the timeToKillInMilliseconds");
     return true;
   }
-  if ((System.currentTimeMillis() - ticketState.getLastTimeUsed() <= this.timeInBetweenUsesInMilliSeconds)) {
-    LOGGER.warn("Ticket is expired due to the time being less than the waiting period.");
+  if ((currentTimeInMillis - lastTimeTicketWasUsed <= this.timeInBetweenUsesInMilliSeconds)) {
+    logger.warn("Ticket is expired due to the time being less than the waiting period.");
     return true;
   }
   return false;
