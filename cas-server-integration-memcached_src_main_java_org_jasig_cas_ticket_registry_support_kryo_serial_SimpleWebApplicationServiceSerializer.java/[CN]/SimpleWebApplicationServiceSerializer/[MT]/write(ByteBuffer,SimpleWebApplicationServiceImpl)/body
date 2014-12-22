@@ -1,3 +1,0 @@
-{
-  kryo.writeObjectData(buffer,service.getId());
-}
