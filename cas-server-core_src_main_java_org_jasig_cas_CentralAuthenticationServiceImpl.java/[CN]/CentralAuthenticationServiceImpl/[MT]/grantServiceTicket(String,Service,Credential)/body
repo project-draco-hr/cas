@@ -1,11 +1,11 @@
 {
-  Assert.notNull(service,"service cannot be null");
   final TicketGrantingTicket ticketGrantingTicket=getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   verifyRegisteredServiceProperties(registeredService,service);
+  final Set<Credential> sanitizedCredentials=sanitizeCredentials(credentials);
   Authentication currentAuthentication=null;
-  if (credentials != null && credentials.length > 0) {
-    currentAuthentication=this.authenticationManager.authenticate(credentials);
+  if (sanitizedCredentials.size() > 0) {
+    currentAuthentication=this.authenticationManager.authenticate(sanitizedCredentials.toArray(new Credential[]{}));
     final Authentication original=ticketGrantingTicket.getAuthentication();
     if (!currentAuthentication.getPrincipal().equals(original.getPrincipal())) {
       throw new MixedPrincipalException(currentAuthentication,currentAuthentication.getPrincipal(),original.getPrincipal());
