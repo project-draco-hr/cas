@@ -14,7 +14,10 @@
   mockRequestContext.setExternalContext(servletExternalContext);
   final FacebookClient facebookClient=new MockFacebookClient();
   final Clients clients=new Clients(MY_LOGIN_URL,facebookClient);
-  final ClientAction action=new ClientAction(mock(CentralAuthenticationService.class),clients);
+  final TicketGrantingTicket tgt=new TicketGrantingTicketImpl(TGT_ID,mock(Authentication.class),mock(ExpirationPolicy.class));
+  final CentralAuthenticationService casImpl=mock(CentralAuthenticationService.class);
+  when(casImpl.createTicketGrantingTicket(any(Credential.class))).thenReturn(tgt);
+  final ClientAction action=new ClientAction(casImpl,clients);
   final Event event=action.execute(mockRequestContext);
   assertEquals("success",event.getId());
   assertEquals(MY_THEME,mockRequest.getAttribute(ClientAction.THEME));
@@ -22,5 +25,8 @@
   assertEquals(MY_METHOD,mockRequest.getAttribute(ClientAction.METHOD));
   assertEquals(MY_SERVICE,mockRequest.getAttribute(ClientAction.SERVICE));
   final MutableAttributeMap flowScope=mockRequestContext.getFlowScope();
+  final MutableAttributeMap requestScope=mockRequestContext.getRequestScope();
   assertEquals(service,flowScope.get(ClientAction.SERVICE));
+  assertEquals(TGT_ID,flowScope.get(TGT_NAME));
+  assertEquals(TGT_ID,requestScope.get(TGT_NAME));
 }
