@@ -1,0 +1,3 @@
+{
+  return createService(kryo,input,kryo.readObject(input,String.class),kryo.readObject(input,String.class),kryo.readObject(input,String.class));
+}

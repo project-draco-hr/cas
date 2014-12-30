@@ -1,3 +1,0 @@
-{
-  return new SimpleWebApplicationServiceImpl(kryo.readObjectData(buffer,String.class));
-}

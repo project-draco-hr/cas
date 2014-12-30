@@ -1,3 +1,0 @@
-{
-  return createService(buffer,kryo.readObjectData(buffer,String.class),kryo.readObject(buffer,String.class),kryo.readObject(buffer,String.class));
-}

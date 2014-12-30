@@ -1,0 +1,4 @@
+{
+  final ServletRequestAttributes attrs=(ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
+  return attrs.getRequest();
+}
