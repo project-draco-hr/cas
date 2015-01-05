@@ -4,20 +4,21 @@
   final HttpSession session=request.getSession();
   final WebContext webContext=new J2EContext(request,response);
   final String clientName=request.getParameter(this.clients.getClientNameParameter());
-  logger.debug("clientName : {}",clientName);
+  logger.debug("clientName: {}",clientName);
   if (StringUtils.isNotBlank(clientName)) {
     final BaseClient<Credentials,CommonProfile> client=(BaseClient<Credentials,CommonProfile>)this.clients.findClient(clientName);
-    logger.debug("client : {}",client);
-    if (client.getProtocol() == Protocol.HTTP) {
-      throw new TechnicalException("HTTP protocol client not supported : " + client);
+    logger.debug("client: {}",client);
+    final Mechanism mechanism=client.getMechanism();
+    if (mechanism != Mechanism.CAS_PROTOCOL && mechanism != Mechanism.OAUTH_PROTOCOL && mechanism != Mechanism.OPENID_PROTOCOL && mechanism != Mechanism.SAML_PROTOCOL) {
+      throw new TechnicalException("Only CAS, OAuth, OpenID and SAML protocols are allowed: " + client);
     }
     final Credentials credentials;
     try {
       credentials=client.getCredentials(webContext);
-      logger.debug("credentials : {}",credentials);
+      logger.debug("credentials: {}",credentials);
     }
  catch (    final RequiresHttpAction e) {
-      logger.info("requires http action : {}",e);
+      logger.debug("requires http action: {}",e);
       response.flushBuffer();
       final ExternalContext externalContext=ExternalContextHolder.getExternalContext();
       externalContext.recordResponseComplete();
@@ -25,6 +26,7 @@
     }
     final Service service=(Service)session.getAttribute(SERVICE);
     context.getFlowScope().put(SERVICE,service);
+    logger.debug("retrieve service: {}",service);
     if (service != null) {
       request.setAttribute(SERVICE,service.getId());
     }

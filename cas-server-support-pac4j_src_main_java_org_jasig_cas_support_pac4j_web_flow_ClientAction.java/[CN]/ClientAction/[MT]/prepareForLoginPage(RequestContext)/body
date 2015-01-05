@@ -4,9 +4,8 @@
   final HttpSession session=request.getSession();
   final WebContext webContext=new J2EContext(request,response);
   final Service service=(Service)context.getFlowScope().get(SERVICE);
-  if (service != null) {
-    session.setAttribute(SERVICE,service);
-  }
+  logger.debug("save service: {}",service);
+  session.setAttribute(SERVICE,service);
   saveRequestParameter(request,session,THEME);
   saveRequestParameter(request,session,LOCALE);
   saveRequestParameter(request,session,METHOD);
