@@ -1,7 +1,7 @@
 {
   final MockRequestContext ctx=new MockRequestContext();
   final MockTicketGrantingTicket tgt=new MockTicketGrantingTicket("user");
-  WebUtils.putTicketGrantingTicketInFlowScope(ctx,tgt);
+  WebUtils.putTicketGrantingTicketInScopes(ctx,tgt);
   final TicketGrantingTicketCheckAction action=new TicketGrantingTicketCheckAction(this.getCentralAuthenticationService());
   final Event event=action.doExecute(ctx);
   assertEquals(event.getId(),TicketGrantingTicketCheckAction.INVALID);
