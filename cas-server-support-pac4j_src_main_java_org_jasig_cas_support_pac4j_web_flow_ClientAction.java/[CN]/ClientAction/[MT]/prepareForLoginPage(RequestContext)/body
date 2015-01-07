@@ -3,7 +3,7 @@
   final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
   final HttpSession session=request.getSession();
   final WebContext webContext=new J2EContext(request,response);
-  final Service service=(Service)context.getFlowScope().get(SERVICE);
+  final WebApplicationService service=WebUtils.getService(context);
   logger.debug("save service: {}",service);
   session.setAttribute(SERVICE,service);
   saveRequestParameter(request,session,THEME);
