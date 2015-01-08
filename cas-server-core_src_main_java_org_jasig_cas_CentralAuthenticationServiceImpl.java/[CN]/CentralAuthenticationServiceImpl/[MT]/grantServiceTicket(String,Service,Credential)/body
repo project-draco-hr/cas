@@ -29,7 +29,7 @@
   logger.debug("Looking up service ticket id generator for [{}]",uniqueTicketIdGenKey);
   UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(uniqueTicketIdGenKey);
   if (serviceTicketUniqueTicketIdGenerator == null) {
-    serviceTicketUniqueTicketIdGenerator=UniqueTicketIdGenerator.DEFAULT;
+    serviceTicketUniqueTicketIdGenerator=this.defaultServiceTicketIdGenerator;
     logger.debug("Service ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
   }
   final List<Authentication> authentications=ticketGrantingTicket.getChainedAuthentications();
