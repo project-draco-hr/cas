@@ -7,6 +7,6 @@
   request.addParameter("gateway","true");
   final TicketGrantingTicket tgt=mock(TicketGrantingTicket.class);
   when(tgt.getId()).thenReturn("bleh");
-  WebUtils.putTicketGrantingTicketInRequestScope(context,tgt);
+  WebUtils.putTicketGrantingTicketInScopes(context,tgt);
   assertEquals("gateway",this.action.execute(context).getId());
 }

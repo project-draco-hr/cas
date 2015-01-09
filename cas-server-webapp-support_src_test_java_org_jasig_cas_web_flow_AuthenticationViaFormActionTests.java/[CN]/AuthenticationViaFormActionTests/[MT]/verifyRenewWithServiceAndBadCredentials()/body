@@ -3,7 +3,7 @@
   final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(c);
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockRequestContext context=new MockRequestContext();
-  WebUtils.putTicketGrantingTicketInFlowScope(context,ticketGrantingTicket);
+  WebUtils.putTicketGrantingTicketInScopes(context,ticketGrantingTicket);
   request.addParameter("renew","true");
   request.addParameter("service","test");
   final Credential c2=TestUtils.getCredentialsWithDifferentUsernameAndPassword();

@@ -5,7 +5,7 @@
   final MockRequestContext context=new MockRequestContext();
   WebUtils.putLoginTicket(context,"LOGIN");
   request.addParameter("lt","LOGIN");
-  WebUtils.putTicketGrantingTicketInFlowScope(context,ticketGrantingTicket);
+  WebUtils.putTicketGrantingTicketInScopes(context,ticketGrantingTicket);
   request.addParameter("renew","true");
   request.addParameter("service","test");
   request.addParameter("username","test2");

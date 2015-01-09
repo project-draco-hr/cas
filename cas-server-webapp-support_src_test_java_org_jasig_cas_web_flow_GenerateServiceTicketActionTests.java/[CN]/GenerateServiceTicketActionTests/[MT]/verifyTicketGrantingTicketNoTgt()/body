@@ -6,6 +6,6 @@
   request.addParameter("service","service");
   final TicketGrantingTicket tgt=mock(TicketGrantingTicket.class);
   when(tgt.getId()).thenReturn("bleh");
-  WebUtils.putTicketGrantingTicketInRequestScope(context,tgt);
+  WebUtils.putTicketGrantingTicketInScopes(context,tgt);
   assertEquals("error",this.action.execute(context).getId());
 }

@@ -21,7 +21,7 @@ catch (    final TicketException e) {
     }
   }
   try {
-    WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credential));
+    WebUtils.putTicketGrantingTicketInScopes(context,this.centralAuthenticationService.createTicketGrantingTicket(credential));
     onSuccess(context,credential);
     return success();
   }
