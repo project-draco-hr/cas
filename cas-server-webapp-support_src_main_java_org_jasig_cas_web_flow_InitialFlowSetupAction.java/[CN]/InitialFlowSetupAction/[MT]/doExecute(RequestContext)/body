@@ -8,7 +8,7 @@
     this.ticketGrantingTicketCookieGenerator.setCookiePath(cookiePath);
     this.pathPopulated=true;
   }
-  WebUtils.putTicketGrantingTicketInFlowScope(context,this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request));
+  WebUtils.putTicketGrantingTicketInScopes(context,this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request));
   WebUtils.putWarningCookie(context,Boolean.valueOf(this.warnCookieGenerator.retrieveCookieValue(request)));
   final Service service=WebUtils.getService(this.argumentExtractors,context);
   if (service != null) {
