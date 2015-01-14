@@ -1,6 +1,4 @@
 {
-  Assert.notNull(serviceTicketId,"serviceTicketId cannot be null");
-  Assert.notNull(service,"service cannot be null");
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   verifyRegisteredServiceProperties(registeredService,service);
   final ServiceTicket serviceTicket=this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
