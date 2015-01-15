@@ -4,4 +4,9 @@
   super.putIntoModel(model,MODEL_ATTRIBUTE_NAME_AUTHENTICATION_DATE,getAuthenticationDate(model));
   super.putIntoModel(model,MODEL_ATTRIBUTE_NAME_FROM_NEW_LOGIN,isAssertionBackedByNewLogin(model));
   super.putIntoModel(model,CasProtocolConstants.VALIDATION_REMEMBER_ME_ATTRIBUTE_NAME,isRememberMeAuthentication(model));
+  final String credential=super.getCredentialPasswordFromAuthentication(model);
+  if (StringUtils.isNotBlank(credential)) {
+    logger.debug("Obtained credential password is passed to the CAS payload under [{}]",MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL);
+    super.putIntoModel(model,MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL,credential);
+  }
 }

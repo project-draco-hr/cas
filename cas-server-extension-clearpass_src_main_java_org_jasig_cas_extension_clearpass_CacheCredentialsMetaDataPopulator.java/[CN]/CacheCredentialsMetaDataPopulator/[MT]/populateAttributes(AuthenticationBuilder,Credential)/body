@@ -1,5 +1,6 @@
 {
   final UsernamePasswordCredential c=(UsernamePasswordCredential)credential;
+  builder.addAttribute(UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD,c.getPassword());
   final Authentication authentication=builder.build();
   this.credentialCache.put(authentication.getPrincipal().getId(),c.getPassword());
 }
