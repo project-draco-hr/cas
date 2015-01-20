@@ -1,5 +1,5 @@
 {
   final RegisteredServiceAuthorizationStrategy authz=new DefaultRegisteredServiceAuthorizationStrategy(true,false);
-  assertTrue(authz.isServiceAuthorized(TestUtils.getService()));
-  assertFalse(authz.isServiceAuthorizedForSso(TestUtils.getService()));
+  assertTrue(authz.isServiceAuthorized());
+  assertFalse(authz.isServiceAuthorizedForSso());
 }

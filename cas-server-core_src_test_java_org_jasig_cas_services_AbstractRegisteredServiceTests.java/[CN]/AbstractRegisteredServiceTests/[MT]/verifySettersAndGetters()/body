@@ -2,11 +2,11 @@
   prepareService();
   assertEquals(ALLOWED_TO_PROXY,this.r.getProxyPolicy().isAllowedToProxy());
   assertEquals(DESCRIPTION,this.r.getDescription());
-  assertEquals(ENABLED,this.r.getAuthorizationStrategy().isServiceAuthorized(TestUtils.getService()));
+  assertEquals(ENABLED,this.r.getAuthorizationStrategy().isServiceAuthorized());
   assertEquals(ID,this.r.getId());
   assertEquals(NAME,this.r.getName());
   assertEquals(SERVICEID,this.r.getServiceId());
-  assertEquals(SSO_ENABLED,this.r.getAuthorizationStrategy().isServiceAuthorizedForSso(TestUtils.getService()));
+  assertEquals(SSO_ENABLED,this.r.getAuthorizationStrategy().isServiceAuthorizedForSso());
   assertEquals(THEME,this.r.getTheme());
   assertFalse(this.r.equals(null));
   assertFalse(this.r.equals(new Object()));

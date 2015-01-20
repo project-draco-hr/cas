@@ -14,7 +14,7 @@
   if (this.followServiceRedirects && service != null) {
     final Service webAppService=new SimpleWebApplicationServiceImpl(service);
     final RegisteredService rService=this.servicesManager.findServiceBy(webAppService);
-    if (rService != null && rService.getAuthorizationStrategy().isServiceAuthorized(webAppService)) {
+    if (rService != null && rService.getAuthorizationStrategy().isServiceAuthorized()) {
       context.getFlowScope().put("logoutRedirectUrl",service);
     }
   }
