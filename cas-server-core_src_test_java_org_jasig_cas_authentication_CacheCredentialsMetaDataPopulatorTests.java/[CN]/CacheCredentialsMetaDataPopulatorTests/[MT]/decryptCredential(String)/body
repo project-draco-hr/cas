@@ -1,0 +1,12 @@
+{
+  try {
+    final Cipher cipher=Cipher.getInstance(CacheCredentialsMetaDataPopulator.DEFAULT_CIPHER_ALGORITHM);
+    cipher.init(Cipher.DECRYPT_MODE,this.privateKey);
+    final byte[] cred64=CompressionUtils.decodeBase64ToByteArray(cred);
+    final byte[] cipherData=cipher.doFinal(cred64);
+    return new String(cipherData);
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

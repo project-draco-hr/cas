@@ -1,0 +1,4 @@
+{
+  this.publicKey=publicKey;
+  this.cipherAlgorithm=DEFAULT_CIPHER_ALGORITHM;
+}

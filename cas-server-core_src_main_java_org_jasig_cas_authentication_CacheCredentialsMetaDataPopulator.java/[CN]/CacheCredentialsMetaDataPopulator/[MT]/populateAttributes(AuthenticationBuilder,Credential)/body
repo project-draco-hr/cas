@@ -1,0 +1,13 @@
+{
+  final UsernamePasswordCredential c=(UsernamePasswordCredential)credential;
+  try {
+    final Cipher cipher=Cipher.getInstance(this.cipherAlgorithm);
+    cipher.init(Cipher.ENCRYPT_MODE,this.publicKey);
+    final byte[] cipherData=cipher.doFinal(c.getPassword().getBytes());
+    final String password=CompressionUtils.encodeBase64(cipherData);
+    builder.addAttribute(UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD,password);
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}
