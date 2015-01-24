@@ -1,3 +1,3 @@
 {
-  return this.initToken.hashCode() ^ this.nextToken.hashCode() ^ this.principal.hashCode();
+  return Arrays.hashCode(this.getInitToken()) ^ Arrays.hashCode(this.getNextToken()) ^ this.principal.hashCode();
 }

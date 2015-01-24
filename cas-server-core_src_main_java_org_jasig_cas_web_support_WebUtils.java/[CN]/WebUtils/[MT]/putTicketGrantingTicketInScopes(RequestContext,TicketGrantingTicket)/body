@@ -1,0 +1,4 @@
+{
+  final String ticketValue=ticket != null ? ticket.getId() : null;
+  putTicketGrantingTicketInScopes(context,ticketValue);
+}

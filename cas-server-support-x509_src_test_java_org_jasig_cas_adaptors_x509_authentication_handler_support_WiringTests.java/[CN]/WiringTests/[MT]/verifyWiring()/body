@@ -1,0 +1,5 @@
+{
+  try (final ClassPathXmlApplicationContext context=new ClassPathXmlApplicationContext("deployerConfigContext.xml")){
+    Assert.assertTrue(context.getBeanDefinitionCount() > 0);
+  }
+ }

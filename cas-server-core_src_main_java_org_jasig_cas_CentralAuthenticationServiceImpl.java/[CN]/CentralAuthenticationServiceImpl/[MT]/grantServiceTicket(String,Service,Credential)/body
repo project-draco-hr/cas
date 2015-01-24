@@ -1,23 +1,11 @@
 {
-  Assert.notNull(ticketGrantingTicketId,"ticketGrantingticketId cannot be null");
-  Assert.notNull(service,"service cannot be null");
-  final TicketGrantingTicket ticketGrantingTicket=this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
-  if (ticketGrantingTicket == null) {
-    logger.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
-    throw new InvalidTicketException(ticketGrantingTicketId);
-  }
-synchronized (ticketGrantingTicket) {
-    if (ticketGrantingTicket.isExpired()) {
-      this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
-      logger.debug("TicketGrantingTicket [{}] has expired and is now deleted from the ticket registry.",ticketGrantingTicketId);
-      throw new InvalidTicketException(ticketGrantingTicketId);
-    }
-  }
+  final TicketGrantingTicket ticketGrantingTicket=getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   verifyRegisteredServiceProperties(registeredService,service);
+  final Set<Credential> sanitizedCredentials=sanitizeCredentials(credentials);
   Authentication currentAuthentication=null;
-  if (credentials != null) {
-    currentAuthentication=this.authenticationManager.authenticate(credentials);
+  if (sanitizedCredentials.size() > 0) {
+    currentAuthentication=this.authenticationManager.authenticate(sanitizedCredentials.toArray(new Credential[]{}));
     final Authentication original=ticketGrantingTicket.getAuthentication();
     if (!currentAuthentication.getPrincipal().equals(original.getPrincipal())) {
       throw new MixedPrincipalException(currentAuthentication,currentAuthentication.getPrincipal(),original.getPrincipal());
@@ -38,11 +26,12 @@ synchronized (ticketGrantingTicket) {
   }
   getAuthenticationSatisfiedByPolicy(ticketGrantingTicket,new ServiceContext(service,registeredService));
   final String uniqueTicketIdGenKey=service.getClass().getName();
-  if (!this.uniqueTicketIdGeneratorsForService.containsKey(uniqueTicketIdGenKey)) {
-    logger.warn("Cannot create service ticket because the key [{}] for service [{}] is not linked to a ticket id generator",uniqueTicketIdGenKey,service.getId());
-    throw new UnauthorizedSsoServiceException();
+  logger.debug("Looking up service ticket id generator for [{}]",uniqueTicketIdGenKey);
+  UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(uniqueTicketIdGenKey);
+  if (serviceTicketUniqueTicketIdGenerator == null) {
+    serviceTicketUniqueTicketIdGenerator=this.defaultServiceTicketIdGenerator;
+    logger.debug("Service ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
   }
-  final UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(uniqueTicketIdGenKey);
   final List<Authentication> authentications=ticketGrantingTicket.getChainedAuthentications();
   final String ticketPrefix=authentications.size() == 1 ? ServiceTicket.PREFIX : ServiceTicket.PROXY_TICKET_PREFIX;
   final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ticketPrefix);
@@ -50,5 +39,5 @@ synchronized (ticketGrantingTicket) {
   this.serviceTicketRegistry.addTicket(serviceTicket);
   final String principalId=authentications.get(authentications.size() - 1).getPrincipal().getId();
   logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principalId);
-  return serviceTicket.getId();
+  return serviceTicket;
 }

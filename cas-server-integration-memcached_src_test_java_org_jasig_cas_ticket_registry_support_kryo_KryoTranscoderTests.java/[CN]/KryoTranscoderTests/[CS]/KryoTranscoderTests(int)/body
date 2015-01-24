@@ -1,8 +1,0 @@
-{
-  transcoder=new KryoTranscoder(bufferSize);
-  final Map<Class<?>,Serializer> serializerMap=new HashMap<Class<?>,Serializer>();
-  serializerMap.put(MockServiceTicket.class,new FieldSerializer(transcoder.getKryo(),MockServiceTicket.class));
-  serializerMap.put(MockTicketGrantingTicket.class,new FieldSerializer(transcoder.getKryo(),MockTicketGrantingTicket.class));
-  transcoder.setSerializerMap(serializerMap);
-  transcoder.initialize();
-}

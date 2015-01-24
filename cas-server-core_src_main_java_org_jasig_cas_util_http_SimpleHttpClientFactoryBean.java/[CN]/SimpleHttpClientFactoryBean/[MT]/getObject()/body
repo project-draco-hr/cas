@@ -1,0 +1,5 @@
+{
+  final CloseableHttpClient httpClient=buildHttpClient();
+  final FutureRequestExecutionService requestExecutorService=buildRequestExecutorService(httpClient);
+  return new SimpleHttpClient(this.acceptableCodes,httpClient,requestExecutorService);
+}

@@ -1,0 +1,12 @@
+{
+  try {
+    final ResourceBundle bundle=ResourceBundle.getBundle(basename,locale,getBundleClassLoader());
+    if (bundle != null && bundle.keySet().size() > 0) {
+      return bundle;
+    }
+  }
+ catch (  final Exception e) {
+    LOGGER.debug(e.getMessage(),e);
+  }
+  return null;
+}

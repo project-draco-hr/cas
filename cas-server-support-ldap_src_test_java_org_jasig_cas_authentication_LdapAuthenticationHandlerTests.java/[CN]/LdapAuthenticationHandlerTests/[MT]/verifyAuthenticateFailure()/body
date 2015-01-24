@@ -1,0 +1,7 @@
+{
+  for (  final LdapEntry entry : this.getEntries()) {
+    final String username=getUsername(entry);
+    this.handler.authenticate(new UsernamePasswordCredential(username,"badpassword"));
+    fail("Should have thrown FailedLoginException.");
+  }
+}

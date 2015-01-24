@@ -1,3 +1,3 @@
 {
-  this.supportedFlowIds=Collections.singletonList(flowId);
+  this.supportedFlowIds=Collections.singleton(flowId);
 }

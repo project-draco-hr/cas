@@ -1,8 +1,8 @@
 {
   kryo.register(ArrayList.class);
   kryo.register(BasicCredentialMetaData.class);
-  kryo.register(Class.class,new ClassSerializer(kryo));
-  kryo.register(Date.class,new DateSerializer());
+  kryo.register(Class.class,new DefaultSerializers.ClassSerializer());
+  kryo.register(Date.class,new DefaultSerializers.DateSerializer());
   kryo.register(HardTimeoutExpirationPolicy.class);
   kryo.register(HashMap.class);
   kryo.register(HandlerResult.class);
@@ -11,18 +11,22 @@
   kryo.register(NeverExpiresExpirationPolicy.class);
   kryo.register(RememberMeDelegatingExpirationPolicy.class);
   kryo.register(ServiceTicketImpl.class);
-  kryo.register(SimpleWebApplicationServiceImpl.class,new SimpleWebApplicationServiceSerializer(kryo));
+  kryo.register(SimpleWebApplicationServiceImpl.class,new SimpleWebApplicationServiceSerializer());
   kryo.register(ThrottledUseAndTimeoutExpirationPolicy.class);
   kryo.register(TicketGrantingTicketExpirationPolicy.class);
   kryo.register(TicketGrantingTicketImpl.class);
   kryo.register(TimeoutExpirationPolicy.class);
-  kryo.register(URL.class,new URLSerializer(kryo));
-  kryo.register(RegisteredServiceImpl.class,new RegisteredServiceSerializer(kryo));
-  kryo.register(RegexRegisteredService.class,new RegisteredServiceSerializer(kryo));
+  kryo.register(URL.class,new URLSerializer());
+  kryo.register(RegisteredServiceImpl.class,new RegisteredServiceSerializer());
+  kryo.register(RegexRegisteredService.class,new RegisteredServiceSerializer());
+  kryo.register(DateTime.class,new JodaDateTimeSerializer());
+  UnmodifiableCollectionsSerializer.registerSerializers(kryo);
   if (serializerMap != null) {
-    for (    final Class<?> clazz : serializerMap.keySet()) {
-      kryo.register(clazz,serializerMap.get(clazz));
+    for (    final Map.Entry<Class<?>,Serializer> clazz : serializerMap.entrySet()) {
+      kryo.register(clazz.getKey(),clazz.getValue());
     }
   }
-  kryo.setRegistrationOptional(true);
+  kryo.setAutoReset(false);
+  kryo.setReferences(false);
+  kryo.setRegistrationRequired(false);
 }

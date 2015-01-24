@@ -1,0 +1,4 @@
+{
+  this.handler.authenticate(new UsernamePasswordCredential("notfound","somepwd"));
+  fail("Should have thrown FailedLoginException.");
+}

@@ -1,0 +1,16 @@
+{
+  final Map<String,Object> model=new HashMap<>();
+  final Principal principal=new DefaultPrincipalFactory().createPrincipal("testPrincipal");
+  final Map<String,Object> authAttributes=new HashMap<>();
+  authAttributes.put(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD,SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_SSL_TLS_CLIENT);
+  authAttributes.put("testSamlAttribute","value");
+  final Authentication primary=TestUtils.getAuthentication(principal,authAttributes);
+  final Assertion assertion=new ImmutableAssertion(primary,Collections.singletonList(primary),TestUtils.getService(),true);
+  model.put("assertion",assertion);
+  final MockHttpServletResponse servletResponse=new MockHttpServletResponse();
+  this.response.renderMergedOutputModel(model,new MockHttpServletRequest(),servletResponse);
+  final String written=servletResponse.getContentAsString();
+  assertTrue(written.contains("testPrincipal"));
+  assertTrue(written.contains(SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_SSL_TLS_CLIENT));
+  assertTrue(written.contains("AuthenticationMethod="));
+}

@@ -1,0 +1,3 @@
+{
+  LOGGER.info("[{}] has loaded the CAS application context",event.getServletContext().getServerInfo());
+}

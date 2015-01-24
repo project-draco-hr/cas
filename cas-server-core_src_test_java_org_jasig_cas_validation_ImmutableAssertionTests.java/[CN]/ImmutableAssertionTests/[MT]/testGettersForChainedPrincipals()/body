@@ -1,8 +1,0 @@
-{
-  final List<Authentication> list=new ArrayList<Authentication>();
-  list.add(TestUtils.getAuthentication("test"));
-  list.add(TestUtils.getAuthentication("test1"));
-  list.add(TestUtils.getAuthentication("test2"));
-  final ImmutableAssertion assertion=new ImmutableAssertion(TestUtils.getAuthentication(),list,TestUtils.getService(),true);
-  assertEquals(list.toArray(new Authentication[0]).length,assertion.getChainedAuthentications().size());
-}

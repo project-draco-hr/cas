@@ -1,8 +1,0 @@
-{
-  try {
-    this.idGenerator=new SecureRandomIdentifierGenerator();
-  }
- catch (  final NoSuchAlgorithmException e) {
-    throw new IllegalStateException("Cannot create secure random ID generator for SAML message IDs.");
-  }
-}

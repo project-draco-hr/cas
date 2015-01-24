@@ -6,6 +6,6 @@
  else {
     logger.warn("Principal [{}] did not have attribute [{}] among attributes [{}] so CAS cannot " + "provide the user attribute the service expects. " + "CAS will instead return the default principal id [{}]",principalId,this.usernameAttribute,principal.getAttributes(),principalId);
   }
-  logger.debug("Principal id to return is [{}]. The default principal id is [{}].",principal.getId(),principalId);
+  logger.debug("Principal id to return is [{}]. The default principal id is [{}].",principalId,principal.getId());
   return principalId;
 }

@@ -1,7 +1,8 @@
 {
-  final Map<String,Object> attributesToRelease=new HashMap<String,Object>();
-  for (  final String attributeName : givenAttributes.keySet()) {
-    final Object attributeValue=givenAttributes.get(attributeName);
+  final Map<String,Object> attributesToRelease=new HashMap<>();
+  for (  final Map.Entry<String,Object> entry : givenAttributes.entrySet()) {
+    final String attributeName=entry.getKey();
+    final Object attributeValue=entry.getValue();
     logger.debug("Received attribute [{}] with value [{}]",attributeName,attributeValue);
     if (attributeValue != null) {
       if (attributeValue instanceof Collection) {

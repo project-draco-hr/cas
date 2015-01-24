@@ -1,0 +1,11 @@
+{
+  try {
+    final TicketGrantingTicket ticketGrantingTicket=this.centralAuthenticationService.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
+    return ticketGrantingTicket.getAuthentication().getPrincipal();
+  }
+ catch (  final InvalidTicketException e) {
+    logger.warn(e.getMessage());
+  }
+  logger.debug("In the absence of valid TGT, the authentication principal cannot be determined. Returning {}",NullPrincipal.class.getSimpleName());
+  return NullPrincipal.getInstance();
+}

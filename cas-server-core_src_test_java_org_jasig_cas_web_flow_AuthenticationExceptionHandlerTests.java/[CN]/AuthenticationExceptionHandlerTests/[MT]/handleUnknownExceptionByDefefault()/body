@@ -1,8 +1,0 @@
-{
-  final AuthenticationExceptionHandler handler=new AuthenticationExceptionHandler();
-  final MessageContext ctx=mock(MessageContext.class);
-  final Map<String,Class<? extends Exception>> map=new HashMap<String,Class<? extends Exception>>();
-  map.put("unknown",GeneralSecurityException.class);
-  final String id=handler.handle(new AuthenticationException(map),ctx);
-  assertEquals(id,"UNKNOWN");
-}

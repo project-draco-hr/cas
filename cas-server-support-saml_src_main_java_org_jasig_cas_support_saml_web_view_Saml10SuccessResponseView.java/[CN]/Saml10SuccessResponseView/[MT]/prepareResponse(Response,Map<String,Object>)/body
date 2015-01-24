@@ -1,20 +1,17 @@
 {
-  final org.jasig.cas.validation.Assertion casAssertion=getAssertionFrom(model);
-  final Authentication authentication=casAssertion.getChainedAuthentications().get(0);
   final DateTime issuedAt=response.getIssueInstant();
   final Service service=getAssertionFrom(model).getService();
-  final Assertion assertion=newSamlObject(Assertion.class);
-  assertion.setID(generateId());
-  assertion.setIssueInstant(issuedAt);
-  assertion.setIssuer(this.issuer);
-  assertion.setConditions(newConditions(issuedAt,service.getId()));
-  final AuthenticationStatement authnStatement=newAuthenticationStatement(authentication);
-  assertion.getAuthenticationStatements().add(authnStatement);
-  final Subject subject=newSubject(authentication.getPrincipal().getId());
-  final Map<String,Object> attributesToSend=prepareSamlAttributes(authentication,casAssertion,service);
+  final Authentication authentication=getPrimaryAuthenticationFrom(model);
+  final String authenticationMethod=(String)authentication.getAttributes().get(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD);
+  final AuthenticationStatement authnStatement=this.samlObjectBuilder.newAuthenticationStatement(authentication.getAuthenticationDate(),authenticationMethod,getPrincipal(model).getId());
+  final Assertion assertion=this.samlObjectBuilder.newAssertion(authnStatement,this.issuer,issuedAt,this.samlObjectBuilder.generateSecureRandomId());
+  final Conditions conditions=this.samlObjectBuilder.newConditions(issuedAt,service.getId(),this.issueLength);
+  assertion.setConditions(conditions);
+  final Subject subject=this.samlObjectBuilder.newSubject(getPrincipal(model).getId());
+  final Map<String,Object> attributesToSend=prepareSamlAttributes(model);
   if (!attributesToSend.isEmpty()) {
-    assertion.getAttributeStatements().add(newAttributeStatement(subject,attributesToSend));
+    assertion.getAttributeStatements().add(this.samlObjectBuilder.newAttributeStatement(subject,attributesToSend,VALIDATION_SAML_ATTRIBUTE_NAMESPACE));
   }
-  response.setStatus(newStatus(StatusCode.SUCCESS,null));
+  response.setStatus(this.samlObjectBuilder.newStatus(StatusCode.SUCCESS,null));
   response.getAssertions().add(assertion);
 }

@@ -1,0 +1,24 @@
+{
+  final Inflater inflater=new Inflater(true);
+  final byte[] xmlMessageBytes=new byte[INFLATED_ARRAY_LENGTH];
+  final byte[] extendedBytes=new byte[bytes.length + 1];
+  System.arraycopy(bytes,0,extendedBytes,0,bytes.length);
+  extendedBytes[bytes.length]=0;
+  inflater.setInput(extendedBytes);
+  try {
+    final int resultLength=inflater.inflate(xmlMessageBytes);
+    inflater.end();
+    if (!inflater.finished()) {
+      throw new RuntimeException("Buffer not large enough.");
+    }
+    inflater.end();
+    return new String(xmlMessageBytes,0,resultLength,UTF8_ENCODING);
+  }
+ catch (  final DataFormatException e) {
+    LOGGER.error("Data format is not supported",e);
+    return null;
+  }
+catch (  final UnsupportedEncodingException e) {
+    throw new RuntimeException("Cannot find encoding:" + UTF8_ENCODING,e);
+  }
+}

@@ -1,0 +1,14 @@
+{
+  final String myNtlmUser="DOMAIN\\Username";
+  final String myNtlmUserWithNoDomain="Username";
+  final String myKerberosUser="Username@DOMAIN.COM";
+  final PrincipalFactory factory=new DefaultPrincipalFactory();
+  this.authenticationHandler.setPrincipalWithDomainName(true);
+  assertEquals(factory.createPrincipal(myNtlmUser),this.authenticationHandler.getPrincipal(myNtlmUser,true));
+  assertEquals(factory.createPrincipal(myNtlmUserWithNoDomain),this.authenticationHandler.getPrincipal(myNtlmUserWithNoDomain,false));
+  assertEquals(factory.createPrincipal(myKerberosUser),this.authenticationHandler.getPrincipal(myKerberosUser,false));
+  this.authenticationHandler.setPrincipalWithDomainName(false);
+  assertEquals(factory.createPrincipal("Username"),this.authenticationHandler.getPrincipal(myNtlmUser,true));
+  assertEquals(factory.createPrincipal("Username"),this.authenticationHandler.getPrincipal(myNtlmUserWithNoDomain,true));
+  assertEquals(factory.createPrincipal("Username"),this.authenticationHandler.getPrincipal(myKerberosUser,false));
+}

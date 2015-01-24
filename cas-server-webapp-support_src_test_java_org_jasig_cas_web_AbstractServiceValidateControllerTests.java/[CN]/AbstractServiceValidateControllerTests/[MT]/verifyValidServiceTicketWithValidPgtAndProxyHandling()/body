@@ -1,0 +1,11 @@
+{
+  final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),TestUtils.getService());
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter("service",TestUtils.getService().getId());
+  request.addParameter("ticket",sId.getId());
+  request.addParameter("pgtUrl","https://www.github.com");
+  final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
+  assertEquals(ServiceValidateController.DEFAULT_SERVICE_SUCCESS_VIEW_NAME,modelAndView.getViewName());
+  assertNotNull(modelAndView.getModel().get("pgtIou"));
+}

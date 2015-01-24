@@ -1,7 +1,0 @@
-{
-  this.redirectsEnabled=redirectsEnabled;
-  this.readTimeout=readTimeout;
-  this.connectionTimeout=connectionTimeout;
-  this.circularRedirectsAllowed=circularRedirectsAllowed;
-  init();
-}

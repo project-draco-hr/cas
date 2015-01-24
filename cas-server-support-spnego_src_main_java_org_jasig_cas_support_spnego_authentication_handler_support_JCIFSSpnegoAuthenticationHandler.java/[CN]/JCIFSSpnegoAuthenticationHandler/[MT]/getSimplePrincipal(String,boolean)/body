@@ -1,9 +1,10 @@
 {
+  logger.warn("getSimplePrincipal() is deprecated and will be removed. Consider getPrincipal() instead.");
   if (this.principalWithDomainName) {
-    return new SimplePrincipal(name);
+    return (SimplePrincipal)new DefaultPrincipalFactory().createPrincipal(name);
   }
   if (isNtlm) {
-    return Pattern.matches("\\S+\\\\\\S+",name) ? new SimplePrincipal(name.split("\\\\")[1]) : new SimplePrincipal(name);
+    return Pattern.matches("\\S+\\\\\\S+",name) ? (SimplePrincipal)new DefaultPrincipalFactory().createPrincipal(name.split("\\\\")[1]) : (SimplePrincipal)new DefaultPrincipalFactory().createPrincipal(name);
   }
-  return new SimplePrincipal(name.split("@")[0]);
+  return (SimplePrincipal)new DefaultPrincipalFactory().createPrincipal(name.split("@")[0]);
 }

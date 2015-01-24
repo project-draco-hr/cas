@@ -2,10 +2,10 @@
   final ParameterList parameters=new ParameterList(request.getParameterMap());
   final String mode=parameters.hasParameter("openid.mode") ? parameters.getParameterValue("openid.mode") : null;
   Message response=null;
-  if (mode != null && mode.equals("associate")) {
+  if (StringUtils.equals(mode,ASSOCIATE)) {
     response=serverManager.associationResponse(parameters);
   }
-  final Map<String,String> responseParams=new HashMap<String,String>();
+  final Map<String,String> responseParams=new HashMap<>();
   if (response != null) {
     responseParams.putAll(response.getParameterMap());
   }

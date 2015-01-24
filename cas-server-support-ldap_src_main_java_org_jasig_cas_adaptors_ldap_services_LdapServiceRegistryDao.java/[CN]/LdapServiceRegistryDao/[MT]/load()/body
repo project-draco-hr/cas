@@ -1,8 +1,8 @@
 {
   Connection connection=null;
-  final List<RegisteredService> list=new LinkedList<RegisteredService>();
+  final List<RegisteredService> list=new LinkedList<>();
   try {
-    connection=this.connectionFactory.getConnection();
+    connection=getConnection();
     final Response<SearchResult> response=executeSearchOperation(connection,new SearchFilter(this.loadFilter));
     if (hasResults(response)) {
       for (      final LdapEntry entry : response.getResult().getEntries()) {

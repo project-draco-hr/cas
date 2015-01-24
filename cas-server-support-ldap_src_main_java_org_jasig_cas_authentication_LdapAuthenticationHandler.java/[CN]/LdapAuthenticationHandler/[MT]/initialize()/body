@@ -1,9 +1,15 @@
 {
-  final List<String> attributes=new ArrayList<String>();
+  final Set<String> attributes=new HashSet<>();
   if (this.principalIdAttribute != null) {
     attributes.add(this.principalIdAttribute);
   }
-  attributes.addAll(this.principalAttributeMap.keySet());
-  attributes.addAll(this.additionalAttributes);
-  this.authenticatedEntryAttributes=attributes.toArray(new String[attributes.size()]);
+  if (!this.principalAttributeMap.isEmpty()) {
+    attributes.addAll(this.principalAttributeMap.keySet());
+  }
+  if (!this.additionalAttributes.isEmpty()) {
+    attributes.addAll(this.additionalAttributes);
+  }
+  if (!attributes.isEmpty()) {
+    this.authenticatedEntryAttributes=attributes.toArray(new String[attributes.size()]);
+  }
 }

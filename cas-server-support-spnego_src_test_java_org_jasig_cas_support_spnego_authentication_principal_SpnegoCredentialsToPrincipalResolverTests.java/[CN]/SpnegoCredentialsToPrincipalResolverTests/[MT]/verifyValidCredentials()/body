@@ -1,0 +1,4 @@
+{
+  this.spnegoCredentials.setPrincipal(new DefaultPrincipalFactory().createPrincipal("test"));
+  assertEquals("test",this.resolver.resolve(this.spnegoCredentials).getId());
+}

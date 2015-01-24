@@ -1,0 +1,4 @@
+{
+  final UsernamePasswordCredential c=TestUtils.getCredentialsWithDifferentUsernameAndPassword("hello","world");
+  this.handler.authenticateUsernamePasswordInternal(c);
+}

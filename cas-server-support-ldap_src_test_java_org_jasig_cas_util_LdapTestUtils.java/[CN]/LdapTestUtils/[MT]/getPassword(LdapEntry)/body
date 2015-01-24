@@ -1,3 +1,0 @@
-{
-  return PASSWORD_PREFIX + entry.getAttribute("sn").getStringValue();
-}

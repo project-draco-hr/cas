@@ -1,4 +1,0 @@
-{
-  this.kryo=kryo;
-  this.fieldHelper=helper;
-}

@@ -1,9 +1,0 @@
-{
-  try {
-    final byte[] xmlBytes=xml.getBytes("UTF-8");
-    return Base64.decodeBase64(xmlBytes);
-  }
- catch (  final Exception e) {
-    return null;
-  }
-}

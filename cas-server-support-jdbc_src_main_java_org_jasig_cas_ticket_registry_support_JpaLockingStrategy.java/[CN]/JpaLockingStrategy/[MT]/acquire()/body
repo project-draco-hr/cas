@@ -4,17 +4,17 @@
     lock=entityManager.find(Lock.class,applicationId,LockModeType.PESSIMISTIC_WRITE);
   }
  catch (  final PersistenceException e) {
-    logger.debug("{} failed querying for {} lock.",new Object[]{uniqueId,applicationId,e});
+    logger.debug("{} failed querying for {} lock.",uniqueId,applicationId,e);
     return false;
   }
   boolean result=false;
   if (lock != null) {
-    final Date expDate=lock.getExpirationDate();
+    final DateTime expDate=new DateTime(lock.getExpirationDate());
     if (lock.getUniqueId() == null) {
       logger.debug("{} trying to acquire {} lock.",uniqueId,applicationId);
       result=acquire(entityManager,lock);
     }
- else     if (expDate != null && new Date().after(expDate)) {
+ else     if (new DateTime().isAfter(expDate)) {
       logger.debug("{} trying to acquire expired {} lock.",uniqueId,applicationId);
       result=acquire(entityManager,lock);
     }

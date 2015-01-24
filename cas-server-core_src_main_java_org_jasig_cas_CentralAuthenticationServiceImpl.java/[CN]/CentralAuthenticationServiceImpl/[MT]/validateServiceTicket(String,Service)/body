@@ -1,13 +1,11 @@
 {
-  Assert.notNull(serviceTicketId,"serviceTicketId cannot be null");
-  Assert.notNull(service,"service cannot be null");
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  verifyRegisteredServiceProperties(registeredService,service);
   final ServiceTicket serviceTicket=this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
   if (serviceTicket == null) {
     logger.info("Service ticket [{}] does not exist.",serviceTicketId);
     throw new InvalidTicketException(serviceTicketId);
   }
-  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-  verifyRegisteredServiceProperties(registeredService,serviceTicket.getService());
   try {
 synchronized (serviceTicket) {
       if (serviceTicket.isExpired()) {
@@ -26,7 +24,7 @@ synchronized (serviceTicket) {
     logger.debug("Attribute policy [{}] is associated with service [{}]",attributePolicy,registeredService);
     @SuppressWarnings("unchecked") final Map<String,Object> attributesToRelease=attributePolicy != null ? attributePolicy.getAttributes(principal) : Collections.EMPTY_MAP;
     final String principalId=registeredService.getUsernameAttributeProvider().resolveUsername(principal,service);
-    final Principal modifiedPrincipal=new SimplePrincipal(principalId,attributesToRelease);
+    final Principal modifiedPrincipal=this.principalFactory.createPrincipal(principalId,attributesToRelease);
     final AuthenticationBuilder builder=AuthenticationBuilder.newInstance(authentication);
     builder.setPrincipal(modifiedPrincipal);
     return new ImmutableAssertion(builder.build(),serviceTicket.getGrantingTicket().getChainedAuthentications(),serviceTicket.getService(),serviceTicket.isFromNewLogin());

@@ -1,4 +1,0 @@
-{
-  final String ticketId=this.remoteCentralAuthenticationService.createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  this.remoteCentralAuthenticationService.grantServiceTicket(ticketId,TestUtils.getService());
-}

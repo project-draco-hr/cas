@@ -3,22 +3,9 @@
   final WebApplicationService service=this.samlArgumentExtractor.extractService(request);
   final String serviceId=service != null ? service.getId() : "UNKNOWN";
   try {
-    final Response samlResponse=newSamlObject(Response.class);
-    samlResponse.setID(generateId());
-    samlResponse.setIssueInstant(DateTime.now().minusSeconds(skewAllowance));
-    samlResponse.setVersion(SAMLVersion.VERSION_11);
-    samlResponse.setRecipient(serviceId);
-    if (service instanceof SamlService) {
-      final SamlService samlService=(SamlService)service;
-      if (samlService.getRequestID() != null) {
-        samlResponse.setInResponseTo(samlService.getRequestID());
-      }
-    }
+    final Response samlResponse=this.samlObjectBuilder.newResponse(this.samlObjectBuilder.generateSecureRandomId(),DateTime.now().minusSeconds(this.skewAllowance),serviceId,service);
     prepareResponse(samlResponse,model);
-    final BasicSAMLMessageContext messageContext=new BasicSAMLMessageContext();
-    messageContext.setOutboundMessageTransport(new HttpServletResponseAdapter(response,request.isSecure()));
-    messageContext.setOutboundSAMLMessage(samlResponse);
-    this.encoder.encode(messageContext);
+    this.samlObjectBuilder.encodeSamlResponse(response,request,samlResponse);
   }
  catch (  final Exception e) {
     logger.error("Error generating SAML response for service {}.",serviceId);

@@ -3,6 +3,7 @@
   try {
     try {
       connection=this.connectionFactory.getConnection();
+      connection.open();
     }
  catch (    final LdapException e) {
       throw new RuntimeException("Failed getting LDAP connection",e);
@@ -15,7 +16,7 @@
       throw new RuntimeException("Failed executing LDAP query " + filter,e);
     }
     final SearchResult result=response.getResult();
-    final List<IPersonAttributes> peopleAttributes=new ArrayList<IPersonAttributes>(result.size());
+    final List<IPersonAttributes> peopleAttributes=new ArrayList<>(result.size());
     for (    final LdapEntry entry : result.getEntries()) {
       final IPersonAttributes person;
       final String userNameAttribute=this.getConfiguredUserNameAttribute();

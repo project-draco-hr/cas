@@ -1,5 +1,0 @@
-{
-  this.readTimeout=readTimeout;
-  this.connectionTimeout=connectionTimeout;
-  init();
-}

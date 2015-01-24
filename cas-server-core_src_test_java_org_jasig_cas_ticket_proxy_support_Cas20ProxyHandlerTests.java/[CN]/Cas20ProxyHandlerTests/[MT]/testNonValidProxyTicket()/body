@@ -1,5 +1,0 @@
-{
-  final SimpleHttpClient httpClient=new SimpleHttpClient(new int[]{900});
-  this.handler.setHttpClient(httpClient);
-  assertNull(this.handler.handle(new HttpBasedServiceCredential(new URL("http://www.rutgers.edu"),TestUtils.getRegisteredService("https://some.app.edu")),"proxyGrantingTicketId"));
-}

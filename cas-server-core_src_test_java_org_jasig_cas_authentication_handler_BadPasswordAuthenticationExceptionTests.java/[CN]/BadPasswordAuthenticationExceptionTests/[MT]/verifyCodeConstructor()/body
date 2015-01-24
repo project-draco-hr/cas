@@ -1,0 +1,4 @@
+{
+  final BadPasswordAuthenticationException e=new BadPasswordAuthenticationException(MESSAGE);
+  assertEquals(MESSAGE,e.getCode());
+}

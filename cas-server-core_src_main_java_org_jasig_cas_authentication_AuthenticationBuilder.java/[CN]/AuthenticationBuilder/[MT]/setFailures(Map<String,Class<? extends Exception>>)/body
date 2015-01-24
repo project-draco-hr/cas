@@ -1,8 +1,8 @@
 {
   Assert.notNull(failures,"Failures cannot be null");
   this.failures.clear();
-  for (  final String handler : failures.keySet()) {
-    this.failures.put(handler,failures.get(handler));
+  for (  final Map.Entry<String,Class<? extends Exception>> entry : failures.entrySet()) {
+    this.failures.put(entry.getKey(),entry.getValue());
   }
   return this;
 }
