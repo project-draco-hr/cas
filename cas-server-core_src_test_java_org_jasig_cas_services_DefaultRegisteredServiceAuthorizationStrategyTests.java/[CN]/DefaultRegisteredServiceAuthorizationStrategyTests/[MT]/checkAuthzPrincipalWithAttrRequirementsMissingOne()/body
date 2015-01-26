@@ -1,7 +1,0 @@
-{
-  final DefaultRegisteredServiceAuthorizationStrategy authz=new DefaultRegisteredServiceAuthorizationStrategy();
-  authz.setRequiredAttributes(this.getRequiredAttributes());
-  final Map<String,Object> pAttrs=this.getPrincipalAttributes();
-  pAttrs.remove("cn");
-  assertFalse(authz.isServiceAccessAuthorizedForPrincipal(pAttrs));
-}

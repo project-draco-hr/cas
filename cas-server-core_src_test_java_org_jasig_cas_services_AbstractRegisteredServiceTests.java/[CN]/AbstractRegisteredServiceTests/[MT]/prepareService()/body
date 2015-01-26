@@ -5,5 +5,5 @@
   this.r.setName(NAME);
   this.r.setServiceId(SERVICEID);
   this.r.setTheme(THEME);
-  this.r.setAuthorizationStrategy(new DefaultRegisteredServiceAuthorizationStrategy(ENABLED,SSO_ENABLED));
+  this.r.setAuthorizationStrategy(new DefaultRegisteredServiceAccessStrategy(ENABLED,SSO_ENABLED));
 }

@@ -1,4 +1,0 @@
-{
-  final DefaultRegisteredServiceAuthorizationStrategy authz=new DefaultRegisteredServiceAuthorizationStrategy();
-  assertTrue(authz.isServiceAccessAuthorizedForPrincipal(new HashMap<String,Object>()));
-}

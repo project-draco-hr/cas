@@ -1,5 +1,0 @@
-{
-  final RegisteredServiceAuthorizationStrategy authz=new DefaultRegisteredServiceAuthorizationStrategy(false,true);
-  assertFalse(authz.isServiceAuthorized());
-  assertTrue(authz.isServiceAuthorizedForSso());
-}
