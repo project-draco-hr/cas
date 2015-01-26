@@ -4,18 +4,18 @@
     return true;
   }
   if (principalAttributes.isEmpty()) {
-    logger.warn("No principal attributes are found to satisfy attribute requirements");
+    logger.debug("No principal attributes are found to satisfy attribute requirements");
     return false;
   }
   if (principalAttributes.size() < this.requiredAttributes.size()) {
-    logger.warn("The size of the principal attributes that are [{}] does not match requirements, " + "which means the principal is not carrying enough data to grant authorization",principalAttributes);
+    logger.debug("The size of the principal attributes that are [{}] does not match requirements, " + "which means the principal is not carrying enough data to grant authorization",principalAttributes);
     return false;
   }
   logger.debug("These required attributes [{}] are examined against [{}] before service can proceed.",getRequiredAttributes(),principalAttributes);
   final Sets.SetView<String> difference=Sets.intersection(getRequiredAttributes().keySet(),principalAttributes.keySet());
   final Set<String> copy=difference.immutableCopy();
   if (this.requireAllAttributes && copy.size() < this.requiredAttributes.size()) {
-    logger.warn("Not all required attributes are available to the principal");
+    logger.debug("Not all required attributes are available to the principal");
     return false;
   }
   for (  final String key : copy) {
