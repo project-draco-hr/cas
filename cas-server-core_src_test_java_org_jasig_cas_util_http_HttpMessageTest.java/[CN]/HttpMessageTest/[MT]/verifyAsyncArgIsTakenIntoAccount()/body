@@ -1,0 +1,5 @@
+{
+  assertTrue(new HttpMessage(null,"").isAsynchronous());
+  assertTrue(new HttpMessage(null,"",true).isAsynchronous());
+  assertFalse(new HttpMessage(null,"",false).isAsynchronous());
+}
