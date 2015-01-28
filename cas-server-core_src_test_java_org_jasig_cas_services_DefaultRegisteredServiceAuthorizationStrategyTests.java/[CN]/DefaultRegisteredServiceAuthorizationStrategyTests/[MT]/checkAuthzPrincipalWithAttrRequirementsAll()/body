@@ -1,5 +1,0 @@
-{
-  final DefaultRegisteredServiceAuthorizationStrategy authz=new DefaultRegisteredServiceAuthorizationStrategy();
-  authz.setRequiredAttributes(this.getRequiredAttributes());
-  assertTrue(authz.isServiceAccessAuthorizedForPrincipal(this.getPrincipalAttributes()));
-}

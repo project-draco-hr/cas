@@ -28,7 +28,7 @@
   final List<Authentication> authentications=ticketGrantingTicket.getChainedAuthentications();
   final Principal principal=authentications.get(authentications.size() - 1).getPrincipal();
   final Map<String,Object> principalAttrs=registeredService.getAttributeReleasePolicy().getAttributes(principal);
-  if (!registeredService.getAuthorizationStrategy().isServiceAccessAuthorizedForPrincipal(principalAttrs)) {
+  if (!registeredService.getAuthorizationStrategy().doPrincipalAttributesAllowServiceAccess(principalAttrs)) {
     logger.warn("ServiceManagement: Cannot grant service ticket because Service [{}] is not authorized for use by [{}].",service.getId(),principal);
     throw new UnauthorizedServiceForPrincipalException();
   }
