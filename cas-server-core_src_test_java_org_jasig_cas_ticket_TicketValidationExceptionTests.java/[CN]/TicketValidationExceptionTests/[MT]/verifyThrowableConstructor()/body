@@ -1,5 +1,5 @@
 {
   final TicketValidationException t=new TicketValidationException(this.service);
-  assertSame(CODE,t.getCode());
+  assertSame(TicketValidationException.CODE,t.getCode());
   assertEquals(this.service,t.getOriginalService());
 }
