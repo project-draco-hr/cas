@@ -3,6 +3,6 @@
   authz.setEnabled(true);
   authz.setSsoEnabled(true);
   assertTrue(authz.isServiceAccessAllowed());
-  assertTrue(authz.isServiceAuthorizedForSso());
+  assertTrue(authz.isServiceAccessAllowedForSso());
   assertTrue(authz.isRequireAllAttributes());
 }
