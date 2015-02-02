@@ -1,7 +1,7 @@
 {
   final RegisteredServiceImpl authorizedRegisteredService=new RegisteredServiceImpl();
   final RegisteredServiceImpl unauthorizedRegisteredService=new RegisteredServiceImpl();
-  unauthorizedRegisteredService.setAuthorizationStrategy(new DefaultRegisteredServiceAccessStrategy(false,false));
+  unauthorizedRegisteredService.setAccessStrategy(new DefaultRegisteredServiceAccessStrategy(false,false));
   final List<RegisteredService> list=new ArrayList<>();
   list.add(authorizedRegisteredService);
   list.add(unauthorizedRegisteredService);

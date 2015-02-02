@@ -2,7 +2,7 @@
   final RequestContext requestContext=RequestContextHolder.getRequestContext();
   final WebApplicationService service=WebUtils.getService(requestContext);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-  final String themeId=service != null && registeredService != null && registeredService.getAuthorizationStrategy().isServiceAccessAllowed() && StringUtils.hasText(registeredService.getTheme()) ? registeredService.getTheme() : defaultThemeId;
+  final String themeId=service != null && registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed() && StringUtils.hasText(registeredService.getTheme()) ? registeredService.getTheme() : defaultThemeId;
   final String themePrefix=String.format("%s/%s/ui/",pathPrefix,themeId);
   LOGGER.debug("Prefix {} set for service {} with theme {}",themePrefix,service,themeId);
   final InternalResourceView view=(InternalResourceView)BeanUtils.instantiateClass(getViewClass());

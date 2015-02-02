@@ -4,7 +4,7 @@
   r.setServiceId("testId");
   r.setTheme("testtheme");
   r.setEvaluationOrder(1000);
-  r.setAuthorizationStrategy(new DefaultRegisteredServiceAccessStrategy(true,false));
+  r.setAccessStrategy(new DefaultRegisteredServiceAccessStrategy(true,false));
   r.setProxyPolicy(new RegexMatchingRegisteredServiceProxyPolicy("https://.+"));
   r.setRequiredHandlers(new HashSet<String>(Arrays.asList("h1","h2")));
   final ReturnAllowedAttributeReleasePolicy policy=new ReturnAllowedAttributeReleasePolicy();
