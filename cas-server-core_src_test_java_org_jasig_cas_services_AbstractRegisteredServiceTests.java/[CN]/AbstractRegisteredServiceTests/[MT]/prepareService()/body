@@ -1,10 +1,9 @@
 {
   this.r.setUsernameAttributeProvider(new AnonymousRegisteredServiceUsernameAttributeProvider(new ShibbolethCompatiblePersistentIdGenerator("casrox")));
   this.r.setDescription(DESCRIPTION);
-  this.r.setEnabled(ENABLED);
   this.r.setId(ID);
   this.r.setName(NAME);
   this.r.setServiceId(SERVICEID);
-  this.r.setSsoEnabled(SSO_ENABLED);
   this.r.setTheme(THEME);
+  this.r.setAccessStrategy(new DefaultRegisteredServiceAccessStrategy(ENABLED,SSO_ENABLED));
 }
