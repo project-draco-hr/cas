@@ -6,7 +6,7 @@
   assertEquals(ID,this.r.getId());
   assertEquals(NAME,this.r.getName());
   assertEquals(SERVICEID,this.r.getServiceId());
-  assertEquals(SSO_ENABLED,this.r.getAccessStrategy().isServiceAuthorizedForSso());
+  assertEquals(SSO_ENABLED,this.r.getAccessStrategy().isServiceAccessAllowedForSso());
   assertEquals(THEME,this.r.getTheme());
   assertFalse(this.r.equals(null));
   assertFalse(this.r.equals(new Object()));
