@@ -1,13 +1,9 @@
 {
   super.prepareMergedOutputModel(model,request,response);
   final Map<String,Object> attributes=new HashMap<>(getPrincipalAttributesAsMultiValuedAttributes(model));
-  attributes.put(MODEL_ATTRIBUTE_NAME_AUTHENTICATION_DATE,Collections.singleton(getAuthenticationDate(model)));
-  attributes.put(MODEL_ATTRIBUTE_NAME_FROM_NEW_LOGIN,Collections.singleton(isAssertionBackedByNewLogin(model)));
+  attributes.put(CasProtocolConstants.VALIDATION_CAS_MODEL_ATTRIBUTE_NAME_AUTHENTICATION_DATE,Collections.singleton(getAuthenticationDate(model)));
+  attributes.put(CasProtocolConstants.VALIDATION_CAS_MODEL_ATTRIBUTE_NAME_FROM_NEW_LOGIN,Collections.singleton(isAssertionBackedByNewLogin(model)));
   attributes.put(CasProtocolConstants.VALIDATION_REMEMBER_ME_ATTRIBUTE_NAME,Collections.singleton(isRememberMeAuthentication(model)));
-  final String credential=super.getCredentialPasswordFromAuthentication(model);
-  if (StringUtils.isNotBlank(credential)) {
-    logger.debug("Obtained credential password is passed to the CAS payload under [{}]",MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL);
-    attributes.put(MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL,Collections.singleton(credential));
-  }
-  super.putIntoModel(model,MODEL_ATTRIBUTE_NAME_ATTRIBUTES,attributes);
+  decideIfCredentialPasswordShouldBeReleasedAsAttribute(attributes,model);
+  super.putIntoModel(model,CasProtocolConstants.VALIDATION_CAS_MODEL_ATTRIBUTE_NAME_ATTRIBUTES,attributes);
 }

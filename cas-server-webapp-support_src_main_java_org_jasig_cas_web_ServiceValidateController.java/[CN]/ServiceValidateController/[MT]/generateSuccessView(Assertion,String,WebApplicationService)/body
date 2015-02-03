@@ -1,7 +1,8 @@
 {
   final ModelAndView success=new ModelAndView(this.successView);
-  success.addObject(VALIDATION_CAS_MODEL_ASSERTION,assertion);
-  success.addObject(CasProtocolConstants.VALIDATION_CAS_MODEL_PROXY_GRANTING_TICKET_IOU,proxyIou);
+  success.addObject(CasViewConstants.MODEL_ATTRIBUTE_NAME_ASSERTION,assertion);
+  success.addObject(CasViewConstants.MODEL_ATTRIBUTE_NAME_SERVICE);
+  success.addObject(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET_IOU,proxyIou);
   final Map<String,?> augmentedModelObjects=augmentSuccessViewModelObjects(assertion);
   if (augmentedModelObjects != null) {
     success.addAllObjects(augmentedModelObjects);
