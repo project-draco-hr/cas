@@ -1,0 +1,6 @@
+{
+  final Map<String,Set<String>> map=new HashMap<>();
+  map.put("cn",Sets.newHashSet("cas","SSO"));
+  map.put("givenName",Sets.newHashSet("CAS","KAZ"));
+  return map;
+}

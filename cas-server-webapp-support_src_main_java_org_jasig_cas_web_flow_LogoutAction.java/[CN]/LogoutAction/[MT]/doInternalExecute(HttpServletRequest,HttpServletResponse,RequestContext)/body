@@ -12,8 +12,9 @@
   }
   final String service=request.getParameter("service");
   if (this.followServiceRedirects && service != null) {
-    final RegisteredService rService=this.servicesManager.findServiceBy(new SimpleWebApplicationServiceImpl(service));
-    if (rService != null && rService.isEnabled()) {
+    final Service webAppService=new SimpleWebApplicationServiceImpl(service);
+    final RegisteredService rService=this.servicesManager.findServiceBy(webAppService);
+    if (rService != null && rService.getAccessStrategy().isServiceAccessAllowed()) {
       context.getFlowScope().put("logoutRedirectUrl",service);
     }
   }
