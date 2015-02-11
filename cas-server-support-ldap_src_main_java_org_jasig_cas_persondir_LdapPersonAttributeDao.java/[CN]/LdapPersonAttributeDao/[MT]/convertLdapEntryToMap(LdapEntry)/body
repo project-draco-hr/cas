@@ -1,7 +1,8 @@
 {
   final Map<String,List<Object>> attributeMap=new LinkedHashMap<>(entry.size());
   for (  final LdapAttribute attr : entry.getAttributes()) {
-    attributeMap.put(attr.getName(),new ArrayList<Object>(attr.getStringValues()));
+    final String attrNewName=this.getResultAttributeMapping().get(attr.getName()).toString();
+    attributeMap.put(attrNewName,new ArrayList<Object>(attr.getStringValues()));
   }
   logger.debug("Converted ldap DN entry [{}] to attribute map {}",entry.getDn(),attributeMap.toString());
   return attributeMap;
