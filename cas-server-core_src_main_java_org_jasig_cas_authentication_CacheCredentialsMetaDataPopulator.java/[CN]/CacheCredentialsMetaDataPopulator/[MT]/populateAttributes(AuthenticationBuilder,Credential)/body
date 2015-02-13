@@ -1,17 +1,6 @@
 {
-  try {
-    logger.debug("Processing request to capture the credential for [{}]",credential.getId());
-    final Cipher cipher=Cipher.getInstance(this.cipherAlgorithm);
-    logger.debug("Created cipher instance to encrypt credential via [{}]",this.cipherAlgorithm);
-    cipher.init(Cipher.ENCRYPT_MODE,this.publicKey);
-    logger.debug("Initialized cipher in encrypt-mode via the public key algorithm [{}]",this.publicKey.getAlgorithm());
-    final UsernamePasswordCredential c=(UsernamePasswordCredential)credential;
-    final byte[] cipherData=cipher.doFinal(c.getPassword().getBytes());
-    final String password=CompressionUtils.encodeBase64(cipherData);
-    builder.addAttribute(UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD,password);
-    logger.debug("Encrypted credential is encoded in base64 and added as the authentication attribute [{}]",UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD);
-  }
- catch (  final Exception e) {
-    throw new RuntimeException(e);
-  }
+  logger.debug("Processing request to capture the credential for [{}]",credential.getId());
+  final UsernamePasswordCredential c=(UsernamePasswordCredential)credential;
+  builder.addAttribute(UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD,c.getPassword());
+  logger.debug("Encrypted credential is encoded in base64 and added as the authentication attribute [{}]",UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD);
 }

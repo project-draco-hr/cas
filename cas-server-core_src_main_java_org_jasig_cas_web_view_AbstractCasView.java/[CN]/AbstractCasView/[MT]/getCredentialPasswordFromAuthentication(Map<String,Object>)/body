@@ -1,5 +1,4 @@
 {
   final Authentication authn=getPrimaryAuthenticationFrom(model);
-  final Principal principal=getPrincipal(model);
   return (String)authn.getAttributes().get(UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD);
 }

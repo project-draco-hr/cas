@@ -1,0 +1,8 @@
+{
+  final Map<String,Object> newEncodedAttributes=new HashMap<>(attributes);
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  if (registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed()) {
+    encodeAttributesInternal(newEncodedAttributes,registeredService);
+  }
+  return newEncodedAttributes;
+}

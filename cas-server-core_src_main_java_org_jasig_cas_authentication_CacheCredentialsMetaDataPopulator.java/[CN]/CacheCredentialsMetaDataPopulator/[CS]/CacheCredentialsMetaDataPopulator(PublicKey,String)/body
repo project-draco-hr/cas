@@ -1,4 +1,0 @@
-{
-  this.publicKey=publicKey;
-  this.cipherAlgorithm=cipherAlgorithm;
-}
