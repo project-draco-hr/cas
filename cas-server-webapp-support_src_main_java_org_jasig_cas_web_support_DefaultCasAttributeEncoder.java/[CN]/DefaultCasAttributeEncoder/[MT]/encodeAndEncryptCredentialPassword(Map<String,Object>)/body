@@ -4,7 +4,7 @@
       logger.debug("Retrieved the password as an authentication attribute...");
       final byte[] cipherData=this.cipher.doFinal(this.cachedCredential.getBytes());
       final String encPassword=CompressionUtils.encodeBase64(cipherData);
-      attributes.put(UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD,encPassword);
+      attributes.put(CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL,encPassword);
       logger.debug("Encrypted and encoded password as an authentication attribute.");
     }
  else {

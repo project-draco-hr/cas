@@ -1,2 +1,9 @@
 {
+  final Collection<?> collection=(Collection<?>)attributes.remove(CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL);
+  if (collection != null && collection.size() == 1) {
+    this.cachedCredential=collection.iterator().next().toString();
+    if (StringUtils.isNotBlank(this.cachedCredential)) {
+      logger.debug("Removed credential as an authentication attribute and cached it locally.");
+    }
+  }
 }
