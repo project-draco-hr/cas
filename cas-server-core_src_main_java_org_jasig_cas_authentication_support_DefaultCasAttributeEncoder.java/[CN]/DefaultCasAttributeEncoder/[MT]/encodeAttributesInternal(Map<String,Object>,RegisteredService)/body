@@ -4,6 +4,7 @@
       return;
     }
     encodeAndEncryptCredentialPassword(attributes);
+    encodeAndEncryptProxyGrantingTicket(attributes);
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);

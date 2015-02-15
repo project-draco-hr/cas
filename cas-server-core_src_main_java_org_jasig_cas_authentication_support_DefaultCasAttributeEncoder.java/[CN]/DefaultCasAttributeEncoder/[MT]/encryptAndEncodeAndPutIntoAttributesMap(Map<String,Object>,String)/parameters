@@ -1,2 +1,2 @@
 Map<String,Object> attributes
-Map<String,Object> model
+String cachedAttributeName
