@@ -8,5 +8,5 @@
   }
   factory.setAlgorithm(this.algorithm);
   factory.setSingleton(false);
-  return (PublicKey)factory.getObject();
+  return factory.getObject();
 }
