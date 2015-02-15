@@ -4,7 +4,6 @@
     final RegexRegisteredService r=new RegexRegisteredService();
     r.setServiceId("^https://.+");
     r.setName("testServiceType");
-    r.setEnabled(true);
     r.setTheme("testtheme");
     r.setEvaluationOrder(1000);
     r.setId(i * 100);

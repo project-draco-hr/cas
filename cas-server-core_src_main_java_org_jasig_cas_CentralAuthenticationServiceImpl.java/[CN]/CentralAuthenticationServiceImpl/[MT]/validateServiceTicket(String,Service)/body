@@ -14,7 +14,7 @@ synchronized (serviceTicket) {
       }
       if (!serviceTicket.isValidFor(service)) {
         logger.error("Service ticket [{}] with service [{}] does not match supplied service [{}]",serviceTicketId,serviceTicket.getService().getId(),service);
-        throw new TicketValidationException(serviceTicket.getService());
+        throw new UnrecognizableServiceForServiceTicketValidationException(serviceTicket.getService());
       }
     }
     final TicketGrantingTicket root=serviceTicket.getGrantingTicket().getRoot();
