@@ -1,0 +1,5 @@
+{
+  final KeyPair pair=generateKeyPair();
+  this.publicKey=pair.getPublic();
+  this.privateKey=pair.getPrivate();
+}

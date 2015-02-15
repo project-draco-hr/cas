@@ -1,12 +1,15 @@
 {
   try {
-    final String password=(String)attributes.get(UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD);
-    logger.debug("Retrieved the password as an authentication attribute...");
-    final byte[] cipherData=this.cipher.doFinal(password.getBytes());
-    final String encPassword=CompressionUtils.encodeBase64(cipherData);
-    attributes.remove(UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD);
-    attributes.put(UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD,encPassword);
-    logger.debug("Encrypted and encoded password as an authentication attribute.");
+    if (StringUtils.isNotBlank(this.cachedCredential)) {
+      logger.debug("Retrieved the password as an authentication attribute...");
+      final byte[] cipherData=this.cipher.doFinal(this.cachedCredential.getBytes());
+      final String encPassword=CompressionUtils.encodeBase64(cipherData);
+      attributes.put(UsernamePasswordCredential.AUTHENTICATION_ATTRIBUTE_PASSWORD,encPassword);
+      logger.debug("Encrypted and encoded password as an authentication attribute.");
+    }
+ else {
+      logger.debug("Credential is not available as an authentication attribute to encrypt...");
+    }
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);

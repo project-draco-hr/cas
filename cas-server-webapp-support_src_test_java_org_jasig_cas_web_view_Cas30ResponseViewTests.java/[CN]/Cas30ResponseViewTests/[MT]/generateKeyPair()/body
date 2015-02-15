@@ -1,0 +1,10 @@
+{
+  try {
+    final KeyPairGenerator kpg=KeyPairGenerator.getInstance(CasAttributeEncoder.DEFAULT_CIPHER_ALGORITHM);
+    kpg.initialize(2048);
+    return kpg.genKeyPair();
+  }
+ catch (  final NoSuchAlgorithmException e) {
+    throw new RuntimeException(e);
+  }
+}

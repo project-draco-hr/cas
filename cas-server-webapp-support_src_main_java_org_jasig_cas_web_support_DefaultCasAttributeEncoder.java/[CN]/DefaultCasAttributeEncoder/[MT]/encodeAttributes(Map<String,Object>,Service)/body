@@ -1,8 +1,11 @@
 {
+  logger.debug("Starting to encode attributes for release to service [{}]",service);
   final Map<String,Object> newEncodedAttributes=new HashMap<>(attributes);
+  initialize(newEncodedAttributes);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed()) {
     encodeAttributesInternal(newEncodedAttributes,registeredService);
   }
+  logger.debug("[{}] Encoded attributes are available for release to [{}]",newEncodedAttributes.size(),service);
   return newEncodedAttributes;
 }
