@@ -10,6 +10,7 @@
   toStringBuilder.append("logoutType",this.logoutType);
   toStringBuilder.append("attributeReleasePolicy",this.attributeReleasePolicy);
   toStringBuilder.append("accessStrategy",this.accessStrategy);
+  toStringBuilder.append("publicKey",this.publicKey);
   toStringBuilder.append("proxyPolicy",this.proxyPolicy);
   toStringBuilder.append("logo",this.logo);
   return toStringBuilder.toString();
