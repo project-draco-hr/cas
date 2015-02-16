@@ -3,8 +3,8 @@
     if (!initializeCipherBasedOnServicePublicKey(service)) {
       return;
     }
-    encodeAndEncryptCredentialPassword(attributes);
-    encodeAndEncryptProxyGrantingTicket(attributes);
+    encodeAndEncryptCredentialPassword(attributes,cachedAttributesToEncode);
+    encodeAndEncryptProxyGrantingTicket(attributes,cachedAttributesToEncode);
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);

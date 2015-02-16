@@ -1,3 +1,0 @@
-{
-  encryptAndEncodeAndPutIntoAttributesMap(attributes,CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET);
-}

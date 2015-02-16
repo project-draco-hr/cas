@@ -1,5 +1,5 @@
 {
-  final String cachedAttribute=this.cachedAttributesToEncode.remove(cachedAttributeName);
+  final String cachedAttribute=cachedAttributesToEncode.remove(cachedAttributeName);
   if (StringUtils.isNotBlank(cachedAttribute)) {
     logger.debug("Retrieved [{}] as a cached model attribute...",cachedAttributeName);
     final String encodedValue=CompressionUtils.encryptAndEncodeBase64(cachedAttribute,this.cipher);
