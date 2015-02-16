@@ -1,7 +1,7 @@
 {
   final String cachedAttribute=this.cachedAttributesToEncode.remove(cachedAttributeName);
   if (StringUtils.isNotBlank(cachedAttribute)) {
-    logger.debug("Retrieved the [{}] as a cached model attribute...",cachedAttributeName);
+    logger.debug("Retrieved [{}] as a cached model attribute...",cachedAttributeName);
     attributes.put(cachedAttributeName,CompressionUtils.encryptAndEncodeBase64(cachedAttribute,this.cipher));
     logger.debug("Encrypted and encoded [{}] as an attribute.",cachedAttributeName);
   }

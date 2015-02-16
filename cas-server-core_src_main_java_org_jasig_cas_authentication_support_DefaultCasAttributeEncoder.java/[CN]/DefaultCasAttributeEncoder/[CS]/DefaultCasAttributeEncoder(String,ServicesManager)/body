@@ -1,5 +1,5 @@
 {
   this.servicesManager=servicesManager;
   this.cipher=Cipher.getInstance(cipherAlgorithm);
-  logger.debug("Created cipher instance to encrypt credential via [{}]",cipherAlgorithm);
+  logger.debug("Created cipher instance to encrypt via [{}]",cipherAlgorithm);
 }
