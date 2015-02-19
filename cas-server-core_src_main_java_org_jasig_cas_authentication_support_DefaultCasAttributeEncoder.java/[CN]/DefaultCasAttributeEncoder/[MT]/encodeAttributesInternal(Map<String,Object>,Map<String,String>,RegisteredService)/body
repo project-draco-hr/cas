@@ -1,12 +1,4 @@
 {
-  try {
-    if (!initializeCipherBasedOnServicePublicKey(service)) {
-      return;
-    }
-    encodeAndEncryptCredentialPassword(attributes,cachedAttributesToEncode);
-    encodeAndEncryptProxyGrantingTicket(attributes,cachedAttributesToEncode);
-  }
- catch (  final Exception e) {
-    throw new RuntimeException(e);
-  }
+  encodeAndEncryptCredentialPassword(attributes,cachedAttributesToEncode);
+  encodeAndEncryptProxyGrantingTicket(attributes,cachedAttributesToEncode);
 }
