@@ -1,3 +1,4 @@
 {
   this.logoutManager=logoutManager;
+  this.servicesManager=servicesManager;
 }

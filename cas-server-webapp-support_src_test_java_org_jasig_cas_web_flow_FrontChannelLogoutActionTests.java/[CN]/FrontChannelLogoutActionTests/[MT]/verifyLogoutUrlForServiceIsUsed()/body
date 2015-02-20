@@ -1,0 +1,14 @@
+{
+  final RegisteredServiceImpl svc=new RegisteredServiceImpl();
+  svc.setServiceId("https://www.github.com");
+  svc.setLogoutUrl(new URL("https://www.google.com"));
+  svc.setName("Service logout test");
+  svc.setLogoutType(LogoutType.FRONT_CHANNEL);
+  when(servicesManager.findServiceBy(any(Service.class))).thenReturn(svc);
+  final Event event=getLogoutEvent();
+  assertEquals(FrontChannelLogoutAction.REDIRECT_APP_EVENT,event.getId());
+  final List<LogoutRequest> list=WebUtils.getLogoutRequests(this.requestContext);
+  assertEquals(1,list.size());
+  final String url=(String)event.getAttributes().get(FrontChannelLogoutAction.DEFAULT_FLOW_ATTRIBUTE_LOGOUT_URL);
+  assertTrue(url.startsWith(svc.getLogoutUrl().toExternalForm()));
+}

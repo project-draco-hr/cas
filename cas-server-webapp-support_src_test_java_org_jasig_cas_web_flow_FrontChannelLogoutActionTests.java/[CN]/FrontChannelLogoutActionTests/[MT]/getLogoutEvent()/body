@@ -1,0 +1,6 @@
+{
+  final LogoutRequest logoutRequest=new LogoutRequest(TICKET_ID,new SimpleWebApplicationServiceImpl(TEST_URL));
+  WebUtils.putLogoutRequests(this.requestContext,Arrays.asList(logoutRequest));
+  this.requestContext.getFlowScope().put(FrontChannelLogoutAction.LOGOUT_INDEX,0);
+  return this.frontChannelLogoutAction.doExecute(this.requestContext);
+}

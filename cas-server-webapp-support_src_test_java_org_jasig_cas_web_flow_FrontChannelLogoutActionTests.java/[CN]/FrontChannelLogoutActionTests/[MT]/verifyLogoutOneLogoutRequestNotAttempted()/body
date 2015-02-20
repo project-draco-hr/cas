@@ -1,15 +1,11 @@
 {
-  final String fakeUrl="http://url";
-  final LogoutRequest logoutRequest=new LogoutRequest(TICKET_ID,new SimpleWebApplicationServiceImpl(fakeUrl));
-  WebUtils.putLogoutRequests(this.requestContext,Arrays.asList(logoutRequest));
-  this.requestContext.getFlowScope().put(FrontChannelLogoutAction.LOGOUT_INDEX,0);
-  final Event event=this.frontChannelLogoutAction.doExecute(this.requestContext);
+  final Event event=getLogoutEvent();
   assertEquals(FrontChannelLogoutAction.REDIRECT_APP_EVENT,event.getId());
   final List<LogoutRequest> list=WebUtils.getLogoutRequests(this.requestContext);
   assertEquals(1,list.size());
-  final String url=(String)event.getAttributes().get("logoutUrl");
-  assertTrue(url.startsWith(fakeUrl + "?SAMLRequest="));
-  final byte[] samlMessage=CompressionUtils.decodeBase64ToByteArray(URLDecoder.decode(StringUtils.substringAfter(url,"?SAMLRequest="),"UTF-8"));
+  final String url=(String)event.getAttributes().get(FrontChannelLogoutAction.DEFAULT_FLOW_ATTRIBUTE_LOGOUT_URL);
+  assertTrue(url.startsWith(TEST_URL + "?" + FrontChannelLogoutAction.DEFAULT_LOGOUT_PARAMETER+ "="));
+  final byte[] samlMessage=CompressionUtils.decodeBase64ToByteArray(URLDecoder.decode(StringUtils.substringAfter(url,"?" + FrontChannelLogoutAction.DEFAULT_LOGOUT_PARAMETER + "="),"UTF-8"));
   final Inflater decompresser=new Inflater();
   decompresser.setInput(samlMessage);
   final byte[] result=new byte[1000];
@@ -17,5 +13,5 @@
   decompresser.end();
   final String message=new String(result);
   assertTrue(message.startsWith("<samlp:LogoutRequest xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" ID=\""));
-  assertTrue(message.indexOf("<samlp:SessionIndex>" + TICKET_ID + "</samlp:SessionIndex>") >= 0);
+  assertTrue(message.contains("<samlp:SessionIndex>" + TICKET_ID + "</samlp:SessionIndex>"));
 }
