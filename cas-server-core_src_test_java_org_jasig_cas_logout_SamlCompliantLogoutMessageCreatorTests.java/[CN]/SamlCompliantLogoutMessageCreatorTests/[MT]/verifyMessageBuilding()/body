@@ -1,6 +1,7 @@
 {
   final SingleLogoutService service=mock(SingleLogoutService.class);
-  final LogoutRequest request=new LogoutRequest("TICKET-ID",service);
+  final URL logoutUrl=new URL(service.getOriginalUrl());
+  final LogoutRequest request=new LogoutRequest("TICKET-ID",service,logoutUrl);
   final String msg=builder.create(request);
   final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
   final DocumentBuilder builder=factory.newDocumentBuilder();

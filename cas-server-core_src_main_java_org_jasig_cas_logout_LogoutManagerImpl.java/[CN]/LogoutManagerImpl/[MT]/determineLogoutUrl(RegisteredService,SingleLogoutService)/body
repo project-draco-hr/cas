@@ -1,0 +1,13 @@
+{
+  try {
+    URL logoutUrl=new URL(singleLogoutService.getOriginalUrl());
+    if (registeredService.getLogoutUrl() != null) {
+      LOGGER.debug("Logout request will be sent to [{}] for service [{}]",registeredService.getLogoutUrl(),singleLogoutService);
+      logoutUrl=registeredService.getLogoutUrl();
+    }
+    return logoutUrl;
+  }
+ catch (  final Exception e) {
+    throw new IllegalArgumentException(e);
+  }
+}
