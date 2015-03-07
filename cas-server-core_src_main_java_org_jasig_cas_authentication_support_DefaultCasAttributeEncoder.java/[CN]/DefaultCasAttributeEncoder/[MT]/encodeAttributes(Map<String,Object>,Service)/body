@@ -4,8 +4,9 @@
   final Map<String,String> cachedAttributesToEncode=initialize(newEncodedAttributes);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed()) {
-    if (initializeCipherBasedOnServicePublicKey(registeredService)) {
-      encodeAttributesInternal(newEncodedAttributes,cachedAttributesToEncode,registeredService);
+    final Cipher cipher=initializeCipherBasedOnServicePublicKey(registeredService);
+    if (cipher != null) {
+      encodeAttributesInternal(newEncodedAttributes,cachedAttributesToEncode,cipher);
     }
  else {
       logger.warn("Cipher could not be initialized for service [{}]. No encryption was applied to attributes",service);

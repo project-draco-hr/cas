@@ -1,6 +1,6 @@
 {
   try {
-    final byte[] cipherData=cipher.doFinal(data.getBytes());
+    final byte[] cipherData=cipher.doFinal(data.getBytes(UTF8_ENCODING));
     return encodeBase64(cipherData);
   }
  catch (  final Exception e) {

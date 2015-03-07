@@ -3,15 +3,16 @@
     final PublicKey publicKey=service.getPublicKey().createInstance();
     if (publicKey == null) {
       logger.debug("No public key is defined for service [{}]. No encoding will take place.",service);
-      return false;
+      return null;
     }
     logger.debug("Using public key [{}] to initialize the cipher",service.getPublicKey());
-    this.cipher.init(Cipher.ENCRYPT_MODE,publicKey);
+    final Cipher cipher=Cipher.getInstance(cipherAlgorithm);
+    cipher.init(Cipher.ENCRYPT_MODE,publicKey);
     logger.debug("Initialized cipher in encrypt-mode via the public key algorithm [{}]",publicKey.getAlgorithm());
-    return true;
+    return cipher;
   }
  catch (  final Exception e) {
     logger.warn(e.getMessage(),e);
   }
-  return false;
+  return null;
 }
