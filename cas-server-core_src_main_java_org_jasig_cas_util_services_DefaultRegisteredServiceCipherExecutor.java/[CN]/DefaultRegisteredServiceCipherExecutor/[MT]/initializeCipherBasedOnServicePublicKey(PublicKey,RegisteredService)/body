@@ -1,13 +1,2 @@
 {
-  try {
-    logger.debug("Using public key [{}] to initialize the cipher",registeredService.getPublicKey());
-    final Cipher cipher=Cipher.getInstance(publicKey.getAlgorithm());
-    cipher.init(Cipher.ENCRYPT_MODE,publicKey);
-    logger.debug("Initialized cipher in encrypt-mode via the public key algorithm [{}]",publicKey.getAlgorithm());
-    return cipher;
-  }
- catch (  final Exception e) {
-    logger.warn("Cipher could not be initialized for service [{}]. Error " + e.getMessage(),registeredService);
-  }
-  return null;
 }
