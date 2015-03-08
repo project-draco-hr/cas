@@ -4,12 +4,7 @@
   final Map<String,String> cachedAttributesToEncode=initialize(newEncodedAttributes);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed()) {
-    if (this.cipherExecutor != null) {
-      encodeAttributesInternal(newEncodedAttributes,cachedAttributesToEncode,this.cipherExecutor);
-    }
- else {
-      encodeAttributesInternal(newEncodedAttributes,cachedAttributesToEncode,new RegisteredServicePublicKeyCipherExecutor(registeredService));
-    }
+    encodeAttributesInternal(newEncodedAttributes,cachedAttributesToEncode,this.cipherExecutor,registeredService);
   }
  else {
     logger.warn("Service [{}] is not found and/or enabled in the service registry.",service);
