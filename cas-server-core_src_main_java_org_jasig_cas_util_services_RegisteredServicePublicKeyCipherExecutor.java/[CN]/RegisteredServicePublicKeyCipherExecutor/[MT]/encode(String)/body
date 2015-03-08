@@ -1,9 +1,9 @@
 {
   try {
-    final Cipher cipher=initializeCipherBasedOnServicePublicKey();
-    if (cipher != null) {
-      final byte[] cipherData=cipher.doFinal(data.getBytes(UTF8_ENCODING));
-      return CompressionUtils.encodeBase64(cipherData);
+    final PublicKey publicKey=createRegisteredServicePublicKey();
+    final byte[] result=encodeInternal(data,publicKey);
+    if (result != null) {
+      return CompressionUtils.encodeBase64(result);
     }
   }
  catch (  final Exception e) {
