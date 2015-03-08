@@ -1,0 +1,13 @@
+{
+  try {
+    final Cipher cipher=initializeCipherBasedOnServicePublicKey();
+    if (cipher != null) {
+      final byte[] cipherData=cipher.doFinal(data.getBytes(UTF8_ENCODING));
+      return CompressionUtils.encodeBase64(cipherData);
+    }
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+  return null;
+}

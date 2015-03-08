@@ -1,4 +1,5 @@
 {
+  logger.debug("Creating public key instance from [{}] using [{}]",this.resource.getFilename(),this.algorithm);
   try (final InputStream pubKey=this.resource.getInputStream()){
     final byte[] bytes=new byte[pubKey.available()];
     pubKey.read(bytes);
