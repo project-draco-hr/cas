@@ -1,0 +1,3 @@
+int keyLength
+String keyManagementAlgorithmIdentifier
+String contentEncryptionAlgorithmIdentifier

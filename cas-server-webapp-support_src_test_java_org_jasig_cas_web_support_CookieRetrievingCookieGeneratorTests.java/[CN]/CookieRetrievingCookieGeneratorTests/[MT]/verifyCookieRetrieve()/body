@@ -1,8 +1,7 @@
 {
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  final Cookie cookie=new Cookie("test","test");
-  cookie.setDomain("cas.org");
-  cookie.setMaxAge(5);
-  request.setCookies(cookie);
-  assertEquals("test",this.g.retrieveCookieValue(request));
+  final MockHttpServletResponse response=new MockHttpServletResponse();
+  this.generator.addCookie(request,response,"test");
+  request.setCookies(response.getCookies());
+  assertEquals("test",this.generator.retrieveCookieValue(request));
 }
