@@ -5,10 +5,10 @@
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed()) {
     encodeAttributesInternal(newEncodedAttributes,cachedAttributesToEncode,this.cipherExecutor,registeredService);
+    logger.debug("[{}] Encoded attributes are available for release to [{}]",newEncodedAttributes.size(),service);
   }
  else {
-    logger.warn("Service [{}] is not found and/or enabled in the service registry.",service);
+    logger.debug("Service [{}] is not found and/or enabled in the service registry. " + "No encoding has taken place.",service);
   }
-  logger.debug("[{}] Encoded attributes are available for release to [{}]",newEncodedAttributes.size(),service);
   return newEncodedAttributes;
 }
