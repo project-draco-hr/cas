@@ -1,4 +1,4 @@
 {
   final Cookie cookie=org.springframework.web.util.WebUtils.getCookie(request,getCookieName());
-  return cookie == null ? null : decryptCookieValue(cookie.getValue());
+  return cookie == null ? null : this.casCookieValueManager.obtainCookieValue(cookie,request);
 }

@@ -1,0 +1,16 @@
+{
+  try {
+    final JsonWebSignature jws=new JsonWebSignature();
+    jws.setCompactSerialization(value);
+    jws.setKey(new AesKey(this.signingSeedArray));
+    final boolean verified=jws.verifySignature();
+    if (verified) {
+      logger.debug("Signature successfully verified. Payload is [{}]",jws.getPayload());
+      return jws.getPayload();
+    }
+    return null;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

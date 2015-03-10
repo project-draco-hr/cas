@@ -7,7 +7,5 @@
  else {
     logger.debug("Cookie cannot be marked as HttpOnly; container is not using servlet 3.0.");
   }
-  this.encryptionSeedArray=ByteUtil.randomBytes(keyLength);
-  this.keyManagementAlgorithmIdentifier=keyManagementAlgorithmIdentifier;
-  this.contentEncryptionAlgorithmIdentifier=contentEncryptionAlgorithmIdentifier;
+  this.casCookieValueManager=casCookieValueManager;
 }

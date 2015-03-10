@@ -2,11 +2,11 @@
   try {
     final Key key=new AesKey(this.encryptionSeedArray);
     final JsonWebEncryption jwe=new JsonWebEncryption();
-    jwe.setPayload(cookieValue);
+    jwe.setPayload(value);
     jwe.setAlgorithmHeaderValue(this.keyManagementAlgorithmIdentifier);
     jwe.setEncryptionMethodHeaderParameter(this.contentEncryptionAlgorithmIdentifier);
     jwe.setKey(key);
-    logger.debug("Encrypting the cookie via [{}] and [{}]",this.keyManagementAlgorithmIdentifier,this.contentEncryptionAlgorithmIdentifier);
+    logger.debug("Encrypting via [{}] and [{}]",this.keyManagementAlgorithmIdentifier,this.contentEncryptionAlgorithmIdentifier);
     return jwe.getCompactSerialization();
   }
  catch (  final Exception e) {

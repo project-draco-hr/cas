@@ -1,10 +1,10 @@
 {
-  final String encryptedCookieValue=encryptCookieValue(cookieValue);
+  final String theCookieValue=this.casCookieValueManager.buildCookieValue(cookieValue,request);
   if (!StringUtils.hasText(request.getParameter(RememberMeCredential.REQUEST_PARAMETER_REMEMBER_ME))) {
-    super.addCookie(response,encryptedCookieValue);
+    super.addCookie(response,theCookieValue);
   }
  else {
-    final Cookie cookie=createCookie(encryptedCookieValue);
+    final Cookie cookie=createCookie(theCookieValue);
     cookie.setMaxAge(this.rememberMeMaxAge);
     if (isCookieSecure()) {
       cookie.setSecure(true);
