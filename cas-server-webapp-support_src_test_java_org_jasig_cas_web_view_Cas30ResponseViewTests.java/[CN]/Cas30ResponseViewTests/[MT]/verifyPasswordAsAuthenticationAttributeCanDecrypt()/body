@@ -1,0 +1,8 @@
+{
+  final Map<?,?> attributes=renderView();
+  assertTrue(attributes.containsKey(CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL));
+  final String encodedPsw=(String)attributes.get(CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL);
+  final String password=decryptCredential(encodedPsw);
+  final UsernamePasswordCredential creds=TestUtils.getCredentialsWithSameUsernameAndPassword();
+  assertEquals(password,creds.getPassword());
+}

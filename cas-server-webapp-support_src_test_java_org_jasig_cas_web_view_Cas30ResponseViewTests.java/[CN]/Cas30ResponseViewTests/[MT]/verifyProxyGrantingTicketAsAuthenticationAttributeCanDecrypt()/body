@@ -1,0 +1,7 @@
+{
+  final Map<?,?> attributes=renderView();
+  assertTrue(attributes.containsKey(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET));
+  final String encodedPgt=(String)attributes.get(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET);
+  final String pgt=decryptCredential(encodedPgt);
+  assertNotNull(pgt);
+}
