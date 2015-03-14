@@ -1,9 +1,11 @@
 {
   this.action=new SendTicketGrantingTicketAction();
-  this.ticketGrantingTicketCookieGenerator=new CookieRetrievingCookieGenerator();
-  this.ticketGrantingTicketCookieGenerator.setCookieName("TGT");
+  final CookieRetrievingCookieGenerator ticketGrantingTicketCookieGenerator=new CookieRetrievingCookieGenerator();
+  ticketGrantingTicketCookieGenerator.setCookieName("TGT");
   this.action.setCentralAuthenticationService(getCentralAuthenticationService());
-  this.action.setTicketGrantingTicketCookieGenerator(this.ticketGrantingTicketCookieGenerator);
+  this.action.setTicketGrantingTicketCookieGenerator(ticketGrantingTicketCookieGenerator);
+  this.action.setServicesManager(getServicesManager());
+  this.action.setCreateSsoSessionCookieOnRenewAuthentications(true);
   this.action.afterPropertiesSet();
   this.context=new MockRequestContext();
 }
