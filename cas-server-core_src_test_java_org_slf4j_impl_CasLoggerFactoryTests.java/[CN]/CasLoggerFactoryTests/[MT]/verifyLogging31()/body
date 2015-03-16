@@ -1,4 +1,4 @@
 {
-  logger.debug(mock(Marker.class),getMessageToLogWithParams(),ID2,ID1);
+  logger.debug(getMarker("debug"),getMessageToLogWithParams(),ID2,ID1);
   validateLogData();
 }

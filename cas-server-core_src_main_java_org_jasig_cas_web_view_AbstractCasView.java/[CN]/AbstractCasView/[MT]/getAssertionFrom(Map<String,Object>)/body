@@ -1,3 +1,3 @@
 {
-  return (Assertion)model.get("assertion");
+  return (Assertion)model.get(CasViewConstants.MODEL_ATTRIBUTE_NAME_ASSERTION);
 }
