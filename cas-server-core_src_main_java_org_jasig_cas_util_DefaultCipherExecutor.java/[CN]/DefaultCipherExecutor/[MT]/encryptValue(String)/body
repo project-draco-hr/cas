@@ -1,12 +1,15 @@
 {
   try {
-    final Key key=new AesKey(this.encryptionSeedArray);
+    final Map<String,Object> keys=new HashMap<>(2);
+    keys.put("kty","oct");
+    keys.put("k",this.secretKeyEncryption);
+    final JsonWebKey jwk=JsonWebKey.Factory.newJwk(keys);
     final JsonWebEncryption jwe=new JsonWebEncryption();
     jwe.setPayload(value);
-    jwe.setAlgorithmHeaderValue(this.keyManagementAlgorithmIdentifier);
+    jwe.setAlgorithmHeaderValue(KeyManagementAlgorithmIdentifiers.DIRECT);
     jwe.setEncryptionMethodHeaderParameter(this.contentEncryptionAlgorithmIdentifier);
-    jwe.setKey(key);
-    logger.debug("Encrypting via [{}] and [{}]",this.keyManagementAlgorithmIdentifier,this.contentEncryptionAlgorithmIdentifier);
+    jwe.setKey(jwk.getKey());
+    logger.debug("Encrypting via [{}]",this.contentEncryptionAlgorithmIdentifier);
     return jwe.getCompactSerialization();
   }
  catch (  final Exception e) {

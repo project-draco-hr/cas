@@ -1,8 +1,11 @@
 {
   try {
-    final Key key=new AesKey(this.encryptionSeedArray);
+    final Map<String,Object> keys=new HashMap<>(2);
+    keys.put("kty","oct");
+    keys.put("k",this.secretKeyEncryption);
+    final JsonWebKey jwk=JsonWebKey.Factory.newJwk(keys);
     final JsonWebEncryption jwe=new JsonWebEncryption();
-    jwe.setKey(key);
+    jwe.setKey(jwk.getKey());
     jwe.setCompactSerialization(value);
     logger.debug("Decrypting value...");
     return jwe.getPayload();

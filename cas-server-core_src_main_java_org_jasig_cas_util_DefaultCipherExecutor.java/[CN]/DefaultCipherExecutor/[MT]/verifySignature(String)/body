@@ -2,7 +2,8 @@
   try {
     final JsonWebSignature jws=new JsonWebSignature();
     jws.setCompactSerialization(value);
-    jws.setKey(new AesKey(this.signingSeedArray));
+    final Key key=new AesKey(this.secretKeySigning.getBytes());
+    jws.setKey(key);
     final boolean verified=jws.verifySignature();
     if (verified) {
       logger.debug("Signature successfully verified. Payload is [{}]",jws.getPayload());

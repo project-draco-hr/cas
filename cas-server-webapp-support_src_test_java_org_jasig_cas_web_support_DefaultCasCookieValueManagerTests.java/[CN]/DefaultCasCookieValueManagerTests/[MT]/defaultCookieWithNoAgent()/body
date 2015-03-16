@@ -1,5 +1,5 @@
 {
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  final DefaultCasCookieValueManager mgmr=new DefaultCasCookieValueManager(new DefaultCipherExecutor());
+  final DefaultCasCookieValueManager mgmr=new DefaultCasCookieValueManager(new DefaultCipherExecutor(ENC_KEY,SIGN_KEY));
   mgmr.buildCookieValue("cas",request);
 }
