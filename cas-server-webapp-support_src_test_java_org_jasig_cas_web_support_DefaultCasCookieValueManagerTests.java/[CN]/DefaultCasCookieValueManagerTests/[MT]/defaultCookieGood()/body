@@ -1,0 +1,6 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addHeader("user-agent","the agent");
+  final DefaultCasCookieValueManager mgmr=new DefaultCasCookieValueManager(new DefaultCipherExecutor());
+  assertNotNull(mgmr.buildCookieValue("cas",request));
+}

@@ -1,0 +1,5 @@
+{
+  super();
+  this.ticketGrantingTicketCookieGenerator=ticketGrantingTicketCookieGenerator;
+  this.centralAuthenticationService=centralAuthenticationService;
+}

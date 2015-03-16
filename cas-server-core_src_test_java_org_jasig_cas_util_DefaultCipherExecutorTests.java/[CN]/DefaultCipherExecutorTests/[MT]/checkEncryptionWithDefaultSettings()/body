@@ -1,0 +1,4 @@
+{
+  final CipherExecutor cipherExecutor=new DefaultCipherExecutor();
+  assertEquals(cipherExecutor.decode(cipherExecutor.encode("CAS Test")),"CAS Test");
+}
