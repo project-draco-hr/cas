@@ -1,0 +1,4 @@
+{
+  encodeAndEncryptCredentialPassword(attributes,cachedAttributesToEncode,cipher,registeredService);
+  encodeAndEncryptProxyGrantingTicket(attributes,cachedAttributesToEncode,cipher,registeredService);
+}

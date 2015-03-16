@@ -38,12 +38,10 @@
  catch (  final UnsupportedOperationException e) {
     logger.trace("The ticket registry doesn't support this information.");
   }
-  final Collection<GraphingStatisticsAppender> appenders=GraphingStatisticsAppender.getAllGraphingStatisticsAppenders();
   modelAndView.addObject("unexpiredTgts",unexpiredTgts);
   modelAndView.addObject("unexpiredSts",unexpiredSts);
   modelAndView.addObject("expiredTgts",expiredTgts);
   modelAndView.addObject("expiredSts",expiredSts);
   modelAndView.addObject("pageTitle",modelAndView.getViewName());
-  modelAndView.addObject("graphingStatisticAppenders",appenders);
   return modelAndView;
 }

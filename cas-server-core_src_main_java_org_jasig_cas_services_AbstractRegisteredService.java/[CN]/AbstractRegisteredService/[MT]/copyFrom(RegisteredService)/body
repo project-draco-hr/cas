@@ -11,4 +11,5 @@
   this.setAttributeReleasePolicy(source.getAttributeReleasePolicy());
   this.setAccessStrategy(source.getAccessStrategy());
   this.setLogo(source.getLogo());
+  this.setPublicKey(source.getPublicKey());
 }
