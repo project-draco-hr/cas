@@ -1,3 +1,3 @@
 {
-  this(new CookieValueManager.NoOpCookieValueManager());
+  this(new NoOpCookieValueManager());
 }
