@@ -1,0 +1,15 @@
+{
+  try {
+    final Key key=new AesKey(this.encryptionSeedArray);
+    final JsonWebEncryption jwe=new JsonWebEncryption();
+    jwe.setPayload(value);
+    jwe.setAlgorithmHeaderValue(this.keyManagementAlgorithmIdentifier);
+    jwe.setEncryptionMethodHeaderParameter(this.contentEncryptionAlgorithmIdentifier);
+    jwe.setKey(key);
+    logger.debug("Encrypting via [{}] and [{}]",this.keyManagementAlgorithmIdentifier,this.contentEncryptionAlgorithmIdentifier);
+    return jwe.getCompactSerialization();
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException("Ensure that you have installed JCE Unlimited Strength Jurisdiction Policy Files." + e.getMessage(),e);
+  }
+}

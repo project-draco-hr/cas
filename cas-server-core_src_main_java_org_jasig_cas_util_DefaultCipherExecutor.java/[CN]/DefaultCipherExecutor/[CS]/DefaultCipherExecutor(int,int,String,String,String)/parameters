@@ -1,0 +1,5 @@
+int keyLength
+int signingKeyLength
+String keyManagementAlgorithmIdentifier
+String contentEncryptionAlgorithmIdentifier
+String signingAlgorithm

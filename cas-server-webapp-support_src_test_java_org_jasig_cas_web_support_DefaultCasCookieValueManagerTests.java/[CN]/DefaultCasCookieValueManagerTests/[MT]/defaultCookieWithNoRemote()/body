@@ -1,0 +1,6 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setRemoteAddr(null);
+  final DefaultCasCookieValueManager mgmr=new DefaultCasCookieValueManager(new DefaultCipherExecutor());
+  mgmr.buildCookieValue("cas",request);
+}
