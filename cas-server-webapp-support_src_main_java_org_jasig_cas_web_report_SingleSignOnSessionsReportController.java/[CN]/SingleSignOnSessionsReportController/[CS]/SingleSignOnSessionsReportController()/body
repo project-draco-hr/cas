@@ -1,5 +1,4 @@
 {
-  this.singleSignOnSessionsReport=singleSignOnSessionsReport;
   this.jsonMapper.enable(SerializationFeature.INDENT_OUTPUT);
   this.jsonMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 }
