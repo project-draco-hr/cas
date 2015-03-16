@@ -1,0 +1,3 @@
+{
+  decideAttributeReleaseBasedOnServiceAttributePolicy(attributes,getAuthenticationAttribute(model,CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL),CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL,service,service.getAttributeReleasePolicy().isAuthorizedToReleaseCredentialPassword());
+}

@@ -1,5 +1,5 @@
 {
-  super.putIntoModel(model,MODEL_ATTRIBUTE_NAME_PRINCIPAL,getPrincipal(model));
-  super.putIntoModel(model,MODEL_ATTRIBUTE_NAME_CHAINED_AUTHENTICATIONS,getChainedAuthentications(model));
-  super.putIntoModel(model,MODEL_ATTRIBUTE_NAME_PRIMARY_AUTHENTICATION,getPrimaryAuthenticationFrom(model));
+  super.putIntoModel(model,CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL,getPrincipal(model));
+  super.putIntoModel(model,CasViewConstants.MODEL_ATTRIBUTE_NAME_CHAINED_AUTHENTICATIONS,getChainedAuthentications(model));
+  super.putIntoModel(model,CasViewConstants.MODEL_ATTRIBUTE_NAME_PRIMARY_AUTHENTICATION,getPrimaryAuthenticationFrom(model));
 }

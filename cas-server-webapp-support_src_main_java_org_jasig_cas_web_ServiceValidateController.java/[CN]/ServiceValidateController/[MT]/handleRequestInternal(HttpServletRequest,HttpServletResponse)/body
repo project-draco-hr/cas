@@ -41,7 +41,7 @@ catch (      final TicketException e) {
     }
     onSuccessfulValidation(serviceTicketId,assertion);
     logger.debug("Successfully validated service ticket {} for service [{}]",serviceTicketId,service.getId());
-    return generateSuccessView(assertion,proxyIou);
+    return generateSuccessView(assertion,proxyIou,service,proxyGrantingTicketId);
   }
  catch (  final TicketValidationException e) {
     final String code=e.getCode();

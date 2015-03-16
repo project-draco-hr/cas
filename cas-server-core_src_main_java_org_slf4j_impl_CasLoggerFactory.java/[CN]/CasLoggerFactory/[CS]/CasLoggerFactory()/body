@@ -1,6 +1,6 @@
 {
   this.loggerMap=new ConcurrentHashMap<>();
-  final Set<URL> set=ClasspathHelper.forPackage(PACKAGE_TO_SCAN);
+  final Collection<URL> set=ClasspathHelper.forPackage(PACKAGE_TO_SCAN);
   final Reflections reflections=new Reflections(new ConfigurationBuilder().addUrls(set).setScanners(new SubTypesScanner()));
   final Set<Class<? extends ILoggerFactory>> subTypesOf=reflections.getSubTypesOf(ILoggerFactory.class);
   subTypesOf.remove(this.getClass());
@@ -11,7 +11,7 @@
     }
   }
   if (subTypesOf.isEmpty()) {
-    final RuntimeException e=new RuntimeException("No ILoggerFactory could be found on the classpath." + " CAS cannot determine the logging framework." + " Examine the project dependencies and ensure there is one and only one logging framework is available.");
+    final RuntimeException e=new RuntimeException("No ILoggerFactory could be found on the classpath." + " CAS cannot determine the logging framework." + " Examine the project dependencies and ensure that there is one and only one logging framework available.");
     Util.report(e.getMessage(),e);
     throw e;
   }
