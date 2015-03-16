@@ -1,4 +1,8 @@
 {
+  if (ctx.getRequestParameters().contains(CasProtocolConstants.PARAMETER_RENEW)) {
+    LOGGER.debug("[{}] is specified for the request. The authentication session will be considered renewed.",CasProtocolConstants.PARAMETER_RENEW);
+    return true;
+  }
   final Service service=WebUtils.getService(ctx);
   if (service != null) {
     final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
@@ -7,10 +11,6 @@
       LOGGER.debug("Located [{}] in registry. Service access to participate in SSO is set to [{}]",registeredService.getServiceId(),isAllowedForSso);
       return !isAllowedForSso;
     }
-  }
-  if (ctx.getRequestParameters().contains(CasProtocolConstants.PARAMETER_RENEW)) {
-    LOGGER.debug("[{}] is specified for the request. The authentication session will be considered renewed.");
-    return true;
   }
   return false;
 }
