@@ -1,11 +1,7 @@
 {
   try {
-    final Map<String,Object> keys=new HashMap<>(2);
-    keys.put("kty","oct");
-    keys.put("k",this.secretKeyEncryption);
-    final JsonWebKey jwk=JsonWebKey.Factory.newJwk(keys);
     final JsonWebEncryption jwe=new JsonWebEncryption();
-    jwe.setKey(jwk.getKey());
+    jwe.setKey(this.secretKeyEncryptionKey);
     jwe.setCompactSerialization(value);
     logger.debug("Decrypting value...");
     return jwe.getPayload();

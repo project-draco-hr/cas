@@ -1,8 +1,8 @@
 {
-  this.secretKeyEncryption=secretKeyEncryption;
+  this.secretKeyEncryptionKey=prepareJsonWebTokenKey(secretKeyEncryption);
   this.contentEncryptionAlgorithmIdentifier=contentEncryptionAlgorithmIdentifier;
   logger.debug("Initialized cipher encryption sequence via [{}]",contentEncryptionAlgorithmIdentifier);
   this.signingAlgorithm=signingAlgorithm;
-  this.secretKeySigning=secretKeySigning;
+  this.secretKeySigningKey=new AesKey(secretKeySigning.getBytes());
   logger.debug("Initialized cipher signing sequence via [{}]",signingAlgorithm);
 }
