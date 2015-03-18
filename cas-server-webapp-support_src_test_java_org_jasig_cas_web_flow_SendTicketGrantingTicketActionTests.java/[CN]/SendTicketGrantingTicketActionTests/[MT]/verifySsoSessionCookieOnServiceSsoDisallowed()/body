@@ -1,0 +1,15 @@
+{
+  final MockHttpServletResponse response=new MockHttpServletResponse();
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  final WebApplicationService svc=mock(WebApplicationService.class);
+  when(svc.getId()).thenReturn("TestSsoFalse");
+  final TicketGrantingTicket tgt=mock(TicketGrantingTicket.class);
+  when(tgt.getId()).thenReturn("test");
+  request.setCookies(new Cookie("TGT","test5"));
+  WebUtils.putTicketGrantingTicketInScopes(this.context,tgt);
+  this.context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,response));
+  this.context.getFlowScope().put("service",svc);
+  this.action.setCreateSsoSessionCookieOnRenewAuthentications(false);
+  assertEquals("success",this.action.execute(this.context).getId());
+  assertEquals(0,response.getCookies().length);
+}
