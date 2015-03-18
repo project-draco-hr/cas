@@ -1,11 +1,12 @@
 {
-  final RegisteredServiceImpl svc=new RegisteredServiceImpl();
-  svc.setServiceId("https://www.github.com");
-  svc.setLogoutUrl(new URL("https://www.google.com"));
-  svc.setName("Service logout test");
-  svc.setLogoutType(LogoutType.FRONT_CHANNEL);
-  when(servicesManager.findServiceBy(any(Service.class))).thenReturn(svc);
-  final Event event=getLogoutEvent();
+  final RegisteredService svc=getRegisteredService();
+  when(this.servicesManager.findServiceBy(any(SingleLogoutService.class))).thenReturn(svc);
+  final SingleLogoutService service=mock(SingleLogoutService.class);
+  when(service.getId()).thenReturn(svc.getServiceId());
+  when(service.getOriginalUrl()).thenReturn(svc.getServiceId());
+  final MockTicketGrantingTicket tgt=new MockTicketGrantingTicket("test");
+  tgt.getServices().put("service",service);
+  final Event event=getLogoutEvent(this.logoutManager.performLogout(tgt));
   assertEquals(FrontChannelLogoutAction.REDIRECT_APP_EVENT,event.getId());
   final List<LogoutRequest> list=WebUtils.getLogoutRequests(this.requestContext);
   assertEquals(1,list.size());

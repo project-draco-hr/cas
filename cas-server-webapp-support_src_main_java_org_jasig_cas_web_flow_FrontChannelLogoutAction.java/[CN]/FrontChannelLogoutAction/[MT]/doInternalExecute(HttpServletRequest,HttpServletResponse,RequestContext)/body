@@ -7,11 +7,7 @@
       if (logoutRequest.getStatus() == LogoutRequestStatus.NOT_ATTEMPTED) {
         logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
         putLogoutIndex(context,i + 1);
-        String logoutUrl=logoutRequest.getService().getId();
-        final RegisteredService service=this.servicesManager.findServiceBy(logoutRequest.getService());
-        if (service != null && service.getLogoutUrl() != null) {
-          logoutUrl=service.getLogoutUrl().toExternalForm();
-        }
+        final String logoutUrl=logoutRequest.getLogoutUrl().toExternalForm();
         LOGGER.debug("Using logout url [{}] for front-channel logout requests",logoutUrl);
         final String logoutMessage=logoutManager.createFrontChannelLogoutMessage(logoutRequest);
         LOGGER.debug("Front-channel logout message to send under [{}] is [{}]",this.logoutRequestParameter,logoutMessage);

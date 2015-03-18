@@ -7,7 +7,7 @@
       final LogoutType type=registeredService.getLogoutType() == null ? LogoutType.BACK_CHANNEL : registeredService.getLogoutType();
 switch (type) {
 case BACK_CHANNEL:
-        if (performBackChannelLogout(logoutRequest,registeredService)) {
+        if (performBackChannelLogout(logoutRequest)) {
           logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
         }
  else {

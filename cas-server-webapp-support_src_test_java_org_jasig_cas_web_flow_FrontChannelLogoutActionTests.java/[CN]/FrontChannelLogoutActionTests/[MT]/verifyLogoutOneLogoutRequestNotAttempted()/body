@@ -1,5 +1,6 @@
 {
-  final Event event=getLogoutEvent();
+  final LogoutRequest logoutRequest=new LogoutRequest(TICKET_ID,new SimpleWebApplicationServiceImpl(TEST_URL),new URL(TEST_URL));
+  final Event event=getLogoutEvent(Arrays.asList(logoutRequest));
   assertEquals(FrontChannelLogoutAction.REDIRECT_APP_EVENT,event.getId());
   final List<LogoutRequest> list=WebUtils.getLogoutRequests(this.requestContext);
   assertEquals(1,list.size());
