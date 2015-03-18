@@ -1,8 +1,7 @@
 {
   try {
-    final Key key=new AesKey(this.encryptionSeedArray);
     final JsonWebEncryption jwe=new JsonWebEncryption();
-    jwe.setKey(key);
+    jwe.setKey(this.secretKeyEncryptionKey);
     jwe.setCompactSerialization(value);
     logger.debug("Decrypting value...");
     return jwe.getPayload();

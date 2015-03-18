@@ -1,0 +1,3 @@
+{
+  this(secretKeyEncryption,secretKeySigning,ContentEncryptionAlgorithmIdentifiers.AES_128_CBC_HMAC_SHA_256,AlgorithmIdentifiers.HMAC_SHA512);
+}

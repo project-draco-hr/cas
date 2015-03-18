@@ -3,7 +3,7 @@
     final JsonWebSignature jws=new JsonWebSignature();
     jws.setPayload(value);
     jws.setAlgorithmHeaderValue(this.signingAlgorithm);
-    jws.setKey(new AesKey(this.signingSeedArray));
+    jws.setKey(this.secretKeySigningKey);
     return jws.getCompactSerialization();
   }
  catch (  final Exception e) {

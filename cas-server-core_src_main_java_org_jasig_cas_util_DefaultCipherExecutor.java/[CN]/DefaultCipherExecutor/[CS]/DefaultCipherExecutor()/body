@@ -1,3 +1,0 @@
-{
-  this(DEFAULT_ENCRYPTION_KEY_LENGTH,DEFAULT_SIGNING_KEY_LENGTH,KeyManagementAlgorithmIdentifiers.A256KW,ContentEncryptionAlgorithmIdentifiers.AES_256_CBC_HMAC_SHA_512,AlgorithmIdentifiers.HMAC_SHA512);
-}

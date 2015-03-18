@@ -1,9 +1,0 @@
-{
-  this.encryptionSeedArray=ByteUtil.randomBytes(keyLength);
-  this.keyManagementAlgorithmIdentifier=keyManagementAlgorithmIdentifier;
-  this.contentEncryptionAlgorithmIdentifier=contentEncryptionAlgorithmIdentifier;
-  logger.debug("Initialized cipher encryption sequence via [{}] and [{}]",keyManagementAlgorithmIdentifier,contentEncryptionAlgorithmIdentifier);
-  this.signingAlgorithm=signingAlgorithm;
-  this.signingSeedArray=ByteUtil.randomBytes(signingKeyLength);
-  logger.debug("Initialized cipher signing sequence via [{}] and key length [{}]",signingAlgorithm,signingKeyLength);
-}
