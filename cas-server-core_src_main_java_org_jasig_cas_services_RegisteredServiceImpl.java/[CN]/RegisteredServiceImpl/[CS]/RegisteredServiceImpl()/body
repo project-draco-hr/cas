@@ -1,0 +1,4 @@
+{
+  super();
+  logger.warn("[{}] is deprecated and will be removed in future CAS releases. Consider using [{}] instead.",this.getClass().getSimpleName(),RegexRegisteredService.class.getSimpleName());
+}

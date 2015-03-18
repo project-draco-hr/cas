@@ -1,0 +1,7 @@
+{
+  final String encoded=verifySignature(value);
+  if (StringUtils.isNotBlank(encoded)) {
+    return decryptValue(encoded);
+  }
+  return null;
+}
