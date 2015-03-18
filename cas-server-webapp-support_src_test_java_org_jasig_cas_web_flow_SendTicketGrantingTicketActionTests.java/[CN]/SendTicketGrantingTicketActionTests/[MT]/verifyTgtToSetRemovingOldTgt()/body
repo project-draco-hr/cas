@@ -7,5 +7,6 @@
   WebUtils.putTicketGrantingTicketInScopes(this.context,tgt);
   this.context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,response));
   assertEquals("success",this.action.execute(this.context).getId());
-  assertEquals(tgt.getId(),response.getCookies()[0].getValue());
+  request.setCookies(response.getCookies());
+  assertEquals(tgt.getId(),this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request));
 }
