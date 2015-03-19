@@ -1,5 +1,5 @@
 {
-  final LogoutRequest logoutRequest=new LogoutRequest("",null);
+  final LogoutRequest logoutRequest=new LogoutRequest("",null,null);
   logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
   WebUtils.putLogoutRequests(this.requestContext,Collections.<LogoutRequest>emptyList());
   this.requestContext.getFlowScope().put(FrontChannelLogoutAction.LOGOUT_INDEX,0);
