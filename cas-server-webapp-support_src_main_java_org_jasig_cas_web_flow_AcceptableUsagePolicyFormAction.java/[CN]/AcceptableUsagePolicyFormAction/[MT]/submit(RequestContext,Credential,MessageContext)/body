@@ -1,0 +1,4 @@
+{
+  this.policyMap.put(credential.getId(),Boolean.TRUE);
+  return new EventFactorySupport().success(this);
+}
