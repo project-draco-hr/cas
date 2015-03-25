@@ -2,7 +2,7 @@
   final String key=credential.getId();
   if (this.policyMap.containsKey(key)) {
     final Boolean hasAcceptedPolicy=this.policyMap.get(key);
-    return hasAcceptedPolicy ? new EventFactorySupport().success(this) : new EventFactorySupport().event(this,EVENT_ID_MUST_ACCEPT);
+    return hasAcceptedPolicy ? success() : accept();
   }
-  return new EventFactorySupport().event(this,"musAccept");
+  return accept();
 }
