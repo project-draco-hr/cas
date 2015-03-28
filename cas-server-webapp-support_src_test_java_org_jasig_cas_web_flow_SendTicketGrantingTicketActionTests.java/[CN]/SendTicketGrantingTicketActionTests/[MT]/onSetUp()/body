@@ -1,7 +1,9 @@
 {
   this.ticketGrantingTicketCookieGenerator=new CookieRetrievingCookieGenerator();
   ticketGrantingTicketCookieGenerator.setCookieName("TGT");
-  this.action=new SendTicketGrantingTicketAction(ticketGrantingTicketCookieGenerator,getCentralAuthenticationService(),getServicesManager());
+  this.publicWorkstationCookieGenerator=new CookieGenerator();
+  this.publicWorkstationCookieGenerator.setCookieName("PUBLIC");
+  this.action=new SendTicketGrantingTicketAction(ticketGrantingTicketCookieGenerator,getCentralAuthenticationService(),getServicesManager(),this.publicWorkstationCookieGenerator);
   this.action.setServicesManager(getServicesManager());
   this.action.setCreateSsoSessionCookieOnRenewAuthentications(true);
   this.action.afterPropertiesSet();

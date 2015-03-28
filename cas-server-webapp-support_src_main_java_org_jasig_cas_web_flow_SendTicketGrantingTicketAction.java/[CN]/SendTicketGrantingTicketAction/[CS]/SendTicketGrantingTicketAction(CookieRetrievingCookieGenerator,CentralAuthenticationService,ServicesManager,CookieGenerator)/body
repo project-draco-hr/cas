@@ -3,4 +3,5 @@
   this.ticketGrantingTicketCookieGenerator=ticketGrantingTicketCookieGenerator;
   this.centralAuthenticationService=centralAuthenticationService;
   this.servicesManager=servicesManager;
+  this.publicWorkstationCookieGenerator=publicWorkstationCookieGenerator;
 }

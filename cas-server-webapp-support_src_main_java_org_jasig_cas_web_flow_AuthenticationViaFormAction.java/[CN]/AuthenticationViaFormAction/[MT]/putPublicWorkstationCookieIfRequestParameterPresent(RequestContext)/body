@@ -1,0 +1,9 @@
+{
+  final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
+  if (StringUtils.isNotBlank(context.getExternalContext().getRequestParameterMap().get("publicWorkstation"))) {
+    this.publicWorkstationCookieGenerator.addCookie(response,"true");
+  }
+ else {
+    this.publicWorkstationCookieGenerator.removeCookie(response);
+  }
+}

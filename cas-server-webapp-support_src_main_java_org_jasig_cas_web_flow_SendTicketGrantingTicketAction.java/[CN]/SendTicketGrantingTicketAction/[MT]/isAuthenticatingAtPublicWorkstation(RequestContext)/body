@@ -1,0 +1,9 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(ctx);
+  final Cookie cookie=org.springframework.web.util.WebUtils.getCookie(request,this.publicWorkstationCookieGenerator.getCookieName());
+  if (cookie != null && StringUtils.isNotBlank(cookie.getValue())) {
+    LOGGER.debug("Located cookie [{}]. SSO session will be considered renewed.",this.publicWorkstationCookieGenerator.getCookieName());
+    return true;
+  }
+  return false;
+}

@@ -1,3 +1,4 @@
 CookieRetrievingCookieGenerator ticketGrantingTicketCookieGenerator
 CentralAuthenticationService centralAuthenticationService
 ServicesManager servicesManager
+CookieGenerator publicWorkstationCookieGenerator
