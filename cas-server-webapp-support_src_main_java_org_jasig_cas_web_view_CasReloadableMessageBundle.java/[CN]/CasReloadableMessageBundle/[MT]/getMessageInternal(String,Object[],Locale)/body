@@ -8,7 +8,7 @@
       foundCode=holder != null && holder.getProperties() != null && holder.getProperty(code) != null;
     }
     if (!foundCode) {
-      logger.warn("The code [{}] cannot be found in the language bundle for the locale [{}]",code,locale);
+      logger.debug("The code [{}] cannot be found in the language bundle for the locale [{}]",code,locale);
     }
   }
   return super.getMessageInternal(code,args,locale);
