@@ -1,4 +1,10 @@
 {
-  final Cookie cookie=org.springframework.web.util.WebUtils.getCookie(request,getCookieName());
-  return cookie == null ? null : this.casCookieValueManager.obtainCookieValue(cookie,request);
+  try {
+    final Cookie cookie=org.springframework.web.util.WebUtils.getCookie(request,getCookieName());
+    return cookie == null ? null : this.casCookieValueManager.obtainCookieValue(cookie,request);
+  }
+ catch (  final Exception e) {
+    logger.debug(e.getMessage(),e);
+  }
+  return null;
 }
