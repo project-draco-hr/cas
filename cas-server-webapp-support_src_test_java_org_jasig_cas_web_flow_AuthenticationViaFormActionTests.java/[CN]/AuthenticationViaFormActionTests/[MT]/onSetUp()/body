@@ -1,7 +1,5 @@
 {
   this.action=new AuthenticationViaFormAction();
-  this.pubilcWorkstationCookieGenerator=new CookieGenerator();
-  this.pubilcWorkstationCookieGenerator.setCookieName("PUBLIC");
   this.warnCookieGenerator=new CookieGenerator();
   this.warnCookieGenerator.setCookieName("WARN");
   this.warnCookieGenerator.setCookieName("TGT");
@@ -9,5 +7,4 @@
   this.warnCookieGenerator.setCookiePath("/");
   this.action.setCentralAuthenticationService(getCentralAuthenticationService());
   this.action.setWarnCookieGenerator(this.warnCookieGenerator);
-  this.action.setPublicWorkstationCookieGenerator(this.pubilcWorkstationCookieGenerator);
 }

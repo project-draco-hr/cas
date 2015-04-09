@@ -1,8 +1,6 @@
 {
-  final HttpServletRequest request=WebUtils.getHttpServletRequest(ctx);
-  final Cookie cookie=org.springframework.web.util.WebUtils.getCookie(request,this.publicWorkstationCookieGenerator.getCookieName());
-  if (cookie != null && StringUtils.isNotBlank(cookie.getValue())) {
-    LOGGER.debug("Located cookie [{}]. SSO session will be considered renewed.",this.publicWorkstationCookieGenerator.getCookieName());
+  if (ctx.getFlowScope().contains("publicWorkstation")) {
+    LOGGER.debug("Public workstation flag detected. SSO session will be considered renewed.");
     return true;
   }
   return false;
