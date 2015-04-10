@@ -2,7 +2,7 @@
   final URL[] urls=getDistributionPoints(cert);
   logger.debug(String.format("Distribution points for %s: %s.",CertUtils.toString(cert),Arrays.asList(urls)));
   Element item;
-  for (  URL url : urls) {
+  for (  final URL url : urls) {
     item=this.crlCache.get(url);
     if (item != null) {
       logger.debug("Found CRL in cache for {}",CertUtils.toString(cert));

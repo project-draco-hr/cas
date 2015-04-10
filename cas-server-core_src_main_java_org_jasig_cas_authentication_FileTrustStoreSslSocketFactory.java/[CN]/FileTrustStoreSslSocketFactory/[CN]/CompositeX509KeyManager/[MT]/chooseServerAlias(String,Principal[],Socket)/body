@@ -1,5 +1,5 @@
 {
-  for (  X509KeyManager keyManager : keyManagers) {
+  for (  final X509KeyManager keyManager : keyManagers) {
     final String alias=keyManager.chooseServerAlias(keyType,issuers,socket);
     if (alias != null) {
       return alias;
