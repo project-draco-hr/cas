@@ -1,0 +1,2 @@
+String ldapURL
+String certificateRevocationListAttributeName

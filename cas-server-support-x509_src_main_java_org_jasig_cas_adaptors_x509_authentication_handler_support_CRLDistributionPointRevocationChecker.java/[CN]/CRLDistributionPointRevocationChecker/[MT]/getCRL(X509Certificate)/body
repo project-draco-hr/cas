@@ -7,8 +7,7 @@
       if (item != null) {
         logger.debug("Found CRL in cache for {}",CertUtils.toString(cert));
         final byte[] encodedCrl=(byte[])item.getObjectValue();
-        final CertificateFactory cf=CertificateFactory.getInstance("X.509");
-        return (X509CRL)cf.generateCRL(new ByteArrayInputStream(encodedCrl));
+        return CertUtils.fetchCRL(encodedCrl);
       }
     }
   }
@@ -17,14 +16,20 @@
   }
   X509CRL crl=null;
   for (int i=0; i < urls.length && crl == null; i++) {
-    logger.info("Attempting to fetch CRL at {}",urls[i]);
+    final URL url=urls[i];
+    logger.info("Attempting to fetch CRL at {}",url);
     try {
-      crl=CertUtils.fetchCRL(new UrlResource(urls[i]));
-      logger.info("Success. Caching fetched CRL.");
-      this.crlCache.put(new Element(urls[i],crl.getEncoded()));
+      if (url.getProtocol().toLowerCase().startsWith("ldap")) {
+        crl=CertUtils.fetchCRL(url.toExternalForm(),this.certificateRevocationListAttributeName);
+      }
+ else {
+        crl=CertUtils.fetchCRL(new UrlResource(url));
+      }
+      logger.info("Success. Caching fetched CRL at {}.",url);
+      this.crlCache.put(new Element(url,crl.getEncoded()));
     }
  catch (    final Exception e) {
-      logger.error("Error fetching CRL at {}",urls[i],e);
+      logger.error("Error fetching CRL at {}",url,e);
     }
   }
   return crl;
