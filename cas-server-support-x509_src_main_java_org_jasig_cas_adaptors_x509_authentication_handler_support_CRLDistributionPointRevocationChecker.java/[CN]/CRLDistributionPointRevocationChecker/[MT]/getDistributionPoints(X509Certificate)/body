@@ -4,7 +4,7 @@
     points=new ExtensionReader(cert).readCRLDistributionPoints();
   }
  catch (  final Exception e) {
-    logger.error("Error reading CRLDistributionPoints extension field on " + CertUtils.toString(cert),e);
+    logger.error("Error reading CRLDistributionPoints extension field on {}",CertUtils.toString(cert),e);
     return new URL[0];
   }
   final List<URL> urls=new ArrayList<>();
