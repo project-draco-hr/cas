@@ -1,5 +1,0 @@
-{
-  if (StringUtils.isNotBlank(context.getExternalContext().getRequestParameterMap().get("publicWorkstation"))) {
-    context.getFlowScope().put("publicWorkstation",Boolean.TRUE);
-  }
-}
