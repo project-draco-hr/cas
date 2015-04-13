@@ -1,13 +1,19 @@
 {
   final URL[] urls=getDistributionPoints(cert);
-  logger.debug(String.format("Distribution points for %s: %s.",CertUtils.toString(cert),Arrays.asList(urls)));
-  Element item;
-  for (  final URL url : urls) {
-    item=this.crlCache.get(url);
-    if (item != null) {
-      logger.debug("Found CRL in cache for {}",CertUtils.toString(cert));
-      return (X509CRL)item.getObjectValue();
+  logger.debug("Distribution points for {}: {}.",CertUtils.toString(cert),Arrays.asList(urls));
+  try {
+    for (    final URL url : urls) {
+      final Element item=this.crlCache.get(url);
+      if (item != null) {
+        logger.debug("Found CRL in cache for {}",CertUtils.toString(cert));
+        final byte[] encodedCrl=(byte[])item.getObjectValue();
+        final CertificateFactory cf=CertificateFactory.getInstance("X.509");
+        return (X509CRL)cf.generateCRL(new ByteArrayInputStream(encodedCrl));
+      }
     }
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
   }
   X509CRL crl=null;
   for (int i=0; i < urls.length && crl == null; i++) {
@@ -15,7 +21,7 @@
     try {
       crl=CertUtils.fetchCRL(new UrlResource(urls[i]));
       logger.info("Success. Caching fetched CRL.");
-      this.crlCache.put(new Element(urls[i],crl));
+      this.crlCache.put(new Element(urls[i],crl.getEncoded()));
     }
  catch (    final Exception e) {
       logger.error("Error fetching CRL at {}",urls[i],e);
