@@ -1,6 +1,6 @@
 {
   try {
-    final Map<URL,X509CRL> results=this.fetcher.fetch(getResources());
+    final Set<X509CRL> results=this.fetcher.fetch(getResources());
     ResourceCRLRevocationChecker.this.addCrls(results);
   }
  catch (  final Exception e) {
@@ -11,7 +11,7 @@
     @Override public void run(){
       try {
         final Resource[] resources=ResourceCRLRevocationChecker.this.getResources();
-        final Map<URL,X509CRL> results=getFetcher().fetch(resources);
+        final Set<X509CRL> results=getFetcher().fetch(resources);
         ResourceCRLRevocationChecker.this.addCrls(results);
       }
  catch (      final Exception e) {

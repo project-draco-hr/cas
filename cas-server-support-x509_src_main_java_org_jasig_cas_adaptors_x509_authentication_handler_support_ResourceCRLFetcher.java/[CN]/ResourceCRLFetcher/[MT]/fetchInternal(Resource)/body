@@ -1,9 +1,5 @@
 {
-  final InputStream in=r.getInputStream();
-  if (r.getInputStream() != null) {
-    return (X509CRL)CertUtils.getCertificateFactory().generateCRL(in);
-  }
-  try (final InputStream ins=r.getURL().openStream()){
+  try (final InputStream ins=r.getInputStream()){
     return (X509CRL)CertUtils.getCertificateFactory().generateCRL(ins);
   }
  }
