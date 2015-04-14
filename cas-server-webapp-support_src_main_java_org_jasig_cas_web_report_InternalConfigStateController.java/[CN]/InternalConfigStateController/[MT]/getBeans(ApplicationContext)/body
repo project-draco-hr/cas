@@ -1,0 +1,26 @@
+{
+  final String[] all=BeanFactoryUtils.beanNamesIncludingAncestors(ctx);
+  final Map<String,Object> singletons=new HashMap<>(all.length);
+  for (  final String name : all) {
+    try {
+      final Object object=ctx.getBean(name);
+      if (object != null) {
+        boolean foundPackage=false;
+        final String packageName=object.getClass().getPackage().getName();
+        for (int i=0; !foundPackage && i < INCLUDE_PACKAGES.length; i++) {
+          foundPackage=(packageName.startsWith(INCLUDE_PACKAGES[i]));
+        }
+        if (foundPackage) {
+          singletons.put(name,object);
+        }
+      }
+    }
+ catch (    final BeanIsAbstractException e) {
+      LOGGER.debug("Skipping abstract bean definition. {}",e.getMessage());
+    }
+catch (    final Throwable e) {
+      LOGGER.trace(e.getMessage(),e);
+    }
+  }
+  return singletons;
+}
