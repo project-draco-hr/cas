@@ -3,7 +3,7 @@
     throw new IllegalArgumentException("CRL resources cannot be null.");
   }
   this.resources=new ArrayList<>();
-  for (  Resource r : crls) {
+  for (  final Resource r : crls) {
     if (r != null) {
       this.resources.add(r);
     }
