@@ -1,0 +1,18 @@
+{
+  final String ldapURL=r.getURL().toExternalForm();
+  logger.debug("Fetching CRL from ldap {}",ldapURL);
+  final Map<String,String> env=new Hashtable<>();
+  env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
+  env.put(Context.PROVIDER_URL,ldapURL);
+  logger.debug("Establishing a connection to {}",ldapURL);
+  final DirContext ctx=new InitialDirContext((Hashtable)env);
+  logger.debug("Retrieving certificate revocation list attribute {}",this.certificateRevocationListAttributeName);
+  final Attribute aval=ctx.getAttributes("").get(this.certificateRevocationListAttributeName);
+  final byte[] val=(byte[])aval.get();
+  if (val == null || val.length == 0) {
+    throw new CertificateException("Can not download CRL from: " + ldapURL);
+  }
+  ctx.close();
+  logger.debug("Retrieved CRL from ldap as byte array. Fetching...");
+  return super.fetch(new ByteArrayResource(val));
+}

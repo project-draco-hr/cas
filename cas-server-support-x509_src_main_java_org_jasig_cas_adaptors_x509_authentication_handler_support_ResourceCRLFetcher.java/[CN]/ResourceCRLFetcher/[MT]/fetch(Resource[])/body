@@ -1,0 +1,11 @@
+{
+  if (crls.length == 0) {
+    throw new IllegalArgumentException("Must provide at least one non-null CRL resource.");
+  }
+  final Map<URL,X509CRL> results=new HashMap<>();
+  for (  final Resource r : crls) {
+    logger.debug("Fetching CRL data from {}",r);
+    results.put(r.getURL(),fetchInternal(r));
+  }
+  return results;
+}

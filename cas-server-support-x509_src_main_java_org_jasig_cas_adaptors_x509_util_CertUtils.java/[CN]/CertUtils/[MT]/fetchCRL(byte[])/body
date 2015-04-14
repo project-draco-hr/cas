@@ -1,5 +1,0 @@
-{
-  try (final InputStream inStream=new ByteArrayInputStream(encodedCrl)){
-    return (X509CRL)CertUtils.getCertificateFactory().generateCRL(inStream);
-  }
- }

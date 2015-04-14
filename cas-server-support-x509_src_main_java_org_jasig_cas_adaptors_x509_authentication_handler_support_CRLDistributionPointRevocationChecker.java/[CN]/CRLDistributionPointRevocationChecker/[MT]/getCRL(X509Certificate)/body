@@ -7,7 +7,7 @@
       if (item != null) {
         logger.debug("Found CRL in cache for {}",CertUtils.toString(cert));
         final byte[] encodedCrl=(byte[])item.getObjectValue();
-        return CertUtils.fetchCRL(encodedCrl);
+        return this.fetcher.fetch(new ByteArrayResource(encodedCrl));
       }
     }
   }
@@ -19,14 +19,9 @@
     final URL url=urls[i];
     logger.info("Attempting to fetch CRL at {}",url);
     try {
-      if (url.getProtocol().toLowerCase().startsWith("ldap")) {
-        crl=CertUtils.fetchCRL(url.toExternalForm(),this.certificateRevocationListAttributeName);
-      }
- else {
-        crl=CertUtils.fetchCRL(new UrlResource(url));
-      }
+      crl=this.fetcher.fetch(new UrlResource(url));
       logger.info("Success. Caching fetched CRL at {}.",url);
-      this.crlCache.put(new Element(url,crl.getEncoded()));
+      addCRL(url,crl);
     }
  catch (    final Exception e) {
       logger.error("Error fetching CRL at {}",url,e);

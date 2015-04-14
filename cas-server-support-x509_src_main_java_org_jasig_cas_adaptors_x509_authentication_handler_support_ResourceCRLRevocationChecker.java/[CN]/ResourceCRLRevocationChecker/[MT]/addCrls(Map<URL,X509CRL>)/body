@@ -1,0 +1,8 @@
+{
+  final Set<Map.Entry<URL,X509CRL>> keys=results.entrySet();
+  final Iterator<Map.Entry<URL,X509CRL>> it=keys.iterator();
+  while (it.hasNext()) {
+    final Map.Entry<URL,X509CRL> entry=it.next();
+    addCRL(entry.getKey(),entry.getValue());
+  }
+}
