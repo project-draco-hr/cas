@@ -8,7 +8,7 @@
   this.controller.onSubmit(svc,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
   final Collection<RegisteredService> services=this.manager.getAllServices();
   assertEquals(1,services.size());
-  for (  RegisteredService rs : this.manager.getAllServices()) {
+  for (  final RegisteredService rs : this.manager.getAllServices()) {
     assertTrue(rs instanceof RegisteredServiceImpl);
   }
 }
