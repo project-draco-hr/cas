@@ -1,0 +1,5 @@
+{
+  if (StringUtils.isNotBlank(context.getExternalContext().getRequestParameterMap().get(PUBLIC_WORKSTATION_ATTRIBUTE))) {
+    context.getFlowScope().put(PUBLIC_WORKSTATION_ATTRIBUTE,Boolean.TRUE);
+  }
+}

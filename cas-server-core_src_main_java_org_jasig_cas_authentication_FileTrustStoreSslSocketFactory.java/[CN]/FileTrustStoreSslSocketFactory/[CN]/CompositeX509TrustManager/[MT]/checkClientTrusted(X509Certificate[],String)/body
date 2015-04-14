@@ -1,5 +1,5 @@
 {
-  for (  X509TrustManager trustManager : trustManagers) {
+  for (  final X509TrustManager trustManager : trustManagers) {
     try {
       trustManager.checkClientTrusted(chain,authType);
       return;
