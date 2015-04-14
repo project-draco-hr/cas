@@ -1,3 +1,3 @@
 {
-  return new ToStringBuilder(cert).append("subjectDn",cert.getSubjectDN()).append("serialNumber",cert.getSerialNumber()).build();
+  return new ToStringBuilder(cert,ToStringStyle.NO_CLASS_NAME_STYLE).append("subjectDn",cert.getSubjectDN()).append("serialNumber",cert.getSerialNumber()).build();
 }
