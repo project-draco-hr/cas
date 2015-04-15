@@ -18,7 +18,8 @@
     this.directoryServer.startListening();
     final LDAPConnection c=getConnection();
     LOGGER.debug("Connected to {}:{}",c.getConnectedAddress(),c.getConnectedPort());
-    populateEntries();
+    populateDefaultEntries(c);
+    c.close();
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);

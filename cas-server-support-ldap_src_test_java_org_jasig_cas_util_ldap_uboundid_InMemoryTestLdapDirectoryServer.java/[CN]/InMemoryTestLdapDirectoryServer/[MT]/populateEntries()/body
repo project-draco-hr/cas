@@ -1,6 +1,0 @@
-{
-  this.ldapEntries=LdapTestUtils.readLdif(new ClassPathResource("ldif/users-groups.ldif"),getBaseDn());
-  final LDAPConnection c=getConnection();
-  LdapTestUtils.createLdapEntries(c,ldapEntries);
-  c.close();
-}

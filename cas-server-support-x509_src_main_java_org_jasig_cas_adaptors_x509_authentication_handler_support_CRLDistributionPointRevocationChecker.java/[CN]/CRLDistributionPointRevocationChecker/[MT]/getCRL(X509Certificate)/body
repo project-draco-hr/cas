@@ -25,6 +25,9 @@
     }
  catch (    final Exception e) {
       logger.error("Error fetching CRL at {}",url,e);
+      if (this.throwOnFetchFailure) {
+        throw new RuntimeException(e);
+      }
     }
   }
   return crl;
