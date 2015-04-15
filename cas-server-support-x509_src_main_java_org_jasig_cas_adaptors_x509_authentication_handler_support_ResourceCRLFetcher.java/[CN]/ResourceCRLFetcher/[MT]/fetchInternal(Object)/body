@@ -16,6 +16,9 @@
     throw new IllegalArgumentException("Resource " + r + " could not be identified");
   }
   try (final InputStream ins=rs.getInputStream()){
-    return (X509CRL)CertUtils.getCertificateFactory().generateCRL(ins);
+    if (ins.available() > 0) {
+      return (X509CRL)CertUtils.getCertificateFactory().generateCRL(ins);
+    }
+    return null;
   }
  }
