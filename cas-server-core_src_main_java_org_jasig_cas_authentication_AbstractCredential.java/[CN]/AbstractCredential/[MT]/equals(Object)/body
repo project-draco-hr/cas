@@ -1,4 +1,7 @@
 {
+  if (other == null) {
+    return false;
+  }
   if (!(other instanceof Credential)) {
     return false;
   }
