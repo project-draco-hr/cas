@@ -1,5 +1,5 @@
 {
-  final String ldapURL=r.getURL().toExternalForm();
+  final String ldapURL=r.toString();
   logger.debug("Fetching CRL from ldap {}",ldapURL);
   final Map<String,String> env=new Hashtable<>();
   env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");

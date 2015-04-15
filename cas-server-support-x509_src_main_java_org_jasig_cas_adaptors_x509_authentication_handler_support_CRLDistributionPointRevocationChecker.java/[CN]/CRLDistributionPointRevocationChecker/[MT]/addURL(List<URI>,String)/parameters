@@ -1,2 +1,2 @@
-List<URL> list
+List<URI> list
 String uriString

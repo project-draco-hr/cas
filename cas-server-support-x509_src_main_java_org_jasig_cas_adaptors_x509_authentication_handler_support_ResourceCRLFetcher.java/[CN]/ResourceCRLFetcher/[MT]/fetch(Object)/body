@@ -1,0 +1,3 @@
+{
+  return fetch(new Object[]{crl}).iterator().next();
+}

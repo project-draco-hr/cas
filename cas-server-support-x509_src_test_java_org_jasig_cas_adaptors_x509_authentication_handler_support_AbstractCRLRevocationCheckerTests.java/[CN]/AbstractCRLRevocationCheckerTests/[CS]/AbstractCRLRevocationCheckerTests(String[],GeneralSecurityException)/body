@@ -3,6 +3,6 @@
   this.certificates=new X509Certificate[certFiles.length];
   int i=0;
   for (  final String file : certFiles) {
-    this.certificates[i++]=readCertificate(file);
+    this.certificates[i++]=CertUtils.readCertificate(new ClassPathResource(file));
   }
 }

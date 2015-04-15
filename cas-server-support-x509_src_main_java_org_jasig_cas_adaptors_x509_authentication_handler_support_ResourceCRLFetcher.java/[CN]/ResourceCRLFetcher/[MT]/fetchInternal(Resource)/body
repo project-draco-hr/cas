@@ -1,5 +1,0 @@
-{
-  try (final InputStream ins=r.getInputStream()){
-    return (X509CRL)CertUtils.getCertificateFactory().generateCRL(ins);
-  }
- }
