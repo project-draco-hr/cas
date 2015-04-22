@@ -5,6 +5,9 @@
   final ThresholdExpiredCRLRevocationPolicy defaultPolicy=new ThresholdExpiredCRLRevocationPolicy();
   final ThresholdExpiredCRLRevocationPolicy zeroThresholdPolicy=new ThresholdExpiredCRLRevocationPolicy();
   zeroThresholdPolicy.setThreshold(0);
+  cache=new Cache("crlCache-0",100,false,false,20,10);
+  CacheManager.getInstance().addCache(cache);
+  params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),defaultPolicy,new String[]{"uservalid-encoded-crl.crt"},"test ca.crl",null});
   cache=new Cache("crlCache-1",100,false,false,20,10);
   CacheManager.getInstance().addCache(cache);
   params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),defaultPolicy,new String[]{"user-valid-distcrl.crt"},"userCA-valid.crl",null});

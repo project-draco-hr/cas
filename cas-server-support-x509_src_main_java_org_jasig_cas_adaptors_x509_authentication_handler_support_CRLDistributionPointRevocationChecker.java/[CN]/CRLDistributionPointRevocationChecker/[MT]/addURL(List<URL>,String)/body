@@ -1,6 +1,7 @@
 {
   try {
-    final URL url=new URL(uriString);
+    final String decodedUrl=URLDecoder.decode(uriString,"UTF-8");
+    final URL url=new URL(decodedUrl);
     final URI uri=new URI(url.getProtocol(),url.getAuthority(),url.getPath(),url.getQuery(),null);
     list.add(uri.toURL());
   }
