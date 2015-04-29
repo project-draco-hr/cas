@@ -1,6 +1,11 @@
 {
   LOGGER.debug("Obtaining credentials...");
   final Credential c=obtainCredentials();
+  if (c == null) {
+    LOGGER.trace("No credentials could be obtained from the REST entity representation");
+    getResponse().setStatus(Status.CLIENT_ERROR_BAD_REQUEST,"Invalid or missing credentials");
+    return;
+  }
   try (final Formatter fmt=new Formatter()){
     final TicketGrantingTicket ticketGrantingTicketId=this.centralAuthenticationService.createTicketGrantingTicket(c);
     getResponse().setStatus(determineStatus());
