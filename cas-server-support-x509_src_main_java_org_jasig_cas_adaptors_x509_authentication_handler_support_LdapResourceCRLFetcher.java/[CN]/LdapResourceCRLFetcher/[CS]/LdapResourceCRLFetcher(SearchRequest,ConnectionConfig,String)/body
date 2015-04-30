@@ -1,3 +1,5 @@
 {
   this.certificateRevocationListAttributeName=certificateRevocationListAttributeName;
+  this.connectionConfig=connectionConfig;
+  this.searchRequest=searchRequest;
 }

@@ -1,0 +1,3 @@
+{
+  this(searchRequest,connectionConfig,DEFAULT_CERTIFICATE_REVOCATION_LIST_ATTRIBUTE);
+}
