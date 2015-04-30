@@ -1,0 +1,22 @@
+{
+  Connection connection=null;
+  try {
+    connection=createConnection();
+    logger.debug("Connected to {}. Searching {}",this.connectionConfig.getLdapUrl(),this.searchRequest);
+    final SearchOperation searchOperation=new SearchOperation(connection);
+    final Response<SearchResult> searchResult=searchOperation.execute(this.searchRequest);
+    if (searchResult.getResultCode() == ResultCode.SUCCESS) {
+      return verifySpnegoAttribute(searchResult);
+    }
+    throw new RuntimeException("Failed to establish a connection ldap. " + searchResult.getMessage());
+  }
+ catch (  final LdapException e) {
+    logger.error(e.getMessage(),e);
+    throw new RuntimeException(e);
+  }
+ finally {
+    if (connection != null) {
+      connection.close();
+    }
+  }
+}

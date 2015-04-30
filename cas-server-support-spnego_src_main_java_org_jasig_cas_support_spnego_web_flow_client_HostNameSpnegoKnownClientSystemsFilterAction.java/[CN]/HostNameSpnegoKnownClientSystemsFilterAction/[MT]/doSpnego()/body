@@ -1,0 +1,5 @@
+{
+  final String hostName=this.getRemoteHostName();
+  logger.debug("Retrieved host name for the remote ip is {}",hostName);
+  return this.hostNamePatternString.matcher(hostName).find();
+}

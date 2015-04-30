@@ -1,0 +1,7 @@
+{
+  logger.debug("Establishing a connection to {}",this.connectionConfig.getLdapUrl());
+  final ConnectionFactory factory=new DefaultConnectionFactory(this.connectionConfig,this.provider);
+  final Connection connection=factory.getConnection();
+  connection.open();
+  return connection;
+}

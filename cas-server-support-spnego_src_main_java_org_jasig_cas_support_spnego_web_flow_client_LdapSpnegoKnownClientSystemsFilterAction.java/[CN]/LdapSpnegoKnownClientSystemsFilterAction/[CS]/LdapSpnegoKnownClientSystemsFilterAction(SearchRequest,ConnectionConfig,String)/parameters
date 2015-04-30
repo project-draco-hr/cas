@@ -1,0 +1,3 @@
+SearchRequest searchRequest
+ConnectionConfig connectionConfig
+String spnegoAttributeName

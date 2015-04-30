@@ -1,0 +1,5 @@
+{
+  this.remoteIp=getRemoteIp(context);
+  logger.debug("Current user IP {}",this.remoteIp);
+  return !isIpFiltered() && doSpnego() ? yes() : no();
+}

@@ -1,0 +1,3 @@
+{
+  this(searchRequest,connectionConfig,DEFAULT_SPNEGO_ATTRIBUTE);
+}
