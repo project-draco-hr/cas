@@ -1,10 +1,14 @@
 {
+  ReverseDNS revDNS=new ReverseDNS(this.remoteIp);
+  Thread t=new Thread(revDNS);
+  t.start();
   try {
-    final InetAddress remoteHost=InetAddress.getByName(this.remoteIp);
-    return remoteHost.getCanonicalHostName();
+    t.join(this.timeout);
   }
- catch (  final UnknownHostException e) {
-    logger.error("No host found for IP {}",this.remoteIp,e);
+ catch (  final InterruptedException e) {
+    logger.debug("Threaded lookup failed.  Defaulting to IP {}.",this.remoteIp,e);
   }
-  return this.remoteIp;
+  final String remoteHostName=revDNS.get();
+  logger.debug("Found remote host name {}.",remoteHostName);
+  return StringUtils.isNotEmpty(remoteHostName) ? remoteHostName : this.remoteIp;
 }
