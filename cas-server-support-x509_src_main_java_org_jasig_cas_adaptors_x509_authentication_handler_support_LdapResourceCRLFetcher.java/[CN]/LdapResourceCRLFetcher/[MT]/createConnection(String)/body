@@ -1,11 +1,5 @@
 {
-  if (StringUtils.isBlank(this.connectionConfig.getLdapUrl())) {
-    logger.debug("Configuration does not indicate an LDAP url override. Setting ldap url to [{}]",ldapURL);
-    this.connectionConfig.setLdapUrl(ldapURL);
-  }
-  logger.debug("Establishing a connection to {}",this.connectionConfig.getLdapUrl());
-  final ConnectionFactory factory=new DefaultConnectionFactory(this.connectionConfig,this.provider);
-  final Connection connection=factory.getConnection();
+  final Connection connection=this.connectionFactory.getConnection();
   connection.open();
   return connection;
 }

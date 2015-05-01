@@ -1,0 +1,20 @@
+{
+  if (this.connectionFactory != null) {
+    return;
+  }
+  if (StringUtils.isBlank(this.connectionConfig.getLdapUrl())) {
+    logger.debug("Configuration does not indicate an LDAP url override. Setting ldap url to [{}]",ldapURL);
+    this.connectionConfig.setLdapUrl(ldapURL);
+  }
+  logger.debug("Establishing a connection to {}",this.connectionConfig.getLdapUrl());
+  if (this.connectionPool != null) {
+    this.connectionPool.setConnectionFactory(new DefaultConnectionFactory(this.connectionConfig,this.provider));
+    this.connectionPool.initialize();
+    this.connectionFactory=new PooledConnectionFactory(this.connectionPool);
+    logger.debug("Connection pooling enabled. Using [{}]",this.connectionFactory.getClass().getName());
+  }
+ else {
+    this.connectionFactory=new DefaultConnectionFactory(this.connectionConfig,this.provider);
+    logger.debug("Connection pooling not configured. Using [{}]",this.connectionFactory.getClass().getName());
+  }
+}

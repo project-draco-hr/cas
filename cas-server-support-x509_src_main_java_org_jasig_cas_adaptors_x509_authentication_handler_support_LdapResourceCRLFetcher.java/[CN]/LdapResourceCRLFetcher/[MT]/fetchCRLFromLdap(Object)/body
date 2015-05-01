@@ -3,6 +3,7 @@
   try {
     final String ldapURL=r.toString();
     logger.debug("Fetching CRL from ldap {}",ldapURL);
+    prepareConnectionFactory(ldapURL);
     connection=createConnection(ldapURL);
     logger.debug("Connected to {}. Searching {}",this.connectionConfig.getLdapUrl(),this.searchRequest);
     final SearchOperation searchOperation=new SearchOperation(connection);
