@@ -1,8 +1,0 @@
-{
-  try {
-    InetAddress address=InetAddress.getByName(ipAddress);
-    set(address.getCanonicalHostName());
-  }
- catch (  UnknownHostException e) {
-  }
-}

@@ -1,14 +1,14 @@
 {
   final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
-  String userAddr=request.getRemoteAddr();
-  logger.debug("Remote Address = {}",userAddr);
+  String userAddress=request.getRemoteAddr();
+  logger.debug("Remote Address = {}",userAddress);
   if (StringUtils.isNotBlank(this.alternativeRemoteHostAttribute)) {
-    userAddr=request.getHeader(this.alternativeRemoteHostAttribute);
-    logger.debug("Header Attribute [{}] = [{}]",this.alternativeRemoteHostAttribute,userAddr);
-    if (StringUtils.isBlank(userAddr)) {
-      userAddr=request.getRemoteAddr();
-      logger.warn("No value could be retrieved from the header [{}]. Falling back to [{}].",this.alternativeRemoteHostAttribute,userAddr);
+    userAddress=request.getHeader(this.alternativeRemoteHostAttribute);
+    logger.debug("Header Attribute [{}] = [{}]",this.alternativeRemoteHostAttribute,userAddress);
+    if (StringUtils.isBlank(userAddress)) {
+      userAddress=request.getRemoteAddr();
+      logger.warn("No value could be retrieved from the header [{}]. Falling back to [{}].",this.alternativeRemoteHostAttribute,userAddress);
     }
   }
-  return userAddr;
+  return userAddress;
 }

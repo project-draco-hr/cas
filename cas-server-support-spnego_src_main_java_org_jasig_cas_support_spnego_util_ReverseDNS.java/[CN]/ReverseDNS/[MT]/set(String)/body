@@ -1,4 +1,0 @@
-{
-  logger.trace("ReverseDNS -- Found hostName: " + hostName + ".");
-  this.hostName=hostName;
-}

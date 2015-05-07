@@ -1,5 +1,5 @@
 {
   final LdapEntry entry=searchResult.getResult().getEntry();
-  final LdapAttribute aval=entry.getAttribute(this.spnegoAttributeName);
-  return aval != null && StringUtils.isNotBlank(aval.getStringValue());
+  final LdapAttribute attribute=entry.getAttribute(this.spnegoAttributeName);
+  return attribute != null && StringUtils.isNotBlank(attribute.getStringValue());
 }

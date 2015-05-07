@@ -1,6 +1,7 @@
 {
-  ReverseDNS revDNS=new ReverseDNS(this.remoteIp);
-  Thread t=new Thread(revDNS);
+  final ReverseDNS revDNS=new ReverseDNS(this.remoteIp);
+  this.executor.submit(revDNS);
+  final Thread t=new Thread(revDNS);
   t.start();
   try {
     t.join(this.timeout);

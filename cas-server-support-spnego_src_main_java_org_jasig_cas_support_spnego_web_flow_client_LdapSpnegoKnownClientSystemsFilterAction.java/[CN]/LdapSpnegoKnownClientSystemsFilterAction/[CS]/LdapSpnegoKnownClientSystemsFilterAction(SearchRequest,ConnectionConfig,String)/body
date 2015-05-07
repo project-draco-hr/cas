@@ -1,4 +1,5 @@
 {
+  super();
   this.spnegoAttributeName=spnegoAttributeName;
   this.connectionConfig=connectionConfig;
   this.searchRequest=searchRequest;
