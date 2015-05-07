@@ -1,0 +1,6 @@
+{
+  if (r.toString().toLowerCase().startsWith("ldap")) {
+    return fetchCRLFromLdap(r);
+  }
+  return super.fetchInternal(r);
+}
