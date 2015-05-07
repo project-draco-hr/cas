@@ -1,0 +1,3 @@
+{
+  this(ipsToCheckPattern,null,DEFAULT_TIMEOUT);
+}

@@ -1,0 +1,3 @@
+String ipsToCheckPattern
+String alternativeRemoteHostAttribute
+long timeout

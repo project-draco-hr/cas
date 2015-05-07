@@ -1,0 +1,3 @@
+{
+  this(ipsToCheckPattern,alternativeRemoteHostAttribute,DEFAULT_TIMEOUT);
+}
