@@ -1,0 +1,5 @@
+{
+  final DownloadConfigBuilder bldr=super.defaults();
+  bldr.downloadPath("http://heli0s.darktech.org/memcached/");
+  return bldr;
+}
