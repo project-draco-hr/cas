@@ -1,3 +1,0 @@
-{
-  return this.ipsToCheckPattern != null && ipsToCheckPattern.matcher(this.remoteIp).find();
-}
