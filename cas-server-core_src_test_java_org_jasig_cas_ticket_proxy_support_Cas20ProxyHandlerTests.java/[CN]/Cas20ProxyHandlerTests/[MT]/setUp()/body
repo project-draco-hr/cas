@@ -1,6 +1,9 @@
 {
   this.handler=new Cas20ProxyHandler();
-  this.handler.setHttpClient(new SimpleHttpClientFactoryBean().getObject());
+  final SimpleHttpClientFactoryBean factory=new SimpleHttpClientFactoryBean();
+  factory.setConnectionTimeout(10000);
+  factory.setReadTimeout(10000);
+  this.handler.setHttpClient(factory.getObject());
   this.handler.setUniqueTicketIdGenerator(new DefaultUniqueTicketIdGenerator());
   when(this.proxyGrantingTicket.getId()).thenReturn("proxyGrantingTicket");
 }
