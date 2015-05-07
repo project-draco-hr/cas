@@ -1,6 +1,5 @@
 {
-  super();
+  this.connectionFactory=connectionFactory;
   this.spnegoAttributeName=spnegoAttributeName;
-  this.connectionConfig=connectionConfig;
   this.searchRequest=searchRequest;
 }

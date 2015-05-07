@@ -2,7 +2,6 @@
   Connection connection=null;
   try {
     connection=createConnection();
-    logger.debug("Connected to {}. Searching {}",this.connectionConfig.getLdapUrl(),this.searchRequest);
     final SearchOperation searchOperation=new SearchOperation(connection);
     final Response<SearchResult> searchResult=searchOperation.execute(this.searchRequest);
     if (searchResult.getResultCode() == ResultCode.SUCCESS) {
