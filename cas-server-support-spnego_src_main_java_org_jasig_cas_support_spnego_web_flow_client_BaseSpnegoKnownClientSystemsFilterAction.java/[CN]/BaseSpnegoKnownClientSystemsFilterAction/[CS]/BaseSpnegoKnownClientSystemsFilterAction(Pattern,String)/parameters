@@ -1,4 +1,2 @@
 Pattern ipsToCheckPattern
 String alternativeRemoteHostAttribute
-long timeout
-ExecutorService executor

@@ -1,4 +1,0 @@
-{
-  logger.debug("Shutting down the executor service");
-  this.executor.shutdown();
-}

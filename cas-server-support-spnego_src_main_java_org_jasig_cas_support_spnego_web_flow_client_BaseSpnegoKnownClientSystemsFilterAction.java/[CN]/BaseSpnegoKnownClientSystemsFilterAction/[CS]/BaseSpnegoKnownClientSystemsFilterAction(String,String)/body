@@ -1,3 +1,4 @@
 {
-  this(ipsToCheckPattern,alternativeRemoteHostAttribute,DEFAULT_TIMEOUT);
+  setIpsToCheckPattern(ipsToCheckPattern);
+  this.alternativeRemoteHostAttribute=alternativeRemoteHostAttribute;
 }

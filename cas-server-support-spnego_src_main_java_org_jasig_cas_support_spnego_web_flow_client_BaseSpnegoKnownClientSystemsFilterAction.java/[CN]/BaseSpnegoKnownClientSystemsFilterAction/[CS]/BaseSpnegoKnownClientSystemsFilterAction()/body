@@ -1,3 +1,2 @@
 {
-  this(Executors.newFixedThreadPool(THREAD_POOL_SIZE));
 }
