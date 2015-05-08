@@ -1,27 +1,3 @@
 {
-  try {
-    final Properties p=new Properties();
-    p.load(new FileInputStream(properties));
-    final InMemoryDirectoryServerConfig config=new InMemoryDirectoryServerConfig(p.getProperty("ldap.rootDn"));
-    config.addAdditionalBindCredentials(p.getProperty("ldap.managerDn"),p.getProperty("ldap.managerPassword"));
-    final String serverKeyStorePath=new ClassPathResource("/ldapServerTrustStore").getFile().getCanonicalPath();
-    final SSLUtil serverSSLUtil=new SSLUtil(new KeyStoreKeyManager(serverKeyStorePath,"changeit".toCharArray()),new TrustStoreTrustManager(serverKeyStorePath));
-    final SSLUtil clientSSLUtil=new SSLUtil(new TrustStoreTrustManager(serverKeyStorePath));
-    config.setListenerConfigs(InMemoryListenerConfig.createLDAPConfig("LDAP",null,1389,serverSSLUtil.createSSLSocketFactory()),InMemoryListenerConfig.createLDAPSConfig("LDAPS",null,1636,serverSSLUtil.createSSLServerSocketFactory(),clientSSLUtil.createSSLSocketFactory()));
-    config.setEnforceSingleStructuralObjectClass(false);
-    config.setEnforceAttributeSyntaxCompliance(true);
-    final Schema s=Schema.mergeSchemas(Schema.getSchema(schemaFile));
-    config.setSchema(s);
-    this.directoryServer=new InMemoryDirectoryServer(config);
-    LOGGER.debug("Populating directory with {}",ldifFile);
-    this.directoryServer.importFromLDIF(true,ldifFile.getCanonicalPath());
-    this.directoryServer.startListening();
-    final LDAPConnection c=getConnection();
-    LOGGER.debug("Connected to {}:{}",c.getConnectedAddress(),c.getConnectedPort());
-    populateDefaultEntries(c);
-    c.close();
-  }
- catch (  final Exception e) {
-    throw new RuntimeException(e);
-  }
+  this(new FileInputStream(properties),new FileInputStream(ldifFile),new FileInputStream(ldifFile));
 }

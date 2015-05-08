@@ -1,0 +1,7 @@
+{
+  logger.debug("Shutting down connection pool...");
+  final AbstractConnectionPool pool=getConnectionPool();
+  pool.close();
+  logger.debug("Shutting down search execution pool...");
+  this.searchExecutor.shutdown();
+}

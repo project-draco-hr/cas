@@ -3,7 +3,7 @@
   final Cache cache=new Cache("crlCache-1",100,false,false,20,10);
   CacheManager.getInstance().addCache(cache);
   final LdapResourceCRLFetcher fetcher=new LdapResourceCRLFetcher();
-  fetcher.setObjectName("CN=x509,ou=people,dc=example,dc=org");
+  fetcher.setObjectName(getTestDN());
   final CRLDistributionPointRevocationChecker checker=new CRLDistributionPointRevocationChecker(cache,fetcher);
   checker.setThrowOnFetchFailure(true);
   checker.setUnavailableCRLPolicy(new AllowRevocationPolicy());

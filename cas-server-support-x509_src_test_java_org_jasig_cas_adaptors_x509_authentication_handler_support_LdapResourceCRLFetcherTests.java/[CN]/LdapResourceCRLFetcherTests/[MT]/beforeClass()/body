@@ -1,4 +1,0 @@
-{
-  initDirectoryServer();
-  getDirectory().populateEntries(new ClassPathResource("ldif/users-x509.ldif"));
-}

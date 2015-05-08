@@ -1,0 +1,19 @@
+{
+  final AbstractConnectionPool pool=getConnectionPool();
+  final ProviderConfig providerConfig=pool.getConnectionFactory().getProvider().getProviderConfig();
+  try {
+    providerConfig.checkImmutable();
+    providerConfig.setConnectionStrategy(new ConnectionStrategy(){
+      @Override public String[] getLdapUrls(      final ConnectionFactoryMetadata metadata){
+        return new String[]{String.format(metadata.getLdapUrl(),ldapURL)};
+      }
+    }
+);
+    logger.debug("Connection strategy to [{}] configured. Initializing pool...",ldapURL);
+    pool.initialize();
+    logger.debug("Initialized connection pool for [{}]",ldapURL);
+  }
+ catch (  final IllegalStateException e) {
+    logger.trace("Connection pool failed to initialize, or is already initialized",e);
+  }
+}

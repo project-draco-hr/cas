@@ -1,5 +1,0 @@
-{
-  final Connection connection=this.connectionFactory.getConnection();
-  connection.open();
-  return connection;
-}
