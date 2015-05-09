@@ -1,7 +1,4 @@
 {
-  if (crls.length == 0) {
-    throw new IllegalArgumentException("Must provide at least one non-null CRL resource.");
-  }
   final Set<X509CRL> results=new HashSet<>();
   for (  final Object r : crls) {
     logger.debug("Fetching CRL data from {}",r);

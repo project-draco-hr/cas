@@ -1,5 +1,5 @@
 {
-  final Set<X509CRL> results=fetch(new Object[]{crl});
+  final Set<X509CRL> results=fetch(Collections.singleton(crl));
   if (results.size() > 0) {
     return results.iterator().next();
   }
