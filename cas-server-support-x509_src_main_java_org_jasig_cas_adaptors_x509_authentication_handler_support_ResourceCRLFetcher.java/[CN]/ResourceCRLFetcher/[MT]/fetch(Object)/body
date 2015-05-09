@@ -1,3 +1,8 @@
 {
-  return fetch(new Object[]{crl}).iterator().next();
+  final Set<X509CRL> results=fetch(new Object[]{crl});
+  if (results.size() > 0) {
+    return results.iterator().next();
+  }
+  logger.warn("Unable to fetch {}",crl);
+  return null;
 }

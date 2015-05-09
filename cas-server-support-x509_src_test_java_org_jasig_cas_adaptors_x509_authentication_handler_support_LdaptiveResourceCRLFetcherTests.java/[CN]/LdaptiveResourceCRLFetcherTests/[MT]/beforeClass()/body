@@ -1,3 +1,0 @@
-{
-  initDirectoryServer(new ClassPathResource("ldif/users-x509.ldif").getInputStream());
-}

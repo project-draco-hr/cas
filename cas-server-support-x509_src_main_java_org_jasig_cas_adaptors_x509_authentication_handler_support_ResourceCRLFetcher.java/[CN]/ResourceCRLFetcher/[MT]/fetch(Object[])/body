@@ -5,7 +5,10 @@
   final Set<X509CRL> results=new HashSet<>();
   for (  final Object r : crls) {
     logger.debug("Fetching CRL data from {}",r);
-    results.add(fetchInternal(r));
+    final X509CRL crl=fetchInternal(r);
+    if (crl != null) {
+      results.add(crl);
+    }
   }
   return results;
 }

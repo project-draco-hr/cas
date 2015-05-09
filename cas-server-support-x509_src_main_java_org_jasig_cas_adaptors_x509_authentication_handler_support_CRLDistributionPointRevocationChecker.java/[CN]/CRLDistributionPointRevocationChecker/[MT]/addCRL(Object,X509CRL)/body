@@ -1,5 +1,8 @@
 {
   try {
+    if (crl == null) {
+      return this.crlCache.remove(id);
+    }
     this.crlCache.put(new Element(id,crl.getEncoded()));
     return this.crlCache.get(id) != null;
   }

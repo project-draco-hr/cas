@@ -27,7 +27,7 @@
       IOUtils.copy(ldifFile,outputStream);
     }
      this.directoryServer.importFromLDIF(true,ldif.getCanonicalPath());
-    this.directoryServer.startListening();
+    this.directoryServer.restartServer();
     final LDAPConnection c=getConnection();
     LOGGER.debug("Connected to {}:{}",c.getConnectedAddress(),c.getConnectedPort());
     populateDefaultEntries(c);
