@@ -1,0 +1,5 @@
+{
+  final MemcachedStarter runtime=MemcachedStarter.getInstance(new CasRuntimeConfigBuilder().defaults(Command.MemcacheD).build());
+  MEMCACHED_EXECUTABLE=runtime.prepare(new MemcachedConfig(Version.V1_4_22,11211));
+  MEMCACHED=MEMCACHED_EXECUTABLE.start();
+}
