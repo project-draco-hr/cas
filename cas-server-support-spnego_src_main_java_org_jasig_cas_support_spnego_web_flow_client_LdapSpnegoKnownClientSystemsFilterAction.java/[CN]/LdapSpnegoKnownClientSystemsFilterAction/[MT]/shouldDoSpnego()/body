@@ -1,6 +1,6 @@
 {
   Connection connection=null;
-  final String remoteHostName=this.getRemoteHostName();
+  final String remoteHostName=getRemoteHostName();
   try {
     connection=createConnection();
     logger.debug("Connected to {}. Searching {}",this.connectionConfig.getLdapUrl(),this.searchRequest);
