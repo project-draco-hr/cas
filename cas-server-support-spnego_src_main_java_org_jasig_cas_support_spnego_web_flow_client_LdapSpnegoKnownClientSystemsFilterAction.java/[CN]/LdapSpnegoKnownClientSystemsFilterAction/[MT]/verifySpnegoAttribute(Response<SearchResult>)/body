@@ -1,4 +1,7 @@
 {
+  if (searchResult.getResult() == null || searchResult.getResult().getEntries().size() < 1) {
+    return false;
+  }
   final LdapEntry entry=searchResult.getResult().getEntry();
   final LdapAttribute attribute=entry.getAttribute(this.spnegoAttributeName);
   return attribute != null && StringUtils.isNotBlank(attribute.getStringValue());
