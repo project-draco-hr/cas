@@ -1,7 +1,10 @@
 {
+  final HTTPSOAP11Encoder encoder=new CasHTTPSOAP11Encoder();
   final MessageContext<SAMLObject> context=new MessageContext();
   context.setMessage(samlMessage);
-  this.encoder.setHttpServletResponse(httpResponse);
-  this.encoder.setMessageContext(context);
-  this.encoder.encode();
+  encoder.setHttpServletResponse(httpResponse);
+  encoder.setMessageContext(context);
+  encoder.initialize();
+  encoder.prepareContext();
+  encoder.encode();
 }
