@@ -4,7 +4,7 @@
     final XMLSignatureFactory sigFactory=XMLSignatureFactory.getInstance("DOM",(Provider)Class.forName(providerName).newInstance());
     final List<Transform> envelopedTransform=Collections.singletonList(sigFactory.newTransform(Transform.ENVELOPED,(TransformParameterSpec)null));
     final Reference ref=sigFactory.newReference("",sigFactory.newDigestMethod(DigestMethod.SHA1,null),envelopedTransform,null,null);
-    SignatureMethod signatureMethod;
+    final SignatureMethod signatureMethod;
     if (pubKey instanceof DSAPublicKey) {
       signatureMethod=sigFactory.newSignatureMethod(SignatureMethod.DSA_SHA1,null);
     }

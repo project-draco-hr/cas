@@ -3,7 +3,7 @@
   samlResponse.setID(id);
   samlResponse.setIssueInstant(issueInstant);
   samlResponse.setVersion(SAMLVersion.VERSION_11);
-  samlResponse.setRecipient(recipient);
+  samlResponse.setInResponseTo(recipient);
   if (service instanceof SamlService) {
     final SamlService samlService=(SamlService)service;
     if (samlService.getRequestID() != null) {

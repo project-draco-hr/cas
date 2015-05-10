@@ -1,0 +1,9 @@
+{
+  super();
+  try {
+    super.initialize();
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e.getMessage(),e);
+  }
+}
