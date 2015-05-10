@@ -12,7 +12,7 @@
     return builder.toString();
   }
  catch (  final Exception e) {
-    LOGGER.error("Could not obtain the saml request body from the http request",e);
+    LOGGER.trace("Could not obtain the saml request body from the http request",e);
     return null;
   }
 }
