@@ -4,6 +4,7 @@
   final String requestBody=getRequestBody(request);
   final String requestId;
   if (!StringUtils.hasText(service) && !StringUtils.hasText(requestBody)) {
+    LOGGER.debug("Request does not specify a {} or request body is empty",SamlProtocolConstants.CONST_PARAM_TARGET);
     return null;
   }
   final String id=cleanupUrl(service);

@@ -1,5 +1,6 @@
 {
   if (!requestBody.contains("RequestID")) {
+    LOGGER.debug("Request body does not contain a request id");
     return null;
   }
   try {
