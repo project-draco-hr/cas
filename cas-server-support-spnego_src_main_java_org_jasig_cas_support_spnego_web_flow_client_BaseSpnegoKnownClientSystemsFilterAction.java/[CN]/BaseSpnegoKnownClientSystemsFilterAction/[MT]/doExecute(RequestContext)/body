@@ -1,5 +1,5 @@
 {
   this.remoteIp=getRemoteIp(context);
   logger.debug("Current user IP {}",this.remoteIp);
-  return shouldCheckIP() && shouldDoSpnego() ? yes() : no();
+  return shouldDoSpnego() ? yes() : no();
 }
