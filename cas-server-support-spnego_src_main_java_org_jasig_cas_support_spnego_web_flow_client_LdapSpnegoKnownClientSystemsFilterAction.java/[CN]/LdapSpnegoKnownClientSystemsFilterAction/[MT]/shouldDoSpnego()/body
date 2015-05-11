@@ -1,8 +1,10 @@
 {
   Connection connection=null;
+  final String remoteHostName=getRemoteHostName();
   try {
     connection=createConnection();
     final SearchOperation searchOperation=new SearchOperation(connection);
+    this.searchRequest.getSearchFilter().setParameter(0,remoteHostName);
     final Response<SearchResult> searchResult=searchOperation.execute(this.searchRequest);
     if (searchResult.getResultCode() == ResultCode.SUCCESS) {
       return verifySpnegoAttribute(searchResult);
