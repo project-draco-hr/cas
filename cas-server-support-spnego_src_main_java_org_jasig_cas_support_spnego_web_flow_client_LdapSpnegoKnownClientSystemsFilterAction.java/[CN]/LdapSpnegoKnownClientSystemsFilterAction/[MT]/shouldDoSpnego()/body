@@ -3,11 +3,11 @@
   final String remoteHostName=getRemoteHostName();
   try {
     connection=createConnection();
-    final SearchOperation searchOperation=new SearchOperation(connection);
+    final Operation searchOperation=new SearchOperation(connection);
     this.searchRequest.getSearchFilter().setParameter(0,remoteHostName);
     final Response<SearchResult> searchResult=searchOperation.execute(this.searchRequest);
     if (searchResult.getResultCode() == ResultCode.SUCCESS) {
-      return verifySpnegoAttribute(searchResult);
+      return processSpnegoAttribute(searchResult);
     }
     throw new RuntimeException("Failed to establish a connection ldap. " + searchResult.getMessage());
   }

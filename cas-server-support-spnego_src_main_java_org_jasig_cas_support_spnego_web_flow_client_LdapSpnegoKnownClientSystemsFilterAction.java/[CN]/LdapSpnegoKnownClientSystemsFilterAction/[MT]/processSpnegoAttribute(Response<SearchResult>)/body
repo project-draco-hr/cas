@@ -1,0 +1,9 @@
+{
+  final SearchResult result=searchResult.getResult();
+  if (result == null || result.getEntries().isEmpty()) {
+    return false;
+  }
+  final LdapEntry entry=result.getEntry();
+  final LdapAttribute attribute=entry.getAttribute(this.spnegoAttributeName);
+  return verifySpnegyAttributeValue(attribute);
+}
