@@ -1,3 +1,0 @@
-{
-  return (AbstractConnectionPool)this.connectionFactory.getConnectionPool();
-}

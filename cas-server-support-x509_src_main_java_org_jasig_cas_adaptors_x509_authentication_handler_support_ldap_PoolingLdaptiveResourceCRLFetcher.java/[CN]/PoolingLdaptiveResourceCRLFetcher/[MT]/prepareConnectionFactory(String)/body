@@ -1,0 +1,13 @@
+{
+  final PooledConnectionFactory connectionFactory;
+synchronized (connectionPoolMap) {
+    if (connectionPoolMap.containsKey(ldapURL)) {
+      connectionFactory=connectionPoolMap.get(ldapURL);
+    }
+ else {
+      connectionFactory=new PooledConnectionFactory(newConnectionPool(ldapURL));
+      connectionPoolMap.put(ldapURL,connectionFactory);
+    }
+  }
+  return connectionFactory;
+}

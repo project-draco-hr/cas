@@ -1,6 +1,6 @@
 {
   if (aval != null) {
-    final byte[] val=(byte[])aval.getBinaryValue();
+    final byte[] val=aval.getBinaryValue();
     if (val == null || val.length == 0) {
       throw new CertificateException("Empty attribute. Can not download CRL from ldap");
     }
