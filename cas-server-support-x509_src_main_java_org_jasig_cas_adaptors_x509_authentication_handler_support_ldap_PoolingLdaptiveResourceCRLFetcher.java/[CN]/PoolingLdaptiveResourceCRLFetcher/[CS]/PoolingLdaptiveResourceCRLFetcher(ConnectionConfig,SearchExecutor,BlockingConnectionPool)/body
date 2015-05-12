@@ -1,0 +1,4 @@
+{
+  super(connectionConfig,searchExecutor);
+  this.connectionPool=connectionPool;
+}

@@ -1,6 +1,3 @@
 {
-  if (crlCache == null) {
-    throw new IllegalArgumentException("Cache cannot be null.");
-  }
-  this.crlCache=crlCache;
+  this(crlCache,new ResourceCRLFetcher());
 }

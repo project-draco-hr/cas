@@ -1,0 +1,13 @@
+{
+  try {
+    if (crl == null) {
+      return this.crlCache.remove(id);
+    }
+    this.crlCache.put(new Element(id,crl.getEncoded()));
+    return this.crlCache.get(id) != null;
+  }
+ catch (  final Exception e) {
+    logger.warn("Failed to add the crl entry [{}] to the cache",crl);
+    throw new RuntimeException(e);
+  }
+}

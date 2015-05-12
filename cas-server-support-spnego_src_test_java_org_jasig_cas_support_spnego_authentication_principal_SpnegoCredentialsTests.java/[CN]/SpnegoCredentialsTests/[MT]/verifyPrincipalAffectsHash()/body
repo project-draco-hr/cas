@@ -1,0 +1,8 @@
+{
+  final SpnegoCredential credential=new SpnegoCredential(new byte[]{});
+  final int hash1=credential.hashCode();
+  final Principal principal=new DefaultPrincipalFactory().createPrincipal("test");
+  credential.setPrincipal(principal);
+  final int hash2=credential.hashCode();
+  assertNotEquals(hash1,hash2);
+}

@@ -1,0 +1,3 @@
+{
+  AbstractX509LdapTests.bootstrap();
+}

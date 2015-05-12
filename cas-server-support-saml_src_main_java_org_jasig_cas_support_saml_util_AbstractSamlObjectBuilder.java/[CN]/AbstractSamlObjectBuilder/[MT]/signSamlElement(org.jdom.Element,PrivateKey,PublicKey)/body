@@ -1,10 +1,10 @@
 {
   try {
-    final String providerName=System.getProperty("jsr105Provider","org.jcp.xml.dsig.internal.dom.XMLDSigRI");
+    final String providerName=System.getProperty("jsr105Provider",SIGNATURE_FACTORY_PROVIDER_CLASS);
     final XMLSignatureFactory sigFactory=XMLSignatureFactory.getInstance("DOM",(Provider)Class.forName(providerName).newInstance());
     final List<Transform> envelopedTransform=Collections.singletonList(sigFactory.newTransform(Transform.ENVELOPED,(TransformParameterSpec)null));
     final Reference ref=sigFactory.newReference("",sigFactory.newDigestMethod(DigestMethod.SHA1,null),envelopedTransform,null,null);
-    SignatureMethod signatureMethod;
+    final SignatureMethod signatureMethod;
     if (pubKey instanceof DSAPublicKey) {
       signatureMethod=sigFactory.newSignatureMethod(SignatureMethod.DSA_SHA1,null);
     }

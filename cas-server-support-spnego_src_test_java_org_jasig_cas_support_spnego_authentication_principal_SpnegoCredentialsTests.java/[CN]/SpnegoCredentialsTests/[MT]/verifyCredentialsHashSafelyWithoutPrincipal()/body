@@ -1,0 +1,10 @@
+{
+  final SpnegoCredential credential=new SpnegoCredential(new byte[]{});
+  final Set<SpnegoCredential> set=new HashSet<>();
+  try {
+    set.add(credential);
+  }
+ catch (  final Exception e) {
+    fail(e.getMessage());
+  }
+}

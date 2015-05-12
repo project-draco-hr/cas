@@ -1,3 +1,5 @@
 {
+  LOGGER.debug("Shutting down LDAP server...");
   this.directoryServer.shutDown(true);
+  LOGGER.debug("Shut down LDAP server.");
 }
