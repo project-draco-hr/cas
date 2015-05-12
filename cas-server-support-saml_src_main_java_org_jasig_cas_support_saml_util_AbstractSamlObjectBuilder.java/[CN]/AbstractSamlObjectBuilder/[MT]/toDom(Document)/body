@@ -9,6 +9,7 @@
     return dbf.newDocumentBuilder().parse(new ByteArrayInputStream(xmlBytes));
   }
  catch (  final Exception e) {
+    logger.trace(e.getMessage(),e);
     return null;
   }
 }
