@@ -1,6 +1,7 @@
 {
   final SearchResult result=searchResult.getResult();
   if (result == null || result.getEntries().isEmpty()) {
+    logger.debug("Spnego attribute is not found in the search results");
     return false;
   }
   final LdapEntry entry=result.getEntry();
