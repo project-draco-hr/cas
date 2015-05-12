@@ -10,7 +10,7 @@
   params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),defaultPolicy,new String[]{"uservalid-encoded-crl.crt"},"test ca.crl",null});
   cache=new Cache("crlCache-1",100,false,false,20,10);
   CacheManager.getInstance().addCache(cache);
-  params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),defaultPolicy,new String[]{"user-valid-distcrl.crt"},"userCA-valid.crl",null});
+  params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache,true),defaultPolicy,new String[]{"user-valid-distcrl.crt"},"userCA-valid.crl",null});
   cache=new Cache("crlCache-2",100,false,false,20,10);
   CacheManager.getInstance().addCache(cache);
   params.add(new Object[]{new CRLDistributionPointRevocationChecker(cache),defaultPolicy,new String[]{"user-revoked-distcrl.crt"},"userCA-valid.crl",new RevokedCertificateException(new Date(),new BigInteger("1"))});

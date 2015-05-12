@@ -1,0 +1,4 @@
+{
+  this(crlCache,new ResourceCRLFetcher());
+  setThrowOnFetchFailure(throwOnFetchFailure);
+}

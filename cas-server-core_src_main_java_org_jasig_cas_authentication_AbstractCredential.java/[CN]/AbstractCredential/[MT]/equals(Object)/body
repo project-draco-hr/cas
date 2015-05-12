@@ -1,6 +1,14 @@
 {
-  if (other instanceof Credential && getClass().equals(other.getClass())) {
-    return getId().equals(((Credential)other).getId());
+  if (other == null) {
+    return false;
   }
-  return false;
+  if (!(other instanceof Credential)) {
+    return false;
+  }
+  if (other == this) {
+    return true;
+  }
+  final EqualsBuilder builder=new EqualsBuilder();
+  builder.append(getId(),((Credential)other).getId());
+  return builder.isEquals();
 }

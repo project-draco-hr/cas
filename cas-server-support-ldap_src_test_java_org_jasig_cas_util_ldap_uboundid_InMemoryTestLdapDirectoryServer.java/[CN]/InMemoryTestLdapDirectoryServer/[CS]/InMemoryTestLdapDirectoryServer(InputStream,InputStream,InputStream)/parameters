@@ -1,0 +1,3 @@
+InputStream properties
+InputStream ldifFile
+InputStream schemaFile

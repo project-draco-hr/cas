@@ -1,0 +1,10 @@
+{
+  final PoolConfig pc=new PoolConfig();
+  pc.setMinPoolSize(config.getMinPoolSize());
+  pc.setMaxPoolSize(config.getMaxPoolSize());
+  pc.setValidateOnCheckIn(config.isValidateOnCheckIn());
+  pc.setValidateOnCheckOut(config.isValidateOnCheckOut());
+  pc.setValidatePeriodically(config.isValidatePeriodically());
+  pc.setValidatePeriod(config.getValidatePeriod());
+  return pc;
+}

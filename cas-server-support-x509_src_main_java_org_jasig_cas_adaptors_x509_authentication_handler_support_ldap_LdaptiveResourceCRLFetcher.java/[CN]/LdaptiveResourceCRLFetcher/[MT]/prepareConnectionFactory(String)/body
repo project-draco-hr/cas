@@ -1,0 +1,5 @@
+{
+  final ConnectionConfig cc=ConnectionConfig.newConnectionConfig(this.connectionConfig);
+  cc.setLdapUrl(ldapURL);
+  return new DefaultConnectionFactory(cc);
+}

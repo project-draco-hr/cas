@@ -1,0 +1,4 @@
+{
+  this.crlCache=crlCache;
+  this.fetcher=fetcher;
+}
