@@ -8,7 +8,7 @@
       byte[] value=new byte[1024];
       IOUtils.read(new ClassPathResource("userCA-valid.crl").getInputStream(),value);
       value=CompressionUtils.encodeBase64ToByteArray(value);
-      attr.setName(LdapResourceCRLFetcher.DEFAULT_CERTIFICATE_REVOCATION_LIST_ATTRIBUTE);
+      attr.setName("certificateRevocationList");
       attr.addBinaryValue(value);
       final LDAPConnection serverCon=getDirectory().getConnection();
       final String address="ldap://" + serverCon.getConnectedAddress() + ":"+ serverCon.getConnectedPort();
