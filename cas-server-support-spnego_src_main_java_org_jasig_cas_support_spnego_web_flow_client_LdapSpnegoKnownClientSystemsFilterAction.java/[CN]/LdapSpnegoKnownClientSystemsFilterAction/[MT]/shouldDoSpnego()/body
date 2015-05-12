@@ -1,5 +1,8 @@
 {
   Connection connection=null;
+  if (!(ipPatternCanBeChecked() && ipPatternMatches())) {
+    return false;
+  }
   final String remoteHostName=getRemoteHostName();
   try {
     connection=createConnection();

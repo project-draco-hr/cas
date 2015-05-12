@@ -1,0 +1,9 @@
+{
+  final Matcher matcher=this.ipsToCheckPattern.matcher(this.remoteIp);
+  if (matcher.find()) {
+    logger.debug("Remote IP address {} should be checked based on the defined pattern {}",this.remoteIp,this.ipsToCheckPattern.pattern());
+    return true;
+  }
+  logger.debug("No pattern or remote IP defined, or pattern does not match remote IP [{}]",this.remoteIp);
+  return false;
+}
