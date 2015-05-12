@@ -1,0 +1,10 @@
+{
+  final SpnegoCredential credential=new SpnegoCredential(new byte[]{});
+  try {
+    final int hash=credential.hashCode();
+    assertNotNull(hash);
+  }
+ catch (  final Exception e) {
+    fail(e.getMessage());
+  }
+}
