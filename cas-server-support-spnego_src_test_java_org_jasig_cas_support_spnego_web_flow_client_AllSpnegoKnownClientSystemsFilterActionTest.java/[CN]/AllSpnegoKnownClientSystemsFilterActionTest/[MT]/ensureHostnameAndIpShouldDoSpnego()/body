@@ -1,5 +1,6 @@
 {
   final HostNameSpnegoKnownClientSystemsFilterAction action=new HostNameSpnegoKnownClientSystemsFilterAction("\\w+\\.\\w+\\.\\w+");
+  action.setIpsToCheckPattern("74\\..+");
   final MockRequestContext ctx=new MockRequestContext();
   final MockHttpServletRequest req=new MockHttpServletRequest();
   req.setRemoteAddr("74.125.136.102");
