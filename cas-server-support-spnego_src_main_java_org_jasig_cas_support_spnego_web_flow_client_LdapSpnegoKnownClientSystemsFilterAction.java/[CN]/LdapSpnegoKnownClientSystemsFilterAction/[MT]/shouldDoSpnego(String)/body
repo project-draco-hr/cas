@@ -1,0 +1,7 @@
+{
+  final boolean ipCheck=ipPatternCanBeChecked(remoteIp);
+  if (ipCheck && !ipPatternMatches(remoteIp)) {
+    return false;
+  }
+  return executeSearchForSpnegoAttribute(remoteIp);
+}

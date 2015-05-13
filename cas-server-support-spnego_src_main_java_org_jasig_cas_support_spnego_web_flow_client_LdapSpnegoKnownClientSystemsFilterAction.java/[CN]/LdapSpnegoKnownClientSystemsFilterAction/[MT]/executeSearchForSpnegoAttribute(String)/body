@@ -1,6 +1,6 @@
 {
   Connection connection=null;
-  final String remoteHostName=getRemoteHostName();
+  final String remoteHostName=getRemoteHostName(remoteIp);
   try {
     connection=createConnection();
     final Operation searchOperation=new SearchOperation(connection);
