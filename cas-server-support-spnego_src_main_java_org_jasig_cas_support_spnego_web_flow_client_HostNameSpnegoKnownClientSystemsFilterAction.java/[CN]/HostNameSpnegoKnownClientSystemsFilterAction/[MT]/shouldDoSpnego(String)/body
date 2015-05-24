@@ -1,0 +1,9 @@
+{
+  final boolean ipCheck=ipPatternCanBeChecked(remoteIp);
+  if (ipCheck && !ipPatternMatches(remoteIp)) {
+    return false;
+  }
+  final String hostName=getRemoteHostName(remoteIp);
+  logger.debug("Retrieved host name for the remote ip is {}",hostName);
+  return this.hostNamePatternString.matcher(hostName).find();
+}
