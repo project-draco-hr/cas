@@ -1,0 +1,6 @@
+{
+  logger.debug("Establishing a connection...");
+  final Connection connection=this.connectionFactory.getConnection();
+  connection.open();
+  return connection;
+}

@@ -1,0 +1,9 @@
+{
+  assertNotNull(this.applicationContext);
+  assertNotNull(this.configBean);
+  assertNotNull(this.parserPool);
+  assertNotNull(this.builderFactory);
+  assertNotNull(this.unmarshallerFactory);
+  assertNotNull(this.marshallerFactory);
+  assertNotNull(this.configBean.getParserPool());
+}

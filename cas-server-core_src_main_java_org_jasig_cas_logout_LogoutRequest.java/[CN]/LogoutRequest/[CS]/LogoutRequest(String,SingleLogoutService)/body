@@ -1,4 +1,0 @@
-{
-  this.ticketId=ticketId;
-  this.service=service;
-}

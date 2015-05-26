@@ -4,17 +4,17 @@
     points=new ExtensionReader(cert).readCRLDistributionPoints();
   }
  catch (  final Exception e) {
-    logger.error("Error reading CRLDistributionPoints extension field on " + CertUtils.toString(cert),e);
-    return new URL[0];
+    logger.error("Error reading CRLDistributionPoints extension field on {}",CertUtils.toString(cert),e);
+    return new URI[0];
   }
-  final List<URL> urls=new ArrayList<>();
-  for (  DistributionPoint point : points.getItems()) {
+  final List<URI> urls=new ArrayList<>();
+  for (  final DistributionPoint point : points.getItems()) {
     final Object location=point.getDistributionPoint();
     if (location instanceof String) {
       addURL(urls,(String)location);
     }
  else     if (location instanceof GeneralNameList) {
-      for (      GeneralName gn : ((GeneralNameList)location).getItems()) {
+      for (      final GeneralName gn : ((GeneralNameList)location).getItems()) {
         addURL(urls,gn.getName());
       }
     }
@@ -22,5 +22,5 @@
       logger.warn("{} not supported. String or GeneralNameList expected.",location);
     }
   }
-  return urls.toArray(new URL[urls.size()]);
+  return urls.toArray(new URI[urls.size()]);
 }

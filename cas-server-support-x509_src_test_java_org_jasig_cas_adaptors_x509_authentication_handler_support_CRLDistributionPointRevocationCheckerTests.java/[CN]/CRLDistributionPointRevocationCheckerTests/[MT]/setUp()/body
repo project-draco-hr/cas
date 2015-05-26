@@ -1,3 +1,4 @@
 {
   this.webServer.start();
+  Thread.sleep(500);
 }

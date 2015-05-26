@@ -1,0 +1,10 @@
+{
+  final BaseSpnegoKnownClientSystemsFilterAction action=new BaseSpnegoKnownClientSystemsFilterAction("^192\\.158\\..+");
+  final MockRequestContext ctx=new MockRequestContext();
+  final MockHttpServletRequest req=new MockHttpServletRequest();
+  req.setRemoteAddr("192.158.5.781");
+  final ServletExternalContext extCtx=new ServletExternalContext(new MockServletContext(),req,new MockHttpServletResponse());
+  ctx.setExternalContext(extCtx);
+  final Event ev=action.doExecute(ctx);
+  assertEquals(ev.getId(),new EventFactorySupport().yes(this).getId());
+}

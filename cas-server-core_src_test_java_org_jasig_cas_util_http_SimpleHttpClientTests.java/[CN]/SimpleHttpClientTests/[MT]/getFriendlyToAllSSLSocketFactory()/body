@@ -11,5 +11,5 @@
 ;
   final SSLContext sc=SSLContext.getInstance("SSL");
   sc.init(null,new TrustManager[]{trm},null);
-  return new SSLConnectionSocketFactory(sc);
+  return new SSLConnectionSocketFactory(sc,new NoopHostnameVerifier());
 }

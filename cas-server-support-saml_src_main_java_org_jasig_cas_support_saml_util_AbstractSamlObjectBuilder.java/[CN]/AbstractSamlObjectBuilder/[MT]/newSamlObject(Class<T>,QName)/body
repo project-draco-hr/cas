@@ -1,5 +1,5 @@
 {
-  final SAMLObjectBuilder<T> builder=(SAMLObjectBuilder<T>)Configuration.getBuilderFactory().getBuilder(qName);
+  final SAMLObjectBuilder<T> builder=(SAMLObjectBuilder<T>)XMLObjectProviderRegistrySupport.getBuilderFactory().getBuilder(qName);
   if (builder == null) {
     throw new IllegalStateException("No SAMLObjectBuilder registered for class " + objectType.getName());
   }

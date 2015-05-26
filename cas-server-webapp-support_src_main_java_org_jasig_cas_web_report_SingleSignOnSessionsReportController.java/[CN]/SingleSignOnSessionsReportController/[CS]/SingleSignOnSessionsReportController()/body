@@ -1,0 +1,4 @@
+{
+  this.jsonMapper.disable(SerializationFeature.INDENT_OUTPUT);
+  this.jsonMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+}

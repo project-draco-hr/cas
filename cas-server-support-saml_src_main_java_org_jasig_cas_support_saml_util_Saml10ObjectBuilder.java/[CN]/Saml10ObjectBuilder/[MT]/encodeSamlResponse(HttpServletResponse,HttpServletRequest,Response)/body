@@ -1,6 +1,10 @@
 {
-  final BasicSAMLMessageContext messageContext=new BasicSAMLMessageContext();
-  messageContext.setOutboundMessageTransport(new HttpServletResponseAdapter(httpResponse,httpRequest.isSecure()));
-  messageContext.setOutboundSAMLMessage(samlMessage);
-  this.encoder.encode(messageContext);
+  final HTTPSOAP11Encoder encoder=new CasHTTPSOAP11Encoder();
+  final MessageContext<SAMLObject> context=new MessageContext();
+  context.setMessage(samlMessage);
+  encoder.setHttpServletResponse(httpResponse);
+  encoder.setMessageContext(context);
+  encoder.initialize();
+  encoder.prepareContext();
+  encoder.encode();
 }

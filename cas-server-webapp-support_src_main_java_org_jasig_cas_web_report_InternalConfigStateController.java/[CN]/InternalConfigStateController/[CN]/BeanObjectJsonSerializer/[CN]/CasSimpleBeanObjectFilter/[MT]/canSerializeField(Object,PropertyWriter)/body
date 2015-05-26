@@ -1,0 +1,21 @@
+{
+  boolean foundPackage=false;
+  final String packageName=pojo.getClass().getPackage().getName();
+  for (int i=0; !foundPackage && i < INCLUDE_PACKAGES.length; i++) {
+    foundPackage=(packageName.startsWith(INCLUDE_PACKAGES[i]));
+  }
+  if (!foundPackage) {
+    LOGGER.trace("Package [{}] is ignored",packageName);
+    return false;
+  }
+  boolean foundField=true;
+  final String fieldName=writer.getFullName().getSimpleName();
+  for (int i=0; foundField && i < EXCLUDE_FIELDS.length; i++) {
+    foundField=!fieldName.equalsIgnoreCase(EXCLUDE_FIELDS[i]);
+  }
+  if (!foundField) {
+    LOGGER.trace("Field [{}] is excluded",fieldName);
+    return false;
+  }
+  return true;
+}

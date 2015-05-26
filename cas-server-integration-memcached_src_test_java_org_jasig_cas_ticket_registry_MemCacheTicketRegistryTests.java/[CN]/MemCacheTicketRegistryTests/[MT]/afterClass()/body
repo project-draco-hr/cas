@@ -1,0 +1,8 @@
+{
+  if (MEMCACHED != null && MEMCACHED.isProcessRunning()) {
+    MEMCACHED.stop();
+  }
+  if (MEMCACHED_EXECUTABLE != null) {
+    MEMCACHED_EXECUTABLE.stop();
+  }
+}

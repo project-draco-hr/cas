@@ -1,0 +1,11 @@
+{
+  final BaseSpnegoKnownClientSystemsFilterAction action=new BaseSpnegoKnownClientSystemsFilterAction("^74\\.125\\..+","alternateRemoteIp");
+  final MockRequestContext ctx=new MockRequestContext();
+  final MockHttpServletRequest req=new MockHttpServletRequest();
+  req.setRemoteAddr("555.555.555.555");
+  req.addHeader("alternateRemoteIp","74.125.136.102");
+  final ServletExternalContext extCtx=new ServletExternalContext(new MockServletContext(),req,new MockHttpServletResponse());
+  ctx.setExternalContext(extCtx);
+  final Event ev=action.doExecute(ctx);
+  assertEquals(ev.getId(),new EventFactorySupport().yes(this).getId());
+}

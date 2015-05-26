@@ -1,0 +1,5 @@
+{
+  this.ldapEntries=LdapTestUtils.readLdif(rs,getBaseDn());
+  LdapTestUtils.createLdapEntries(c,ldapEntries);
+  populateEntriesInternal(c);
+}

@@ -1,0 +1,13 @@
+{
+  final BlockingConnectionPool pool=new BlockingConnectionPool(newPoolConfig(this.connectionPool.getPoolConfig()),(DefaultConnectionFactory)super.prepareConnectionFactory(ldapURL));
+  pool.setBlockWaitTime(this.connectionPool.getBlockWaitTime());
+  pool.setActivator(this.connectionPool.getActivator());
+  pool.setPassivator(this.connectionPool.getPassivator());
+  pool.setValidator(this.connectionPool.getValidator());
+  pool.setConnectOnCreate(this.connectionPool.getConnectOnCreate());
+  pool.setFailFastInitialize(this.connectionPool.getFailFastInitialize());
+  pool.setName(String.format("x509-crl-%s",ldapURL));
+  pool.setPruneStrategy(this.connectionPool.getPruneStrategy());
+  pool.initialize();
+  return pool;
+}

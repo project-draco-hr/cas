@@ -1,6 +1,6 @@
 {
   try {
-    final MarshallerFactory marshallerFactory=Configuration.getMarshallerFactory();
+    final MarshallerFactory marshallerFactory=XMLObjectProviderRegistrySupport.getMarshallerFactory();
     final Marshaller marshaller=marshallerFactory.getMarshaller(object);
     final Element element=marshaller.marshall(object);
     element.setAttributeNS("http://www.w3.org/2000/xmlns/","xmlns",SAMLConstants.SAML20_NS);

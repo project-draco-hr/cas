@@ -19,6 +19,10 @@
       WebUtils.putRegisteredService(context,registeredService);
     }
   }
+ else   if (!this.enableFlowOnAbsentServiceRequest) {
+    logger.warn("No service authentication request is available at [{}]. CAS is configured to disable the flow.",WebUtils.getHttpServletRequest(context).getRequestURL());
+    throw new NoSuchFlowExecutionException(context.getFlowExecutionContext().getKey(),new UnauthorizedServiceException("screen.service.required.message","Service is required"));
+  }
   WebUtils.putService(context,service);
   return result("success");
 }

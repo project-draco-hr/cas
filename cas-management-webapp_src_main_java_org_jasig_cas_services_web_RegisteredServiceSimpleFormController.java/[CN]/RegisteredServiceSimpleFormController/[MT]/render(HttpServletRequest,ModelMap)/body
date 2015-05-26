@@ -1,4 +1,4 @@
 {
   updateModelMap(model,request);
-  return new ModelAndView(VIEW_NAME);
+  return new ModelAndView("add");
 }

@@ -1,6 +1,6 @@
 {
   try {
-    for (    X509Certificate cert : this.certificates) {
+    for (    final X509Certificate cert : this.certificates) {
       getChecker().check(cert);
     }
     if (this.expected != null) {
