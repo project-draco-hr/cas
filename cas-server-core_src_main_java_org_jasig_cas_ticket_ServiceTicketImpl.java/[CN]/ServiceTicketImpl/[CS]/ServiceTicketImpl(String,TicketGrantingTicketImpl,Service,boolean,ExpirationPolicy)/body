@@ -1,7 +1,7 @@
 {
   super(id,ticket,policy);
-  Assert.notNull(ticket,"ticket cannot be null");
   Assert.notNull(service,"service cannot be null");
+  Assert.notNull(ticket,"ticket cannot be null");
   this.service=service;
   this.fromNewLogin=fromNewLogin;
 }
