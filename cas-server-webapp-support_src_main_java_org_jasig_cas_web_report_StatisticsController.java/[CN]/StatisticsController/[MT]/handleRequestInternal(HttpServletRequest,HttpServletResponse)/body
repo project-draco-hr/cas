@@ -15,7 +15,7 @@
   int expiredTgts=0;
   int expiredSts=0;
   try {
-    final Collection<Ticket> tickets=this.centralAuthenticationService.getTickets(TruePredicate.getInstance());
+    final Collection<Ticket> tickets=this.centralAuthenticationService.getTickets(TruePredicate.INSTANCE);
     for (    final Ticket ticket : tickets) {
       if (ticket instanceof ServiceTicket) {
         if (ticket.isExpired()) {
