@@ -3,33 +3,41 @@
   final String entityId=request.getParameter(this.entityIdParameterName);
   if (StringUtils.isBlank(entityId)) {
     logger.debug("No entity id found for parameter [{}]",this.entityIdParameterName);
-    return new EventFactorySupport().success(this);
+    return success();
+  }
+  final WebApplicationService service=new SimpleWebApplicationServiceImpl(entityId);
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  if (registeredService == null || !registeredService.getAccessStrategy().isServiceAccessAllowed()) {
+    logger.debug("Entity id [{}] is not recognized/allowed by the CAS service registry",entityId);
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE,"Entity " + entityId + " not recognized");
   }
   if (shouldRefreshMetadata()) {
-    buildMetadataResolver();
+    refreshMetadata();
   }
   final EntityDescriptor entityDescriptor=getEntityDescriptorForEntityId(entityId);
   if (entityDescriptor == null) {
     logger.debug("Entity descriptor not found for [{}]",entityId);
-    return new EventFactorySupport().success(this);
+    return success();
   }
   final SPSSODescriptor spssoDescriptor=getSPSSODescriptor(entityDescriptor);
   if (spssoDescriptor == null) {
     logger.debug("SP SSO descriptor not found for [{}]",entityId);
-    return new EventFactorySupport().success(this);
+    return success();
   }
   final Extensions extensions=spssoDescriptor.getExtensions();
   final List<XMLObject> spExtensions=extensions.getUnknownXMLObjects(UIInfo.DEFAULT_ELEMENT_NAME);
   if (spExtensions.isEmpty()) {
     logger.debug("No extensions are found for [{}]",UIInfo.DEFAULT_ELEMENT_NAME.getNamespaceURI());
-    return new EventFactorySupport().success(this);
+    return success();
   }
+  final SimpleMetadataUIInfo mdui=new SimpleMetadataUIInfo(registeredService);
   for (  final XMLObject obj : spExtensions) {
     if (obj instanceof UIInfo) {
       final UIInfo uiInfo=(UIInfo)obj;
-      logger.info("Found UI info for [{}]",entityId);
-      requestContext.getFlowScope().put(MDUI_FLOW_PARAMETER_NAME,uiInfo);
+      logger.debug("Found UI info for [{}] and added to flow context",entityId);
+      mdui.setUIInfo(uiInfo);
     }
   }
-  return new EventFactorySupport().success(this);
+  requestContext.getFlowScope().put(MDUI_FLOW_PARAMETER_NAME,mdui);
+  return success();
 }
