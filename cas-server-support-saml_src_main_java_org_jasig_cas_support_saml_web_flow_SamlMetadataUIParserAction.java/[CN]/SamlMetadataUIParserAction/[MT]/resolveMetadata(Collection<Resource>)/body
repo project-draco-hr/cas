@@ -1,0 +1,36 @@
+{
+  try {
+    final ChainingMetadataResolver metadataManager=new ChainingMetadataResolver();
+    metadataManager.setId(ChainingMetadataResolver.class.getCanonicalName());
+    final List<MetadataResolver> resolvers=new ArrayList<>(metadataResources.size());
+    for (    final Resource resource : metadataResources) {
+      logger.debug("Loading [{}]",resource.getFilename());
+      if (!resource.exists() || !resource.isReadable()) {
+        logger.warn("Resource [{}] does not exist or cannot be read",resource.getFilename());
+        continue;
+      }
+      final Document inCommonMDDoc;
+      try (final InputStream in=resource.getInputStream()){
+        logger.debug("Parsing [{}]",resource.getFilename());
+        inCommonMDDoc=this.configBean.getParserPool().parse(in);
+      }
+       final Element metadataRoot=inCommonMDDoc.getDocumentElement();
+      final DOMMetadataResolver metadataProvider=new DOMMetadataResolver(metadataRoot);
+      metadataProvider.setParserPool(this.configBean.getParserPool());
+      metadataProvider.setFailFastInitialization(true);
+      metadataProvider.setRequireValidMetadata(this.requireValidMetadata);
+      metadataProvider.setId(metadataProvider.getClass().getCanonicalName());
+      logger.debug("Initializing metadata resolver for [{}]",resource.getFilename());
+      metadataProvider.initialize();
+      resolvers.add(metadataProvider);
+    }
+    metadataManager.setResolvers(resolvers);
+    logger.info("Collected metadata from [{}] resources. Initializing aggregate...",resolvers.size());
+    metadataManager.initialize();
+    logger.info("Metadata aggregate initialized successfully.",resolvers.size());
+    return metadataManager;
+  }
+ catch (  final Exception ex) {
+    throw new RuntimeException(ex.getMessage(),ex);
+  }
+}

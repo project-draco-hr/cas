@@ -1,0 +1,3 @@
+{
+  this(ENTITY_ID_PARAMETER_NAME,metadataResources);
+}

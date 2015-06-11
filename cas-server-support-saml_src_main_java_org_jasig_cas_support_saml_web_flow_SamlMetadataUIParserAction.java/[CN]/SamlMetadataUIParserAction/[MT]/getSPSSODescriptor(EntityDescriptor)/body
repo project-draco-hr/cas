@@ -1,0 +1,14 @@
+{
+  logger.debug("Locating SP SSO descriptor for SAML2 protocol...");
+  SPSSODescriptor spssoDescriptor=entityDescriptor.getSPSSODescriptor(SAMLConstants.SAML20_NS);
+  if (spssoDescriptor == null) {
+    logger.debug("Locating SP SSO descriptor for SAML11 protocol...");
+    spssoDescriptor=entityDescriptor.getSPSSODescriptor(SAMLConstants.SAML11P_NS);
+  }
+  if (spssoDescriptor == null) {
+    logger.debug("Locating SP SSO descriptor for SAML1 protocol...");
+    spssoDescriptor=entityDescriptor.getSPSSODescriptor(SAMLConstants.SAML10P_NS);
+  }
+  logger.debug("SP SSO descriptor resolved to be [{}]",spssoDescriptor);
+  return spssoDescriptor;
+}
