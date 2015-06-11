@@ -16,5 +16,6 @@
   }
  finally {
     logger.info("Resolved metadata at [{}].",DateTime.now());
+    metadataRefreshedDateTime=DateTime.now();
   }
 }

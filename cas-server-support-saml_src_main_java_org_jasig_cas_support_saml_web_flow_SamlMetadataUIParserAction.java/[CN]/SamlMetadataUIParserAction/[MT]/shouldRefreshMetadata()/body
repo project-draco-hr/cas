@@ -1,0 +1,7 @@
+{
+  if (this.metadataRefreshedDateTime.plusHours(this.refreshIntervalInMinutes).isBeforeNow()) {
+    logger.info("Metadata was last refreshed at [{}]. Refreshing...",this.metadataRefreshedDateTime);
+    return true;
+  }
+  return false;
+}
