@@ -3,7 +3,9 @@
     final ChainingMetadataResolver metadataManager=new ChainingMetadataResolver();
     metadataManager.setId(ChainingMetadataResolver.class.getCanonicalName());
     final List<MetadataResolver> resolvers=new ArrayList<>(metadataResources.size());
-    for (    final Resource resource : metadataResources) {
+    final Set<Map.Entry<Resource,MetadataFilterChain>> entries=metadataResources.entrySet();
+    for (    final Map.Entry<Resource,MetadataFilterChain> entry : entries) {
+      final Resource resource=entry.getKey();
       logger.debug("Loading [{}]",resource.getFilename());
       if (!resource.exists() || !resource.isReadable()) {
         logger.warn("Resource [{}] does not exist or cannot be read",resource.getFilename());
@@ -20,6 +22,9 @@
       metadataProvider.setFailFastInitialization(true);
       metadataProvider.setRequireValidMetadata(this.requireValidMetadata);
       metadataProvider.setId(metadataProvider.getClass().getCanonicalName());
+      if (entry.getValue() != null) {
+        metadataProvider.setMetadataFilter(entry.getValue());
+      }
       logger.debug("Initializing metadata resolver for [{}]",resource.getFilename());
       metadataProvider.initialize();
       resolvers.add(metadataProvider);

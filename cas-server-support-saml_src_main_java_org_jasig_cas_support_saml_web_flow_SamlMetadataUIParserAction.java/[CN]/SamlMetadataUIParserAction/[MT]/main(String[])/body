@@ -1,0 +1,5 @@
+{
+  final UrlResource res=new UrlResource("https://ds.incommon.org/certs/inc-md-cert.pem");
+  final InputStream in=res.getInputStream();
+  KeyPairUtil.readPublicKey(in);
+}

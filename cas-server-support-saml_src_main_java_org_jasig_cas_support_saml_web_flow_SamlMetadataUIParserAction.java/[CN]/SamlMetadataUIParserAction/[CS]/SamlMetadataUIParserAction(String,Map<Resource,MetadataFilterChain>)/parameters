@@ -1,0 +1,2 @@
+String entityIdParameterName
+Map<Resource,MetadataFilterChain> metadataResources
