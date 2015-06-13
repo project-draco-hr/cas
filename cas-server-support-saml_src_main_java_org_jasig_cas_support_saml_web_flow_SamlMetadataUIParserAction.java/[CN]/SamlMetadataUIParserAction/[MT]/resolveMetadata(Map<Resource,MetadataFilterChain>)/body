@@ -26,8 +26,13 @@
         metadataProvider.setMetadataFilter(entry.getValue());
       }
       logger.debug("Initializing metadata resolver for [{}]",resource.getFilename());
-      metadataProvider.initialize();
-      resolvers.add(metadataProvider);
+      try {
+        metadataProvider.initialize();
+        resolvers.add(metadataProvider);
+      }
+ catch (      final ComponentInitializationException ex) {
+        logger.warn("Could not initialize metadata resolver. Resource will be ignored",ex);
+      }
     }
     metadataManager.setResolvers(resolvers);
     logger.info("Collected metadata from [{}] resources. Initializing aggregate...",resolvers.size());
