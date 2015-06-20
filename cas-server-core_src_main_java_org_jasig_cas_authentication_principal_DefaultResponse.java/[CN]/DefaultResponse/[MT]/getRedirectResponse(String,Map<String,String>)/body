@@ -26,5 +26,5 @@
     builder.append("#");
     builder.append(fragmentSplit[1]);
   }
-  return new Response(ResponseType.REDIRECT,builder.toString(),parameters);
+  return new DefaultResponse(ResponseType.REDIRECT,builder.toString(),parameters);
 }

@@ -1,4 +1,4 @@
 String id
 String originalUrl
 String artifactId
-ResponseType responseType
+Response.ResponseType responseType

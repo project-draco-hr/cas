@@ -17,7 +17,7 @@ synchronized (this) {
       fail("Could not wait long enough to check association expiry date");
     }
   }
-  final Response response=this.openIdService.getResponse("test");
+  final DefaultResponse response=this.openIdService.getResponse("test");
   request.removeParameter("openid.assoc_handle");
   assertNotNull(response);
   assertEquals(1,response.getAttributes().size());
