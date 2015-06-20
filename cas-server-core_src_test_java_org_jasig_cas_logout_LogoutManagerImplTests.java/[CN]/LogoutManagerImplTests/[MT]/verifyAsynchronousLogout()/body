@@ -1,6 +1,6 @@
 {
   this.registeredService.setLogoutType(LogoutType.BACK_CHANNEL);
   this.logoutManager.setAsynchronous(false);
-  final Collection<DefaultLogoutRequest> logoutRequests=this.logoutManager.performLogout(tgt);
+  final Collection<LogoutRequest> logoutRequests=this.logoutManager.performLogout(tgt);
   assertEquals(1,logoutRequests.size());
 }

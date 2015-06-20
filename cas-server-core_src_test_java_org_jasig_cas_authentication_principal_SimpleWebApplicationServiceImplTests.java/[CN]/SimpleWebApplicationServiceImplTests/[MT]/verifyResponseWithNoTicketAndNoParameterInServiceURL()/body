@@ -2,9 +2,9 @@
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.setParameter("service","http://foo.com/");
   final WebApplicationService impl=SimpleWebApplicationServiceImpl.createServiceFrom(request);
-  final DefaultResponse response=impl.getResponse(null);
+  final Response response=impl.getResponse(null);
   assertNotNull(response);
-  assertEquals(ResponseType.REDIRECT,response.getResponseType());
+  assertEquals(Response.ResponseType.REDIRECT,response.getResponseType());
   assertFalse(response.getUrl().contains("ticket="));
   assertEquals("http://foo.com/",response.getUrl());
 }
