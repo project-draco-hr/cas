@@ -1,6 +1,6 @@
 {
   this.registeredService.setLogoutUrl(new URL("https://www.apereo.org"));
-  final Collection<LogoutRequest> logoutRequests=this.logoutManager.performLogout(tgt);
-  final LogoutRequest logoutRequest=logoutRequests.iterator().next();
+  final Collection<DefaultLogoutRequest> logoutRequests=this.logoutManager.performLogout(tgt);
+  final DefaultLogoutRequest logoutRequest=logoutRequests.iterator().next();
   assertEquals(logoutRequest.getLogoutUrl(),this.registeredService.getLogoutUrl());
 }

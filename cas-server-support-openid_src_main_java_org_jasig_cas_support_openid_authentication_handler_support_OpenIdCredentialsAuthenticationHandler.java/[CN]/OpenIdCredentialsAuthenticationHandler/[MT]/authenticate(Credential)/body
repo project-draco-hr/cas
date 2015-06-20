@@ -8,5 +8,5 @@
   if (!principal.getId().equals(c.getUsername())) {
     throw new FailedLoginException("Principal ID mismatch");
   }
-  return new HandlerResult(this,new BasicCredentialMetaData(c),principal);
+  return new DefaultHandlerResult(this,new BasicCredentialMetaData(c),principal);
 }

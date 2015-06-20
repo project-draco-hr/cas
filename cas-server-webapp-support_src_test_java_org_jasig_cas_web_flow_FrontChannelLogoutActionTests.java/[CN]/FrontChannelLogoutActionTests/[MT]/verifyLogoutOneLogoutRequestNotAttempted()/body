@@ -1,8 +1,8 @@
 {
-  final LogoutRequest logoutRequest=new LogoutRequest(TICKET_ID,new SimpleWebApplicationServiceImpl(TEST_URL),new URL(TEST_URL));
+  final DefaultLogoutRequest logoutRequest=new DefaultLogoutRequest(TICKET_ID,new SimpleWebApplicationServiceImpl(TEST_URL),new URL(TEST_URL));
   final Event event=getLogoutEvent(Arrays.asList(logoutRequest));
   assertEquals(FrontChannelLogoutAction.REDIRECT_APP_EVENT,event.getId());
-  final List<LogoutRequest> list=WebUtils.getLogoutRequests(this.requestContext);
+  final List<DefaultLogoutRequest> list=WebUtils.getLogoutRequests(this.requestContext);
   assertEquals(1,list.size());
   final String url=(String)event.getAttributes().get(FrontChannelLogoutAction.DEFAULT_FLOW_ATTRIBUTE_LOGOUT_URL);
   assertTrue(url.startsWith(TEST_URL + "?" + FrontChannelLogoutAction.DEFAULT_LOGOUT_PARAMETER+ "="));

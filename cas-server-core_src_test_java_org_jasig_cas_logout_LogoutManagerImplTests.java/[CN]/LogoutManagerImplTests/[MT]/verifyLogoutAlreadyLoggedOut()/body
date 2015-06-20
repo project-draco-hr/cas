@@ -1,5 +1,5 @@
 {
   this.simpleWebApplicationServiceImpl.setLoggedOutAlready(true);
-  final Collection<LogoutRequest> logoutRequests=this.logoutManager.performLogout(tgt);
+  final Collection<DefaultLogoutRequest> logoutRequests=this.logoutManager.performLogout(tgt);
   assertEquals(0,logoutRequests.size());
 }

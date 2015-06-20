@@ -9,7 +9,7 @@
   }
 );
   q.setPrincipalNameTransformer(new PrefixSuffixPrincipalNameTransformer("user",null));
-  final HandlerResult r=q.authenticateUsernamePasswordInternal(TestUtils.getCredentialsWithDifferentUsernameAndPassword("1","user"));
+  final DefaultHandlerResult r=q.authenticateUsernamePasswordInternal(TestUtils.getCredentialsWithDifferentUsernameAndPassword("1","user"));
   assertNotNull(r);
   assertEquals(r.getPrincipal().getId(),"user1");
 }

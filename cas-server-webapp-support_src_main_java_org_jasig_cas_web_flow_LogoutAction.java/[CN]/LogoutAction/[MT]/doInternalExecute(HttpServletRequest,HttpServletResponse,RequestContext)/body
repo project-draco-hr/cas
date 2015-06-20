@@ -1,9 +1,9 @@
 {
   boolean needFrontSlo=false;
   putLogoutIndex(context,0);
-  final List<LogoutRequest> logoutRequests=WebUtils.getLogoutRequests(context);
+  final List<DefaultLogoutRequest> logoutRequests=WebUtils.getLogoutRequests(context);
   if (logoutRequests != null) {
-    for (    final LogoutRequest logoutRequest : logoutRequests) {
+    for (    final DefaultLogoutRequest logoutRequest : logoutRequests) {
       if (logoutRequest.getStatus() == LogoutRequestStatus.NOT_ATTEMPTED) {
         needFrontSlo=true;
         break;

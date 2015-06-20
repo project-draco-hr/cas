@@ -1,7 +1,7 @@
 {
   this.id=id;
   final CredentialMetaData credentialMetaData=new BasicCredentialMetaData(credential);
-  final AuthenticationBuilder builder=new AuthenticationBuilder();
+  final DefaultAuthenticationBuilder builder=new DefaultAuthenticationBuilder();
   builder.setPrincipal(this.principalFactory.createPrincipal(USERNAME,principalAttributes));
   builder.setAuthenticationDate(new Date());
   builder.addCredential(credentialMetaData);
