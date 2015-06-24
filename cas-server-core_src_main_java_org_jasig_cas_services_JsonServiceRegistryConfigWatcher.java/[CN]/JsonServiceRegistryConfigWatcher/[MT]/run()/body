@@ -1,0 +1,58 @@
+{
+  for (; ; ) {
+    final WatchKey key;
+    try {
+      key=watcher.take();
+    }
+ catch (    final InterruptedException e) {
+      return;
+    }
+    try {
+      for (      final WatchEvent<?> event : key.pollEvents()) {
+        if (event.count() <= 1) {
+          final WatchEvent.Kind kind=event.kind();
+          final WatchEvent<Path> ev=(WatchEvent<Path>)event;
+          final Path filename=ev.context();
+          final Path parent=(Path)key.watchable();
+          final Path fullPath=parent.resolve(filename);
+          final File file=fullPath.toFile();
+          LOGGER.trace("Detected event [{}] on file [{}]. Loading change...",kind,file);
+synchronized (this.lock) {
+            if (kind.name().equals(ENTRY_CREATE.name()) && file.exists()) {
+              final RegisteredService service=this.serviceRegistryDao.loadRegisteredServiceFromFile(file);
+              if (this.serviceRegistryDao.findServiceById(service.getId()) != null) {
+                LOGGER.warn("Found a service definition [{}] with a duplicate id [{}] in [{}]. " + "This will overwrite previous service definitions and is likely a " + "configuration problem. Make sure all services have a unique id and try again.",service.getServiceId(),service.getId(),file.getAbsolutePath());
+              }
+              this.serviceRegistryDao.updateRegisteredService(service);
+              this.serviceRegistryDao.refreshServicesManager();
+            }
+ else             if (kind.name().equals(ENTRY_DELETE.name())) {
+              this.serviceRegistryDao.load();
+              this.serviceRegistryDao.refreshServicesManager();
+            }
+ else             if (kind.name().equals(ENTRY_MODIFY.name()) && file.exists()) {
+              final RegisteredService newService=this.serviceRegistryDao.loadRegisteredServiceFromFile(file);
+              if (newService == null) {
+                LOGGER.warn("New service definition could not be loaded from [{}]",file.getAbsolutePath());
+              }
+ else {
+                final RegisteredService oldService=this.serviceRegistryDao.findServiceById(newService.getId());
+                if (!newService.equals(oldService)) {
+                  this.serviceRegistryDao.updateRegisteredService(newService);
+                  this.serviceRegistryDao.refreshServicesManager();
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  finally {
+      final boolean valid=key.reset();
+      if (!valid) {
+        LOGGER.warn("Directory key is no longer valid. Quitting watcher service");
+        break;
+      }
+    }
+  }
+}
