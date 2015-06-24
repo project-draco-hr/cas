@@ -1,4 +1,0 @@
-{
-  this.entityIdParameterName=entityIdParameterName;
-  this.metadataResources=metadataResources;
-}

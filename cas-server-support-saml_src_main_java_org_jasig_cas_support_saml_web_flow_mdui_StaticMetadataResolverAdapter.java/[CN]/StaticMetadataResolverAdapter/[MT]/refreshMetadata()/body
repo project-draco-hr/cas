@@ -1,0 +1,15 @@
+{
+  final Thread thread=new Thread(new Runnable(){
+    @Override public void run(){
+      buildMetadataResolverAggregate(null);
+    }
+  }
+);
+  thread.start();
+  final JobDetail job=JobBuilder.newJob(this.getClass()).withIdentity(this.getClass().getSimpleName()).build();
+  final Trigger trigger=TriggerBuilder.newTrigger().withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInMinutes(this.refreshIntervalInMinutes).repeatForever()).build();
+  final SchedulerFactory schFactory=new StdSchedulerFactory();
+  final Scheduler sch=schFactory.getScheduler();
+  sch.start();
+  sch.scheduleJob(job,trigger);
+}

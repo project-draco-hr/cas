@@ -1,0 +1,19 @@
+{
+  final Element metadataRoot=inCommonMDDoc.getDocumentElement();
+  final DOMMetadataResolver metadataProvider=new DOMMetadataResolver(metadataRoot);
+  metadataProvider.setParserPool(this.configBean.getParserPool());
+  metadataProvider.setFailFastInitialization(true);
+  metadataProvider.setRequireValidMetadata(this.requireValidMetadata);
+  metadataProvider.setId(metadataProvider.getClass().getCanonicalName());
+  if (entry.getValue() != null) {
+    metadataProvider.setMetadataFilter(entry.getValue());
+  }
+  logger.debug("Initializing metadata resolver for [{}]",resource.getURL());
+  try {
+    metadataProvider.initialize();
+    resolvers.add(metadataProvider);
+  }
+ catch (  final ComponentInitializationException ex) {
+    logger.warn("Could not initialize metadata resolver. Resource will be ignored",ex);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (!resource.exists() || !resource.isReadable()) {
+    throw new FileNotFoundException("Resource does not exist or is unreadable");
+  }
+  return resource.getInputStream();
+}
