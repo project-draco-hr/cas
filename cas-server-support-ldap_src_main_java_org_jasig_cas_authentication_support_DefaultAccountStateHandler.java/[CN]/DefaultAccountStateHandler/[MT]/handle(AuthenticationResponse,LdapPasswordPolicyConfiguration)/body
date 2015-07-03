@@ -1,18 +1,11 @@
 {
   final AccountState state=response.getAccountState();
-  final AccountState.Error error;
-  final AccountState.Warning warning;
-  if (state != null) {
-    error=state.getError();
-    warning=state.getWarning();
-  }
- else {
-    logger.debug("Account state not defined");
-    error=null;
-    warning=null;
+  if (state == null) {
+    logger.debug("Account state not defined. Returning empty list of messages.");
+    return Collections.emptyList();
   }
   final List<Message> messages=new ArrayList<>();
-  handleError(error,response,configuration,messages);
-  handleWarning(warning,response,configuration,messages);
+  handleError(state.getError(),response,configuration,messages);
+  handleWarning(state.getWarning(),response,configuration,messages);
   return messages;
 }
