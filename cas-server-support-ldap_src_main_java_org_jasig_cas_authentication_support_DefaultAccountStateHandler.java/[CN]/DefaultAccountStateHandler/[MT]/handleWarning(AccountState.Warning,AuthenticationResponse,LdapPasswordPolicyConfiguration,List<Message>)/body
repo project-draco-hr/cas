@@ -1,4 +1,5 @@
 {
+  logger.debug("Handling warning {}",warning);
   if (warning == null) {
     logger.debug("Account state warning not defined");
     return;

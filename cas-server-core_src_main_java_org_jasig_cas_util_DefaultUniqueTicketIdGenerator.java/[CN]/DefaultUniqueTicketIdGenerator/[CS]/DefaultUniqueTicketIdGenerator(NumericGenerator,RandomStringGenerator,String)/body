@@ -1,5 +1,5 @@
 {
   this.randomStringGenerator=randomStringGenerator;
   this.numericGenerator=numericGenerator;
-  this.suffix=StringUtils.isNoneBlank(suffix) ? "-" + suffix : null;
+  this.suffix=StringUtils.isNoneBlank(suffix) ? '-' + suffix : null;
 }
