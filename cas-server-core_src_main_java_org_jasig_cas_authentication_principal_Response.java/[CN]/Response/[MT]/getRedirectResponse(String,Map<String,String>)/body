@@ -10,10 +10,10 @@
         isFirst=false;
       }
  else {
-        builder.append("&");
+        builder.append('&');
       }
       builder.append(entry.getKey());
-      builder.append("=");
+      builder.append('=');
       try {
         builder.append(URLEncoder.encode(entry.getValue(),"UTF-8"));
       }
@@ -23,7 +23,7 @@
     }
   }
   if (fragmentSplit.length > 1) {
-    builder.append("#");
+    builder.append('#');
     builder.append(fragmentSplit[1]);
   }
   return new Response(ResponseType.REDIRECT,builder.toString(),parameters);

@@ -11,8 +11,9 @@
     logger.debug("The size of the principal attributes that are [{}] does not match requirements, " + "which means the principal is not carrying enough data to grant authorization",principalAttributes);
     return false;
   }
-  logger.debug("These required attributes [{}] are examined against [{}] before service can proceed.",getRequiredAttributes(),principalAttributes);
-  final Sets.SetView<String> difference=Sets.intersection(getRequiredAttributes().keySet(),principalAttributes.keySet());
+  final Map<String,Set<String>> requiredAttrs=this.getRequiredAttributes();
+  logger.debug("These required attributes [{}] are examined against [{}] before service can proceed.",requiredAttrs,principalAttributes);
+  final Sets.SetView<String> difference=Sets.intersection(requiredAttrs.keySet(),principalAttributes.keySet());
   final Set<String> copy=difference.immutableCopy();
   if (this.requireAllAttributes && copy.size() < this.requiredAttributes.size()) {
     logger.debug("Not all required attributes are available to the principal");
@@ -20,7 +21,7 @@
   }
   for (  final String key : copy) {
     final Set<?> requiredValues=this.requiredAttributes.get(key);
-    Set<?> availableValues;
+    final Set<?> availableValues;
     final Object objVal=principalAttributes.get(key);
     if (objVal instanceof Collection) {
       final Collection valCol=(Collection)objVal;
