@@ -1,6 +1,6 @@
 {
   if (this.successResponse) {
-    response.getWriter().print("yes\n" + getPrimaryAuthenticationFrom(model).getPrincipal().getId() + "\n");
+    response.getWriter().print("yes\n" + getPrimaryAuthenticationFrom(model).getPrincipal().getId() + '\n');
   }
  else {
     response.getWriter().print("no\n\n");
