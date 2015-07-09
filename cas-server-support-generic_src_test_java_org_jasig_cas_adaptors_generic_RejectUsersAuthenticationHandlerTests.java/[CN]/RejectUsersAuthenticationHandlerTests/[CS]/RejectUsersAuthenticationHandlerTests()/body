@@ -1,5 +1,5 @@
 {
-  this.users=new ArrayList<>();
+  this.users=new HashSet<>();
   this.users.add("scott");
   this.users.add("dima");
   this.users.add("bill");
