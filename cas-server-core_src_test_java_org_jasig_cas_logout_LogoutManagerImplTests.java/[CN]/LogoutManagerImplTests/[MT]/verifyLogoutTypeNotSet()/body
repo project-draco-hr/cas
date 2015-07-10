@@ -1,7 +1,7 @@
 {
-  final Collection<DefaultLogoutRequest> logoutRequests=this.logoutManager.performLogout(tgt);
+  final Collection<LogoutRequest> logoutRequests=this.logoutManager.performLogout(tgt);
   assertEquals(1,logoutRequests.size());
-  final DefaultLogoutRequest logoutRequest=logoutRequests.iterator().next();
+  final LogoutRequest logoutRequest=logoutRequests.iterator().next();
   assertEquals(ID,logoutRequest.getTicketId());
   assertEquals(this.simpleWebApplicationServiceImpl,logoutRequest.getService());
   assertEquals(LogoutRequestStatus.SUCCESS,logoutRequest.getStatus());

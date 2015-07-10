@@ -9,7 +9,7 @@
     fail("Could not generate association");
   }
   when(sharedAssociations.load("test")).thenReturn(association);
-  final DefaultResponse response=this.openIdService.getResponse("test");
+  final Response response=this.openIdService.getResponse("test");
   try {
     verify(cas).validateServiceTicket("test",openIdService);
   }

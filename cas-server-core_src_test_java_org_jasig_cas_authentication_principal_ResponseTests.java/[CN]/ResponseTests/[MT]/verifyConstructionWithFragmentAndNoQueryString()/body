@@ -2,6 +2,6 @@
   final String url="http://localhost:8080/foo#hello";
   final Map<String,String> attributes=new HashMap<>();
   attributes.put("ticket","foobar");
-  final DefaultResponse response=DefaultResponse.getRedirectResponse(url,attributes);
+  final Response response=DefaultResponse.getRedirectResponse(url,attributes);
   assertEquals("http://localhost:8080/foo?ticket=foobar#hello",response.getUrl());
 }

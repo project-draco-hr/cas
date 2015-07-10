@@ -2,8 +2,8 @@
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.setParameter("TARGET","service");
   final SamlService impl=SamlService.createServiceFrom(request);
-  final DefaultResponse response=impl.getResponse("ticketId");
+  final Response response=impl.getResponse("ticketId");
   assertNotNull(response);
-  assertEquals(ResponseType.REDIRECT,response.getResponseType());
+  assertEquals(Response.ResponseType.REDIRECT,response.getResponseType());
   assertTrue(response.getUrl().contains("SAMLart="));
 }
