@@ -1,0 +1,4 @@
+{
+  logger.debug(getMarker("debug"),getMessageToLogWithParams(),ID3,ID1);
+  validateLogData();
+}
