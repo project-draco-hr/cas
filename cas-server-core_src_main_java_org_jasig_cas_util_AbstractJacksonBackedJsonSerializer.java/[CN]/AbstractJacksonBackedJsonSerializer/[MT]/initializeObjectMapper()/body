@@ -1,6 +1,7 @@
 {
   final ObjectMapper mapper=new ObjectMapper();
   mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS,false);
+  mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
   mapper.setVisibility(PropertyAccessor.SETTER,JsonAutoDetect.Visibility.PROTECTED_AND_PUBLIC);
   mapper.setVisibility(PropertyAccessor.GETTER,JsonAutoDetect.Visibility.PROTECTED_AND_PUBLIC);
   mapper.setVisibility(PropertyAccessor.IS_GETTER,JsonAutoDetect.Visibility.PROTECTED_AND_PUBLIC);
