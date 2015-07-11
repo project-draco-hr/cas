@@ -1,0 +1,14 @@
+{
+  try {
+    logger.debug("Creating self-sign certificate for signing...");
+    buildSelfSignedSigningCert();
+    logger.debug("Creating self-sign certificate for encryption...");
+    buildSelfSignedEncryptionCert();
+    logger.debug("Creating metadata...");
+    buildMetadataGeneratorParameters();
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+    throw new RuntimeException(e);
+  }
+}

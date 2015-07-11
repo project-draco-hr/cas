@@ -1,0 +1,17 @@
+{
+  logger.debug("Preparing to generate metadata for entityId [{}]",this.entityId);
+  final GenerateSamlMetadata generator=new GenerateSamlMetadata(this.metadataLocation,this.hostName,this.entityId,this.scope);
+  if (generator.isMetadataMissing()) {
+    logger.debug("Metadata does not exist at [{}]. Creating...",this.metadataLocation);
+    generator.generate();
+  }
+  logger.debug("Metadata is available at [{}]",generator.getMetadataFile());
+  final String contents=FileUtils.readFileToString(generator.getMetadataFile());
+  response.setContentType("text/xml;charset=UTF-8");
+  response.setStatus(HttpServletResponse.SC_OK);
+  final PrintWriter writer=response.getWriter();
+  logger.debug("Producing metadata for the response");
+  writer.write(contents);
+  writer.flush();
+  writer.close();
+}

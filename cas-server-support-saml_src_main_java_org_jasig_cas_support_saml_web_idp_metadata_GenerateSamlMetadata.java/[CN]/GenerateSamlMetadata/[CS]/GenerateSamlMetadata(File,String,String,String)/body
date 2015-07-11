@@ -1,0 +1,10 @@
+{
+  this.entityId=entityId;
+  this.hostName=hostName;
+  this.scope=scope;
+  this.metadataFile=new File(metadataLocation,"idp-metadata.xml");
+  this.signingCertFile=new File(metadataLocation,"idp-signing.crt");
+  this.signingKeyFile=new File(metadataLocation,"idp-signing.key");
+  this.encryptionCertKeyFile=new File(metadataLocation,"idp-encryption.key");
+  this.encryptionCertFile=new File(metadataLocation,"idp-encryption.crt");
+}
