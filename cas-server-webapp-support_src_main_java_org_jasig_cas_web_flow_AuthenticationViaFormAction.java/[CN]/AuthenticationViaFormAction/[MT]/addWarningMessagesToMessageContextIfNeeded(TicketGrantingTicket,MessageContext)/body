@@ -1,7 +1,7 @@
 {
   boolean foundAndAddedWarnings=false;
   for (  final Map.Entry<String,HandlerResult> entry : tgtId.getAuthentication().getSuccesses().entrySet()) {
-    for (    final Message message : entry.getValue().getWarnings()) {
+    for (    final MessageDescriptor message : entry.getValue().getWarnings()) {
       addWarningToContext(messageContext,message);
       foundAndAddedWarnings=true;
     }
