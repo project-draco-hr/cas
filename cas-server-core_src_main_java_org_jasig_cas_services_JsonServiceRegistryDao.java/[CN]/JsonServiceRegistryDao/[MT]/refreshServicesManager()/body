@@ -1,0 +1,4 @@
+{
+  final ReloadableServicesManager manager=this.applicationContext.getBean(ReloadableServicesManager.class);
+  manager.reload();
+}
