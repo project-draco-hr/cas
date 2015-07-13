@@ -4,7 +4,7 @@
     logger.debug("Account state not defined. Returning empty list of messages.");
     return Collections.emptyList();
   }
-  final List<Message> messages=new ArrayList<>();
+  final List<MessageDescriptor> messages=new ArrayList<>();
   handleError(state.getError(),response,configuration,messages);
   handleWarning(state.getWarning(),response,configuration,messages);
   return messages;

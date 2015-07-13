@@ -1,0 +1,10 @@
+{
+  if (other == null || !(other instanceof DefaultMessageDescriptor)) {
+    return false;
+  }
+  if (other == this) {
+    return true;
+  }
+  final DefaultMessageDescriptor m=(DefaultMessageDescriptor)other;
+  return this.code.equals(m.getCode()) && this.defaultMessage.equals(m.getDefaultMessage()) && Arrays.equals(this.params,m.getParams());
+}

@@ -9,7 +9,7 @@
   }
 ;
   if (populator.supports(c)) {
-    populator.populateAttributes(AuthenticationBuilder.newInstance(auth),c);
+    populator.populateAttributes(DefaultAuthenticationBuilder.newInstance(auth),c);
   }
   assertEquals(map.size(),0);
 }

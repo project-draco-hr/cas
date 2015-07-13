@@ -18,5 +18,5 @@
   }
   final String id=cleanupUrl(serviceToUse);
   final String artifactId=request.getParameter(CONST_PARAM_TICKET);
-  return new SimpleWebApplicationServiceImpl(id,serviceToUse,artifactId,"POST".equals(method) ? ResponseType.POST : ResponseType.REDIRECT);
+  return new SimpleWebApplicationServiceImpl(id,serviceToUse,artifactId,"POST".equals(method) ? Response.ResponseType.POST : Response.ResponseType.REDIRECT);
 }
