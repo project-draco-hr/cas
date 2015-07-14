@@ -1,4 +1,0 @@
-List<MetadataResolver> resolvers
-Map.Entry<Resource,MetadataFilterChain> entry
-Resource resource
-Document inCommonMDDoc

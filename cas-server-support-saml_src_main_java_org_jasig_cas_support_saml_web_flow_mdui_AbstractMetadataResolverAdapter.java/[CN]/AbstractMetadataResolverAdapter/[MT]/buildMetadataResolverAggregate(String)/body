@@ -1,27 +1,10 @@
 {
   try {
-    final List<MetadataResolver> resolvers=new ArrayList<>(metadataResources.size());
     final Set<Map.Entry<Resource,MetadataFilterChain>> entries=metadataResources.entrySet();
     for (    final Map.Entry<Resource,MetadataFilterChain> entry : entries) {
       final Resource resource=entry.getKey();
       logger.debug("Loading [{}]",resource.getFilename());
-      try (final InputStream in=getResourceInputStream(resource,entityId)){
-        logger.debug("Parsing [{}]",resource.getFilename());
-        final Document document=this.configBean.getParserPool().parse(in);
-        buildSingleMetadataResolver(resolvers,entry,resource,document);
-        this.metadataResolver=new ChainingMetadataResolver();
-synchronized (this.lock) {
-          this.metadataResolver.setId(ChainingMetadataResolver.class.getCanonicalName());
-          this.metadataResolver.setResolvers(resolvers);
-          logger.info("Collected metadata from [{}] resources. Initializing aggregate...",resolvers.size());
-          this.metadataResolver.initialize();
-          logger.info("Metadata aggregate initialized successfully.",resolvers.size());
-        }
-      }
- catch (      final IOException e) {
-        logger.warn("Could not retrieve input stream from resource. Moving on...");
-        continue;
-      }
+      loadMetadataFromResource(entry.getValue(),resource,entityId);
     }
   }
  catch (  final Exception ex) {
