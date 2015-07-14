@@ -4,7 +4,7 @@
   when(mock.supports(any(Credential.class))).thenReturn(true);
   if (success) {
     final Principal p=new DefaultPrincipalFactory().createPrincipal("nobody");
-    final HandlerResult result=new HandlerResult(mock,mock(CredentialMetaData.class),p);
+    final HandlerResult result=new DefaultHandlerResult(mock,mock(CredentialMetaData.class),p);
     when(mock.authenticate(any(Credential.class))).thenReturn(result);
   }
  else {

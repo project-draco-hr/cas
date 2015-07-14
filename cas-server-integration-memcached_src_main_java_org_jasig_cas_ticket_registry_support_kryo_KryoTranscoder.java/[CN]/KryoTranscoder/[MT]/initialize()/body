@@ -5,7 +5,7 @@
   kryo.register(Date.class,new DefaultSerializers.DateSerializer());
   kryo.register(HardTimeoutExpirationPolicy.class);
   kryo.register(HashMap.class);
-  kryo.register(HandlerResult.class);
+  kryo.register(DefaultHandlerResult.class);
   kryo.register(ImmutableAuthentication.class);
   kryo.register(MultiTimeUseOrTimeoutExpirationPolicy.class);
   kryo.register(NeverExpiresExpirationPolicy.class);

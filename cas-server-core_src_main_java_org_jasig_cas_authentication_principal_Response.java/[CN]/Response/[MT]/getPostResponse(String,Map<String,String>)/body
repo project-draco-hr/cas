@@ -1,3 +1,0 @@
-{
-  return new Response(ResponseType.POST,url,attributes);
-}
