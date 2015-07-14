@@ -4,5 +4,5 @@
   final SimpleWebApplicationServiceImpl impl=SimpleWebApplicationServiceImpl.createServiceFrom(request);
   final Response response=impl.getResponse("ticketId");
   assertNotNull(response);
-  assertEquals(ResponseType.REDIRECT,response.getResponseType());
+  assertEquals(Response.ResponseType.REDIRECT,response.getResponseType());
 }

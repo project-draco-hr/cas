@@ -34,5 +34,5 @@ synchronized (this) {
   if (!success) {
     throw new FailedLoginException("Principal is null, the processing of the SPNEGO Token failed");
   }
-  return new HandlerResult(this,new BasicCredentialMetaData(credential),spnegoCredential.getPrincipal());
+  return new DefaultHandlerResult(this,new BasicCredentialMetaData(credential),spnegoCredential.getPrincipal());
 }
