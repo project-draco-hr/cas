@@ -4,6 +4,6 @@
   final SamlService impl=SamlService.createServiceFrom(request);
   final Response response=impl.getResponse("ticketId");
   assertNotNull(response);
-  assertEquals(ResponseType.REDIRECT,response.getResponseType());
+  assertEquals(Response.ResponseType.REDIRECT,response.getResponseType());
   assertTrue(response.getUrl().contains("SAMLart="));
 }
