@@ -1,0 +1,4 @@
+{
+  final Collection<String> items=getInformationURLs();
+  return StringUtils.collectionToDelimitedString(items,".");
+}
