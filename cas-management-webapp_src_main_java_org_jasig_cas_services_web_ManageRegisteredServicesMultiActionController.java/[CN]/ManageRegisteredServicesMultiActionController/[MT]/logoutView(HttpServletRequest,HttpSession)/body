@@ -1,4 +1,5 @@
 {
+  LOGGER.debug("Invalidating application session...");
   session.invalidate();
   return "logout";
 }
