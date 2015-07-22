@@ -1,0 +1,10 @@
+{
+  if (!this.enabled) {
+    logger.info("Ticket encoding is disabled. Proceeding as usual...");
+    return pjp.proceed(pjp.getArgs());
+  }
+  final String ticketId=(String)pjp.getArgs()[0];
+  final String encodedId=CompressionUtils.encodeObject(ticketId.getBytes(),cipherExecutor);
+  logger.info("Encoded ticket id [{}] to [{}]",ticketId,encodedId);
+  return pjp.proceed(new Object[]{encodedId});
+}

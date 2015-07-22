@@ -1,0 +1,20 @@
+{
+  final Collection<?> items=(Collection)pjp.proceed();
+  if (!this.enabled) {
+    logger.info("Ticket encoding is disabled. Proceeding as usual...");
+    return items;
+  }
+  final Set<Ticket> tickets=new HashSet<>(items.size());
+  for (  final Object item : items) {
+    if (item instanceof EncodedTicket) {
+      final EncodedTicket encodedTicket=(EncodedTicket)item;
+      final Ticket ticket=CompressionUtils.decodeObject(encodedTicket.getEncoded(),this.cipherExecutor,Ticket.class);
+      logger.info("Decoded [{}]",ticket);
+      tickets.add(ticket);
+    }
+ else {
+      throw new IllegalArgumentException("Expected EncodedTicket");
+    }
+  }
+  return tickets;
+}

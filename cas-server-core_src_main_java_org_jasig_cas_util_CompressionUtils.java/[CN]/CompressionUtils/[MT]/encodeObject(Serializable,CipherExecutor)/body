@@ -1,0 +1,10 @@
+{
+  final ByteArrayOutputStream outBytes=new ByteArrayOutputStream();
+  try (final ObjectOutputStream out=new ObjectOutputStream(outBytes)){
+    out.writeObject(object);
+  }
+ catch (  final IOException e) {
+    throw new RuntimeException(e.getMessage(),e);
+  }
+  return encodeObject(outBytes.toByteArray(),cipherExecutor);
+}
