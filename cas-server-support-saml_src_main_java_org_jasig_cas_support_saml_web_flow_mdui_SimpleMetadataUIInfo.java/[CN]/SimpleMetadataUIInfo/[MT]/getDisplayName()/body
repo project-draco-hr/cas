@@ -1,0 +1,7 @@
+{
+  final Collection<String> items=getDisplayNames();
+  if (items.isEmpty()) {
+    return this.registeredService.getName();
+  }
+  return StringUtils.collectionToDelimitedString(items,".");
+}

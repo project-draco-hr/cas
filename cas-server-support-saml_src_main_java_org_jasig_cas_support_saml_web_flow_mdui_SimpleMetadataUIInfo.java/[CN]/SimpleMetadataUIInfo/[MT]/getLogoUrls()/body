@@ -1,0 +1,9 @@
+{
+  final List<Logo> list=new ArrayList<>();
+  if (uiInfo != null) {
+    for (    final Logo d : uiInfo.getLogos()) {
+      list.add(d);
+    }
+  }
+  return list;
+}

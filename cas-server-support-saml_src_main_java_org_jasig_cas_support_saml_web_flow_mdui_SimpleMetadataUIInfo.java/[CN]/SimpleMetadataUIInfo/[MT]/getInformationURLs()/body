@@ -1,0 +1,6 @@
+{
+  if (uiInfo != null) {
+    return getStringValues(uiInfo.getInformationURLs());
+  }
+  return new ArrayList<>();
+}

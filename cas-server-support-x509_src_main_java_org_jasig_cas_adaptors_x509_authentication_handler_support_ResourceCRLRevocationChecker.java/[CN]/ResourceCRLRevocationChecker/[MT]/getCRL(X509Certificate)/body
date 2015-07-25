@@ -1,3 +1,0 @@
-{
-  return this.crlIssuerMap.get(cert.getIssuerX500Principal());
-}
