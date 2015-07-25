@@ -1,5 +1,0 @@
-{
-  try (final InputStream in=resource.getURL().openStream()){
-    return (X509CRL)CertUtils.getCertificateFactory().generateCRL(in);
-  }
- }

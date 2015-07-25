@@ -1,0 +1,6 @@
+{
+  assertNotNull(XMLObjectProviderRegistrySupport.getParserPool());
+  assertNotNull(XMLObjectProviderRegistrySupport.getBuilderFactory());
+  assertNotNull(XMLObjectProviderRegistrySupport.getMarshallerFactory());
+  assertNotNull(XMLObjectProviderRegistrySupport.getUnmarshallerFactory());
+}

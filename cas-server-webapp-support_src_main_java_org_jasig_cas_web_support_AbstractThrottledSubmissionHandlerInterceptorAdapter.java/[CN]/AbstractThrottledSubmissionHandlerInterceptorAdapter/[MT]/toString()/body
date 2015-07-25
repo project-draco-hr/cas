@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this).append("failureThreshold",this.failureThreshold).append("failureRangeInSeconds",this.failureRangeInSeconds).append("usernameParameter",this.usernameParameter).append("thresholdRate",this.thresholdRate).toString();
+}

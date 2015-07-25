@@ -1,0 +1,11 @@
+{
+  try {
+    if (!canSerializeField(pojo,writer)) {
+      return;
+    }
+    super.serializeAsField(pojo,jgen,provider,writer);
+  }
+ catch (  final Exception e) {
+    LOGGER.debug(e.getMessage());
+  }
+}

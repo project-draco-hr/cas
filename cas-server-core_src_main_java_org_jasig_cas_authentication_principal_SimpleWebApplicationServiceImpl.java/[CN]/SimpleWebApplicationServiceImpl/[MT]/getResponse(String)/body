@@ -3,8 +3,8 @@
   if (StringUtils.hasText(ticketId)) {
     parameters.put(CONST_PARAM_TICKET,ticketId);
   }
-  if (ResponseType.POST == this.responseType) {
-    return Response.getPostResponse(getOriginalUrl(),parameters);
+  if (Response.ResponseType.POST == this.responseType) {
+    return DefaultResponse.getPostResponse(getOriginalUrl(),parameters);
   }
-  return Response.getRedirectResponse(getOriginalUrl(),parameters);
+  return DefaultResponse.getRedirectResponse(getOriginalUrl(),parameters);
 }

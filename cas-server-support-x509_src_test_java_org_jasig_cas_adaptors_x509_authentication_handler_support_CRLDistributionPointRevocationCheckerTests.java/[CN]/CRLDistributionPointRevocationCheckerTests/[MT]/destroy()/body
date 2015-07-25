@@ -1,0 +1,6 @@
+{
+  final File file=new File("ca.crl");
+  if (file.exists()) {
+    file.delete();
+  }
+}

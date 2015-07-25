@@ -1,3 +1,6 @@
 {
+  logger.debug("Stopping web server...");
   this.webServer.stop();
+  Thread.sleep(500);
+  logger.debug("Web server stopped [{}]",!this.webServer.isRunning());
 }

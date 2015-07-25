@@ -1,0 +1,4 @@
+{
+  this.fetcher=fetcher;
+  this.resources=ImmutableSet.copyOf(crls);
+}

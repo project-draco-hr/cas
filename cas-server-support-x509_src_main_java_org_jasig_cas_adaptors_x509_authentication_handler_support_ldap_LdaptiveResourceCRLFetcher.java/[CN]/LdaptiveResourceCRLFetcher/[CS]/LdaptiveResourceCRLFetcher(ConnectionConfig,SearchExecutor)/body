@@ -1,0 +1,4 @@
+{
+  this.connectionConfig=connectionConfig;
+  this.searchExecutor=searchExecutor;
+}

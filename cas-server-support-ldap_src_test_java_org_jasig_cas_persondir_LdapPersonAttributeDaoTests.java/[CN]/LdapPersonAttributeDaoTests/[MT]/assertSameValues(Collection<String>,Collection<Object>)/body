@@ -1,6 +1,0 @@
-{
-  assertEquals(a.size(),b.size());
-  for (  final String item : a) {
-    assertTrue(b.contains(item));
-  }
-}

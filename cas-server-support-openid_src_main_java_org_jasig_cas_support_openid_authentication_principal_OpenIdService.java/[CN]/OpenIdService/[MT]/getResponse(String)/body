@@ -49,5 +49,5 @@
  else {
     parameters.put("openid.mode","cancel");
   }
-  return Response.getRedirectResponse(getOriginalUrl(),parameters);
+  return DefaultResponse.getRedirectResponse(getOriginalUrl(),parameters);
 }

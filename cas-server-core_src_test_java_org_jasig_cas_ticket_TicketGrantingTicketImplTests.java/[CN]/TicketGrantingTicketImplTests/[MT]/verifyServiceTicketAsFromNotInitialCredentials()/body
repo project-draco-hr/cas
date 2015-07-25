@@ -1,6 +1,6 @@
 {
-  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
-  ServiceTicket s=t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),TestUtils.getService(),new NeverExpiresExpirationPolicy(),false);
-  s=t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),TestUtils.getService(),new NeverExpiresExpirationPolicy(),false);
+  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+  t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),TestUtils.getService(),new NeverExpiresExpirationPolicy(),false);
+  final ServiceTicket s=t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),TestUtils.getService(),new NeverExpiresExpirationPolicy(),false);
   assertFalse(s.isFromNewLogin());
 }

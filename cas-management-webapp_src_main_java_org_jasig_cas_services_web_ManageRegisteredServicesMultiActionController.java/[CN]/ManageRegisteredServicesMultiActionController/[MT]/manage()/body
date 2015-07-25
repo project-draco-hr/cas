@@ -1,8 +1,7 @@
 {
+  ensureDefaultServiceExists();
   final Map<String,Object> model=new HashMap<>();
   final List<RegisteredService> services=new ArrayList<>(this.servicesManager.getAllServices());
   model.put("services",services);
-  model.put("pageTitle",VIEW_NAME);
-  model.put("defaultServiceUrl",this.defaultServiceUrl);
-  return new ModelAndView(VIEW_NAME,model);
+  return new ModelAndView("manage",model);
 }

@@ -3,5 +3,5 @@
   if (username == null) {
     return request.getRemoteAddr();
   }
-  return ClientInfoHolder.getClientInfo().getClientIpAddress() + ";" + username.toLowerCase();
+  return ClientInfoHolder.getClientInfo().getClientIpAddress() + ';' + username.toLowerCase();
 }
