@@ -4,7 +4,7 @@
     throw new IllegalArgumentException("Service id " + idAsLong + " cannot be found.");
   }
   ensureDefaultServiceExists();
-  final ModelAndView modelAndView=new ModelAndView(new RedirectView("manage.html",true));
-  modelAndView.addObject("serviceName",r.getName());
-  return modelAndView;
+  final Map<String,Object> model=new HashMap<>();
+  model.put("serviceName",r.getName());
+  JsonViewUtils.render(model,response);
 }

@@ -5,9 +5,8 @@
   r.setServiceId("serviceId");
   r.setEvaluationOrder(1);
   this.servicesManager.save(r);
-  final ModelAndView modelAndView=this.controller.deleteRegisteredService(1200);
-  assertNotNull(modelAndView);
+  final MockHttpServletResponse response=new MockHttpServletResponse();
+  this.controller.deleteRegisteredService(1200,response);
   assertNull(this.servicesManager.findServiceBy(1200));
-  assertEquals("deleted",modelAndView.getModel().get("status"));
-  assertEquals("name",modelAndView.getModelMap().get("serviceName"));
+  assertTrue(response.getContentAsString().contains("serviceName"));
 }

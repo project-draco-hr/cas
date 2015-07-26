@@ -11,5 +11,4 @@
     svc.setEvaluationOrder(i);
     this.servicesManager.save(svc);
   }
-  return new ModelAndView("jsonView");
 }

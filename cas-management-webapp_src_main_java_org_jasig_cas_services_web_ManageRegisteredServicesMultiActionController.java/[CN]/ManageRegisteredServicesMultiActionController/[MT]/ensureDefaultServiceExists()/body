@@ -1,6 +1,6 @@
 {
   final Collection<RegisteredService> c=this.servicesManager.getAllServices();
-  if (c.isEmpty()) {
+  if (c == null) {
     throw new IllegalStateException("Services cannot be empty");
   }
   if (!this.servicesManager.matchesExistingService(new SimpleWebApplicationServiceImpl(this.defaultServiceUrl))) {

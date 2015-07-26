@@ -7,5 +7,5 @@
     serviceBeans.add(RegisteredServiceBean.fromRegisteredService(svc));
   }
   model.put("services",serviceBeans);
-  return new ModelAndView("jsonView",model);
+  JsonViewUtils.render(model,response);
 }
