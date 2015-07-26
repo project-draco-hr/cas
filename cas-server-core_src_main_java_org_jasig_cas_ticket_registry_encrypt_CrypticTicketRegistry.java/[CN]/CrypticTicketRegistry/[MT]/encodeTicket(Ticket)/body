@@ -1,0 +1,11 @@
+{
+  if (ticket == null) {
+    return null;
+  }
+  logger.info("Encoding [{}]",ticket);
+  final String encodedTicketObject=CompressionUtils.encodeObject(ticket,cipherExecutor);
+  final String encodedTicketId=CompressionUtils.encodeObject(ticket.getId().getBytes(),this.cipherExecutor);
+  final EncodedTicket encodedTicket=new EncodedTicket(ticket,encodedTicketObject,encodedTicketId);
+  logger.info("Created [{}]",ticket);
+  return encodedTicket;
+}

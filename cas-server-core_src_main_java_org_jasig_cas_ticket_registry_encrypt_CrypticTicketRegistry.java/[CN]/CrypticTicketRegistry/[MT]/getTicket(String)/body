@@ -1,0 +1,5 @@
+{
+  final String encodedId=CompressionUtils.encodeObject(ticketId.getBytes(),cipherExecutor);
+  final Ticket ticket=this.ticketRegistry.getTicket(ticketId);
+  return decodeTicket(ticket);
+}

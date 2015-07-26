@@ -1,0 +1,4 @@
+{
+  final String encodedId=CompressionUtils.encodeObject(ticketId.getBytes(),cipherExecutor);
+  return this.ticketRegistry.deleteTicket(encodedId);
+}

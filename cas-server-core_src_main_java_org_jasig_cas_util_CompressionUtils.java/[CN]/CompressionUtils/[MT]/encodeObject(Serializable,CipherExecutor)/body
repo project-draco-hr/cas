@@ -6,5 +6,6 @@
  catch (  final IOException e) {
     throw new RuntimeException(e.getMessage(),e);
   }
-  return encodeObject(outBytes.toByteArray(),cipherExecutor);
+  final String result=new String(outBytes.toByteArray(),Charset.forName(UTF8_ENCODING));
+  return cipherExecutor.encode(result);
 }

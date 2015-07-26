@@ -1,4 +1,0 @@
-{
-  final String result=decodeByteArrayToString(object);
-  return cipherExecutor.encode(result);
-}

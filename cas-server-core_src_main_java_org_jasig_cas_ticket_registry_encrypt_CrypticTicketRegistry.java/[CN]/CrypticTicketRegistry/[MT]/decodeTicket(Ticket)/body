@@ -1,0 +1,10 @@
+{
+  if (result == null) {
+    return null;
+  }
+  logger.info("Attempting to decode [{}]",result);
+  final EncodedTicket encodedTicket=(EncodedTicket)result;
+  final Ticket ticket=CompressionUtils.decodeObject(encodedTicket.getEncoded(),this.cipherExecutor,Ticket.class);
+  logger.info("Decoded [{}]",ticket);
+  return ticket;
+}

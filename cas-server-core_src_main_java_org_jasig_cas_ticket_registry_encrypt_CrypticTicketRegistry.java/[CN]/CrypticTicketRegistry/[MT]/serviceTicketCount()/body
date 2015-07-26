@@ -1,0 +1,3 @@
+{
+  return ((TicketRegistryState)this.ticketRegistry).serviceTicketCount();
+}

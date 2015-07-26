@@ -1,0 +1,4 @@
+{
+  final Collection<Ticket> col=this.ticketRegistry.getTickets();
+  return decodeTickets(col);
+}

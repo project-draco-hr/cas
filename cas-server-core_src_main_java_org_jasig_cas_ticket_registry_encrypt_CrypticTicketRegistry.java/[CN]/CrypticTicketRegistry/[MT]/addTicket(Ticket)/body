@@ -1,0 +1,4 @@
+{
+  final Ticket encodedTicket=encodeTicket(ticket);
+  this.ticketRegistry.addTicket(encodedTicket);
+}
