@@ -1,0 +1,8 @@
+{
+  final Collection<X509CRL> list=getCRLs(cert);
+  if (list != null && !list.isEmpty()) {
+    return list.iterator().next();
+  }
+  logger.debug("No CRL could be found for {}",CertUtils.toString(cert));
+  return null;
+}
