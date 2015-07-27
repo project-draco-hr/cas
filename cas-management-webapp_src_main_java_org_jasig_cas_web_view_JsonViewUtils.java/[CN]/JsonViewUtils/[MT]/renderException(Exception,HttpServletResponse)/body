@@ -1,0 +1,7 @@
+{
+  final Map<String,String> map=new HashMap<>();
+  map.put("error",ex.getMessage());
+  map.put("stacktrace",Arrays.deepToString(ex.getStackTrace()));
+  response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+  render(map,response);
+}
