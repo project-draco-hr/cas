@@ -1,0 +1,7 @@
+{
+  final String value="ThisIsATestValueThatIsGoingToBeEncodedAndDecodedAgainAndAgain";
+  final CipherExecutor<byte[],byte[]> cc=new JCEBasedCipherExecutor("1234567890123456","1234567890123456");
+  final byte[] bytes=cc.encode(value.getBytes());
+  final byte[] decoded=cc.decode(bytes);
+  assertEquals(new String(decoded),value);
+}

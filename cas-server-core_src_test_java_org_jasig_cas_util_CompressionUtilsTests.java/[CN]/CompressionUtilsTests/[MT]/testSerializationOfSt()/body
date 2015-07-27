@@ -1,0 +1,5 @@
+{
+  final MockServiceTicket st=new MockServiceTicket("serviceid",TestUtils.getService(),tgt);
+  final byte[] bytes=CompressionUtils.serializeAndEncodeObject(cipher,st);
+  final Ticket obj=CompressionUtils.decodeAndSerializeObject(bytes,cipher,Ticket.class);
+}
