@@ -4,9 +4,7 @@
   }
   final Set<Ticket> tickets=new HashSet<>(items.size());
   for (  final Ticket item : items) {
-    final EncodedTicket encodedTicket=(EncodedTicket)item;
-    final Ticket ticket=CompressionUtils.decodeObject(encodedTicket.getEncoded(),this.cipherExecutor,Ticket.class);
-    logger.info("Decoded [{}]",ticket);
+    final Ticket ticket=decodeTicket(item);
     tickets.add(ticket);
   }
   return tickets;

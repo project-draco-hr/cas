@@ -1,0 +1,4 @@
+{
+  this.encryptionSecretKey=encryptionSecretKey;
+  this.encryptionSeed=encryptionSeed;
+}

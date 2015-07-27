@@ -1,5 +1,5 @@
 {
-  final String encoded=verifySignature(value);
+  final String encoded=verifySignature(value.toString());
   if (StringUtils.isNotBlank(encoded)) {
     return decryptValue(encoded);
   }

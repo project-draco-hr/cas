@@ -3,9 +3,9 @@
     return null;
   }
   logger.info("Encoding [{}]",ticket);
-  final String encodedTicketObject=CompressionUtils.encodeObject(ticket,cipherExecutor);
-  final String encodedTicketId=CompressionUtils.encodeObject(ticket.getId().getBytes(),this.cipherExecutor);
+  final byte[] encodedTicketObject=CompressionUtils.serializeAndEncodeObject(this.cipherExecutor,ticket);
+  final String encodedTicketId=CompressionUtils.sha512Hex(ticket.getId());
   final EncodedTicket encodedTicket=new EncodedTicket(ticket,encodedTicketObject,encodedTicketId);
-  logger.info("Created [{}]",ticket);
+  logger.info("Created [{}]",encodedTicket);
   return encodedTicket;
 }

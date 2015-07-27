@@ -1,4 +1,4 @@
 {
-  final String encoded=encryptValue(value);
+  final String encoded=encryptValue(value.toString());
   return signValue(encoded);
 }

@@ -1,0 +1,12 @@
+{
+  try {
+    final Cipher cipher=Cipher.getInstance(this.cipherAlgorithm);
+    final SecretKeySpec key=new SecretKeySpec(this.encryptionSecretKey.getBytes(UTF8_ENCODING),this.secretKeyAlgorithm);
+    cipher.init(Cipher.DECRYPT_MODE,key,new IvParameterSpec(this.encryptionSeed.getBytes(UTF8_ENCODING)));
+    final byte[] result=cipher.doFinal(value);
+    return result;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}
