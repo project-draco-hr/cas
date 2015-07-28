@@ -1,0 +1,4 @@
+{
+  this.uiInfo=uiInfo;
+  this.registeredService=registeredService;
+}

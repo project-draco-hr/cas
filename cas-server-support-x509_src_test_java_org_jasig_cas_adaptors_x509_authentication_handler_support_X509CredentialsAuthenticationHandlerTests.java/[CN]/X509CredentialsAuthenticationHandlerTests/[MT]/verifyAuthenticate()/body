@@ -2,7 +2,7 @@
   try {
     if (this.handler.supports(this.credential)) {
       final HandlerResult result=this.handler.authenticate(this.credential);
-      if (this.expectedResult instanceof HandlerResult) {
+      if (this.expectedResult instanceof DefaultHandlerResult) {
         assertEquals(this.expectedResult,result);
       }
  else {

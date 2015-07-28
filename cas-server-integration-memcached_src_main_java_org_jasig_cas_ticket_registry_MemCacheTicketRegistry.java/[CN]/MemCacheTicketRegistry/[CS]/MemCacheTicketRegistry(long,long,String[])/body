@@ -1,3 +1,3 @@
 {
-  this(hostnames,Long.valueOf(TimeUnit.MILLISECONDS.toSeconds(ticketGrantingTicketTimeOut)).intValue(),Long.valueOf(TimeUnit.MILLISECONDS.toSeconds(serviceTicketTimeOut)).intValue());
+  this(hostnames,(int)TimeUnit.MILLISECONDS.toSeconds(ticketGrantingTicketTimeOut),(int)TimeUnit.MILLISECONDS.toSeconds(serviceTicketTimeOut));
 }

@@ -2,6 +2,6 @@
   final String url="https://www.example.com/???????????????????";
   final Map<String,String> attributes=new HashMap<>();
   attributes.put("ticket","ST-12345");
-  final Response response=Response.getRedirectResponse(url,attributes);
+  final Response response=DefaultResponse.getRedirectResponse(url,attributes);
   assertEquals("https://www.example.com/????????????????????ticket=ST-12345",response.getUrl());
 }

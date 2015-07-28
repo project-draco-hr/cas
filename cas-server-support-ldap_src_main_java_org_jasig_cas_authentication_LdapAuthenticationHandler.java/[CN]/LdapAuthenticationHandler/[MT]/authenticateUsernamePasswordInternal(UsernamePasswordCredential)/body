@@ -10,7 +10,7 @@
     throw new PreventedException("Unexpected LDAP error",e);
   }
   logger.debug("LDAP response: {}",response);
-  final List<Message> messageList;
+  final List<MessageDescriptor> messageList;
   final LdapPasswordPolicyConfiguration ldapPasswordPolicyConfiguration=(LdapPasswordPolicyConfiguration)super.getPasswordPolicyConfiguration();
   if (ldapPasswordPolicyConfiguration != null) {
     logger.debug("Applying password policy to {}",response);

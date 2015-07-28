@@ -1,0 +1,9 @@
+{
+  try (final BufferedInputStream in=new BufferedInputStream(new FileInputStream(file))){
+    return this.registeredServiceJsonSerializer.fromJson(in);
+  }
+ catch (  final Exception e) {
+    LOGGER.error("Error reading configuration file",e);
+  }
+  return null;
+}

@@ -1,0 +1,4 @@
+{
+  final Thread thread=new Thread(new JsonServiceRegistryConfigWatcher(this));
+  thread.start();
+}
