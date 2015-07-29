@@ -1,5 +1,6 @@
 {
   try {
+    final Ticket ticket=encodeTicket(ticketToAdd);
     logger.debug("Adding ticket to registry for: {}",ticket.getId());
     this.cache.put(FQN_TICKET,ticket.getId(),ticket);
   }

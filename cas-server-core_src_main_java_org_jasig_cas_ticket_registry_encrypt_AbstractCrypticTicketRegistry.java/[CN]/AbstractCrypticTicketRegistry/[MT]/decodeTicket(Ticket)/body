@@ -4,7 +4,7 @@
     return result;
   }
   if (result == null) {
-    return null;
+    return result;
   }
   logger.info("Attempting to decode [{}]",result);
   final EncodedTicket encodedTicket=(EncodedTicket)result;

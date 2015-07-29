@@ -4,7 +4,7 @@
     return ticket;
   }
   if (ticket == null) {
-    return null;
+    return ticket;
   }
   logger.info("Encoding [{}]",ticket);
   final byte[] encodedTicketObject=CompressionUtils.serializeAndEncodeObject(this.cipherExecutor,ticket);
