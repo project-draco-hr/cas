@@ -1,5 +1,4 @@
 {
   this.id=encodedTicketId;
   this.encodedTicket=encodedTicket;
-  this.source=source;
 }

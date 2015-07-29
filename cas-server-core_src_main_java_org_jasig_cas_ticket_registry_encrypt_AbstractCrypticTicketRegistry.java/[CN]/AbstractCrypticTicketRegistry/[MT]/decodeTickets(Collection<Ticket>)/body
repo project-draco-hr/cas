@@ -1,4 +1,8 @@
 {
+  if (!this.enabled) {
+    logger.trace("Ticket encryption is not enabled. Falling back to default behavior");
+    return items;
+  }
   if (items == null || items.isEmpty()) {
     return items;
   }

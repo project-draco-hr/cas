@@ -1,2 +1,1 @@
-TicketRegistry actualTicketRegistry
 CipherExecutor<byte[],byte[]> cipherExecutor

@@ -1,8 +1,0 @@
-{
-  if (!this.enabled) {
-    logger.trace("Ticket encryption is not enabled. Falling back to default behavior");
-    return this.ticketRegistry.deleteTicket(ticketId);
-  }
-  final String encodedId=CompressionUtils.sha512Hex(ticketId);
-  return this.ticketRegistry.deleteTicket(encodedId);
-}

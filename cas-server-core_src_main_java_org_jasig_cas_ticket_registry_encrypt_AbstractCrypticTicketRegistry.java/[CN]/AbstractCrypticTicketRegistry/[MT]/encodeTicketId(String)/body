@@ -1,8 +1,7 @@
 {
-  final Collection<Ticket> col=this.ticketRegistry.getTickets();
   if (!this.enabled) {
     logger.trace("Ticket encryption is not enabled. Falling back to default behavior");
-    return col;
+    return ticketId;
   }
-  return decodeTickets(col);
+  return CompressionUtils.sha512Hex(ticketId);
 }

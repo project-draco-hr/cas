@@ -1,0 +1,15 @@
+{
+  if (!this.enabled) {
+    logger.trace("Ticket encryption is not enabled. Falling back to default behavior");
+    return ticket;
+  }
+  if (ticket == null) {
+    return null;
+  }
+  logger.info("Encoding [{}]",ticket);
+  final byte[] encodedTicketObject=CompressionUtils.serializeAndEncodeObject(this.cipherExecutor,ticket);
+  final String encodedTicketId=encodeTicketId(ticket.getId());
+  final EncodedTicket encodedTicket=new EncodedTicket(encodedTicketObject,encodedTicketId);
+  logger.info("Created [{}]",encodedTicket);
+  return encodedTicket;
+}
