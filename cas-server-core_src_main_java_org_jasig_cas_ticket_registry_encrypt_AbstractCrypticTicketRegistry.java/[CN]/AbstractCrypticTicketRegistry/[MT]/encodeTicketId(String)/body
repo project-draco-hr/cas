@@ -1,5 +1,5 @@
 {
-  if (!this.enabled) {
+  if (this.cipherExecutor == null) {
     logger.trace("Ticket encryption is not enabled. Falling back to default behavior");
     return ticketId;
   }
