@@ -11,4 +11,5 @@
     svc.setEvaluationOrder(i);
     this.servicesManager.save(svc);
   }
+  JsonViewUtils.render(response);
 }

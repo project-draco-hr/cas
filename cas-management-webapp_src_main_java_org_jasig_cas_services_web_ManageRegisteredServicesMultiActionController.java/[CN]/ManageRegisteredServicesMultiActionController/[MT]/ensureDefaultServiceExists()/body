@@ -3,10 +3,11 @@
   if (c == null) {
     throw new IllegalStateException("Services cannot be empty");
   }
-  if (!this.servicesManager.matchesExistingService(new SimpleWebApplicationServiceImpl(this.defaultServiceUrl))) {
+  if (!this.servicesManager.matchesExistingService(defaultService)) {
     final RegexRegisteredService svc=new RegexRegisteredService();
-    svc.setServiceId(defaultServiceUrl);
+    svc.setServiceId("^" + defaultService.getId());
     svc.setName("Services Management Web Application");
+    svc.setDescription(svc.getName());
     this.servicesManager.save(svc);
   }
 }

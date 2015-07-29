@@ -1,11 +1,11 @@
 {
   LOGGER.error(ex.getMessage(),ex);
-  final String contentType=request.getHeader(this.AJAX_REQUEST_HEADER_NAME);
-  if (contentType != null && contentType.equals(this.AJAX_REQUEST_HEADER_VALUE)) {
-    LOGGER.debug("Handling exception {} for ajax request indicated by header {}",ex.getClass().getName(),this.AJAX_REQUEST_HEADER_NAME);
+  final String contentType=request.getHeader(AJAX_REQUEST_HEADER_NAME);
+  if (contentType != null && contentType.equals(AJAX_REQUEST_HEADER_VALUE)) {
+    LOGGER.debug("Handling exception {} for ajax request indicated by header {}",ex.getClass().getName(),AJAX_REQUEST_HEADER_NAME);
     JsonViewUtils.renderException(ex,response);
   }
  else {
-    LOGGER.trace("Unable to resolve exception {} for request. Ajax request header {} not found.",ex.getClass().getName(),this.AJAX_REQUEST_HEADER_NAME);
+    LOGGER.trace("Unable to resolve exception {} for request. Ajax request header {} not found.",ex.getClass().getName(),AJAX_REQUEST_HEADER_NAME);
   }
 }
