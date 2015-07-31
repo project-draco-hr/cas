@@ -7,5 +7,61 @@
   if (svc.getLogo() != null) {
     bean.setLogoUrl(svc.getLogo().toExternalForm());
   }
-  return bean;
+  final RegisteredServiceAccessStrategy accessStrategy=svc.getAccessStrategy();
+  final RegisteredServiceSupportAccessEditBean accessBean=bean.getSupportAccess();
+  accessBean.setCasEnabled(accessStrategy.isServiceAccessAllowed());
+  accessBean.setSsoEnabled(accessStrategy.isServiceAccessAllowedForSso());
+  if (accessStrategy instanceof DefaultRegisteredServiceAccessStrategy) {
+    final DefaultRegisteredServiceAccessStrategy def=(DefaultRegisteredServiceAccessStrategy)accessStrategy;
+    accessBean.setRequireAll(def.isRequireAllAttributes());
+    accessBean.setRequiredAttr(def.getRequiredAttributes());
+  }
+  if (svc instanceof OAuthRegisteredCallbackAuthorizeService) {
+    bean.setType(RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ);
+  }
+  if (svc instanceof OAuthRegisteredService) {
+    bean.setType(RegisteredServiceTypeEditBean.OAUTH);
+    final OAuthRegisteredService oauth=(OAuthRegisteredService)svc;
+    final RegisteredServiceOAuthTypeEditBean oauthBean=bean.getOauth();
+    oauthBean.setBypass(oauth.isBypassApprovalPrompt());
+    oauthBean.setClientId(oauth.getClientId());
+    oauthBean.setClientSecret(oauth.getClientSecret());
+  }
+  bean.setTheme(svc.getTheme());
+  bean.setEvalOrder(svc.getEvaluationOrder());
+  final LogoutType logoutType=svc.getLogoutType();
+switch (logoutType) {
+case BACK_CHANNEL:
+    bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.BACK);
+  break;
+case FRONT_CHANNEL:
+bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.FRONT);
+break;
+default :
+bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.NONE);
+break;
+}
+final URL url=svc.getLogoutUrl();
+if (url != null) {
+bean.setLogoUrl(url.toExternalForm());
+}
+final RegisteredServiceUsernameAttributeProvider provider=svc.getUsernameAttributeProvider();
+final UsernameAttributeProviderEditBean uBean=bean.getUserAttrProvider();
+if (provider instanceof DefaultRegisteredServiceUsernameProvider) {
+uBean.setType(UsernameAttributeProviderEditBean.Types.DEFAULT);
+}
+ else if (provider instanceof AnonymousRegisteredServiceUsernameAttributeProvider) {
+final AnonymousRegisteredServiceUsernameAttributeProvider anonymous=(AnonymousRegisteredServiceUsernameAttributeProvider)provider;
+uBean.setType(UsernameAttributeProviderEditBean.Types.ANONYMOUS);
+final PersistentIdGenerator generator=anonymous.getPersistentIdGenerator();
+if (generator instanceof ShibbolethCompatiblePersistentIdGenerator) {
+final ShibbolethCompatiblePersistentIdGenerator sh=(ShibbolethCompatiblePersistentIdGenerator)generator;
+uBean.setValue(new String(sh.getSalt(),Charset.defaultCharset()));
+}
+}
+ else if (provider instanceof PrincipalAttributeRegisteredServiceUsernameProvider) {
+final PrincipalAttributeRegisteredServiceUsernameProvider p=(PrincipalAttributeRegisteredServiceUsernameProvider)provider;
+uBean.setValue(p.getUsernameAttribute());
+}
+return bean;
 }
