@@ -1,0 +1,11 @@
+{
+  final RegisteredServiceEditBean bean=new RegisteredServiceEditBean();
+  bean.setAssignedId(svc.getId());
+  bean.setServiceId(svc.getServiceId());
+  bean.setName(svc.getName());
+  bean.setDescription(svc.getDescription());
+  if (svc.getLogo() != null) {
+    bean.setLogoUrl(svc.getLogo().toExternalForm());
+  }
+  return bean;
+}
