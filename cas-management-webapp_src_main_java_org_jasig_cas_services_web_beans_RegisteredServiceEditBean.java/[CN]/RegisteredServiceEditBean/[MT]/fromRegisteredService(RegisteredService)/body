@@ -17,10 +17,10 @@
     accessBean.setRequiredAttr(def.getRequiredAttributes());
   }
   if (svc instanceof OAuthRegisteredCallbackAuthorizeService) {
-    bean.setType(RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ);
+    bean.setType(RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ.toString());
   }
   if (svc instanceof OAuthRegisteredService) {
-    bean.setType(RegisteredServiceTypeEditBean.OAUTH);
+    bean.setType(RegisteredServiceTypeEditBean.OAUTH.toString());
     final OAuthRegisteredService oauth=(OAuthRegisteredService)svc;
     final RegisteredServiceOAuthTypeEditBean oauthBean=bean.getOauth();
     oauthBean.setBypass(oauth.isBypassApprovalPrompt());
@@ -32,13 +32,13 @@
   final LogoutType logoutType=svc.getLogoutType();
 switch (logoutType) {
 case BACK_CHANNEL:
-    bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.BACK);
+    bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.BACK.toString());
   break;
 case FRONT_CHANNEL:
-bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.FRONT);
+bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.FRONT.toString());
 break;
 default :
-bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.NONE);
+bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.NONE.toString());
 break;
 }
 final URL url=svc.getLogoutUrl();
@@ -48,11 +48,11 @@ bean.setLogoUrl(url.toExternalForm());
 final RegisteredServiceUsernameAttributeProvider provider=svc.getUsernameAttributeProvider();
 final RegisteredServiceUsernameAttributeProviderEditBean uBean=bean.getUserAttrProvider();
 if (provider instanceof DefaultRegisteredServiceUsernameProvider) {
-uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.DEFAULT);
+uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.DEFAULT.toString());
 }
  else if (provider instanceof AnonymousRegisteredServiceUsernameAttributeProvider) {
 final AnonymousRegisteredServiceUsernameAttributeProvider anonymous=(AnonymousRegisteredServiceUsernameAttributeProvider)provider;
-uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.ANONYMOUS);
+uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.ANONYMOUS.toString());
 final PersistentIdGenerator generator=anonymous.getPersistentIdGenerator();
 if (generator instanceof ShibbolethCompatiblePersistentIdGenerator) {
 final ShibbolethCompatiblePersistentIdGenerator sh=(ShibbolethCompatiblePersistentIdGenerator)generator;
