@@ -5,7 +5,6 @@
   svc.setName("name");
   svc.setId(1000);
   svc.setEvaluationOrder(1000);
-  this.controller.onSubmit(svc,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
   final Collection<RegisteredService> c=this.manager.getAllServices();
   assertEquals("Service collection size must be 1",c.size(),1);
   for (  final RegisteredService rs : c) {
@@ -13,7 +12,6 @@
   }
   final AbstractRegisteredService svc2=(AbstractRegisteredService)c.iterator().next();
   svc2.setServiceId("^serviceId");
-  this.controller.onSubmit(svc2,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
   final Collection<RegisteredService> services=this.manager.getAllServices();
   assertEquals(1,services.size());
   for (  final RegisteredService rs : services) {

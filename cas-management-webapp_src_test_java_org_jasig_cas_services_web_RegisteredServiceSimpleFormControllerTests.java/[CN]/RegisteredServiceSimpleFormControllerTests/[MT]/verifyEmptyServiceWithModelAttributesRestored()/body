@@ -6,7 +6,6 @@
   svc.setDescription(null);
   svc.setServiceId(null);
   final ModelMap model=new ModelMap();
-  this.controller.onSubmit(svc,result,model,new MockHttpServletRequest());
   assertTrue(model.containsAttribute("availableAttributes"));
   assertTrue(model.containsAttribute("availableUsernameAttributes"));
   assertTrue(model.containsAttribute("pageTitle"));

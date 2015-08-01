@@ -5,7 +5,6 @@
   svc.setName("name");
   svc.setEvaluationOrder(123);
   assertTrue(this.manager.getAllServices().isEmpty());
-  this.controller.onSubmit(svc,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
   final Collection<RegisteredService> services=this.manager.getAllServices();
   assertEquals(1,services.size());
   for (  final RegisteredService rs : this.manager.getAllServices()) {
