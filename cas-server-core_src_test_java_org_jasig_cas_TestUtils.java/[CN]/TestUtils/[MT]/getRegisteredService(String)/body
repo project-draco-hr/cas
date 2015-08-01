@@ -1,10 +1,33 @@
 {
-  final RegisteredServiceImpl s=new RegisteredServiceImpl();
-  s.setServiceId(id);
-  s.setEvaluationOrder(1);
-  s.setName("Test registered service");
-  s.setDescription("Registered service description");
-  s.setProxyPolicy(new RegexMatchingRegisteredServiceProxyPolicy("^https?://.+"));
-  s.setId(new SecureRandom().nextInt(32));
-  return s;
+  try {
+    final RegexRegisteredService s=new RegexRegisteredService();
+    s.setServiceId(id);
+    s.setEvaluationOrder(1);
+    s.setName("Test registered service");
+    s.setDescription("Registered service description");
+    s.setProxyPolicy(new RegexMatchingRegisteredServiceProxyPolicy("^https?://.+"));
+    s.setId(new SecureRandom().nextInt(Math.abs(s.hashCode())));
+    s.setTheme("exampleTheme");
+    s.setUsernameAttributeProvider(new PrincipalAttributeRegisteredServiceUsernameProvider("uid"));
+    final DefaultRegisteredServiceAccessStrategy accessStrategy=new DefaultRegisteredServiceAccessStrategy(true,true);
+    accessStrategy.setRequireAllAttributes(true);
+    accessStrategy.setRequiredAttributes(getTestAttributes());
+    s.setAccessStrategy(accessStrategy);
+    s.setLogo(new URL("https://logo.example.org/logo.png"));
+    s.setLogoutType(LogoutType.BACK_CHANNEL);
+    s.setLogoutUrl(new URL("https://sys.example.org/logout.png"));
+    s.setProxyPolicy(new RefuseRegisteredServiceProxyPolicy());
+    s.setPublicKey(new RegisteredServicePublicKeyImpl("classpath:pub.key","RSA"));
+    final ReturnAllowedAttributeReleasePolicy policy=new ReturnAllowedAttributeReleasePolicy();
+    policy.setAuthorizedToReleaseCredentialPassword(true);
+    policy.setAuthorizedToReleaseProxyGrantingTicket(true);
+    policy.setPrincipalAttributesRepository(new CachingPrincipalAttributesRepository(new StubPersonAttributeDao(),10));
+    policy.setAttributeFilter(new RegisteredServiceRegexAttributeFilter("https://.+"));
+    policy.setAllowedAttributes(new ArrayList(getTestAttributes().keySet()));
+    s.setAttributeReleasePolicy(policy);
+    return s;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
 }
