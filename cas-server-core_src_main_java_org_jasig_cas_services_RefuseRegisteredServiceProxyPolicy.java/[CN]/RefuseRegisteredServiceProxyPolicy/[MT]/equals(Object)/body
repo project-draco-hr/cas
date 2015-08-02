@@ -8,5 +8,5 @@
   if (!(o instanceof RegisteredServiceProxyPolicy)) {
     return false;
   }
-  return true;
+  return o instanceof RefuseRegisteredServiceProxyPolicy;
 }
