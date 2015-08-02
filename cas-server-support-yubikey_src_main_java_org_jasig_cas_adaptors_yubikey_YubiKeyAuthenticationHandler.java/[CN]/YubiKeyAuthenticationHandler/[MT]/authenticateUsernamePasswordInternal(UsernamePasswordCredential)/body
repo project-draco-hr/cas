@@ -1,0 +1,25 @@
+{
+  final String uid=transformedCredential.getUsername();
+  final String otp=transformedCredential.getPassword();
+  if (!YubicoClient.isValidOTPFormat(otp)) {
+    logger.debug("Invalid OTP format [{}]",otp);
+    throw new FailedLoginException("OTP format is invalid");
+  }
+  final String publicId=YubicoClient.getPublicId(otp);
+  if (!this.registry.isYubiKeyRegisteredFor(uid,publicId)) {
+    logger.debug("YubiKey public id [{}] is not registered for user [{}]",publicId,uid);
+    throw new AccountNotFoundException("YubiKey id is not recognized in registry");
+  }
+  try {
+    final YubicoResponse response=client.verify(otp);
+    logger.debug("YubiKey response status {} at {}",response.getStatus(),response.getTimestamp());
+    if (response.getStatus() == YubicoResponseStatus.OK) {
+      return createHandlerResult(transformedCredential,this.principalFactory.createPrincipal(uid),null);
+    }
+    throw new FailedLoginException("Authentication failed with status: " + response.getStatus());
+  }
+ catch (  final YubicoValidationFailure|YubicoValidationException e) {
+    logger.error(e.getMessage(),e);
+    throw new FailedLoginException("YubiKey validation failed: " + e.getMessage());
+  }
+}

@@ -1,5 +1,5 @@
 {
   if (this.registry instanceof AcceptAnyYubiKeyAccountRegistry) {
-    log.warn("{} instantiated with example accept-any configuration handled via {}. " + "THIS IS NOT OKAY IN PRODUCTION. NO. NO. NO.",this.getClass().getSimpleName(),AcceptAnyYubiKeyAccountRegistry.class.getSimpleName());
+    logger.warn("{} instantiated with example accept-any configuration handled via {}. " + "THIS IS NOT OKAY IN PRODUCTION.",this.getClass().getSimpleName(),AcceptAnyYubiKeyAccountRegistry.class.getSimpleName());
   }
 }
