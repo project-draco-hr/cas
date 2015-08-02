@@ -1,0 +1,4 @@
+{
+  this.client=YubicoClient.getClient(clientId);
+  this.client.setKey(secretKey);
+}
