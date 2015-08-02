@@ -6,14 +6,14 @@
     throw new FailedLoginException("OTP format is invalid");
   }
   final String publicId=YubicoClient.getPublicId(otp);
-  if (!this.registry.isYubiKeyRegisteredFor(uid,publicId)) {
+  if (this.registry != null && !this.registry.isYubiKeyRegisteredFor(uid,publicId)) {
     logger.debug("YubiKey public id [{}] is not registered for user [{}]",publicId,uid);
     throw new AccountNotFoundException("YubiKey id is not recognized in registry");
   }
   try {
     final VerificationResponse response=this.client.verify(otp);
-    logger.debug("YubiKey response status {} at {}",response.getStatus(),response.getTimestamp());
-    if (response.getStatus().isError()) {
+    if (response.getStatus().compareTo(ResponseStatus.OK) == 0) {
+      logger.debug("YubiKey response status {} at {}",response.getStatus(),response.getTimestamp());
       return createHandlerResult(transformedCredential,this.principalFactory.createPrincipal(uid),null);
     }
     throw new FailedLoginException("Authentication failed with status: " + response.getStatus());
