@@ -5,14 +5,12 @@
   svc.setName("name");
   svc.setId(1000);
   svc.setEvaluationOrder(1000);
-  this.controller.onSubmit(svc,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
   svc=new RegisteredServiceImpl();
   svc.setDescription("description");
   svc.setServiceId("^serviceId");
   svc.setName("name");
   svc.setId(100);
   svc.setEvaluationOrder(100);
-  this.controller.onSubmit(svc,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
   final Collection<RegisteredService> services=this.manager.getAllServices();
   assertEquals(2,services.size());
   for (  final RegisteredService rs : this.manager.getAllServices()) {

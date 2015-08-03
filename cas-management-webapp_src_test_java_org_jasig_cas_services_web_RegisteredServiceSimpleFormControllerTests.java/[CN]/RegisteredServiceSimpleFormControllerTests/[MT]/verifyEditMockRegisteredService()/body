@@ -6,7 +6,6 @@
   r.setDescription("description");
   this.manager.save(r);
   r.setServiceId("serviceId1");
-  this.controller.onSubmit(r,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
   assertFalse(this.manager.getAllServices().isEmpty());
   final RegisteredService r2=this.manager.findServiceBy(1000);
   assertEquals("serviceId1",r2.getServiceId());

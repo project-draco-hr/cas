@@ -17,10 +17,10 @@
     accessBean.setRequiredAttr(def.getRequiredAttributes());
   }
   if (svc instanceof OAuthRegisteredCallbackAuthorizeService) {
-    bean.setType(RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ);
+    bean.setType(RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ.toString());
   }
   if (svc instanceof OAuthRegisteredService) {
-    bean.setType(RegisteredServiceTypeEditBean.OAUTH);
+    bean.setType(RegisteredServiceTypeEditBean.OAUTH.toString());
     final OAuthRegisteredService oauth=(OAuthRegisteredService)svc;
     final RegisteredServiceOAuthTypeEditBean oauthBean=bean.getOauth();
     oauthBean.setBypass(oauth.isBypassApprovalPrompt());
@@ -32,13 +32,13 @@
   final LogoutType logoutType=svc.getLogoutType();
 switch (logoutType) {
 case BACK_CHANNEL:
-    bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.BACK);
+    bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.BACK.toString());
   break;
 case FRONT_CHANNEL:
-bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.FRONT);
+bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.FRONT.toString());
 break;
 default :
-bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.NONE);
+bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.NONE.toString());
 break;
 }
 final URL url=svc.getLogoutUrl();
@@ -48,11 +48,11 @@ bean.setLogoUrl(url.toExternalForm());
 final RegisteredServiceUsernameAttributeProvider provider=svc.getUsernameAttributeProvider();
 final RegisteredServiceUsernameAttributeProviderEditBean uBean=bean.getUserAttrProvider();
 if (provider instanceof DefaultRegisteredServiceUsernameProvider) {
-uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.DEFAULT);
+uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.DEFAULT.toString());
 }
  else if (provider instanceof AnonymousRegisteredServiceUsernameAttributeProvider) {
 final AnonymousRegisteredServiceUsernameAttributeProvider anonymous=(AnonymousRegisteredServiceUsernameAttributeProvider)provider;
-uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.ANONYMOUS);
+uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.ANONYMOUS.toString());
 final PersistentIdGenerator generator=anonymous.getPersistentIdGenerator();
 if (generator instanceof ShibbolethCompatiblePersistentIdGenerator) {
 final ShibbolethCompatiblePersistentIdGenerator sh=(ShibbolethCompatiblePersistentIdGenerator)generator;
@@ -65,11 +65,13 @@ uBean.setValue(p.getUsernameAttribute());
 }
 final RegisteredServicePublicKey key=svc.getPublicKey();
 final RegisteredServicePublicKeyEditBean pBean=bean.getPublicKey();
+if (key != null) {
 pBean.setAlgorithm(key.getAlgorithm());
 pBean.setLocation(key.getLocation());
+}
 final RegisteredServiceProxyPolicy policy=svc.getProxyPolicy();
 final RegisteredServiceProxyPolicyBean cBean=bean.getProxyPolicy();
-if (policy instanceof RefuseRegisteredServiceProxyPolicy) {
+if (policy == null || policy instanceof RefuseRegisteredServiceProxyPolicy) {
 cBean.setType(RegisteredServiceProxyPolicyBean.Types.REFUSE.toString());
 }
  else if (policy instanceof RegexMatchingRegisteredServiceProxyPolicy) {
@@ -78,6 +80,7 @@ cBean.setType(RegisteredServiceProxyPolicyBean.Types.ALLOW.toString());
 cBean.setValue(regex.getPattern().toString());
 }
 final AbstractAttributeReleasePolicy attrPolicy=(AbstractAttributeReleasePolicy)svc.getAttributeReleasePolicy();
+if (attrPolicy != null) {
 final RegisteredServiceAttributeReleasePolicyEditBean attrPolicyBean=bean.getAttrRelease();
 attrPolicyBean.setReleasePassword(attrPolicy.isAuthorizedToReleaseCredentialPassword());
 attrPolicyBean.setReleaseTicket(attrPolicy.isAuthorizedToReleaseProxyGrantingTicket());
@@ -98,6 +101,18 @@ final CachingPrincipalAttributesRepository cc=(CachingPrincipalAttributesReposit
 final Duration duration=cc.getDuration();
 attrPolicyBean.setCachedExpiration(duration.getDurationAmount());
 attrPolicyBean.setCachedTimeUnit(duration.getTimeUnit().name());
+final IAttributeMerger merger=cc.getMergingStrategy();
+if (merger != null) {
+if (merger instanceof NoncollidingAttributeAdder) {
+attrPolicyBean.setMergingStrategy(RegisteredServiceAttributeReleasePolicyEditBean.AttributeMergerTypes.ADD.toString());
+}
+ else if (merger instanceof MultivaluedAttributeMerger) {
+attrPolicyBean.setMergingStrategy(RegisteredServiceAttributeReleasePolicyEditBean.AttributeMergerTypes.MULTIVALUED.toString());
+}
+ else if (merger instanceof ReplacingAttributeAdder) {
+attrPolicyBean.setMergingStrategy(RegisteredServiceAttributeReleasePolicyEditBean.AttributeMergerTypes.REPLACE.toString());
+}
+}
 }
 final RegisteredServiceAttributeReleasePolicyStrategyEditBean sBean=attrPolicyBean.getAttrPolicy();
 if (attrPolicy instanceof ReturnAllAttributeReleasePolicy) {
@@ -112,6 +127,7 @@ sBean.setAttributes(ImmutableList.of(attrPolicyAllowed.getAllowedAttributes()));
 final ReturnMappedAttributeReleasePolicy attrPolicyAllowed=(ReturnMappedAttributeReleasePolicy)attrPolicy;
 sBean.setType(AbstractRegisteredServiceAttributeReleasePolicyStrategyBean.Types.MAPPED.toString());
 sBean.setAttributes(ImmutableMap.copyOf(attrPolicyAllowed.getAllowedAttributes()));
+}
 }
 return bean;
 }
