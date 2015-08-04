@@ -1,4 +1,0 @@
-{
-  this.id=encodedTicketId;
-  this.encodedTicket=encodedTicket;
-}
