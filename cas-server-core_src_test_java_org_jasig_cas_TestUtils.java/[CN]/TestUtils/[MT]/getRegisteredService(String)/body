@@ -16,12 +16,14 @@
     s.setLogo(new URL("https://logo.example.org/logo.png"));
     s.setLogoutType(LogoutType.BACK_CHANNEL);
     s.setLogoutUrl(new URL("https://sys.example.org/logout.png"));
-    s.setProxyPolicy(new RefuseRegisteredServiceProxyPolicy());
+    s.setProxyPolicy(new RegexMatchingRegisteredServiceProxyPolicy("^http.+"));
     s.setPublicKey(new RegisteredServicePublicKeyImpl("classpath:pub.key","RSA"));
     final ReturnAllowedAttributeReleasePolicy policy=new ReturnAllowedAttributeReleasePolicy();
     policy.setAuthorizedToReleaseCredentialPassword(true);
     policy.setAuthorizedToReleaseProxyGrantingTicket(true);
-    policy.setPrincipalAttributesRepository(new CachingPrincipalAttributesRepository(new StubPersonAttributeDao(),10));
+    final CachingPrincipalAttributesRepository repo=new CachingPrincipalAttributesRepository(new StubPersonAttributeDao(),10);
+    repo.setMergingStrategy(new NoncollidingAttributeAdder());
+    policy.setPrincipalAttributesRepository(repo);
     policy.setAttributeFilter(new RegisteredServiceRegexAttributeFilter("https://.+"));
     policy.setAllowedAttributes(new ArrayList(getTestAttributes().keySet()));
     s.setAttributeReleasePolicy(policy);
