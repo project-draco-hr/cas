@@ -12,4 +12,7 @@
   this.setAccessStrategy(source.getAccessStrategy());
   this.setLogo(source.getLogo());
   this.setPublicKey(source.getPublicKey());
+  this.setLogoutUrl(source.getLogoutUrl());
+  this.setPublicKey(source.getPublicKey());
+  this.setRequiredHandlers(source.getRequiredHandlers());
 }
