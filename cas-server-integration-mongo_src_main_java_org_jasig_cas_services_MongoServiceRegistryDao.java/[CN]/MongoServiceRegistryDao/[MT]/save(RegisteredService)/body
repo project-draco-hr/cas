@@ -1,0 +1,8 @@
+{
+  if (svc.getId() == AbstractRegisteredService.INITIAL_IDENTIFIER_VALUE) {
+    ((AbstractRegisteredService)svc).setId(svc.hashCode());
+  }
+  this.mongoTemplate.save(svc,this.collectionName);
+  LOGGER.debug("Saved registered service: {}",svc);
+  return this.findServiceById(svc.getId());
+}
