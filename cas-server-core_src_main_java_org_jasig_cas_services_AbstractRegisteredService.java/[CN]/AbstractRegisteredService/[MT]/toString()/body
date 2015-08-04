@@ -13,5 +13,7 @@
   toStringBuilder.append("publicKey",this.publicKey);
   toStringBuilder.append("proxyPolicy",this.proxyPolicy);
   toStringBuilder.append("logo",this.logo);
+  toStringBuilder.append("logoutUrl",this.logoutUrl);
+  toStringBuilder.append("requiredHandlers",this.requiredHandlers);
   return toStringBuilder.toString();
 }
