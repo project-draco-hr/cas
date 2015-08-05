@@ -4,6 +4,7 @@
   bean.setServiceId(svc.getServiceId());
   bean.setName(svc.getName());
   bean.setDescription(svc.getDescription());
+  bean.setEvalOrder(svc.getEvaluationOrder());
   if (svc.getLogo() != null) {
     bean.setLogoUrl(svc.getLogo().toExternalForm());
   }
