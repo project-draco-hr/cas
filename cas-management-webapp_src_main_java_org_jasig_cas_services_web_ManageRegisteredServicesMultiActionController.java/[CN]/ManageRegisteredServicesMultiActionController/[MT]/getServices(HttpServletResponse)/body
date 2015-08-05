@@ -7,5 +7,6 @@
     serviceBeans.add(RegisteredServiceViewBean.fromRegisteredService(svc));
   }
   model.put("services",serviceBeans);
+  model.put("status",HttpServletResponse.SC_OK);
   JsonViewUtils.render(model,response);
 }

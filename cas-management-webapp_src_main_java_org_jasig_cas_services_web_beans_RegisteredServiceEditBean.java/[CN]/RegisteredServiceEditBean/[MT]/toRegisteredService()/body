@@ -1,0 +1,48 @@
+{
+  try {
+    final AbstractRegisteredService regSvc;
+    if (StringUtils.equalsIgnoreCase(this.serviceData.getType(),RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ.toString())) {
+      regSvc=new OAuthRegisteredCallbackAuthorizeService();
+    }
+ else     if (StringUtils.equalsIgnoreCase(this.serviceData.getType(),RegisteredServiceTypeEditBean.OAUTH.toString())) {
+      regSvc=new OAuthRegisteredService();
+      final RegisteredServiceOAuthTypeEditBean oauthBean=this.serviceData.getOauth();
+      ((OAuthRegisteredService)regSvc).setClientId(oauthBean.getClientId());
+      ((OAuthRegisteredService)regSvc).setClientSecret(oauthBean.getClientSecret());
+      ((OAuthRegisteredService)regSvc).setBypassApprovalPrompt(oauthBean.isBypass());
+    }
+ else {
+      regSvc=new RegexRegisteredService();
+    }
+    regSvc.setId(this.serviceData.assignedId);
+    regSvc.setServiceId(this.serviceData.serviceId);
+    regSvc.setName(this.serviceData.name);
+    regSvc.setDescription(this.serviceData.description);
+    if (StringUtils.isNotBlank(this.serviceData.logoUrl)) {
+      regSvc.setLogo(new URL(this.serviceData.logoUrl));
+    }
+    regSvc.setTheme(this.serviceData.theme);
+    regSvc.setEvaluationOrder(this.serviceData.evalOrder);
+    if (StringUtils.equalsIgnoreCase(this.serviceData.logoutType,RegisteredServiceLogoutTypeEditBean.BACK.toString())) {
+      regSvc.setLogoutType(LogoutType.BACK_CHANNEL);
+    }
+ else     if (StringUtils.equalsIgnoreCase(this.serviceData.logoutType,RegisteredServiceLogoutTypeEditBean.FRONT.toString())) {
+      regSvc.setLogoutType(LogoutType.FRONT_CHANNEL);
+    }
+ else {
+      regSvc.setLogoutType(LogoutType.NONE);
+    }
+    if (StringUtils.isNotBlank(this.serviceData.logoutUrl)) {
+      regSvc.setLogoutUrl(new URL(this.serviceData.logoutUrl));
+    }
+    final RegisteredServiceAccessStrategy accessStrategy=regSvc.getAccessStrategy();
+    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setEnabled(this.serviceData.supportAccess.isCasEnabled());
+    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setSsoEnabled(this.serviceData.supportAccess.isSsoEnabled());
+    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setRequireAllAttributes(this.serviceData.supportAccess.isRequireAll());
+    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setRequiredAttributes(this.serviceData.supportAccess.getRequiredAttr());
+    return regSvc;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

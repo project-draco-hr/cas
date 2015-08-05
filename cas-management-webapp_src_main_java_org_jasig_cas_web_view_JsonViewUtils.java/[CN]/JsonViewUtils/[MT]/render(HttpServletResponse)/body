@@ -1,6 +1,6 @@
 {
   try {
-    final Map<String,String> map=new HashMap<>();
+    final Map<String,Object> map=new HashMap<>();
     response.setStatus(HttpServletResponse.SC_OK);
     render(map,response);
   }
