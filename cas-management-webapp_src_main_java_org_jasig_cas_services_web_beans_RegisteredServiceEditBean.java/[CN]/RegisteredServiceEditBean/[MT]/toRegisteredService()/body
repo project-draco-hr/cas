@@ -1,12 +1,12 @@
 {
   try {
     final AbstractRegisteredService regSvc;
-    if (StringUtils.equalsIgnoreCase(getType(),RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ.toString())) {
+    if (StringUtils.equalsIgnoreCase(this.serviceData.getType(),RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ.toString())) {
       regSvc=new OAuthRegisteredCallbackAuthorizeService();
     }
- else     if (StringUtils.equalsIgnoreCase(getType(),RegisteredServiceTypeEditBean.OAUTH.toString())) {
+ else     if (StringUtils.equalsIgnoreCase(this.serviceData.getType(),RegisteredServiceTypeEditBean.OAUTH.toString())) {
       regSvc=new OAuthRegisteredService();
-      final RegisteredServiceOAuthTypeEditBean oauthBean=getOauth();
+      final RegisteredServiceOAuthTypeEditBean oauthBean=this.serviceData.getOauth();
       ((OAuthRegisteredService)regSvc).setClientId(oauthBean.getClientId());
       ((OAuthRegisteredService)regSvc).setClientSecret(oauthBean.getClientSecret());
       ((OAuthRegisteredService)regSvc).setBypassApprovalPrompt(oauthBean.isBypass());
@@ -14,32 +14,32 @@
  else {
       regSvc=new RegexRegisteredService();
     }
-    regSvc.setId(this.assignedId);
-    regSvc.setServiceId(this.serviceId);
-    regSvc.setName(this.name);
-    regSvc.setDescription(this.description);
-    if (StringUtils.isNotBlank(this.logoUrl)) {
-      regSvc.setLogo(new URL(this.logoUrl));
+    regSvc.setId(this.serviceData.assignedId);
+    regSvc.setServiceId(this.serviceData.serviceId);
+    regSvc.setName(this.serviceData.name);
+    regSvc.setDescription(this.serviceData.description);
+    if (StringUtils.isNotBlank(this.serviceData.logoUrl)) {
+      regSvc.setLogo(new URL(this.serviceData.logoUrl));
     }
-    regSvc.setTheme(this.theme);
-    regSvc.setEvaluationOrder(this.evalOrder);
-    if (StringUtils.equalsIgnoreCase(this.logoutType,RegisteredServiceLogoutTypeEditBean.BACK.toString())) {
+    regSvc.setTheme(this.serviceData.theme);
+    regSvc.setEvaluationOrder(this.serviceData.evalOrder);
+    if (StringUtils.equalsIgnoreCase(this.serviceData.logoutType,RegisteredServiceLogoutTypeEditBean.BACK.toString())) {
       regSvc.setLogoutType(LogoutType.BACK_CHANNEL);
     }
- else     if (StringUtils.equalsIgnoreCase(this.logoutType,RegisteredServiceLogoutTypeEditBean.FRONT.toString())) {
+ else     if (StringUtils.equalsIgnoreCase(this.serviceData.logoutType,RegisteredServiceLogoutTypeEditBean.FRONT.toString())) {
       regSvc.setLogoutType(LogoutType.FRONT_CHANNEL);
     }
  else {
       regSvc.setLogoutType(LogoutType.NONE);
     }
-    if (StringUtils.isNotBlank(this.logoutUrl)) {
-      regSvc.setLogoutUrl(new URL(this.logoutUrl));
+    if (StringUtils.isNotBlank(this.serviceData.logoutUrl)) {
+      regSvc.setLogoutUrl(new URL(this.serviceData.logoutUrl));
     }
     final RegisteredServiceAccessStrategy accessStrategy=regSvc.getAccessStrategy();
-    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setEnabled(this.supportAccess.isCasEnabled());
-    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setSsoEnabled(this.supportAccess.isSsoEnabled());
-    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setRequireAllAttributes(this.supportAccess.isRequireAll());
-    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setRequiredAttributes(this.supportAccess.getRequiredAttr());
+    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setEnabled(this.serviceData.supportAccess.isCasEnabled());
+    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setSsoEnabled(this.serviceData.supportAccess.isSsoEnabled());
+    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setRequireAllAttributes(this.serviceData.supportAccess.isRequireAll());
+    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setRequiredAttributes(this.serviceData.supportAccess.getRequiredAttr());
     return regSvc;
   }
  catch (  final Exception e) {

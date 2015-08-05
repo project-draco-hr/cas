@@ -1,5 +1,6 @@
 {
-  final RegisteredServiceEditBean bean=new RegisteredServiceEditBean();
+  final RegisteredServiceEditBean serviceBean=new RegisteredServiceEditBean();
+  final ServiceData bean=serviceBean.getServiceData();
   bean.setAssignedId(svc.getId());
   bean.setServiceId(svc.getServiceId());
   bean.setName(svc.getName());
@@ -129,5 +130,5 @@ sBean.setType(AbstractRegisteredServiceAttributeReleasePolicyStrategyBean.Types.
 sBean.setAttributes(attrPolicyAllowed.getAllowedAttributes());
 }
 }
-return bean;
+return serviceBean;
 }

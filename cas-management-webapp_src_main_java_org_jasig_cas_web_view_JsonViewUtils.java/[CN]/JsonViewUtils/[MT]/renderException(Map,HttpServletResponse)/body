@@ -1,4 +1,5 @@
 {
   response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+  model.put("status",HttpServletResponse.SC_BAD_REQUEST);
   render(model,response);
 }

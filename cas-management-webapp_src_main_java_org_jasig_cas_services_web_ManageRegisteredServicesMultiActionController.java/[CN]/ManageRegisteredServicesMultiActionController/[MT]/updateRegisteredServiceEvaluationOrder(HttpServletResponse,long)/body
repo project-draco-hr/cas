@@ -11,5 +11,7 @@
     svc.setEvaluationOrder(i);
     this.servicesManager.save(svc);
   }
-  JsonViewUtils.render(response);
+  final Map<String,Object> model=new HashMap<>();
+  model.put("status",HttpServletResponse.SC_OK);
+  JsonViewUtils.render(model,response);
 }

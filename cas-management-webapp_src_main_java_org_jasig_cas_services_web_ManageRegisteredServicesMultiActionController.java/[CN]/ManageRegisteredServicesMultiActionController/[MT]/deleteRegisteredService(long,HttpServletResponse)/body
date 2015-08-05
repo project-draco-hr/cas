@@ -9,5 +9,6 @@
   }
   final Map<String,Object> model=new HashMap<>();
   model.put("serviceName",r.getName());
+  model.put("status",HttpServletResponse.SC_OK);
   JsonViewUtils.render(model,response);
 }
