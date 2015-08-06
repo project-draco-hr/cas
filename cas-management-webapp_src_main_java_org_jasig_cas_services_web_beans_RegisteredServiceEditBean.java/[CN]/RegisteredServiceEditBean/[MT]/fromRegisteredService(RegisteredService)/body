@@ -8,6 +8,7 @@
   if (svc.getLogo() != null) {
     bean.setLogoUrl(svc.getLogo().toExternalForm());
   }
+  bean.setRequiredHandlers(svc.getRequiredHandlers());
   final RegisteredServiceAccessStrategy accessStrategy=svc.getAccessStrategy();
   final RegisteredServiceSupportAccessEditBean accessBean=bean.getSupportAccess();
   accessBean.setCasEnabled(accessStrategy.isServiceAccessAllowed());
