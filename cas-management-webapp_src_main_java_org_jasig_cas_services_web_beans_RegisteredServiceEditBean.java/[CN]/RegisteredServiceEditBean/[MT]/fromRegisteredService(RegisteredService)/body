@@ -63,6 +63,7 @@ uBean.setValue(new String(sh.getSalt(),Charset.defaultCharset()));
 }
  else if (provider instanceof PrincipalAttributeRegisteredServiceUsernameProvider) {
 final PrincipalAttributeRegisteredServiceUsernameProvider p=(PrincipalAttributeRegisteredServiceUsernameProvider)provider;
+uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.ATTRIBUTE.toString());
 uBean.setValue(p.getUsernameAttribute());
 }
 final RegisteredServicePublicKey key=svc.getPublicKey();
