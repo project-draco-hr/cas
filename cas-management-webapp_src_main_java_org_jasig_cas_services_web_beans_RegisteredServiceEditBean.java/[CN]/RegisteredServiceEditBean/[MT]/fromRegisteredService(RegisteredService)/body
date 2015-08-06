@@ -79,7 +79,7 @@ cBean.setType(RegisteredServiceProxyPolicyBean.Types.REFUSE.toString());
 }
  else if (policy instanceof RegexMatchingRegisteredServiceProxyPolicy) {
 final RegexMatchingRegisteredServiceProxyPolicy regex=(RegexMatchingRegisteredServiceProxyPolicy)policy;
-cBean.setType(RegisteredServiceProxyPolicyBean.Types.ALLOW.toString());
+cBean.setType(RegisteredServiceProxyPolicyBean.Types.REGEX.toString());
 cBean.setValue(regex.getPattern().toString());
 }
 final AbstractAttributeReleasePolicy attrPolicy=(AbstractAttributeReleasePolicy)svc.getAttributeReleasePolicy();

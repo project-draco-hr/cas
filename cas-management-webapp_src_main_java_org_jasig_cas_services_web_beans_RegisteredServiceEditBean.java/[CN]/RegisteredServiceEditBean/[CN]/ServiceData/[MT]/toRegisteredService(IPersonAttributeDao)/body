@@ -45,8 +45,14 @@
     if (StringUtils.equalsIgnoreCase(proxyType,RegisteredServiceProxyPolicyBean.Types.REFUSE.toString())) {
       regSvc.setProxyPolicy(new RefuseRegisteredServiceProxyPolicy());
     }
- else     if (StringUtils.equalsIgnoreCase(proxyType,RegisteredServiceProxyPolicyBean.Types.ALLOW.toString())) {
-      regSvc.setProxyPolicy(new RegexMatchingRegisteredServiceProxyPolicy(this.proxyPolicy.getValue()));
+ else     if (StringUtils.equalsIgnoreCase(proxyType,RegisteredServiceProxyPolicyBean.Types.REGEX.toString())) {
+      final String value=this.proxyPolicy.getValue();
+      if (StringUtils.isNotBlank(value) && isValidRegex(value)) {
+        regSvc.setProxyPolicy(new RegexMatchingRegisteredServiceProxyPolicy(value));
+      }
+ else {
+        throw new IllegalArgumentException("Invalid regex pattern specified for proxy policy: " + value);
+      }
     }
     final String uidType=this.userAttrProvider.getType();
     if (StringUtils.equalsIgnoreCase(uidType,RegisteredServiceUsernameAttributeProviderEditBean.Types.DEFAULT.toString())) {
