@@ -12,7 +12,7 @@
       ((OAuthRegisteredService)regSvc).setBypassApprovalPrompt(oauthBean.isBypass());
     }
  else {
-      regSvc=new RegexRegisteredService();
+      regSvc=determineServiceTypeByPattern(this.serviceId);
     }
     regSvc.setId(this.assignedId);
     regSvc.setServiceId(this.serviceId);
@@ -59,7 +59,7 @@
  else     if (StringUtils.equalsIgnoreCase(uidType,RegisteredServiceUsernameAttributeProviderEditBean.Types.ATTRIBUTE.toString())) {
       regSvc.setUsernameAttributeProvider(new PrincipalAttributeRegisteredServiceUsernameProvider(this.userAttrProvider.getValue()));
     }
-    if (this.publicKey != null) {
+    if (this.publicKey != null && this.publicKey.isValid()) {
       final RegisteredServicePublicKey publicKey=new RegisteredServicePublicKeyImpl(this.publicKey.getLocation(),this.publicKey.getAlgorithm());
       regSvc.setPublicKey(publicKey);
     }
