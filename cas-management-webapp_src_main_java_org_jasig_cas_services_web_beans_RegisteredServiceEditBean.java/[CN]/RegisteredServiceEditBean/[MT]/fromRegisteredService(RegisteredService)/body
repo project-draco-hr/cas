@@ -63,6 +63,7 @@ uBean.setValue(new String(sh.getSalt(),Charset.defaultCharset()));
 }
  else if (provider instanceof PrincipalAttributeRegisteredServiceUsernameProvider) {
 final PrincipalAttributeRegisteredServiceUsernameProvider p=(PrincipalAttributeRegisteredServiceUsernameProvider)provider;
+uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.ATTRIBUTE.toString());
 uBean.setValue(p.getUsernameAttribute());
 }
 final RegisteredServicePublicKey key=svc.getPublicKey();
@@ -78,7 +79,7 @@ cBean.setType(RegisteredServiceProxyPolicyBean.Types.REFUSE.toString());
 }
  else if (policy instanceof RegexMatchingRegisteredServiceProxyPolicy) {
 final RegexMatchingRegisteredServiceProxyPolicy regex=(RegexMatchingRegisteredServiceProxyPolicy)policy;
-cBean.setType(RegisteredServiceProxyPolicyBean.Types.ALLOW.toString());
+cBean.setType(RegisteredServiceProxyPolicyBean.Types.REGEX.toString());
 cBean.setValue(regex.getPattern().toString());
 }
 final AbstractAttributeReleasePolicy attrPolicy=(AbstractAttributeReleasePolicy)svc.getAttributeReleasePolicy();
