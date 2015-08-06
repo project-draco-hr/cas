@@ -59,8 +59,14 @@
       regSvc.setUsernameAttributeProvider(new DefaultRegisteredServiceUsernameProvider());
     }
  else     if (StringUtils.equalsIgnoreCase(uidType,RegisteredServiceUsernameAttributeProviderEditBean.Types.ANONYMOUS.toString())) {
-      final ShibbolethCompatiblePersistentIdGenerator generator=new ShibbolethCompatiblePersistentIdGenerator(this.userAttrProvider.getValue());
-      regSvc.setUsernameAttributeProvider(new AnonymousRegisteredServiceUsernameAttributeProvider(generator));
+      final String salt=this.userAttrProvider.getValue();
+      if (StringUtils.isNotBlank(salt)) {
+        final ShibbolethCompatiblePersistentIdGenerator generator=new ShibbolethCompatiblePersistentIdGenerator(salt);
+        regSvc.setUsernameAttributeProvider(new AnonymousRegisteredServiceUsernameAttributeProvider(generator));
+      }
+ else {
+        throw new IllegalArgumentException("Invalid sale value for anonymous ids " + salt);
+      }
     }
  else     if (StringUtils.equalsIgnoreCase(uidType,RegisteredServiceUsernameAttributeProviderEditBean.Types.ATTRIBUTE.toString())) {
       regSvc.setUsernameAttributeProvider(new PrincipalAttributeRegisteredServiceUsernameProvider(this.userAttrProvider.getValue()));
@@ -90,7 +96,7 @@
     }
     final String attrType=this.attrRelease.getAttrOption();
     if (StringUtils.equalsIgnoreCase(attrType,RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED.toString())) {
-      policy.setPrincipalAttributesRepository(new CachingPrincipalAttributesRepository(dao,TimeUnit.valueOf(this.attrRelease.getCachedTimeUnit()),this.attrRelease.getCachedExpiration()));
+      policy.setPrincipalAttributesRepository(new CachingPrincipalAttributesRepository(dao,TimeUnit.valueOf(this.attrRelease.getCachedTimeUnit().toUpperCase()),this.attrRelease.getCachedExpiration()));
     }
  else     if (StringUtils.equalsIgnoreCase(attrType,RegisteredServiceAttributeReleasePolicyEditBean.Types.DEFAULT.toString())) {
       policy.setPrincipalAttributesRepository(new DefaultPrincipalAttributesRepository());

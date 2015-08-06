@@ -2,9 +2,9 @@
   beginAt("/login");
   setFormElement(FORM_USERNAME,getUsername());
   setFormElement(FORM_PASSWORD,getGoodPassword());
-  final String URL="/login";
+  final String url="/login";
   submit();
   assertCookiePresent(COOKIE_TGC_ID);
-  beginAt(URL);
+  beginAt(url);
   assertFormNotPresent(FORM_USERNAME);
 }
