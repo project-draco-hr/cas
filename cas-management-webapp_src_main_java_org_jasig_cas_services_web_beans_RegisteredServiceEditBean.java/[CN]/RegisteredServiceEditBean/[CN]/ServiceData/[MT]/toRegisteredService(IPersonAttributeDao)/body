@@ -45,7 +45,16 @@
     ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setEnabled(this.supportAccess.isCasEnabled());
     ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setSsoEnabled(this.supportAccess.isSsoEnabled());
     ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setRequireAllAttributes(this.supportAccess.isRequireAll());
-    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setRequiredAttributes(this.supportAccess.getRequiredAttr());
+    final Map<String,Set<String>> requiredAttrs=this.supportAccess.getRequiredAttr();
+    final Set<Map.Entry<String,Set<String>>> entries=requiredAttrs.entrySet();
+    final Iterator<Map.Entry<String,Set<String>>> it=entries.iterator();
+    while (it.hasNext()) {
+      final Map.Entry<String,Set<String>> entry=it.next();
+      if (entry.getValue().isEmpty()) {
+        it.remove();
+      }
+    }
+    ((DefaultRegisteredServiceAccessStrategy)accessStrategy).setRequiredAttributes(requiredAttrs);
     final String proxyType=this.proxyPolicy.getType();
     if (StringUtils.equalsIgnoreCase(proxyType,RegisteredServiceProxyPolicyBean.Types.REFUSE.toString())) {
       regSvc.setProxyPolicy(new RefuseRegisteredServiceProxyPolicy());
