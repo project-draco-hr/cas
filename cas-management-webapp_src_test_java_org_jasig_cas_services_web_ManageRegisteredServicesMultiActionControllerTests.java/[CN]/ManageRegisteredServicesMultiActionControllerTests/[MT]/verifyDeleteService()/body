@@ -6,6 +6,7 @@
   r.setEvaluationOrder(1);
   this.servicesManager.save(r);
   final MockHttpServletResponse response=new MockHttpServletResponse();
+  this.controller.manage(response);
   this.controller.deleteRegisteredService(1200,response);
   assertNull(this.servicesManager.findServiceBy(1200));
   assertTrue(response.getContentAsString().contains("serviceName"));

@@ -6,6 +6,9 @@
   r.setEvaluationOrder(2);
   this.servicesManager.save(r);
   final MockHttpServletResponse response=new MockHttpServletResponse();
-  this.controller.manage(response);
+  final ModelAndView mv=this.controller.manage(response);
+  assertTrue(mv.getModel().containsKey("defaultServiceUrl"));
+  assertTrue(mv.getModel().containsKey("status"));
+  this.controller.getServices(response);
   assertTrue(response.getContentAsString().contains("services"));
 }
