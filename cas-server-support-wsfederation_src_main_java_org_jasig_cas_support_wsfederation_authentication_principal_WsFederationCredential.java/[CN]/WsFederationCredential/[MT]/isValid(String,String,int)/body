@@ -1,0 +1,20 @@
+{
+  if (!this.getAudience().equalsIgnoreCase(expectedAudience)) {
+    logger.warn(".isValid: audience is invalid: {}",this.getAudience());
+    return false;
+  }
+  if (!this.getIssuer().equalsIgnoreCase(expectedIssuer)) {
+    logger.warn(".isValid: issuer is invalid: {}",this.getIssuer());
+    return false;
+  }
+  if (this.getIssuedOn().isBefore(this.getRetrievedOn().minusMillis(timeDrift)) || this.getIssuedOn().isAfter(this.getRetrievedOn().plusMillis(timeDrift))) {
+    logger.warn(".isValid: Ticket outside of drift.");
+    return false;
+  }
+  if (this.getRetrievedOn().isAfter(this.getNotOnOrAfter())) {
+    logger.warn(".isValid: ticket is too late.");
+    return false;
+  }
+  logger.debug(".isValid: credential is valid.");
+  return true;
+}
