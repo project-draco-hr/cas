@@ -1,4 +1,4 @@
 {
-  final Credential result=WsFederationHelper.getSigningCredential(wsFedConfig.getSigningCertificateFiles().iterator().next());
+  final Credential result=wsFedConfig.getSigningCertificates().iterator().next();
   assertNotNull("testGetSigningCredential() - Not Null",result);
 }

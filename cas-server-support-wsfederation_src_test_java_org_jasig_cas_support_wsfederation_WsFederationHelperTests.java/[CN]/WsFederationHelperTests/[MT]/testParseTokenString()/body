@@ -1,5 +1,5 @@
 {
   final String wresult=testTokens.get("goodToken");
-  final Assertion result=WsFederationHelper.parseTokenFromString(wresult);
+  final Assertion result=wsFederationHelper.parseTokenFromString(wresult);
   assertNotNull("testParseTokenString() - Not null",result);
 }
