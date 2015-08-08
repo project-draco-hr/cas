@@ -1,0 +1,3 @@
+{
+  return this.mongoTemplate.findOne(new Query(Criteria.where("id").is(svcId)),RegisteredService.class,this.collectionName);
+}

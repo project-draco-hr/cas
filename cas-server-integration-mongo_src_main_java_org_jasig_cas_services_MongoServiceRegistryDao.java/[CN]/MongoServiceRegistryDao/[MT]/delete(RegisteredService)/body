@@ -1,0 +1,8 @@
+{
+  if (this.findServiceById(svc.getId()) != null) {
+    this.mongoTemplate.remove(svc,this.collectionName);
+    LOGGER.debug("Removed registered service: {}",svc);
+    return true;
+  }
+  return false;
+}

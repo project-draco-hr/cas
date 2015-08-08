@@ -1,0 +1,4 @@
+AuthenticationHandler source
+CredentialMetaData metaData
+Principal p
+List<MessageDescriptor> warnings
