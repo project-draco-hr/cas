@@ -1,5 +1,5 @@
 {
-  final MockRegisteredService svc=new MockRegisteredService();
+  final RegexRegisteredService svc=new RegexRegisteredService();
   svc.setDescription("description");
   svc.setServiceId("^serviceId");
   svc.setName("name");
