@@ -4,7 +4,7 @@
   final WsFederationAttributeMutator instance=new WsFederationAttributeMutatorImpl();
   instance.modifyAttributes(attributes);
   assertTrue("testModifyAttributes() - true",attributes.containsKey("test"));
-  assertTrue("testModifyAttributes() - true",attributes.get("test").toString().equalsIgnoreCase("test"));
+  assertTrue("testModifyAttributes() - true","newtest".equalsIgnoreCase(attributes.get("test").toString()));
   assertTrue("testModifyAttributes() - true",attributes.containsKey("upn"));
-  assertTrue("testModifyAttributes() - true",attributes.get("upn").toString().equalsIgnoreCase("testing"));
+  assertTrue("testModifyAttributes() - true","testing".equalsIgnoreCase(attributes.get("upn").toString()));
 }
