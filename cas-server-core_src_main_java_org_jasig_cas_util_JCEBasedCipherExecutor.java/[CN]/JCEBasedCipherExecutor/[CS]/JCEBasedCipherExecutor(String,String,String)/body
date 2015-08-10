@@ -1,5 +1,0 @@
-{
-  this.encryptionSecretKey=encryptionSecretKey;
-  this.encryptionSeed=encryptionSeed;
-  this.signingKey=new AesKey(signingSecretKey.getBytes());
-}
