@@ -1,5 +1,5 @@
 {
-  final String fileName=service.getName() + '-' + service.getId()+ '.'+ FILE_EXTENSION;
+  final String fileName=StringUtils.remove(service.getName() + '-' + service.getId()+ '.'+ FILE_EXTENSION," ");
   try {
     final File svcFile=new File(serviceRegistryDirectory.toFile(),fileName);
     LOGGER.debug("Using [{}] as the service definition file",svcFile.getCanonicalPath());

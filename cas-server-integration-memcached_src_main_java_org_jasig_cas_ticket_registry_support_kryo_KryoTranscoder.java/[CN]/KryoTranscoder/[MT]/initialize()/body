@@ -20,6 +20,7 @@
   kryo.register(RegisteredServiceImpl.class,new RegisteredServiceSerializer());
   kryo.register(RegexRegisteredService.class,new RegisteredServiceSerializer());
   kryo.register(DateTime.class,new JodaDateTimeSerializer());
+  kryo.register(CasDelegatingLogger.class,new DefaultSerializers.VoidSerializer());
   UnmodifiableCollectionsSerializer.registerSerializers(kryo);
   if (serializerMap != null) {
     for (    final Map.Entry<Class<?>,Serializer> clazz : serializerMap.entrySet()) {

@@ -1,0 +1,4 @@
+{
+  logger.debug("Adding ticket [{}] with ttl [{}s]",ticket.getId(),ttl);
+  this.registry.set(ticket.getId(),ticket,ttl,TimeUnit.SECONDS);
+}
