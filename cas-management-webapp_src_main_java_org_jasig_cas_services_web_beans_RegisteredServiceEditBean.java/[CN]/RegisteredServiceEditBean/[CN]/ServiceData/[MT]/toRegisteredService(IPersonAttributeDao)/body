@@ -114,6 +114,8 @@
     if (StringUtils.isNotBlank(filter)) {
       policy.setAttributeFilter(new RegisteredServiceRegexAttributeFilter(filter));
     }
+    policy.setAuthorizedToReleaseCredentialPassword(this.attrRelease.isReleasePassword());
+    policy.setAuthorizedToReleaseProxyGrantingTicket(this.attrRelease.isReleaseTicket());
     final String attrType=this.attrRelease.getAttrOption();
     if (StringUtils.equalsIgnoreCase(attrType,RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED.toString())) {
       policy.setPrincipalAttributesRepository(new CachingPrincipalAttributesRepository(dao,TimeUnit.valueOf(this.attrRelease.getCachedTimeUnit().toUpperCase()),this.attrRelease.getCachedExpiration()));
