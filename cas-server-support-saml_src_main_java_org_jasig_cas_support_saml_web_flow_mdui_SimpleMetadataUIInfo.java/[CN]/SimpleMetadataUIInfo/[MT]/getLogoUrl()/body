@@ -1,0 +1,12 @@
+{
+  try {
+    final Collection<Logo> items=getLogoUrls();
+    if (!items.isEmpty()) {
+      return new URL(items.iterator().next().getURL());
+    }
+  }
+ catch (  final Exception e) {
+    LOGGER.debug(e.getMessage(),e);
+  }
+  return this.registeredService.getLogo();
+}

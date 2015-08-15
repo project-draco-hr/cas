@@ -1,5 +1,6 @@
 {
   LOGGER.debug("Initializing OpenSaml configuration...");
+  Assert.notNull(this.parserPool,"parserPool cannot be null");
   try {
     InitializationService.initialize();
   }

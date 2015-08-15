@@ -56,5 +56,5 @@ throw new FailedLoginException(e.getMessage());
 if (!success) {
 throw new FailedLoginException();
 }
-return new HandlerResult(this,new BasicCredentialMetaData(ntlmCredential),ntlmCredential.getPrincipal());
+return new DefaultHandlerResult(this,new BasicCredentialMetaData(ntlmCredential),ntlmCredential.getPrincipal());
 }

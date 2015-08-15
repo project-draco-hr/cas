@@ -1,0 +1,7 @@
+{
+  final Collection<String> items=getDescriptions();
+  if (items.isEmpty()) {
+    return this.registeredService.getDescription();
+  }
+  return StringUtils.collectionToDelimitedString(items,".");
+}

@@ -1,0 +1,9 @@
+{
+  if (t instanceof TicketGrantingTicket) {
+    return this.ticketGrantingTicketTimoutInSeconds;
+  }
+ else   if (t instanceof ServiceTicket) {
+    return this.serviceTicketTimeoutInSeconds;
+  }
+  throw new IllegalArgumentException(String.format("Invalid ticket type [%s]. Expecting either [TicketGrantingTicket] or [ServiceTicket]",t.getClass().getName()));
+}

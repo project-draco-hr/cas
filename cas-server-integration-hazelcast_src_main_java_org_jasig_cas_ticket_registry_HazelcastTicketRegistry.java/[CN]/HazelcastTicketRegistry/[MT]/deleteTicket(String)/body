@@ -1,0 +1,4 @@
+{
+  logger.debug("Removing ticket [{}]",ticketId);
+  return this.registry.remove(ticketId) != null;
+}

@@ -1,0 +1,4 @@
+{
+  final Collection<String> items=getPrivacyStatementURLs();
+  return StringUtils.collectionToDelimitedString(items,".");
+}
