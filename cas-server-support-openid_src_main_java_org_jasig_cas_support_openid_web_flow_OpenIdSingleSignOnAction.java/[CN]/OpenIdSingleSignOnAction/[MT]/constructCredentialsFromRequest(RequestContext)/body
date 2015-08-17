@@ -1,8 +1,22 @@
 {
   final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
-  final String userName=this.extractor.extractLocalUsernameFromUri(context.getRequestParameters().get("openid.identity"));
+  final String openidIdentityParameter=context.getRequestParameters().get("openid.identity");
+  String userName=null;
+  if (OpenIdUserNameExtractor.SELECT_IDENTIFIER.equals(openidIdentityParameter)) {
+    userName=OpenIdUserNameExtractor.SELECT_IDENTIFIER;
+    context.getExternalContext().getSessionMap().remove(OPENID_LOCALID);
+    if (ticketGrantingTicketId != null) {
+      final TicketGrantingTicket tgt=ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
+      if (tgt != null && !tgt.isExpired()) {
+        userName=tgt.getAuthentication().getPrincipal().getId();
+      }
+    }
+  }
+ else {
+    userName=this.extractor.extractLocalUsernameFromUri(openidIdentityParameter);
+    context.getExternalContext().getSessionMap().put(OPENID_LOCALID,userName);
+  }
   final Service service=WebUtils.getService(context);
-  context.getExternalContext().getSessionMap().put("openIdLocalId",userName);
   if (service instanceof OpenIdService && userName == null) {
     context.getFlowScope().remove("service");
   }

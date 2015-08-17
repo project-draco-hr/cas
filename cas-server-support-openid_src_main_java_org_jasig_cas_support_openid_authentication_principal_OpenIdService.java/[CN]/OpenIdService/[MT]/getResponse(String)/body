@@ -25,10 +25,11 @@
       LOGGER.error("Message exception : {}",me.getMessage(),me);
     }
     boolean successFullAuthentication=true;
+    Assertion assertion=null;
     try {
       if (associated) {
         if (associationValid) {
-          cas.validateServiceTicket(ticketId,this);
+          assertion=cas.validateServiceTicket(ticketId,this);
           LOGGER.info("Validated openid ticket");
         }
  else {
@@ -40,7 +41,14 @@
       LOGGER.error("Could not validate ticket : {}",te.getMessage(),te);
       successFullAuthentication=false;
     }
-    final Message response=manager.authResponse(requestParameters,this.identity,this.identity,successFullAuthentication,true);
+    final String id;
+    if (assertion != null && OpenIdUserNameExtractor.SELECT_IDENTIFIER.equals(this.identity)) {
+      id=this.openIdPrefixUrl + '/' + assertion.getPrimaryAuthentication().getPrincipal().getId();
+    }
+ else {
+      id=this.identity;
+    }
+    final Message response=manager.authResponse(requestParameters,id,id,successFullAuthentication,true);
     parameters.putAll(response.getParameterMap());
     if (!associated) {
       parameters.put("openid.assoc_handle",ticketId);

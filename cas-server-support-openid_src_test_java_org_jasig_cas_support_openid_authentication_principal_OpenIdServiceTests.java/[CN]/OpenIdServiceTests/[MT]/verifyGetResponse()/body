@@ -1,5 +1,5 @@
 {
-  openIdService=OpenIdService.createServiceFrom(request);
+  openIdService=OpenIdService.createServiceFrom(request,null);
   final Response response=this.openIdService.getResponse("test");
   try {
     verify(cas,never()).validateServiceTicket("test",openIdService);
