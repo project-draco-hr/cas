@@ -1,4 +1,0 @@
-{
-  this(servicesManager,personAttributeDao);
-  this.validator=validator;
-}

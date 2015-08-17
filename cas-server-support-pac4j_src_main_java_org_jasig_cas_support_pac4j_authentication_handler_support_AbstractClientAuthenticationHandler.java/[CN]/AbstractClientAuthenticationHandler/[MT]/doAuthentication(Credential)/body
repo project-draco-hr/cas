@@ -1,7 +1,8 @@
 {
   final ClientCredential clientCredentials=(ClientCredential)credential;
   logger.debug("clientCredentials : {}",clientCredentials);
-  final String clientName=clientCredentials.getCredentials().getClientName();
+  final Credentials credentials=clientCredentials.getCredentials();
+  final String clientName=credentials.getClientName();
   logger.debug("clientName : {}",clientName);
   final Client<Credentials,UserProfile> client=this.clients.findClient(clientName);
   logger.debug("client : {}",client);
@@ -9,7 +10,7 @@
   final HttpServletRequest request=(HttpServletRequest)servletExternalContext.getNativeRequest();
   final HttpServletResponse response=(HttpServletResponse)servletExternalContext.getNativeResponse();
   final WebContext webContext=new J2EContext(request,response);
-  final UserProfile userProfile=client.getUserProfile(clientCredentials.getCredentials(),webContext);
+  final UserProfile userProfile=client.getUserProfile(credentials,webContext);
   logger.debug("userProfile : {}",userProfile);
   if (userProfile != null) {
     return createResult(clientCredentials,userProfile);
