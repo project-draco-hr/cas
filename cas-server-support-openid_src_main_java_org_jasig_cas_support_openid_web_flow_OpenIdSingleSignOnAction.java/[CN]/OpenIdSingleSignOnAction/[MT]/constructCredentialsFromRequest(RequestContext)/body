@@ -1,20 +1,23 @@
 {
   final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
-  final String openidIdentityParameter=context.getRequestParameters().get("openid.identity");
+  final String openidIdentityParameter=context.getRequestParameters().get(OpenIdConstants.OPENID_IDENTITY);
   String userName=null;
-  if (OpenIdUserNameExtractor.SELECT_IDENTIFIER.equals(openidIdentityParameter)) {
-    userName=OpenIdUserNameExtractor.SELECT_IDENTIFIER;
-    context.getExternalContext().getSessionMap().remove(OPENID_LOCALID);
+  if (OpenIdConstants.OPENID_IDENTIFIERSELECT.equals(openidIdentityParameter)) {
+    userName=OpenIdConstants.OPENID_IDENTIFIERSELECT;
+    context.getExternalContext().getSessionMap().remove(OpenIdConstants.OPENID_LOCALID);
     if (ticketGrantingTicketId != null) {
-      final TicketGrantingTicket tgt=ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
-      if (tgt != null && !tgt.isExpired()) {
+      try {
+        final TicketGrantingTicket tgt=getCentralAuthenticationService().getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
         userName=tgt.getAuthentication().getPrincipal().getId();
+      }
+ catch (      final InvalidTicketException e) {
+        logger.error("Cannot get TGT",e);
       }
     }
   }
  else {
     userName=this.extractor.extractLocalUsernameFromUri(openidIdentityParameter);
-    context.getExternalContext().getSessionMap().put(OPENID_LOCALID,userName);
+    context.getExternalContext().getSessionMap().put(OpenIdConstants.OPENID_LOCALID,userName);
   }
   final Service service=WebUtils.getService(context);
   if (service instanceof OpenIdService && userName == null) {

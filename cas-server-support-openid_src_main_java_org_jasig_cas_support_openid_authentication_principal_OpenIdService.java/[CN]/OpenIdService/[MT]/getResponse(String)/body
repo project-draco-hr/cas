@@ -9,7 +9,7 @@
       final AuthRequest authReq=AuthRequest.createAuthRequest(requestParameters,manager.getRealmVerifier());
       final Map parameterMap=authReq.getParameterMap();
       if (parameterMap != null && parameterMap.size() > 0) {
-        final String assocHandle=(String)parameterMap.get("openid.assoc_handle");
+        final String assocHandle=(String)parameterMap.get(OpenIdConstants.OPENID_ASSOCHANDLE);
         if (assocHandle != null) {
           final Association association=manager.getSharedAssociations().load(assocHandle);
           if (association != null) {
@@ -42,7 +42,7 @@
       successFullAuthentication=false;
     }
     final String id;
-    if (assertion != null && OpenIdUserNameExtractor.SELECT_IDENTIFIER.equals(this.identity)) {
+    if (assertion != null && OpenIdConstants.OPENID_IDENTIFIERSELECT.equals(this.identity)) {
       id=this.openIdPrefixUrl + '/' + assertion.getPrimaryAuthentication().getPrincipal().getId();
     }
  else {
@@ -51,11 +51,11 @@
     final Message response=manager.authResponse(requestParameters,id,id,successFullAuthentication,true);
     parameters.putAll(response.getParameterMap());
     if (!associated) {
-      parameters.put("openid.assoc_handle",ticketId);
+      parameters.put(OpenIdConstants.OPENID_ASSOCHANDLE,ticketId);
     }
   }
  else {
-    parameters.put("openid.mode","cancel");
+    parameters.put(OpenIdConstants.OPENID_MODE,OpenIdConstants.CANCEL);
   }
   return DefaultResponse.getRedirectResponse(getOriginalUrl(),parameters);
 }
