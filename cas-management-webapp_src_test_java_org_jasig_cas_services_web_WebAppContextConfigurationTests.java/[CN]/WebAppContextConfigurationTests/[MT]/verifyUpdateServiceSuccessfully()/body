@@ -1,5 +1,4 @@
 {
-  final ModelAndView mv=this.mvc.perform(get("/updateRegisteredServiceEvaluationOrder.html").param("id","0").param("evaluationOrder","200")).andExpect(status().isOk()).andReturn().getModelAndView();
-  assertNotNull(mv);
-  assertEquals(mv.getViewName(),"jsonView");
+  final MockHttpServletResponse response=this.mvc.perform(post("/updateRegisteredServiceEvaluationOrder.html").param("id","0")).andExpect(status().isOk()).andReturn().getResponse();
+  assertTrue(response.getContentAsString().contains("\"status\" : " + HttpServletResponse.SC_OK));
 }

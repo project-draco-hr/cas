@@ -1,4 +1,4 @@
 {
-  this.servicesManager=servicesManager;
-  this.defaultServiceUrl=defaultServiceUrl;
+  super(servicesManager);
+  this.defaultService=new SimpleWebApplicationServiceImpl(defaultServiceUrl);
 }
