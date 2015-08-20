@@ -1,8 +1,4 @@
 {
-  final Map<String,Object> sessionsMap=new HashMap<String,Object>(1);
-  sessionsMap.put(ROOT_REPORT_ACTIVE_SESSIONS_KEY,getSsoSessions());
-  final String jsonRepresentation=this.jsonMapper.writeValueAsString(sessionsMap);
   final ModelAndView modelAndView=new ModelAndView(VIEW_SSO_SESSIONS);
-  modelAndView.addObject(ROOT_REPORT_ACTIVE_SESSIONS_KEY,jsonRepresentation);
   return modelAndView;
 }

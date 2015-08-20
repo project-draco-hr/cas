@@ -1,0 +1,6 @@
+{
+  final Map<String,Object> sessionsMap=new HashMap<>(1);
+  final SsoSessionReportOptions option=SsoSessionReportOptions.valueOf(type);
+  sessionsMap.put(ROOT_REPORT_ACTIVE_SESSIONS_KEY,getActiveSsoSessions(option));
+  return sessionsMap;
+}
