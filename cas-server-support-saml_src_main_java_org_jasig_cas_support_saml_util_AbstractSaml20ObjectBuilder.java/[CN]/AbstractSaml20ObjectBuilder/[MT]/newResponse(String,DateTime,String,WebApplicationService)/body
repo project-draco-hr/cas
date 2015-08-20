@@ -5,8 +5,9 @@
   samlResponse.setVersion(SAMLVersion.VERSION_20);
   if (service instanceof SamlService) {
     final SamlService samlService=(SamlService)service;
-    if (samlService.getRequestID() != null) {
-      samlResponse.setInResponseTo(samlService.getRequestID());
+    final String requestId=samlService.getRequestID();
+    if (StringUtils.isNotBlank(requestId)) {
+      samlResponse.setInResponseTo(requestId);
     }
   }
   return samlResponse;

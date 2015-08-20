@@ -1,0 +1,17 @@
+{
+  final OAuthRegisteredService r=new OAuthRegisteredService();
+  r.setName("checkSaveMethod");
+  r.setServiceId("testId");
+  r.setTheme("theme");
+  r.setDescription("description");
+  r.setClientId("clientid");
+  r.setServiceId("secret");
+  r.setBypassApprovalPrompt(true);
+  final RegisteredService r2=this.dao.save(r);
+  assertTrue(r2 instanceof OAuthRegisteredService);
+  this.dao.load();
+  final RegisteredService r3=this.dao.findServiceById(r2.getId());
+  assertTrue(r3 instanceof OAuthRegisteredService);
+  assertEquals(r,r2);
+  assertEquals(r2,r3);
+}

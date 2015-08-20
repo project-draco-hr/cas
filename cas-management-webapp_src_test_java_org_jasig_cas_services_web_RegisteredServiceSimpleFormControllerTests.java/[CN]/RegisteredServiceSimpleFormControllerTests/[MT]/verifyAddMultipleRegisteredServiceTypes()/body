@@ -5,22 +5,16 @@
   svc.setName("name");
   svc.setId(1000);
   svc.setEvaluationOrder(1000);
-  this.controller.onSubmit(svc,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
+  final RegisteredServiceEditBean data=RegisteredServiceEditBean.fromRegisteredService(svc);
+  this.controller.saveService(new MockHttpServletRequest(),new MockHttpServletResponse(),data.getServiceData(),mock(BindingResult.class));
   svc=new RegisteredServiceImpl();
   svc.setDescription("description");
   svc.setServiceId("^serviceId");
   svc.setName("name");
   svc.setId(100);
   svc.setEvaluationOrder(100);
-  this.controller.onSubmit(svc,mock(BindingResult.class),new ModelMap(),new MockHttpServletRequest());
+  final RegisteredServiceEditBean data2=RegisteredServiceEditBean.fromRegisteredService(svc);
+  this.controller.saveService(new MockHttpServletRequest(),new MockHttpServletResponse(),data2.getServiceData(),mock(BindingResult.class));
   final Collection<RegisteredService> services=this.manager.getAllServices();
   assertEquals(2,services.size());
-  for (  final RegisteredService rs : this.manager.getAllServices()) {
-    if (StringUtils.equals(rs.getName(),"ant")) {
-      assertTrue(rs instanceof RegisteredServiceImpl);
-    }
- else     if (StringUtils.equals(rs.getName(),"regex")) {
-      assertTrue(rs instanceof RegexRegisteredService);
-    }
-  }
 }

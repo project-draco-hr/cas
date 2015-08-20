@@ -1,5 +1,5 @@
 {
-  final String URL="/login";
-  beginAt(URL);
+  final String url="/login";
+  beginAt(url);
   assertFormElementPresent(LOGIN_TOKEN);
 }
