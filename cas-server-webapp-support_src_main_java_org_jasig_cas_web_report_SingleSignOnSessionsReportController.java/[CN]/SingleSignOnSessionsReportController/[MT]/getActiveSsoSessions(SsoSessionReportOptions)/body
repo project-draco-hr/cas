@@ -11,9 +11,7 @@
     sso.put(SsoSessionAttributeKeys.AUTHENTICATED_PRINCIPAL.toString(),principal.getId());
     sso.put(SsoSessionAttributeKeys.AUTHENTICATION_DATE.toString(),authentication.getAuthenticationDate());
     sso.put(SsoSessionAttributeKeys.NUMBER_OF_USES.toString(),tgt.getCountOfUses());
-    if (this.includeTicketGrantingTicketId) {
-      sso.put(SsoSessionAttributeKeys.TICKET_GRANTING_TICKET.toString(),tgt.getId());
-    }
+    sso.put(SsoSessionAttributeKeys.TICKET_GRANTING_TICKET.toString(),tgt.getId());
     sso.put(SsoSessionAttributeKeys.PRINCIPAL_ATTRIBUTES.toString(),principal.getAttributes());
     sso.put(SsoSessionAttributeKeys.AUTHENTICATION_ATTRIBUTES.toString(),authentication.getAttributes());
     if (option != SsoSessionReportOptions.DIRECT) {
@@ -26,7 +24,7 @@
       }
     }
     sso.put(SsoSessionAttributeKeys.AUTHENTICATED_SERVICES.toString(),tgt.getServices());
-    activeSessions.add(Collections.unmodifiableMap(sso));
+    activeSessions.add(sso);
   }
-  return Collections.unmodifiableCollection(activeSessions);
+  return activeSessions;
 }

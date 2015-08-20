@@ -1,4 +1,3 @@
 {
-  final ModelAndView modelAndView=new ModelAndView(VIEW_SSO_SESSIONS);
-  return modelAndView;
+  return new ModelAndView(VIEW_SSO_SESSIONS);
 }
