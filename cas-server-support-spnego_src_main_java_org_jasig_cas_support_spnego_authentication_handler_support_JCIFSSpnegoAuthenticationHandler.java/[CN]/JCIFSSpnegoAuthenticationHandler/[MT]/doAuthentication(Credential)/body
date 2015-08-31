@@ -30,9 +30,11 @@ synchronized (this) {
       spnegoCredential.setPrincipal(getPrincipal(principal.getName(),true));
       success=true;
     }
-    logger.debug("Kerberos Credential is valid for user [{}]",principal.getName());
-    spnegoCredential.setPrincipal(getPrincipal(principal.getName(),false));
-    success=true;
+ else {
+      logger.debug("Kerberos Credential is valid for user [{}]",principal.getName());
+      spnegoCredential.setPrincipal(getPrincipal(principal.getName(),false));
+      success=true;
+    }
   }
   if (!success) {
     throw new FailedLoginException("Principal is null, the processing of the SPNEGO Token failed");
