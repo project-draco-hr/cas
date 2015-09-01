@@ -16,11 +16,11 @@
     sso.put(SsoSessionAttributeKeys.AUTHENTICATION_ATTRIBUTES.toString(),authentication.getAttributes());
     if (option != SsoSessionReportOptions.DIRECT) {
       if (tgt.getProxiedBy() != null) {
-        sso.put(SsoSessionAttributeKeys.IS_PROXIED.toString(),true);
+        sso.put(SsoSessionAttributeKeys.IS_PROXIED.toString(),Boolean.TRUE);
         sso.put(SsoSessionAttributeKeys.PROXIED_BY.toString(),tgt.getProxiedBy().getId());
       }
  else {
-        sso.put(SsoSessionAttributeKeys.IS_PROXIED.toString(),false);
+        sso.put(SsoSessionAttributeKeys.IS_PROXIED.toString(),Boolean.FALSE);
       }
     }
     sso.put(SsoSessionAttributeKeys.AUTHENTICATED_SERVICES.toString(),tgt.getServices());
