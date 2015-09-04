@@ -3,7 +3,7 @@
   this.tgtCookieGenerator=new CookieRetrievingCookieGenerator();
   this.action.setTicketGrantingTicketCookieGenerator(this.tgtCookieGenerator);
   this.action.setWarnCookieGenerator(this.warnCookieGenerator);
-  final ArgumentExtractor[] argExtractors=new ArgumentExtractor[]{new CasArgumentExtractor()};
+  final ArgumentExtractor[] argExtractors=new ArgumentExtractor[]{new DefaultArgumentExtractor()};
   this.action.setArgumentExtractors(Arrays.asList(argExtractors));
   this.servicesManager=mock(ServicesManager.class);
   when(this.servicesManager.findServiceBy(any(Service.class))).thenReturn(TestUtils.getRegisteredService("test"));

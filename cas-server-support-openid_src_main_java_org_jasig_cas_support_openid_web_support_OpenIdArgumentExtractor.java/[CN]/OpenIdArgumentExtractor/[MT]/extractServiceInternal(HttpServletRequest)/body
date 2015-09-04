@@ -1,3 +1,0 @@
-{
-  return OpenIdService.createServiceFrom(request,openIdPrefixUrl);
-}
