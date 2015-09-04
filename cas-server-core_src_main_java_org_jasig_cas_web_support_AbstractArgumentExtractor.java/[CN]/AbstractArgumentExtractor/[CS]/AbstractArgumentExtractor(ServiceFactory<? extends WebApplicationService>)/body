@@ -1,3 +1,4 @@
 {
-  this.serviceFactory=serviceFactory;
+  this.serviceFactory=new ArrayList<>();
+  this.serviceFactory.add(serviceFactory);
 }
