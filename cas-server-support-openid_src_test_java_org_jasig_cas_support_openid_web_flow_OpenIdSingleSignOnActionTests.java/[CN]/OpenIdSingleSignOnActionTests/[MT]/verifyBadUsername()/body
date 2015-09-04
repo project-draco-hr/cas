@@ -1,8 +1,8 @@
 {
   final MockRequestContext context=new MockRequestContext();
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.setParameter(OpenIdConstants.OPENID_IDENTITY,"fablah");
-  request.setParameter(OpenIdConstants.OPENID_RETURNTO,"http://www.cnn.com");
+  request.setParameter(OpenIdProtocolConstants.OPENID_IDENTITY,"fablah");
+  request.setParameter(OpenIdProtocolConstants.OPENID_RETURNTO,"http://www.cnn.com");
   final OpenIdServiceFactory factory=new OpenIdServiceFactory();
   final OpenIdService service=factory.createService(request);
   context.getFlowScope().put("service",service);
