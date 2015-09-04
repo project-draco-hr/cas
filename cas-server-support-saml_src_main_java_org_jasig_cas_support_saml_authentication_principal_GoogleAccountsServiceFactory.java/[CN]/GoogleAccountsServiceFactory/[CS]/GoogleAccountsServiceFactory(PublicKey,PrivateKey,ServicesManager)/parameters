@@ -1,4 +1,3 @@
-HttpServletRequest request
-PrivateKey privateKey
 PublicKey publicKey
+PrivateKey privateKey
 ServicesManager servicesManager
