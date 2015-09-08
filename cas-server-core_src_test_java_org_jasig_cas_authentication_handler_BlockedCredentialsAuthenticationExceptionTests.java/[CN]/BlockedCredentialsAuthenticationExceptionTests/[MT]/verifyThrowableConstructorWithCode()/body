@@ -1,6 +1,0 @@
-{
-  final RuntimeException r=new RuntimeException();
-  final BlockedCredentialsAuthenticationException e=new BlockedCredentialsAuthenticationException(MESSAGE,r);
-  assertEquals(MESSAGE,e.getCode());
-  assertEquals(r,e.getCause());
-}
