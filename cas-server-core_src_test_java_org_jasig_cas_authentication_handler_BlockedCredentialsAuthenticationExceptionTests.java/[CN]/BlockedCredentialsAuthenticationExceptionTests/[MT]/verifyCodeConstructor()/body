@@ -1,4 +1,0 @@
-{
-  final BlockedCredentialsAuthenticationException e=new BlockedCredentialsAuthenticationException(MESSAGE);
-  assertEquals(MESSAGE,e.getCode());
-}
