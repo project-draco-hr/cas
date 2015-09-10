@@ -1,6 +1,32 @@
 {
   final Map<String,Object> sessionsMap=new HashMap<>(1);
   final SsoSessionReportOptions option=SsoSessionReportOptions.valueOf(type);
-  sessionsMap.put(ROOT_REPORT_ACTIVE_SESSIONS_KEY,getActiveSsoSessions(option));
+  final Collection<Map<String,Object>> collection=getActiveSsoSessions(option);
+  sessionsMap.put("activeSsoSessions",collection);
+  long totalTicketGrantingTicket=0;
+  long totalProxyGrantingTicket=0;
+  final Set<String> uniquePrincipals=new HashSet<>();
+  for (  final Map<String,Object> entry : collection) {
+    if (entry.containsKey(SsoSessionAttributeKeys.IS_PROXIED.toString())) {
+      final Boolean isProxied=Boolean.valueOf(entry.get(SsoSessionAttributeKeys.IS_PROXIED.toString()).toString());
+      if (isProxied) {
+        totalProxyGrantingTicket++;
+      }
+ else {
+        totalTicketGrantingTicket++;
+        final String principal=entry.get(SsoSessionAttributeKeys.AUTHENTICATED_PRINCIPAL.toString()).toString();
+        uniquePrincipals.add(principal);
+      }
+    }
+ else {
+      totalTicketGrantingTicket++;
+      final String principal=entry.get(SsoSessionAttributeKeys.AUTHENTICATED_PRINCIPAL.toString()).toString();
+      uniquePrincipals.add(principal);
+    }
+  }
+  sessionsMap.put("totalProxyGrantingTicket",totalProxyGrantingTicket);
+  sessionsMap.put("totalTicketGrantingTicket",totalTicketGrantingTicket);
+  sessionsMap.put("totalTickets",totalTicketGrantingTicket + totalProxyGrantingTicket);
+  sessionsMap.put("totalPrincipals",uniquePrincipals.size());
   return sessionsMap;
 }
