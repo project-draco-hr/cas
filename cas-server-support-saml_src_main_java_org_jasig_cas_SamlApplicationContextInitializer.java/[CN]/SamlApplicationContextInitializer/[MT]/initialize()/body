@@ -1,6 +1,7 @@
 {
   logger.info("Initializing Saml application context");
-  final Map<String,Object> urlMap=(Map<String,Object>)handlerMappingC.getUrlMap();
+  final Map<String,Object> urlMap=(Map<String,Object>)this.handlerMappingC.getUrlMap();
   urlMap.put(SamlProtocolConstants.ENDPOINT_SAML_VALIDATE,this.samlValidateController);
-  handlerMappingC.initApplicationContext();
+  this.handlerMappingC.initApplicationContext();
+  logger.info("Initialized Saml application context successfully");
 }

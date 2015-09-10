@@ -1,0 +1,6 @@
+{
+  if (applicationContext.getParent() == null) {
+    final List<ArgumentExtractor> list=applicationContext.getBean("argumentExtractors",List.class);
+    list.add(this.samlArgumentExtractor);
+  }
+}
