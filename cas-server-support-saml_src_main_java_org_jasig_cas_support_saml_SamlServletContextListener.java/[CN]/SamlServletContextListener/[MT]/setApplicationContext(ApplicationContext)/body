@@ -1,8 +1,13 @@
 {
   if (applicationContext.getParent() == null) {
-    final List<ArgumentExtractor> list=applicationContext.getBean("argumentExtractors",List.class);
-    list.add(this.samlArgumentExtractor);
-    final Map<String,UniqueTicketIdGenerator> map=applicationContext.getBean("uniqueIdGeneratorsMap",Map.class);
-    map.put(SamlService.class.getCanonicalName(),samlServiceTicketUniqueIdGenerator);
+    try {
+      final List<ArgumentExtractor> list=applicationContext.getBean("argumentExtractors",List.class);
+      list.add(this.samlArgumentExtractor);
+      final Map<String,UniqueTicketIdGenerator> map=applicationContext.getBean("uniqueIdGeneratorsMap",Map.class);
+      map.put(SamlService.class.getCanonicalName(),this.samlServiceTicketUniqueIdGenerator);
+    }
+ catch (    final Exception e) {
+      logger.warn("SAML application context could not be auto-configured. {}",e.getMessage());
+    }
   }
 }
