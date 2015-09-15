@@ -24,7 +24,7 @@
       final String principal=entry.get(SsoSessionAttributeKeys.AUTHENTICATED_PRINCIPAL.toString()).toString();
       uniquePrincipals.add(principal);
     }
-    totalUsageCount+=Long.valueOf(entry.get(SsoSessionAttributeKeys.NUMBER_OF_USES.toString()).toString());
+    totalUsageCount+=Long.parseLong(entry.get(SsoSessionAttributeKeys.NUMBER_OF_USES.toString()).toString());
   }
   sessionsMap.put("totalProxyGrantingTickets",totalProxyGrantingTickets);
   sessionsMap.put("totalTicketGrantingTickets",totalTicketGrantingTickets);
