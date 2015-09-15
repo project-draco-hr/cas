@@ -1,0 +1,5 @@
+{
+  super();
+  this.cache=null;
+  this.duration=null;
+}

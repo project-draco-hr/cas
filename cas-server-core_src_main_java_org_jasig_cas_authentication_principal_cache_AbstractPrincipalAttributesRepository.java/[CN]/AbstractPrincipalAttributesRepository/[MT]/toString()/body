@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this).append("attributeRepository",attributeRepository).append("mergingStrategy",mergingStrategy).toString();
+}

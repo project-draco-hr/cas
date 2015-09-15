@@ -1,0 +1,17 @@
+{
+  final Map<String,Object> cachedAttributes=getPrincipalAttributesFromCache(p);
+  if (cachedAttributes != null && !cachedAttributes.isEmpty()) {
+    logger.debug("Found [{}] cached attributes for principal [{}]",cachedAttributes.size(),p.getId());
+    return cachedAttributes;
+  }
+  final Map<String,List<Object>> sourceAttributes=retrievePersonAttributesToPrincipalAttributes(p.getId());
+  logger.debug("Found [{}] attributes for principal [{}] from the attribute repository.",sourceAttributes.size(),p.getId());
+  if (this.mergingStrategy == null) {
+    logger.debug("No merging strategy found, so attributes retrieved from the repository will be used instead.");
+    return convertAttributesToPrincipalAttributesAndCache(p,sourceAttributes);
+  }
+  final Map<String,List<Object>> principalAttributes=convertPrincipalAttributesToPersonAttributes(p);
+  logger.debug("Merging current principal attributes with that of the repository via strategy [{}]",this.mergingStrategy.getClass().getSimpleName());
+  final Map<String,List<Object>> mergedAttributes=this.mergingStrategy.mergeAttributes(principalAttributes,sourceAttributes);
+  return convertAttributesToPrincipalAttributesAndCache(p,mergedAttributes);
+}

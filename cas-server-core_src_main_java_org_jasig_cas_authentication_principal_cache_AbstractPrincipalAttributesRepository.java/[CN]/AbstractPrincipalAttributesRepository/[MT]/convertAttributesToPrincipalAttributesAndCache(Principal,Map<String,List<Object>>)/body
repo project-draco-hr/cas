@@ -1,0 +1,5 @@
+{
+  final Map<String,Object> finalAttributes=convertPersonAttributesToPrincipalAttributes(sourceAttributes);
+  addPrincipalAttributesIntoCache(p.getId(),finalAttributes);
+  return finalAttributes;
+}

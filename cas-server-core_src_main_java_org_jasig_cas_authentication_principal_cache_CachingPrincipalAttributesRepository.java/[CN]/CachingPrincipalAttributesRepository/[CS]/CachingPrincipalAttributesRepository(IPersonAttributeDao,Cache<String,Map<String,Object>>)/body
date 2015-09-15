@@ -1,0 +1,4 @@
+{
+  super(attributeRepository);
+  this.cache=cache;
+}
