@@ -5,6 +5,7 @@
   sessionsMap.put("activeSsoSessions",collection);
   long totalTicketGrantingTickets=0;
   long totalProxyGrantingTickets=0;
+  long totalUsageCount=0;
   final Set<String> uniquePrincipals=new HashSet<>();
   for (  final Map<String,Object> entry : collection) {
     if (entry.containsKey(SsoSessionAttributeKeys.IS_PROXIED.toString())) {
@@ -23,10 +24,12 @@
       final String principal=entry.get(SsoSessionAttributeKeys.AUTHENTICATED_PRINCIPAL.toString()).toString();
       uniquePrincipals.add(principal);
     }
+    totalUsageCount+=Long.valueOf(entry.get(SsoSessionAttributeKeys.NUMBER_OF_USES.toString()).toString());
   }
   sessionsMap.put("totalProxyGrantingTickets",totalProxyGrantingTickets);
   sessionsMap.put("totalTicketGrantingTickets",totalTicketGrantingTickets);
   sessionsMap.put("totalTickets",totalTicketGrantingTickets + totalProxyGrantingTickets);
   sessionsMap.put("totalPrincipals",uniquePrincipals.size());
+  sessionsMap.put("totalUsageCount",totalUsageCount);
   return sessionsMap;
 }
