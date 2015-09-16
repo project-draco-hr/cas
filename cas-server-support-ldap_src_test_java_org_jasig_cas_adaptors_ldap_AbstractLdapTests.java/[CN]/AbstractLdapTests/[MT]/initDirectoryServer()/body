@@ -1,0 +1,3 @@
+{
+  initDirectoryServer(new ClassPathResource("ldif/ldap-base.ldif").getInputStream());
+}

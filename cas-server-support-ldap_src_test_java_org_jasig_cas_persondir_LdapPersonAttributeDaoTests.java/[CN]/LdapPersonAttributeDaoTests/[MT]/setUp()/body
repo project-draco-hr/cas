@@ -1,4 +1,0 @@
-{
-  super.setUp();
-  this.attributeDao=this.context.getBean(LdapPersonAttributeDao.class);
-}

@@ -1,0 +1,5 @@
+{
+  this.attributeRepository=null;
+  this.cache=null;
+  this.duration=null;
+}

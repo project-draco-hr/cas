@@ -1,7 +1,5 @@
 {
-  PrintWriter printWriter;
-  try {
-    printWriter=response.getWriter();
+  try (PrintWriter printWriter=response.getWriter()){
     response.setStatus(status);
     printWriter.print(text);
   }

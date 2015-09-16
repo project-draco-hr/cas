@@ -1,0 +1,6 @@
+{
+  request.addParameter("openid.mode","anythingElse");
+  final boolean canHandle=smartOpenIdController.canHandle(request,response);
+  request.removeParameter("openid.mode");
+  assertEquals(false,canHandle);
+}

@@ -1,0 +1,14 @@
+{
+  final String service=getServiceUrl();
+  final String encodedService=URLEncoder.encode(service,"UTF-8");
+  beginAt("/login?service=" + encodedService);
+  setFormElement("username",getUsername());
+  setFormElement("password",getGoodPassword());
+  submit();
+  final String serviceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  final String encodedProxyCallbackUrl=URLEncoder.encode("https://secure.its.yale.edu/cas/noexist","UTF-8");
+  beginAt(getValidationPath() + "?renew=true&service=" + encodedService+ "&"+ "ticket="+ serviceTicket+ "&pgtUrl="+ encodedProxyCallbackUrl);
+  assertTextPresent("<cas:authenticationSuccess>");
+  assertTextPresent("<cas:user>" + getUsername() + "</cas:user>");
+  assertTextNotPresent("<cas:pgtiou>");
+}

@@ -1,0 +1,11 @@
+{
+  final MockRequestContext context=new MockRequestContext();
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setParameter(OpenIdConstants.OPENID_IDENTITY,"fablah");
+  request.setParameter(OpenIdConstants.OPENID_RETURNTO,"http://www.cnn.com");
+  final OpenIdService service=OpenIdService.createServiceFrom(request,null);
+  context.getFlowScope().put("service",service);
+  context.getFlowScope().put("ticketGrantingTicketId","tgtId");
+  context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
+  assertEquals("error",this.action.execute(context).getId());
+}

@@ -1,6 +1,6 @@
 {
   this.id=identifier;
-  this.expirationDate=expirationDate;
+  this.expirationDate=new DateTime(expirationDate);
   if (leniency < 0) {
     throw new IllegalArgumentException("Leniency cannot be negative.");
   }

@@ -1,0 +1,4 @@
+{
+  this.ipAddress=ipAddress;
+  this.hostName=ipAddress;
+}

@@ -1,0 +1,6 @@
+{
+  final String id=kryo.readObject(input,String.class);
+  final AbstractRegisteredService svc=new RegisteredServiceImpl();
+  svc.setServiceId(id);
+  return svc;
+}

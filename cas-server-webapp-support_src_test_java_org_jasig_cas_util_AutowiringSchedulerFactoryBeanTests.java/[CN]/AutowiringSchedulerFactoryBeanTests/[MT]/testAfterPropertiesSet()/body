@@ -1,3 +1,0 @@
-{
-  assertEquals(1,this.scheduler.getTriggerNames(Scheduler.DEFAULT_GROUP).length);
-}

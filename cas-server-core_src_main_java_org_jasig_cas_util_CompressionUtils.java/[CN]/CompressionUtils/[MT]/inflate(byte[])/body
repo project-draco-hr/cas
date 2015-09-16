@@ -1,0 +1,9 @@
+{
+  try (ByteArrayInputStream inb=new ByteArrayInputStream(bytes);ByteArrayOutputStream out=new ByteArrayOutputStream();InflaterOutputStream ios=new InflaterOutputStream(out)){
+    IOUtils.copy(inb,ios);
+    return new String(out.toByteArray(),UTF8_ENCODING);
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e.getMessage(),e);
+  }
+}

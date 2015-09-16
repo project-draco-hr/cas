@@ -5,7 +5,7 @@
       return Collections.emptyList();
     }
     final Set<String> keys=node.getKeys();
-    final List<Ticket> list=new ArrayList<Ticket>();
+    final List<Ticket> list=new ArrayList<>();
     for (    final String key : keys) {
       final Ticket ticket=node.get(key);
       if (ticket != null) {

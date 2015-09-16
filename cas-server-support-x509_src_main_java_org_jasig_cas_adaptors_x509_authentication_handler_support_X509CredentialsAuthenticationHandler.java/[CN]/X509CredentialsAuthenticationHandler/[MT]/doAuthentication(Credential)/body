@@ -10,7 +10,7 @@
     if (!hasTrustedIssuer) {
       hasTrustedIssuer=isCertificateFromTrustedIssuer(certificate);
     }
-    int pathLength=certificate.getBasicConstraints();
+    final int pathLength=certificate.getBasicConstraints();
     if (pathLength < 0) {
       logger.debug("Found valid client certificate");
       clientCert=certificate;
@@ -21,7 +21,7 @@
   }
   if (hasTrustedIssuer && clientCert != null) {
     x509Credential.setCertificate(clientCert);
-    return new HandlerResult(this,x509Credential,new SimplePrincipal(x509Credential.getId()));
+    return new DefaultHandlerResult(this,x509Credential,this.principalFactory.createPrincipal(x509Credential.getId()));
   }
   throw new FailedLoginException();
 }

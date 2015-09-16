@@ -1,5 +1,0 @@
-{
-  binder.setRequiredFields(new String[]{"description","serviceId","name","allowedToProxy","enabled","ssoEnabled","anonymousAccess","evaluationOrder"});
-  binder.setDisallowedFields(new String[]{"id"});
-  binder.registerCustomEditor(String.class,new StringTrimmerEditor(true));
-}

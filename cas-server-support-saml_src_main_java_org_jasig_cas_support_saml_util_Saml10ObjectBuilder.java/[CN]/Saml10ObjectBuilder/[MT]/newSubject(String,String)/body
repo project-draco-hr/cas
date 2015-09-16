@@ -1,0 +1,12 @@
+{
+  final SubjectConfirmation confirmation=newSamlObject(SubjectConfirmation.class);
+  final ConfirmationMethod method=newSamlObject(ConfirmationMethod.class);
+  method.setConfirmationMethod(confirmationMethod);
+  confirmation.getConfirmationMethods().add(method);
+  final NameIdentifier nameIdentifier=newSamlObject(NameIdentifier.class);
+  nameIdentifier.setNameIdentifier(identifier);
+  final Subject subject=newSamlObject(Subject.class);
+  subject.setNameIdentifier(nameIdentifier);
+  subject.setSubjectConfirmation(confirmation);
+  return subject;
+}

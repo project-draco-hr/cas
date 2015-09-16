@@ -1,0 +1,5 @@
+{
+  servletContext.setAttribute(MetricsServlet.METRICS_REGISTRY,this.metricsRegistry);
+  servletContext.setAttribute(MetricsServlet.SHOW_SAMPLES,Boolean.TRUE);
+  servletContext.setAttribute(HealthCheckServlet.HEALTH_CHECK_REGISTRY,this.healthCheckRegistry);
+}

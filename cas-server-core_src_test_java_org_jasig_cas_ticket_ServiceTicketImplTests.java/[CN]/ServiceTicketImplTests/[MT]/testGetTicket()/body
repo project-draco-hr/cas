@@ -1,5 +1,0 @@
-{
-  Service simpleService=TestUtils.getService();
-  ServiceTicket s=new ServiceTicketImpl("stest1",this.ticketGrantingTicket,simpleService,false,new NeverExpiresExpirationPolicy());
-  assertEquals(this.ticketGrantingTicket,s.getGrantingTicket());
-}

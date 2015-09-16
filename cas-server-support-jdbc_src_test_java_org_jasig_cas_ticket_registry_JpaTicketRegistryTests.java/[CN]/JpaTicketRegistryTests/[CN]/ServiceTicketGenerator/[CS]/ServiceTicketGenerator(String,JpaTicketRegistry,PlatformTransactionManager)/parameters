@@ -1,0 +1,3 @@
+String tgtId
+JpaTicketRegistry jpaTicketRegistry
+PlatformTransactionManager txManager

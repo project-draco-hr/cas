@@ -1,6 +1,6 @@
 {
   this.action=new PrincipalFromRequestRemoteUserNonInteractiveCredentialsAction();
-  final Map<String,UniqueTicketIdGenerator> idGenerators=new HashMap<String,UniqueTicketIdGenerator>();
+  final Map<String,UniqueTicketIdGenerator> idGenerators=new HashMap<>();
   idGenerators.put(SimpleWebApplicationServiceImpl.class.getName(),new DefaultUniqueTicketIdGenerator());
   final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(new PrincipalBearingCredentialsAuthenticationHandler(),new PrincipalBearingPrincipalResolver()));
   final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),null,authenticationManager,new DefaultUniqueTicketIdGenerator(),idGenerators,new NeverExpiresExpirationPolicy(),new NeverExpiresExpirationPolicy(),mock(ServicesManager.class),mock(LogoutManager.class));

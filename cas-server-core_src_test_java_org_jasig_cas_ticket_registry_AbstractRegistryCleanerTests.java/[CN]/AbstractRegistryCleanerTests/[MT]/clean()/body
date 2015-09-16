@@ -1,0 +1,4 @@
+{
+  beforeCleaning();
+  afterCleaning(this.registryCleaner.clean());
+}

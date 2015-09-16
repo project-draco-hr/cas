@@ -1,0 +1,12 @@
+{
+  final List<String> list=new ArrayList<>();
+  for (  final Object d : items) {
+    if (d instanceof XSURI) {
+      list.add(((XSURI)d).getValue());
+    }
+ else     if (d instanceof XSString) {
+      list.add(((XSString)d).getValue());
+    }
+  }
+  return list;
+}

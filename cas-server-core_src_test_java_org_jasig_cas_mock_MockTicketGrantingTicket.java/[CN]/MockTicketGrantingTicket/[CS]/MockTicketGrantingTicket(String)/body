@@ -1,5 +1,6 @@
 {
   id=ID_GENERATOR.getNewTicketId("TGT");
-  authentication=new AuthenticationBuilder(new SimplePrincipal(principal)).build();
+  final CredentialMetaData metaData=new BasicCredentialMetaData(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  authentication=new DefaultAuthenticationBuilder(new DefaultPrincipalFactory().createPrincipal(principal)).addCredential(metaData).addSuccess(SimpleTestUsernamePasswordAuthenticationHandler.class.getName(),new DefaultHandlerResult(new SimpleTestUsernamePasswordAuthenticationHandler(),metaData)).build();
   created=new Date();
 }

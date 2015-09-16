@@ -1,0 +1,2 @@
+IPersonAttributeDao attributeRepository
+Cache<String,Map<String,Object>> cache

@@ -1,0 +1,4 @@
+{
+  this.authenticationDate=new DateTime(d);
+  return this;
+}

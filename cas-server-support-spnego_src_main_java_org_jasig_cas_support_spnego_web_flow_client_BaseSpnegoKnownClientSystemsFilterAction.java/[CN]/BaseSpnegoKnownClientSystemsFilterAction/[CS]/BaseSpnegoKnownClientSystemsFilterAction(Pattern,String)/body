@@ -1,0 +1,4 @@
+{
+  this.ipsToCheckPattern=ipsToCheckPattern;
+  this.alternativeRemoteHostAttribute=alternativeRemoteHostAttribute;
+}

@@ -1,0 +1,18 @@
+{
+  final String service=getServiceUrl();
+  final String encodedService=URLEncoder.encode(service,"UTF-8");
+  beginAt("/login?renew=true&service=" + encodedService);
+  setFormElement("username",getUsername());
+  setFormElement("password",getGoodPassword());
+  submit();
+  String serviceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  beginAt(getValidationPath() + "?service=" + encodedService+ "&"+ "ticket="+ serviceTicket+ "&renew=true");
+  assertTextPresent("cas:authenticationSuccess");
+  beginAt("/login?renew=true&service=" + encodedService);
+  setFormElement("username",getUsername());
+  setFormElement("password",getGoodPassword());
+  submit();
+  serviceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  beginAt(getValidationPath() + "?service=" + encodedService+ "&"+ "ticket="+ serviceTicket+ "&renew=true");
+  assertTextPresent("<cas:authenticationSuccess>");
+}

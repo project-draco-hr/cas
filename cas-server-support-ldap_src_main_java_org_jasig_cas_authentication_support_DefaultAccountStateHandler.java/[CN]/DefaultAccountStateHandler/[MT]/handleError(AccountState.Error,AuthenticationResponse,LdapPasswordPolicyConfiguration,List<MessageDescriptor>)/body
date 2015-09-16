@@ -1,0 +1,8 @@
+{
+  logger.debug("Handling error {}",error);
+  final LoginException ex=this.errorMap.get(error);
+  if (ex != null) {
+    throw ex;
+  }
+  logger.debug("No LDAP error mapping defined for {}",error);
+}

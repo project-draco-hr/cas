@@ -1,8 +1,0 @@
-{
-  Assert.notNull(failures,"Failures cannot be null");
-  this.failures.clear();
-  for (  final String handler : failures.keySet()) {
-    this.failures.put(handler,failures.get(handler));
-  }
-  return this;
-}

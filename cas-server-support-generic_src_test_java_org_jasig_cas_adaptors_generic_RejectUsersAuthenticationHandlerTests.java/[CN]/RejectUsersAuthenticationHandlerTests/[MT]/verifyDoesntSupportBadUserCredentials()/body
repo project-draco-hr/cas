@@ -1,0 +1,10 @@
+{
+  try {
+    final RegisteredServiceImpl svc=new RegisteredServiceImpl();
+    svc.setServiceId("https://some.app.edu");
+    assertFalse(this.authenticationHandler.supports(new HttpBasedServiceCredential(new URL("http://www.rutgers.edu"),svc)));
+  }
+ catch (  final MalformedURLException e) {
+    fail("Could not resolve URL.");
+  }
+}

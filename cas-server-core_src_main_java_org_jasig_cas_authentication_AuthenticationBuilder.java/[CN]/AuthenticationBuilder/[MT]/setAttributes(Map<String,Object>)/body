@@ -1,8 +1,0 @@
-{
-  Assert.notNull(attributes,"Attributes cannot be null");
-  this.attributes.clear();
-  for (  final String name : attributes.keySet()) {
-    this.attributes.put(name,attributes.get(name));
-  }
-  return this;
-}

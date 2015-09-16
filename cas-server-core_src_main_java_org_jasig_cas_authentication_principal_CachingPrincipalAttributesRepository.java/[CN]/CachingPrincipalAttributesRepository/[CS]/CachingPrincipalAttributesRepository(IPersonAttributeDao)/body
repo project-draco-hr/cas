@@ -1,0 +1,3 @@
+{
+  this(attributeRepository,DEFAULT_CACHE_EXPIRATION_DURATION);
+}

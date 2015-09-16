@@ -1,6 +1,0 @@
-{
-  if (staticPasswordExpirationDate != null) {
-    return DateTime.parse(this.staticPasswordExpirationDate,this.datetimeFormatter);
-  }
-  return null;
-}

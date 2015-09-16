@@ -1,5 +1,0 @@
-{
-  assertTrue(this.resolver.supports(new PrincipalBearingCredential(new SimplePrincipal("test"))));
-  assertFalse(this.resolver.supports(new UsernamePasswordCredential()));
-  assertFalse(this.resolver.supports(null));
-}

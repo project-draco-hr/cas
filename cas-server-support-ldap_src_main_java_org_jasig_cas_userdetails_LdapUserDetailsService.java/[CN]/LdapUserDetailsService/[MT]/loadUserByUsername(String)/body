@@ -15,8 +15,9 @@
   if (userResult.size() > 1 && !this.allowMultipleResults) {
     throw new IllegalStateException("Found multiple results for user which is not allowed (allowMultipleResults=false).");
   }
-  final String userDn=userResult.getEntry().getDn();
-  final LdapAttribute userAttribute=userResult.getEntry().getAttribute(this.userAttributeName);
+  final LdapEntry userResultEntry=userResult.getEntry();
+  final String userDn=userResultEntry.getDn();
+  final LdapAttribute userAttribute=userResultEntry.getAttribute(this.userAttributeName);
   if (userAttribute == null) {
     throw new IllegalStateException(this.userAttributeName + " attribute not found in results.");
   }
@@ -32,14 +33,16 @@
     throw new RuntimeException("LDAP error fetching roles for user.",e);
   }
   LdapAttribute roleAttribute;
-  final Collection<SimpleGrantedAuthority> roles=new ArrayList<SimpleGrantedAuthority>(roleResult.size());
+  final Collection<SimpleGrantedAuthority> roles=new ArrayList<>(roleResult.size());
   for (  final LdapEntry entry : roleResult.getEntries()) {
     roleAttribute=entry.getAttribute(this.roleAttributeName);
     if (roleAttribute == null) {
       logger.warn("Role attribute not found on entry {}",entry);
       continue;
     }
-    roles.add(new SimpleGrantedAuthority(this.rolePrefix + roleAttribute.getStringValue().toUpperCase()));
+    for (    final String role : roleAttribute.getStringValues()) {
+      roles.add(new SimpleGrantedAuthority(this.rolePrefix + role.toUpperCase()));
+    }
   }
   return new User(id,UNKNOWN_PASSWORD,roles);
 }

@@ -1,0 +1,6 @@
+{
+  final MockHttpServletResponse response=new MockHttpServletResponse();
+  this.controller.deleteRegisteredService(1200,response);
+  assertNull(this.servicesManager.findServiceBy(1200));
+  assertFalse(response.getContentAsString().contains("serviceName"));
+}

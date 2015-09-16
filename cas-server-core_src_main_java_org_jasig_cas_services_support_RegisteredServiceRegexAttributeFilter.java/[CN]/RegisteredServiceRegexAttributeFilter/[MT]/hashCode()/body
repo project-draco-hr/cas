@@ -1,0 +1,3 @@
+{
+  return new HashCodeBuilder(17,83).append(this.pattern).toHashCode();
+}

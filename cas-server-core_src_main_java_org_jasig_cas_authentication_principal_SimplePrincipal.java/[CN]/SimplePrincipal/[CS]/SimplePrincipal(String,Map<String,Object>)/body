@@ -1,5 +1,4 @@
 {
-  Assert.notNull(id,"id cannot be null");
   this.id=id;
   this.attributes=attributes;
 }

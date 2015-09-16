@@ -1,0 +1,10 @@
+{
+  try {
+    LOGGER.debug("Attempting to resolve {}",this.ipAddress);
+    final InetAddress address=InetAddress.getByName(this.ipAddress);
+    set(address.getCanonicalHostName());
+  }
+ catch (  final UnknownHostException e) {
+    LOGGER.debug("Unable to identify the canonical hostname for ip address.",e);
+  }
+}

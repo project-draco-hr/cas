@@ -1,6 +1,6 @@
 {
   final RegisteredService r=this.servicesManager.findServiceBy(id);
   Assert.notNull(r,"invalid RegisteredService id");
-  ((RegisteredServiceImpl)r).setEnabled(newState);
+  ((DefaultRegisteredServiceAccessStrategy)r.getAccessStrategy()).setEnabled(newState);
   this.servicesManager.save(r);
 }

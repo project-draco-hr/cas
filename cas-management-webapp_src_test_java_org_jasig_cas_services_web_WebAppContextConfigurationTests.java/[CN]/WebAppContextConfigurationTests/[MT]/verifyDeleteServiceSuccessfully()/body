@@ -1,0 +1,4 @@
+{
+  final MockHttpServletResponse response=this.mvc.perform(post("/deleteRegisteredService.html").param("id","100")).andExpect(status().isOk()).andReturn().getResponse();
+  assertTrue(response.getContentAsString().contains("\"status\" : " + HttpServletResponse.SC_OK));
+}

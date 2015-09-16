@@ -1,0 +1,5 @@
+{
+  final PrincipalAttributeRegisteredServiceUsernameProvider provider=new PrincipalAttributeRegisteredServiceUsernameProvider("cn");
+  final PrincipalAttributeRegisteredServiceUsernameProvider provider2=new PrincipalAttributeRegisteredServiceUsernameProvider("cn");
+  assertEquals(provider,provider2);
+}

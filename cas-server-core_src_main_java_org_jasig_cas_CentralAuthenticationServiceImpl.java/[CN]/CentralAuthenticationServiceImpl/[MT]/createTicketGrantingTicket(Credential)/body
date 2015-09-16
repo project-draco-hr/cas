@@ -1,7 +1,12 @@
 {
-  Assert.notNull(credentials,"credentials cannot be null");
-  final Authentication authentication=this.authenticationManager.authenticate(credentials);
-  final TicketGrantingTicket ticketGrantingTicket=new TicketGrantingTicketImpl(this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),authentication,this.ticketGrantingTicketExpirationPolicy);
-  this.ticketRegistry.addTicket(ticketGrantingTicket);
-  return ticketGrantingTicket.getId();
+  final Set<Credential> sanitizedCredentials=sanitizeCredentials(credentials);
+  if (sanitizedCredentials.size() > 0) {
+    final Authentication authentication=this.authenticationManager.authenticate(credentials);
+    final TicketGrantingTicket ticketGrantingTicket=new TicketGrantingTicketImpl(this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),authentication,this.ticketGrantingTicketExpirationPolicy);
+    this.ticketRegistry.addTicket(ticketGrantingTicket);
+    return ticketGrantingTicket;
+  }
+  final String msg="No credentials were specified in the request for creating a new ticket-granting ticket";
+  logger.warn(msg);
+  throw new TicketCreationException(new IllegalArgumentException(msg));
 }

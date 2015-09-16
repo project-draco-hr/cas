@@ -1,0 +1,6 @@
+{
+  final Map<String,String> map=new HashMap<>();
+  map.put("error",ex.getMessage());
+  map.put("stacktrace",Arrays.deepToString(ex.getStackTrace()));
+  renderException(map,response);
+}

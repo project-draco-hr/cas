@@ -1,9 +1,0 @@
-{
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.addParameter(RememberMeCredential.REQUEST_PARAMETER_REMEMBER_ME,"true");
-  final MockHttpServletResponse response=new MockHttpServletResponse();
-  this.g.addCookie(request,response,"test");
-  final Cookie c=response.getCookie("test");
-  assertEquals(100,c.getMaxAge());
-  assertEquals("test",c.getValue());
-}

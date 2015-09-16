@@ -1,0 +1,11 @@
+{
+  if (sanItem.size() < 2) {
+    logger.error("Subject Alternative Name List does not contain at least two required elements. Returning null principal id...");
+  }
+  final Integer itemType=(Integer)sanItem.get(0);
+  if (itemType == 0) {
+    final byte[] altName=(byte[])sanItem.get(1);
+    return getAltnameSequence(altName);
+  }
+  return null;
+}

@@ -1,0 +1,8 @@
+{
+  final JpaLockingStrategy lock=new JpaLockingStrategy();
+  lock.entityManager=SharedEntityManagerCreator.createSharedEntityManager(factory);
+  lock.setApplicationId(appId);
+  lock.setUniqueId(uniqueId);
+  lock.setLockTimeout(ttl);
+  return (LockingStrategy)Proxy.newProxyInstance(JpaLockingStrategy.class.getClassLoader(),new Class[]{LockingStrategy.class},new TransactionalLockInvocationHandler(lock,this.txManager));
+}

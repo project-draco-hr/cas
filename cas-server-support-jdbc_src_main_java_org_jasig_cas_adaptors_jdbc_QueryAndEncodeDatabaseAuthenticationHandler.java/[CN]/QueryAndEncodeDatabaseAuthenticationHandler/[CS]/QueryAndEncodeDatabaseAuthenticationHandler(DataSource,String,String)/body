@@ -1,0 +1,6 @@
+{
+  super();
+  setDataSource(datasource);
+  this.sql=sql;
+  this.algorithmName=algorithmName;
+}

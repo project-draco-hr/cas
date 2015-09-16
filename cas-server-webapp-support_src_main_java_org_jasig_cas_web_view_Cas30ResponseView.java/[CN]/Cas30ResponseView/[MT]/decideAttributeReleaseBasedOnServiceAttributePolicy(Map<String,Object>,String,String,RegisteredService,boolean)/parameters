@@ -1,0 +1,5 @@
+Map<String,Object> attributes
+String attributeValue
+String attributeName
+RegisteredService service
+boolean doesAttributePolicyAllow

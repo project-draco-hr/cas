@@ -1,8 +1,0 @@
-{
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  final MockHttpServletResponse response=new MockHttpServletResponse();
-  request.setMethod("POST");
-  final ModelAndView modelAndView=this.controller.handleRequest(request,response);
-  final BindingResult result=(BindingResult)modelAndView.getModel().get("org.springframework.validation.BindingResult.registeredService");
-  assertTrue(result.hasErrors());
-}

@@ -1,0 +1,19 @@
+{
+  final String gateway="notNull";
+  final String service="http://www.yale.edu";
+  final String encodedService=URLEncoder.encode(service,"UTF-8");
+  final String urlnogw="/login?service=" + encodedService;
+  final String urlgw="/login?service=" + encodedService + "&gateway="+ gateway;
+  beginAt(urlnogw);
+  setFormElement(FORM_USERNAME,getUsername());
+  setFormElement(FORM_PASSWORD,getGoodPassword());
+  submit();
+  beginAt(urlgw);
+  final String st=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  assertNotNull(st);
+  beginAt("/validate?ticket=" + st + "&service="+ encodedService);
+  final HttpUnitDialog htDialog=getDialog();
+  final String validateOutput=htDialog.getResponseText();
+  final String expected="yes\n" + getUsername() + "\n";
+  assertEquals(expected,validateOutput);
+}

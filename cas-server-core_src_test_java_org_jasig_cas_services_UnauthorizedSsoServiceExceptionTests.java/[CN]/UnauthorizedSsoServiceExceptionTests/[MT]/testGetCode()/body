@@ -1,4 +1,0 @@
-{
-  UnauthorizedSsoServiceException e=new UnauthorizedSsoServiceException();
-  assertEquals(CODE,e.getMessage());
-}

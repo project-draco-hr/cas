@@ -1,0 +1,8 @@
+{
+  final String service="https://localhost:8443/contacts-cas/j_acegi_cas_security_check";
+  beginAt("/validate?service=" + URLEncoder.encode(service,"UTF-8") + "&ticket=test");
+  assertTextPresent("no");
+  final HttpUnitDialog htDialog=getDialog();
+  final String validateOutput=htDialog.getResponseText();
+  assertEquals(LEGACY_NO_RESPONSE,validateOutput);
+}

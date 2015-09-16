@@ -1,0 +1,7 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  final MockHttpServletResponse response=new MockHttpServletResponse();
+  this.generator.addCookie(request,response,"test");
+  request.setCookies(response.getCookies());
+  assertEquals("test",this.generator.retrieveCookieValue(request));
+}

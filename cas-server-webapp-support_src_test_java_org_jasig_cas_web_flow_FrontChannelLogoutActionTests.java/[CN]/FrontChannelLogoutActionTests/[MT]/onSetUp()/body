@@ -1,6 +1,6 @@
 {
-  final LogoutManager logoutManager=new LogoutManagerImpl(mock(ServicesManager.class),new SimpleHttpClient(),new SamlCompliantLogoutMessageCreator());
-  this.frontChannelLogoutAction=new FrontChannelLogoutAction(logoutManager);
+  this.logoutManager=new LogoutManagerImpl(this.servicesManager,new SimpleHttpClientFactoryBean().getObject(),new SamlCompliantLogoutMessageCreator());
+  this.frontChannelLogoutAction=new FrontChannelLogoutAction(this.logoutManager);
   this.request=new MockHttpServletRequest();
   this.response=new MockHttpServletResponse();
   this.requestContext=mock(RequestContext.class);

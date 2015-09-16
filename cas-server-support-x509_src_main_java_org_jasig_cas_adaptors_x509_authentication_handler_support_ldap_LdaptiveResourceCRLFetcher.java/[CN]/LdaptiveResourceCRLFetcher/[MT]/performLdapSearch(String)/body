@@ -1,0 +1,4 @@
+{
+  final ConnectionFactory connectionFactory=prepareConnectionFactory(ldapURL);
+  return this.searchExecutor.search(connectionFactory);
+}

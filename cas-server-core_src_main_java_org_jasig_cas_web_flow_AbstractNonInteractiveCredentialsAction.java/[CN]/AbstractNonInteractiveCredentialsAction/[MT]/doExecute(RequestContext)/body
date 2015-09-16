@@ -7,7 +7,7 @@
   final Service service=WebUtils.getService(context);
   if (isRenewPresent(context) && ticketGrantingTicketId != null && service != null) {
     try {
-      final String serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
+      final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
       WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
       return result("warn");
     }
@@ -21,7 +21,7 @@ catch (    final TicketException e) {
     }
   }
   try {
-    WebUtils.putTicketGrantingTicketInRequestScope(context,this.centralAuthenticationService.createTicketGrantingTicket(credential));
+    WebUtils.putTicketGrantingTicketInScopes(context,this.centralAuthenticationService.createTicketGrantingTicket(credential));
     onSuccess(context,credential);
     return success();
   }

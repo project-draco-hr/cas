@@ -1,4 +1,3 @@
 {
-  super(CODE);
-  this.service=service;
+  this(CODE,service);
 }

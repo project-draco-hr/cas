@@ -1,0 +1,4 @@
+{
+  buildMetadataResolverAggregate(entityId);
+  return super.getEntityDescriptorForEntityId(entityId);
+}

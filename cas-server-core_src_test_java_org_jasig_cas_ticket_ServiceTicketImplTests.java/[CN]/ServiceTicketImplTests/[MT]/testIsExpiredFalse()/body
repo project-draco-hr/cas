@@ -1,5 +1,0 @@
-{
-  TicketGrantingTicket t=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
-  ServiceTicket s=t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),TestUtils.getService(),new MultiTimeUseOrTimeoutExpirationPolicy(1,5000),false);
-  assertFalse(s.isExpired());
-}

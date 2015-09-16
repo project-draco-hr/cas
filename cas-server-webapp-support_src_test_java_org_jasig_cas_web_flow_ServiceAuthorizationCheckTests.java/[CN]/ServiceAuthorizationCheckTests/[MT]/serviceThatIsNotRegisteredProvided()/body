@@ -1,5 +1,5 @@
 {
-  MockRequestContext mockRequestContext=new MockRequestContext();
+  final MockRequestContext mockRequestContext=new MockRequestContext();
   mockRequestContext.getFlowScope().put("service",this.undefinedService);
   this.serviceAuthorizationCheck.doExecute(mockRequestContext);
   fail("Should have thrown UnauthorizedServiceException");

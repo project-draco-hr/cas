@@ -1,6 +1,0 @@
-{
-  final ModelAndView success=new ModelAndView(this.successView);
-  success.addObject(MODEL_ASSERTION,assertion);
-  success.addObject(MODEL_PROXY_GRANTING_TICKET_IOU,proxyIou);
-  return success;
-}

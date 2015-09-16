@@ -1,3 +1,0 @@
-{
-  assertNotNull(this.handler.handle(new HttpBasedServiceCredential(new URL("http://www.rutgers.edu/?test=test")),"proxyGrantingTicketId"));
-}

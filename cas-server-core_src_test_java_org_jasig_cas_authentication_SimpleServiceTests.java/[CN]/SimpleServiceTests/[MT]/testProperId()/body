@@ -1,3 +1,0 @@
-{
-  assertEquals("Ids are not equal.",TestUtils.CONST_USERNAME,TestUtils.getService().getId());
-}

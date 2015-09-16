@@ -1,0 +1,4 @@
+{
+  this.centralAuthenticationService=centralAuthenticationService;
+  this.ticketRegistry=ticketRegistry;
+}

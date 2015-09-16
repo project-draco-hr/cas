@@ -1,0 +1,10 @@
+{
+  beginAt("/login");
+  setFormElement(FORM_USERNAME,getUsername());
+  setFormElement(FORM_PASSWORD,getGoodPassword());
+  final String url="/login";
+  submit();
+  assertCookiePresent(COOKIE_TGC_ID);
+  beginAt(url);
+  assertFormNotPresent(FORM_USERNAME);
+}

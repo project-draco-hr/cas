@@ -3,7 +3,7 @@
   final Principal principal=request.getUserPrincipal();
   if (principal != null) {
     logger.debug("UserPrincipal [{}] found in HttpServletRequest",principal.getName());
-    return new PrincipalBearingCredential(new SimplePrincipal(principal.getName()));
+    return new PrincipalBearingCredential(this.principalFactory.createPrincipal(principal.getName()));
   }
   logger.debug("UserPrincipal not found in HttpServletRequest.");
   return null;

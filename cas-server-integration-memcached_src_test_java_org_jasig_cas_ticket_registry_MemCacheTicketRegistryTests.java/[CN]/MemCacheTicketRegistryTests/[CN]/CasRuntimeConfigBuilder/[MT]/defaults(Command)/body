@@ -1,0 +1,6 @@
+{
+  final RuntimeConfigBuilder builder=super.defaults(command);
+  final IDownloadConfig downloadConfig=new CasDownloadConfigBuilder().defaultsForCommand(command).progressListener(new StandardConsoleProgressListener()).build();
+  this.artifactStore().overwriteDefault(new ArtifactStoreBuilder().defaults(command).download(downloadConfig).build());
+  return builder;
+}

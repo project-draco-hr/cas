@@ -1,8 +1,0 @@
-{
-  final Map<String,Object> model=new HashMap<String,Object>();
-  final List<RegisteredService> services=new ArrayList<RegisteredService>(this.servicesManager.getAllServices());
-  model.put("services",services);
-  model.put("pageTitle",VIEW_NAME);
-  model.put("defaultServiceUrl",this.defaultServiceUrl);
-  return new ModelAndView(VIEW_NAME,model);
-}

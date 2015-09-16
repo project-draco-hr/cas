@@ -1,5 +1,5 @@
 {
-  final Collection<Object[]> params=new ArrayList<Object[]>();
+  final Collection<Object[]> params=new ArrayList<>();
   final ThresholdExpiredCRLRevocationPolicy zeroThresholdPolicy=new ThresholdExpiredCRLRevocationPolicy();
   zeroThresholdPolicy.setThreshold(0);
   params.add(new Object[]{new ResourceCRLRevocationChecker(new ClassPathResource[]{new ClassPathResource("userCA-valid.crl")}),zeroThresholdPolicy,new String[]{"user-valid.crt"},null});

@@ -1,0 +1,4 @@
+AuthnStatement authnStatement
+String issuer
+DateTime issuedAt
+String id

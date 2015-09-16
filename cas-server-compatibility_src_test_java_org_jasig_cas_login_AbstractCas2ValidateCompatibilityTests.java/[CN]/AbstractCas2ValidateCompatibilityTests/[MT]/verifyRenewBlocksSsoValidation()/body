@@ -1,0 +1,19 @@
+{
+  final String firstService=getServiceUrl();
+  final String encodedFirstService=URLEncoder.encode(firstService,"UTF-8");
+  beginAt("/login?service=" + encodedFirstService);
+  setFormElement("username",getUsername());
+  setFormElement("password",getGoodPassword());
+  submit();
+  final String firstServiceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  final String secondService="http://www.uportal.org/";
+  final String encodedSecondService=URLEncoder.encode(secondService,"UTF-8");
+  beginAt("/login?service=" + encodedSecondService);
+  final String secondServiceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  beginAt(getValidationPath() + "?renew=true&service=" + encodedSecondService+ "&ticket="+ secondServiceTicket);
+  assertTextPresent("cas:authenticationFailure");
+  assertTextNotPresent("<cas:user>");
+  beginAt(getValidationPath() + "?renew=true&service=" + encodedFirstService+ "&ticket="+ firstServiceTicket);
+  assertTextPresent("cas:authenticationSuccess");
+  assertTextPresent("<cas:user>" + getUsername() + "</cas:user>");
+}

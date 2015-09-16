@@ -1,0 +1,3 @@
+{
+  return attribute != null && StringUtils.isNotBlank(attribute.getStringValue());
+}

@@ -1,4 +1,4 @@
 {
-  this.servicesManager=servicesManager;
-  this.personAttributeDao=attributeRepository;
+  super(servicesManager);
+  this.personAttributeDao=personAttributeDao;
 }

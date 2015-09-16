@@ -1,0 +1,6 @@
+{
+  final String deflator=CompressionUtils.deflate(SAML_REQUEST);
+  final AbstractSaml20ObjectBuilder builder=new GoogleSaml20ObjectBuilder();
+  final String msg=builder.decodeSamlAuthnRequest(deflator);
+  assertEquals(msg,SAML_REQUEST);
+}

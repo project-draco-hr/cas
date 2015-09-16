@@ -1,0 +1,8 @@
+{
+  final String gateway="true";
+  final String service=URLEncoder.encode("http://www.cnn.com","UTF-8");
+  final String url="/login?service=" + service + "&gateway="+ gateway;
+  beginAt(url);
+  assertTextPresent("cnn.com");
+  assertFormElementNotPresent("lt");
+}

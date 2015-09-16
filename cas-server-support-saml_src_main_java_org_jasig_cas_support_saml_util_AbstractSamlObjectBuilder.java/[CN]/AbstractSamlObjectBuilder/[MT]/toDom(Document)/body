@@ -1,0 +1,15 @@
+{
+  try {
+    final XMLOutputter xmlOutputter=new XMLOutputter();
+    final StringWriter elemStrWriter=new StringWriter();
+    xmlOutputter.output(doc,elemStrWriter);
+    final byte[] xmlBytes=elemStrWriter.toString().getBytes(Charset.defaultCharset());
+    final DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+    dbf.setNamespaceAware(true);
+    return dbf.newDocumentBuilder().parse(new ByteArrayInputStream(xmlBytes));
+  }
+ catch (  final Exception e) {
+    logger.trace(e.getMessage(),e);
+    return null;
+  }
+}

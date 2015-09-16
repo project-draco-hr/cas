@@ -4,7 +4,8 @@
   }
   if (exceedsThreshold(request)) {
     recordThrottle(request);
-    response.sendError(403,"Access Denied for user [" + request.getParameter(usernameParameter) + " from IP Address ["+ request.getRemoteAddr()+ "]");
+    request.setAttribute(WebUtils.CAS_ACCESS_DENIED_REASON,"screen.blocked.message");
+    response.sendError(HttpStatus.SC_FORBIDDEN,"Access Denied for user [" + request.getParameter(usernameParameter) + "] from IP Address ["+ request.getRemoteAddr()+ ']');
     return false;
   }
   return true;

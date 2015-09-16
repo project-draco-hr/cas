@@ -1,3 +1,7 @@
 {
-  return this.initToken.hashCode() ^ this.nextToken.hashCode() ^ this.principal.hashCode();
+  int hash=super.hashCode();
+  if (this.principal != null) {
+    hash=this.principal.hashCode();
+  }
+  return new HashCodeBuilder().append(this.getInitToken()).append(this.getNextToken()).append(hash).toHashCode();
 }

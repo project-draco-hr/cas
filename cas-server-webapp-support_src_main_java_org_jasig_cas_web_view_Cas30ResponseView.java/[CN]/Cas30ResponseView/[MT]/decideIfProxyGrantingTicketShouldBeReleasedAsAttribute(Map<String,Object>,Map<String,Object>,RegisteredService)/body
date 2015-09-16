@@ -1,0 +1,3 @@
+{
+  decideAttributeReleaseBasedOnServiceAttributePolicy(attributes,getProxyGrantingTicketId(model),CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET,service,service.getAttributeReleasePolicy().isAuthorizedToReleaseProxyGrantingTicket());
+}

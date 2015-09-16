@@ -1,0 +1,14 @@
+{
+  final ObjectMapper mapper=super.initializeObjectMapper();
+  final FilterProvider filters=new SimpleFilterProvider().addFilter("beanObjectFilter",new CasSimpleBeanObjectFilter());
+  mapper.setFilters(filters);
+  mapper.setVisibility(PropertyAccessor.ALL,JsonAutoDetect.Visibility.ANY);
+  mapper.configure(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS,false);
+  mapper.configure(SerializationFeature.WRITE_NULL_MAP_VALUES,false);
+  mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+  mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+  mapper.addMixIn(Object.class,CasSimpleBeanObjectFilter.class);
+  mapper.disable(SerializationFeature.INDENT_OUTPUT);
+  mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+  return mapper;
+}

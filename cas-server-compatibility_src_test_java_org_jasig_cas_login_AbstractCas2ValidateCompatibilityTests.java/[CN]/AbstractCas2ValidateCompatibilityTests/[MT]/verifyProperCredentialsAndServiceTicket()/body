@@ -1,0 +1,14 @@
+{
+  final String service=getServiceUrl();
+  final String encodedService=URLEncoder.encode(service,"UTF-8");
+  beginAt("/login?service=" + encodedService);
+  setFormElement("username",getUsername());
+  setFormElement("password",getGoodPassword());
+  submit();
+  final String serviceTicket=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
+  beginAt(getValidationPath() + "?service=" + encodedService+ "&"+ "ticket="+ serviceTicket);
+  assertTextPresent("cas:authenticationSuccess");
+  assertTextPresent("<cas:user>" + getUsername() + "</cas:user>");
+  beginAt(getValidationPath() + "?service=" + encodedService+ "&"+ "ticket="+ serviceTicket);
+  assertTextPresent("cas:authenticationFailure");
+}

@@ -1,6 +1,0 @@
-{
-  UsernamePasswordCredential c=new UsernamePasswordCredential();
-  c.setUsername("fff");
-  c.setPassword("rutgers");
-  assertNotNull(this.authenticationHandler.authenticate(c));
-}
