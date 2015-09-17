@@ -1,3 +1,18 @@
 {
   this.delegate=delegate;
+  if (isErrorEnabled()) {
+    this.level=Level.ERROR;
+  }
+  if (isWarnEnabled()) {
+    this.level=Level.WARN;
+  }
+  if (isInfoEnabled()) {
+    this.level=Level.INFO;
+  }
+  if (isDebugEnabled()) {
+    this.level=Level.DEBUG;
+  }
+  if (isTraceEnabled()) {
+    this.level=Level.TRACE;
+  }
 }

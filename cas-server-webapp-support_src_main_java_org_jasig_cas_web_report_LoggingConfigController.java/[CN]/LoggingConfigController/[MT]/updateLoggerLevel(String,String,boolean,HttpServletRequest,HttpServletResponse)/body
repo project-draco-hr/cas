@@ -1,0 +1,10 @@
+{
+  final CasLoggerFactory factory=(CasLoggerFactory)LoggerFactory.getILoggerFactory();
+  final CasDelegatingLogger casLogger=factory.getLoggers().get(loggerName);
+  final LocationAwareLogger delegatedLogger=(LocationAwareLogger)casLogger.getDelegate();
+  final Field field=ReflectionUtils.findField(delegatedLogger.getClass(),"logger");
+  field.setAccessible(true);
+  final org.apache.logging.log4j.core.Logger logger=(org.apache.logging.log4j.core.Logger)ReflectionUtils.getField(field,delegatedLogger);
+  logger.setLevel(Level.getLevel(loggerLevel));
+  logger.setAdditive(additive);
+}

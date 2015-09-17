@@ -1,0 +1,5 @@
+String loggerName
+String loggerLevel
+boolean additive
+HttpServletRequest request
+HttpServletResponse response

@@ -1,0 +1,24 @@
+{
+  final Map<String,Object> responseMap=new HashMap();
+  final CasLoggerFactory factory=(CasLoggerFactory)LoggerFactory.getILoggerFactory();
+  final Set<Map.Entry<String,CasDelegatingLogger>> loggers=factory.getLoggers().entrySet();
+  responseMap.put("activeLoggers",loggers);
+  final LoggerContext loggerContext=Configurator.initialize("CAS",null,this.logConfigurationFile.getURI());
+  final Configuration configuration=loggerContext.getConfiguration();
+  final Collection<LoggerConfig> loggerConfigs=configuration.getLoggers().values();
+  final Collection<Map<String,Object>> configuredLoggers=new HashSet<>();
+  for (  final LoggerConfig config : loggerConfigs) {
+    final Map<String,Object> loggerMap=new HashMap();
+    loggerMap.put("name",StringUtils.defaultIfBlank(config.getName(),"Root"));
+    loggerMap.put("state",config.getState());
+    if (config.getProperties() != null) {
+      loggerMap.put("properties",config.getProperties());
+    }
+    loggerMap.put("additive",config.isAdditive());
+    loggerMap.put("level",config.getLevel().name());
+    loggerMap.put("appenders",config.getAppenders().keySet());
+    configuredLoggers.add(loggerMap);
+  }
+  responseMap.put("loggers",configuredLoggers);
+  return responseMap;
+}
