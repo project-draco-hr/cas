@@ -1,0 +1,5 @@
+{
+  final Map<String,Object> model=new HashMap<>();
+  model.put("logConfigurationFile",logConfigurationFile.getURI());
+  return new ModelAndView(VIEW_CONFIG,model);
+}

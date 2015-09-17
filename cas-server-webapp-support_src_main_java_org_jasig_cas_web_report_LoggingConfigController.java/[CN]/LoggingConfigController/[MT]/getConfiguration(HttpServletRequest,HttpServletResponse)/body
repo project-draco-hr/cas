@@ -16,7 +16,34 @@
     }
     loggerMap.put("additive",config.isAdditive());
     loggerMap.put("level",config.getLevel().name());
-    loggerMap.put("appenders",config.getAppenders().keySet());
+    final Set<String> appenders=new HashSet<>();
+    for (    final String key : config.getAppenders().keySet()) {
+      final Appender appender=config.getAppenders().get(key);
+      final ToStringBuilder builder=new ToStringBuilder(this,ToStringStyle.JSON_STYLE);
+      builder.append("name",appender.getName());
+      builder.append("state",appender.getState());
+      builder.append("layoutFormat",appender.getLayout().getContentFormat());
+      builder.append("layoutContentType",appender.getLayout().getContentType());
+      if (appender instanceof FileAppender) {
+        builder.append("file",((FileAppender)appender).getFileName());
+      }
+      if (appender instanceof RandomAccessFileAppender) {
+        builder.append("file",((RandomAccessFileAppender)appender).getFileName());
+      }
+      if (appender instanceof RollingFileAppender) {
+        builder.append("file",((RollingFileAppender)appender).getFileName());
+        builder.append("filePattern",((RollingFileAppender)appender).getFilePattern());
+      }
+      if (appender instanceof MemoryMappedFileAppender) {
+        builder.append("file",((MemoryMappedFileAppender)appender).getFileName());
+      }
+      if (appender instanceof RollingRandomAccessFileAppender) {
+        builder.append("file",((RollingRandomAccessFileAppender)appender).getFileName());
+        builder.append("filePattern",((RollingRandomAccessFileAppender)appender).getFilePattern());
+      }
+      appenders.add(builder.build());
+    }
+    loggerMap.put("appenders",appenders);
     configuredLoggers.add(loggerMap);
   }
   responseMap.put("loggers",configuredLoggers);
