@@ -3,9 +3,7 @@
   final CasLoggerFactory factory=(CasLoggerFactory)LoggerFactory.getILoggerFactory();
   final Set<Map.Entry<String,CasDelegatingLogger>> loggers=factory.getLoggers().entrySet();
   responseMap.put("activeLoggers",loggers);
-  final LoggerContext loggerContext=Configurator.initialize("CAS",null,this.logConfigurationFile.getURI());
-  final Configuration configuration=loggerContext.getConfiguration();
-  final Collection<LoggerConfig> loggerConfigs=configuration.getLoggers().values();
+  final Collection<LoggerConfig> loggerConfigs=getLoggerConfigurations();
   final Collection<Map<String,Object>> configuredLoggers=new HashSet<>();
   for (  final LoggerConfig config : loggerConfigs) {
     final Map<String,Object> loggerMap=new HashMap();
@@ -16,7 +14,7 @@
     }
     loggerMap.put("additive",config.isAdditive());
     loggerMap.put("level",config.getLevel().name());
-    final Set<String> appenders=new HashSet<>();
+    final Collection<String> appenders=new HashSet<>();
     for (    final String key : config.getAppenders().keySet()) {
       final Appender appender=config.getAppenders().get(key);
       final ToStringBuilder builder=new ToStringBuilder(this,ToStringStyle.JSON_STYLE);

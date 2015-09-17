@@ -1,0 +1,5 @@
+{
+  final LoggerContext loggerContext=Configurator.initialize("CAS",null,this.logConfigurationFile.getURI());
+  final Configuration configuration=loggerContext.getConfiguration();
+  return configuration.getLoggers().values();
+}
