@@ -1,0 +1,8 @@
+{
+  final RegisteredServicePublicKey key=svc.getPublicKey();
+  final RegisteredServicePublicKeyEditBean pBean=bean.getPublicKey();
+  if (key != null) {
+    pBean.setAlgorithm(key.getAlgorithm());
+    pBean.setLocation(key.getLocation());
+  }
+}
