@@ -9,7 +9,7 @@
       final AuthRequest authReq=AuthRequest.createAuthRequest(requestParameters,manager.getRealmVerifier());
       final Map parameterMap=authReq.getParameterMap();
       if (parameterMap != null && parameterMap.size() > 0) {
-        final String assocHandle=(String)parameterMap.get("openid.assoc_handle");
+        final String assocHandle=(String)parameterMap.get(OpenIdConstants.OPENID_ASSOCHANDLE);
         if (assocHandle != null) {
           final Association association=manager.getSharedAssociations().load(assocHandle);
           if (association != null) {
@@ -25,10 +25,11 @@
       LOGGER.error("Message exception : {}",me.getMessage(),me);
     }
     boolean successFullAuthentication=true;
+    Assertion assertion=null;
     try {
       if (associated) {
         if (associationValid) {
-          cas.validateServiceTicket(ticketId,this);
+          assertion=cas.validateServiceTicket(ticketId,this);
           LOGGER.info("Validated openid ticket");
         }
  else {
@@ -40,14 +41,21 @@
       LOGGER.error("Could not validate ticket : {}",te.getMessage(),te);
       successFullAuthentication=false;
     }
-    final Message response=manager.authResponse(requestParameters,this.identity,this.identity,successFullAuthentication,true);
+    final String id;
+    if (assertion != null && OpenIdConstants.OPENID_IDENTIFIERSELECT.equals(this.identity)) {
+      id=this.openIdPrefixUrl + '/' + assertion.getPrimaryAuthentication().getPrincipal().getId();
+    }
+ else {
+      id=this.identity;
+    }
+    final Message response=manager.authResponse(requestParameters,id,id,successFullAuthentication,true);
     parameters.putAll(response.getParameterMap());
     if (!associated) {
-      parameters.put("openid.assoc_handle",ticketId);
+      parameters.put(OpenIdConstants.OPENID_ASSOCHANDLE,ticketId);
     }
   }
  else {
-    parameters.put("openid.mode","cancel");
+    parameters.put(OpenIdConstants.OPENID_MODE,OpenIdConstants.CANCEL);
   }
   return DefaultResponse.getRedirectResponse(getOriginalUrl(),parameters);
 }

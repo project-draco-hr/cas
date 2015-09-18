@@ -3,7 +3,7 @@
   final StatusCode code=newSamlObject(StatusCode.class);
   code.setValue(codeValue);
   status.setStatusCode(code);
-  if (StringUtils.hasText(statusMessage)) {
+  if (StringUtils.isNotBlank(statusMessage)) {
     final StatusMessage message=newSamlObject(StatusMessage.class);
     message.setMessage(statusMessage);
     status.setStatusMessage(message);

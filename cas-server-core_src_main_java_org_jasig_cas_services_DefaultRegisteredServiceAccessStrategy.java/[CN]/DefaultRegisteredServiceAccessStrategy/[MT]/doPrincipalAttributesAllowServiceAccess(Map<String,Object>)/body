@@ -31,7 +31,7 @@
       availableValues=Collections.singleton(objVal);
     }
     final Sets.SetView<?> differenceInValues=Sets.intersection(availableValues,requiredValues);
-    if (differenceInValues.size() > 0) {
+    if (!differenceInValues.isEmpty()) {
       logger.info("Principal is authorized to access the service");
       return true;
     }

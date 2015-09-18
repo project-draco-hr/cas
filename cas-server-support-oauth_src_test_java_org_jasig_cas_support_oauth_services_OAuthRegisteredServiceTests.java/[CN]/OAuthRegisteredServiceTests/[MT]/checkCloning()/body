@@ -1,0 +1,9 @@
+{
+  final AbstractRegisteredService r=new OAuthRegisteredService();
+  r.setName("checkCloning");
+  r.setServiceId("testId");
+  r.setTheme("theme");
+  r.setDescription("description");
+  final OAuthRegisteredService r2=(OAuthRegisteredService)r.clone();
+  assertEquals(r,r2);
+}

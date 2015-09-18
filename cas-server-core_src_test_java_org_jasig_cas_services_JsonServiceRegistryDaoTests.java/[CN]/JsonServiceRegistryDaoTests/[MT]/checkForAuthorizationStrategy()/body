@@ -9,7 +9,7 @@
   attrs.put("memberOf",Sets.newHashSet(Arrays.asList("v4, v5, v6")));
   authz.setRequiredAttributes(attrs);
   r.setAccessStrategy(authz);
-  this.dao.save(r);
-  final List<RegisteredService> list=this.dao.load();
-  assertEquals(list.size(),1);
+  final RegisteredService r2=this.dao.save(r);
+  final RegisteredService r3=this.dao.findServiceById(r2.getId());
+  assertEquals(r2,r3);
 }

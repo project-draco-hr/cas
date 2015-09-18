@@ -1,6 +1,0 @@
-{
-  final RuntimeException r=new RuntimeException();
-  final UnknownUsernameAuthenticationException e=new UnknownUsernameAuthenticationException(r);
-  assertEquals(CODE,e.getCode());
-  assertEquals(r,e.getCause());
-}
