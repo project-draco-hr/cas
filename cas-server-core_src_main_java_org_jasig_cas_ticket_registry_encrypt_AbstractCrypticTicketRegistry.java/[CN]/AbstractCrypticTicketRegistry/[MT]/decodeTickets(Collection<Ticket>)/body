@@ -6,7 +6,7 @@
   if (items == null || items.isEmpty()) {
     return items;
   }
-  final Set<Ticket> tickets=new HashSet<>(items.size());
+  final Collection<Ticket> tickets=new HashSet<>(items.size());
   for (  final Ticket item : items) {
     final Ticket ticket=decodeTicket(item);
     tickets.add(ticket);
