@@ -5,9 +5,10 @@
   r.setServiceId("test");
   r.setEvaluationOrder(2);
   this.servicesManager.save(r);
-  final ModelAndView modelAndView=this.controller.manage();
-  assertNotNull(modelAndView);
-  assertEquals("manageServiceView",modelAndView.getViewName());
-  final Collection<?> c=(Collection<?>)modelAndView.getModel().get("services");
-  assertTrue(c.contains(r));
+  final MockHttpServletResponse response=new MockHttpServletResponse();
+  final ModelAndView mv=this.controller.manage(response);
+  assertTrue(mv.getModel().containsKey("defaultServiceUrl"));
+  assertTrue(mv.getModel().containsKey("status"));
+  this.controller.getServices(response);
+  assertTrue(response.getContentAsString().contains("services"));
 }

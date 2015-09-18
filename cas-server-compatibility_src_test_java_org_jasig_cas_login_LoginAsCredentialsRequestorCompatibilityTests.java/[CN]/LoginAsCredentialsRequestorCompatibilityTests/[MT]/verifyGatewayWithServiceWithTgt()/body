@@ -1,14 +1,14 @@
 {
-  final String GATEWAY="notNull";
+  final String gateway="notNull";
   final String service="http://www.yale.edu";
   final String encodedService=URLEncoder.encode(service,"UTF-8");
-  final String URLNOGW="/login?service=" + encodedService;
-  final String URLGW="/login?service=" + encodedService + "&gateway="+ GATEWAY;
-  beginAt(URLNOGW);
+  final String urlnogw="/login?service=" + encodedService;
+  final String urlgw="/login?service=" + encodedService + "&gateway="+ gateway;
+  beginAt(urlnogw);
   setFormElement(FORM_USERNAME,getUsername());
   setFormElement(FORM_PASSWORD,getGoodPassword());
   submit();
-  beginAt(URLGW);
+  beginAt(urlgw);
   final String st=LoginHelper.serviceTicketFromResponse(getDialog().getResponse());
   assertNotNull(st);
   beginAt("/validate?ticket=" + st + "&service="+ encodedService);
