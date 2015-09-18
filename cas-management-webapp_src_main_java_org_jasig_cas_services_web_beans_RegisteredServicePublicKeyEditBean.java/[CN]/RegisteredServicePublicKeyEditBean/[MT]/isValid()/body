@@ -1,0 +1,3 @@
+{
+  return StringUtils.isNotBlank(this.algorithm) && StringUtils.isNotBlank(this.location);
+}

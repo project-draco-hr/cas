@@ -1,0 +1,47 @@
+{
+  try {
+    final AbstractRegisteredService regSvc;
+    if (StringUtils.equalsIgnoreCase(this.type,RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ.toString())) {
+      regSvc=new OAuthRegisteredCallbackAuthorizeService();
+    }
+ else     if (StringUtils.equalsIgnoreCase(this.type,RegisteredServiceTypeEditBean.OAUTH.toString())) {
+      regSvc=new OAuthRegisteredService();
+      final RegisteredServiceOAuthTypeEditBean oauthBean=this.oauth;
+      ((OAuthRegisteredService)regSvc).setClientId(oauthBean.getClientId());
+      ((OAuthRegisteredService)regSvc).setClientSecret(oauthBean.getClientSecret());
+      ((OAuthRegisteredService)regSvc).setBypassApprovalPrompt(oauthBean.isBypass());
+    }
+ else {
+      regSvc=determineServiceTypeByPattern(this.serviceId);
+    }
+    if (this.assignedId <= 0) {
+      regSvc.setId(RegisteredService.INITIAL_IDENTIFIER_VALUE);
+    }
+ else {
+      regSvc.setId(this.assignedId);
+    }
+    regSvc.setServiceId(this.serviceId);
+    regSvc.setName(this.name);
+    regSvc.setDescription(this.description);
+    if (StringUtils.isNotBlank(this.logoUrl)) {
+      regSvc.setLogo(new URL(this.logoUrl));
+    }
+    regSvc.setTheme(this.theme);
+    regSvc.setEvaluationOrder(this.evalOrder);
+    regSvc.setRequiredHandlers(this.requiredHandlers);
+    setLogoutTypeAndUrlOnService(regSvc);
+    final RegisteredServiceAccessStrategy accessStrategy=regSvc.getAccessStrategy();
+    setAccessStrategyOnService((DefaultRegisteredServiceAccessStrategy)accessStrategy);
+    setProxyPolicyOnService(regSvc);
+    setUsernameAttributeOnService(regSvc);
+    if (this.publicKey != null && this.publicKey.isValid()) {
+      final RegisteredServicePublicKey publicKey=new RegisteredServicePublicKeyImpl(this.publicKey.getLocation(),this.publicKey.getAlgorithm());
+      regSvc.setPublicKey(publicKey);
+    }
+    setAttributeReleasePolicyOnService(dao,regSvc);
+    return regSvc;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

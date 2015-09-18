@@ -1,0 +1,17 @@
+{
+  logger.error(ex.getMessage(),ex);
+  final String contentType=request.getHeader(AJAX_REQUEST_HEADER_NAME);
+  if (contentType != null && contentType.equals(AJAX_REQUEST_HEADER_VALUE)) {
+    logger.debug("Handling exception {} for ajax request indicated by header {}",ex.getClass().getName(),AJAX_REQUEST_HEADER_NAME);
+    JsonViewUtils.renderException(ex,response);
+    return null;
+  }
+ else {
+    logger.trace("Unable to resolve exception {} for request. Ajax request header {} not found.",ex.getClass().getName(),AJAX_REQUEST_HEADER_NAME);
+    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    final ModelAndView mv=new ModelAndView("errors");
+    mv.addObject(ex);
+    return mv;
+  }
+}

@@ -6,8 +6,8 @@
   final MockHttpServletRequest request2=new MockHttpServletRequest();
   request2.addParameter("openid.identity","http://openid.ja-sig.org/battags");
   request2.addParameter("openid.return_to","http://www.ja-sig.org/?service=fa");
-  final OpenIdService o1=OpenIdService.createServiceFrom(request1);
-  final OpenIdService o2=OpenIdService.createServiceFrom(request2);
+  final OpenIdService o1=OpenIdService.createServiceFrom(request1,null);
+  final OpenIdService o2=OpenIdService.createServiceFrom(request2,null);
   assertTrue(o1.equals(o2));
   assertFalse(o1.equals(new Object()));
 }

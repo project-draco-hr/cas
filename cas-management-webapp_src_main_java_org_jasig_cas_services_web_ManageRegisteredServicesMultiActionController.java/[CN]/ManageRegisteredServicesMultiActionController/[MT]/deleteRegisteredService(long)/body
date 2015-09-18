@@ -1,6 +1,0 @@
-{
-  final ModelAndView modelAndView=new ModelAndView(new RedirectView("manage.html",true),"status","deleted");
-  final RegisteredService r=this.servicesManager.delete(idAsLong);
-  modelAndView.addObject("serviceName",r != null ? r.getName() : "");
-  return modelAndView;
-}

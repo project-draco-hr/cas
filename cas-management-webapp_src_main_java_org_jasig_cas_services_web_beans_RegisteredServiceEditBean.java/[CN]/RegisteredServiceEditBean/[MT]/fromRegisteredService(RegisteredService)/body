@@ -1,0 +1,24 @@
+{
+  final RegisteredServiceEditBean serviceBean=new RegisteredServiceEditBean();
+  final ServiceData bean=serviceBean.getServiceData();
+  bean.setAssignedId(svc.getId());
+  bean.setServiceId(svc.getServiceId());
+  bean.setName(svc.getName());
+  bean.setDescription(svc.getDescription());
+  if (svc.getLogo() != null) {
+    bean.setLogoUrl(svc.getLogo().toExternalForm());
+  }
+  bean.setRequiredHandlers(svc.getRequiredHandlers());
+  configureAccessStrategy(svc,bean);
+  configureOauthSettings(svc,bean);
+  bean.setTheme(svc.getTheme());
+  bean.setEvalOrder(svc.getEvaluationOrder());
+  configureLogoutTypeAndUrl(svc,bean);
+  final RegisteredServiceUsernameAttributeProvider provider=svc.getUsernameAttributeProvider();
+  final RegisteredServiceUsernameAttributeProviderEditBean uBean=bean.getUserAttrProvider();
+  configureUsernameAttributeProvider(provider,uBean);
+  configurePublicKey(svc,bean);
+  configureProxyPolicy(svc,bean);
+  configureAttributeReleasePolicy(svc,bean);
+  return serviceBean;
+}

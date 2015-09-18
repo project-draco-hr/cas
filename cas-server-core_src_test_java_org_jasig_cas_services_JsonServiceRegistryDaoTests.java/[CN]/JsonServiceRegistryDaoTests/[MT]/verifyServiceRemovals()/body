@@ -11,6 +11,7 @@
   }
   for (  final RegisteredService r2 : list) {
     this.dao.delete(r2);
+    Thread.sleep(1);
     assertNull(this.dao.findServiceById(r2.getId()));
   }
 }

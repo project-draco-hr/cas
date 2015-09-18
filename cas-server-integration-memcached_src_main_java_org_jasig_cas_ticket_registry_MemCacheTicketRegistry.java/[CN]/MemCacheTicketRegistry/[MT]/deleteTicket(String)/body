@@ -1,4 +1,5 @@
 {
+  final String ticketId=encodeTicketId(ticketIdToDel);
   logger.debug("Deleting ticket {}",ticketId);
   try {
     return this.client.delete(ticketId).get();

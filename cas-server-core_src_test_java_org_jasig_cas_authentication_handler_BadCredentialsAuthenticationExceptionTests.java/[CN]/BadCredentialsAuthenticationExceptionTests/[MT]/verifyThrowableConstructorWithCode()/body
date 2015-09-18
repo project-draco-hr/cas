@@ -1,6 +1,0 @@
-{
-  final RuntimeException r=new RuntimeException();
-  final BadCredentialsAuthenticationException e=new BadCredentialsAuthenticationException(MESSAGE,r);
-  assertEquals(MESSAGE,e.getCode());
-  assertEquals(r,e.getCause());
-}
