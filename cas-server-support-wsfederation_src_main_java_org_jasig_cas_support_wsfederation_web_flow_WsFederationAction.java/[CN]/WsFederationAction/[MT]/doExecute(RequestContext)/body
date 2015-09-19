@@ -5,7 +5,7 @@
     final String wa=request.getParameter(WA);
     if (StringUtils.isNotBlank(wa) && wa.equalsIgnoreCase(WSIGNIN)) {
       final String wresult=request.getParameter(WRESULT);
-      logger.debug("wresult : {}",wresult);
+      logger.debug("Parameter [wresult] received: {}",wresult);
       final Assertion assertion=wsFederationHelper.parseTokenFromString(wresult);
       if (wsFederationHelper.validateSignature(assertion,configuration)) {
         final WsFederationCredential credential=wsFederationHelper.createCredentialFromToken(assertion);
@@ -44,7 +44,6 @@
       }
     }
  else {
-      logger.debug("Preparing to redirect to the IdP");
       final Service service=(Service)context.getFlowScope().get(SERVICE);
       if (service != null) {
         session.setAttribute(SERVICE,service);
@@ -54,7 +53,7 @@
       saveRequestParameter(request,session,METHOD);
       final String key=PROVIDERURL;
       final String authorizationUrl=this.configuration.getIdentityProviderUrl() + QUERYSTRING + this.configuration.getRelyingPartyIdentifier();
-      logger.debug("{} -> {}",key,authorizationUrl);
+      logger.info("Preparing to redirect to the IdP {}",authorizationUrl);
       context.getFlowScope().put(key,authorizationUrl);
     }
     logger.debug("Redirecting to the IdP");
