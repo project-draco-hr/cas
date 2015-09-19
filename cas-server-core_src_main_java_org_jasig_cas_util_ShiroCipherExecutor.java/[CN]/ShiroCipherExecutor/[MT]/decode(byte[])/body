@@ -1,0 +1,12 @@
+{
+  try {
+    final byte[] verifiedValue=verifySignature(value);
+    final SecretKeySpec key=new SecretKeySpec(this.encryptionSecretKey.getBytes(UTF8_ENCODING),this.secretKeyAlgorithm);
+    final AesCipherService cipher=new AesCipherService();
+    final byte[] result=cipher.decrypt(verifiedValue,key.getEncoded()).getBytes();
+    return result;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

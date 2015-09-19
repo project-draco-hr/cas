@@ -1,4 +1,5 @@
 {
-  logger.debug("Removing ticket [{}]",ticketId);
-  return this.registry.remove(ticketId) != null;
+  final String encTicketId=encodeTicketId(ticketId);
+  logger.debug("Removing ticket [{}]",encTicketId);
+  return this.registry.remove(encTicketId) != null;
 }
