@@ -1,7 +1,9 @@
 {
   try {
+    final String ticketId=encodeTicketId(ticketIdToGet);
     logger.debug("Retrieving ticket from registry for: {}",ticketId);
-    return getProxiedTicketInstance(this.cache.get(FQN_TICKET,ticketId));
+    final Ticket encTicket=decodeTicket(this.cache.get(FQN_TICKET,ticketId));
+    return getProxiedTicketInstance(encTicket);
   }
  catch (  final CacheException e) {
     logger.error(e.getMessage(),e);

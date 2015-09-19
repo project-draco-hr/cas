@@ -1,0 +1,5 @@
+{
+  for (  final HandlerResult result : authentication.getSuccesses().values()) {
+    builder.addAttribute(AUTHENTICATION_METHOD_ATTRIBUTE,result.getHandlerName());
+  }
+}

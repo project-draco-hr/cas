@@ -1,4 +1,5 @@
 {
+  final Ticket ticket=encodeTicket(ticketToAdd);
   logger.debug("Adding ticket {}",ticket);
   try {
     if (!this.client.add(ticket.getId(),getTimeout(ticket),ticket).get()) {

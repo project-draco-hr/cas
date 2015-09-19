@@ -1,7 +1,7 @@
 {
-  final String GATEWAY="false";
-  final String SERVICE=URLEncoder.encode("http://www.cnn.com","UTF-8");
-  final String URL="/login?service=" + SERVICE + "&gateway="+ GATEWAY;
-  beginAt(URL);
+  final String gateway="false";
+  final String service=URLEncoder.encode("http://www.cnn.com","UTF-8");
+  final String url="/login?service=" + service + "&gateway="+ gateway;
+  beginAt(url);
   assertTextPresent("cnn.com");
 }

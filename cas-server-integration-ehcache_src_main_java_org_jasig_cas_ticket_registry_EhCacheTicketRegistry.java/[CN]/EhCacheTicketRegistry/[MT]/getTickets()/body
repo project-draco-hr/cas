@@ -8,5 +8,5 @@
   for (  final Element ticket : tgtTicketsTickets) {
     allTickets.add((Ticket)ticket.getObjectValue());
   }
-  return allTickets;
+  return decodeTickets(allTickets);
 }

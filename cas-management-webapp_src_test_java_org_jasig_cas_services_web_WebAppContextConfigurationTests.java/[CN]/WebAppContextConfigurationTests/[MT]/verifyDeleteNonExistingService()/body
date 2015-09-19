@@ -1,6 +1,3 @@
 {
-  final ModelAndView mv=this.mvc.perform(get("/deleteRegisteredService.html").param("id","100")).andExpect(status().isFound()).andReturn().getModelAndView();
-  assertNotNull(mv);
-  assertNotNull(mv.getModel().get("serviceName"));
-  assertTrue(mv.getModel().get("serviceName").toString().length() == 0);
+  this.mvc.perform(post("/deleteRegisteredService.html").param("id","666")).andExpect(status().isInternalServerError());
 }
