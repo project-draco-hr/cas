@@ -3,9 +3,9 @@
     if (applicationContext.getParent() != null) {
       logger.info("Initializing OAuth application context");
       final SimpleUrlHandlerMapping handlerMappingC=applicationContext.getBean(SimpleUrlHandlerMapping.class);
-      final Controller samlValidateController=applicationContext.getBean("oauth20WrapperController",Controller.class);
+      final Controller controller=applicationContext.getBean("oauth20WrapperController",Controller.class);
       final Map<String,Object> urlMap=(Map<String,Object>)handlerMappingC.getUrlMap();
-      urlMap.put(OAuthConstants.ENDPOINT_OAUTH2,samlValidateController);
+      urlMap.put(OAuthConstants.ENDPOINT_OAUTH2,controller);
       handlerMappingC.initApplicationContext();
       final OAuthCallbackAuthorizeService service=new OAuthCallbackAuthorizeService();
       service.setId(new SecureRandom().nextLong());
