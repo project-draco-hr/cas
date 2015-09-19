@@ -1,0 +1,14 @@
+{
+  if (StringUtils.equalsIgnoreCase(this.logoutType,RegisteredServiceLogoutTypeEditBean.BACK.toString())) {
+    regSvc.setLogoutType(LogoutType.BACK_CHANNEL);
+  }
+ else   if (StringUtils.equalsIgnoreCase(this.logoutType,RegisteredServiceLogoutTypeEditBean.FRONT.toString())) {
+    regSvc.setLogoutType(LogoutType.FRONT_CHANNEL);
+  }
+ else {
+    regSvc.setLogoutType(LogoutType.NONE);
+  }
+  if (StringUtils.isNotBlank(this.logoutUrl)) {
+    regSvc.setLogoutUrl(new URL(this.logoutUrl));
+  }
+}

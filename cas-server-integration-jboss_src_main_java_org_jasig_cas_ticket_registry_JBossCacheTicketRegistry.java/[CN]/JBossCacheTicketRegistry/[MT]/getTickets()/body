@@ -12,7 +12,7 @@
         list.add(node.get(key));
       }
     }
-    return list;
+    return decodeTickets(list);
   }
  catch (  final CacheException e) {
     return Collections.emptyList();
