@@ -1,0 +1,10 @@
+{
+  final RegisteredService mockRegSvc1=createMockRegisteredService(service1.getId(),true,getServiceProxyPolicy(false));
+  final RegisteredService mockRegSvc2=createMockRegisteredService("test",false,getServiceProxyPolicy(true));
+  final RegisteredService mockRegSvc3=createMockRegisteredService(service2.getId(),true,getServiceProxyPolicy(true));
+  final ServicesManager smMock=mock(ServicesManager.class);
+  when(smMock.findServiceBy(argThat(new VerifyServiceByIdMatcher(service1.getId())))).thenReturn(mockRegSvc1);
+  when(smMock.findServiceBy(argThat(new VerifyServiceByIdMatcher("test")))).thenReturn(mockRegSvc2);
+  when(smMock.findServiceBy(argThat(new VerifyServiceByIdMatcher(service2.getId())))).thenReturn(mockRegSvc3);
+  return smMock;
+}
