@@ -1,2 +1,26 @@
 {
+  try {
+    if (applicationContext.getParent() == null) {
+      logger.info("Initializing OAuth root application context");
+      final OAuthCallbackAuthorizeService service=new OAuthCallbackAuthorizeService();
+      service.setId(new SecureRandom().nextLong());
+      service.setName(service.getClass().getSimpleName());
+      service.setDescription("OAuth Wrapper Callback Url");
+      service.setServiceId(this.callbackAuthorizeUrl);
+      this.servicesManager.save(service);
+      logger.info("Initialized OAuth root application context successfully");
+    }
+ else {
+      logger.info("Initializing OAuth application context");
+      final SimpleUrlHandlerMapping handlerMappingC=applicationContext.getBean(SimpleUrlHandlerMapping.class);
+      final Controller samlValidateController=applicationContext.getBean("oauth20WrapperController",Controller.class);
+      final Map<String,Object> urlMap=(Map<String,Object>)handlerMappingC.getUrlMap();
+      urlMap.put(OAuthConstants.ENDPOINT_OAUTH2,samlValidateController);
+      handlerMappingC.initApplicationContext();
+      logger.info("Initialized OAuth application context successfully");
+    }
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
 }
