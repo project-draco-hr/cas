@@ -1,0 +1,6 @@
+{
+  logger.info("Initializing OAuth servlet context...");
+  final ServletRegistration registration=sce.getServletContext().getServletRegistration(CAS_SERVLET_NAME);
+  registration.addMapping(OAuthConstants.ENDPOINT_OAUTH2);
+  logger.info("Added [{}] to {} servlet context",OAuthConstants.ENDPOINT_OAUTH2,CAS_SERVLET_NAME);
+}
