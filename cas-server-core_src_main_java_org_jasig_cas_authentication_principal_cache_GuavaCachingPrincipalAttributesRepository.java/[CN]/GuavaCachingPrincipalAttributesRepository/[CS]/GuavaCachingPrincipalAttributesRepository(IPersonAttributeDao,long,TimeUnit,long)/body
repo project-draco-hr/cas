@@ -1,6 +1,0 @@
-{
-  super(attributeRepository);
-  this.cache=CacheBuilder.newBuilder().maximumSize(maxCacheSize).expireAfterWrite(expiryDuration,timeUnit).build();
-  this.expiration=expiryDuration;
-  this.timeUnit=timeUnit;
-}

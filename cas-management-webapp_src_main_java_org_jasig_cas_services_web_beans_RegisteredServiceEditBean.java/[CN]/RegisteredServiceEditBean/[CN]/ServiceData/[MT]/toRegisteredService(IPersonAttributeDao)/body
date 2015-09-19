@@ -66,9 +66,6 @@
     if (StringUtils.equalsIgnoreCase(attrType,RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED.toString())) {
       policy.setPrincipalAttributesRepository(new CachingPrincipalAttributesRepository(dao,TimeUnit.valueOf(this.attrRelease.getCachedTimeUnit().toUpperCase()),this.attrRelease.getCachedExpiration()));
     }
- else     if (StringUtils.equalsIgnoreCase(attrType,RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED_GUAVA.toString())) {
-      policy.setPrincipalAttributesRepository(new GuavaCachingPrincipalAttributesRepository(dao,TimeUnit.valueOf(this.attrRelease.getCachedTimeUnit().toUpperCase()),this.attrRelease.getCachedExpiration()));
-    }
  else     if (StringUtils.equalsIgnoreCase(attrType,RegisteredServiceAttributeReleasePolicyEditBean.Types.DEFAULT.toString())) {
       policy.setPrincipalAttributesRepository(new DefaultPrincipalAttributesRepository());
     }

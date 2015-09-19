@@ -1,4 +1,3 @@
 {
-  this.cache.close();
-  this.cache.getCacheManager().close();
+  this.cache.cleanUp();
 }

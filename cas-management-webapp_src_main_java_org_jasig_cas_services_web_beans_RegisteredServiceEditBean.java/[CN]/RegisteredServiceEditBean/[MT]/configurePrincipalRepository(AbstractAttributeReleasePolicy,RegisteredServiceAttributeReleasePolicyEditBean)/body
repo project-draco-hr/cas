@@ -4,16 +4,9 @@
     attrPolicyBean.setAttrOption(RegisteredServiceAttributeReleasePolicyEditBean.Types.DEFAULT.toString());
   }
  else {
-    if (pr instanceof CachingPrincipalAttributesRepository) {
+    if (pr instanceof AbstractPrincipalAttributesRepository) {
       attrPolicyBean.setAttrOption(RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED.toString());
-      final CachingPrincipalAttributesRepository cc=(CachingPrincipalAttributesRepository)pr;
-      final Duration duration=cc.getDuration();
-      attrPolicyBean.setCachedExpiration(duration.getDurationAmount());
-      attrPolicyBean.setCachedTimeUnit(duration.getTimeUnit().name());
-    }
-    if (pr instanceof GuavaCachingPrincipalAttributesRepository) {
-      attrPolicyBean.setAttrOption(RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED_GUAVA.toString());
-      final GuavaCachingPrincipalAttributesRepository cc=(GuavaCachingPrincipalAttributesRepository)pr;
+      final AbstractPrincipalAttributesRepository cc=(AbstractPrincipalAttributesRepository)pr;
       attrPolicyBean.setCachedExpiration(cc.getExpiration());
       attrPolicyBean.setCachedTimeUnit(cc.getTimeUnit().name());
     }

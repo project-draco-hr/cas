@@ -1,3 +1,0 @@
-{
-  return new ToStringBuilder(this).appendSuper((super.toString())).append("cache",cache).append("cacheName",cacheName).append("durationTimeUnit",duration.getTimeUnit()).append("durationAmount",duration.getDurationAmount()).toString();
-}

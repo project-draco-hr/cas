@@ -1,3 +1,3 @@
 {
-  return new ToStringBuilder(this).append("attributeRepository",attributeRepository).append("mergingStrategy",mergingStrategy).toString();
+  return new ToStringBuilder(this).append("attributeRepository",this.attributeRepository).append("mergingStrategy",this.mergingStrategy).append("expiration",this.expiration).append("timeUnit",this.timeUnit).toString();
 }
