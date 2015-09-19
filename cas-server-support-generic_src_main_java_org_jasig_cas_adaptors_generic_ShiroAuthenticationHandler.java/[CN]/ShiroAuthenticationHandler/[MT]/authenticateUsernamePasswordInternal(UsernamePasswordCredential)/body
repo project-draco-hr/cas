@@ -5,6 +5,7 @@
     token.setRememberMe(credential.isRememberMe());
     final Subject currentUser=getCurrentExecutingSubject();
     currentUser.login(token);
+    checkSubjectRolesAndPermissions(currentUser);
     return createAuthenticatedSubjectResult(credential,currentUser);
   }
  catch (  final UnknownAccountException uae) {

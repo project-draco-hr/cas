@@ -1,0 +1,12 @@
+{
+  for (  final String role : this.requiredRoles) {
+    if (!currentUser.hasRole(role)) {
+      throw new FailedLoginException("Required role " + role + " does not exist");
+    }
+  }
+  for (  final String perm : this.requiredPermissions) {
+    if (!currentUser.isPermitted(perm)) {
+      throw new FailedLoginException("Required permission " + perm + " does not exist");
+    }
+  }
+}
