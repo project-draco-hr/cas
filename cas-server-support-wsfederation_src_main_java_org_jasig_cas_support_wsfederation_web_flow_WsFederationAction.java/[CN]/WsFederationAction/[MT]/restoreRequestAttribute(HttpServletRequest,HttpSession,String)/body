@@ -1,0 +1,4 @@
+{
+  final String value=(String)session.getAttribute(name);
+  request.setAttribute(name,value);
+}

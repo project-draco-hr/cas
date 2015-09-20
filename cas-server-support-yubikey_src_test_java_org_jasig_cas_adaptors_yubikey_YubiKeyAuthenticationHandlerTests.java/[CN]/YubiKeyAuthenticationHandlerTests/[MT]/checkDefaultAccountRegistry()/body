@@ -1,0 +1,4 @@
+{
+  final YubiKeyAuthenticationHandler handler=new YubiKeyAuthenticationHandler(CLIENT_ID,SECRET_KEY);
+  assertNull(handler.getRegistry());
+}
