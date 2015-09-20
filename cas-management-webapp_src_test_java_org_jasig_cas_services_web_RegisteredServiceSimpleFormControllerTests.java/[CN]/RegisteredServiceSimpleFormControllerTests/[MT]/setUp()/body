@@ -4,5 +4,5 @@
   this.repository=new StubPersonAttributeDao();
   this.repository.setBackingMap(attributes);
   this.manager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
-  this.controller=new RegisteredServiceSimpleFormController(this.manager,this.repository,new RegisteredServiceValidator(this.manager,this.repository));
+  this.controller=new RegisteredServiceSimpleFormController(this.manager,this.repository);
 }

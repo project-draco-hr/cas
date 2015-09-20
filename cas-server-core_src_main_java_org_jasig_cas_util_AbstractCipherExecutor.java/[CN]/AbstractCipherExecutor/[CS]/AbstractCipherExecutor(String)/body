@@ -1,0 +1,3 @@
+{
+  this.signingKey=new AesKey(signingSecretKey.getBytes());
+}

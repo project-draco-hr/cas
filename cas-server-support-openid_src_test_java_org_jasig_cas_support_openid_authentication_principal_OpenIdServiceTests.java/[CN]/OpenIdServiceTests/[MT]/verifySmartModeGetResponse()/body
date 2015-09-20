@@ -1,6 +1,6 @@
 {
   request.addParameter("openid.assoc_handle","test");
-  openIdService=OpenIdService.createServiceFrom(request);
+  openIdService=OpenIdService.createServiceFrom(request,null);
   Association association=null;
   try {
     association=Association.generate(Association.TYPE_HMAC_SHA1,"test",60);
