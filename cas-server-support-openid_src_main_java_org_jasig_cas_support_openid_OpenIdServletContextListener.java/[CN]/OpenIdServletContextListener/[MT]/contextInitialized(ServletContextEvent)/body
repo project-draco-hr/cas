@@ -1,5 +1,5 @@
 {
-  logger.info("Initializing OAuth servlet context...");
+  logger.info("Initializing OpenID servlet context...");
   final ServletRegistration registration=sce.getServletContext().getServletRegistration(CAS_SERVLET_NAME);
   registration.addMapping(OpenIdConstants.ENDPOINT_OPENID);
   logger.info("Added [{}] to {} servlet context",OpenIdConstants.ENDPOINT_OPENID,CAS_SERVLET_NAME);

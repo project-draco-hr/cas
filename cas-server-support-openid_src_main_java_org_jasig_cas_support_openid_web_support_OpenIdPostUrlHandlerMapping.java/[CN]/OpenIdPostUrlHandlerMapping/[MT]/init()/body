@@ -3,4 +3,5 @@
   final Properties mappings=new Properties();
   mappings.put("/login",this.controller);
   setMappings(mappings);
+  initApplicationContext();
 }
