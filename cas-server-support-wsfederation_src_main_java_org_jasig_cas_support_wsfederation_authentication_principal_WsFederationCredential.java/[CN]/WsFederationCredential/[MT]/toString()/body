@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this,ToStringStyle.NO_CLASS_NAME_STYLE).append("ID",this.id).append("Issuer",this.issuer).append("Audience",this.audience).append("Authentication Method",this.authenticationMethod).append("Issued On",this.issuedOn).append("Valid After",this.notBefore).append("Valid Before",this.notOnOrAfter).append("Attributes",this.attributes).build();
+}
