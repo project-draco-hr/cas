@@ -1,0 +1,5 @@
+{
+  standardCred.setIssuer("urn:NotThem");
+  final boolean result=standardCred.isValid("urn:federation:cas","http://adfs.example.com/adfs/services/trust",2000);
+  assertFalse("testIsValidBadIssuer() - False",result);
+}

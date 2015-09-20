@@ -1,0 +1,4 @@
+{
+  final Credential result=wsFedConfig.getSigningCertificates().iterator().next();
+  assertNotNull("testGetSigningCredential() - Not Null",result);
+}

@@ -1,0 +1,4 @@
+{
+  final boolean result=standardCred.isValid("urn:federation:cas","http://adfs.example.com/adfs/services/trust",2000);
+  assertTrue("testIsValidAllGood() - True",result);
+}
