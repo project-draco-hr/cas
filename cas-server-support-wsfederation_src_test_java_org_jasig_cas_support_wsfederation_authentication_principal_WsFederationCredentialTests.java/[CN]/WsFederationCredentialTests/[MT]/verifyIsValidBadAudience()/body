@@ -1,0 +1,5 @@
+{
+  standardCred.setAudience("urn:NotUs");
+  final boolean result=standardCred.isValid("urn:federation:cas","http://adfs.example.com/adfs/services/trust",2000);
+  assertFalse("testIsValidBadAudeience() - False",result);
+}
