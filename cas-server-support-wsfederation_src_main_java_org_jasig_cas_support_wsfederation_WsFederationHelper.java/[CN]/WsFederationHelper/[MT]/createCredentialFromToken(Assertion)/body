@@ -1,6 +1,6 @@
 {
   final DateTime retrievedOn=new DateTime().withZone(DateTimeZone.UTC);
-  LOGGER.debug("createCredentialFromToken: retrieved on {}",retrievedOn);
+  LOGGER.debug("Retrieved on {}",retrievedOn);
   final WsFederationCredential credential=new WsFederationCredential();
   credential.setRetrievedOn(retrievedOn);
   credential.setId(assertion.getID());
@@ -17,7 +17,7 @@
   }
   final HashMap<String,Object> attributes=new HashMap<String,Object>();
   for (  final Attribute item : assertion.getAttributeStatements().get(0).getAttributes()) {
-    LOGGER.debug("createCredentialFromToken: processed attribute: {}",item.getAttributeName());
+    LOGGER.debug("Processed attribute: {}",item.getAttributeName());
     if (item.getAttributeValues().size() == 1) {
       attributes.put(item.getAttributeName(),((XSAny)item.getAttributeValues().get(0)).getTextContent());
     }
@@ -32,6 +32,6 @@
     }
   }
   credential.setAttributes(attributes);
-  LOGGER.debug("createCredentialFromToken: {}",credential);
+  LOGGER.debug("Credential: {}",credential);
   return credential;
 }
