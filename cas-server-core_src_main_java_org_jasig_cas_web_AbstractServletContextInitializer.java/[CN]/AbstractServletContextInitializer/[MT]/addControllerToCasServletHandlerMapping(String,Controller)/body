@@ -1,0 +1,6 @@
+{
+  final SimpleUrlHandlerMapping handlerMappingC=applicationContext.getBean(SimpleUrlHandlerMapping.class);
+  final Map<String,Object> urlMap=(Map<String,Object>)handlerMappingC.getUrlMap();
+  urlMap.put(path,controller);
+  handlerMappingC.initApplicationContext();
+}

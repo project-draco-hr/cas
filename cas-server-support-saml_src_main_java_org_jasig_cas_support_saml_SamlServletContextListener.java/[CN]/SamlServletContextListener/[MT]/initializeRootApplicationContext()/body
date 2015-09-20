@@ -1,0 +1,4 @@
+{
+  addArgumentExtractor(this.samlArgumentExtractor);
+  addServiceTicketUniqueIdGenerator(SamlService.class.getCanonicalName(),this.samlServiceTicketUniqueIdGenerator);
+}

@@ -1,6 +1,0 @@
-{
-  logger.info("Initializing SAML servlet context...");
-  final ServletRegistration registration=sce.getServletContext().getServletRegistration(CAS_SERVLET_NAME);
-  registration.addMapping(SamlProtocolConstants.ENDPOINT_SAML_VALIDATE);
-  logger.info("Added [{}] to {} servlet context",SamlProtocolConstants.ENDPOINT_SAML_VALIDATE,CAS_SERVLET_NAME);
-}

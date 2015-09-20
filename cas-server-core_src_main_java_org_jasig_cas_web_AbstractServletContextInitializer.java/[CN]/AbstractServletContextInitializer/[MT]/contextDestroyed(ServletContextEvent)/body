@@ -1,0 +1,5 @@
+{
+  logger.info("Destroying {} context...",getClass().getSimpleName());
+  destroyServletContext(sce);
+  logger.info("Destroyed {} context...",getClass().getSimpleName());
+}

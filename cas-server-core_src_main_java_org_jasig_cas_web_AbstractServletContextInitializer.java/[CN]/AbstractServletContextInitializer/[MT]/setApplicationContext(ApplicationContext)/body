@@ -1,0 +1,18 @@
+{
+  this.applicationContext=applicationContext;
+  try {
+    if (applicationContext.getParent() == null) {
+      logger.info("Initializing Saml root application context");
+      initializeRootApplicationContext();
+      logger.info("Initialized Saml root application context successfully");
+    }
+ else {
+      logger.info("Initializing Saml application context");
+      initializeServletApplicationContext();
+      logger.info("Initialized Saml application context successfully");
+    }
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+}
