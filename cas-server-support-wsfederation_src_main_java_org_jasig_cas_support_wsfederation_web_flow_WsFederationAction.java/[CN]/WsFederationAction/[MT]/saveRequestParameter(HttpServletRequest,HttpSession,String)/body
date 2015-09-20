@@ -1,0 +1,6 @@
+{
+  final String value=request.getParameter(name);
+  if (value != null) {
+    session.setAttribute(name,value);
+  }
+}
