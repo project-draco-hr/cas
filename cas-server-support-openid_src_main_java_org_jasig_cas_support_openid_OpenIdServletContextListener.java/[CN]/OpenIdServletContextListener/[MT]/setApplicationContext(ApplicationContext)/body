@@ -9,6 +9,8 @@
       handlerMappingC.initApplicationContext();
       final Map<String,UniqueTicketIdGenerator> map=applicationContext.getBean("uniqueIdGeneratorsMap",Map.class);
       map.put(OpenIdService.class.getCanonicalName(),this.serviceTicketUniqueIdGenerator);
+      final List<ArgumentExtractor> list=applicationContext.getBean("argumentExtractors",List.class);
+      list.add(this.openIdArgumentExtractor);
       logger.info("Initialized OpenID application context successfully");
     }
  else {
