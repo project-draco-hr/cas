@@ -1,5 +1,5 @@
 {
-  final SimpleUrlHandlerMapping handlerMappingC=applicationContext.getBean(SimpleUrlHandlerMapping.class);
+  final SimpleUrlHandlerMapping handlerMappingC=getCasServletHandlerMapping();
   final Map<String,Object> urlMap=(Map<String,Object>)handlerMappingC.getUrlMap();
   urlMap.put(path,controller);
   handlerMappingC.initApplicationContext();
