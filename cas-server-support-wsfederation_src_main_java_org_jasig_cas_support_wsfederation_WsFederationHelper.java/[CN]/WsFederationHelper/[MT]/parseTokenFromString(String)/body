@@ -11,10 +11,10 @@
     final List<RequestedSecurityToken> rst=rsToken.getRequestedSecurityToken();
     final Assertion assertion=(Assertion)rst.get(0).getSecurityTokens().get(0);
     if (assertion == null) {
-      LOGGER.debug("parseTokenFromString: assertion null");
+      LOGGER.debug("Assertion is null");
     }
  else {
-      LOGGER.debug("parseTokenFromString: {}",assertion);
+      LOGGER.debug("Assertion: {}",assertion);
     }
     return assertion;
   }

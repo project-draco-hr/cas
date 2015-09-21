@@ -22,7 +22,7 @@
       }
  finally {
         if (!valid) {
-          LOGGER.warn("validateSignature: Signature doesn't match any signing credential.");
+          LOGGER.warn("Signature doesn't match any signing credential.");
         }
       }
     }
