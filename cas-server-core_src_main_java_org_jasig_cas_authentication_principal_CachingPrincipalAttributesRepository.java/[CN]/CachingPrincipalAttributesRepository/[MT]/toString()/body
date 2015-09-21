@@ -1,3 +1,0 @@
-{
-  return new ToStringBuilder(this).append("attributeRepository",attributeRepository).append("cache",cache).append("cacheName",cacheName).append("durationTimeUnit",duration.getTimeUnit()).append("durationAmount",duration.getDurationAmount()).append("mergingStrategy",mergingStrategy).toString();
-}
