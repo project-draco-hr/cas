@@ -1,7 +1,11 @@
 {
-  final Map<String,Object> cachedAttributes=getPrincipalAttributesFromCache(p);
+  final Map<String,Object> cachedAttributes=getPrincipalAttributes(p);
   if (cachedAttributes != null && !cachedAttributes.isEmpty()) {
     logger.debug("Found [{}] cached attributes for principal [{}]",cachedAttributes.size(),p.getId());
+    return cachedAttributes;
+  }
+  if (this.attributeRepository == null) {
+    logger.debug("No attribute repository is defined for [{}]. Returning default principal attributes for {}",getClass().getName(),p.getId());
     return cachedAttributes;
   }
   final Map<String,List<Object>> sourceAttributes=retrievePersonAttributesToPrincipalAttributes(p.getId());
