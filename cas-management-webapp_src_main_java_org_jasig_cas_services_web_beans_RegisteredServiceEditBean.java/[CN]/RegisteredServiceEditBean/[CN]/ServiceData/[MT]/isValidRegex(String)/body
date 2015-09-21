@@ -1,7 +1,7 @@
 {
   try {
     Pattern.compile(serviceId);
-    LOGGER.debug("Pattern is a valid regex.",pattern);
+    LOGGER.debug("Pattern {} is a valid regex.",pattern);
     return true;
   }
  catch (  final PatternSyntaxException exception) {
