@@ -1,5 +1,5 @@
 {
-  if (HttpMethod.POST.name().equals(request.getMethod()) && (OpenIdConstants.CHECK_AUTHENTICATION.equals(request.getParameter(OpenIdConstants.OPENID_MODE)) || OpenIdConstants.ASSOCIATE.equals(request.getParameter(OpenIdConstants.OPENID_MODE)))) {
+  if (HttpMethod.POST.name().equals(request.getMethod()) && (OpenIdProtocolConstants.CHECK_AUTHENTICATION.equals(request.getParameter(OpenIdProtocolConstants.OPENID_MODE)) || OpenIdProtocolConstants.ASSOCIATE.equals(request.getParameter(OpenIdProtocolConstants.OPENID_MODE)))) {
     return super.lookupHandler(urlPath,request);
   }
   return null;

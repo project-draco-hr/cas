@@ -1,5 +1,5 @@
 {
-  addControllerToCasServletHandlerMapping(OpenIdConstants.ENDPOINT_OPENID,"openIdProviderController");
+  addControllerToCasServletHandlerMapping(OpenIdProtocolConstants.ENDPOINT_OPENID,"openIdProviderController");
   addServiceTicketUniqueIdGenerator(OpenIdService.class.getCanonicalName(),this.serviceTicketUniqueIdGenerator);
   addArgumentExtractor(this.openIdArgumentExtractor);
 }
