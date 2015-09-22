@@ -4,7 +4,12 @@
     return null;
   }
   final PrivateKeyFactoryBean bean=new PrivateKeyFactoryBean();
-  bean.setLocation(new FileSystemResource(ResourceUtils.getFile(this.privateKeyLocation).getCanonicalPath()));
+  if (this.privateKeyLocation.startsWith(ResourceUtils.CLASSPATH_URL_PREFIX)) {
+    bean.setLocation(new ClassPathResource(StringUtils.removeStart(this.privateKeyLocation,ResourceUtils.CLASSPATH_URL_PREFIX)));
+  }
+ else {
+    bean.setLocation(new FileSystemResource(this.privateKeyLocation));
+  }
   bean.setAlgorithm(this.keyAlgorithm);
   bean.afterPropertiesSet();
   logger.debug("Creating Google Apps private key instance via {}",this.publicKeyLocation);

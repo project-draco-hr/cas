@@ -4,7 +4,12 @@
     return null;
   }
   final PublicKeyFactoryBean bean=new PublicKeyFactoryBean();
-  bean.setLocation(new FileSystemResource(ResourceUtils.getFile(this.publicKeyLocation).getCanonicalPath()));
+  if (this.publicKeyLocation.startsWith(ResourceUtils.CLASSPATH_URL_PREFIX)) {
+    bean.setLocation(new ClassPathResource(StringUtils.removeStart(this.publicKeyLocation,ResourceUtils.CLASSPATH_URL_PREFIX)));
+  }
+ else {
+    bean.setLocation(new FileSystemResource(this.publicKeyLocation));
+  }
   bean.setAlgorithm(this.keyAlgorithm);
   bean.afterPropertiesSet();
   logger.debug("Creating Google Apps public key instance via {}",this.publicKeyLocation);
