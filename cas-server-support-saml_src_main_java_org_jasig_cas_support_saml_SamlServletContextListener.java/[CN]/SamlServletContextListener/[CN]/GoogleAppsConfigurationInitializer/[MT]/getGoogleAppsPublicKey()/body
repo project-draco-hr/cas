@@ -1,0 +1,11 @@
+{
+  if (!isValidConfiguration()) {
+    logger.debug("Google Apps public key bean will not be created, because it's not configured");
+    return null;
+  }
+  final PublicKeyFactoryBean bean=new PublicKeyFactoryBean();
+  bean.setLocation(new FileSystemResource(this.publicKeyLocation));
+  bean.setAlgorithm(this.keyAlgorithm);
+  logger.debug("Creating Google Apps public key instance via {}",this.publicKeyLocation);
+  return bean.getObject();
+}

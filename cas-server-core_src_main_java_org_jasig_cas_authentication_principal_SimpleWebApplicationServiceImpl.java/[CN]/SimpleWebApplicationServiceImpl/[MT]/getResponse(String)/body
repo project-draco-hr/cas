@@ -1,7 +1,7 @@
 {
   final Map<String,String> parameters=new HashMap<>();
   if (StringUtils.hasText(ticketId)) {
-    parameters.put(CONST_PARAM_TICKET,ticketId);
+    parameters.put(CasProtocolConstants.PARAMETER_TICKET,ticketId);
   }
   if (Response.ResponseType.POST == this.responseType) {
     return DefaultResponse.getPostResponse(getOriginalUrl(),parameters);

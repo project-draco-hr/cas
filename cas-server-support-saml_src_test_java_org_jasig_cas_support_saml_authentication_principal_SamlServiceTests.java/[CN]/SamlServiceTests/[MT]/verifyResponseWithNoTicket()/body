@@ -1,7 +1,7 @@
 {
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.setParameter("TARGET","service");
-  final SamlService impl=SamlService.createServiceFrom(request);
+  request.setParameter(SamlProtocolConstants.CONST_PARAM_TARGET,"service");
+  final SamlService impl=new SamlServiceFactory().createService(request);
   final Response response=impl.getResponse(null);
   assertNotNull(response);
   assertEquals(Response.ResponseType.REDIRECT,response.getResponseType());
