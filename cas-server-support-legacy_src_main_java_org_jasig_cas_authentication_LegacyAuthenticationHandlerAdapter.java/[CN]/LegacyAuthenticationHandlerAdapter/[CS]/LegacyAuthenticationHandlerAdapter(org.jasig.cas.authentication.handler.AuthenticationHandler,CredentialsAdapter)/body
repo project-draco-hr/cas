@@ -1,4 +1,0 @@
-{
-  this.legacyHandler=legacy;
-  this.credentialsAdapter=adapter;
-}
