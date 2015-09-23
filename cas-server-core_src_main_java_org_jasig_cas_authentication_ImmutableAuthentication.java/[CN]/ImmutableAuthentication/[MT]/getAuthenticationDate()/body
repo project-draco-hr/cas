@@ -1,3 +1,3 @@
 {
-  return new ImmutableDate(this.authenticationDate);
+  return authenticationDate;
 }

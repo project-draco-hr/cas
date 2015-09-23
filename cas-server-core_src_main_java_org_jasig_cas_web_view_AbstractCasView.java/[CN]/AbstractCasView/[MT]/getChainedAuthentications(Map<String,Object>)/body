@@ -1,5 +1,5 @@
 {
-  final List<Authentication> chainedAuthenticationsToReturn=new ArrayList<>();
+  final Collection<Authentication> chainedAuthenticationsToReturn=new ArrayList<>();
   final Assertion assertion=getAssertionFrom(model);
   final List<Authentication> chainedAuthentications=assertion.getChainedAuthentications();
   final int numberAuthenticationsExceptPrimary=chainedAuthentications.size() - 1;
