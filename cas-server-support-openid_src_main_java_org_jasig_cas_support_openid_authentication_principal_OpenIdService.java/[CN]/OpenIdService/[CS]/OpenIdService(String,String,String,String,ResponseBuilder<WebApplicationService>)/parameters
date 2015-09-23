@@ -2,6 +2,4 @@ String id
 String originalUrl
 String artifactId
 String openIdIdentity
-String signature
-ParameterList parameterList
-String openIdPrefixUrl
+ResponseBuilder<WebApplicationService> responseBuilder

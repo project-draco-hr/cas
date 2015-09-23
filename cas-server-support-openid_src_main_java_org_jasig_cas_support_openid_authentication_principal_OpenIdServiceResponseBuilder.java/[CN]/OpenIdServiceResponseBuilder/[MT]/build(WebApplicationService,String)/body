@@ -1,0 +1,29 @@
+{
+  final OpenIdService service=(OpenIdService)webApplicationService;
+  final Map<String,String> parameters=new HashMap<>();
+  if (StringUtils.isBlank(ticketId)) {
+    parameters.put(OpenIdProtocolConstants.OPENID_MODE,OpenIdProtocolConstants.CANCEL);
+    return buildRedirect(service,parameters);
+  }
+  final Association association=getAssociation();
+  final boolean associated=association != null;
+  final boolean associationValid=isAssociationValid(association);
+  boolean successFullAuthentication=true;
+  Assertion assertion=null;
+  try {
+    if (associated && associationValid) {
+      assertion=centralAuthenticationService.validateServiceTicket(ticketId,service);
+      logger.debug("Validated openid ticket {} for {}",ticketId,service);
+    }
+ else {
+      logger.warn("Association does not exist or is not valid");
+      successFullAuthentication=false;
+    }
+  }
+ catch (  final TicketException te) {
+    logger.error("Could not validate ticket : {}",te.getMessage(),te);
+    successFullAuthentication=false;
+  }
+  final String id=determineIdentity(service,assertion);
+  return buildAuthenticationResponse(ticketId,service,parameters,associated,successFullAuthentication,id);
+}
