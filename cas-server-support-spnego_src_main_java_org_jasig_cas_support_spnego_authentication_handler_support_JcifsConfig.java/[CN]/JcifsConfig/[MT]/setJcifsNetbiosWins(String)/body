@@ -1,0 +1,4 @@
+{
+  logger.debug("jcifsNetbiosWins is set to {}",jcifsNetbiosWins);
+  Config.setProperty(JCIFS_PROP_NETBIOS_WINS,jcifsNetbiosWins);
+}
