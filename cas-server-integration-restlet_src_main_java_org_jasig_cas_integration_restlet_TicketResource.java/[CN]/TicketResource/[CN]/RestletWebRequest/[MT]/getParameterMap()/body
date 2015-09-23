@@ -1,7 +1,0 @@
-{
-  final Map<String,String[]> conversion=new HashMap<>();
-  for (  final Map.Entry<String,String> entry : this.form.getValuesMap().entrySet()) {
-    conversion.put(entry.getKey(),new String[]{entry.getValue()});
-  }
-  return conversion;
-}
