@@ -1,8 +1,0 @@
-{
-  try {
-    this.cache.put(FQN_TICKET,ticket.getId(),ticket);
-  }
- catch (  final CacheException e) {
-    throw new RuntimeException(e);
-  }
-}
