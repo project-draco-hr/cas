@@ -1,5 +1,0 @@
-{
-  final Map<String,String> parameters=new HashMap<>();
-  parameters.put(SamlProtocolConstants.CONST_PARAM_ARTIFACT,ticketId);
-  return DefaultResponse.getRedirectResponse(getOriginalUrl(),parameters);
-}

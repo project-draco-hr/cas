@@ -1,0 +1,5 @@
+{
+  super(id,originalUrl,artifactId,responseBuilder);
+  this.relayState=relayState;
+  this.requestId=requestId;
+}
