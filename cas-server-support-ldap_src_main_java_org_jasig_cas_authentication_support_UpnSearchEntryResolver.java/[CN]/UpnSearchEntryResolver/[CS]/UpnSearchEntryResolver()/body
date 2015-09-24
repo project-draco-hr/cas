@@ -1,4 +1,0 @@
-{
-  super();
-  LOGGER.warn("UpnSearchEntryResolver will be removed in future CAS versions. Consider using the SearchEntryResolver directly");
-}

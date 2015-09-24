@@ -1,0 +1,8 @@
+{
+  final SpnegoCredential credentials=new SpnegoCredential(new byte[]{0,1,2});
+  this.authenticationHandler.setPrincipalWithDomainName(false);
+  this.authenticationHandler.setAuthentication(new MockJcifsAuthentication(true));
+  assertNotNull(this.authenticationHandler.authenticate(credentials));
+  assertEquals("test",credentials.getPrincipal().getId());
+  assertNotNull(credentials.getNextToken());
+}

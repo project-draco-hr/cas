@@ -10,7 +10,7 @@
   builder.append(this.principal,other.getPrincipal());
   builder.append(this.credentials,other.getCredentials());
   builder.append(this.successes,other.getSuccesses());
-  builder.append(this.authenticationDate,other.getAuthenticationDate().getTime());
+  builder.append(this.authenticationDate,other.getAuthenticationDate());
   builder.append(wrap(this.attributes),other.getAttributes());
   builder.append(wrap(this.failures),other.getFailures());
   return builder.isEquals();

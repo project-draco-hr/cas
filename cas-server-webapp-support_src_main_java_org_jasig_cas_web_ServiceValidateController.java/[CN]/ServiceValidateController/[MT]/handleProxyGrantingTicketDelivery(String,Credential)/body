@@ -7,7 +7,7 @@
  catch (  final AuthenticationException e) {
     logger.info("Failed to authenticate service credential {}",serviceCredential);
   }
-catch (  final TicketException e) {
+catch (  final AbstractTicketException e) {
     logger.error("Failed to create proxy granting ticket for {}",serviceCredential,e);
   }
   return proxyGrantingTicketId;
