@@ -37,7 +37,7 @@
         }
       }
     }
- catch (    final TicketException te) {
+ catch (    final AbstractTicketException te) {
       LOGGER.error("Could not validate ticket : {}",te.getMessage(),te);
       successFullAuthentication=false;
     }

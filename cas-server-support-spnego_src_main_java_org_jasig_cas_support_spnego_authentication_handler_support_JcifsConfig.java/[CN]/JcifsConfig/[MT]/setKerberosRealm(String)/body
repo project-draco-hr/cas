@@ -1,0 +1,4 @@
+{
+  logger.debug("kerberosRealm is set to :{}",kerberosRealm);
+  System.setProperty(SYS_PROP_KERBEROS_REALM,kerberosRealm);
+}

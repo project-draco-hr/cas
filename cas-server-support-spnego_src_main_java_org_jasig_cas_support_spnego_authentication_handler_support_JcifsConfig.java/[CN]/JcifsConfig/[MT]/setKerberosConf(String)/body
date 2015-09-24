@@ -1,0 +1,4 @@
+{
+  logger.debug("kerberosConf is set to :{}",kerberosConf);
+  System.setProperty(SYS_PROP_KERBEROS_CONF,kerberosConf);
+}

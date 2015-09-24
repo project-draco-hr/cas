@@ -1,5 +1,0 @@
-{
-  if (this.maxTimeToLiveInMilliSeconds == 0L) {
-    this.maxTimeToLiveInMilliSeconds=TimeUnit.SECONDS.toMillis(maxTimeToLiveInSeconds);
-  }
-}

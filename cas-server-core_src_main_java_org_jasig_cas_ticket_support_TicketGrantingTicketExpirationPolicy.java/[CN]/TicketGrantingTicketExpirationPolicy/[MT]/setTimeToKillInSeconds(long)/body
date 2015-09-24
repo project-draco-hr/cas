@@ -1,5 +1,0 @@
-{
-  if (this.timeToKillInMilliSeconds == 0L) {
-    this.timeToKillInMilliSeconds=TimeUnit.SECONDS.toMillis(timeToKillInSeconds);
-  }
-}
