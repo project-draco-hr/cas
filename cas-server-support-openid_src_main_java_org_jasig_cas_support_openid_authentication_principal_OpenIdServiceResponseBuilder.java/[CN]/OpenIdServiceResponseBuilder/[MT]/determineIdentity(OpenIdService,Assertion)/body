@@ -1,0 +1,10 @@
+{
+  final String id;
+  if (assertion != null && OpenIdProtocolConstants.OPENID_IDENTIFIERSELECT.equals(service.getIdentity())) {
+    id=this.openIdPrefixUrl + '/' + assertion.getPrimaryAuthentication().getPrincipal().getId();
+  }
+ else {
+    id=service.getIdentity();
+  }
+  return id;
+}
