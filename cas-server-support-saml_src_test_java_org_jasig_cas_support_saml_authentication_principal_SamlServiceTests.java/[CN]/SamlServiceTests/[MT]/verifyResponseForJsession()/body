@@ -1,6 +1,6 @@
 {
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.setParameter("TARGET","http://www.cnn.com/;jsession=test");
-  final SamlService impl=SamlService.createServiceFrom(request);
+  request.setParameter(SamlProtocolConstants.CONST_PARAM_TARGET,"http://www.cnn.com/;jsession=test");
+  final SamlService impl=new SamlServiceFactory().createService(request);
   assertEquals("http://www.cnn.com/",impl.getId());
 }

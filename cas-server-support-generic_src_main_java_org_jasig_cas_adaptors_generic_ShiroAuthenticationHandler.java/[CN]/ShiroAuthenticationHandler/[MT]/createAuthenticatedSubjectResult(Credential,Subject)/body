@@ -1,0 +1,4 @@
+{
+  final String username=currentUser.getPrincipal().toString();
+  return createHandlerResult(credential,this.principalFactory.createPrincipal(username),null);
+}

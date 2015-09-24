@@ -2,6 +2,5 @@
   final ObjectMapper mapper=super.initializeObjectMapper();
   mapper.addMixIn(RegisteredServiceProxyPolicy.class,RegisteredServiceProxyPolicyMixin.class);
   mapper.addMixIn(RegisteredServiceAccessStrategy.class,RegisteredServiceAuthorizationStrategyMixin.class);
-  mapper.addMixIn(Duration.class,DurationMixin.class);
   return mapper;
 }

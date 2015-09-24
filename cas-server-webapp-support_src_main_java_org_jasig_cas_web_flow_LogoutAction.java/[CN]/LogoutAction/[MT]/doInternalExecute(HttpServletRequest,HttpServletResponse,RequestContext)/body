@@ -10,9 +10,9 @@
       }
     }
   }
-  final String service=request.getParameter("service");
+  final String service=request.getParameter(CasProtocolConstants.PARAMETER_SERVICE);
   if (this.followServiceRedirects && service != null) {
-    final Service webAppService=new SimpleWebApplicationServiceImpl(service);
+    final Service webAppService=new WebApplicationServiceFactory().createService(service);
     final RegisteredService rService=this.servicesManager.findServiceBy(webAppService);
     if (rService != null && rService.getAccessStrategy().isServiceAccessAllowed()) {
       context.getFlowScope().put("logoutRedirectUrl",service);

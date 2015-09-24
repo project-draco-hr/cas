@@ -1,0 +1,3 @@
+{
+  assertNull(factory.createService(new MockHttpServletRequest()));
+}
