@@ -1,4 +1,6 @@
 {
-  logger.debug("kerberosDebug is set to : {}",kerberosDebug);
-  System.setProperty(SYS_PROP_KERBEROS_DEBUG,kerberosDebug);
+  if (StringUtils.isNotBlank(kerberosDebug)) {
+    logger.debug("kerberosDebug is set to : {}",kerberosDebug);
+    System.setProperty(SYS_PROP_KERBEROS_DEBUG,kerberosDebug);
+  }
 }
