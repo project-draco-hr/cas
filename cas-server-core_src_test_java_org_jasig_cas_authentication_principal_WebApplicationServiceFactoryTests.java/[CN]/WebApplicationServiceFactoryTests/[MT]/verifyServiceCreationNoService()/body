@@ -1,0 +1,7 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter(CasProtocolConstants.PARAMETER_TICKET,"ticket");
+  final WebApplicationServiceFactory factory=new WebApplicationServiceFactory();
+  final WebApplicationService service=factory.createService(request);
+  assertNull(service);
+}

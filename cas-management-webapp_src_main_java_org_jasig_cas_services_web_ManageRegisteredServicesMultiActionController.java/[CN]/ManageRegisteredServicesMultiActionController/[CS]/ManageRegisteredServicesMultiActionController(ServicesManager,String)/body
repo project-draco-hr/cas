@@ -1,4 +1,4 @@
 {
   super(servicesManager);
-  this.defaultService=new SimpleWebApplicationServiceImpl(defaultServiceUrl);
+  this.defaultService=new WebApplicationServiceFactory().createService(defaultServiceUrl);
 }

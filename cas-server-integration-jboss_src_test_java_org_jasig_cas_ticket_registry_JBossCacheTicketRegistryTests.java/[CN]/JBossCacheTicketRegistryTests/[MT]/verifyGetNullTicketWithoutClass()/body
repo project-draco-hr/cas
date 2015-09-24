@@ -1,8 +1,0 @@
-{
-  try {
-    this.ticketRegistry.getTicket(null);
-  }
- catch (  final Exception e) {
-    fail("Exception caught.  None expected.");
-  }
-}

@@ -8,8 +8,8 @@
     try {
       final AuthRequest authReq=AuthRequest.createAuthRequest(requestParameters,manager.getRealmVerifier());
       final Map parameterMap=authReq.getParameterMap();
-      if (parameterMap != null && parameterMap.size() > 0) {
-        final String assocHandle=(String)parameterMap.get(OpenIdConstants.OPENID_ASSOCHANDLE);
+      if (parameterMap != null && !parameterMap.isEmpty()) {
+        final String assocHandle=(String)parameterMap.get(OpenIdProtocolConstants.OPENID_ASSOCHANDLE);
         if (assocHandle != null) {
           final Association association=manager.getSharedAssociations().load(assocHandle);
           if (association != null) {
@@ -42,7 +42,7 @@
       successFullAuthentication=false;
     }
     final String id;
-    if (assertion != null && OpenIdConstants.OPENID_IDENTIFIERSELECT.equals(this.identity)) {
+    if (assertion != null && OpenIdProtocolConstants.OPENID_IDENTIFIERSELECT.equals(this.identity)) {
       id=this.openIdPrefixUrl + '/' + assertion.getPrimaryAuthentication().getPrincipal().getId();
     }
  else {
@@ -51,11 +51,11 @@
     final Message response=manager.authResponse(requestParameters,id,id,successFullAuthentication,true);
     parameters.putAll(response.getParameterMap());
     if (!associated) {
-      parameters.put(OpenIdConstants.OPENID_ASSOCHANDLE,ticketId);
+      parameters.put(OpenIdProtocolConstants.OPENID_ASSOCHANDLE,ticketId);
     }
   }
  else {
-    parameters.put(OpenIdConstants.OPENID_MODE,OpenIdConstants.CANCEL);
+    parameters.put(OpenIdProtocolConstants.OPENID_MODE,OpenIdProtocolConstants.CANCEL);
   }
   return DefaultResponse.getRedirectResponse(getOriginalUrl(),parameters);
 }

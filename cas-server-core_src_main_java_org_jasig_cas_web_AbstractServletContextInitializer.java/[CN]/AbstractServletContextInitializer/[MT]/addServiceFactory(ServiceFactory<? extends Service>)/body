@@ -1,0 +1,4 @@
+{
+  final List<ServiceFactory<? extends Service>> list=applicationContext.getBean("serviceFactoryList",List.class);
+  list.add(factory);
+}

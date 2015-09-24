@@ -5,7 +5,7 @@
   mockSession.setAttribute(ClientAction.THEME,MY_THEME);
   mockSession.setAttribute(ClientAction.LOCALE,MY_LOCALE);
   mockSession.setAttribute(ClientAction.METHOD,MY_METHOD);
-  final Service service=new SimpleWebApplicationServiceImpl(MY_SERVICE);
+  final Service service=new WebApplicationServiceFactory().createService(MY_SERVICE);
   mockSession.setAttribute(ClientAction.SERVICE,service);
   mockRequest.setSession(mockSession);
   final ServletExternalContext servletExternalContext=mock(ServletExternalContext.class);
