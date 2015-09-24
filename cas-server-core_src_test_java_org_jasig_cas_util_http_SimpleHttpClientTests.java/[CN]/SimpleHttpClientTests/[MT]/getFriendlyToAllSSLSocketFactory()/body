@@ -1,6 +1,6 @@
 {
   final TrustManager trm=new X509TrustManager(){
-    public X509Certificate[] getAcceptedIssuers(){
+    @Override public X509Certificate[] getAcceptedIssuers(){
       return null;
     }
     @Override public void checkClientTrusted(    final X509Certificate[] certs,    final String authType){
