@@ -1,7 +1,0 @@
-{
-  super(id,originalUrl,artifactId);
-  this.identity=openIdIdentity;
-  this.artifactId=artifactId;
-  this.requestParameters=parameterList;
-  this.openIdPrefixUrl=openIdPrefixUrl;
-}

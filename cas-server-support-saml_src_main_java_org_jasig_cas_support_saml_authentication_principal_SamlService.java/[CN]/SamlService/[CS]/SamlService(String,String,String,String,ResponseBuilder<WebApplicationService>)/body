@@ -1,0 +1,4 @@
+{
+  super(id,originalUrl,artifactId,responseBuilder);
+  this.requestId=requestId;
+}

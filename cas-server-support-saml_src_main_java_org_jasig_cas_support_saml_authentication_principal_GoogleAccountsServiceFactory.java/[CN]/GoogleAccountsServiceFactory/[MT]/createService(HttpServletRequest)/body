@@ -8,12 +8,13 @@
   if (!StringUtils.hasText(xmlRequest)) {
     return null;
   }
-  final Document document=AbstractSaml20ObjectBuilder.constructDocumentFromXml(xmlRequest);
+  final Document document=BUILDER.constructDocumentFromXml(xmlRequest);
   if (document == null) {
     return null;
   }
   final Element root=document.getRootElement();
   final String assertionConsumerServiceUrl=root.getAttributeValue("AssertionConsumerServiceURL");
   final String requestId=root.getAttributeValue("ID");
-  return new GoogleAccountsService(assertionConsumerServiceUrl,relayState,requestId,privateKey,publicKey,servicesManager);
+  final GoogleAccountsServiceResponseBuilder builder=new GoogleAccountsServiceResponseBuilder(this.privateKey,this.publicKey,BUILDER,this.servicesManager);
+  return new GoogleAccountsService(assertionConsumerServiceUrl,relayState,requestId,builder);
 }
