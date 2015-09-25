@@ -1,0 +1,13 @@
+{
+  try {
+    final JobDetail job=JobBuilder.newJob(this.getClass()).withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).build();
+    final Trigger trigger=TriggerBuilder.newTrigger().withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).startAt(new Date(System.currentTimeMillis() + this.startDelay)).withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInMinutes(this.refreshIntervalInMinutes).repeatForever()).build();
+    final SchedulerFactory schFactory=new StdSchedulerFactory();
+    final Scheduler sch=schFactory.getScheduler();
+    sch.start();
+    sch.scheduleJob(job,trigger);
+  }
+ catch (  final Exception e) {
+    LOGGER.warn(e.getMessage(),e);
+  }
+}
