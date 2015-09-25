@@ -1,2 +1,0 @@
-IPersonAttributeDao attributeRepository
-MutableConfiguration<String,Map<String,Object>> config

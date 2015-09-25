@@ -1,3 +1,0 @@
-{
-  logger.warn("Invoking setLogUserOutOfServices() is deprecated and has no impact.");
-}

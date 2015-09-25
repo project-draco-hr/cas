@@ -1,4 +1,5 @@
 {
+  logger.info("Setting up Memcached Ticket Registry...");
   try {
     this.client=new MemcachedClient(AddrUtil.getAddresses(Arrays.asList(hostnames)));
   }

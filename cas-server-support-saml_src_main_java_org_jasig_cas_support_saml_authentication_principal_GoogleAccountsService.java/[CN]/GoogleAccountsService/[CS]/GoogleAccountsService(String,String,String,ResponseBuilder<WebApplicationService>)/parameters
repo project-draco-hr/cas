@@ -1,0 +1,4 @@
+String id
+String relayState
+String requestId
+ResponseBuilder<WebApplicationService> responseBuilder

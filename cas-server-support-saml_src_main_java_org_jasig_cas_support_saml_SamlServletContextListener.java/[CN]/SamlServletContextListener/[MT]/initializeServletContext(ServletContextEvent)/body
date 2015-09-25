@@ -1,0 +1,3 @@
+{
+  addEndpointMappingToCasServlet(sce,SamlProtocolConstants.ENDPOINT_SAML_VALIDATE);
+}

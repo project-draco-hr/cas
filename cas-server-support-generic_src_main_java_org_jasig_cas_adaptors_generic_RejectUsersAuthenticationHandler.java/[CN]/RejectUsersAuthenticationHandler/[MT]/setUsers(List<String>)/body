@@ -1,3 +1,0 @@
-{
-  logger.warn("setUsers(List) is deprecated and has no effect. Consider defining a set instead");
-}

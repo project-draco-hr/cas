@@ -1,5 +1,5 @@
 {
-  LOGGER.debug("Initializing OpenSaml configuration...");
+  LOGGER.info("Initializing OpenSaml configuration...");
   Assert.notNull(this.parserPool,"parserPool cannot be null");
   try {
     InitializationService.initialize();
@@ -16,5 +16,12 @@ synchronized (ConfigurationService.class) {
       ConfigurationService.register(XMLObjectProviderRegistry.class,registry);
     }
   }
-  registry.setParserPool(parserPool);
+  registry.setParserPool(this.parserPool);
+  this.builderFactory=registry.getBuilderFactory();
+  Assert.notNull(this.builderFactory,"parserPool cannot be null");
+  this.marshallerFactory=registry.getMarshallerFactory();
+  Assert.notNull(this.marshallerFactory,"marshallerFactory cannot be null");
+  this.unmarshallerFactory=registry.getUnmarshallerFactory();
+  Assert.notNull(this.unmarshallerFactory,"unmarshallerFactory cannot be null");
+  LOGGER.debug("Initialized OpenSaml successfully.");
 }

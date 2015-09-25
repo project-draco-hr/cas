@@ -1,8 +1,0 @@
-{
-  final Map<String,String> parameters=new HashMap<>();
-  final String samlResponse=constructSamlResponse();
-  final String signedResponse=BUILDER.signSamlResponse(samlResponse,this.privateKey,this.publicKey);
-  parameters.put(SamlProtocolConstants.PARAMETER_SAML_RESPONSE,signedResponse);
-  parameters.put(SamlProtocolConstants.PARAMETER_SAML_RELAY_STATE,this.relayState);
-  return DefaultResponse.getPostResponse(getOriginalUrl(),parameters);
-}

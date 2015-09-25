@@ -1,3 +1,0 @@
-{
-  logger.warn("Invoking setLogoutManager() is deprecated and has no impact.");
-}

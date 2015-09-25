@@ -6,30 +6,16 @@
     return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_REQUEST,CasProtocolConstants.ERROR_CODE_INVALID_REQUEST,null);
   }
   try {
-    final Credential serviceCredential=getServiceCredentialsFromRequest(service,request);
     TicketGrantingTicket proxyGrantingTicketId=null;
+    final Credential serviceCredential=getServiceCredentialsFromRequest(service,request);
     if (serviceCredential != null) {
-      try {
-        proxyGrantingTicketId=this.centralAuthenticationService.delegateTicketGrantingTicket(serviceTicketId,serviceCredential);
-        logger.debug("Generated PGT [{}] off of service ticket [{}] and credential [{}]",proxyGrantingTicketId.getId(),serviceTicketId,serviceCredential);
-      }
- catch (      final AuthenticationException e) {
-        logger.info("Failed to authenticate service credential {}",serviceCredential);
-      }
-catch (      final TicketException e) {
-        logger.error("Failed to create proxy granting ticket for {}",serviceCredential,e);
-      }
+      proxyGrantingTicketId=handleProxyGrantingTicketDelivery(serviceTicketId,serviceCredential);
       if (proxyGrantingTicketId == null) {
         return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_PROXY_CALLBACK,CasProtocolConstants.ERROR_CODE_INVALID_PROXY_CALLBACK,new Object[]{serviceCredential.getId()});
       }
     }
     final Assertion assertion=this.centralAuthenticationService.validateServiceTicket(serviceTicketId,service);
-    final ValidationSpecification validationSpecification=this.getCommandClass();
-    final ServletRequestDataBinder binder=new ServletRequestDataBinder(validationSpecification,"validationSpecification");
-    initBinder(request,binder);
-    binder.bind(request);
-    if (!validationSpecification.isSatisfiedBy(assertion)) {
-      logger.debug("Service ticket [{}] does not satisfy validation specification.",serviceTicketId);
+    if (!validateAssertion(request,serviceTicketId,assertion)) {
       return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_TICKET,CasProtocolConstants.ERROR_CODE_INVALID_TICKET,null);
     }
     String proxyIou=null;
@@ -43,11 +29,11 @@ catch (      final TicketException e) {
     logger.debug("Successfully validated service ticket {} for service [{}]",serviceTicketId,service.getId());
     return generateSuccessView(assertion,proxyIou,service,proxyGrantingTicketId);
   }
- catch (  final TicketValidationException e) {
+ catch (  final AbstractTicketValidationException e) {
     final String code=e.getCode();
     return generateErrorView(code,code,new Object[]{serviceTicketId,e.getOriginalService().getId(),service.getId()});
   }
-catch (  final TicketException te) {
+catch (  final AbstractTicketException te) {
     return generateErrorView(te.getCode(),te.getCode(),new Object[]{serviceTicketId});
   }
 catch (  final UnauthorizedProxyingException e) {

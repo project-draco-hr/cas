@@ -1,3 +1,3 @@
 {
-  return GoogleAccountsService.createServiceFrom(request,this.privateKey,this.publicKey,this.servicesManager);
+  throw new NotImplementedException("This operation is not supported. " + "The class is deprecated and will be removed in future versions");
 }

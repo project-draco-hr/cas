@@ -1,4 +1,5 @@
 {
+  final Ticket ticket=encodeTicket(ticketToAdd);
   final Element element=new Element(ticket.getId(),ticket);
   if (ticket instanceof ServiceTicket) {
     logger.debug("Adding service ticket {} to the cache {}",ticket.getId(),this.serviceTicketsCache.getName());

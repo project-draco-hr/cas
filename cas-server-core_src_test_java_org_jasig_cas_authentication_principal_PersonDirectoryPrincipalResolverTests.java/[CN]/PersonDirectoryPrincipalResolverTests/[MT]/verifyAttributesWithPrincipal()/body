@@ -1,0 +1,10 @@
+{
+  final PersonDirectoryPrincipalResolver resolver=new PersonDirectoryPrincipalResolver();
+  resolver.setAttributeRepository(TestUtils.getAttributeRepository());
+  resolver.setPrincipalAttributeName("cn");
+  final Credential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
+  final Principal p=resolver.resolve(c);
+  assertNotNull(p);
+  assertNotEquals(p.getId(),TestUtils.CONST_USERNAME);
+  assertTrue(p.getAttributes().containsKey("memberOf"));
+}

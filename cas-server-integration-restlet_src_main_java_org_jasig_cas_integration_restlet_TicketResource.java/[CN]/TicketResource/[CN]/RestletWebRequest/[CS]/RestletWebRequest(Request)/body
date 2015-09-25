@@ -1,4 +1,0 @@
-{
-  this.form=new Form(request.getEntity());
-  this.request=request;
-}

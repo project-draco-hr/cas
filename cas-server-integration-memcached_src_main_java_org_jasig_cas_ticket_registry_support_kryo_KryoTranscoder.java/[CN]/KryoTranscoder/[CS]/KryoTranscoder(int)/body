@@ -1,3 +1,0 @@
-{
-  logger.warn("It's no longer necessary to define the initialBufferSize. Use the empty constructor.");
-}

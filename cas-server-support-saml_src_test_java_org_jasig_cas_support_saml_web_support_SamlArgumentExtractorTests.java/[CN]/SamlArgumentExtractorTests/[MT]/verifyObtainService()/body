@@ -1,6 +1,0 @@
-{
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.setParameter("TARGET","test");
-  final Service service=this.extractor.extractService(request);
-  assertEquals("test",service.getId());
-}

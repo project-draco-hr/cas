@@ -1,0 +1,4 @@
+{
+  final Map<AuthenticationHandler,PrincipalResolver> authenticationHandlersResolvers=applicationContext.getBean("authenticationHandlersResolvers",Map.class);
+  authenticationHandlersResolvers.put(handler,resolver);
+}

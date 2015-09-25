@@ -1,0 +1,10 @@
+{
+  final PersonDirectoryPrincipalResolver resolver=new PersonDirectoryPrincipalResolver();
+  final Principal p=resolver.resolve(new Credential(){
+    @Override public String getId(){
+      return null;
+    }
+  }
+);
+  assertNull(p);
+}

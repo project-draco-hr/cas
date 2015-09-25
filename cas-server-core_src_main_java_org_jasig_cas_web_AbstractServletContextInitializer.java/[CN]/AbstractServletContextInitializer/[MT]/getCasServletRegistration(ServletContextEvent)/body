@@ -1,0 +1,4 @@
+{
+  final ServletRegistration registration=sce.getServletContext().getServletRegistration(CAS_SERVLET_NAME);
+  return registration;
+}

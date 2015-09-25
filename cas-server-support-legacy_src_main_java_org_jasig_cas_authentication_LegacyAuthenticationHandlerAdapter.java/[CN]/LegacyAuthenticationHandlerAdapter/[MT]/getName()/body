@@ -1,8 +1,0 @@
-{
-  if (this.legacyHandler instanceof NamedAuthenticationHandler) {
-    return ((NamedAuthenticationHandler)this.legacyHandler).getName();
-  }
- else {
-    return this.legacyHandler.getClass().getSimpleName();
-  }
-}
