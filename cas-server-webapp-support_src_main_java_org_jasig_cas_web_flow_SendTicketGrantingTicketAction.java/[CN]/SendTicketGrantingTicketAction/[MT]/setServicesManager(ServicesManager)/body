@@ -1,3 +1,0 @@
-{
-  logger.warn("setServicesManager() is deprecated and has no effect. Use constructors instead.");
-}

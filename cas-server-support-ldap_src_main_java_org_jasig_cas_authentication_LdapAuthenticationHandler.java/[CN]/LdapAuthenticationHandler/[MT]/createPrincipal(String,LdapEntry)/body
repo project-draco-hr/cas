@@ -1,4 +1,5 @@
 {
+  logger.debug("Creating LDAP principal for {} based on {}",username,ldapEntry.getDn());
   final String id;
   if (this.principalIdAttribute != null) {
     final LdapAttribute principalAttr=ldapEntry.getAttribute(this.principalIdAttribute);
@@ -14,9 +15,11 @@
       }
     }
     id=principalAttr.getStringValue();
+    logger.debug("Retrieved principal id attribute {}",id);
   }
  else {
     id=username;
+    logger.debug("Principal id attribute is not defined. Using the default id {}",id);
   }
   final Map<String,Object> attributeMap=new LinkedHashMap<>(this.principalAttributeMap.size());
   for (  final Map.Entry<String,String> ldapAttr : this.principalAttributeMap.entrySet()) {
@@ -25,6 +28,7 @@
       logger.debug("Found principal attribute: {}",attr);
       final String principalAttrName=ldapAttr.getValue();
       if (attr.size() > 1) {
+        logger.debug("Principal attribute: {} is multivalued",attr);
         attributeMap.put(principalAttrName,attr.getStringValues());
       }
  else {
@@ -32,5 +36,6 @@
       }
     }
   }
+  logger.debug("Created LDAP principal for id {} and {} attributes",id,attributeMap.size());
   return this.principalFactory.createPrincipal(id,attributeMap);
 }

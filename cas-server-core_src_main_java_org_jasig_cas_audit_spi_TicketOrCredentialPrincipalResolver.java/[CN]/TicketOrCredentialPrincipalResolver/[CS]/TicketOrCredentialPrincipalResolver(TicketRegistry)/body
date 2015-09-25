@@ -1,4 +1,0 @@
-{
-  LOGGER.warn("The constructor is deprecated and will be removed. Consider an alternate constructor");
-  this.centralAuthenticationService=null;
-}
