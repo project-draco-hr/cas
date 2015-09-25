@@ -1,5 +1,0 @@
-{
-  LOGGER.debug("Finalizing...");
-  close();
-  super.finalize();
-}

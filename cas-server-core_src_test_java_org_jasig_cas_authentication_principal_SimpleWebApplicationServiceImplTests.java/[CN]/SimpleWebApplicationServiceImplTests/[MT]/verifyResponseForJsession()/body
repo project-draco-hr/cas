@@ -1,6 +1,6 @@
 {
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.setParameter("service","http://www.cnn.com/;jsession=test");
-  final WebApplicationService impl=SimpleWebApplicationServiceImpl.createServiceFrom(request);
+  final WebApplicationService impl=new WebApplicationServiceFactory().createService(request);
   assertEquals("http://www.cnn.com/",impl.getId());
 }

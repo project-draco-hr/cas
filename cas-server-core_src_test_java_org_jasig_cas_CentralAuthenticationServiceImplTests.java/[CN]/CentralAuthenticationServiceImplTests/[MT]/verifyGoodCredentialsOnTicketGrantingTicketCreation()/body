@@ -2,7 +2,7 @@
   try {
     assertNotNull(getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword()));
   }
- catch (  final TicketException e) {
+ catch (  final AbstractTicketException e) {
     fail(TestUtils.CONST_EXCEPTION_NON_EXPECTED);
   }
 }

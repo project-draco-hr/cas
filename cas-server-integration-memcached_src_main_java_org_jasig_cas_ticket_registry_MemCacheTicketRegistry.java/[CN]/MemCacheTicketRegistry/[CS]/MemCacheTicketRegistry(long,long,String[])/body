@@ -1,3 +1,0 @@
-{
-  this(hostnames,(int)TimeUnit.MILLISECONDS.toSeconds(ticketGrantingTicketTimeOut),(int)TimeUnit.MILLISECONDS.toSeconds(serviceTicketTimeOut));
-}

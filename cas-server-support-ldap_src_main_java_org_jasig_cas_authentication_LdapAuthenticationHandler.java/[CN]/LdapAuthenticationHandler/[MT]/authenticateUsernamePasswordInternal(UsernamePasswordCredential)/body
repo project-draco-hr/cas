@@ -7,6 +7,7 @@
     response=this.authenticator.authenticate(request);
   }
  catch (  final LdapException e) {
+    logger.trace(e.getMessage(),e);
     throw new PreventedException("Unexpected LDAP error",e);
   }
   logger.debug("LDAP response: {}",response);
@@ -17,9 +18,11 @@
     messageList=ldapPasswordPolicyConfiguration.getAccountStateHandler().handle(response,ldapPasswordPolicyConfiguration);
   }
  else {
+    logger.debug("No ldap password policy configuration is defined");
     messageList=Collections.emptyList();
   }
   if (response.getResult()) {
+    logger.debug("LDAP response returned as result. Creating the final LDAP principal");
     return createHandlerResult(upc,createPrincipal(upc.getUsername(),response.getLdapEntry()),messageList);
   }
   if (AuthenticationResultCode.DN_RESOLUTION_FAILURE == response.getAuthenticationResultCode()) {

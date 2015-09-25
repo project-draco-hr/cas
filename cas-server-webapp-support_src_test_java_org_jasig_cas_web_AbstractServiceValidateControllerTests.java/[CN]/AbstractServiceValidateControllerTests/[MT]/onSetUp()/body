@@ -7,6 +7,6 @@
   proxyHandler.setHttpClient(new SimpleHttpClientFactoryBean().getObject());
   this.serviceValidateController.setProxyHandler(proxyHandler);
   this.serviceValidateController.setApplicationContext(context);
-  this.serviceValidateController.setArgumentExtractor(new CasArgumentExtractor());
+  this.serviceValidateController.setArgumentExtractor(new DefaultArgumentExtractor());
   this.serviceValidateController.setServicesManager(this.servicesManager);
 }

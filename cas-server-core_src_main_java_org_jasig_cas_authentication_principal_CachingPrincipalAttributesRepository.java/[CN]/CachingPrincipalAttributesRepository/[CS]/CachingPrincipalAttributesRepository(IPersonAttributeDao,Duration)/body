@@ -1,4 +1,0 @@
-{
-  this(attributeRepository,createCacheConfiguration(duration));
-  this.duration=duration;
-}
