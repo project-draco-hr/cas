@@ -1,8 +1,10 @@
 {
+  final String ticketId=encodeTicketId(ticketIdToGet);
   try {
     final Ticket t=(Ticket)this.client.get(ticketId);
     if (t != null) {
-      return getProxiedTicketInstance(t);
+      final Ticket result=decodeTicket(t);
+      return getProxiedTicketInstance(result);
     }
   }
  catch (  final Exception e) {

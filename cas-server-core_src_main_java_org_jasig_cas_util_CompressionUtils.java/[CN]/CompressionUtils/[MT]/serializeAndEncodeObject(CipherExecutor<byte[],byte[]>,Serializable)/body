@@ -1,0 +1,5 @@
+{
+  final ByteArrayOutputStream outBytes=new ByteArrayOutputStream();
+  SerializationUtils.serialize(object,outBytes);
+  return cipher.encode(outBytes.toByteArray());
+}

@@ -1,0 +1,5 @@
+String id
+String originalUrl
+String artifactId
+String openIdIdentity
+ResponseBuilder<WebApplicationService> responseBuilder

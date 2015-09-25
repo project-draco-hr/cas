@@ -1,6 +1,6 @@
 {
   try {
-    final ServiceTicket serviceTicketId=this.cas.grantServiceTicket(tgtId,new SimpleWebApplicationServiceImpl(requestBody.getFirst("service")));
+    final ServiceTicket serviceTicketId=this.cas.grantServiceTicket(tgtId,new WebApplicationServiceFactory().createService(requestBody.getFirst(CasProtocolConstants.PARAMETER_SERVICE)));
     return new ResponseEntity<String>(serviceTicketId.getId(),HttpStatus.OK);
   }
  catch (  final InvalidTicketException e) {

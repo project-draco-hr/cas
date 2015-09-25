@@ -1,3 +1,0 @@
-{
-  logger.warn("setRequireSecure() is deprecated and will be removed. Callback url validation is controlled by the proxy policy");
-}

@@ -1,0 +1,2 @@
+String encryptionSecretKey
+String signingSecretKey

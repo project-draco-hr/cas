@@ -1,9 +1,9 @@
 {
   this.id=id;
   final CredentialMetaData credentialMetaData=new BasicCredentialMetaData(credential);
-  final DefaultAuthenticationBuilder builder=new DefaultAuthenticationBuilder();
+  final AuthenticationBuilder builder=new DefaultAuthenticationBuilder();
   builder.setPrincipal(this.principalFactory.createPrincipal(USERNAME,principalAttributes));
-  builder.setAuthenticationDate(new Date());
+  builder.setAuthenticationDate(new DateTime());
   builder.addCredential(credentialMetaData);
   builder.addAttribute(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME,Boolean.TRUE);
   final AuthenticationHandler handler=new MockAuthenticationHandler();

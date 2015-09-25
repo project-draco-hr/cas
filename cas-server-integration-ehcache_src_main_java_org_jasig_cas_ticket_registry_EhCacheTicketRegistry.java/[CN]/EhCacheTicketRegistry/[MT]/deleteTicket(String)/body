@@ -1,4 +1,5 @@
 {
+  final String ticketId=encodeTicketId(ticketIdToDelete);
   if (StringUtils.isBlank(ticketId)) {
     return false;
   }

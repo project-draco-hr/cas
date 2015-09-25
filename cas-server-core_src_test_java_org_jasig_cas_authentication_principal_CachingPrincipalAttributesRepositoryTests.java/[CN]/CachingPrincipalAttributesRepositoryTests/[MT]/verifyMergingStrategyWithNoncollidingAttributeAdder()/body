@@ -1,7 +1,0 @@
-{
-  final CachingPrincipalAttributesRepository repository=new CachingPrincipalAttributesRepository(this.dao,TimeUnit.SECONDS,5);
-  repository.setMergingStrategy(new NoncollidingAttributeAdder());
-  assertTrue(repository.getAttributes(this.principal).containsKey("mail"));
-  assertEquals(repository.getAttributes(this.principal).get("mail").toString(),"final@school.com");
-  ((Closeable)repository).close();
-}

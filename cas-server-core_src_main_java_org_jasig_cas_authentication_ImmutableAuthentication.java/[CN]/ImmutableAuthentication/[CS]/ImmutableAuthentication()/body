@@ -1,5 +1,5 @@
 {
-  this.authenticationDate=0;
+  this.authenticationDate=null;
   this.credentials=null;
   this.principal=null;
   this.attributes=null;

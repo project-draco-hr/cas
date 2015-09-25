@@ -1,0 +1,11 @@
+{
+  try {
+    final SecretKeySpec key=new SecretKeySpec(this.encryptionSecretKey.getBytes(),this.secretKeyAlgorithm);
+    final AesCipherService cipher=new AesCipherService();
+    final byte[] result=cipher.encrypt(value,key.getEncoded()).getBytes();
+    return sign(result);
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

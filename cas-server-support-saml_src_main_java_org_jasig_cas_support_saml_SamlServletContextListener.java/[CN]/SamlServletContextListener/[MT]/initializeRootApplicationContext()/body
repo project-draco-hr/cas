@@ -1,0 +1,5 @@
+{
+  addServiceFactory(samlServiceFactory);
+  addServiceFactory(googleAccountsServiceFactory);
+  addServiceTicketUniqueIdGenerator(SamlService.class.getCanonicalName(),this.samlServiceTicketUniqueIdGenerator);
+}

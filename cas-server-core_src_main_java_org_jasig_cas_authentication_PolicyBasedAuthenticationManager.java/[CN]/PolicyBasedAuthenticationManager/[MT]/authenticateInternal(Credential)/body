@@ -4,8 +4,6 @@
     builder.addCredential(new BasicCredentialMetaData(c));
   }
   boolean found;
-  Principal principal;
-  PrincipalResolver resolver;
   for (  final Credential credential : credentials) {
     found=false;
     for (    final Map.Entry<AuthenticationHandler,PrincipalResolver> entry : this.handlerResolverMap.entrySet()) {
@@ -13,20 +11,7 @@
       if (handler.supports(credential)) {
         found=true;
         try {
-          final HandlerResult result=handler.authenticate(credential);
-          builder.addSuccess(handler.getName(),result);
-          logger.info("{} successfully authenticated {}",handler.getName(),credential);
-          resolver=entry.getValue();
-          if (resolver == null) {
-            principal=result.getPrincipal();
-            logger.debug("No resolver configured for {}. Falling back to handler principal {}",handler.getName(),principal);
-          }
- else {
-            principal=resolvePrincipal(handler.getName(),resolver,credential);
-          }
-          if (principal != null) {
-            builder.setPrincipal(principal);
-          }
+          authenticateAndResolvePrincipal(builder,credential,entry.getValue(),handler);
           if (this.authenticationPolicy.isSatisfiedBy(builder.build())) {
             return builder;
           }
@@ -46,11 +31,6 @@ catch (        final PreventedException e) {
       logger.warn("Cannot find authentication handler that supports {}, which suggests a configuration problem.",credential);
     }
   }
-  if (builder.getSuccesses().isEmpty()) {
-    throw new AuthenticationException(builder.getFailures(),builder.getSuccesses());
-  }
-  if (!this.authenticationPolicy.isSatisfiedBy(builder.build())) {
-    throw new AuthenticationException(builder.getFailures(),builder.getSuccesses());
-  }
+  evaluateProducedAuthenticationContext(builder);
   return builder;
 }

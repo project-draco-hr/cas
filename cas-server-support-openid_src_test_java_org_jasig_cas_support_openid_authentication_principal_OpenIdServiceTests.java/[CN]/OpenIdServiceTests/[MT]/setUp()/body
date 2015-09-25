@@ -1,16 +1,6 @@
 {
-  request.addParameter("openid.identity","http://openid.ja-sig.org/battags");
-  request.addParameter("openid.return_to","http://www.ja-sig.org/?service=fa");
-  request.addParameter("openid.mode","checkid_setup");
-  sharedAssociations=mock(ServerAssociationStore.class);
-  manager=new ServerManager();
-  manager.setOPEndpointUrl("https://localshot:8443/cas/login");
-  manager.setEnforceRpId(false);
-  manager.setSharedAssociations(sharedAssociations);
-  context=mock(ApplicationContext.class);
-  cas=mock(CentralAuthenticationService.class);
-  when(context.getBean("serverManager")).thenReturn(manager);
-  when(context.getBean("centralAuthenticationService",CentralAuthenticationService.class)).thenReturn(cas);
-  final ApplicationContextProvider contextProvider=new ApplicationContextProvider();
-  contextProvider.setApplicationContext(context);
+  request.addParameter(OpenIdProtocolConstants.OPENID_IDENTITY,"http://openid.ja-sig.org/battags");
+  request.addParameter(OpenIdProtocolConstants.OPENID_RETURNTO,"http://www.ja-sig.org/?service=fa");
+  request.addParameter(OpenIdProtocolConstants.OPENID_MODE,"checkid_setup");
+  association=sharedAssociations.generate(Association.TYPE_HMAC_SHA1,2);
 }

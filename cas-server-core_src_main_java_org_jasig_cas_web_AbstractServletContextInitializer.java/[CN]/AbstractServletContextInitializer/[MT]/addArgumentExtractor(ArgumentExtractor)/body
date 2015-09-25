@@ -1,0 +1,4 @@
+{
+  final List<ArgumentExtractor> list=applicationContext.getBean("argumentExtractors",List.class);
+  list.add(ext);
+}
