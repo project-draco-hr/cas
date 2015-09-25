@@ -1,3 +1,4 @@
 {
-  this(new DefaultLongNumericGenerator(1),new DefaultRandomStringGenerator(maxLength),suffix);
+  setMaxLength(maxLength);
+  setSuffix(suffix);
 }
