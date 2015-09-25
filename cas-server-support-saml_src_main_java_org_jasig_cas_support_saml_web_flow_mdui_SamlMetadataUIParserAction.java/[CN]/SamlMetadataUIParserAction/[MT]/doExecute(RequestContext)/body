@@ -16,7 +16,7 @@
     logger.debug("Entity descriptor not found for [{}]",entityId);
     return success();
   }
-  final SPSSODescriptor spssoDescriptor=getSPSSODescriptor(entityDescriptor);
+  final SPSSODescriptor spssoDescriptor=getSPSsoDescriptor(entityDescriptor);
   if (spssoDescriptor == null) {
     logger.debug("SP SSO descriptor not found for [{}]",entityId);
     return success();

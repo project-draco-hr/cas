@@ -1,12 +1,12 @@
 {
   final String service=request.getParameter(OpenIdProtocolConstants.OPENID_RETURNTO);
   final String openIdIdentity=request.getParameter(OpenIdProtocolConstants.OPENID_IDENTITY);
-  final String signature=request.getParameter(OpenIdProtocolConstants.OPENID_SIG);
   if (openIdIdentity == null || !StringUtils.hasText(service)) {
     return null;
   }
   final String id=cleanupUrl(service);
   final String artifactId=request.getParameter(OpenIdProtocolConstants.OPENID_ASSOCHANDLE);
   final ParameterList paramList=new ParameterList(request.getParameterMap());
-  return new OpenIdService(id,service,artifactId,openIdIdentity,signature,paramList,this.openIdPrefixUrl);
+  final OpenIdServiceResponseBuilder builder=new OpenIdServiceResponseBuilder(serverManager,centralAuthenticationService,paramList,this.openIdPrefixUrl);
+  return new OpenIdService(id,service,artifactId,openIdIdentity,builder);
 }

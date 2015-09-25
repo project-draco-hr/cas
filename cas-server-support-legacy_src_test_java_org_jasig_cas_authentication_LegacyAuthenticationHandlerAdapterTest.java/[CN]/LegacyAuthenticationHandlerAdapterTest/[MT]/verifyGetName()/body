@@ -1,4 +1,0 @@
-{
-  assertEquals("TestAlwaysPassAuthenticationHandler",alwaysPassHandler.getName());
-  assertEquals("TestAlwaysFailAuthenticationHandler",alwaysFailHandler.getName());
-}

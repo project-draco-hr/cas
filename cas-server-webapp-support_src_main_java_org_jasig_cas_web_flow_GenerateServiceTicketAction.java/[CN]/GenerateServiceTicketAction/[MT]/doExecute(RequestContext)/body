@@ -10,7 +10,7 @@
  catch (  final AuthenticationException e) {
     logger.error("Could not verify credentials to grant service ticket",e);
   }
-catch (  final TicketException e) {
+catch (  final AbstractTicketException e) {
     if (e instanceof InvalidTicketException) {
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicket);
     }

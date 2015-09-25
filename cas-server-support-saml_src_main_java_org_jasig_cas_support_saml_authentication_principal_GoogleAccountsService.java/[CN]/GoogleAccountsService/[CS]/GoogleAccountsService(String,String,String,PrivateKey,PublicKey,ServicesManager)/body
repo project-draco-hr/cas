@@ -1,3 +1,0 @@
-{
-  this(id,id,null,relayState,requestId,privateKey,publicKey,servicesManager);
-}

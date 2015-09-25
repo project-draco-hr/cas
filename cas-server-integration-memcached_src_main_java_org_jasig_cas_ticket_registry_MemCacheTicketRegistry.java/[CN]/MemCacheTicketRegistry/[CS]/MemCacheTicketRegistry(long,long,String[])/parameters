@@ -1,3 +1,0 @@
-long ticketGrantingTicketTimeOut
-long serviceTicketTimeOut
-String[] hostnames
