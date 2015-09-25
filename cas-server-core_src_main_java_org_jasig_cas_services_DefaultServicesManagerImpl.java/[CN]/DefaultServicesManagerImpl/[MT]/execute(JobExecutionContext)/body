@@ -1,3 +1,4 @@
 {
+  SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
   reload();
 }
