@@ -1,4 +1,4 @@
 {
-  Config.setProperty("jcifs.smb.client.soTimeout","300000");
-  Config.setProperty("jcifs.netbios.cachePolicy","600");
+  Config.setProperty(JCIFS_PROP_CLIENT_SOTIMEOUT,"300000");
+  Config.setProperty(JCIFS_PROP_NETBIOS_CACHE_POLICY,"600");
 }
