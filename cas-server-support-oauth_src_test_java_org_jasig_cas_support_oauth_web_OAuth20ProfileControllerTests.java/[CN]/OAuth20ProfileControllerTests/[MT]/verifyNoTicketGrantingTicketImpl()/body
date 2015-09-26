@@ -6,7 +6,6 @@
   final TicketRegistry ticketRegistry=mock(TicketRegistry.class);
   when(ticketRegistry.getTicket(TGT_ID)).thenReturn(null);
   oauth20WrapperController.setTicketRegistry(ticketRegistry);
-  oauth20WrapperController.afterPropertiesSet();
   oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   assertEquals(200,mockResponse.getStatus());
   assertEquals(CONTENT_TYPE,mockResponse.getContentType());

@@ -1,3 +1,4 @@
 {
   final ServicesManager manager=this.applicationContext.getBean("servicesManager",ServicesManager.class);
+  manager.save(svc);
 }

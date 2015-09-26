@@ -14,7 +14,6 @@
   final OAuth20WrapperController oauth20WrapperController=new OAuth20WrapperController();
   oauth20WrapperController.setLoginUrl(CAS_URL);
   oauth20WrapperController.setServicesManager(servicesManager);
-  oauth20WrapperController.afterPropertiesSet();
   final ModelAndView modelAndView=oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   final HttpSession session=mockRequest.getSession();
   assertEquals(REDIRECT_URI,session.getAttribute(OAuthConstants.OAUTH20_CALLBACKURL));

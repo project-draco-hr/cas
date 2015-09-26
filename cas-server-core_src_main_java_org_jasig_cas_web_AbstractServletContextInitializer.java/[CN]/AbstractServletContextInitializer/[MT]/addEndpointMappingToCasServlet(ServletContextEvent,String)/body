@@ -1,5 +1,7 @@
 {
   final ServletRegistration registration=getCasServletRegistration(sce);
-  registration.addMapping(mapping);
-  logger.info("Added [{}] to {} servlet context",mapping,CAS_SERVLET_NAME);
+  if (registration != null) {
+    registration.addMapping(mapping);
+    logger.info("Added [{}] to {} servlet context",mapping,WebUtils.CAS_SERVLET_NAME);
+  }
 }

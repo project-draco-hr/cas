@@ -1,5 +1,5 @@
 {
-  this.applicationContext=applicationContext;
+  this.applicationContext=(WebApplicationContext)applicationContext;
   try {
     if (applicationContext.getParent() == null) {
       logger.info("Initializing {} root application context",contextInitializerName);

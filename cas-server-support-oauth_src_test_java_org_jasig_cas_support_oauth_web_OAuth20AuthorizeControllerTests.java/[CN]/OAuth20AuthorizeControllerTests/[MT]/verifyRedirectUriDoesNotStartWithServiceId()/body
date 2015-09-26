@@ -9,7 +9,6 @@
   when(servicesManager.getAllServices()).thenReturn(services);
   final OAuth20WrapperController oauth20WrapperController=new OAuth20WrapperController();
   oauth20WrapperController.setServicesManager(servicesManager);
-  oauth20WrapperController.afterPropertiesSet();
   final ModelAndView modelAndView=oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   assertEquals(OAuthConstants.ERROR_VIEW,modelAndView.getViewName());
 }

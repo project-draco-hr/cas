@@ -23,7 +23,6 @@
   oauth20WrapperController.setServicesManager(servicesManager);
   oauth20WrapperController.setTicketRegistry(ticketRegistry);
   oauth20WrapperController.setTimeout(TIMEOUT);
-  oauth20WrapperController.afterPropertiesSet();
   oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   verify(ticketRegistry).deleteTicket(CODE);
   assertEquals("text/plain",mockResponse.getContentType());
