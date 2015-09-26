@@ -1,7 +1,7 @@
 {
   final String propValue=System.getProperty(SYS_PROP_LOGIN_CONF);
   if (propValue != null) {
-    logger.warn("found login config in system property, may overide : {}",propValue);
+    logger.warn("found login config in system property, may override : {}",propValue);
   }
   URL url=getClass().getResource(this.loginConf == null ? DEFAULT_LOGIN_CONFIG : this.loginConf);
   if (url != null) {
