@@ -5,18 +5,7 @@
         LOGGER.debug("Preparing to schedule reloader job");
         final JobDetail job=JobBuilder.newJob(this.getClass()).withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).build();
         final Trigger trigger=TriggerBuilder.newTrigger().withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).startAt(new Date(System.currentTimeMillis() + this.startDelay)).withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInMinutes(this.refreshIntervalInMinutes).repeatForever()).build();
-        final JobFactory jobFactory=new SpringBeanJobFactory(){
-          private transient AutowireCapableBeanFactory beanFactory;
-          @Override protected Object createJobInstance(          final TriggerFiredBundle bundle) throws Exception {
-            this.beanFactory=applicationContext.getAutowireCapableBeanFactory();
-            final Object job=super.createJobInstance(bundle);
-            LOGGER.debug("Created reloader job {}",job);
-            beanFactory.autowireBean(job);
-            LOGGER.debug("Autowired job per the application context");
-            return job;
-          }
-        }
-;
+        final JobFactory jobFactory=new CasSpringBeanJobFactory(this.applicationContext);
         final SchedulerFactory schFactory=new StdSchedulerFactory();
         final Scheduler sch=schFactory.getScheduler();
         sch.setJobFactory(jobFactory);

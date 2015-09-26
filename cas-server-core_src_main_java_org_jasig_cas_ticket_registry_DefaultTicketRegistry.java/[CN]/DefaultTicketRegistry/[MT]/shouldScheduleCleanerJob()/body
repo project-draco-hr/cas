@@ -1,0 +1,7 @@
+{
+  if (this.startDelay > 0 && this.applicationContext.getParent() == null) {
+    final String[] aliases=this.applicationContext.getAutowireCapableBeanFactory().getAliases("defaultTicketRegistry");
+    return aliases.length > 0;
+  }
+  return false;
+}
