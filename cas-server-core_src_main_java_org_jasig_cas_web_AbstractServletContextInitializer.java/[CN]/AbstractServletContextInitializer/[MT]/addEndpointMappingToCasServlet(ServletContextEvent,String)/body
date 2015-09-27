@@ -1,4 +1,5 @@
 {
+  logger.info("Adding [{}] to {} servlet context",mapping,WebUtils.CAS_SERVLET_NAME);
   final ServletRegistration registration=getCasServletRegistration(sce);
   if (registration != null) {
     registration.addMapping(mapping);

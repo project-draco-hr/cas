@@ -1,4 +1,5 @@
 {
+  logger.debug("Adding {} to application context for {}",controller,path);
   final SimpleUrlHandlerMapping handlerMappingC=getCasServletHandlerMapping();
   final Map<String,Object> urlMap=(Map<String,Object>)handlerMappingC.getUrlMap();
   urlMap.put(path,controller);
