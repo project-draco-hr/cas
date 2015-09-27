@@ -1,0 +1,4 @@
+{
+  final List<AuthenticationMetaDataPopulator> authenticationMetadataPopulators=applicationContext.getBean("authenticationMetadataPopulators",List.class);
+  authenticationMetadataPopulators.add(populator);
+}
