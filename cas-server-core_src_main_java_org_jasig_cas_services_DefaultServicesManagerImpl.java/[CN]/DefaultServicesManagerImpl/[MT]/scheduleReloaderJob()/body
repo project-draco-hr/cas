@@ -2,8 +2,8 @@
   try {
     if (shouldScheduleLoaderJob()) {
       LOGGER.debug("Preparing to schedule reloader job");
-      final JobDetail job=JobBuilder.newJob(this.getClass()).withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).build();
-      final Trigger trigger=TriggerBuilder.newTrigger().withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).startAt(new Date(System.currentTimeMillis() + this.startDelay)).withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInMinutes(this.refreshIntervalInMinutes).repeatForever()).build();
+      final JobDetail job=JobBuilder.newJob(ServiceRegistryReloaderJob.class).withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).build();
+      final Trigger trigger=TriggerBuilder.newTrigger().withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).startAt(DateTime.now().plusSeconds(this.startDelay).toDate()).withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(this.refreshInterval).repeatForever()).build();
       final JobFactory jobFactory=new CasSpringBeanJobFactory(this.applicationContext);
       final SchedulerFactory schFactory=new StdSchedulerFactory();
       final Scheduler sch=schFactory.getScheduler();
@@ -11,7 +11,7 @@
       sch.start();
       LOGGER.debug("Started {} scheduler",this.getClass().getName());
       sch.scheduleJob(job,trigger);
-      LOGGER.info("Services manager will reload service definitions every {} minutes",this.refreshIntervalInMinutes);
+      LOGGER.info("Services manager will reload service definitions every {} seconds",this.refreshInterval);
     }
   }
  catch (  final Exception e) {
