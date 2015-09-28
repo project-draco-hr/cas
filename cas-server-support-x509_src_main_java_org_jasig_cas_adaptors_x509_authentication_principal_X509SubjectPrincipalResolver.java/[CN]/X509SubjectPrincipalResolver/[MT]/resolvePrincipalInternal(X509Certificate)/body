@@ -3,7 +3,7 @@
   final StringBuffer sb=new StringBuffer();
   final Matcher m=ATTR_PATTERN.matcher(this.descriptor);
   final Map<String,AttributeContext> attrMap=new HashMap<>();
-  final RDNSequence rdnSequence=NameReader.readX500Principal(certificate.getSubjectX500Principal());
+  final RDNSequence rdnSequence=new NameReader(certificate).readSubject();
   String name;
   String[] values;
   AttributeContext context;

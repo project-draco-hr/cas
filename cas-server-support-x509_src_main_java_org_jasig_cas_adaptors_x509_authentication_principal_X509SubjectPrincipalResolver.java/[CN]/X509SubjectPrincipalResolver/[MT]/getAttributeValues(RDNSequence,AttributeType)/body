@@ -1,4 +1,12 @@
 {
-  final List<String> values=rdnSequence.getValues(attribute);
+  final Iterable<RDN> it=rdnSequence.backward();
+  final List<String> values=new ArrayList<String>();
+  for (  final RDN rdn : it) {
+    for (    final Attribute attr : rdn.getAttributes().getAll()) {
+      if (attr.getType().equals(attribute)) {
+        values.add(attr.getValue());
+      }
+    }
+  }
   return values.toArray(new String[values.size()]);
 }
