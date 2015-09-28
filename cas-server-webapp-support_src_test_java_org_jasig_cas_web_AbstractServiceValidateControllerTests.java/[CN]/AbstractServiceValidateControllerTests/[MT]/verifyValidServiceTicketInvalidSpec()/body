@@ -1,3 +1,0 @@
-{
-  assertEquals(ServiceValidateController.DEFAULT_SERVICE_FAILURE_VIEW_NAME,this.serviceValidateController.handleRequestInternal(getHttpServletRequest(),new MockHttpServletResponse()).getViewName());
-}
