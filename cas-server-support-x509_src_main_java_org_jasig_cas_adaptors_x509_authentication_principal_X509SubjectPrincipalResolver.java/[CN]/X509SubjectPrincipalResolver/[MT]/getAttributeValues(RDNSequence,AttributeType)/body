@@ -1,0 +1,4 @@
+{
+  final List<String> values=rdnSequence.getValues(attribute);
+  return values.toArray(new String[values.size()]);
+}
