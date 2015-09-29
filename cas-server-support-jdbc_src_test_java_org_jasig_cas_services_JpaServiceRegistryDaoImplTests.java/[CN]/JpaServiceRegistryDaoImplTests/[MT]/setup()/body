@@ -1,0 +1,4 @@
+{
+  final ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:/jpaSpringContext.xml");
+  this.dao=ctx.getBean("jpaServiceRegistryDao",ServiceRegistryDao.class);
+}
