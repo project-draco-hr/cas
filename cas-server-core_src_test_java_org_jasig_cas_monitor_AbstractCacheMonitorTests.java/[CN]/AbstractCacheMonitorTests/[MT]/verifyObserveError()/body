@@ -1,6 +1,6 @@
 {
   final AbstractCacheMonitor monitor=new AbstractCacheMonitor(){
-    protected SimpleCacheStatistics[] getStatistics(){
+    @Override protected SimpleCacheStatistics[] getStatistics(){
       return statsArray(new SimpleCacheStatistics(100,200,1));
     }
   }
