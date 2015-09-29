@@ -5,5 +5,5 @@
     localServices.put(r.getId(),r);
   }
   this.services=localServices;
-  LOGGER.info("Loaded {} services.",this.services.size());
+  LOGGER.info("Loaded {} services from {}.",this.services.size(),this.serviceRegistryDao);
 }
