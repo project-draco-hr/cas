@@ -3,7 +3,7 @@
   try {
     points=new ExtensionReader(cert).readCRLDistributionPoints();
   }
- catch (  final Exception e) {
+ catch (  final RuntimeException e) {
     logger.error("Error reading CRLDistributionPoints extension field on {}",CertUtils.toString(cert),e);
     return new URI[0];
   }
@@ -19,7 +19,7 @@
           try {
             addURL(urls,DERIA5String.getInstance(name.getName()).getString());
           }
- catch (          final Exception e) {
+ catch (          final RuntimeException e) {
             logger.warn("{} not supported. String or GeneralNameList expected.",pointName);
           }
         }
