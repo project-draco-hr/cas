@@ -1,6 +1,6 @@
 {
   try {
-    final AuthRequest authReq=AuthRequest.createAuthRequest(this.parameterList,this.serverManager.getRealmVerifier());
+    final AuthRequest authReq=AuthRequest.createAuthRequest(this.parameterList,serverManager.getRealmVerifier());
     final Map parameterMap=authReq.getParameterMap();
     if (parameterMap != null && !parameterMap.isEmpty()) {
       final String assocHandle=(String)parameterMap.get(OpenIdProtocolConstants.OPENID_ASSOCHANDLE);
