@@ -1,4 +1,0 @@
-{
-  beginAt("/logout");
-  assertTextPresent("logged out");
-}

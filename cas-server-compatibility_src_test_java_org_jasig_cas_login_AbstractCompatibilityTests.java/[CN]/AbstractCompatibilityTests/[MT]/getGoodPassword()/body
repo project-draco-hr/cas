@@ -1,3 +1,0 @@
-{
-  return getProperties().getProperty(GOOD_PASSWORD_PROPERTY);
-}

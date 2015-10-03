@@ -1,5 +1,0 @@
-{
-  final String service=getServiceUrl();
-  beginAt(getValidationPath() + "?service=" + URLEncoder.encode(service,"UTF-8")+ "&ticket=test");
-  assertTextPresent("cas:authenticationFailure");
-}

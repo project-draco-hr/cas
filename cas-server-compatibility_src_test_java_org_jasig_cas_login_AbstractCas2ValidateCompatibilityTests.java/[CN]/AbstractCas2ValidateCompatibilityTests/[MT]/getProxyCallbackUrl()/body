@@ -1,3 +1,0 @@
-{
-  return getProperties().getProperty(PROXY_RECEPTOR_URL_PROPERTY);
-}
