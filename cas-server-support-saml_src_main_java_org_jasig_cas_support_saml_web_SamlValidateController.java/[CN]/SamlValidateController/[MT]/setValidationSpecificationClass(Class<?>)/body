@@ -1,0 +1,3 @@
+{
+  super.setValidationSpecificationClass(validationSpecificationClass);
+}
