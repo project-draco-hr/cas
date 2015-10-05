@@ -1,4 +1,0 @@
-{
-  super(code,throwable);
-  this.type=DEFAULT_TYPE;
-}

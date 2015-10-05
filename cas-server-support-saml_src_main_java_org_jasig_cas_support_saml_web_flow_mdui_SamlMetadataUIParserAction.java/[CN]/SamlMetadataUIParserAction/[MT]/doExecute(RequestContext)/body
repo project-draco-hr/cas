@@ -5,7 +5,7 @@
     logger.debug("No entity id found for parameter [{}]",this.entityIdParameterName);
     return success();
   }
-  final WebApplicationService service=new SimpleWebApplicationServiceImpl(entityId);
+  final WebApplicationService service=new WebApplicationServiceFactory().createService(entityId);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService == null || !registeredService.getAccessStrategy().isServiceAccessAllowed()) {
     logger.debug("Entity id [{}] is not recognized/allowed by the CAS service registry",entityId);
@@ -16,7 +16,7 @@
     logger.debug("Entity descriptor not found for [{}]",entityId);
     return success();
   }
-  final SPSSODescriptor spssoDescriptor=getSPSSODescriptor(entityDescriptor);
+  final SPSSODescriptor spssoDescriptor=getSPSsoDescriptor(entityDescriptor);
   if (spssoDescriptor == null) {
     logger.debug("SP SSO descriptor not found for [{}]",entityId);
     return success();

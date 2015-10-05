@@ -1,0 +1,9 @@
+{
+  addControllerToCasServletHandlerMapping(OAuthConstants.ENDPOINT_OAUTH2,"oauth20WrapperController");
+  final OAuthCallbackAuthorizeService service=new OAuthCallbackAuthorizeService();
+  service.setId(new SecureRandom().nextLong());
+  service.setName(service.getClass().getSimpleName());
+  service.setDescription("OAuth Wrapper Callback Url");
+  service.setServiceId(this.callbackAuthorizeUrl);
+  addRegisteredServiceToServicesManager(service);
+}

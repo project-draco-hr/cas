@@ -1,7 +1,7 @@
 {
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.setParameter("TARGET","service");
-  final SamlService impl=SamlService.createServiceFrom(request);
+  final SamlService impl=new SamlServiceFactory().createService(request);
   final Response response=impl.getResponse("ticketId");
   assertNotNull(response);
   assertEquals(Response.ResponseType.REDIRECT,response.getResponseType());

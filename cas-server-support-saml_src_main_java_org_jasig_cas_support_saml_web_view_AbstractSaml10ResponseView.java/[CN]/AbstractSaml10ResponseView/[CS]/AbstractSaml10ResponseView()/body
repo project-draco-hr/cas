@@ -1,0 +1,3 @@
+{
+  samlArgumentExtractor=new DefaultArgumentExtractor(new SamlServiceFactory());
+}

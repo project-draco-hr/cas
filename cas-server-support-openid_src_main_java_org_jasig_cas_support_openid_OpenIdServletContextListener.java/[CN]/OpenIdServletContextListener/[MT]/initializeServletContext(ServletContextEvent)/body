@@ -1,0 +1,3 @@
+{
+  addEndpointMappingToCasServlet(event,OpenIdProtocolConstants.ENDPOINT_OPENID);
+}

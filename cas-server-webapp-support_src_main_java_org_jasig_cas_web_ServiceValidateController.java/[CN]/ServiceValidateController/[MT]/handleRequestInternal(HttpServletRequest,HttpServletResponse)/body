@@ -29,11 +29,11 @@
     logger.debug("Successfully validated service ticket {} for service [{}]",serviceTicketId,service.getId());
     return generateSuccessView(assertion,proxyIou,service,proxyGrantingTicketId);
   }
- catch (  final TicketValidationException e) {
+ catch (  final AbstractTicketValidationException e) {
     final String code=e.getCode();
     return generateErrorView(code,code,new Object[]{serviceTicketId,e.getOriginalService().getId(),service.getId()});
   }
-catch (  final TicketException te) {
+catch (  final AbstractTicketException te) {
     return generateErrorView(te.getCode(),te.getCode(),new Object[]{serviceTicketId});
   }
 catch (  final UnauthorizedProxyingException e) {

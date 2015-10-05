@@ -1,0 +1,7 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter(OpenIdProtocolConstants.OPENID_RETURNTO,"test");
+  final OpenIdServiceFactory factory=new OpenIdServiceFactory();
+  final WebApplicationService service=factory.createService(request);
+  assertNull(service);
+}

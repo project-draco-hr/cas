@@ -1,0 +1,6 @@
+{
+  if (StringUtils.isNotBlank(jcifsUsername)) {
+    logger.debug("jcifsUsername is set to {}",jcifsUsername);
+    Config.setProperty(JCIFS_PROP_CLIENT_USERNAME,jcifsUsername);
+  }
+}

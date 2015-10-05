@@ -1,3 +1,0 @@
-{
-  logger.warn("Invoking setTicketRegistry() is deprecated and has no impact.");
-}

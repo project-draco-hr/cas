@@ -1,7 +1,7 @@
 {
   try {
     if (ticketId.startsWith(this.ticketGrantingTicketPrefix)) {
-      return entityManager.find(TicketGrantingTicketImpl.class,ticketId,LockModeType.PESSIMISTIC_WRITE);
+      return entityManager.find(TicketGrantingTicketImpl.class,ticketId);
     }
     return entityManager.find(ServiceTicketImpl.class,ticketId);
   }

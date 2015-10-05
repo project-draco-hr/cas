@@ -1,3 +1,0 @@
-{
-  assertNull(this.extractor.extractService(new MockHttpServletRequest()));
-}

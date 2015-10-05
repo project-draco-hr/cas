@@ -1,0 +1,6 @@
+{
+  if (StringUtils.isNotBlank(jcifsServicePrincipal)) {
+    logger.debug("jcifsServicePrincipal is set to {}",jcifsServicePrincipal);
+    Config.setProperty(JCIFS_PROP_SERVICE_PRINCIPAL,jcifsServicePrincipal);
+  }
+}

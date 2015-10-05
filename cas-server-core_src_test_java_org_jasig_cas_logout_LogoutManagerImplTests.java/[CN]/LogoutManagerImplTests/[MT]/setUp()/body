@@ -4,7 +4,7 @@
   when(client.sendMessageToEndPoint(any(HttpMessage.class))).thenReturn(true);
   this.logoutManager=new LogoutManagerImpl(servicesManager,client,new SamlCompliantLogoutMessageCreator());
   this.services=new HashMap<>();
-  this.simpleWebApplicationServiceImpl=new SimpleWebApplicationServiceImpl(URL);
+  this.simpleWebApplicationServiceImpl=(SimpleWebApplicationServiceImpl)new WebApplicationServiceFactory().createService(URL);
   this.services.put(ID,this.simpleWebApplicationServiceImpl);
   when(this.tgt.getServices()).thenReturn(this.services);
   this.registeredService=new RegisteredServiceImpl();
