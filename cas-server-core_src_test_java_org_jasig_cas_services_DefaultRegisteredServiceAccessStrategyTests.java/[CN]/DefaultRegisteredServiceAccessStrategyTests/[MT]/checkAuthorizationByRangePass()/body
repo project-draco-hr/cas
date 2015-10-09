@@ -1,0 +1,6 @@
+{
+  final DefaultRegisteredServiceAccessStrategy authz=new DefaultRegisteredServiceAccessStrategy(true,true);
+  authz.setStartingDateTime(DateTime.now().toString());
+  authz.setEndingDateTime(DateTime.now().plusMinutes(10).toString());
+  assertTrue(authz.isServiceAccessAllowed());
+}
