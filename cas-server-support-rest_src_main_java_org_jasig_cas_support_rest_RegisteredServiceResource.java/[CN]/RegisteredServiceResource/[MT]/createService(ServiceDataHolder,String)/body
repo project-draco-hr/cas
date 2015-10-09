@@ -20,7 +20,7 @@
         attributeValuesToCompare.add(value.toString());
       }
       if (attributeValuesToCompare.contains(this.attributeValue)) {
-        final RegexRegisteredService service=parseRequestToExtractService(requestBody);
+        final RegisteredService service=serviceDataHolder.getRegisteredService();
         final RegisteredService savedService=this.servicesManager.save(service);
         return new ResponseEntity<>(String.valueOf(savedService.getId()),HttpStatus.OK);
       }
