@@ -1,5 +1,5 @@
 {
-  DERObject oct=null;
+  ASN1Primitive oct=null;
   try (final ByteArrayInputStream bInput=new ByteArrayInputStream(sanValue)){
     try (final ASN1InputStream input=new ASN1InputStream(bInput)){
       oct=input.readObject();
