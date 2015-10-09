@@ -15,5 +15,6 @@
   toStringBuilder.append("logo",this.logo);
   toStringBuilder.append("logoutUrl",this.logoutUrl);
   toStringBuilder.append("requiredHandlers",this.requiredHandlers);
+  toStringBuilder.append("onlyKeepLatestST",this.onlyKeepLatestST);
   return toStringBuilder.toString();
 }

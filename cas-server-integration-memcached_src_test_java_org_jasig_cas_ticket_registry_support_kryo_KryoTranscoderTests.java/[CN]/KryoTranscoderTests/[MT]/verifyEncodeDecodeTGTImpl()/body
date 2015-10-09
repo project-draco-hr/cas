@@ -8,7 +8,7 @@
   bldr.addSuccess("authn",new DefaultHandlerResult(new AcceptUsersAuthenticationHandler(),new BasicCredentialMetaData(userPassCredential)));
   final TicketGrantingTicket parent=new TicketGrantingTicketImpl(TGT_ID,TestUtils.getService(),null,bldr.build(),new NeverExpiresExpirationPolicy());
   final TicketGrantingTicket expectedTGT=new TicketGrantingTicketImpl(TGT_ID,TestUtils.getService(),null,bldr.build(),new NeverExpiresExpirationPolicy());
-  final ServiceTicket ticket=expectedTGT.grantServiceTicket(ST_ID,TestUtils.getService(),new NeverExpiresExpirationPolicy(),false);
+  final ServiceTicket ticket=expectedTGT.grantServiceTicket(ST_ID,TestUtils.getService(),new NeverExpiresExpirationPolicy(),false,TestUtils.getDefaultRegisteredService());
   CachedData result=transcoder.encode(expectedTGT);
   final TicketGrantingTicket resultTicket=(TicketGrantingTicket)transcoder.decode(result);
   assertEquals(expectedTGT,resultTicket);
