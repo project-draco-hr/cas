@@ -1,11 +1,11 @@
 {
-  ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false,TestUtils.getDefaultRegisteredService());
+  ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false,true);
   Thread.sleep(SLIDING_TIMEOUT - TIMEOUT_BUFFER);
   assertFalse(ticketGrantingTicket.isExpired());
-  ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false,TestUtils.getDefaultRegisteredService());
+  ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false,true);
   Thread.sleep(SLIDING_TIMEOUT - TIMEOUT_BUFFER);
   assertFalse(ticketGrantingTicket.isExpired());
-  ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false,TestUtils.getDefaultRegisteredService());
+  ticketGrantingTicket.grantServiceTicket("test",TestUtils.getService(),expirationPolicy,false,true);
   Thread.sleep(SLIDING_TIMEOUT + TIMEOUT_BUFFER);
   assertTrue(ticketGrantingTicket.isExpired());
 }

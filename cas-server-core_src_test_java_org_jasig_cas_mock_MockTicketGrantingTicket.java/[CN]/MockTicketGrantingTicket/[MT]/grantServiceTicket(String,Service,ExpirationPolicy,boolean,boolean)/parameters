@@ -2,4 +2,4 @@ String id
 Service service
 ExpirationPolicy expirationPolicy
 boolean credentialsProvided
-RegisteredService registeredService
+boolean onlyTrackMostRecentSession

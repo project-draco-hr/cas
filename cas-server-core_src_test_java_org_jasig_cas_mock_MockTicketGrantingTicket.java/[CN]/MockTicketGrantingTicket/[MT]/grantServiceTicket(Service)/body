@@ -1,3 +1,3 @@
 {
-  return grantServiceTicket(ID_GENERATOR.getNewTicketId("ST"),service,null,true,TestUtils.getDefaultRegisteredService());
+  return grantServiceTicket(ID_GENERATOR.getNewTicketId("ST"),service,null,true,true);
 }
