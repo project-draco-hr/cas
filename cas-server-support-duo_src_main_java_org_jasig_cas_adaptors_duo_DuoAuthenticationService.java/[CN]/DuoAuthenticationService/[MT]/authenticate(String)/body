@@ -1,0 +1,4 @@
+{
+  logger.debug("Calling DuoWeb.verifyResponse with signed request token '{}'",signedRequestToken);
+  return DuoWeb.verifyResponse(this.duoIntegrationKey,this.duoSecretKey,this.duoApplicationKey,signedRequestToken);
+}

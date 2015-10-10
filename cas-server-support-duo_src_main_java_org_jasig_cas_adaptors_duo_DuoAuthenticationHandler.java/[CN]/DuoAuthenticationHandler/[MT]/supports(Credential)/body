@@ -1,0 +1,3 @@
+{
+  return DuoCredential.isAssignableFrom(credential.getClass());
+}
