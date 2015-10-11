@@ -1,11 +1,5 @@
 {
   this.ticketRegistry=ticketRegistry;
-  if (serviceTicketRegistry == null) {
-    this.serviceTicketRegistry=ticketRegistry;
-  }
- else {
-    this.serviceTicketRegistry=serviceTicketRegistry;
-  }
   this.authenticationManager=authenticationManager;
   this.ticketGrantingTicketUniqueTicketIdGenerator=ticketGrantingTicketUniqueTicketIdGenerator;
   this.uniqueTicketIdGeneratorsForService=uniqueTicketIdGeneratorsForService;

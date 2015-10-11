@@ -1,5 +1,4 @@
 TicketRegistry ticketRegistry
-TicketRegistry serviceTicketRegistry
 AuthenticationManager authenticationManager
 UniqueTicketIdGenerator ticketGrantingTicketUniqueTicketIdGenerator
 Map<String,UniqueTicketIdGenerator> uniqueTicketIdGeneratorsForService

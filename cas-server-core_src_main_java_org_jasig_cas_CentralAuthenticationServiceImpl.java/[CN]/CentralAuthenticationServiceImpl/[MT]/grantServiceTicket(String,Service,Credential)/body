@@ -35,7 +35,7 @@
   final String ticketPrefix=authentications.size() == 1 ? ServiceTicket.PREFIX : ServiceTicket.PROXY_TICKET_PREFIX;
   final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ticketPrefix);
   final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication != null);
-  this.serviceTicketRegistry.addTicket(serviceTicket);
+  this.ticketRegistry.addTicket(serviceTicket);
   logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principal.getId());
   return serviceTicket;
 }

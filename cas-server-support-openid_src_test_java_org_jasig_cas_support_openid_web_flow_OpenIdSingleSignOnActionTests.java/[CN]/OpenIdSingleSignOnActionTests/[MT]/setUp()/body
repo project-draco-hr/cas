@@ -5,7 +5,7 @@
   this.authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(handler,new OpenIdPrincipalResolver()));
   final Map<String,UniqueTicketIdGenerator> generator=new HashMap<>();
   generator.put(OpenIdService.class.getName(),new DefaultUniqueTicketIdGenerator());
-  impl=new CentralAuthenticationServiceImpl(this.ticketRegistry,null,this.authenticationManager,new DefaultUniqueTicketIdGenerator(),generator,new NeverExpiresExpirationPolicy(),new NeverExpiresExpirationPolicy(),new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl()),mock(LogoutManager.class));
+  impl=new CentralAuthenticationServiceImpl(this.ticketRegistry,this.authenticationManager,new DefaultUniqueTicketIdGenerator(),generator,new NeverExpiresExpirationPolicy(),new NeverExpiresExpirationPolicy(),new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl()),mock(LogoutManager.class));
   this.action=new OpenIdSingleSignOnAction();
   this.action.setCentralAuthenticationService(this.impl);
   this.action.setExtractor(new DefaultOpenIdUserNameExtractor());
