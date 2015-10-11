@@ -16,7 +16,7 @@
     return this.client.delete(ticketId).get();
   }
  catch (  final Exception e) {
-    logger.error("Failed deleting {}",ticketId,e);
+    logger.error("Ticket not found or is already removed. Failed deleting {}",ticketId,e);
   }
   return false;
 }

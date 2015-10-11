@@ -3,10 +3,12 @@
   final Collection<Element> tgtTicketsTickets=this.ticketGrantingTicketsCache.getAll(this.ticketGrantingTicketsCache.getKeysWithExpiryCheck()).values();
   final Collection<Ticket> allTickets=new HashSet<>(serviceTickets.size() + tgtTicketsTickets.size());
   for (  final Element ticket : serviceTickets) {
-    allTickets.add((Ticket)ticket.getObjectValue());
+    final Ticket proxiedTicket=getProxiedTicketInstance((Ticket)ticket.getObjectValue());
+    allTickets.add(proxiedTicket);
   }
   for (  final Element ticket : tgtTicketsTickets) {
-    allTickets.add((Ticket)ticket.getObjectValue());
+    final Ticket proxiedTicket=getProxiedTicketInstance((Ticket)ticket.getObjectValue());
+    allTickets.add(proxiedTicket);
   }
   return decodeTickets(allTickets);
 }

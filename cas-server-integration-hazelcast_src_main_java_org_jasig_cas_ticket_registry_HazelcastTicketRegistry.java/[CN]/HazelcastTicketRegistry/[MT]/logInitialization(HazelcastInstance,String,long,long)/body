@@ -1,6 +1,6 @@
 {
   logger.info("Setting up Hazelcast Ticket Registry...");
   logger.debug("Hazelcast instance: {}",hz);
-  logger.debug("TGT timeout: [{}s]",ticketGrantingTicketTimoutInSeconds);
+  logger.debug("TGT timeout: [{}s]",ticketGrantingTicketTimeoutInSeconds);
   logger.debug("ST timeout: [{}s]",serviceTicketTimeoutInSeconds);
 }

@@ -6,7 +6,7 @@
         logger.trace("Removed service ticket [{}]",entry.getKey());
       }
  else {
-        logger.trace("Unable to remove service ticket [{}]",entry.getKey());
+        logger.trace("Ticket not found or is already removed. Unable to remove service ticket [{}]",entry.getKey());
       }
     }
   }
