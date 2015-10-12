@@ -4,7 +4,7 @@
   verifyRegisteredServiceProperties(registeredService,service);
   final Set<Credential> sanitizedCredentials=sanitizeCredentials(credentials);
   Authentication currentAuthentication=null;
-  if (sanitizedCredentials.size() > 0) {
+  if (!sanitizedCredentials.isEmpty()) {
     currentAuthentication=this.authenticationManager.authenticate(sanitizedCredentials.toArray(new Credential[]{}));
     final Authentication original=ticketGrantingTicket.getAuthentication();
     if (!currentAuthentication.getPrincipal().equals(original.getPrincipal())) {

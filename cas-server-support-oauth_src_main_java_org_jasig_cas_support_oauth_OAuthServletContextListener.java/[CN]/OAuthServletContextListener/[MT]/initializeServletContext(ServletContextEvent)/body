@@ -1,3 +1,5 @@
 {
-  addEndpointMappingToCasServlet(event,OAuthConstants.ENDPOINT_OAUTH2);
+  if (WebUtils.isCasServletInitializing(event)) {
+    addEndpointMappingToCasServlet(event,OAuthConstants.ENDPOINT_OAUTH2);
+  }
 }

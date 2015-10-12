@@ -6,6 +6,6 @@
   request.addParameter("ticket",sId.getId());
   request.addParameter("pgtUrl","https://www.github.com");
   final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
-  assertEquals(ServiceValidateController.DEFAULT_SERVICE_SUCCESS_VIEW_NAME,modelAndView.getViewName());
+  assertEquals(AbstractServiceValidateController.DEFAULT_SERVICE_SUCCESS_VIEW_NAME,modelAndView.getViewName());
   assertNotNull(modelAndView.getModel().get("pgtIou"));
 }

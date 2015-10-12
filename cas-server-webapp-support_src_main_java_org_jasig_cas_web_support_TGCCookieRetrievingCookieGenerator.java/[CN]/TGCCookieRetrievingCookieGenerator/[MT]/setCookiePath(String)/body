@@ -1,0 +1,3 @@
+{
+  super.setCookiePath(cookiePath);
+}

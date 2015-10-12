@@ -1,3 +1,5 @@
 {
-  final ServicesManager manager=this.applicationContext.getBean("servicesManager",ServicesManager.class);
+  logger.debug("Adding {} to application context services",svc);
+  final ServicesManager manager=getServicesManager();
+  manager.save(svc);
 }
