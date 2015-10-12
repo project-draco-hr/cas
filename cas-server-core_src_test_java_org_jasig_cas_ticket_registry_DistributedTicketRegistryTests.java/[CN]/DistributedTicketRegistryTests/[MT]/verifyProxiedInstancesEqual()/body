@@ -12,7 +12,7 @@
   assertEquals(t.getChainedAuthentications(),returned.getChainedAuthentications());
   assertEquals(t.isExpired(),returned.isExpired());
   assertEquals(t.isRoot(),returned.isRoot());
-  final ServiceTicket s=t.grantServiceTicket("stest",TestUtils.getService(),new NeverExpiresExpirationPolicy(),false,TestUtils.getDefaultRegisteredService());
+  final ServiceTicket s=t.grantServiceTicket("stest",TestUtils.getService(),new NeverExpiresExpirationPolicy(),false,true);
   this.ticketRegistry.addTicket(s);
   final ServiceTicket sreturned=(ServiceTicket)this.ticketRegistry.getTicket("stest");
   assertEquals(s,sreturned);
