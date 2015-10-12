@@ -1,0 +1,5 @@
+{
+  final BeanFactory factory=conditionContext.getBeanFactory();
+  final BeanDefinitionRegistry registry=conditionContext.getRegistry();
+  return factory.containsBean("serviceEntityManagerFactory") || registry.containsBeanDefinition("serviceEntityManagerFactory");
+}

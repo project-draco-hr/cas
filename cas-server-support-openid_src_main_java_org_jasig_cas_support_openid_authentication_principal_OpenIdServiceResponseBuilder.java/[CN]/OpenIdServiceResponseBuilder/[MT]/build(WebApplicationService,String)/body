@@ -1,11 +1,13 @@
 {
+  final ServerManager serverManager=ApplicationContextProvider.getApplicationContext().getBean("serverManager",ServerManager.class);
+  final CentralAuthenticationService centralAuthenticationService=ApplicationContextProvider.getApplicationContext().getBean("centralAuthenticationService",CentralAuthenticationService.class);
   final OpenIdService service=(OpenIdService)webApplicationService;
   final Map<String,String> parameters=new HashMap<>();
   if (StringUtils.isBlank(ticketId)) {
     parameters.put(OpenIdProtocolConstants.OPENID_MODE,OpenIdProtocolConstants.CANCEL);
     return buildRedirect(service,parameters);
   }
-  final Association association=getAssociation();
+  final Association association=getAssociation(serverManager);
   final boolean associated=association != null;
   final boolean associationValid=isAssociationValid(association);
   boolean successFullAuthentication=true;
@@ -25,5 +27,5 @@
     successFullAuthentication=false;
   }
   final String id=determineIdentity(service,assertion);
-  return buildAuthenticationResponse(ticketId,service,parameters,associated,successFullAuthentication,id);
+  return buildAuthenticationResponse(serverManager,ticketId,service,parameters,associated,successFullAuthentication,id);
 }

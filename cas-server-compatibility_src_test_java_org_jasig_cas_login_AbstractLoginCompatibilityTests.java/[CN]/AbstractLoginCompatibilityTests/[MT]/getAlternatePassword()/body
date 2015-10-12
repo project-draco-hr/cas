@@ -1,3 +1,0 @@
-{
-  return getProperties().getProperty(ALTERNATE_PASSWORD_PROPERTY);
-}

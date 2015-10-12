@@ -1,4 +1,5 @@
 {
+  logWarning();
   if (registeredService.getId() == RegisteredService.INITIAL_IDENTIFIER_VALUE) {
     ((AbstractRegisteredService)registeredService).setId(findHighestId() + 1);
   }

@@ -1,4 +1,8 @@
 {
+  if (this.client == null) {
+    logger.debug("No memcached client is configured.");
+    return false;
+  }
   final String ticketId=encodeTicketId(ticketIdToDel);
   if (ticketId == null) {
     return false;

@@ -1,6 +1,0 @@
-{
-  authorizeController=new OAuth20AuthorizeController(servicesManager,loginUrl);
-  callbackAuthorizeController=new OAuth20CallbackAuthorizeController();
-  accessTokenController=new OAuth20AccessTokenController(servicesManager,ticketRegistry,timeout);
-  profileController=new OAuth20ProfileController(ticketRegistry);
-}

@@ -1,0 +1,5 @@
+{
+  final HashCodeBuilder builder=new HashCodeBuilder(97,31);
+  builder.append(this.username);
+  return builder.toHashCode();
+}

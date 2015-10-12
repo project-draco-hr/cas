@@ -1,4 +1,0 @@
-{
-  JdbcTestUtils.deleteFromTables(simpleJdbcTemplate,"SERVICETICKET");
-  JdbcTestUtils.deleteFromTables(simpleJdbcTemplate,"TICKETGRANTINGTICKET");
-}
