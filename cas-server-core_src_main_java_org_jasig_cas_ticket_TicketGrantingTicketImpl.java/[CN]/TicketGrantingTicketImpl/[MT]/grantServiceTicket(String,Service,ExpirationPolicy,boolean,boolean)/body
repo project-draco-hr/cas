@@ -10,6 +10,7 @@
       final String existingPath=normalizePath(existingService);
       if (StringUtils.equals(path,existingPath)) {
         existingServices.remove(existingService);
+        LOGGER.trace("removed previous ST for service: {}",existingService);
         break;
       }
     }
