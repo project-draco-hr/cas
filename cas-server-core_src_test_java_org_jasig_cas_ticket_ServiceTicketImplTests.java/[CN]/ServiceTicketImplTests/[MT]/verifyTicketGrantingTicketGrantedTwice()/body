@@ -1,7 +1,7 @@
 {
   final Authentication a=TestUtils.getAuthentication();
   final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
-  final ServiceTicket s=t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),TestUtils.getService(),new MultiTimeUseOrTimeoutExpirationPolicy(1,5000),false);
+  final ServiceTicket s=t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),TestUtils.getService(),new MultiTimeUseOrTimeoutExpirationPolicy(1,5000),false,true);
   s.grantTicketGrantingTicket(this.uniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),a,new NeverExpiresExpirationPolicy());
   try {
     s.grantTicketGrantingTicket(this.uniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),a,new NeverExpiresExpirationPolicy());
