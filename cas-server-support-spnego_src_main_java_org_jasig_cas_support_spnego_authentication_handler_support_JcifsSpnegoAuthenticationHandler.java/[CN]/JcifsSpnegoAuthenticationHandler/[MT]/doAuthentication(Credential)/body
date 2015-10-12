@@ -1,7 +1,7 @@
 {
   final SpnegoCredential spnegoCredential=(SpnegoCredential)credential;
-  java.security.Principal principal;
-  byte[] nextToken;
+  final java.security.Principal principal;
+  final byte[] nextToken;
   if (!this.isNTLMallowed && spnegoCredential.isNtlm()) {
     throw new FailedLoginException("NTLM not allowed");
   }

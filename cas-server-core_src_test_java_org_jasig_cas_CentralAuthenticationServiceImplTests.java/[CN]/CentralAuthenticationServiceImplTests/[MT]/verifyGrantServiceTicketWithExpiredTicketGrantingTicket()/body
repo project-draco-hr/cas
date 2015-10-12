@@ -1,7 +1,7 @@
 {
   ((CentralAuthenticationServiceImpl)getCentralAuthenticationService()).setTicketGrantingTicketExpirationPolicy(new ExpirationPolicy(){
     private static final long serialVersionUID=1L;
-    public boolean isExpired(    final TicketState ticket){
+    @Override public boolean isExpired(    final TicketState ticket){
       return true;
     }
   }

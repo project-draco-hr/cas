@@ -1,8 +1,0 @@
-{
-  beginAt("/validate");
-  assertTextPresent("no");
-  final HttpUnitDialog htDialog=getDialog();
-  final String validateOutput=htDialog.getResponseText();
-  final String exactExpectedResponse=LEGACY_NO_RESPONSE;
-  assertEquals(exactExpectedResponse,validateOutput);
-}

@@ -1,3 +1,0 @@
-{
-  JdbcTestUtils.deleteFromTables(simpleJdbcTemplate,"locks");
-}

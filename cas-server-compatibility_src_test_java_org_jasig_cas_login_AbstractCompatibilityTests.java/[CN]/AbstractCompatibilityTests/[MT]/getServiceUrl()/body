@@ -1,3 +1,0 @@
-{
-  return getProperties().getProperty(SERVICE_URL_PROPERTY);
-}
