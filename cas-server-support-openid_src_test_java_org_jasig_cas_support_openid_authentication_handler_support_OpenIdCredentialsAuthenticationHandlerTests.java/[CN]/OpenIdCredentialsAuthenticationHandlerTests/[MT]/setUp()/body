@@ -1,5 +1,0 @@
-{
-  this.openIdCredentialsAuthenticationHandler=new OpenIdCredentialsAuthenticationHandler();
-  this.ticketRegistry=new DefaultTicketRegistry();
-  this.openIdCredentialsAuthenticationHandler.setTicketRegistry(this.ticketRegistry);
-}

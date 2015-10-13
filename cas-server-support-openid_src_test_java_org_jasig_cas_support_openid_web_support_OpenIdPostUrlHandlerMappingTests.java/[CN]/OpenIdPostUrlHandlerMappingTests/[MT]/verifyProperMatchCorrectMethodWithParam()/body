@@ -1,0 +1,7 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setContextPath("/login");
+  request.setMethod("POST");
+  request.setParameter("openid.mode","check_authentication");
+  assertNotNull(this.handlerMapping.lookupHandler("/login",request));
+}

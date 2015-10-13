@@ -1,5 +1,0 @@
-{
-  if (serviceTicketRegistry == null) {
-    this.serviceTicketRegistry=ticketRegistry;
-  }
-}

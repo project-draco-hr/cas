@@ -2,6 +2,14 @@
   if (ticketId == null) {
     return false;
   }
-  logger.debug("Removing ticket [{}] from registry",ticketId);
+  final Ticket ticket=getTicket(ticketId);
+  if (ticket == null) {
+    return false;
+  }
+  if (ticket instanceof TicketGrantingTicket) {
+    logger.debug("Removing children of ticket [{}] from the registry.",ticket);
+    deleteChildren((TicketGrantingTicket)ticket);
+  }
+  logger.debug("Removing ticket [{}] from the registry.",ticket);
   return (this.cache.remove(ticketId) != null);
 }

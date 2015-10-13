@@ -1,7 +1,7 @@
 {
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   verifyRegisteredServiceProperties(registeredService,service);
-  final ServiceTicket serviceTicket=this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
+  final ServiceTicket serviceTicket=this.ticketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
   if (serviceTicket == null) {
     logger.info("Service ticket [{}] does not exist.",serviceTicketId);
     throw new InvalidTicketException(serviceTicketId);
@@ -31,7 +31,7 @@ synchronized (serviceTicket) {
   }
   finally {
     if (serviceTicket.isExpired()) {
-      this.serviceTicketRegistry.deleteTicket(serviceTicketId);
+      this.ticketRegistry.deleteTicket(serviceTicketId);
     }
   }
 }
