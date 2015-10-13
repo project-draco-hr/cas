@@ -12,5 +12,6 @@
   r2.setName("Test Service 2");
   r2.setServiceId("myDefaultId");
   this.servicesManager.save(r2);
-  this.registeredServiceThemeBasedViewResolver=new RegisteredServiceThemeBasedViewResolver("defaultTheme",this.servicesManager);
+  this.registeredServiceThemeBasedViewResolver=new RegisteredServiceThemeBasedViewResolver(this.servicesManager);
+  this.registeredServiceThemeBasedViewResolver.setPrefix("/WEB-INF/view/jsp");
 }

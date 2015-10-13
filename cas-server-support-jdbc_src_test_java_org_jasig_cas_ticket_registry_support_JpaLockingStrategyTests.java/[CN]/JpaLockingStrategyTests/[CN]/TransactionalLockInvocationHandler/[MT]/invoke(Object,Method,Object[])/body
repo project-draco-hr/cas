@@ -1,6 +1,6 @@
 {
   return new TransactionTemplate(txManager).execute(new TransactionCallback<Object>(){
-    public Object doInTransaction(    final TransactionStatus status){
+    @Override public Object doInTransaction(    final TransactionStatus status){
       try {
         final Object result=method.invoke(jpaLock,args);
         jpaLock.entityManager.flush();

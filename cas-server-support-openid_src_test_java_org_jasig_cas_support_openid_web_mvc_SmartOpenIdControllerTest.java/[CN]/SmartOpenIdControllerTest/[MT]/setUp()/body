@@ -1,6 +1,0 @@
-{
-  manager=new ServerManager();
-  manager.setOPEndpointUrl("https://localshot:8443/cas/login");
-  manager.setEnforceRpId(false);
-  smartOpenIdController.setServerManager(manager);
-}

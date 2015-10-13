@@ -4,7 +4,7 @@
   verifyRegisteredServiceProperties(registeredService,service);
   final Set<Credential> sanitizedCredentials=sanitizeCredentials(credentials);
   Authentication currentAuthentication=null;
-  if (sanitizedCredentials.size() > 0) {
+  if (!sanitizedCredentials.isEmpty()) {
     currentAuthentication=this.authenticationManager.authenticate(sanitizedCredentials.toArray(new Credential[]{}));
     final Authentication original=ticketGrantingTicket.getAuthentication();
     if (!currentAuthentication.getPrincipal().equals(original.getPrincipal())) {
@@ -34,8 +34,8 @@
   }
   final String ticketPrefix=authentications.size() == 1 ? ServiceTicket.PREFIX : ServiceTicket.PROXY_TICKET_PREFIX;
   final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ticketPrefix);
-  final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication != null);
-  this.serviceTicketRegistry.addTicket(serviceTicket);
+  final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication != null,this.onlyTrackMostRecentSession);
+  this.ticketRegistry.addTicket(serviceTicket);
   logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principal.getId());
   return serviceTicket;
 }

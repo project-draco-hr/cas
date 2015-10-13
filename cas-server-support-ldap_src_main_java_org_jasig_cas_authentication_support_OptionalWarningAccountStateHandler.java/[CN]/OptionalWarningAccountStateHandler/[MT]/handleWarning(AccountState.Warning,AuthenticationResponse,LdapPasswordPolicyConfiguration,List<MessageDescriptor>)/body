@@ -1,4 +1,12 @@
 {
+  if (StringUtils.isBlank(this.warningAttributeName)) {
+    logger.debug("No warning attribute name is defined");
+    return;
+  }
+  if (StringUtils.isBlank(this.warningAttributeValue)) {
+    logger.debug("No warning attribute value to match is defined");
+    return;
+  }
   final LdapAttribute attribute=response.getLdapEntry().getAttribute(this.warningAttributeName);
   boolean matches=false;
   if (attribute != null) {

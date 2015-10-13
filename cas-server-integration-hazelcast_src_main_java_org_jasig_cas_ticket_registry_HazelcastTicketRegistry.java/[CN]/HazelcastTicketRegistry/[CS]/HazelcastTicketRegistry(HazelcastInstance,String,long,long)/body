@@ -1,7 +1,6 @@
 {
-  logInitialization(hz,mapName,ticketGrantingTicketTimoutInSeconds,serviceTicketTimeoutInSeconds);
   this.registry=hz.getMap(mapName);
-  this.ticketGrantingTicketTimoutInSeconds=ticketGrantingTicketTimoutInSeconds;
+  this.ticketGrantingTicketTimeoutInSeconds=ticketGrantingTicketTimeoutInSeconds;
   this.serviceTicketTimeoutInSeconds=serviceTicketTimeoutInSeconds;
   this.hz=hz;
 }
