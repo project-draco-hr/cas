@@ -1,4 +1,5 @@
 {
+  final TimeBasedRegisteredServiceAccessStrategy accessStrategy=new TimeBasedRegisteredServiceAccessStrategy();
   accessStrategy.setEnabled(this.supportAccess.isCasEnabled());
   accessStrategy.setSsoEnabled(this.supportAccess.isSsoEnabled());
   accessStrategy.setRequireAllAttributes(this.supportAccess.isRequireAll());
@@ -12,4 +13,7 @@
     }
   }
   accessStrategy.setRequiredAttributes(requiredAttrs);
+  accessStrategy.setEndingDateTime(this.supportAccess.getEndingTime());
+  accessStrategy.setStartingDateTime(this.supportAccess.getStartingTime());
+  regSvc.setAccessStrategy(accessStrategy);
 }
