@@ -1,7 +1,5 @@
 {
-  Connection connection=null;
-  try {
-    connection=getConnection();
+  try (final Connection connection=getConnection()){
     final Response<SearchResult> response=searchForServiceById(connection,registeredService.getId());
     if (hasResults(response)) {
       final LdapEntry entry=response.getResult().getEntry();
@@ -13,9 +11,6 @@
   }
  catch (  final LdapException e) {
     logger.error(e.getMessage(),e);
-  }
- finally {
-    LdapUtils.closeConnection(connection);
   }
   return false;
 }
