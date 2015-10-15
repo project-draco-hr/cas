@@ -1,8 +1,9 @@
 {
-  Connection connection=null;
   final List<RegisteredService> list=new LinkedList<>();
-  try {
-    connection=getConnection();
+  if (ldapServiceMapper == null) {
+    return list;
+  }
+  try (final Connection connection=getConnection()){
     final Response<SearchResult> response=executeSearchOperation(connection,new SearchFilter(this.loadFilter));
     if (hasResults(response)) {
       for (      final LdapEntry entry : response.getResult().getEntries()) {
@@ -13,9 +14,6 @@
   }
  catch (  final LdapException e) {
     logger.error(e.getMessage(),e);
-  }
- finally {
-    LdapUtils.closeConnection(connection);
   }
   return list;
 }
