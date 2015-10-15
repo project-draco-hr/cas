@@ -1,5 +1,0 @@
-{
-  final BeanFactory factory=conditionContext.getBeanFactory();
-  final BeanDefinitionRegistry registry=conditionContext.getRegistry();
-  return factory.containsBean("ticketEntityManagerFactory") || registry.containsBeanDefinition("ticketEntityManagerFactory");
-}
