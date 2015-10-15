@@ -1,7 +1,9 @@
 {
   final DateTime currentDateTime=DateTime.parse(new ISOStandardDateFormat().getCurrentDateAndTime());
   final DateTime notBeforeIssueInstant=DateTime.parse("2003-04-17T00:46:02Z");
-  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  final ApplicationContext context=ApplicationContextProvider.getApplicationContext();
+  final ServicesManager servicesManager=context.getBean("servicesManager",ServicesManager.class);
+  final RegisteredService registeredService=servicesManager.findServiceBy(service);
   final String userId=registeredService.getUsernameAttributeProvider().resolveUsername(service.getPrincipal(),service);
   final org.opensaml.saml.saml2.core.Response response=samlObjectBuilder.newResponse(samlObjectBuilder.generateSecureRandomId(),currentDateTime,service.getId(),service);
   response.setStatus(samlObjectBuilder.newStatus(StatusCode.SUCCESS,null));
