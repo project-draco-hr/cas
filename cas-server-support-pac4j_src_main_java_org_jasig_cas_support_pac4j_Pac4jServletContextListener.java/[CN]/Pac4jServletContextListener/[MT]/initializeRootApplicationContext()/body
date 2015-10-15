@@ -1,0 +1,4 @@
+{
+  addAuthenticationHandlerPrincipalResolver(clientAuthenticationHandler,null);
+  addAuthenticationMetadataPopulator(clientAuthenticationMetaDataPopulator);
+}

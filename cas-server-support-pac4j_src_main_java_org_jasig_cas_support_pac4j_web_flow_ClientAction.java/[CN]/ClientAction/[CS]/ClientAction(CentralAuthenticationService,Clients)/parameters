@@ -1,2 +1,2 @@
-CentralAuthenticationService theCentralAuthenticationService
-Clients theClients
+CentralAuthenticationService centralAuthenticationService
+Clients clients
