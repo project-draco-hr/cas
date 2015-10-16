@@ -7,7 +7,9 @@
   mockRequestContext.setExternalContext(servletExternalContext);
   final BasicAuthClient basicAuthClient=new BasicAuthClient();
   final Clients clients=new Clients(MY_LOGIN_URL,basicAuthClient);
-  final ClientAction action=new ClientAction(mock(CentralAuthenticationService.class),clients);
+  final ClientAction action=new ClientAction();
+  action.setCentralAuthenticationService(mock(CentralAuthenticationService.class));
+  action.setClients(clients);
   try {
     action.execute(mockRequestContext);
     fail("Should fail as the HTTP protocol is not authorized");

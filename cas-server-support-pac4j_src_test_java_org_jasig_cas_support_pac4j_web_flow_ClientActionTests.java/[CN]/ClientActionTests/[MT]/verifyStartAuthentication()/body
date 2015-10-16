@@ -13,7 +13,9 @@
   final FacebookClient facebookClient=new FacebookClient(MY_KEY,MY_SECRET);
   final TwitterClient twitterClient=new TwitterClient(MY_KEY,MY_SECRET);
   final Clients clients=new Clients(MY_LOGIN_URL,facebookClient,twitterClient);
-  final ClientAction action=new ClientAction(mock(CentralAuthenticationService.class),clients);
+  final ClientAction action=new ClientAction();
+  action.setCentralAuthenticationService(mock(CentralAuthenticationService.class));
+  action.setClients(clients);
   final Event event=action.execute(mockRequestContext);
   assertEquals("error",event.getId());
   assertEquals(MY_THEME,mockSession.getAttribute(ClientAction.THEME));

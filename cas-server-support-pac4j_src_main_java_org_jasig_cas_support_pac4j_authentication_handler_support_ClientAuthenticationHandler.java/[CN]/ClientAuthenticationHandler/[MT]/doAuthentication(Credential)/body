@@ -11,6 +11,6 @@
   final HttpServletResponse response=(HttpServletResponse)servletExternalContext.getNativeResponse();
   final WebContext webContext=new J2EContext(request,response);
   final UserProfile userProfile=client.getUserProfile(credentials,webContext);
-  logger.debug("userProfile : {}",userProfile);
+  logger.debug("userProfile: {}",userProfile);
   return createResult(clientCredentials,userProfile);
 }

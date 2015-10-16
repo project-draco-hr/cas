@@ -1,5 +1,3 @@
 {
   this.centralAuthenticationService=centralAuthenticationService;
-  this.clients=clients;
-  ProfileHelper.setKeepRawData(true);
 }
