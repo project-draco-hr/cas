@@ -8,4 +8,9 @@
     accessBean.setRequireAll(def.isRequireAllAttributes());
     accessBean.setRequiredAttr(def.getRequiredAttributes());
   }
+  if (accessStrategy instanceof TimeBasedRegisteredServiceAccessStrategy) {
+    final TimeBasedRegisteredServiceAccessStrategy def=(TimeBasedRegisteredServiceAccessStrategy)accessStrategy;
+    accessBean.setStartingTime(def.getStartingDateTime());
+    accessBean.setEndingTime(def.getEndingDateTime());
+  }
 }

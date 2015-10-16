@@ -1,0 +1,6 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setContextPath("/login");
+  request.setMethod("GET");
+  assertNull(this.handlerMapping.lookupHandler("/login",request));
+}

@@ -1,10 +1,5 @@
 {
-  final Map<String,Service> services;
-synchronized (ticket) {
-    services=ticket.getServices();
-    ticket.removeAllServices();
-  }
-  ticket.markTicketExpired();
+  final Map<String,Service> services=ticket.getServices();
   final List<LogoutRequest> logoutRequests=new ArrayList<>();
   if (!this.singleLogoutCallbacksDisabled) {
     for (    final Map.Entry<String,Service> entry : services.entrySet()) {

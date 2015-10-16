@@ -33,8 +33,7 @@
     if (StringUtils.isNotBlank(this.logoutUrl)) {
       regSvc.setLogoutUrl(new URL(this.logoutUrl));
     }
-    final RegisteredServiceAccessStrategy accessStrategy=regSvc.getAccessStrategy();
-    convertAccessStrategyToService((DefaultRegisteredServiceAccessStrategy)accessStrategy);
+    convertAccessStrategyToService(regSvc);
     convertProxyPolicyToService(regSvc);
     convertUsernameAttributeToService(regSvc);
     if (this.publicKey != null && this.publicKey.isValid()) {

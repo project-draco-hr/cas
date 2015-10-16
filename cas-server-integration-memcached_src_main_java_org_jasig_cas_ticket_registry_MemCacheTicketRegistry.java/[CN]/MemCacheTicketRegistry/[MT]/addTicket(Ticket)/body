@@ -1,4 +1,8 @@
 {
+  if (this.client == null) {
+    logger.debug("No memcached client is configured.");
+    return;
+  }
   final Ticket ticket=encodeTicket(ticketToAdd);
   logger.debug("Adding ticket {}",ticket);
   try {

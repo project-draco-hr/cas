@@ -7,6 +7,6 @@
   final String id=cleanupUrl(service);
   final String artifactId=request.getParameter(OpenIdProtocolConstants.OPENID_ASSOCHANDLE);
   final ParameterList paramList=new ParameterList(request.getParameterMap());
-  final OpenIdServiceResponseBuilder builder=new OpenIdServiceResponseBuilder(serverManager,centralAuthenticationService,paramList,this.openIdPrefixUrl);
+  final OpenIdServiceResponseBuilder builder=new OpenIdServiceResponseBuilder(paramList,this.openIdPrefixUrl);
   return new OpenIdService(id,service,artifactId,openIdIdentity,builder);
 }

@@ -1,0 +1,7 @@
+{
+  final ModelAndView modelAndView=new ModelAndView(this.failureView);
+  final String convertedDescription=this.context.getMessage(description,args,description,request.getLocale());
+  modelAndView.addObject("code",code);
+  modelAndView.addObject("description",convertedDescription);
+  return modelAndView;
+}

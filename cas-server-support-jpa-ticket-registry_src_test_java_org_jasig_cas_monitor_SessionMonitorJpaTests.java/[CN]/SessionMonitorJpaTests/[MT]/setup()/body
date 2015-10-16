@@ -1,0 +1,5 @@
+{
+  final ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:/jpaSpringContext.xml");
+  this.jpaRegistry=ctx.getBean("jpaTicketRegistry",TicketRegistry.class);
+  this.monitor=new SessionMonitor();
+}

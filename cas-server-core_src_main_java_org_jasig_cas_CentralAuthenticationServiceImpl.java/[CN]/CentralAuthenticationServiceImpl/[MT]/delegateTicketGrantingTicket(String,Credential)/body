@@ -1,5 +1,5 @@
 {
-  final ServiceTicket serviceTicket=this.serviceTicketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
+  final ServiceTicket serviceTicket=this.ticketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
   if (serviceTicket == null || serviceTicket.isExpired()) {
     logger.debug("ServiceTicket [{}] has expired or cannot be found in the ticket registry",serviceTicketId);
     throw new InvalidTicketException(serviceTicketId);

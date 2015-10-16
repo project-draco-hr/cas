@@ -1,0 +1,10 @@
+{
+  SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+  try {
+    logger.info("Beginning audit cleanup...");
+    decrementCounts();
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+}

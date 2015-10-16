@@ -1,7 +1,8 @@
 {
-  Connection connection=null;
-  try {
-    connection=getConnection();
+  if (ldapServiceMapper == null) {
+    return null;
+  }
+  try (final Connection connection=getConnection()){
     final Response<SearchResult> response=searchForServiceById(connection,id);
     if (hasResults(response)) {
       return this.ldapServiceMapper.mapToRegisteredService(response.getResult().getEntry());
@@ -9,9 +10,6 @@
   }
  catch (  final LdapException e) {
     logger.error(e.getMessage(),e);
-  }
- finally {
-    LdapUtils.closeConnection(connection);
   }
   return null;
 }
