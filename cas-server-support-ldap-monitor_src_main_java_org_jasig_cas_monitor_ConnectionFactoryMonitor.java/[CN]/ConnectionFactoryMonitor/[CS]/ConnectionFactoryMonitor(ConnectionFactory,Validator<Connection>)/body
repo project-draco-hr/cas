@@ -1,4 +1,0 @@
-{
-  this.connectionFactory=factory;
-  this.validator=validator;
-}
