@@ -8,8 +8,8 @@
   if (StringUtils.isNotBlank(clientName)) {
     final BaseClient<Credentials,CommonProfile> client=(BaseClient<Credentials,CommonProfile>)this.clients.findClient(clientName);
     logger.debug("client: {}",client);
-    final Mechanism mechanism=client.getMechanism();
-    if (!SUPPORTED_PROTOCOLS.contains(mechanism)) {
+    final ClientType clientType=client.getClientType();
+    if (!SUPPORTED_PROTOCOLS.contains(clientType)) {
       throw new TechnicalException("Only CAS, OAuth, OpenID and SAML protocols are supported: " + client);
     }
     final Credentials credentials;

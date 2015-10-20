@@ -1,0 +1,29 @@
+{
+  String callbackUrl=serverLoginUrl;
+  List<Client> allClients=new ArrayList<>();
+  if (clients != null) {
+    final String clientsCallbackUrl=clients.getCallbackUrl();
+    if (StringUtils.isNotBlank(clientsCallbackUrl)) {
+      callbackUrl=clientsCallbackUrl;
+    }
+    allClients=clients.findAllClients();
+  }
+  if (StringUtils.isNotBlank(facebookId) && StringUtils.isNotBlank(facebookSecret)) {
+    final FacebookClient facebookClient=new FacebookClient(facebookId,facebookSecret);
+    if (StringUtils.isNotBlank(facebookScope)) {
+      facebookClient.setScope(facebookScope);
+    }
+    if (StringUtils.isNotBlank(facebookFields)) {
+      facebookClient.setFields(facebookFields);
+    }
+    allClients.add(facebookClient);
+  }
+  if (StringUtils.isNotBlank(twitterId) && StringUtils.isNotBlank(twitterSecret)) {
+    final TwitterClient twitterClient=new TwitterClient(twitterId,twitterSecret);
+    allClients.add(twitterClient);
+  }
+  if (allClients == null || allClients.size() == 0) {
+    throw new IllegalArgumentException("At least one pac4j client must be defined");
+  }
+  return new Clients(callbackUrl,allClients);
+}
