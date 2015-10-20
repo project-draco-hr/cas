@@ -6,7 +6,7 @@
     throw new AccountNotFoundException("Username is null.");
   }
   final String password=this.passwordEncoder.encode(credential.getPassword());
-  final UsernamePasswordCredentials credentials=new UsernamePasswordCredentials(username,password,null);
+  final UsernamePasswordCredentials credentials=new UsernamePasswordCredentials(username,password,getClass().getSimpleName());
   logger.debug("pac4j credentials: {}",credentials);
   return credentials;
 }
