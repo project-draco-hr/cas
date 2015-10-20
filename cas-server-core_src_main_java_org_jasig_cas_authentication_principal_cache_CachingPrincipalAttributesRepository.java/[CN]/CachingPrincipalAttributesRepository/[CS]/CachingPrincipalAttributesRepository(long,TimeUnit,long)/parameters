@@ -1,4 +1,3 @@
-IPersonAttributeDao attributeRepository
 long maxCacheSize
 TimeUnit timeUnit
 long expiryDuration

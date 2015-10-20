@@ -1,3 +1,7 @@
 {
+  if (this.attributeRepository == null) {
+    final ApplicationContext context=ApplicationContextProvider.getApplicationContext();
+    return context.getBean("attributeRepository",IPersonAttributeDao.class);
+  }
   return this.attributeRepository;
 }

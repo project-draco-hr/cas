@@ -1,3 +1,4 @@
 {
-  this.cache=null;
+  super();
+  this.cache=CacheBuilder.newBuilder().maximumSize(this.maxCacheSize).expireAfterWrite(this.expiration,this.timeUnit).build(this.cacheLoader);
 }

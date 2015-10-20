@@ -1,3 +1,0 @@
-IPersonAttributeDao attributeRepository
-TimeUnit timeUnit
-long expiryDuration
