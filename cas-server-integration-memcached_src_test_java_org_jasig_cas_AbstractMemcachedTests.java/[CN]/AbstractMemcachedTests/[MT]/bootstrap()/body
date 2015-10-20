@@ -5,6 +5,6 @@
     MEMCACHED=MEMCACHED_EXECUTABLE.start();
   }
  catch (  final Exception e) {
-    getLogger(AbstractMemcacheTests.class).warn("Aborting since no memcached server could be started.",e);
+    getLogger(AbstractMemcachedTests.class).warn("Aborting since no memcached server could be started.",e);
   }
 }
