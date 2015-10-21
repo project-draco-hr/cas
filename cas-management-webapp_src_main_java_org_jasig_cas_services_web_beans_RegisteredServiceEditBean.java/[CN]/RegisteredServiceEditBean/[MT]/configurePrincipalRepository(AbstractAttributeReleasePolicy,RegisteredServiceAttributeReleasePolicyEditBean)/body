@@ -11,7 +11,7 @@
       attrPolicyBean.setCachedTimeUnit(cc.getTimeUnit().name());
     }
     final AbstractPrincipalAttributesRepository cc=(AbstractPrincipalAttributesRepository)pr;
-    final IAttributeMerger merger=cc.getMergingStrategy();
+    final IAttributeMerger merger=cc.getMergingStrategy().getAttributeMerger();
     if (merger != null) {
       if (merger instanceof NoncollidingAttributeAdder) {
         attrPolicyBean.setMergingStrategy(RegisteredServiceAttributeReleasePolicyEditBean.AttributeMergerTypes.ADD.toString());

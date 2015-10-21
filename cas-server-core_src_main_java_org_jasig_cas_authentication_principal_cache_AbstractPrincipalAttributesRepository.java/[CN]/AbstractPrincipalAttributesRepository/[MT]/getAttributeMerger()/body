@@ -1,0 +1,13 @@
+{
+  final String name=this.name().toUpperCase();
+switch (name.toUpperCase()) {
+case "REPLACE":
+    return new ReplacingAttributeAdder();
+case "ADD":
+  return new NoncollidingAttributeAdder();
+case "MULTIVALUED":
+return new MultivaluedAttributeMerger();
+default :
+return null;
+}
+}
