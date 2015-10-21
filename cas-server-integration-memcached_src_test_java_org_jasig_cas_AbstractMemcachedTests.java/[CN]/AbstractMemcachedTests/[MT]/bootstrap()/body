@@ -1,0 +1,10 @@
+{
+  try {
+    final MemcachedStarter runtime=MemcachedStarter.getInstance(new CasRuntimeConfigBuilder().defaults(Command.MemcacheD).build());
+    MEMCACHED_EXECUTABLE=runtime.prepare(new MemcachedConfig(Version.V1_4_22,PORT));
+    MEMCACHED=MEMCACHED_EXECUTABLE.start();
+  }
+ catch (  final Exception e) {
+    getLogger(AbstractMemcachedTests.class).warn("Aborting since no memcached server could be started.",e);
+  }
+}
