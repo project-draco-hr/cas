@@ -8,20 +8,9 @@
     }
     allClients=clients.findAllClients();
   }
-  if (StringUtils.isNotBlank(facebookId) && StringUtils.isNotBlank(facebookSecret)) {
-    final FacebookClient facebookClient=new FacebookClient(facebookId,facebookSecret);
-    if (StringUtils.isNotBlank(facebookScope)) {
-      facebookClient.setScope(facebookScope);
-    }
-    if (StringUtils.isNotBlank(facebookFields)) {
-      facebookClient.setFields(facebookFields);
-    }
-    allClients.add(facebookClient);
-  }
-  if (StringUtils.isNotBlank(twitterId) && StringUtils.isNotBlank(twitterSecret)) {
-    final TwitterClient twitterClient=new TwitterClient(twitterId,twitterSecret);
-    allClients.add(twitterClient);
-  }
+  autoCreateFacebookClient(allClients);
+  autoCreateTwitterClient(allClients);
+  autoCreateSaml2Client(allClients);
   if (allClients == null || allClients.size() == 0) {
     throw new IllegalArgumentException("At least one pac4j client must be defined");
   }
