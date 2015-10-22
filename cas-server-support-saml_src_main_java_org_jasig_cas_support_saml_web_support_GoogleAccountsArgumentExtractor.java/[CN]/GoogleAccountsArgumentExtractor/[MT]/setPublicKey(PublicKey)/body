@@ -1,3 +1,0 @@
-{
-  LOGGER.warn("setPublicKey() is deprecated and has no effect. Consider using constructors instead.");
-}
