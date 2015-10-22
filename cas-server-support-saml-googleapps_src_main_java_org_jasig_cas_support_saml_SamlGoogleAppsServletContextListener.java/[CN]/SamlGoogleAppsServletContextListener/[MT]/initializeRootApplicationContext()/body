@@ -1,0 +1,4 @@
+{
+  super.initializeRootApplicationContext();
+  addServiceFactory(this.googleAccountsServiceFactory);
+}

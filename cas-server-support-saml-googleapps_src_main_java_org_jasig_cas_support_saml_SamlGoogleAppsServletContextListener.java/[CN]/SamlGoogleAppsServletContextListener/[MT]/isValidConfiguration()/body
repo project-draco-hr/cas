@@ -1,3 +1,0 @@
-{
-  return StringUtils.isNotBlank(this.privateKeyLocation) || StringUtils.isNotBlank(this.publicKeyLocation) || StringUtils.isNotBlank(this.keyAlgorithm);
-}
