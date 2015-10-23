@@ -1,4 +1,0 @@
-{
-  this.timeToKillInMilliSeconds=0;
-  this.numberOfUses=0;
-}

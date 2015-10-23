@@ -1,5 +1,0 @@
-String id
-Service proxiedBy
-TicketGrantingTicket parentTicketGrantingTicket
-Authentication authentication
-ExpirationPolicy policy

@@ -1,7 +1,0 @@
-{
-  final ServiceTicket stMock=mock(ServiceTicket.class);
-  when(stMock.getService()).thenReturn(svc);
-  when(stMock.getId()).thenReturn(id);
-  when(stMock.isValidFor(svc)).thenReturn(true);
-  return stMock;
-}

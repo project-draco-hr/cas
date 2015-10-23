@@ -1,5 +1,0 @@
-{
-  final AbstractRegisteredService clone=newInstance();
-  clone.copyFrom(this);
-  return clone;
-}

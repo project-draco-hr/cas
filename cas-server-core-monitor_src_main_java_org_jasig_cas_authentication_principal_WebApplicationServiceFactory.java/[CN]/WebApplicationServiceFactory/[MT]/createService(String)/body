@@ -1,3 +1,0 @@
-{
-  return new SimpleWebApplicationServiceImpl(id,id,null,new WebApplicationServiceResponseBuilder(Response.ResponseType.REDIRECT));
-}

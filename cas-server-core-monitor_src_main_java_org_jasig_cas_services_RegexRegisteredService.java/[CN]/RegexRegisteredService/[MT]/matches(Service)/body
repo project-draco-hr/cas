@@ -1,6 +1,0 @@
-{
-  if (servicePattern == null) {
-    servicePattern=createPattern(serviceId);
-  }
-  return service != null && servicePattern.matcher(service.getId()).matches();
-}

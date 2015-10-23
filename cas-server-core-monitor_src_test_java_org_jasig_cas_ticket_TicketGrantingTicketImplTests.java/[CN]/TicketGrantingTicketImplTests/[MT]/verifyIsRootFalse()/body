@@ -1,5 +1,0 @@
-{
-  final TicketGrantingTicketImpl t1=new TicketGrantingTicketImpl("test",null,null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
-  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",new WebApplicationServiceFactory().createService("gantor"),t1,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
-  assertFalse(t.isRoot());
-}

@@ -1,3 +1,0 @@
-{
-  assertNotNull(new DefaultTicketRegistry(10,10F,5));
-}

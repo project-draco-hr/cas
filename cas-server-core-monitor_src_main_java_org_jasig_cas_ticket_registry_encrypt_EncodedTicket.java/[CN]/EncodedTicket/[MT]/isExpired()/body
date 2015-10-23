@@ -1,3 +1,0 @@
-{
-  throw new UnsupportedOperationException("isExpired() operation not supported");
-}

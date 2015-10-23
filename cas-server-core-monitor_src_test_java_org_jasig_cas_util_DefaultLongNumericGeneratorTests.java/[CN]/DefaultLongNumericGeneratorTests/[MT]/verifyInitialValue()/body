@@ -1,3 +1,0 @@
-{
-  assertEquals(10L,new DefaultLongNumericGenerator(10L).getNextLong());
-}

@@ -1,9 +1,0 @@
-{
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.setParameter("service","http://foo.com/?param=test");
-  final WebApplicationService impl=new WebApplicationServiceFactory().createService(request);
-  final Response response=impl.getResponse(null);
-  assertNotNull(response);
-  assertEquals(Response.ResponseType.REDIRECT,response.getResponseType());
-  assertEquals("http://foo.com/?param=test",response.getUrl());
-}

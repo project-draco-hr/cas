@@ -1,8 +1,0 @@
-{
-  String pathPrefix=System.getProperty("user.dir");
-  pathPrefix=!pathPrefix.contains("cas-server-core") ? pathPrefix + "/cas-server-core" : pathPrefix;
-  logger.info("PATH PREFIX: {}",pathPrefix);
-  final String pathToConfig=pathPrefix + "/src/test/resources/org/jasig/cas/authentication/handler/support/jaas.conf";
-  System.setProperty("java.security.auth.login.config","=" + pathToConfig);
-  this.handler=new JaasAuthenticationHandler();
-}

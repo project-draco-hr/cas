@@ -1,3 +1,0 @@
-{
-  getCentralAuthenticationService().validateServiceTicket("test",TestUtils.getService());
-}

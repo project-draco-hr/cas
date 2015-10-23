@@ -1,3 +1,0 @@
-{
-  delegate.trace(marker,getExceptionToLog(msg,t));
-}

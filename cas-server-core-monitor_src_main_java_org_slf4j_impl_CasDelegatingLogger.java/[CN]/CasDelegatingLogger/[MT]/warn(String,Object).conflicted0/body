@@ -1,3 +1,0 @@
-{
-  delegate.warn(manipulateLogMessage(format),manipulateLogArguments(arg));
-}

@@ -1,4 +1,0 @@
-{
-  final byte[] random=getNewStringAsBytes();
-  return convertBytesToString(random);
-}
