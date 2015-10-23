@@ -1,4 +1,0 @@
-{
-  final ClassPathResource resource=new ClassPathResource("truststore.jks");
-  new FileTrustStoreSslSocketFactory(resource.getFile(),"invalid");
-}

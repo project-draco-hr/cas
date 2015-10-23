@@ -1,4 +1,0 @@
-{
-  this.handler.setRealm("TEST");
-  this.handler.authenticate(TestUtils.getCredentialsWithDifferentUsernameAndPassword("test","test1"));
-}

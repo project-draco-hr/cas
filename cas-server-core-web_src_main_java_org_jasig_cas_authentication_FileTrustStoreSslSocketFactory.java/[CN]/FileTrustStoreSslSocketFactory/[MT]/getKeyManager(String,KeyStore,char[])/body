@@ -1,5 +1,0 @@
-{
-  final KeyManagerFactory factory=KeyManagerFactory.getInstance(algorithm);
-  factory.init(keystore,password);
-  return (X509KeyManager)factory.getKeyManagers()[0];
-}

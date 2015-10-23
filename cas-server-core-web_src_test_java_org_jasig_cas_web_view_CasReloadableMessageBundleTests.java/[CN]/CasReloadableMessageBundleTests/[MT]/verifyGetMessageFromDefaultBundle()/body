@@ -1,4 +1,0 @@
-{
-  final String msg=this.loader.getMessage("screen.other.message",null,Locale.FRENCH);
-  assertEquals(msg,"another");
-}

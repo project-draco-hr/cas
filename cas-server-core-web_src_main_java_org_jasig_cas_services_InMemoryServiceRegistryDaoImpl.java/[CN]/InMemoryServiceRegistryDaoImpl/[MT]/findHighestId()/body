@@ -1,9 +1,0 @@
-{
-  long id=0;
-  for (  final RegisteredService r : this.registeredServices) {
-    if (r.getId() > id) {
-      id=r.getId();
-    }
-  }
-  return id;
-}

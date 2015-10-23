@@ -1,3 +1,0 @@
-{
-  return this.warnings == null ? Collections.<MessageDescriptor>emptyList() : Collections.unmodifiableList(this.warnings);
-}

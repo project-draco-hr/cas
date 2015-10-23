@@ -1,7 +1,0 @@
-{
-  final byte[] encoded=verifySignature(value.getBytes());
-  if (encoded != null && encoded.length > 0) {
-    return decryptValue(new String(encoded));
-  }
-  return null;
-}

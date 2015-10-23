@@ -1,4 +1,0 @@
-{
-  this.authenticationDate=d;
-  return this;
-}

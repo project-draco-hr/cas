@@ -1,4 +1,0 @@
-{
-  setMaxLength(maxLength);
-  setSuffix(suffix);
-}

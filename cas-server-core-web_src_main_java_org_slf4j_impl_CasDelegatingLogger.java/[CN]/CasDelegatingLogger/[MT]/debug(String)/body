@@ -1,3 +1,0 @@
-{
-  delegate.debug(manipulateLogMessage(msg));
-}

@@ -1,8 +1,0 @@
-{
-  if (builder.getSuccesses().isEmpty()) {
-    throw new AuthenticationException(builder.getFailures(),builder.getSuccesses());
-  }
-  if (!this.authenticationPolicy.isSatisfiedBy(builder.build())) {
-    throw new AuthenticationException(builder.getFailures(),builder.getSuccesses());
-  }
-}

@@ -1,6 +1,0 @@
-{
-  final UsernamePasswordCredential c=new UsernamePasswordCredential();
-  c.setUsername(null);
-  c.setPassword(null);
-  this.authenticationHandler.authenticate(c);
-}

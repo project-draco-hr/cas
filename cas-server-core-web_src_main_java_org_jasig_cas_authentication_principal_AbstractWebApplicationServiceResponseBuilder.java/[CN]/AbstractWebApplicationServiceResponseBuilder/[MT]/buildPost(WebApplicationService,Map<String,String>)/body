@@ -1,3 +1,0 @@
-{
-  return DefaultResponse.getPostResponse(service.getOriginalUrl(),parameters);
-}

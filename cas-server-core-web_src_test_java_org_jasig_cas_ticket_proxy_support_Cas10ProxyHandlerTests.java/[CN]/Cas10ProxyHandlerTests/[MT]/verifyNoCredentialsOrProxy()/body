@@ -1,3 +1,0 @@
-{
-  assertNull(this.proxyHandler.handle(null,null));
-}

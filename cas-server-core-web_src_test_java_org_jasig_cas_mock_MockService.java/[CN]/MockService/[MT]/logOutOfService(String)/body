@@ -1,4 +1,0 @@
-{
-  this.loggedOut=true;
-  return false;
-}

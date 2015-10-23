@@ -1,4 +1,0 @@
-{
-  this.maxTimeToLiveInMilliSeconds=timeUnit.toMillis(maxTimeToLive);
-  this.timeToKillInMilliSeconds=timeUnit.toMillis(timeToKill);
-}

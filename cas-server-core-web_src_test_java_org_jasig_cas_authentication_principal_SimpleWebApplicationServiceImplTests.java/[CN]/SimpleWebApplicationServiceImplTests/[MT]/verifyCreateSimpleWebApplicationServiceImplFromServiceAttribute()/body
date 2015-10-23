@@ -1,6 +1,0 @@
-{
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.setAttribute("service","service");
-  final WebApplicationService impl=new WebApplicationServiceFactory().createService(request);
-  assertNotNull(impl);
-}

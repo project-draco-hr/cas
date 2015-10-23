@@ -1,3 +1,0 @@
-{
-  this.pattern=Pattern.compile(pgtUrlPattern,Pattern.CASE_INSENSITIVE);
-}

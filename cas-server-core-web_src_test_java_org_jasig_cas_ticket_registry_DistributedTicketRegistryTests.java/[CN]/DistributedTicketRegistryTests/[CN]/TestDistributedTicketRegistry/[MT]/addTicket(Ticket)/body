@@ -1,3 +1,0 @@
-{
-  this.tickets.put(ticket.getId(),ticket);
-}

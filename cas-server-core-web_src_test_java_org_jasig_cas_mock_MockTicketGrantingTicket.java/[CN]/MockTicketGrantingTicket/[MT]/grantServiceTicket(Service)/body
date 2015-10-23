@@ -1,3 +1,0 @@
-{
-  return grantServiceTicket(ID_GENERATOR.getNewTicketId("ST"),service,null,true,true);
-}

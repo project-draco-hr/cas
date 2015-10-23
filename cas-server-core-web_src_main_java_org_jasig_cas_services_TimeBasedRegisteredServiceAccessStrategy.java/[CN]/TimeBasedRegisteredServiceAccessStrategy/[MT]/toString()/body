@@ -1,3 +1,0 @@
-{
-  return new ToStringBuilder(this).appendSuper(super.toString()).append("startingDateTime",startingDateTime).append("endingDateTime",endingDateTime).toString();
-}

@@ -1,9 +1,0 @@
-{
-  final AbstractCacheMonitor monitor=new AbstractCacheMonitor(){
-    @Override protected SimpleCacheStatistics[] getStatistics(){
-      return statsArray(new SimpleCacheStatistics(100,200,1));
-    }
-  }
-;
-  assertEquals(StatusCode.WARN,monitor.observe().getCode());
-}
