@@ -1,3 +1,0 @@
-{
-  assertTrue("Services are not equal.",TestUtils.getService().equals(TestUtils.getService()));
-}

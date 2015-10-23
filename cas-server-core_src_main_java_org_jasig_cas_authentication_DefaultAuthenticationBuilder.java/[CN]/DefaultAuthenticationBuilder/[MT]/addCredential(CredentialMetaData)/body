@@ -1,4 +1,0 @@
-{
-  this.credentials.add(credential);
-  return this;
-}

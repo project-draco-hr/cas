@@ -1,3 +1,0 @@
-{
-  return getCredentialsWithDifferentUsernameAndPassword(CONST_USERNAME,CONST_PASSWORD);
-}

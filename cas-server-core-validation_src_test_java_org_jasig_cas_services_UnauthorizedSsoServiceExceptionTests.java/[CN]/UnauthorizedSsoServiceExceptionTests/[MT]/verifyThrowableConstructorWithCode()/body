@@ -1,6 +1,0 @@
-{
-  final RuntimeException r=new RuntimeException();
-  final UnauthorizedSsoServiceException e=new UnauthorizedSsoServiceException(MESSAGE,r);
-  assertEquals(MESSAGE,e.getMessage());
-  assertEquals(r,e.getCause());
-}

@@ -1,3 +1,0 @@
-{
-  return MemoryMonitor.class.getSimpleName();
-}

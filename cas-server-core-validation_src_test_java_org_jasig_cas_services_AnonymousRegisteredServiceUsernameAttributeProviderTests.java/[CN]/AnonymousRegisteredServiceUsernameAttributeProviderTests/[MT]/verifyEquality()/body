@@ -1,5 +1,0 @@
-{
-  final AnonymousRegisteredServiceUsernameAttributeProvider provider=new AnonymousRegisteredServiceUsernameAttributeProvider(new ShibbolethCompatiblePersistentIdGenerator("casrox"));
-  final AnonymousRegisteredServiceUsernameAttributeProvider provider2=new AnonymousRegisteredServiceUsernameAttributeProvider(new ShibbolethCompatiblePersistentIdGenerator("casrox"));
-  assertEquals(provider,provider2);
-}

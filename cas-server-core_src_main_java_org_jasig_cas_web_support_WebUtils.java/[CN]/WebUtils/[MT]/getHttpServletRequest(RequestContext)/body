@@ -1,4 +1,0 @@
-{
-  Assert.isInstanceOf(ServletExternalContext.class,context.getExternalContext(),"Cannot obtain HttpServletRequest from event of type: " + context.getExternalContext().getClass().getName());
-  return (HttpServletRequest)context.getExternalContext().getNativeRequest();
-}

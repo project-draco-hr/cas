@@ -1,6 +1,0 @@
-{
-  final TicketGrantingTicket tgtRootMock=mock(TicketGrantingTicket.class);
-  when(tgtRootMock.isExpired()).thenReturn(false);
-  when(tgtRootMock.getAuthentication()).thenReturn(this.authentication);
-  return tgtRootMock;
-}

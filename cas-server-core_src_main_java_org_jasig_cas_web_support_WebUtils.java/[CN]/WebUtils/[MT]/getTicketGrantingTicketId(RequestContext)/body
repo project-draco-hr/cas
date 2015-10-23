@@ -1,5 +1,0 @@
-{
-  final String tgtFromRequest=(String)context.getRequestScope().get("ticketGrantingTicketId");
-  final String tgtFromFlow=(String)context.getFlowScope().get("ticketGrantingTicketId");
-  return tgtFromRequest != null ? tgtFromRequest : tgtFromFlow;
-}

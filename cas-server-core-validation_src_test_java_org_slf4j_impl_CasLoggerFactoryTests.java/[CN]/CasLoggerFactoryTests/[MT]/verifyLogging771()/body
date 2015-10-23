@@ -1,7 +1,0 @@
-{
-  final TicketGrantingTicket t=mock(TicketGrantingTicket.class);
-  when(t.getId()).thenReturn(ID1);
-  when(t.toString()).thenReturn(ID1);
-  logger.debug(getMessageToLogWithParams(),ID2,t);
-  validateLogData();
-}

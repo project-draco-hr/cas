@@ -1,3 +1,0 @@
-{
-  context.getRequestScope().put("serviceTicketId",ticketValue.getId());
-}

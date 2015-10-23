@@ -1,3 +1,0 @@
-{
-  assertTrue(this.getHttpClient().isValidEndPoint("http://www.google.com"));
-}

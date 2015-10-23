@@ -1,3 +1,0 @@
-{
-  assertEquals(TestUtils.CONST_GOOD_URL,TestUtils.getHttpBasedServiceCredentials().getCallbackUrl().toExternalForm());
-}

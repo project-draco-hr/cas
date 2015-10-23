@@ -1,3 +1,0 @@
-{
-  assertNull(this.defaultServicesManagerImpl.delete(1500));
-}

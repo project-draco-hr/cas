@@ -1,4 +1,0 @@
-{
-  super(StatusCode.ERROR,String.format("Error fetching cache status: %s::%s",e.getClass().getSimpleName(),e.getMessage()));
-  this.statistics=null;
-}

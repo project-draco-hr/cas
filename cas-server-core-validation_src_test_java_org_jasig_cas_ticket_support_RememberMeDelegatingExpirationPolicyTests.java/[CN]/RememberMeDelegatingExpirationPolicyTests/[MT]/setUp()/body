@@ -1,5 +1,0 @@
-{
-  this.p=new RememberMeDelegatingExpirationPolicy();
-  this.p.setRememberMeExpirationPolicy(new MultiTimeUseOrTimeoutExpirationPolicy(1,20000));
-  this.p.setSessionExpirationPolicy(new MultiTimeUseOrTimeoutExpirationPolicy(5,20000));
-}

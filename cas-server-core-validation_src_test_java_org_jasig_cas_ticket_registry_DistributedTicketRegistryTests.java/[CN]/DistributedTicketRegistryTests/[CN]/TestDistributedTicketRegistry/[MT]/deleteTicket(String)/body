@@ -1,3 +1,0 @@
-{
-  return this.tickets.remove(ticketId) != null;
-}

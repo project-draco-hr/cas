@@ -1,5 +1,0 @@
-{
-  this.registeredService.setLogoutType(LogoutType.NONE);
-  final Collection<LogoutRequest> logoutRequests=this.logoutManager.performLogout(tgt);
-  assertEquals(0,logoutRequests.size());
-}

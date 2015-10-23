@@ -1,4 +1,0 @@
-{
-  this.cache.put(id,attributes);
-  logger.debug("Cached attributes for {}",id);
-}

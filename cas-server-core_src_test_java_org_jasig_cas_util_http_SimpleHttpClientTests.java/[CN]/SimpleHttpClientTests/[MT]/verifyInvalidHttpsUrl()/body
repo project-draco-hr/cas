@@ -1,4 +1,0 @@
-{
-  final HttpClient client=this.getHttpClient();
-  assertFalse(client.isValidEndPoint("https://static.ak.connect.facebook.com"));
-}

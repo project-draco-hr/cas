@@ -1,5 +1,0 @@
-{
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.addParameter("service",name);
-  return new WebApplicationServiceFactory().createService(request);
-}

@@ -1,4 +1,0 @@
-{
-  final PrincipalAttributesRepository rep=new DefaultPrincipalAttributesRepository();
-  assertEquals(rep.getAttributes(this.factory.createPrincipal("uid")).size(),0);
-}
