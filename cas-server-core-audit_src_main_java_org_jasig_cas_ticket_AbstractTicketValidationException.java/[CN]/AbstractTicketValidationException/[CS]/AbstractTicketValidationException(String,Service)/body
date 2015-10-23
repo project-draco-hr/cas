@@ -1,4 +1,0 @@
-{
-  super(code);
-  this.service=service;
-}

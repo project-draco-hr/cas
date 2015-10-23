@@ -1,4 +1,0 @@
-long size
-long capacity
-long evictions
-String name

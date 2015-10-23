@@ -1,6 +1,0 @@
-{
-  if (source != null) {
-    return Collections.unmodifiableMap(source);
-  }
-  return Collections.emptyMap();
-}

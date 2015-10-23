@@ -1,5 +1,0 @@
-{
-  final PasswordEncoder pe=new DefaultPasswordEncoder("SHA1");
-  final String hash=pe.encode("this is a test");
-  assertEquals("fa26be19de6bff93f70bc2308434e4a440bbad02",hash);
-}

@@ -1,4 +1,0 @@
-{
-  logger.trace(getMarker("trace"),getMessageToLogWithParams(),null,null);
-  validateLogData();
-}

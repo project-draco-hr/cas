@@ -1,9 +1,0 @@
-{
-  final Collection<RegisteredService> c=convertToTreeSet();
-  for (  final RegisteredService r : c) {
-    if (r.matches(service)) {
-      return r;
-    }
-  }
-  return null;
-}

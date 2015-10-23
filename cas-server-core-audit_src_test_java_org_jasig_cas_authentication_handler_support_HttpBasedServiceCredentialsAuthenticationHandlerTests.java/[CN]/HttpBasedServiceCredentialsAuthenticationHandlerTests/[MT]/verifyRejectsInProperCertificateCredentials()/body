@@ -1,3 +1,0 @@
-{
-  this.authenticationHandler.authenticate(TestUtils.getHttpBasedServiceCredentials("https://clearinghouse.ja-sig.org"));
-}

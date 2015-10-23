@@ -1,3 +1,0 @@
-{
-  throw new UnsupportedOperationException("getCountOfUses() operation not supported");
-}

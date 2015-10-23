@@ -1,3 +1,0 @@
-{
-  return this.chain.get(0).supports(credential);
-}

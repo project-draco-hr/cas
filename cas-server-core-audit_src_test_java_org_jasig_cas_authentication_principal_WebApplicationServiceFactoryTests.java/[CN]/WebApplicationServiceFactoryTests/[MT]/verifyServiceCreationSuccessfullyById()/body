@@ -1,5 +1,0 @@
-{
-  final WebApplicationServiceFactory factory=new WebApplicationServiceFactory();
-  final WebApplicationService service=factory.createService("testservice");
-  assertNotNull(service);
-}

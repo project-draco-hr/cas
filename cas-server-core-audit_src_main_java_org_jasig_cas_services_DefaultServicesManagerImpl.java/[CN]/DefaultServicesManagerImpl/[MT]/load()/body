@@ -1,9 +1,0 @@
-{
-  final ConcurrentHashMap<Long,RegisteredService> localServices=new ConcurrentHashMap<>();
-  for (  final RegisteredService r : this.serviceRegistryDao.load()) {
-    LOGGER.debug("Adding registered service {}",r.getServiceId());
-    localServices.put(r.getId(),r);
-  }
-  this.services=localServices;
-  LOGGER.info("Loaded {} services from {}.",this.services.size(),this.serviceRegistryDao);
-}

@@ -1,3 +1,0 @@
-{
-  delegate.error(getExceptionToLog(msg,t));
-}

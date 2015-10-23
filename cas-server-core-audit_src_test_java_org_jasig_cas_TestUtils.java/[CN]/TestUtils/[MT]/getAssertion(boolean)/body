@@ -1,3 +1,0 @@
-{
-  return getAssertion(fromNewLogin,CONST_NO_PRINCIPALS);
-}

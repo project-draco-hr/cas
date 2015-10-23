@@ -1,4 +1,0 @@
-{
-  final AbstractTicketException t=new InvalidTicketException("InvalidTicketId");
-  assertEquals("INVALID_TICKET",t.getCode());
-}

@@ -1,5 +1,0 @@
-{
-  final byte[] random=new byte[this.maximumRandomLength];
-  this.randomizer.nextBytes(random);
-  return random;
-}

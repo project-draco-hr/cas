@@ -1,9 +1,0 @@
-{
-  final DefaultAuthenticationBuilder builder=new DefaultAuthenticationBuilder(source.getPrincipal());
-  builder.setAuthenticationDate(source.getAuthenticationDate());
-  builder.setCredentials(source.getCredentials());
-  builder.setSuccesses(source.getSuccesses());
-  builder.setFailures(source.getFailures());
-  builder.setAttributes(source.getAttributes());
-  return builder;
-}

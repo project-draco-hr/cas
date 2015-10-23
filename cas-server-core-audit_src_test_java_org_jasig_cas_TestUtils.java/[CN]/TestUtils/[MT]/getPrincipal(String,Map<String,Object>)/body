@@ -1,3 +1,0 @@
-{
-  return new DefaultPrincipalFactory().createPrincipal(name,attributes);
-}

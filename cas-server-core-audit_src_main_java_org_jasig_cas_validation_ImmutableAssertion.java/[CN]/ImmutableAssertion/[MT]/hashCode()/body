@@ -1,8 +1,0 @@
-{
-  final HashCodeBuilder builder=new HashCodeBuilder(15,11);
-  builder.append(this.primaryAuthentication);
-  builder.append(this.chainedAuthentications);
-  builder.append(this.service);
-  builder.append(this.fromNewLogin);
-  return builder.toHashCode();
-}

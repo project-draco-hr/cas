@@ -1,4 +1,0 @@
-{
-  logger.debug("serviceTicketCount() operation is not implemented by the ticket registry instance {}. Returning unknown as {}",this.getClass().getName(),Integer.MIN_VALUE);
-  return Integer.MIN_VALUE;
-}

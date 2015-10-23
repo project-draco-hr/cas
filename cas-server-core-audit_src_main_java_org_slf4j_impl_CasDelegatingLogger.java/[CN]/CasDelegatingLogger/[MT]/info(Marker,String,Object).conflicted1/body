@@ -1,3 +1,0 @@
-{
-  delegate.info(marker,manipulateLogMessage(format),manipulateLogArguments(arguments));
-}

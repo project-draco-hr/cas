@@ -1,3 +1,0 @@
-{
-  throw new UnsupportedOperationException("getGrantingTicket() operation not supported");
-}

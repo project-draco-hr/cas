@@ -1,6 +1,0 @@
-{
-  if (this.ticket == null) {
-    throw new IllegalArgumentException("No ticket to update");
-  }
-  addTicket(ticket);
-}
