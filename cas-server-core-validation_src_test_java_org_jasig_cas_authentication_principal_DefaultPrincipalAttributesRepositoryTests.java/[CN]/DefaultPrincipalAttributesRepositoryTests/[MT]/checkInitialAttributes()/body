@@ -1,0 +1,6 @@
+{
+  final Principal p=this.factory.createPrincipal("uid",Collections.<String,Object>singletonMap("mail","final@example.com"));
+  final PrincipalAttributesRepository rep=new DefaultPrincipalAttributesRepository();
+  assertEquals(rep.getAttributes(p).size(),1);
+  assertTrue(rep.getAttributes(p).containsKey("mail"));
+}

@@ -1,0 +1,4 @@
+{
+  final UnauthorizedProxyingException e=new UnauthorizedProxyingException();
+  assertEquals(UnauthorizedProxyingException.CODE,e.getMessage());
+}

@@ -1,0 +1,7 @@
+{
+  Assert.hasText(code,"Code cannot be null or empty");
+  Assert.hasText(defaultMessage,"Default message cannot be null or empty");
+  this.code=code;
+  this.defaultMessage=defaultMessage;
+  this.params=params;
+}

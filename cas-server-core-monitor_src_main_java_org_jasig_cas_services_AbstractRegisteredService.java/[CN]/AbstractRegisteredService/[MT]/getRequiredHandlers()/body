@@ -1,0 +1,6 @@
+{
+  if (this.requiredHandlers == null) {
+    this.requiredHandlers=new HashSet<>();
+  }
+  return this.requiredHandlers;
+}

@@ -1,0 +1,6 @@
+{
+  if (this.capacity == 0) {
+    return 0;
+  }
+  return (int)((this.capacity - this.size) * PERCENTAGE_VALUE / this.capacity);
+}

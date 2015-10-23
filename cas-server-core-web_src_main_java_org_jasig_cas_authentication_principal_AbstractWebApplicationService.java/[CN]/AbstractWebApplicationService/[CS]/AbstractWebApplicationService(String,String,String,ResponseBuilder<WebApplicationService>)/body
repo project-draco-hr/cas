@@ -1,0 +1,6 @@
+{
+  this.id=id;
+  this.originalUrl=originalUrl;
+  this.artifactId=artifactId;
+  this.responseBuilder=responseBuilder;
+}

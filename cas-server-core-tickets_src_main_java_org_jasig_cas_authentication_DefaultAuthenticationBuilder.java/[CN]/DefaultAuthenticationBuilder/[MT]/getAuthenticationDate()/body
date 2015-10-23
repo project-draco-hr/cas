@@ -1,0 +1,3 @@
+{
+  return this.authenticationDate == null ? null : new DateTime(this.authenticationDate);
+}

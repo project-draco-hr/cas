@@ -1,0 +1,20 @@
+{
+  final StringBuilder sb=new StringBuilder();
+  if (desc != null) {
+    sb.append(desc);
+    if (!desc.endsWith(".")) {
+      sb.append('.');
+    }
+    sb.append(' ');
+  }
+  if (active != UNKNOWN_COUNT) {
+    sb.append(active).append(" active");
+  }
+  if (idle != UNKNOWN_COUNT) {
+    sb.append(", ").append(idle).append(" idle.");
+  }
+  if (sb.length() > 0) {
+    return sb.toString();
+  }
+  return null;
+}

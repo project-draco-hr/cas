@@ -1,0 +1,3 @@
+{
+  return resolveFromInternal(AopUtils.unWrapJoinPoint(joinPoint));
+}

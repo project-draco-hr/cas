@@ -1,0 +1,3 @@
+{
+  return CasVersion.class.getPackage().getImplementationVersion();
+}

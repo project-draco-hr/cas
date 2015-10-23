@@ -1,0 +1,3 @@
+{
+  return HealthCheckMonitor.class.getSimpleName();
+}

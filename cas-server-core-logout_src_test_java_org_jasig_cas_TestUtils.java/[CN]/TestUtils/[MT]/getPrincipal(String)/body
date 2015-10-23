@@ -1,0 +1,3 @@
+{
+  return getPrincipal(name,Collections.EMPTY_MAP);
+}

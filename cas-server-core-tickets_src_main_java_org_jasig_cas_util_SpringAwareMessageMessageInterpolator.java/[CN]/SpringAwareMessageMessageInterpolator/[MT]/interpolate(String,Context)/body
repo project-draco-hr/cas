@@ -1,0 +1,3 @@
+{
+  return interpolate(s,context,LocaleContextHolder.getLocale());
+}

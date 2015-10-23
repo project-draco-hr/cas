@@ -1,0 +1,3 @@
+{
+  return toResources(AopUtils.unWrapJoinPoint(joinPoint).getArgs());
+}

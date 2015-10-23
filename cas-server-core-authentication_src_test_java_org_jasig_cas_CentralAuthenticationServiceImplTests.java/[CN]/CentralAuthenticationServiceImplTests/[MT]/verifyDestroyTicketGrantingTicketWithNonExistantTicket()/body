@@ -1,0 +1,3 @@
+{
+  getCentralAuthenticationService().destroyTicketGrantingTicket("test");
+}

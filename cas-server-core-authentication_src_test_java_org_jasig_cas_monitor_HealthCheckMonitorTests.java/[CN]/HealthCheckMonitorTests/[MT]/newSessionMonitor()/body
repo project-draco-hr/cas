@@ -1,0 +1,5 @@
+{
+  final SessionMonitor sessionMonitor=new SessionMonitor();
+  sessionMonitor.setTicketRegistry(new DefaultTicketRegistry());
+  return sessionMonitor;
+}

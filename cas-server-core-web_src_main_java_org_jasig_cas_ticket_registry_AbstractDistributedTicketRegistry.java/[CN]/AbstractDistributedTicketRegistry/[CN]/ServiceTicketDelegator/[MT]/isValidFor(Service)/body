@@ -1,0 +1,5 @@
+{
+  final boolean b=this.getTicket().isValidFor(service);
+  updateTicket();
+  return b;
+}

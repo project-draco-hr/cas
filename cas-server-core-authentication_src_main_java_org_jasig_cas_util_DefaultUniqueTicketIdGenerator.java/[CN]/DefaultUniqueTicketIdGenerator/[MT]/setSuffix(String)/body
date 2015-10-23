@@ -1,0 +1,3 @@
+{
+  this.suffix=StringUtils.isNoneBlank(suffix) ? '-' + suffix : null;
+}

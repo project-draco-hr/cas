@@ -1,0 +1,10 @@
+{
+  try {
+    final URL u=new URL(url);
+    return isValidEndPoint(u);
+  }
+ catch (  final MalformedURLException e) {
+    LOGGER.error(e.getMessage(),e);
+    return false;
+  }
+}

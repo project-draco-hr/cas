@@ -1,0 +1,4 @@
+{
+  super(signingSecretKey);
+  this.encryptionSecretKey=encryptionSecretKey;
+}

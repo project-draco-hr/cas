@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this).append("location",this.location).append("algorithm",this.algorithm).toString();
+}

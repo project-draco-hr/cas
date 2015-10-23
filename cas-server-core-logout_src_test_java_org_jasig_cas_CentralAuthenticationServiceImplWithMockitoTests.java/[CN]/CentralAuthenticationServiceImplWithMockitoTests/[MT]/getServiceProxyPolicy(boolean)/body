@@ -1,0 +1,6 @@
+{
+  if (!canProxy) {
+    return new RefuseRegisteredServiceProxyPolicy();
+  }
+  return new RegexMatchingRegisteredServiceProxyPolicy(".*");
+}

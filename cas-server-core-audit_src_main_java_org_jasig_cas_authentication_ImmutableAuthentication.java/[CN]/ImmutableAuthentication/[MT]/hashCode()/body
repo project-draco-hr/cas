@@ -1,0 +1,10 @@
+{
+  final HashCodeBuilder builder=new HashCodeBuilder(97,31);
+  builder.append(this.principal);
+  builder.append(this.authenticationDate);
+  builder.append(this.attributes);
+  builder.append(this.credentials);
+  builder.append(this.successes);
+  builder.append(this.failures);
+  return builder.toHashCode();
+}

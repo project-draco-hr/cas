@@ -1,0 +1,7 @@
+{
+  final RememberMeUsernamePasswordCredential c=new RememberMeUsernamePasswordCredential();
+  c.setRememberMe(false);
+  final AuthenticationBuilder builder=newBuilder(c);
+  final Authentication auth=builder.build();
+  assertNull(auth.getAttributes().get(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME));
+}

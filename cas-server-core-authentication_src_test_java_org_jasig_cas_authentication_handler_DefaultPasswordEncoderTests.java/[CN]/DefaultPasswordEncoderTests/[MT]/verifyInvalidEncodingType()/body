@@ -1,0 +1,10 @@
+{
+  final PasswordEncoder pe=new DefaultPasswordEncoder("scott");
+  try {
+    pe.encode("test");
+    fail("exception expected.");
+  }
+ catch (  final Exception e) {
+    return;
+  }
+}

@@ -1,0 +1,3 @@
+{
+  assertNull(this.ticketRegistry.getTicket("fdfas"));
+}

@@ -1,0 +1,3 @@
+{
+  assertEquals(CONST_TO_ENCODE,this.passwordEncoder.encode(CONST_TO_ENCODE));
+}

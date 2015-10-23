@@ -1,0 +1,4 @@
+{
+  final SimpleUrlHandlerMapping handlerMappingC=applicationContext.getBean("handlerMappingC",SimpleUrlHandlerMapping.class);
+  return handlerMappingC;
+}

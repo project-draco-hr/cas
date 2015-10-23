@@ -1,0 +1,3 @@
+{
+  this.cas.delegateTicketGrantingTicket("bad-st",TestUtils.getCredentialsWithSameUsernameAndPassword());
+}

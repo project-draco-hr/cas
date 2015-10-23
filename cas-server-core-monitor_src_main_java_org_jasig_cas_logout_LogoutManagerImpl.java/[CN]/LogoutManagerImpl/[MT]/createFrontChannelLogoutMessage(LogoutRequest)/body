@@ -1,0 +1,5 @@
+{
+  final String logoutMessage=this.logoutMessageBuilder.create(logoutRequest);
+  LOGGER.trace("Attempting to deflate the logout message [{}]",logoutMessage);
+  return CompressionUtils.deflate(logoutMessage);
+}

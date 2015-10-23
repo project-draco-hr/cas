@@ -1,0 +1,4 @@
+{
+  this.handler.setRealm("TEST");
+  assertNotNull(this.handler.authenticate(TestUtils.getCredentialsWithDifferentUsernameAndPassword("test","test")));
+}

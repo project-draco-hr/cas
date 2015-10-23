@@ -1,0 +1,3 @@
+{
+  return authn.getSuccesses().size() == authn.getCredentials().size();
+}

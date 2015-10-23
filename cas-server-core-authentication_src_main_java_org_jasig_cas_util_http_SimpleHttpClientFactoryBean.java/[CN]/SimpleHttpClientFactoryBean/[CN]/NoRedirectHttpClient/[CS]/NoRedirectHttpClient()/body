@@ -1,0 +1,4 @@
+{
+  super.setRedirectsEnabled(false);
+  super.setCircularRedirectsAllowed(false);
+}

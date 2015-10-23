@@ -1,0 +1,3 @@
+{
+  assertNotNull(this.handler.handle(new HttpBasedServiceCredential(new URL("https://www.google.com/"),TestUtils.getRegisteredService("https://some.app.edu")),proxyGrantingTicket));
+}

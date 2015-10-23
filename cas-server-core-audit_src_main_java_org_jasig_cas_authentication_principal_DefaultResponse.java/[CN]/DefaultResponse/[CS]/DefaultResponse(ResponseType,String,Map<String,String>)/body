@@ -1,0 +1,5 @@
+{
+  this.responseType=responseType;
+  this.url=url;
+  this.attributes=attributes;
+}

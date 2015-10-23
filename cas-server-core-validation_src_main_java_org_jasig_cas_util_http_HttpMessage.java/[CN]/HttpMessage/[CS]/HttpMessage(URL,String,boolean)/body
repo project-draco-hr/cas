@@ -1,0 +1,5 @@
+{
+  this.url=url;
+  this.message=message;
+  this.asynchronous=async;
+}

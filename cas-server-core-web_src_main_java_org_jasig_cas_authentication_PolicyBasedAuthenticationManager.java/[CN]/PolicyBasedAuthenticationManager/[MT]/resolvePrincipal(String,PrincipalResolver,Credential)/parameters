@@ -1,0 +1,3 @@
+String handlerName
+PrincipalResolver resolver
+Credential credential

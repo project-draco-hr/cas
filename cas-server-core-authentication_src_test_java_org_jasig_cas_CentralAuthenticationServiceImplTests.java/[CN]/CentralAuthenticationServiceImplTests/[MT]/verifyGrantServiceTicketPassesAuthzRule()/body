@@ -1,0 +1,4 @@
+{
+  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),TestUtils.getService("TestServiceAttributeForAuthzPasses"));
+}

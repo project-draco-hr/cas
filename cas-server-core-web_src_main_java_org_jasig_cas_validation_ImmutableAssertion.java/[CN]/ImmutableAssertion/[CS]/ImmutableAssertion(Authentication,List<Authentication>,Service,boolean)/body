@@ -1,0 +1,10 @@
+{
+  Assert.notNull(primary,"primary authentication cannot be null");
+  Assert.notNull(chained,"chained authentications cannot be null");
+  Assert.notNull(service,"service cannot be null");
+  Assert.notEmpty(chained,"chained authentications cannot be empty");
+  this.primaryAuthentication=primary;
+  this.chainedAuthentications=chained;
+  this.service=service;
+  this.fromNewLogin=fromNewLogin;
+}

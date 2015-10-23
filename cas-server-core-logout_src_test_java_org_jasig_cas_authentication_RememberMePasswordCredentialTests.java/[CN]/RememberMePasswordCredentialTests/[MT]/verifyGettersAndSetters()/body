@@ -1,0 +1,9 @@
+{
+  final RememberMeUsernamePasswordCredential c=new RememberMeUsernamePasswordCredential();
+  c.setPassword("password");
+  c.setUsername("username");
+  c.setRememberMe(true);
+  assertEquals("username",c.getUsername());
+  assertEquals("password",c.getPassword());
+  assertTrue(c.isRememberMe());
+}

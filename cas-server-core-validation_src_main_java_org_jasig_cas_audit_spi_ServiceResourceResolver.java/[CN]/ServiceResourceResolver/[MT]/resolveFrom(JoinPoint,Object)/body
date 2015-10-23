@@ -1,0 +1,7 @@
+{
+  final Service service=(Service)AopUtils.unWrapJoinPoint(joinPoint).getArgs()[1];
+  final StringBuilder builder=new StringBuilder(retval.toString());
+  builder.append(" for ");
+  builder.append(service.getId());
+  return new String[]{builder.toString()};
+}

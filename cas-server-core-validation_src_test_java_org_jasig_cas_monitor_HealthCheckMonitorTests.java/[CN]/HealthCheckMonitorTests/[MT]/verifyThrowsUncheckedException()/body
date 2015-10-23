@@ -1,0 +1,13 @@
+{
+  final Monitor throwsUnchecked=new Monitor(){
+    @Override public String getName(){
+      return "ThrowsUnchecked";
+    }
+    @Override public Status observe(){
+      throw new IllegalStateException("Boogity!");
+    }
+  }
+;
+  this.monitor.setMonitors(Collections.singleton(throwsUnchecked));
+  assertEquals(StatusCode.ERROR,this.monitor.observe().getCode());
+}

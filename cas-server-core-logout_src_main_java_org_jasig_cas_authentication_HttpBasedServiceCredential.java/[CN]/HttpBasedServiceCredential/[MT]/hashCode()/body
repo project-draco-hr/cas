@@ -1,0 +1,4 @@
+{
+  final HashCodeBuilder bldr=new HashCodeBuilder(13,133);
+  return bldr.append(this.callbackUrlAsString).append(this.service).toHashCode();
+}

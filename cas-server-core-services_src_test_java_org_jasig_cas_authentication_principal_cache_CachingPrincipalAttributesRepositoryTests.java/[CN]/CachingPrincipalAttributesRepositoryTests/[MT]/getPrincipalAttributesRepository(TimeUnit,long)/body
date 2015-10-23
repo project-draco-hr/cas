@@ -1,0 +1,5 @@
+{
+  final CachingPrincipalAttributesRepository repo=new CachingPrincipalAttributesRepository(unit,duration);
+  repo.setAttributeRepository(this.dao);
+  return repo;
+}

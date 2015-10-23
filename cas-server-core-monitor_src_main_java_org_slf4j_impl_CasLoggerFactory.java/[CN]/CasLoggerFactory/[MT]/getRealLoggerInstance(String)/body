@@ -1,0 +1,9 @@
+{
+  try {
+    final ILoggerFactory factInstance=this.realLoggerFactoryClass.newInstance();
+    return factInstance.getLogger(name);
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e.getMessage(),e);
+  }
+}

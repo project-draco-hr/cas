@@ -1,0 +1,5 @@
+{
+  this.context=servletContext;
+  this.loggerContext=prepareAndgetContextListener();
+  initialize();
+}

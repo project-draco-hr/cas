@@ -1,0 +1,4 @@
+StatusCode code
+String desc
+int active
+int idle

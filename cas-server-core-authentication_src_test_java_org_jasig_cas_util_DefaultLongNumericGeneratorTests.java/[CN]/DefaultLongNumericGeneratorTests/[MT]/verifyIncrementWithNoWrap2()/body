@@ -1,0 +1,5 @@
+{
+  final DefaultLongNumericGenerator g=new DefaultLongNumericGenerator();
+  g.getNextLong();
+  assertEquals(1,g.getNextLong());
+}

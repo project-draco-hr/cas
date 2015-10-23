@@ -1,0 +1,8 @@
+{
+  try {
+    return this.messageSource.getMessage(s,context.getConstraintDescriptor().getAttributes().values().toArray(new Object[context.getConstraintDescriptor().getAttributes().size()]),locale);
+  }
+ catch (  final NoSuchMessageException e) {
+    return this.defaultMessageInterpolator.interpolate(s,context,locale);
+  }
+}

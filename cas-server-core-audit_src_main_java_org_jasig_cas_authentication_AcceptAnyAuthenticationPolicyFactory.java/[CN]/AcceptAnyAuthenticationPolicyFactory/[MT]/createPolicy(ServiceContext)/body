@@ -1,0 +1,11 @@
+{
+  return new ContextualAuthenticationPolicy<ServiceContext>(){
+    @Override public ServiceContext getContext(){
+      return context;
+    }
+    @Override public boolean isSatisfiedBy(    final Authentication authentication){
+      return true;
+    }
+  }
+;
+}

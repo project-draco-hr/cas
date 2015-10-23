@@ -1,0 +1,3 @@
+{
+  encryptAndEncodeAndPutIntoAttributesMap(attributes,cachedAttributesToEncode,CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL,cipher,registeredService);
+}

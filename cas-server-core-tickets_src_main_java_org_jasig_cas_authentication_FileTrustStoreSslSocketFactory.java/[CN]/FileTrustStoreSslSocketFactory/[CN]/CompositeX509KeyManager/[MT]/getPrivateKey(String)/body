@@ -1,0 +1,9 @@
+{
+  for (  final X509KeyManager keyManager : keyManagers) {
+    final PrivateKey privateKey=keyManager.getPrivateKey(alias);
+    if (privateKey != null) {
+      return privateKey;
+    }
+  }
+  return null;
+}

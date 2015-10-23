@@ -1,0 +1,10 @@
+{
+  final List<String> vector=new ArrayList<>(valuesToFilter.length);
+  for (  final String attributeValue : valuesToFilter) {
+    if (patternMatchesAttributeValue(attributeValue)) {
+      logReleasedAttributeEntry(attributeName,attributeValue);
+      vector.add(attributeValue);
+    }
+  }
+  return vector.toArray(new String[]{});
+}

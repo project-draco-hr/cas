@@ -1,0 +1,4 @@
+{
+  logger.debug(getMarker("debug"),getMessageToLog());
+  validateLogData();
+}

@@ -1,0 +1,4 @@
+{
+  Assert.hasText(n,"Monitor name cannot be null or empty.");
+  this.name=n;
+}

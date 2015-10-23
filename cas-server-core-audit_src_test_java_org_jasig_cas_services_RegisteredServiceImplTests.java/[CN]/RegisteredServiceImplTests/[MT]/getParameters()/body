@@ -1,0 +1,3 @@
+{
+  return Arrays.asList(new Object[][]{{newService("https://host.vt.edu/**"),"https://host.vt.edu/a/b/c?a=1&b=2",true},{newService("http://**"),"http://host.subdomain.example.com/service",true},{newService("https:/example.com/**"),null,false}});
+}

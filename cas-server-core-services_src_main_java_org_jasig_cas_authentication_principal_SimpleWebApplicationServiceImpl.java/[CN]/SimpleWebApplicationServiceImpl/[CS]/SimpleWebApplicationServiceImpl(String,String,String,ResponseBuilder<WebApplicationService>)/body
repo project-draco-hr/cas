@@ -1,0 +1,3 @@
+{
+  super(id,originalUrl,artifactId,responseBuilder);
+}

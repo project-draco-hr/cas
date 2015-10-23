@@ -1,0 +1,9 @@
+{
+  if (o == null) {
+    return false;
+  }
+  if (this == o) {
+    return true;
+  }
+  return o instanceof RefuseRegisteredServiceProxyPolicy;
+}

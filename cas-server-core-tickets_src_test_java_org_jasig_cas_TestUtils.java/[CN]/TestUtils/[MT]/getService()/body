@@ -1,0 +1,3 @@
+{
+  return getService(CONST_TEST_URL);
+}

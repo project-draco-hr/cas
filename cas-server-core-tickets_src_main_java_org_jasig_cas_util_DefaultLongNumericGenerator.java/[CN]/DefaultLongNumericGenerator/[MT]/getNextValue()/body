@@ -1,0 +1,6 @@
+{
+  if (this.count.compareAndSet(Long.MAX_VALUE,0)) {
+    return Long.MAX_VALUE;
+  }
+  return this.count.getAndIncrement();
+}

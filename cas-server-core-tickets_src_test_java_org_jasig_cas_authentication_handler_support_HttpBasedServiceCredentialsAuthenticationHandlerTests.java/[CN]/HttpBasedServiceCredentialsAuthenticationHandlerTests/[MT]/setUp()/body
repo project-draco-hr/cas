@@ -1,0 +1,4 @@
+{
+  this.authenticationHandler=new HttpBasedServiceCredentialsAuthenticationHandler();
+  this.authenticationHandler.setHttpClient(new SimpleHttpClientFactoryBean().getObject());
+}

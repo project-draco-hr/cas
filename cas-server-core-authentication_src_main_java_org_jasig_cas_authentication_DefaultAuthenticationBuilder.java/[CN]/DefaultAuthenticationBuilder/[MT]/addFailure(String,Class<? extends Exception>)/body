@@ -1,0 +1,4 @@
+{
+  this.failures.put(key,value);
+  return this;
+}

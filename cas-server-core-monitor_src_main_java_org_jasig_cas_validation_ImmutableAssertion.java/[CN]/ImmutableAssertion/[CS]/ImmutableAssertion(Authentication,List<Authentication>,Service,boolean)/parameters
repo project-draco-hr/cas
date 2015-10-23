@@ -1,0 +1,4 @@
+Authentication primary
+List<Authentication> chained
+Service service
+boolean fromNewLogin

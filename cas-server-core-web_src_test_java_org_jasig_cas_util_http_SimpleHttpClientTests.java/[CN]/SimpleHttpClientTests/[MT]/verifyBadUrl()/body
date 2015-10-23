@@ -1,0 +1,3 @@
+{
+  assertFalse(this.getHttpClient().isValidEndPoint("https://www.abc1234.org"));
+}

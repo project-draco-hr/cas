@@ -1,0 +1,8 @@
+{
+  final Service service=TestUtils.getService("testencryption");
+  final CasAttributeEncoder encoder=new DefaultCasAttributeEncoder(this.servicesManager);
+  final Map<String,Object> encoded=encoder.encodeAttributes(this.attributes,service);
+  assertEquals(encoded.size(),this.attributes.size());
+  checkEncryptedValues(CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL,encoded);
+  checkEncryptedValues(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET,encoded);
+}

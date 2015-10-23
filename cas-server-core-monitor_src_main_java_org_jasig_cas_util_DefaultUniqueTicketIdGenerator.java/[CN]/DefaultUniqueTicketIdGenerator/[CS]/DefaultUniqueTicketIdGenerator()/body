@@ -1,0 +1,3 @@
+{
+  this(DefaultRandomStringGenerator.DEFAULT_MAX_RANDOM_LENGTH);
+}

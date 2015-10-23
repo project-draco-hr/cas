@@ -1,0 +1,3 @@
+{
+  delegate.error(marker,manipulateLogMessage(format),manipulateLogArguments(arg));
+}

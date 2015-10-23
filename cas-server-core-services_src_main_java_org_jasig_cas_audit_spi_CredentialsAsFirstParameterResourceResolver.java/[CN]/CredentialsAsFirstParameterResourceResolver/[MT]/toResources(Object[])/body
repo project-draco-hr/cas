@@ -1,0 +1,3 @@
+{
+  return new String[]{"supplied credentials: " + Arrays.asList((Object[])args[0])};
+}

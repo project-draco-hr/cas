@@ -1,0 +1,5 @@
+{
+  final ToStringBuilder builder=new ToStringBuilder(this);
+  builder.append(collectEnvironmentInfo());
+  return builder.toString();
+}

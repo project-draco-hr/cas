@@ -1,0 +1,3 @@
+{
+  this.uniqueTicketIdGenerator=new DefaultUniqueTicketIdGenerator();
+}

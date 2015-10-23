@@ -1,0 +1,3 @@
+{
+  return getCredentialsWithSameUsernameAndPassword(CONST_USERNAME);
+}

@@ -1,0 +1,3 @@
+{
+  assertEquals(Long.MAX_VALUE,new DefaultLongNumericGenerator(Long.MAX_VALUE).getNextLong());
+}

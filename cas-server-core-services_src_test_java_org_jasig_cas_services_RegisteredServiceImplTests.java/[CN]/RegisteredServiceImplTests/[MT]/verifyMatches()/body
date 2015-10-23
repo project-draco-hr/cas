@@ -1,0 +1,10 @@
+{
+  final Service testService;
+  if (serviceToMatch == null) {
+    testService=null;
+  }
+ else {
+    testService=new MockService(serviceToMatch);
+  }
+  assertEquals(expected,service.matches(testService));
+}

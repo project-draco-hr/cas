@@ -1,0 +1,5 @@
+{
+  assertTrue(r.equals(r.clone()));
+  assertFalse(new RegisteredServiceImpl().equals(null));
+  assertFalse(new RegisteredServiceImpl().equals(new Object()));
+}

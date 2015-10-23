@@ -1,0 +1,4 @@
+{
+  final String result=this.delegateTransformer.transform(formUserId.trim()).trim();
+  return this.toUpperCase ? result.toUpperCase() : result.toLowerCase();
+}

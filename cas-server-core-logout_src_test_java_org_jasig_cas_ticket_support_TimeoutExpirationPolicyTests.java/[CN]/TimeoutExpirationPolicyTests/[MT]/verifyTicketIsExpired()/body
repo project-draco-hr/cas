@@ -1,0 +1,4 @@
+{
+  Thread.sleep(TIMEOUT + 10);
+  assertTrue(this.ticket.isExpired());
+}

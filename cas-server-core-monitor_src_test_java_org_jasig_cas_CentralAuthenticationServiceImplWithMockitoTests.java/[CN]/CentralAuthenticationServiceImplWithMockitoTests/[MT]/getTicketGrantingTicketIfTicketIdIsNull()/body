@@ -1,0 +1,3 @@
+{
+  this.cas.getTicket(null,TicketGrantingTicket.class);
+}

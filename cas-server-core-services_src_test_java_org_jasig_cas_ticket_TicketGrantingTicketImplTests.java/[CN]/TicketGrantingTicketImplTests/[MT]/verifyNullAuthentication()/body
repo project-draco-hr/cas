@@ -1,0 +1,3 @@
+{
+  new TicketGrantingTicketImpl("test",null,null,null,new NeverExpiresExpirationPolicy());
+}

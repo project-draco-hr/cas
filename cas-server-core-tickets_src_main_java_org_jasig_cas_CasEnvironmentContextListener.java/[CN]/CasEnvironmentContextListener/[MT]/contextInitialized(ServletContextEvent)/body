@@ -1,0 +1,5 @@
+{
+  final ServletContext servletContext=event.getServletContext();
+  final ApplicationContext ctx=WebApplicationContextUtils.getWebApplicationContext(servletContext);
+  LOGGER.info("[{}] has loaded the CAS servlet application context: {}",servletContext.getServerInfo(),ctx);
+}

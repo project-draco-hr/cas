@@ -1,0 +1,4 @@
+{
+  this.ticketRegistry=this.getNewTicketRegistry();
+  this.registryCleaner=this.getNewRegistryCleaner(this.ticketRegistry);
+}

@@ -1,0 +1,4 @@
+{
+  this.expirationPolicy=new TicketGrantingTicketExpirationPolicy(HARD_TIMEOUT,SLIDING_TIMEOUT,TimeUnit.MILLISECONDS);
+  this.ticketGrantingTicket=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),this.expirationPolicy);
+}

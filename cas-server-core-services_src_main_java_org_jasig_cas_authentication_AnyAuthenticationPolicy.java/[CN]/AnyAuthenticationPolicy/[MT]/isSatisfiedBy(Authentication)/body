@@ -1,0 +1,6 @@
+{
+  if (this.tryAll) {
+    return authn.getCredentials().size() == authn.getSuccesses().size() + authn.getFailures().size();
+  }
+  return !authn.getSuccesses().isEmpty();
+}

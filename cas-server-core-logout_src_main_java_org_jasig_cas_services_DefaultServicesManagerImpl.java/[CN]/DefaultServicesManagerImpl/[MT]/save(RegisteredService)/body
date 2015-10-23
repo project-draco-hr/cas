@@ -1,0 +1,5 @@
+{
+  final RegisteredService r=this.serviceRegistryDao.save(registeredService);
+  this.services.put(r.getId(),r);
+  return r;
+}

@@ -1,0 +1,8 @@
+{
+  final HashCodeBuilder builder=new HashCodeBuilder(109,31);
+  builder.append(this.handlerName);
+  builder.append(this.credentialMetaData);
+  builder.append(this.principal);
+  builder.append(this.warnings);
+  return builder.toHashCode();
+}

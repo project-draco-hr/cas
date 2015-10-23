@@ -1,0 +1,8 @@
+{
+  this.authenticationDate=null;
+  this.credentials=null;
+  this.principal=null;
+  this.attributes=null;
+  this.successes=null;
+  this.failures=null;
+}

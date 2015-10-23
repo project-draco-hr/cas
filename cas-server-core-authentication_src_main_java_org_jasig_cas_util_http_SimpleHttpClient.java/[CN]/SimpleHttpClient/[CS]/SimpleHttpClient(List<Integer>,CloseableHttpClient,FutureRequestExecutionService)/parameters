@@ -1,0 +1,3 @@
+List<Integer> acceptableCodes
+CloseableHttpClient httpClient
+FutureRequestExecutionService requestExecutorService

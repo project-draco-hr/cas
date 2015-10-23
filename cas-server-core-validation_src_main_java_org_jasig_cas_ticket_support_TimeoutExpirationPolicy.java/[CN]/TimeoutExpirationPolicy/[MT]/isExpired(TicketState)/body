@@ -1,0 +1,3 @@
+{
+  return (ticketState == null) || (System.currentTimeMillis() - ticketState.getLastTimeUsed() >= this.timeToKillInMilliSeconds);
+}

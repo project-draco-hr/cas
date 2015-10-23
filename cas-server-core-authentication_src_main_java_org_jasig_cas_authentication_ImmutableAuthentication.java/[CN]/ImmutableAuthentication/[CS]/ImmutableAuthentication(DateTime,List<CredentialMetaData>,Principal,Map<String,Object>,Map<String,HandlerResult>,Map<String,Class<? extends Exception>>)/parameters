@@ -1,0 +1,6 @@
+DateTime date
+List<CredentialMetaData> credentials
+Principal principal
+Map<String,Object> attributes
+Map<String,HandlerResult> successes
+Map<String,Class<? extends Exception>> failures

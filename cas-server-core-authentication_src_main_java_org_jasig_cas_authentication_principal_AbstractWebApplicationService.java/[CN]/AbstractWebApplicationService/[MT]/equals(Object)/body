@@ -1,0 +1,10 @@
+{
+  if (object == null) {
+    return false;
+  }
+  if (object instanceof Service) {
+    final Service service=(Service)object;
+    return getId().equals(service.getId());
+  }
+  return false;
+}

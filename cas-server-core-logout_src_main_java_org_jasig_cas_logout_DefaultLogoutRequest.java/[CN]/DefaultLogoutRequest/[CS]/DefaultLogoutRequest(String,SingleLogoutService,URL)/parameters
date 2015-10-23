@@ -1,0 +1,3 @@
+String ticketId
+SingleLogoutService service
+URL logoutUrl

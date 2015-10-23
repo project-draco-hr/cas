@@ -1,0 +1,3 @@
+{
+  return this.primaryAuthentication.toString() + ':' + this.service.toString();
+}

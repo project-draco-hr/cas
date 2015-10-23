@@ -1,0 +1,3 @@
+{
+  return DefaultLongNumericGenerator.MIN_STRING_LENGTH;
+}

@@ -1,0 +1,3 @@
+{
+  this.authenticationHandler.authenticate(TestUtils.getHttpBasedServiceCredentials("https://clue.acs.rutgers.edu"));
+}

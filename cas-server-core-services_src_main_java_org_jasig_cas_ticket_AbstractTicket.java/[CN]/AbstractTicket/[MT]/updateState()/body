@@ -1,0 +1,5 @@
+{
+  this.previousLastTimeUsed=this.lastTimeUsed;
+  this.lastTimeUsed=System.currentTimeMillis();
+  this.countOfUses++;
+}

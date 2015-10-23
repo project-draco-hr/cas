@@ -1,0 +1,4 @@
+{
+  this.serviceRegistryDao=serviceRegistryDao;
+  load();
+}
