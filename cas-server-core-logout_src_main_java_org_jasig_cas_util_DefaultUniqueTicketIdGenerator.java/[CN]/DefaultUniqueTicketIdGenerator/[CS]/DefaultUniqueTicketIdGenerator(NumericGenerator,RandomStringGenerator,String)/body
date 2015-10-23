@@ -1,5 +1,0 @@
-{
-  this.randomStringGenerator=randomStringGenerator;
-  this.numericGenerator=numericGenerator;
-  setSuffix(suffix);
-}

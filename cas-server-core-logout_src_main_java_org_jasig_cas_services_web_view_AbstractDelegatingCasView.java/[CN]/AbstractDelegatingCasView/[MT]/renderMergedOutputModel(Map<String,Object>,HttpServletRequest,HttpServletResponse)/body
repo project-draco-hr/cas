@@ -1,6 +1,0 @@
-{
-  logger.debug("Preparing the output model to render view...");
-  prepareMergedOutputModel(model,request,response);
-  logger.trace("Prepared output model with objects [{}]. Now rendering view...",model.keySet().toArray());
-  this.view.render(model,request,response);
-}

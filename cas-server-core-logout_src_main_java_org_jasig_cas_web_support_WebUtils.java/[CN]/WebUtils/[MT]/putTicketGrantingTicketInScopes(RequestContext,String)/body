@@ -1,4 +1,0 @@
-{
-  putTicketGrantingTicketIntoMap(context.getRequestScope(),ticketValue);
-  putTicketGrantingTicketIntoMap(context.getFlowScope(),ticketValue);
-}

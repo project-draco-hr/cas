@@ -1,3 +1,0 @@
-{
-  return this.responseBuilder.build(this,ticketId);
-}

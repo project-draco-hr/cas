@@ -1,4 +1,0 @@
-{
-  final TicketOrCredentialPrincipalResolver res=new TicketOrCredentialPrincipalResolver(getCentralAuthenticationService());
-  assertEquals(res.resolve(),PrincipalResolver.UNKNOWN_USER);
-}

@@ -1,5 +1,0 @@
-{
-  final Cas20ProtocolValidationSpecification s=new Cas20ProtocolValidationSpecification();
-  s.setRenew(true);
-  assertTrue(s.isRenew());
-}

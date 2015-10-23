@@ -1,3 +1,0 @@
-{
-  return DefaultLongNumericGenerator.MAX_STRING_LENGTH;
-}

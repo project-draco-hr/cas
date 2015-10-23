@@ -1,5 +1,0 @@
-{
-  final RegexRegisteredService service=new RegexRegisteredService();
-  service.setServiceId(id);
-  return service;
-}

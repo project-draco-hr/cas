@@ -1,4 +1,0 @@
-{
-  this.username=userName;
-  this.password=password;
-}

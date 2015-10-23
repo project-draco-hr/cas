@@ -1,5 +1,0 @@
-{
-  final String id=this.persistentIdGenerator.generate(principal,service);
-  LOGGER.debug("Resolved username [{}] for anonymous access",id);
-  return id;
-}

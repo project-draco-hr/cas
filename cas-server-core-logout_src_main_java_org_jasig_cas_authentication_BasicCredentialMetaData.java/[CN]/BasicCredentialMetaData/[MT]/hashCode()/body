@@ -1,3 +1,0 @@
-{
-  return new HashCodeBuilder(19,21).append(this.id).append(this.credentialClass).toHashCode();
-}

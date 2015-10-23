@@ -1,3 +1,0 @@
-ResponseType responseType
-String url
-Map<String,String> attributes

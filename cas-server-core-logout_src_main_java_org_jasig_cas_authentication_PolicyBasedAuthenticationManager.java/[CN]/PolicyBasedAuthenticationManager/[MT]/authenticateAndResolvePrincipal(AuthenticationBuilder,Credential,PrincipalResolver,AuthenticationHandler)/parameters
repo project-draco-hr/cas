@@ -1,4 +1,0 @@
-AuthenticationBuilder builder
-Credential credential
-PrincipalResolver resolver
-AuthenticationHandler handler

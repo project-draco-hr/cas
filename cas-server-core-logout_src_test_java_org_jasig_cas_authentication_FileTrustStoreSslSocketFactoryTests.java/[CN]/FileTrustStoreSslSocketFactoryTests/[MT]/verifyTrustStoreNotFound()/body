@@ -1,3 +1,0 @@
-{
-  new FileTrustStoreSslSocketFactory(new File("test.jks"),"changeit");
-}

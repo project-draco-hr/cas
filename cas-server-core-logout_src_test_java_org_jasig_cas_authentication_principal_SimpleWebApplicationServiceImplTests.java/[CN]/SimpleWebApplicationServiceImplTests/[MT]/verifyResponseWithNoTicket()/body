@@ -1,9 +1,0 @@
-{
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.setParameter("service","service");
-  final WebApplicationService impl=new WebApplicationServiceFactory().createService(request);
-  final Response response=impl.getResponse(null);
-  assertNotNull(response);
-  assertEquals(Response.ResponseType.REDIRECT,response.getResponseType());
-  assertFalse(response.getUrl().contains("ticket="));
-}

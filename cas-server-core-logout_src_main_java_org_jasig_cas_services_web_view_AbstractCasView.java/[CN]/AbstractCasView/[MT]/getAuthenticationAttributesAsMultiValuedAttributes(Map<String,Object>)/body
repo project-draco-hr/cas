@@ -1,3 +1,0 @@
-{
-  return convertAttributeValuesToMultiValuedObjects(getPrimaryAuthenticationFrom(model).getAttributes());
-}

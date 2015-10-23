@@ -1,5 +1,0 @@
-{
-  final ToStringBuilder toStringBuilder=new ToStringBuilder(null,ToStringStyle.SHORT_PREFIX_STYLE);
-  toStringBuilder.append("usernameAttribute",this.usernameAttribute);
-  return toStringBuilder.toString();
-}

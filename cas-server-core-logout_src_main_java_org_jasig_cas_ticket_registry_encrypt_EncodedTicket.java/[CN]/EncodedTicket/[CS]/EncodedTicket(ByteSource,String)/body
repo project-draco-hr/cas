@@ -1,9 +1,0 @@
-{
-  try {
-    this.id=encodedTicketId;
-    this.encodedTicket=encodedTicket.read();
-  }
- catch (  final IOException e) {
-    throw new RuntimeException(e);
-  }
-}

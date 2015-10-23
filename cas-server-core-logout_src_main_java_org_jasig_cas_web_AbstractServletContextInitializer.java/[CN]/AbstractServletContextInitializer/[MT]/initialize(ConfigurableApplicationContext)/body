@@ -1,4 +1,0 @@
-{
-  logger.info("Initializing application context...");
-  initializeApplicationContext(configurableApplicationContext);
-}
