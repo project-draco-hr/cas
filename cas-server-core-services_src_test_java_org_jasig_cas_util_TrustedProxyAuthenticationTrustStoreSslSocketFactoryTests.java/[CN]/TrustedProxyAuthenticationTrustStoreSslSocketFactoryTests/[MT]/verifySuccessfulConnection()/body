@@ -1,4 +1,0 @@
-{
-  final boolean valid=client.isValidEndPoint("https://www.github.com");
-  assertTrue(valid);
-}

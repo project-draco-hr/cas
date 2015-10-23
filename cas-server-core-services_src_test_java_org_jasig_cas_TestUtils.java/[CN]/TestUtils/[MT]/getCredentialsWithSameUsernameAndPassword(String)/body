@@ -1,3 +1,0 @@
-{
-  return getCredentialsWithDifferentUsernameAndPassword(username,username);
-}

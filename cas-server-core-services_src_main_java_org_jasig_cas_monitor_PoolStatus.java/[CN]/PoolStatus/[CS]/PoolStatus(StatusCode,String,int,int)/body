@@ -1,5 +1,0 @@
-{
-  super(code,buildDescription(desc,active,idle));
-  this.activeCount=active;
-  this.idleCount=idle;
-}

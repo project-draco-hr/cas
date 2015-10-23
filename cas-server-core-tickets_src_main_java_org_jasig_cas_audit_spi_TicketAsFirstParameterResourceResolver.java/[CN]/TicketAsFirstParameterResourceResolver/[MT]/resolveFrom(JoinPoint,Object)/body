@@ -1,3 +1,0 @@
-{
-  return new String[]{AopUtils.unWrapJoinPoint(joinPoint).getArgs()[0].toString()};
-}

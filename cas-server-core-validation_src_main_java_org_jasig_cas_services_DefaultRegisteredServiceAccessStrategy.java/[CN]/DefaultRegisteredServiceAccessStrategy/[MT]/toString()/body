@@ -1,3 +1,0 @@
-{
-  return new ToStringBuilder(this).append("enabled",enabled).append("ssoEnabled",ssoEnabled).append("requireAllAttributes",requireAllAttributes).append("requiredAttributes",requiredAttributes).append("unauthorizedRedirectUrl",unauthorizedRedirectUrl).toString();
-}

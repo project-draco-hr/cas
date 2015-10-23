@@ -1,5 +1,0 @@
-{
-  this.callbackUrl=callbackUrl;
-  this.callbackUrlAsString=callbackUrl.toExternalForm();
-  this.service=service;
-}

@@ -1,3 +1,0 @@
-{
-  return (Service)model.get(CasViewConstants.MODEL_ATTRIBUTE_NAME_SERVICE);
-}

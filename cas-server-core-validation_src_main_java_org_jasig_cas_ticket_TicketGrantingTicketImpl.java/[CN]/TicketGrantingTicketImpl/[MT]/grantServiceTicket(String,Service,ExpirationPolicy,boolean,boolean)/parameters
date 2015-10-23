@@ -1,5 +1,0 @@
-String id
-Service service
-ExpirationPolicy expirationPolicy
-boolean credentialsProvided
-boolean onlyTrackMostRecentSession

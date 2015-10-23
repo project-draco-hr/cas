@@ -1,3 +1,0 @@
-{
-  delegate.debug(marker,manipulateLogMessage(format),manipulateLogArguments(arg));
-}

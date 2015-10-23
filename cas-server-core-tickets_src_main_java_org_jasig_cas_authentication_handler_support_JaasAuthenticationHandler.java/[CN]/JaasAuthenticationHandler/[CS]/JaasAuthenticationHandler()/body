@@ -1,3 +1,0 @@
-{
-  Assert.notNull(Configuration.getConfiguration(),"Static Configuration cannot be null. Did you remember to specify \"java.security.auth.login.config\"?");
-}

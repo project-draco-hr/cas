@@ -1,3 +1,0 @@
-{
-  return new DefaultHandlerResult(this,new BasicCredentialMetaData(credential),principal,warnings);
-}

@@ -1,7 +1,0 @@
-{
-  final Service service=createService(request);
-  if (!clazz.isAssignableFrom(service.getClass())) {
-    throw new ClassCastException("Service [" + service.getId() + " is of type "+ service.getClass()+ " when we were expecting "+ clazz);
-  }
-  return (T1)service;
-}

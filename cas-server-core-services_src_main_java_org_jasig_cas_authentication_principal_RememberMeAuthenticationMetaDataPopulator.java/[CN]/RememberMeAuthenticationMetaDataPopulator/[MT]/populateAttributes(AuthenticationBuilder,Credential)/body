@@ -1,6 +1,0 @@
-{
-  final RememberMeCredential r=(RememberMeCredential)credential;
-  if (r.isRememberMe()) {
-    builder.addAttribute(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME,Boolean.TRUE);
-  }
-}

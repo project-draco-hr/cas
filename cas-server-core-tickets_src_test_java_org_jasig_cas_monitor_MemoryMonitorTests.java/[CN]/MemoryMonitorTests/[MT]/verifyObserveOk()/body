@@ -1,3 +1,0 @@
-{
-  assertEquals(StatusCode.OK,new MemoryMonitor().observe().getCode());
-}

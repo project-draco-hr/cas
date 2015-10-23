@@ -1,8 +1,0 @@
-{
-  final PersonDirectoryPrincipalResolver resolver=new PersonDirectoryPrincipalResolver();
-  resolver.setReturnNullIfNoAttributes(true);
-  resolver.setPrincipalAttributeName(TestUtils.CONST_USERNAME);
-  final Credential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  final Principal p=resolver.resolve(c);
-  assertNull(p);
-}

@@ -1,3 +1,0 @@
-{
-  return SessionMonitor.class.getSimpleName();
-}

@@ -1,4 +1,0 @@
-{
-  super(code,buildDescription(description,statistics));
-  this.statistics=statistics;
-}

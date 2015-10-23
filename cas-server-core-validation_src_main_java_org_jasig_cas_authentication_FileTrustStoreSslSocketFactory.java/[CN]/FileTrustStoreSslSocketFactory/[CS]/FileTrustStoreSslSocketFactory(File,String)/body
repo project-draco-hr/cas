@@ -1,3 +1,0 @@
-{
-  this(trustStoreFile,trustStorePassword,KeyStore.getDefaultType());
-}

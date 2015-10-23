@@ -1,9 +1,0 @@
-{
-  final List<Authentication> list=new ArrayList<>();
-  list.add(getAuthentication());
-  if (getGrantingTicket() == null) {
-    return Collections.unmodifiableList(list);
-  }
-  list.addAll(getGrantingTicket().getChainedAuthentications());
-  return Collections.unmodifiableList(list);
-}

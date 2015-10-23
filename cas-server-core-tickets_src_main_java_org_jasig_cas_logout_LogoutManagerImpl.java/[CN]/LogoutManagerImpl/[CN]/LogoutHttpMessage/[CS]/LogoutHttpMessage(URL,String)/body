@@ -1,4 +1,0 @@
-{
-  super(url,message,LogoutManagerImpl.this.asynchronous);
-  setContentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE);
-}

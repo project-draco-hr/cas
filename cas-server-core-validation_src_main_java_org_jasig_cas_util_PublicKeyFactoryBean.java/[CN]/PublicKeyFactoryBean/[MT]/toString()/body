@@ -1,3 +1,0 @@
-{
-  return new ToStringBuilder(this).appendSuper(super.toString()).append("resource",this.resource).append("algorithm",this.algorithm).toString();
-}

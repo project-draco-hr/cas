@@ -1,9 +1,0 @@
-{
-  final Set<Monitor> monitors=new HashSet<>();
-  final MemoryMonitor memoryMonitor=new MemoryMonitor();
-  memoryMonitor.setFreeMemoryWarnThreshold(100);
-  monitors.add(memoryMonitor);
-  monitors.add(newSessionMonitor());
-  this.monitor.setMonitors(monitors);
-  assertEquals(StatusCode.WARN,this.monitor.observe().getCode());
-}

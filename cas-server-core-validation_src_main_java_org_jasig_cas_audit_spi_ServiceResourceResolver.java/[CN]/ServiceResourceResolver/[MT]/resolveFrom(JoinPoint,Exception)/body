@@ -1,4 +1,0 @@
-{
-  final Service service=(Service)AopUtils.unWrapJoinPoint(joinPoint).getArgs()[1];
-  return new String[]{service.getId()};
-}

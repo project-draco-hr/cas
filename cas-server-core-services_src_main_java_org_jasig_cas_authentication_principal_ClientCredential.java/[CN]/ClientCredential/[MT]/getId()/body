@@ -1,6 +1,0 @@
-{
-  if (this.userProfile != null) {
-    return this.userProfile.getTypedId();
-  }
-  return null;
-}

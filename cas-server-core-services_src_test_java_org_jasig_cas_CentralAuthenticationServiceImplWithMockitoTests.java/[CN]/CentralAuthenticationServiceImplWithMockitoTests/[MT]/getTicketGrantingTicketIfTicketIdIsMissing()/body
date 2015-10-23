@@ -1,3 +1,0 @@
-{
-  this.cas.getTicket("TGT-9000",TicketGrantingTicket.class);
-}

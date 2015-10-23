@@ -1,6 +1,0 @@
-{
-  this.size=size;
-  this.capacity=capacity;
-  this.evictions=evictions;
-  this.name=name;
-}

@@ -1,5 +1,0 @@
-{
-  final Marker marker=mock(Marker.class);
-  when(marker.getName()).thenReturn(name);
-  return marker;
-}

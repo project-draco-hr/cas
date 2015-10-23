@@ -1,3 +1,0 @@
-{
-  assertNotSame(this.randomStringGenerator.getNewString(),this.randomStringGenerator.getNewString());
-}

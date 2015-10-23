@@ -1,3 +1,0 @@
-{
-  return new ImmutableAuthentication(this.authenticationDate,this.credentials,this.principal,this.attributes,this.successes,this.failures);
-}

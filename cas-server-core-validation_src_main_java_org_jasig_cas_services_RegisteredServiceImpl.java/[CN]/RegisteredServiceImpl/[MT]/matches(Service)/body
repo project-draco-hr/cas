@@ -1,3 +1,0 @@
-{
-  return service != null && PATH_MATCHER.match(serviceId.toLowerCase(),service.getId().toLowerCase());
-}

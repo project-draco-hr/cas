@@ -1,6 +1,0 @@
-{
-  if (!INITIALIZED.get()) {
-    LOGGER.info(collectEnvironmentInfo());
-    INITIALIZED.set(true);
-  }
-}

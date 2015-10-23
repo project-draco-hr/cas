@@ -1,6 +1,0 @@
-{
-  if (threshold < 0) {
-    throw new IllegalArgumentException("Warning threshold must be non-negative.");
-  }
-  this.freeMemoryWarnThreshold=threshold;
-}

@@ -1,3 +1,0 @@
-{
-  return getContextWithCredentials(request,new MockHttpServletResponse());
-}

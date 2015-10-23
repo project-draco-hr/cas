@@ -1,5 +1,0 @@
-{
-  final HashCodeBuilder builder=new HashCodeBuilder(83,31);
-  builder.append(this.id);
-  return builder.toHashCode();
-}

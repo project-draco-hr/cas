@@ -1,4 +1,0 @@
-{
-  final DefaultUniqueTicketIdGenerator generator=new DefaultUniqueTicketIdGenerator(10);
-  assertNotSame(generator.getNewTicketId("TEST"),generator.getNewTicketId("TEST"));
-}

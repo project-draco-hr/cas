@@ -1,3 +1,0 @@
-{
-  return newMockHandler("MockAuthenticationHandler" + System.nanoTime(),success);
-}

@@ -1,5 +1,0 @@
-{
-  this.ticketRegistry=ticketRegistry;
-  this.ticket=ticket;
-  this.callback=callback;
-}
