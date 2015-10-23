@@ -1,3 +1,0 @@
-{
-  this.timeToKillInMilliSeconds=TimeUnit.SECONDS.toMillis(this.timeToKillInMilliSeconds);
-}

@@ -1,5 +1,0 @@
-{
-  final TicketGrantingTicket t=this.getTicket().grantTicketGrantingTicket(id,authentication,expirationPolicy);
-  updateTicket();
-  return t;
-}

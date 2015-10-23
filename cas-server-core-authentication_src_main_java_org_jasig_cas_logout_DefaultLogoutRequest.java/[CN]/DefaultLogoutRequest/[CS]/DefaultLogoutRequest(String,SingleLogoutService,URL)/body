@@ -1,5 +1,0 @@
-{
-  this.ticketId=ticketId;
-  this.service=service;
-  this.logoutUrl=logoutUrl;
-}

@@ -1,3 +1,0 @@
-{
-  addAuthenticationHandlerPrincipalResolver(handler,null);
-}

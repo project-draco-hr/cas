@@ -1,3 +1,0 @@
-{
-  return (List<LogoutRequest>)context.getFlowScope().get("logoutRequests");
-}

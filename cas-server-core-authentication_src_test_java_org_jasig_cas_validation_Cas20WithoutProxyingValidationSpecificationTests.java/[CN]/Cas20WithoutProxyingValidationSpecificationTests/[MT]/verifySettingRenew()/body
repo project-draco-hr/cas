@@ -1,4 +1,0 @@
-{
-  final Cas20WithoutProxyingValidationSpecification validation=new Cas20WithoutProxyingValidationSpecification(true);
-  assertTrue(validation.isRenew());
-}

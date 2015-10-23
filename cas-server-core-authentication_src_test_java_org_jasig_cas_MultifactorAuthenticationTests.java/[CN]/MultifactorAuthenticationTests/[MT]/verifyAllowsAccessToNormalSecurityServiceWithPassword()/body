@@ -1,6 +1,0 @@
-{
-  final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(newUserPassCredentials("alice","alice"));
-  assertNotNull(tgt);
-  final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),newService("https://example.com/normal/"));
-  assertNotNull(st);
-}

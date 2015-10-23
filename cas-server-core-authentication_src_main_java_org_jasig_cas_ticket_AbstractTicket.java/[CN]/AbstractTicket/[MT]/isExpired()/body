@@ -1,4 +1,0 @@
-{
-  final TicketGrantingTicket tgt=getGrantingTicket();
-  return this.expirationPolicy.isExpired(this) || (tgt != null && tgt.isExpired()) || isExpiredInternal();
-}

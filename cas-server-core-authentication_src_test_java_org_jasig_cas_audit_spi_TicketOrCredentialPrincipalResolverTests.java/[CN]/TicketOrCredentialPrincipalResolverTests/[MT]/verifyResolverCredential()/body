@@ -1,9 +1,0 @@
-{
-  final TicketOrCredentialPrincipalResolver res=new TicketOrCredentialPrincipalResolver(getCentralAuthenticationService());
-  final JoinPoint jp=mock(JoinPoint.class);
-  final Credential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  when(jp.getArgs()).thenReturn(new Object[]{c});
-  final String result=res.resolveFrom(jp,null);
-  assertNotNull(result);
-  assertEquals(result,c.toString());
-}

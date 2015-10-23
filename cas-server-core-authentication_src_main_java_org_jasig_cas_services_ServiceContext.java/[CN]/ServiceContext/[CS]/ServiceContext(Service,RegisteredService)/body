@@ -1,7 +1,0 @@
-{
-  this.service=service;
-  this.registeredService=registeredService;
-  if (!registeredService.matches(service)) {
-    throw new IllegalArgumentException("Registered service does not match given service.");
-  }
-}

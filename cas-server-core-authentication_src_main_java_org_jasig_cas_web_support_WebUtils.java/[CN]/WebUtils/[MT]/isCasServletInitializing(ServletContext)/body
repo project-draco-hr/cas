@@ -1,3 +1,0 @@
-{
-  return sce.getServletRegistrations().containsKey(CAS_SERVLET_NAME);
-}

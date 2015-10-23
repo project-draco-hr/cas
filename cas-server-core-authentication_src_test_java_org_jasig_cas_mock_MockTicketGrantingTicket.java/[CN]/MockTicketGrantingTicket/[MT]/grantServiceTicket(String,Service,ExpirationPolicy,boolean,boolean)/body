@@ -1,4 +1,0 @@
-{
-  usageCount++;
-  return new MockServiceTicket(id,service,this);
-}

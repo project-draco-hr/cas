@@ -1,5 +1,0 @@
-{
-  super(code,desc);
-  this.sessionCount=sessions;
-  this.serviceTicketCount=serviceTickets;
-}

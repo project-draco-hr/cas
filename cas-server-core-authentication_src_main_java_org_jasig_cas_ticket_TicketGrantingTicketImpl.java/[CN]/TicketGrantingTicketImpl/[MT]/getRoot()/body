@@ -1,9 +1,0 @@
-{
-  TicketGrantingTicket current=this;
-  TicketGrantingTicket parent=current.getGrantingTicket();
-  while (parent != null) {
-    current=parent;
-    parent=current.getGrantingTicket();
-  }
-  return current;
-}

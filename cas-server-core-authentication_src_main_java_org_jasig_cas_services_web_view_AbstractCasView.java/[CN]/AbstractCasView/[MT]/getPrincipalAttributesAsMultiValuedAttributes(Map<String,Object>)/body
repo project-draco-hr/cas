@@ -1,3 +1,0 @@
-{
-  return convertAttributeValuesToMultiValuedObjects(getPrincipal(model).getAttributes());
-}

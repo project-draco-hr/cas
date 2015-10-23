@@ -1,3 +1,0 @@
-{
-  return ImmutableList.copyOf(this.statistics).toArray(new CacheStatistics[this.statistics.length]);
-}

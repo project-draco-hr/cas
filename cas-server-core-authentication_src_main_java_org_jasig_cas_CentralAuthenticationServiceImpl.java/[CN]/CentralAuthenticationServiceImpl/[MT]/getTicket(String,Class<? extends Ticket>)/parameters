@@ -1,2 +1,0 @@
-String ticketId
-Class<? extends Ticket> clazz

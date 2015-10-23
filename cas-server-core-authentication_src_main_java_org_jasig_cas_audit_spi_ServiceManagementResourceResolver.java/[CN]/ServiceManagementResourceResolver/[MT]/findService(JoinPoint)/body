@@ -1,8 +1,0 @@
-{
-  final JoinPoint j=AopUtils.unWrapJoinPoint(joinPoint);
-  final Long id=(Long)j.getArgs()[0];
-  if (id == null) {
-    return new String[]{""};
-  }
-  return new String[]{"id=" + id};
-}

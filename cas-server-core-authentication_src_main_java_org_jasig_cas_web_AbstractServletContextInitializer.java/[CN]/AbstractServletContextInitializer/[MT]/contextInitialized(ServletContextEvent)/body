@@ -1,5 +1,0 @@
-{
-  logger.info("Initializing {} context...",contextInitializerName);
-  initializeServletContext(sce);
-  logger.info("Initialized {} context...",contextInitializerName);
-}

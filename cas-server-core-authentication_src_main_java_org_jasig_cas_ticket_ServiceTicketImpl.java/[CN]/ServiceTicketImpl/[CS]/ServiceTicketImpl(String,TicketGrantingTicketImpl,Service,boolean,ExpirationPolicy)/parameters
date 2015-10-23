@@ -1,5 +1,0 @@
-String id
-TicketGrantingTicketImpl ticket
-Service service
-boolean fromNewLogin
-ExpirationPolicy policy
