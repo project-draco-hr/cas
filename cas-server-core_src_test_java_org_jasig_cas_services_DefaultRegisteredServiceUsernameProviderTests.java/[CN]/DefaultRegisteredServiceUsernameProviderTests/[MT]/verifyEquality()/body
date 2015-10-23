@@ -1,5 +1,0 @@
-{
-  final DefaultRegisteredServiceUsernameProvider provider=new DefaultRegisteredServiceUsernameProvider();
-  final DefaultRegisteredServiceUsernameProvider provider2=new DefaultRegisteredServiceUsernameProvider();
-  assertEquals(provider,provider2);
-}

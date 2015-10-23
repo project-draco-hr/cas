@@ -1,4 +1,0 @@
-{
-  final InMemoryServiceRegistryDaoImpl reg=new InMemoryServiceRegistryDaoImpl();
-  assertEquals(reg.load().size(),0);
-}

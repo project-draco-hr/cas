@@ -1,3 +1,0 @@
-{
-  this.validationSpecification=new Cas20WithoutProxyingValidationSpecification();
-}

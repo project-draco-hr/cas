@@ -1,5 +1,0 @@
-{
-  final RegisteredServiceAccessStrategy authz=new DefaultRegisteredServiceAccessStrategy(false,true);
-  assertFalse(authz.isServiceAccessAllowed());
-  assertTrue(authz.isServiceAccessAllowedForSso());
-}
