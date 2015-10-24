@@ -1,0 +1,5 @@
+{
+  final Service svc=mock(Service.class);
+  when(svc.getId()).thenReturn(id);
+  return svc;
+}
