@@ -1,5 +1,5 @@
 {
-  final TicketGrantingTicket ticket=new TicketGrantingTicketImpl("ticketGrantingTicketId",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+  final TicketGrantingTicket ticket=new TicketGrantingTicketImpl("ticketGrantingTicketId",org.jasig.cas.authentication.TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
   getTicketRegistry().addTicket(ticket);
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.addParameter("pgt",ticket.getId());

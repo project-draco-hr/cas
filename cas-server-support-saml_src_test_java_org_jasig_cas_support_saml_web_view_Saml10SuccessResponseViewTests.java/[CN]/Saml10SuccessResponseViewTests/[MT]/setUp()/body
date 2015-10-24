@@ -1,7 +1,7 @@
 {
   final List<RegisteredService> list=new ArrayList<>();
   final RegisteredServiceImpl regSvc=new RegisteredServiceImpl();
-  regSvc.setServiceId(TestUtils.getService().getId());
+  regSvc.setServiceId(org.jasig.cas.authentication.TestUtils.getService().getId());
   regSvc.setName("Test Service");
   regSvc.setAttributeReleasePolicy(new ReturnAllAttributeReleasePolicy());
   list.add(regSvc);

@@ -1,7 +1,7 @@
 {
   final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final ServiceTicket serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),TestUtils.getService());
+  final ServiceTicket serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),org.jasig.cas.services.TestUtils.getService());
   final TicketGrantingTicket pgt=getCentralAuthenticationService().delegateTicketGrantingTicket(serviceTicketId.getId(),TestUtils.getHttpBasedServiceCredentials());
-  final ServiceTicket pt=getCentralAuthenticationService().grantServiceTicket(pgt.getId(),TestUtils.getService(),new Credential[]{});
+  final ServiceTicket pt=getCentralAuthenticationService().grantServiceTicket(pgt.getId(),org.jasig.cas.services.TestUtils.getService(),new Credential[]{});
   assertTrue(pt.getId().startsWith(ServiceTicket.PROXY_TICKET_PREFIX));
 }

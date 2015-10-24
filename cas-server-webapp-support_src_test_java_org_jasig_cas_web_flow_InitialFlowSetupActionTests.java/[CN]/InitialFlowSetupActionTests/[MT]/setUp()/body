@@ -6,7 +6,7 @@
   final ArgumentExtractor[] argExtractors=new ArgumentExtractor[]{new DefaultArgumentExtractor()};
   this.action.setArgumentExtractors(Arrays.asList(argExtractors));
   this.servicesManager=mock(ServicesManager.class);
-  when(this.servicesManager.findServiceBy(any(Service.class))).thenReturn(TestUtils.getRegisteredService("test"));
+  when(this.servicesManager.findServiceBy(any(Service.class))).thenReturn(org.jasig.cas.authentication.TestUtils.getRegisteredService("test"));
   this.action.setServicesManager(this.servicesManager);
   this.action.afterPropertiesSet();
 }

@@ -1,5 +1,5 @@
 {
-  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,null,org.jasig.cas.authentication.TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
   assertNotNull(t);
   assertFalse(t.equals(new Object()));
   assertTrue(t.equals(t));

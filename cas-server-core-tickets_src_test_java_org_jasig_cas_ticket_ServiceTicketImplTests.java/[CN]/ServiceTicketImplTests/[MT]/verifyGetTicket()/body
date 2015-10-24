@@ -1,5 +1,5 @@
 {
-  final Service simpleService=TestUtils.getService();
+  final Service simpleService=org.jasig.cas.services.TestUtils.getService();
   final ServiceTicket s=new ServiceTicketImpl("stest1",this.ticketGrantingTicket,simpleService,false,new NeverExpiresExpirationPolicy());
   assertEquals(this.ticketGrantingTicket,s.getGrantingTicket());
 }
