@@ -1,10 +1,10 @@
 {
-  final AbstractAttributeReleasePolicy attrPolicy=(AbstractAttributeReleasePolicy)svc.getAttributeReleasePolicy();
+  final AbstractRegisteredServiceAttributeReleasePolicy attrPolicy=(AbstractRegisteredServiceAttributeReleasePolicy)svc.getAttributeReleasePolicy();
   if (attrPolicy != null) {
     final RegisteredServiceAttributeReleasePolicyEditBean attrPolicyBean=bean.getAttrRelease();
     attrPolicyBean.setReleasePassword(attrPolicy.isAuthorizedToReleaseCredentialPassword());
     attrPolicyBean.setReleaseTicket(attrPolicy.isAuthorizedToReleaseProxyGrantingTicket());
-    final AttributeFilter filter=attrPolicy.getAttributeFilter();
+    final RegisteredServiceAttributeFilter filter=attrPolicy.getAttributeFilter();
     if (filter != null) {
       if (filter instanceof RegisteredServiceRegexAttributeFilter) {
         final RegisteredServiceRegexAttributeFilter regex=(RegisteredServiceRegexAttributeFilter)filter;

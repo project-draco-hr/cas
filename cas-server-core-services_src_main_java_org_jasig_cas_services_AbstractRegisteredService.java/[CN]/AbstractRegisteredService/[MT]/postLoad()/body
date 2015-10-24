@@ -14,7 +14,4 @@
   if (this.accessStrategy == null) {
     this.accessStrategy=new DefaultRegisteredServiceAccessStrategy();
   }
-  if (this.attributeReleasePolicy == null) {
-    this.attributeReleasePolicy=new ReturnAllowedAttributeReleasePolicy();
-  }
 }

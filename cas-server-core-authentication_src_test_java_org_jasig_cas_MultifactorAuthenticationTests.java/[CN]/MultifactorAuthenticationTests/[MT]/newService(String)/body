@@ -1,3 +1,3 @@
 {
-  return new WebApplicationServiceFactory().createService(id);
+  return org.jasig.cas.services.TestUtils.getService(id);
 }
