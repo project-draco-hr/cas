@@ -1,3 +1,0 @@
-{
-  assertEquals(StatusCode.OK,monitor.observe().getCode());
-}

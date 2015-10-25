@@ -1,7 +1,7 @@
 {
   final boolean environmentOk=isMemcachedListening();
   if (!environmentOk) {
-    LOGGER.warn("Aborting test since no memcached server is available on localhost.");
+    logger.warn("Aborting test since no memcached server is available on localhost.");
   }
   Assume.assumeTrue(environmentOk);
   final ApplicationContext context=new ClassPathXmlApplicationContext("/ticketRegistry-test.xml");
