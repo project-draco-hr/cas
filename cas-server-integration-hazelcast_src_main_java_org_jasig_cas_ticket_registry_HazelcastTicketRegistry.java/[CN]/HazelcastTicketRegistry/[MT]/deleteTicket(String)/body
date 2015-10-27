@@ -1,5 +1,14 @@
 {
   final String encTicketId=encodeTicketId(ticketId);
   logger.debug("Removing ticket [{}]",encTicketId);
-  return this.registry.remove(encTicketId) != null;
+  final Ticket ticket=getTicket(encTicketId);
+  if (ticket == null) {
+    return false;
+  }
+  if (ticket instanceof TicketGrantingTicket) {
+    logger.debug("Removing ticket [{}] and its children from the registry.",ticket);
+    deleteChildren((TicketGrantingTicket)ticket);
+  }
+  logger.debug("Removing ticket [{}] from the registry.",ticket);
+  return (this.registry.remove(encTicketId) != null);
 }

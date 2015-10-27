@@ -1,0 +1,5 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setContextPath("/hello");
+  assertNull(this.handlerMapping.lookupHandler("/hello",request));
+}

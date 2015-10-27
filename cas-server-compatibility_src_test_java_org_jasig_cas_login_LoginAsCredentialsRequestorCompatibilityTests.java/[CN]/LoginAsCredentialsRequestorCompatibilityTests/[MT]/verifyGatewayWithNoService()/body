@@ -1,6 +1,0 @@
-{
-  final String gateway="notNull";
-  final String url="/login?gateway=" + gateway;
-  beginAt(url);
-  assertFormElementPresent(LOGIN_TOKEN);
-}

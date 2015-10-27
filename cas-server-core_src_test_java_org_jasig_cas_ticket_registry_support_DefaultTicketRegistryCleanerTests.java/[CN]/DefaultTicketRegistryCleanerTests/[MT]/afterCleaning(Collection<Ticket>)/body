@@ -1,5 +1,0 @@
-{
-  for (  final Ticket ticket : removedCol) {
-    this.ticketRegistry.deleteTicket(ticket.getId());
-  }
-}

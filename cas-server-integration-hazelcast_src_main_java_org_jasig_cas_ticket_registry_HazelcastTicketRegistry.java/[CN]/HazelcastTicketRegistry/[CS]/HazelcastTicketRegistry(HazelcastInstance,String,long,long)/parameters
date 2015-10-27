@@ -1,4 +1,4 @@
 HazelcastInstance hz
 String mapName
-long ticketGrantingTicketTimoutInSeconds
+long ticketGrantingTicketTimeoutInSeconds
 long serviceTicketTimeoutInSeconds

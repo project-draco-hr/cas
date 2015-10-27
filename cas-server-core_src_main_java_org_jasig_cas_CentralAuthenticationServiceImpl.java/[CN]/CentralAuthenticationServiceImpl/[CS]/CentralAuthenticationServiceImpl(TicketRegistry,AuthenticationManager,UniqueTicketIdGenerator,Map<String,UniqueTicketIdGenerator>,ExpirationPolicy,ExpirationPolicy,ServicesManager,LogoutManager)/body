@@ -1,0 +1,10 @@
+{
+  this.ticketRegistry=ticketRegistry;
+  this.authenticationManager=authenticationManager;
+  this.ticketGrantingTicketUniqueTicketIdGenerator=ticketGrantingTicketUniqueTicketIdGenerator;
+  this.uniqueTicketIdGeneratorsForService=uniqueTicketIdGeneratorsForService;
+  this.ticketGrantingTicketExpirationPolicy=ticketGrantingTicketExpirationPolicy;
+  this.serviceTicketExpirationPolicy=serviceTicketExpirationPolicy;
+  this.servicesManager=servicesManager;
+  this.logoutManager=logoutManager;
+}

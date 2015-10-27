@@ -5,10 +5,13 @@
     logger.debug("No entity id found for parameter [{}]",this.entityIdParameterName);
     return success();
   }
-  final WebApplicationService service=new WebApplicationServiceFactory().createService(entityId);
+  final WebApplicationService service=serviceFactory.createService(entityId);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   if (registeredService == null || !registeredService.getAccessStrategy().isServiceAccessAllowed()) {
     logger.debug("Entity id [{}] is not recognized/allowed by the CAS service registry",entityId);
+    if (registeredService != null) {
+      WebUtils.putUnauthorizedRedirectUrlIntoFlowScope(requestContext,registeredService.getAccessStrategy().getUnauthorizedRedirectUrl());
+    }
     throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE,"Entity " + entityId + " not recognized");
   }
   final EntityDescriptor entityDescriptor=this.metadataAdapter.getEntityDescriptorForEntityId(entityId);

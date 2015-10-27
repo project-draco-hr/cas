@@ -1,6 +1,0 @@
-{
-  super();
-  super.setCache(false);
-  this.defaultThemeId=defaultThemeId;
-  this.servicesManager=servicesManager;
-}

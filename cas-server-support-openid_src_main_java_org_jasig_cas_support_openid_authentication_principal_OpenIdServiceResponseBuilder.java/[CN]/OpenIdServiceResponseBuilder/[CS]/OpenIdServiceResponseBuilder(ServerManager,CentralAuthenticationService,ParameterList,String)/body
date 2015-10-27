@@ -1,6 +1,0 @@
-{
-  this.serverManager=serverManager;
-  this.centralAuthenticationService=centralAuthenticationService;
-  this.parameterList=parameterList;
-  this.openIdPrefixUrl=openIdPrefixUrl;
-}

@@ -2,11 +2,17 @@
   final RequestContext requestContext=RequestContextHolder.getRequestContext();
   final WebApplicationService service=WebUtils.getService(requestContext);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-  final String themeId=service != null && registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed() && StringUtils.hasText(registeredService.getTheme()) ? registeredService.getTheme() : defaultThemeId;
-  final String themePrefix=String.format("%s/%s/ui/",pathPrefix,themeId);
-  LOGGER.debug("Prefix {} set for service {} with theme {}",themePrefix,service,themeId);
   final InternalResourceView view=(InternalResourceView)BeanUtils.instantiateClass(getViewClass());
-  view.setUrl(themePrefix + viewName + getSuffix());
+  final String defaultThemePrefix=String.format(THEME_LOCATION_PATTERN,getPrefix(),"default");
+  final String defaultViewUrl=defaultThemePrefix + viewName + getSuffix();
+  view.setUrl(defaultViewUrl);
+  if (service != null && registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed() && StringUtils.hasText(registeredService.getTheme())) {
+    LOGGER.debug("Attempting to locate views for service [{}] with theme [{}]",registeredService.getServiceId(),registeredService.getTheme());
+    final String themePrefix=String.format(THEME_LOCATION_PATTERN,getPrefix(),registeredService.getTheme());
+    LOGGER.debug("Prefix [{}] set for service [{}] with theme [{}]",themePrefix,service,registeredService.getTheme());
+    final String viewUrl=themePrefix + viewName + getSuffix();
+    view.setUrl(viewUrl);
+  }
   final String contentType=getContentType();
   if (contentType != null) {
     view.setContentType(contentType);

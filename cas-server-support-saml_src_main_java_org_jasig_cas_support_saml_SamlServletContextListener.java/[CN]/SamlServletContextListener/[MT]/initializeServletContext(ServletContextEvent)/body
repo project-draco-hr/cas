@@ -1,3 +1,5 @@
 {
-  addEndpointMappingToCasServlet(sce,SamlProtocolConstants.ENDPOINT_SAML_VALIDATE);
+  if (WebUtils.isCasServletInitializing(event)) {
+    addEndpointMappingToCasServlet(event,SamlProtocolConstants.ENDPOINT_SAML_VALIDATE);
+  }
 }

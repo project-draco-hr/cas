@@ -1,13 +1,13 @@
 {
   final AbstractPoolMonitor monitor=new AbstractPoolMonitor(){
-    protected StatusCode checkPool() throws Exception {
+    @Override protected StatusCode checkPool() throws Exception {
       Thread.sleep(1000);
       return StatusCode.OK;
     }
-    protected int getIdleCount(){
+    @Override protected int getIdleCount(){
       return 1;
     }
-    protected int getActiveCount(){
+    @Override protected int getActiveCount(){
       return 1;
     }
   }

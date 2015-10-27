@@ -1,22 +1,25 @@
 {
+  clearAllServices();
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.ACCESS_TOKEN_URL);
   mockRequest.setParameter(OAuthConstants.CLIENT_ID,CLIENT_ID);
   mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
   mockRequest.setParameter(OAuthConstants.CLIENT_SECRET,CLIENT_SECRET);
   mockRequest.setParameter(OAuthConstants.CODE,CODE);
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
-  final ServicesManager servicesManager=mock(ServicesManager.class);
-  final List<RegisteredService> services=new ArrayList<>();
-  services.add(getRegisteredService(REDIRECT_URI,CLIENT_SECRET));
-  when(servicesManager.getAllServices()).thenReturn(services);
-  final TicketRegistry ticketRegistry=mock(TicketRegistry.class);
-  final ServiceTicket serviceTicket=mock(ServiceTicket.class);
-  when(serviceTicket.isExpired()).thenReturn(true);
-  when(ticketRegistry.getTicket(CODE)).thenReturn(serviceTicket);
-  final OAuth20WrapperController oauth20WrapperController=new OAuth20WrapperController();
-  oauth20WrapperController.setServicesManager(servicesManager);
-  oauth20WrapperController.setTicketRegistry(ticketRegistry);
-  oauth20WrapperController.afterPropertiesSet();
+  ((OAuth20WrapperController)oauth20WrapperController).getServicesManager().save(getRegisteredService(REDIRECT_URI,CLIENT_SECRET));
+  final Map<String,Object> map=new HashMap<>();
+  map.put(NAME,VALUE);
+  final List<String> list=Arrays.asList(VALUE,VALUE);
+  map.put(NAME2,list);
+  final Principal p=TestUtils.getPrincipal(ID,map);
+  final TicketGrantingTicketImpl impl=new TicketGrantingTicketImpl(TGT_ID,TestUtils.getAuthentication(p),new NeverExpiresExpirationPolicy());
+  ((OAuth20WrapperController)oauth20WrapperController).getTicketRegistry().addTicket(new ServiceTicketImpl("ST1",impl,TestUtils.getService(),false,new ExpirationPolicy(){
+    private static final long serialVersionUID=-7321055962209199811L;
+    @Override public boolean isExpired(    final TicketState ticketState){
+      return true;
+    }
+  }
+));
   oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   assertEquals(400,mockResponse.getStatus());
   assertEquals("error=" + OAuthConstants.INVALID_GRANT,mockResponse.getContentAsString());
