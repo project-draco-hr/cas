@@ -1,4 +1,7 @@
 {
+  if (this.persistentIdGenerator == null) {
+    throw new IllegalArgumentException("No persistent id generator is defined");
+  }
   final String id=this.persistentIdGenerator.generate(principal,service);
   LOGGER.debug("Resolved username [{}] for anonymous access",id);
   return id;
