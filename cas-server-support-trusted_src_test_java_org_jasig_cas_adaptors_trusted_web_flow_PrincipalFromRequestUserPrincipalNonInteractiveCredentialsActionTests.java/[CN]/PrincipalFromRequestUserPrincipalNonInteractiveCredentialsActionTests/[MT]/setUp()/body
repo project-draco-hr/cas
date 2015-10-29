@@ -1,5 +1,6 @@
 {
   this.action=new PrincipalFromRequestUserPrincipalNonInteractiveCredentialsAction();
+  this.action.setPrincipalFactory(new DefaultPrincipalFactory());
   final Map<String,UniqueTicketIdGenerator> idGenerators=new HashMap<>();
   idGenerators.put(SimpleWebApplicationServiceImpl.class.getName(),new DefaultUniqueTicketIdGenerator());
   final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(new PrincipalBearingCredentialsAuthenticationHandler(),new PrincipalBearingPrincipalResolver()));
