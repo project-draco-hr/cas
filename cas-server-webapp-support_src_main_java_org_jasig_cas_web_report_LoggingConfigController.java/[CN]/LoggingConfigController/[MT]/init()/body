@@ -1,0 +1,3 @@
+{
+  this.loggerContext=Configurator.initialize("CAS",null,this.logConfigurationFile.getURI());
+}

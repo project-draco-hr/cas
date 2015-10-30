@@ -1,0 +1,3 @@
+{
+  getRealLogger().setAdditive(additive);
+}

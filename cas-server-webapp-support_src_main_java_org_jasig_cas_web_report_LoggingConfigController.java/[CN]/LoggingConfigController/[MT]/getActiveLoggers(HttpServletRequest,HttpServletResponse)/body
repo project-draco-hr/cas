@@ -1,0 +1,6 @@
+{
+  final Map<String,Object> responseMap=new HashMap();
+  final Set<Map.Entry<String,CasDelegatingLogger>> loggers=getActiveLoggersInFactory();
+  responseMap.put("activeLoggers",loggers);
+  return responseMap;
+}
