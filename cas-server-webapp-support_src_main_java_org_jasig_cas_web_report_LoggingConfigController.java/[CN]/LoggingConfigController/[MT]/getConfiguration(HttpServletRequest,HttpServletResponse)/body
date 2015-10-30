@@ -1,7 +1,7 @@
 {
   final Collection<Map<String,Object>> configuredLoggers=new HashSet<>();
   for (  final LoggerConfig config : getLoggerConfigurations()) {
-    final Map<String,Object> loggerMap=new HashMap();
+    final Map<String,Object> loggerMap=new HashMap<>();
     loggerMap.put("name",StringUtils.defaultIfBlank(config.getName(),LOGGER_NAME_ROOT));
     loggerMap.put("state",config.getState());
     if (config.getProperties() != null) {
