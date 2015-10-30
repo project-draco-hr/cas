@@ -1,3 +1,4 @@
 {
+  logWarning();
   return this.registeredServices.remove(registeredService);
 }

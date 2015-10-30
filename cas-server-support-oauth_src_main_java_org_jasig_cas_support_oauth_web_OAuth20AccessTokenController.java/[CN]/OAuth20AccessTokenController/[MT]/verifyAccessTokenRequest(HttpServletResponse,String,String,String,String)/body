@@ -1,32 +1,32 @@
 {
   if (StringUtils.isBlank(clientId)) {
-    LOGGER.error("Missing {}",OAuthConstants.CLIENT_ID);
+    logger.error("Missing {}",OAuthConstants.CLIENT_ID);
     return false;
   }
   if (StringUtils.isBlank(redirectUri)) {
-    LOGGER.error("Missing {}",OAuthConstants.REDIRECT_URI);
+    logger.error("Missing {}",OAuthConstants.REDIRECT_URI);
     return false;
   }
   if (StringUtils.isBlank(clientSecret)) {
-    LOGGER.error("Missing {}",OAuthConstants.CLIENT_SECRET);
+    logger.error("Missing {}",OAuthConstants.CLIENT_SECRET);
     return false;
   }
   if (StringUtils.isBlank(code)) {
-    LOGGER.error("Missing {}",OAuthConstants.CODE);
+    logger.error("Missing {}",OAuthConstants.CODE);
     return false;
   }
   final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
   if (service == null) {
-    LOGGER.error("Unknown {} : {}",OAuthConstants.CLIENT_ID,clientId);
+    logger.error("Unknown {} : {}",OAuthConstants.CLIENT_ID,clientId);
     return false;
   }
   final String serviceId=service.getServiceId();
   if (!redirectUri.matches(serviceId)) {
-    LOGGER.error("Unsupported {} : {} for serviceId : {}",OAuthConstants.REDIRECT_URI,redirectUri,serviceId);
+    logger.error("Unsupported {} : {} for serviceId : {}",OAuthConstants.REDIRECT_URI,redirectUri,serviceId);
     return false;
   }
   if (!StringUtils.equals(service.getClientSecret(),clientSecret)) {
-    LOGGER.error("Wrong client secret for service {}",service);
+    logger.error("Wrong client secret for service {}",service);
     return false;
   }
   return true;

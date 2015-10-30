@@ -17,7 +17,9 @@
   final TicketGrantingTicket tgt=new TicketGrantingTicketImpl(TGT_ID,mock(Authentication.class),mock(ExpirationPolicy.class));
   final CentralAuthenticationService casImpl=mock(CentralAuthenticationService.class);
   when(casImpl.createTicketGrantingTicket(any(Credential.class))).thenReturn(tgt);
-  final ClientAction action=new ClientAction(casImpl,clients);
+  final ClientAction action=new ClientAction();
+  action.setCentralAuthenticationService(casImpl);
+  action.setClients(clients);
   final Event event=action.execute(mockRequestContext);
   assertEquals("success",event.getId());
   assertEquals(MY_THEME,mockRequest.getAttribute(ClientAction.THEME));

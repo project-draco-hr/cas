@@ -1,5 +1,0 @@
-{
-  this.attributeRepository=attributeRepository;
-  this.expiration=expiration;
-  this.timeUnit=timeUnit;
-}

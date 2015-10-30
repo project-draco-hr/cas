@@ -1,5 +1,0 @@
-{
-  final ServiceTicket t=this.getTicket().grantServiceTicket(id,service,expirationPolicy,credentialsProvided);
-  updateTicket();
-  return t;
-}
