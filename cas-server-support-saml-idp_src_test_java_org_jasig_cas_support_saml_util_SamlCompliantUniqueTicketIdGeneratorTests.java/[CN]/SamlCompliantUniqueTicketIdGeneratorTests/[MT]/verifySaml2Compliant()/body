@@ -1,5 +1,0 @@
-{
-  final SamlCompliantUniqueTicketIdGenerator g=new SamlCompliantUniqueTicketIdGenerator("http://www.cnn.com");
-  g.setSaml2compliant(true);
-  assertNotNull(g.getNewTicketId("TT"));
-}

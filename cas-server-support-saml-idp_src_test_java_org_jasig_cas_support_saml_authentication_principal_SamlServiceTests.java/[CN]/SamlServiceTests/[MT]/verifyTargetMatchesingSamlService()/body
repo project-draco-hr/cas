@@ -1,7 +1,0 @@
-{
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.setParameter(SamlProtocolConstants.CONST_PARAM_TARGET,"https://some.service.edu/path/to/app");
-  final WebApplicationService service=new DefaultArgumentExtractor(new SamlServiceFactory()).extractService(request);
-  final Service impl=new DefaultArgumentExtractor(new SamlServiceFactory()).extractService(request);
-  assertTrue(impl.matches(service));
-}

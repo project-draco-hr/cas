@@ -1,5 +1,0 @@
-{
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  final SamlServiceFactory factory=new SamlServiceFactory();
-  assertNull(factory.createService(request));
-}

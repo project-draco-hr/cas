@@ -1,4 +1,0 @@
-{
-  assertNotNull(this.parserPool);
-  assertNotNull(this.parserPool.getBuilder());
-}

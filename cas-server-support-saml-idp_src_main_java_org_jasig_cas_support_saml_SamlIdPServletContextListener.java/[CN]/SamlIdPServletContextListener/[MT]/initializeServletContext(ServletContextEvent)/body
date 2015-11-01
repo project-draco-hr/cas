@@ -1,5 +1,6 @@
 {
   if (WebUtils.isCasServletInitializing(event)) {
-    addEndpointMappingToCasServlet(event,SamlProtocolConstants.ENDPOINT_SAML_VALIDATE);
+    addEndpointMappingToCasServlet(event,SamlIdPConstants.ENDPOINT_IDP_METADATA);
+    addEndpointMappingToCasServlet(event,SamlIdPConstants.ENDPOINT_SAML2_SSO_PROFILE_REDIRECT);
   }
 }
