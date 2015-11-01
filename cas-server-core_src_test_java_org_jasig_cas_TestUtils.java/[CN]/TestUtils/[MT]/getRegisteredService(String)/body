@@ -21,8 +21,8 @@
     final ReturnAllowedAttributeReleasePolicy policy=new ReturnAllowedAttributeReleasePolicy();
     policy.setAuthorizedToReleaseCredentialPassword(true);
     policy.setAuthorizedToReleaseProxyGrantingTicket(true);
-    final CachingPrincipalAttributesRepository repo=new CachingPrincipalAttributesRepository(new StubPersonAttributeDao(),TimeUnit.SECONDS,10);
-    repo.setMergingStrategy(new NoncollidingAttributeAdder());
+    final CachingPrincipalAttributesRepository repo=new CachingPrincipalAttributesRepository(TimeUnit.SECONDS,10);
+    repo.setMergingStrategy(AbstractPrincipalAttributesRepository.MergingStrategy.ADD);
     policy.setPrincipalAttributesRepository(repo);
     policy.setAttributeFilter(new RegisteredServiceRegexAttributeFilter("https://.+"));
     policy.setAllowedAttributes(new ArrayList(getTestAttributes().keySet()));

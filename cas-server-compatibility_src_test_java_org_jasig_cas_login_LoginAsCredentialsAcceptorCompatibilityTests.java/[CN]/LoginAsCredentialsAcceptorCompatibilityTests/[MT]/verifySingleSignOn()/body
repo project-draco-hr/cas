@@ -1,8 +1,0 @@
-{
-  beginAt("/login");
-  setFormElement(FORM_USERNAME,getUsername());
-  setFormElement(FORM_PASSWORD,getGoodPassword());
-  submit();
-  assertCookiePresent(COOKIE_TGC_ID);
-  assertFormNotPresent();
-}

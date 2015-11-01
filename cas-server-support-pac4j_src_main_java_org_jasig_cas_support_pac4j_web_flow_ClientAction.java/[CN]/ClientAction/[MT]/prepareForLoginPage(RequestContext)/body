@@ -11,8 +11,8 @@
   saveRequestParameter(request,session,METHOD);
   for (  final Client client : this.clients.findAllClients()) {
     final String key=client.getName() + "Url";
-    final BaseClient baseClient=(BaseClient)client;
-    final String redirectionUrl=baseClient.getRedirectionUrl(webContext);
+    final IndirectClient indirectClient=(IndirectClient)client;
+    final String redirectionUrl=indirectClient.getRedirectionUrl(webContext);
     logger.debug("{} -> {}",key,redirectionUrl);
     context.getFlowScope().put(key,redirectionUrl);
   }

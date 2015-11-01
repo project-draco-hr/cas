@@ -2,5 +2,5 @@
   if (this.tryAll) {
     return authn.getCredentials().size() == authn.getSuccesses().size() + authn.getFailures().size();
   }
-  return authn.getSuccesses().size() > 0;
+  return !authn.getSuccesses().isEmpty();
 }

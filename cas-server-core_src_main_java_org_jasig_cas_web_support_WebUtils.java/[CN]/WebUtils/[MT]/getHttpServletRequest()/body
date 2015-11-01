@@ -1,0 +1,4 @@
+{
+  final ServletExternalContext servletExternalContext=(ServletExternalContext)ExternalContextHolder.getExternalContext();
+  return (HttpServletRequest)servletExternalContext.getNativeRequest();
+}

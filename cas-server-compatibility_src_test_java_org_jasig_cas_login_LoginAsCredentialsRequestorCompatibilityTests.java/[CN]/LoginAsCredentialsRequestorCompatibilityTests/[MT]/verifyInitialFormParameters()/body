@@ -1,6 +1,0 @@
-{
-  beginAt("/login");
-  assertFormElementPresent(FORM_USERNAME);
-  assertFormElementPresent(FORM_PASSWORD);
-  assertFormElementPresent(LOGIN_TOKEN);
-}

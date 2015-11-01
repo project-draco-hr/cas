@@ -1,12 +1,12 @@
 {
   final AbstractPoolMonitor monitor=new AbstractPoolMonitor(){
-    protected StatusCode checkPool() throws Exception {
+    @Override protected StatusCode checkPool() throws Exception {
       throw new RuntimeException("Pool check failed due to rogue penguins.");
     }
-    protected int getIdleCount(){
+    @Override protected int getIdleCount(){
       return 1;
     }
-    protected int getActiveCount(){
+    @Override protected int getActiveCount(){
       return 1;
     }
   }
