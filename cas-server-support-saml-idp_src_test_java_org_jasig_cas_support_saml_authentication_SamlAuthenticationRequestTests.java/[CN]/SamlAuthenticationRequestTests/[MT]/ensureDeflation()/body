@@ -1,0 +1,5 @@
+{
+  final String deflator=CompressionUtils.deflate(SAML_REQUEST);
+  final String deflatorStream=deflateViaStream(SAML_REQUEST);
+  assertEquals(deflatorStream,deflator);
+}
