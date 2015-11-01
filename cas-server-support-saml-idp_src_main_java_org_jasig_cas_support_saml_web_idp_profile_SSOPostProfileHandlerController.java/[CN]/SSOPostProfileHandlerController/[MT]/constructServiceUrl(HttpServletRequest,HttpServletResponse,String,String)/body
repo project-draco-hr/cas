@@ -1,0 +1,3 @@
+{
+  return CommonUtils.constructServiceUrl(request,response,service,serverName,CasProtocolConstants.PARAMETER_SERVICE,CasProtocolConstants.PARAMETER_TICKET,false);
+}

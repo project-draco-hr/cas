@@ -1,0 +1,4 @@
+{
+  final HttpSession session=request.getSession();
+  session.setAttribute(AuthnRequest.class.getName(),authnRequest);
+}

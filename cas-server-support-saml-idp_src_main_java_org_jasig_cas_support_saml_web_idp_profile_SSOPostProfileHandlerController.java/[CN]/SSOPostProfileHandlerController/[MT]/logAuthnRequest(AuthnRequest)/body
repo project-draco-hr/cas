@@ -1,0 +1,26 @@
+{
+  logger.debug("\t Request Issuer: {}",authnRequest.getIssuer().getValue());
+  logger.debug("\t AssertionConsumerServiceURL: {}",authnRequest.getAssertionConsumerServiceURL());
+  logger.debug("\t Destination: {}",authnRequest.getDestination());
+  logger.debug("\t ProtocolBinding: {}",authnRequest.getProtocolBinding());
+  logger.debug("\t Forced AuthN: {}",authnRequest.isForceAuthn());
+  logger.debug("\t Passive AuthN: {}",authnRequest.isPassive());
+  logger.debug("\t Signed AuthN: {}",authnRequest.isSigned());
+  if (StringUtils.isNotBlank(authnRequest.getProviderName())) {
+    logger.debug("\t ProviderName: {}",authnRequest.getProviderName());
+  }
+  logger.debug("\t IssueInstant: {}",authnRequest.getIssueInstant());
+  if (authnRequest.getRequestedAuthnContext() != null) {
+    for (    final AuthnContextClassRef ctx : authnRequest.getRequestedAuthnContext().getAuthnContextClassRefs()) {
+      logger.debug("\t AuthnContextClassRef: {}",ctx.getAuthnContextClassRef());
+    }
+    for (    final AuthnContextDeclRef ctx : authnRequest.getRequestedAuthnContext().getAuthnContextDeclRefs()) {
+      logger.debug("\t AuthnContextClassRef: {}",ctx.getAuthnContextDeclRef());
+    }
+    logger.debug("\t AuthnContextClass Comparison: {}",authnRequest.getRequestedAuthnContext().getComparison());
+  }
+  if (authnRequest.getNameIDPolicy() != null) {
+    logger.debug("\t NameIDFormat: {}",authnRequest.getNameIDPolicy().getFormat());
+    logger.debug("\t SPNameQualifier: {}",authnRequest.getNameIDPolicy().getSPNameQualifier());
+  }
+}

@@ -1,0 +1,9 @@
+{
+  logger.debug("Assertion Valid: {}",assertion.isValid());
+  logger.debug("Assertion Principal: {}",assertion.getPrincipal().getName());
+  logger.debug("Assertion AuthN Date: {}",assertion.getAuthenticationDate());
+  logger.debug("Assertion ValidFrom Date: {}",assertion.getValidFromDate());
+  logger.debug("Assertion ValidUntil Date: {}",assertion.getValidUntilDate());
+  logger.debug("Assertion Attributes: {}",assertion.getAttributes());
+  logger.debug("Assertion Principal Attributes: {}",assertion.getPrincipal().getAttributes());
+}

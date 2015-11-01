@@ -1,0 +1,13 @@
+{
+  this.callbackService=webApplicationServiceFactory.createService(this.casServerPrefix.concat(SamlIdPConstants.ENDPOINT_SAML2_SSO_PROFILE_POST_CALLBACK));
+  logger.debug("Initialized callback service url {}",this.callbackService);
+  if (!servicesManager.matchesExistingService(this.callbackService)) {
+    final RegexRegisteredService service=new RegexRegisteredService();
+    service.setId(new SecureRandom().nextLong());
+    service.setName(service.getClass().getSimpleName());
+    service.setDescription(SamlIdPConstants.ENDPOINT_SAML2_SSO_PROFILE_POST_CALLBACK.concat(" Callback Url"));
+    service.setServiceId(this.callbackService.getId());
+    logger.debug("Saving callback service {} into the registry",service);
+    this.servicesManager.save(service);
+  }
+}

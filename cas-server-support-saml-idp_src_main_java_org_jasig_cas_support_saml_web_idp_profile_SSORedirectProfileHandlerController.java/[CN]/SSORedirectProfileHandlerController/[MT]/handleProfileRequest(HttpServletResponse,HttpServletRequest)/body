@@ -1,8 +1,0 @@
-{
-  logger.info("Received SAML profile request {}",request.getRequestURI());
-  final DefaultSaml20ObjectBuilder builder=new DefaultSaml20ObjectBuilder();
-  final String samlRequest=request.getParameter(SamlProtocolConstants.PARAMETER_SAML_REQUEST);
-  if (StringUtils.isBlank(samlRequest)) {
-    throw new SAMLException("No SAML request could be identified");
-  }
-}

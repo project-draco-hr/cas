@@ -1,0 +1,14 @@
+{
+  try {
+    final HTTPPostDecoder decoder=new HTTPPostDecoder();
+    decoder.setHttpServletRequest(request);
+    decoder.setParserPool(this.parserPool);
+    decoder.initialize();
+    decoder.decode();
+    return decoder.getMessageContext().getMessage();
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+  return null;
+}
