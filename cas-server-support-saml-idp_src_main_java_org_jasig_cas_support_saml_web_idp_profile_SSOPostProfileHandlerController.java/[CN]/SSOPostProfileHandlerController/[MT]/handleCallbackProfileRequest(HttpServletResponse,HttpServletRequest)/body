@@ -19,6 +19,8 @@
   final Assertion assertion=validator.validate(ticket,serviceUrl);
   logValidationAssertion(assertion);
   if (assertion.isValid()) {
+    logger.debug("Preparing SAML response to {}",authnRequest.getAssertionConsumerServiceURL());
+    final Response samlResponse=responseBuilder.build(authnRequest,request,response,assertion);
   }
   storeAuthnRequest(request,null);
 }

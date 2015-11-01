@@ -1,0 +1,14 @@
+{
+  final List<String> nameFormats=new ArrayList<>();
+  final RoleDescriptor relyingPartyRole=requestContext.getPeerEntityRoleMetadata();
+  if (relyingPartyRole != null) {
+    final List<String> relyingPartySupportedFormats=getEntitySupportedFormats(relyingPartyRole);
+    if (relyingPartySupportedFormats != null && !relyingPartySupportedFormats.isEmpty()) {
+      nameFormats.addAll(relyingPartySupportedFormats);
+    }
+  }
+  if (nameFormats.contains(NameID.UNSPECIFIED)) {
+    nameFormats.clear();
+  }
+  return nameFormats;
+}

@@ -1,0 +1,22 @@
+{
+  List<NameIDFormat> nameIDFormats=null;
+  if (role instanceof SSODescriptor) {
+    nameIDFormats=((SSODescriptor)role).getNameIDFormats();
+  }
+ else   if (role instanceof AuthnAuthorityDescriptor) {
+    nameIDFormats=((AuthnAuthorityDescriptor)role).getNameIDFormats();
+  }
+ else   if (role instanceof PDPDescriptor) {
+    nameIDFormats=((PDPDescriptor)role).getNameIDFormats();
+  }
+ else   if (role instanceof AttributeAuthorityDescriptor) {
+    nameIDFormats=((AttributeAuthorityDescriptor)role).getNameIDFormats();
+  }
+  final List<String> supportedFormats=new ArrayList<>();
+  if (nameIDFormats != null) {
+    for (    final NameIDFormat format : nameIDFormats) {
+      supportedFormats.add(format.getFormat());
+    }
+  }
+  return supportedFormats;
+}
