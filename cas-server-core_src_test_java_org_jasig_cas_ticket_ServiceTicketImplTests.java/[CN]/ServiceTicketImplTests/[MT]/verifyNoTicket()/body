@@ -1,3 +1,0 @@
-{
-  new ServiceTicketImpl("stest1",null,TestUtils.getService(),true,new NeverExpiresExpirationPolicy());
-}

@@ -1,7 +1,7 @@
 {
   final MockRequestContext context=new MockRequestContext();
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  final Authentication authentication=TestUtils.getAuthentication("scootman28");
+  final Authentication authentication=org.jasig.cas.authentication.TestUtils.getAuthentication("scootman28");
   final TicketGrantingTicket t=new TicketGrantingTicketImpl("TGT-11",authentication,new NeverExpiresExpirationPolicy());
   this.ticketRegistry.addTicket(t);
   request.setParameter(OpenIdProtocolConstants.OPENID_IDENTITY,"http://openid.aol.com/scootman28");

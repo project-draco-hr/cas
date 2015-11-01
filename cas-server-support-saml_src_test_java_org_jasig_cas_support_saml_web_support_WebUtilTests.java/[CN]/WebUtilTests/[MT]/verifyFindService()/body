@@ -1,5 +1,5 @@
 {
-  final DefaultArgumentExtractor casArgumentExtractor=new DefaultArgumentExtractor();
+  final DefaultArgumentExtractor casArgumentExtractor=new DefaultArgumentExtractor(new WebApplicationServiceFactory());
   final ArgumentExtractor[] argumentExtractors=new ArgumentExtractor[]{casArgumentExtractor};
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.setParameter("service","test");
