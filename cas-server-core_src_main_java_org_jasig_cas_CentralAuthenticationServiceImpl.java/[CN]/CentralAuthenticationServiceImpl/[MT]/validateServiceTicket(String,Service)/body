@@ -20,7 +20,7 @@ synchronized (serviceTicket) {
     final TicketGrantingTicket root=serviceTicket.getGrantingTicket().getRoot();
     final Authentication authentication=getAuthenticationSatisfiedByPolicy(root,new ServiceContext(serviceTicket.getService(),registeredService));
     final Principal principal=authentication.getPrincipal();
-    final AttributeReleasePolicy attributePolicy=registeredService.getAttributeReleasePolicy();
+    final RegisteredServiceAttributeReleasePolicy attributePolicy=registeredService.getAttributeReleasePolicy();
     logger.debug("Attribute policy [{}] is associated with service [{}]",attributePolicy,registeredService);
     @SuppressWarnings("unchecked") final Map<String,Object> attributesToRelease=attributePolicy != null ? attributePolicy.getAttributes(principal) : Collections.EMPTY_MAP;
     final String principalId=registeredService.getUsernameAttributeProvider().resolveUsername(principal,service);

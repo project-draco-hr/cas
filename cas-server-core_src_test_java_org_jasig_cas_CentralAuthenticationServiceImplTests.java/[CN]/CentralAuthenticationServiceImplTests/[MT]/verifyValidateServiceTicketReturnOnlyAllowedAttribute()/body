@@ -1,5 +1,5 @@
 {
-  final Service service=TestUtils.getService("eduPersonTestInvalid");
+  final Service service=getService("eduPersonTestInvalid");
   final UsernamePasswordCredential cred=TestUtils.getCredentialsWithSameUsernameAndPassword();
   final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(cred);
   final ServiceTicket serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),service);

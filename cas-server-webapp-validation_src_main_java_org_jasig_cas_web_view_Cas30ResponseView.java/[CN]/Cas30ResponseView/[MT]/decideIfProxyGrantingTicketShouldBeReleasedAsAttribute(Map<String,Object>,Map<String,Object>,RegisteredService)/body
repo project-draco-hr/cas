@@ -1,0 +1,5 @@
+{
+  final RegisteredServiceAttributeReleasePolicy policy=service.getAttributeReleasePolicy();
+  final boolean isAuthorized=policy != null && policy.isAuthorizedToReleaseProxyGrantingTicket();
+  decideAttributeReleaseBasedOnServiceAttributePolicy(attributes,getProxyGrantingTicketId(model),CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET,service,isAuthorized);
+}

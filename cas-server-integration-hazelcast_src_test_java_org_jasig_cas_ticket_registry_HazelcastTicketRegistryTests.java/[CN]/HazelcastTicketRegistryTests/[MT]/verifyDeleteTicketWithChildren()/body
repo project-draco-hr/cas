@@ -1,5 +1,5 @@
 {
-  this.hzTicketRegistry1.addTicket(new TicketGrantingTicketImpl("TGT",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
+  this.hzTicketRegistry1.addTicket(new TicketGrantingTicketImpl("TGT",org.jasig.cas.authentication.TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
   final TicketGrantingTicket tgt=this.hzTicketRegistry1.getTicket("TGT",TicketGrantingTicket.class);
   final Service service=TestUtils.getService("TGT_DELETE_TEST");
   final ServiceTicket st1=tgt.grantServiceTicket("ST1",service,new NeverExpiresExpirationPolicy(),true,false);

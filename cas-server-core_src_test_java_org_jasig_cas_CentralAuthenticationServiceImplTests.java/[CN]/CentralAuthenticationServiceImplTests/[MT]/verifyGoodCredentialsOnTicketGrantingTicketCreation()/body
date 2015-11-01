@@ -3,6 +3,6 @@
     assertNotNull(getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword()));
   }
  catch (  final AbstractTicketException e) {
-    fail(TestUtils.CONST_EXCEPTION_NON_EXPECTED);
+    fail("Exception expected");
   }
 }
