@@ -1,0 +1,4 @@
+{
+  final ToStringBuilder builder=new ToStringBuilder(this);
+  return builder.appendSuper(super.toString()).append("assertion",assertion).toString();
+}

@@ -1,0 +1,4 @@
+{
+  final ToStringBuilder builder=new ToStringBuilder(this);
+  return builder.append("authentication",authentication).append("ticketGrantingTicketId",ticketGrantingTicketId).toString();
+}
