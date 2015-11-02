@@ -1,4 +1,3 @@
 {
-  final ToStringBuilder builder=new ToStringBuilder(this);
-  return builder.appendSuper(super.toString()).append("assertion",assertion).toString();
+  return new ToStringBuilder(this).appendSuper(super.toString()).append("assertion",assertion).append("serviceTicket",serviceTicket).toString();
 }

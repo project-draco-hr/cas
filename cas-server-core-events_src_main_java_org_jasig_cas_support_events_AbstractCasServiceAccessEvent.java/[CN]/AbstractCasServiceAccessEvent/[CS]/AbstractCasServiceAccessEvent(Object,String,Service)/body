@@ -1,5 +1,0 @@
-{
-  super(source);
-  this.serviceTicketId=serviceTicketId;
-  this.service=service;
-}

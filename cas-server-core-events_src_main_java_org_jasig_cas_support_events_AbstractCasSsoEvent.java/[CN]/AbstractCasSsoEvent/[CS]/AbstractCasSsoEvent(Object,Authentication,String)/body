@@ -1,5 +1,0 @@
-{
-  super(source);
-  this.authentication=authentication;
-  this.ticketGrantingTicketId=ticketGrantingTicketId;
-}

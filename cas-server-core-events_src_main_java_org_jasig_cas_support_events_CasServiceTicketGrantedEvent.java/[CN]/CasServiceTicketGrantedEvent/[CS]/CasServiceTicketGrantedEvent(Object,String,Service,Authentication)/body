@@ -1,4 +1,0 @@
-{
-  super(source,serviceTicketId,service);
-  this.authentication=authentication;
-}

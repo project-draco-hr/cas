@@ -44,5 +44,6 @@
   final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication != null,this.onlyTrackMostRecentSession);
   this.ticketRegistry.addTicket(serviceTicket);
   logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principal.getId());
+  doPublishEvent(new CasServiceTicketGrantedEvent(this,ticketGrantingTicket,serviceTicket));
   return serviceTicket;
 }
