@@ -1,0 +1,30 @@
+{
+  logger.debug("Determining if SAML assertion to {} should be signed",service.getServiceId());
+  if (!service.isSignAssertions()) {
+    return;
+  }
+  logger.debug("Determining signing credential for assertion to relying party {}",service.getServiceId());
+  final Credential signatureCredential=service.getSigningCredential();
+  if (signatureCredential == null) {
+    throw new SAMLException("No signing credential is specified for relying party configuration");
+  }
+  logger.debug("Signing assertion to relying party {}",service.getServiceId());
+  Signature signature=signatureBuilder.buildObject(Signature.DEFAULT_ELEMENT_NAME);
+  signature.setSigningCredential(signatureCredential);
+  try {
+    SecurityHelper.prepareSignatureParams(signature,signatureCredential,null,null);
+  }
+ catch (  SecurityException e) {
+    throw new ProfileException("Error preparing signature for signing",e);
+  }
+  assertion.setSignature(signature);
+  Marshaller assertionMarshaller=Configuration.getMarshallerFactory().getMarshaller(assertion);
+  try {
+    assertionMarshaller.marshall(assertion);
+    Signer.signObject(signature);
+  }
+ catch (  final Exception e) {
+    logger.error("Unable to marshall assertion for signing",e);
+    throw new SAMLException("Unable to marshall assertion for signing",e);
+  }
+}

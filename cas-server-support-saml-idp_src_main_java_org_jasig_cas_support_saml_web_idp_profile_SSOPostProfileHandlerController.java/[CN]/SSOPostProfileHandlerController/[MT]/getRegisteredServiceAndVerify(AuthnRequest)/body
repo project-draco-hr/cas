@@ -1,0 +1,8 @@
+{
+  final String serviceId=authnRequest.getAssertionConsumerServiceURL();
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(this.webApplicationServiceFactory.createService(serviceId));
+  if (registeredService == null || !registeredService.getAccessStrategy().isServiceAccessAllowed()) {
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
+  }
+  return registeredService;
+}

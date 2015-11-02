@@ -1,0 +1,4 @@
+{
+  super();
+  this.supportedNameFormats.add(NameID.UNSPECIFIED);
+}

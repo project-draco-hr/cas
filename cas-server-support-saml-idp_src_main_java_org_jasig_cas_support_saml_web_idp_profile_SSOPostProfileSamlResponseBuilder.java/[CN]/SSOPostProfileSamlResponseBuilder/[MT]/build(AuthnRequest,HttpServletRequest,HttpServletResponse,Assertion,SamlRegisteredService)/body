@@ -5,5 +5,5 @@
   if (attributeStatement != null) {
     statements.add(attributeStatement);
   }
-  return buildResponse(authnRequest,statements);
+  return buildResponse(authnRequest,statements,assertion,service);
 }

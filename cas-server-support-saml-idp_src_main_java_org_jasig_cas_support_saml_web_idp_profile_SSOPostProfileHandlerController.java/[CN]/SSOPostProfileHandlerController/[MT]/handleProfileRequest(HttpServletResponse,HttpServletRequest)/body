@@ -3,6 +3,7 @@
   final SAMLObject messageContext=decodeAuthnRequest(request);
   if (messageContext instanceof AuthnRequest) {
     final AuthnRequest authnRequest=(AuthnRequest)messageContext;
+    getRegisteredServiceAndVerify(authnRequest);
     storeAuthnRequest(request,authnRequest);
     logAuthnRequest(authnRequest);
     performAuthentication(authnRequest,request,response);

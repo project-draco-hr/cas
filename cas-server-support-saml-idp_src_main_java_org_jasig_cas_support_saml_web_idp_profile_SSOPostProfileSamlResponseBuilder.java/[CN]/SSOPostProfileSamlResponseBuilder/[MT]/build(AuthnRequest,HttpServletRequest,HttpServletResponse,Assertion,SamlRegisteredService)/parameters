@@ -2,3 +2,4 @@ AuthnRequest authnRequest
 HttpServletRequest request
 HttpServletResponse response
 Assertion assertion
+SamlRegisteredService service
