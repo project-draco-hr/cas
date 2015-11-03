@@ -1,6 +1,6 @@
 {
   final CentralAuthenticationService cas=getCentralAuthenticationService();
-  final Service svc=TestUtils.getService("testDefault");
+  final Service svc=getService("testDefault");
   final UsernamePasswordCredential goodCredential=TestUtils.getCredentialsWithSameUsernameAndPassword();
   final TicketGrantingTicket tgtId=cas.createTicketGrantingTicket(goodCredential);
   cas.grantServiceTicket(tgtId.getId(),svc);

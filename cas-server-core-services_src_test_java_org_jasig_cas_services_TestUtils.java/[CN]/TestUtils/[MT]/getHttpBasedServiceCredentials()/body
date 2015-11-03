@@ -1,0 +1,3 @@
+{
+  return getHttpBasedServiceCredentials(CONST_TEST_URL);
+}

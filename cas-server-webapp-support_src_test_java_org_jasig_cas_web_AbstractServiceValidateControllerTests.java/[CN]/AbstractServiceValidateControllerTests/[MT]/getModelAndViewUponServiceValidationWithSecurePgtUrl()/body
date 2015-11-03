@@ -1,9 +1,0 @@
-{
-  final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),TestUtils.getService());
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.addParameter("service",TestUtils.getService().getId());
-  request.addParameter("ticket",sId.getId());
-  request.addParameter("pgtUrl","https://www.github.com");
-  return this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
-}

@@ -1,5 +1,0 @@
-{
-  this.loader.setUseCodeAsDefaultMessage(true);
-  final String msg=this.loader.getMessage("does.not.exist",null,Locale.FRENCH);
-  assertEquals(msg,"does.not.exist");
-}

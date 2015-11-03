@@ -4,5 +4,6 @@
   final MockExpireUpdateTicketLogoutManager logoutManager=new MockExpireUpdateTicketLogoutManager(registry);
   registry.addTicket(tgt);
   final CentralAuthenticationServiceImpl cas=new CentralAuthenticationServiceImpl(registry,null,null,null,null,null,null,logoutManager);
+  cas.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
   cas.destroyTicketGrantingTicket(tgt.getId());
 }
