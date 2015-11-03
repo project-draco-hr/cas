@@ -5,6 +5,7 @@
     logger.debug("Ticket found. Processing logout requests and then deleting the ticket...");
     final List<LogoutRequest> logoutRequests=logoutManager.performLogout(ticket);
     this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
+    doPublishEvent(new CasTicketGrantingTicketDestroyedEvent(this,ticket));
     return logoutRequests;
   }
  catch (  final InvalidTicketException e) {
