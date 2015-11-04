@@ -1,3 +1,8 @@
 {
-  this.jdbcTemplate=new JdbcTemplate(this.dataSource);
+  if (this.dataSource != null) {
+    this.jdbcTemplate=new JdbcTemplate(this.dataSource);
+  }
+ else {
+    logger.debug("No data source is defined for {}. Ignoring the construction of JDBC template",this.getName());
+  }
 }
