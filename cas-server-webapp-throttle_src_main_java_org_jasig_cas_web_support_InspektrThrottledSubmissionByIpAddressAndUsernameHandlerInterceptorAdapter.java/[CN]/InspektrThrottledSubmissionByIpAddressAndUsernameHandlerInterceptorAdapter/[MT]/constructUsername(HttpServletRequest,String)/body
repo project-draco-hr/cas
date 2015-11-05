@@ -1,4 +1,3 @@
 {
-  final String username=request.getParameter(usernameParameter);
-  return "[username: " + (username != null ? username : "") + ']';
+  return request.getParameter(usernameParameter);
 }
