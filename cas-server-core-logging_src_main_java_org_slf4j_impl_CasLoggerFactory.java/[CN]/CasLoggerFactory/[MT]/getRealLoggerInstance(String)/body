@@ -1,6 +1,9 @@
 {
   try {
-    final ILoggerFactory factInstance=this.realLoggerFactoryClass.newInstance();
+    final ILoggerFactory factInstance=getLoggerFactoryBeInstantiated(this.realLoggerFactoryClass);
+    if (factInstance == null) {
+      throw new RuntimeException("ILoggerFactory cannot be created from " + this.realLoggerFactoryClass.getName());
+    }
     return factInstance.getLogger(name);
   }
  catch (  final Exception e) {
