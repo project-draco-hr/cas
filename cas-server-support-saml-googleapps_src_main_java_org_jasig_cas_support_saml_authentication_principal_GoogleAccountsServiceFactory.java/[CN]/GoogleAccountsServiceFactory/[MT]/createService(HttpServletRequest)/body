@@ -17,5 +17,6 @@
   final String assertionConsumerServiceUrl=root.getAttributeValue("AssertionConsumerServiceURL");
   final String requestId=root.getAttributeValue("ID");
   final GoogleAccountsServiceResponseBuilder builder=new GoogleAccountsServiceResponseBuilder(this.privateKey,this.publicKey,BUILDER);
+  builder.setSkewAllowance(this.skewAllowance);
   return new GoogleAccountsService(assertionConsumerServiceUrl,relayState,requestId,builder);
 }
