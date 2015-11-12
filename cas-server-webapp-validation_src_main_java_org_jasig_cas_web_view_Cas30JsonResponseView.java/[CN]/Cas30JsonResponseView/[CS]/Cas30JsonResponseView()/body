@@ -1,0 +1,6 @@
+{
+  super();
+  setPrettyPrint(true);
+  setDisableCaching(true);
+  logger.debug("Rendering CAS JSON view");
+}
