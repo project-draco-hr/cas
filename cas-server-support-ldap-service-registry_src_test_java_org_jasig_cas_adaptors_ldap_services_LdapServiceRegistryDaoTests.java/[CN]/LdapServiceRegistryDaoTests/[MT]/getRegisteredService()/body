@@ -2,7 +2,7 @@
   final AbstractRegisteredService rs=new RegisteredServiceImpl();
   rs.setName("Service Name1");
   rs.setProxyPolicy(new RefuseRegisteredServiceProxyPolicy());
-  rs.setUsernameAttributeProvider(new AnonymousRegisteredServiceUsernameAttributeProvider());
+  rs.setUsernameAttributeProvider(new AnonymousRegisteredServiceUsernameAttributeProvider(new ShibbolethCompatiblePersistentIdGenerator("hello")));
   rs.setDescription("Service description");
   rs.setServiceId("https://?.edu/**");
   rs.setTheme("the theme name");

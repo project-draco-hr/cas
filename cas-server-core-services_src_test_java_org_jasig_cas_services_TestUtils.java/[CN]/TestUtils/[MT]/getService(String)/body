@@ -1,0 +1,6 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter("service",name);
+  final AbstractWebApplicationService result=(AbstractWebApplicationService)new WebApplicationServiceFactory().createService(request);
+  return result;
+}

@@ -42,7 +42,7 @@
     }
     final RegisteredServiceAttributeReleasePolicyStrategyEditBean policyBean=this.attrRelease.getAttrPolicy();
     final String policyType=policyBean.getType();
-    AbstractAttributeReleasePolicy policy=null;
+    AbstractRegisteredServiceAttributeReleasePolicy policy=null;
     if (StringUtils.equalsIgnoreCase(policyType,AbstractRegisteredServiceAttributeReleasePolicyStrategyBean.Types.ALL.toString())) {
       policy=new ReturnAllAttributeReleasePolicy();
     }

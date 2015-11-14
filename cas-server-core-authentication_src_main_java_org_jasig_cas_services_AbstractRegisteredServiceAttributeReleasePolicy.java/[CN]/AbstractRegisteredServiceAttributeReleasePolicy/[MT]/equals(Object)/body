@@ -1,0 +1,14 @@
+{
+  if (o == null) {
+    return false;
+  }
+  if (this == o) {
+    return true;
+  }
+  if (!(o instanceof AbstractRegisteredServiceAttributeReleasePolicy)) {
+    return false;
+  }
+  final AbstractRegisteredServiceAttributeReleasePolicy that=(AbstractRegisteredServiceAttributeReleasePolicy)o;
+  final EqualsBuilder builder=new EqualsBuilder();
+  return builder.append(this.registeredServiceAttributeFilter,that.registeredServiceAttributeFilter).append(this.authorizedToReleaseCredentialPassword,that.authorizedToReleaseCredentialPassword).append(this.authorizedToReleaseProxyGrantingTicket,that.authorizedToReleaseProxyGrantingTicket).append(this.principalAttributesRepository,that.principalAttributesRepository).isEquals();
+}

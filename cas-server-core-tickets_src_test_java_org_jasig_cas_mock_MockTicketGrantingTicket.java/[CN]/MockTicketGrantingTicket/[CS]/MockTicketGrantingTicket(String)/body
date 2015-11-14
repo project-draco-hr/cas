@@ -1,0 +1,6 @@
+{
+  id=ID_GENERATOR.getNewTicketId("TGT");
+  final CredentialMetaData metaData=new BasicCredentialMetaData(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  authentication=new DefaultAuthenticationBuilder(new DefaultPrincipalFactory().createPrincipal(principal)).addCredential(metaData).addSuccess(SimpleTestUsernamePasswordAuthenticationHandler.class.getName(),new DefaultHandlerResult(new SimpleTestUsernamePasswordAuthenticationHandler(),metaData)).build();
+  created=new Date();
+}
