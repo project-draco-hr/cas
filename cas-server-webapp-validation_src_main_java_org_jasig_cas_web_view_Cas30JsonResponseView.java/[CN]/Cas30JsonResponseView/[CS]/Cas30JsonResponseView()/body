@@ -1,6 +1,4 @@
 {
-  super();
-  setPrettyPrint(true);
-  setDisableCaching(true);
-  logger.debug("Rendering CAS JSON view");
+  super(createDelegatedView());
+  logger.debug("Rendering {}",this.getClass().getSimpleName());
 }

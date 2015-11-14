@@ -1,0 +1,15 @@
+{
+  final Map<String,Object> casModel=new HashMap<>();
+  final CasServiceResponse casResponse=new CasServiceResponse();
+  if (getAssertionFrom(model) != null) {
+    final CasServiceResponseAuthenticationSuccess success=createAuthenticationSuccess(model);
+    casResponse.setAuthenticationSuccess(success);
+  }
+ else {
+    final CasServiceResponseAuthenticationFailure failure=createAuthenticationFailure(model);
+    casResponse.setAuthenticationFailure(failure);
+  }
+  casModel.put("serviceResponse",casResponse);
+  model.clear();
+  model.putAll(casModel);
+}

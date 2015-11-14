@@ -1,0 +1,6 @@
+{
+  final CasServiceResponseAuthenticationFailure failure=new CasServiceResponseAuthenticationFailure();
+  failure.setCode(getErrorCodeFrom(model));
+  failure.setDescription(getErrorDescriptionFrom(model));
+  return failure;
+}
