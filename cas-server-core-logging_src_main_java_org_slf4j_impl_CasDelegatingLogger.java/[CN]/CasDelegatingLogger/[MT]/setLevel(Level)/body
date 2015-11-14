@@ -1,0 +1,3 @@
+{
+  getRealLogger().setLevel(level);
+}

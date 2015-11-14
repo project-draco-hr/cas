@@ -1,0 +1,4 @@
+{
+  final CasLoggerFactory factory=getCasLoggerFactoryInstance();
+  return factory.getLoggers().entrySet();
+}

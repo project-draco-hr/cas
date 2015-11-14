@@ -1,13 +1,8 @@
 {
-  final Map<String,Object> responseMap=new HashMap();
-  final CasLoggerFactory factory=(CasLoggerFactory)LoggerFactory.getILoggerFactory();
-  final Set<Map.Entry<String,CasDelegatingLogger>> loggers=factory.getLoggers().entrySet();
-  responseMap.put("activeLoggers",loggers);
-  final Collection<LoggerConfig> loggerConfigs=getLoggerConfigurations();
   final Collection<Map<String,Object>> configuredLoggers=new HashSet<>();
-  for (  final LoggerConfig config : loggerConfigs) {
-    final Map<String,Object> loggerMap=new HashMap();
-    loggerMap.put("name",StringUtils.defaultIfBlank(config.getName(),"Root"));
+  for (  final LoggerConfig config : getLoggerConfigurations()) {
+    final Map<String,Object> loggerMap=new HashMap<>();
+    loggerMap.put("name",StringUtils.defaultIfBlank(config.getName(),LOGGER_NAME_ROOT));
     loggerMap.put("state",config.getState());
     if (config.getProperties() != null) {
       loggerMap.put("properties",config.getProperties());
@@ -24,9 +19,11 @@
       builder.append("layoutContentType",appender.getLayout().getContentType());
       if (appender instanceof FileAppender) {
         builder.append("file",((FileAppender)appender).getFileName());
+        builder.append("filePattern","(none)");
       }
       if (appender instanceof RandomAccessFileAppender) {
         builder.append("file",((RandomAccessFileAppender)appender).getFileName());
+        builder.append("filePattern","(none)");
       }
       if (appender instanceof RollingFileAppender) {
         builder.append("file",((RollingFileAppender)appender).getFileName());
@@ -34,6 +31,7 @@
       }
       if (appender instanceof MemoryMappedFileAppender) {
         builder.append("file",((MemoryMappedFileAppender)appender).getFileName());
+        builder.append("filePattern","(none)");
       }
       if (appender instanceof RollingRandomAccessFileAppender) {
         builder.append("file",((RollingRandomAccessFileAppender)appender).getFileName());
@@ -44,6 +42,7 @@
     loggerMap.put("appenders",appenders);
     configuredLoggers.add(loggerMap);
   }
+  final Map<String,Object> responseMap=new HashMap();
   responseMap.put("loggers",configuredLoggers);
   return responseMap;
 }
