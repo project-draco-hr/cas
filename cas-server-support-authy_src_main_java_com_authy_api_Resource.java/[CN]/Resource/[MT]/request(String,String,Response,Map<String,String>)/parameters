@@ -1,0 +1,4 @@
+String method
+String path
+Response data
+Map<String,String> options

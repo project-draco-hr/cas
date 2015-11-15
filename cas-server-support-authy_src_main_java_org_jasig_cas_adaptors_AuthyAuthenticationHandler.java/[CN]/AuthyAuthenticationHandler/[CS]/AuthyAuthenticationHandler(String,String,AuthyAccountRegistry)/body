@@ -1,0 +1,8 @@
+{
+  final URL url=new URL(apiUrl);
+  final boolean testFlag=url.getProtocol().equals("http");
+  this.authyClient=new AuthyApiClient(apiKey,apiUrl,testFlag);
+  this.authyUsers=this.authyClient.getUsers();
+  this.authyTokens=this.authyClient.getTokens();
+  this.registry=registry;
+}

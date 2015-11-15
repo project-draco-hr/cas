@@ -1,0 +1,3 @@
+{
+  if (options != null)   this.options=options;
+}

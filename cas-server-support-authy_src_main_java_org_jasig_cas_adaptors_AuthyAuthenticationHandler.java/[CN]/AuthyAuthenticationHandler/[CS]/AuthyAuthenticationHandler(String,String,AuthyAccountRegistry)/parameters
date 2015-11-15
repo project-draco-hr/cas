@@ -1,0 +1,3 @@
+String apiKey
+String apiUrl
+AuthyAccountRegistry registry

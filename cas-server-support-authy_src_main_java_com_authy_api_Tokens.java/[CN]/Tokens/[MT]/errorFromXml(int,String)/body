@@ -1,0 +1,13 @@
+{
+  Error error=new Error();
+  try {
+    JAXBContext context=JAXBContext.newInstance(Error.class);
+    Unmarshaller unmarshaller=context.createUnmarshaller();
+    StringReader xml=new StringReader(content);
+    error=(Error)unmarshaller.unmarshal(new StreamSource(xml));
+  }
+ catch (  JAXBException e) {
+    return null;
+  }
+  return error;
+}
