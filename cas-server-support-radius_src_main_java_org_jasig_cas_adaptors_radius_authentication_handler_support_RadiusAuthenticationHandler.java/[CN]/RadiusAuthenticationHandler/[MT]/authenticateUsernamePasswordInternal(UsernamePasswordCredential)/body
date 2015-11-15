@@ -6,7 +6,11 @@
     try {
       final RadiusResponse response=radiusServer.authenticate(username,password);
       if (response != null) {
-        return createHandlerResult(credential,this.principalFactory.createPrincipal(username),null);
+        final Map<String,Object> attributes=new HashMap<>();
+        for (        final RadiusAttribute attribute : response.getAttributes()) {
+          attributes.put(attribute.getAttributeName(),attribute.getValue().toString());
+        }
+        return createHandlerResult(credential,this.principalFactory.createPrincipal(username,attributes),new ArrayList<MessageDescriptor>());
       }
       if (!this.failoverOnAuthenticationFailure) {
         throw new FailedLoginException("Radius authentication failed for user " + username);
