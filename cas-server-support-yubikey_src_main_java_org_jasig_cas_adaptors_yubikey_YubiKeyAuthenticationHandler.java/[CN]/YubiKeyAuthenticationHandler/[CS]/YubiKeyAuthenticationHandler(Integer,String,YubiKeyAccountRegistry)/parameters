@@ -1,3 +1,0 @@
-Integer clientId
-String secretKey
-YubiKeyAccountRegistry registry
