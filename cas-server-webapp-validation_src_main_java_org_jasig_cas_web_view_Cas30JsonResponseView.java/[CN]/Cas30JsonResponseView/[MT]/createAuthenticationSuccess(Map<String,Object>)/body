@@ -1,0 +1,21 @@
+{
+  final CasServiceResponseAuthenticationSuccess success=new CasServiceResponseAuthenticationSuccess();
+  final Authentication authentication=getPrimaryAuthenticationFrom(model);
+  final Principal principal=getPrincipal(model);
+  if (!principal.getAttributes().isEmpty()) {
+    success.setAttributes(principal.getAttributes());
+  }
+  success.setUser(principal.getId());
+  if (!authentication.getAttributes().isEmpty()) {
+    success.setAuthenticationAttributes(authentication.getAttributes());
+  }
+  final Collection<Authentication> chainedAuthentications=getChainedAuthentications(model);
+  if (chainedAuthentications != null && !chainedAuthentications.isEmpty()) {
+    final List<String> proxies=new ArrayList<>();
+    for (    final Authentication authn : chainedAuthentications) {
+      proxies.add(authn.getPrincipal().getId());
+    }
+    success.setProxies(proxies);
+  }
+  return success;
+}
