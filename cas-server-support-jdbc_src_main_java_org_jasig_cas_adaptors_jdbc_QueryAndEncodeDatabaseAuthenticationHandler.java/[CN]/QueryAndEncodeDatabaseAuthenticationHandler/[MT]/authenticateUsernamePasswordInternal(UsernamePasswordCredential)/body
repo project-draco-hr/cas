@@ -1,4 +1,7 @@
 {
+  if (StringUtils.isBlank(this.sql) || StringUtils.isBlank(this.algorithmName) || getJdbcTemplate() == null) {
+    throw new GeneralSecurityException("Authentication handler is not configured correctly");
+  }
   final String username=getPrincipalNameTransformer().transform(transformedCredential.getUsername());
   final String encodedPsw=this.getPasswordEncoder().encode(transformedCredential.getPassword());
   try {

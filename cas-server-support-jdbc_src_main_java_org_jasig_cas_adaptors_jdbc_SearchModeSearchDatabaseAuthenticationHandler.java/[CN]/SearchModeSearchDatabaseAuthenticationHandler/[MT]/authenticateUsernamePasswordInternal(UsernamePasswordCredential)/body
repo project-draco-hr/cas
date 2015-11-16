@@ -1,4 +1,7 @@
 {
+  if (StringUtils.isBlank(this.sql) || getJdbcTemplate() == null) {
+    throw new GeneralSecurityException("Authentication handler is not configured correctly");
+  }
   final String username=credential.getUsername();
   final String encyptedPassword=getPasswordEncoder().encode(credential.getPassword());
   final int count;
