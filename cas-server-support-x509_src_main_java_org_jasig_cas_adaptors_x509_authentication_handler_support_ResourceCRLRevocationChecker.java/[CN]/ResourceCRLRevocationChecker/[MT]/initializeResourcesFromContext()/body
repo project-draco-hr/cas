@@ -1,0 +1,9 @@
+{
+  try {
+    this.resources=applicationContext.getBean("x509CrlResources",Set.class);
+    logger.debug("Located {} CRL resources from configuration",resources.size());
+  }
+ catch (  final Exception e) {
+    logger.debug("[x509CrlResources] is not defined in the application context");
+  }
+}

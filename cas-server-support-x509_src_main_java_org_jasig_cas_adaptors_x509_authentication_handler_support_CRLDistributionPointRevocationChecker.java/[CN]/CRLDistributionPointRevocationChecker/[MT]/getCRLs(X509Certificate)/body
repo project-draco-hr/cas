@@ -1,4 +1,16 @@
 {
+  if (this.crlCache == null) {
+    throw new IllegalArgumentException("CRL cache is not defined");
+  }
+  if (this.fetcher == null) {
+    throw new IllegalArgumentException("CRL fetcher is not defined");
+  }
+  if (getExpiredCRLPolicy() == null) {
+    throw new IllegalArgumentException("Expiration CRL policy is not defined");
+  }
+  if (getUnavailableCRLPolicy() == null) {
+    throw new IllegalArgumentException("Unavailable CRL policy is not defined");
+  }
   final URI[] urls=getDistributionPoints(cert);
   logger.debug("Distribution points for {}: {}.",CertUtils.toString(cert),Arrays.asList(urls));
   final List<X509CRL> listOfLocations=new ArrayList<>(urls.length);

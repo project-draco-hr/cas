@@ -1,0 +1,8 @@
+{
+  if (this.unavailableCRLPolicy == null) {
+    this.unavailableCRLPolicy=new DenyRevocationPolicy();
+  }
+  if (this.expiredCRLPolicy == null) {
+    this.expiredCRLPolicy=new ThresholdExpiredCRLRevocationPolicy();
+  }
+}

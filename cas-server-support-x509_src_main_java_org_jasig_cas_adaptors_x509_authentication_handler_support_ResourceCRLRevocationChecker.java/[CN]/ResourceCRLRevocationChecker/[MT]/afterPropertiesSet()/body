@@ -1,4 +1,8 @@
 {
+  initializeResourcesFromContext();
+  if (!validateConfiguration()) {
+    return;
+  }
   try {
     final Set<X509CRL> results=this.fetcher.fetch(getResources());
     ResourceCRLRevocationChecker.this.addCrls(results);
