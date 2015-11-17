@@ -1,0 +1,3 @@
+{
+  return model.get(CasViewConstants.MODEL_ATTRIBUTE_NAME_ERROR_DESCRIPTION).toString();
+}
