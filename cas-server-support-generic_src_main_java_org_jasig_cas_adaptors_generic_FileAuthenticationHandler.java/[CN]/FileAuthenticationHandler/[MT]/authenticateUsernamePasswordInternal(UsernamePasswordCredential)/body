@@ -1,5 +1,8 @@
 {
   try {
+    if (this.fileName == null || !this.fileName.exists()) {
+      throw new FileNotFoundException("Filename does not exist");
+    }
     final String username=credential.getUsername();
     final String passwordOnRecord=getPasswordOnRecord(username);
     if (StringUtils.isBlank(passwordOnRecord)) {
