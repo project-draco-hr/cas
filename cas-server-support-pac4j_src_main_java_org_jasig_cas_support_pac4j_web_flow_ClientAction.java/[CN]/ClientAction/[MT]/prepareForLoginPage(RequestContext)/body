@@ -9,11 +9,13 @@
   saveRequestParameter(request,session,THEME);
   saveRequestParameter(request,session,LOCALE);
   saveRequestParameter(request,session,METHOD);
-  for (  final Client client : this.clients.findAllClients()) {
-    final String key=client.getName() + "Url";
+  final LinkedHashMap<String,String> urls=new LinkedHashMap<>();
+  for (  final Client client : this.clients.getClients()) {
     final IndirectClient indirectClient=(IndirectClient)client;
+    final String name=client.getName();
     final String redirectionUrl=indirectClient.getRedirectionUrl(webContext);
-    logger.debug("{} -> {}",key,redirectionUrl);
-    context.getFlowScope().put(key,redirectionUrl);
+    logger.debug("{} -> {}",name,redirectionUrl);
+    urls.put(name,redirectionUrl);
   }
+  context.getFlowScope().put(PAC4J_URLS,urls);
 }
