@@ -1,0 +1,10 @@
+{
+  final ApplicationContext context=ApplicationContextProvider.getApplicationContext();
+  final ReloadableServicesManager servicesManager=context.getBean(ReloadableServicesManager.class);
+  final RegisteredService registeredService=servicesManager.findServiceBy(service);
+  if (registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed()) {
+    logger.debug("Located service {} in the registry. Attempting to resolve attributes for {}",service.getId(),p.getId());
+    return registeredService.getAttributeReleasePolicy().getAttributes(p);
+  }
+  throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
+}
