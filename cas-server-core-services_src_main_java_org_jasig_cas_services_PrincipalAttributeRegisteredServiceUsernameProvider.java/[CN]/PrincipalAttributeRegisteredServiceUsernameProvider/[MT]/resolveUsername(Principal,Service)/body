@@ -1,11 +1,12 @@
 {
   String principalId=principal.getId();
-  if (principal.getAttributes().containsKey(this.usernameAttribute)) {
-    principalId=principal.getAttributes().get(this.usernameAttribute).toString();
+  final Map<String,Object> attributes=getPrincipalAttributes(principal,service);
+  if (attributes.containsKey(this.usernameAttribute)) {
+    principalId=attributes.get(this.usernameAttribute).toString();
   }
  else {
-    logger.warn("Principal [{}] did not have attribute [{}] among attributes [{}] so CAS cannot " + "provide the user attribute the service expects. " + "CAS will instead return the default principal id [{}]",principalId,this.usernameAttribute,principal.getAttributes(),principalId);
+    logger.warn("Principal [{}] does not have an attribute [{}] among attributes [{}] so CAS cannot " + "provide the user attribute the service expects. " + "CAS will instead return the default principal id [{}]. Ensure the attribute selected as the username "+ "is allowed to be released by the service attribute release policy.",principalId,this.usernameAttribute,attributes,principalId);
   }
-  logger.debug("Principal id to return is [{}]. The default principal id is [{}].",principalId,principal.getId());
+  logger.debug("Principal id to return for [{}] is [{}]. The default principal id is [{}].",service.getId(),principalId,principal.getId());
   return principalId;
 }
