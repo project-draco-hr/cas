@@ -1,6 +1,5 @@
 {
-  List<Client> allClients=new ArrayList<>();
-  allClients.addAll(Arrays.<Client>asList(clients));
+  final List<Client> allClients=new ArrayList<>();
   final Map<String,String> properties=new HashMap<>();
   final Enumeration names=casProperties.propertyNames();
   while (names.hasMoreElements()) {
@@ -12,6 +11,7 @@
   final ConfigFactory configFactory=new ConfigPropertiesFactory(properties);
   final Config propertiesConfig=configFactory.build();
   allClients.addAll(propertiesConfig.getClients().getClients());
+  allClients.addAll(Arrays.<Client>asList(clients));
   if (allClients == null || allClients.size() == 0) {
     throw new IllegalArgumentException("At least one pac4j client must be defined");
   }

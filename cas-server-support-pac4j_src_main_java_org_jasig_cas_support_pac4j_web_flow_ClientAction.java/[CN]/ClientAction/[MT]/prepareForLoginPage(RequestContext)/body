@@ -10,9 +10,9 @@
   saveRequestParameter(request,session,LOCALE);
   saveRequestParameter(request,session,METHOD);
   final LinkedHashMap<String,String> urls=new LinkedHashMap<>();
-  for (  final Client client : this.clients.getClients()) {
+  for (  final Client client : this.clients.findAllClients(webContext)) {
     final IndirectClient indirectClient=(IndirectClient)client;
-    final String name=client.getName();
+    final String name=client.getName().replace("Client","");
     final String redirectionUrl=indirectClient.getRedirectionUrl(webContext);
     logger.debug("{} -> {}",name,redirectionUrl);
     urls.put(name,redirectionUrl);
