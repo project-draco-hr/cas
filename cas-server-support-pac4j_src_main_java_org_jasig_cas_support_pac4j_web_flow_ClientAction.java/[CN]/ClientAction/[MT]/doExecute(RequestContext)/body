@@ -6,7 +6,7 @@
   final String clientName=request.getParameter(this.clients.getClientNameParameter());
   logger.debug("clientName: {}",clientName);
   if (StringUtils.isNotBlank(clientName)) {
-    final BaseClient<Credentials,CommonProfile> client=(BaseClient<Credentials,CommonProfile>)this.clients.findClient(webContext,clientName);
+    final BaseClient<Credentials,CommonProfile> client=(BaseClient<Credentials,CommonProfile>)this.clients.findClient(clientName);
     logger.debug("client: {}",client);
     final ClientType clientType=client.getClientType();
     if (!SUPPORTED_PROTOCOLS.contains(clientType)) {
