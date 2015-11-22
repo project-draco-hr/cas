@@ -1,0 +1,5 @@
+{
+  if (this.delegateTransformer == null) {
+    this.delegateTransformer=new NoOpPrincipalNameTransformer();
+  }
+}
