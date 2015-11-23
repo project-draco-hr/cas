@@ -6,7 +6,7 @@
       return new FileSystemResource("src/main/webapp" + location);
     }
     @Override public ClassLoader getClassLoader(){
-      return getClassLoader();
+      return WiringTests.class.getClassLoader();
     }
   }
 ));
