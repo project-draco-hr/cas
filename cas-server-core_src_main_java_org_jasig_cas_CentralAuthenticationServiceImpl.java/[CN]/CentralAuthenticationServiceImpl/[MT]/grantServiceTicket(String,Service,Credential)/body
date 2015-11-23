@@ -26,7 +26,7 @@
     principalAttrs=releasePolicy.getAttributes(principal);
   }
  else {
-    principalAttrs=new HashedMap<>();
+    principalAttrs=new HashMap<>();
   }
   if (!registeredService.getAccessStrategy().doPrincipalAttributesAllowServiceAccess(principalAttrs)) {
     logger.warn("Cannot grant service ticket because Service [{}] is not authorized for use by [{}].",service.getId(),principal);
