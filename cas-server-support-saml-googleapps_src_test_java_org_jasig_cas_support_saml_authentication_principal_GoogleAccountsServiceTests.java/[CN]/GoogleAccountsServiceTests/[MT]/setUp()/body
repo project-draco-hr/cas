@@ -1,4 +1,4 @@
 {
   this.googleAccountsService=getGoogleAccountsService();
-  this.googleAccountsService.setPrincipal(TestUtils.getPrincipal());
+  this.googleAccountsService.setPrincipal(org.jasig.cas.authentication.TestUtils.getPrincipal());
 }

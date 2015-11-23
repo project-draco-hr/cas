@@ -1,3 +1,0 @@
-{
-  assertFalse(this.authenticationHandler.supports(TestUtils.getCredentialsWithSameUsernameAndPassword()));
-}

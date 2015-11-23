@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this).append("attributeFilter",registeredServiceAttributeFilter).append("principalAttributesRepository",principalAttributesRepository).append("authorizedToReleaseCredentialPassword",authorizedToReleaseCredentialPassword).append("authorizedToReleaseProxyGrantingTicket",authorizedToReleaseProxyGrantingTicket).toString();
+}

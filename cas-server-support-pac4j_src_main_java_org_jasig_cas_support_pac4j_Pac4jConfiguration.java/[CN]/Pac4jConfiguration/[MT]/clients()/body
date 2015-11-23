@@ -1,18 +1,19 @@
 {
-  String callbackUrl=serverLoginUrl;
-  List<Client> allClients=new ArrayList<>();
-  if (clients != null) {
-    final String clientsCallbackUrl=clients.getCallbackUrl();
-    if (StringUtils.isNotBlank(clientsCallbackUrl)) {
-      callbackUrl=clientsCallbackUrl;
+  final List<Client> allClients=new ArrayList<>();
+  final Map<String,String> properties=new HashMap<>();
+  final Enumeration names=casProperties.propertyNames();
+  while (names.hasMoreElements()) {
+    final String name=(String)names.nextElement();
+    if (name.startsWith(CAS_PAC4J_PREFIX)) {
+      properties.put(name.substring(CAS_PAC4J_PREFIX.length()),casProperties.getProperty(name));
     }
-    allClients=clients.findAllClients();
   }
-  autoCreateFacebookClient(allClients);
-  autoCreateTwitterClient(allClients);
-  autoCreateSaml2Client(allClients);
+  final ConfigFactory configFactory=new ConfigPropertiesFactory(properties);
+  final Config propertiesConfig=configFactory.build();
+  allClients.addAll(propertiesConfig.getClients().getClients());
+  allClients.addAll(Arrays.<Client>asList(clients));
   if (allClients == null || allClients.size() == 0) {
     throw new IllegalArgumentException("At least one pac4j client must be defined");
   }
-  return new Clients(callbackUrl,allClients);
+  return new Clients(serverLoginUrl,allClients);
 }

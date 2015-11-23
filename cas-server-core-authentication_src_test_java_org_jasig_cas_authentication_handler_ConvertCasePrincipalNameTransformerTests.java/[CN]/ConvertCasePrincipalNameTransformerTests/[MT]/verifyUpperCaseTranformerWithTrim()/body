@@ -1,0 +1,7 @@
+{
+  final ConvertCasePrincipalNameTransformer transformer=new ConvertCasePrincipalNameTransformer();
+  transformer.init();
+  transformer.setToUpperCase(true);
+  final String result=transformer.transform("   uid  ");
+  assertEquals(result,"UID");
+}

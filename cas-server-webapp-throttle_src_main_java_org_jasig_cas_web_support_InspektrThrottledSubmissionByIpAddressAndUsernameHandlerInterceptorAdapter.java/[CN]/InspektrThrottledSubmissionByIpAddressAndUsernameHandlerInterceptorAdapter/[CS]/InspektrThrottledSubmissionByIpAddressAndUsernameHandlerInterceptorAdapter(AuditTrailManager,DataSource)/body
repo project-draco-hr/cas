@@ -1,0 +1,4 @@
+{
+  this.auditTrailManager=auditTrailManager;
+  init();
+}

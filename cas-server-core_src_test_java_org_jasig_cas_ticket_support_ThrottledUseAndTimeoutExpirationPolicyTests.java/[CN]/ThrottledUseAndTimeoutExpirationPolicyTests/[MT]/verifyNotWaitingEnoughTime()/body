@@ -1,4 +1,0 @@
-{
-  this.ticket.grantServiceTicket("test",TestUtils.getService(),this.expirationPolicy,false,true);
-  assertTrue(this.ticket.isExpired());
-}

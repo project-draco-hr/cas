@@ -1,0 +1,8 @@
+{
+  final RegisteredService service=mock(RegisteredService.class);
+  when(service.getServiceId()).thenReturn(url);
+  when(service.getName()).thenReturn("service name");
+  when(service.getId()).thenReturn(Long.MAX_VALUE);
+  when(service.getDescription()).thenReturn("service description");
+  return service;
+}

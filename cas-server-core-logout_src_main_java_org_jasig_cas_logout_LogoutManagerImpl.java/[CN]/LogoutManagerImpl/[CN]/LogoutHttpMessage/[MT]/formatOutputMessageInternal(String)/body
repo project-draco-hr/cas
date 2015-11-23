@@ -1,0 +1,3 @@
+{
+  return LOGOUT_PARAMETER_NAME + '=' + super.formatOutputMessageInternal(message);
+}

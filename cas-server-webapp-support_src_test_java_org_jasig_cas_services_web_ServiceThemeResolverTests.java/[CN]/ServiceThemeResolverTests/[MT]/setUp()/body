@@ -1,9 +1,0 @@
-{
-  this.servicesManager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
-  this.serviceThemeResolver=new ServiceThemeResolver();
-  this.serviceThemeResolver.setDefaultThemeName("test");
-  this.serviceThemeResolver.setServicesManager(this.servicesManager);
-  final Map<String,String> mobileBrowsers=new HashMap<>();
-  mobileBrowsers.put("Mozilla","theme");
-  this.serviceThemeResolver.setMobileBrowsers(mobileBrowsers);
-}

@@ -9,7 +9,7 @@
       final RegisteredService service=this.servicesManager.findServiceBy(id);
       if (service == null) {
         logger.warn("Invalid service id specified [{}]. Cannot find service in the registry",id);
-        throw new IllegalArgumentException("Service id cannot be found");
+        throw new IllegalArgumentException("Service id " + id + " cannot be found");
       }
       bean=RegisteredServiceEditBean.fromRegisteredService(service);
     }

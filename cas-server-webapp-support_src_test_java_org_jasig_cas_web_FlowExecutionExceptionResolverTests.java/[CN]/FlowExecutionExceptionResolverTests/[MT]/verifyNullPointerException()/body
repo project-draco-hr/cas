@@ -1,3 +1,0 @@
-{
-  assertNull(this.resolver.resolveException(new MockHttpServletRequest(),new MockHttpServletResponse(),null,new NullPointerException()));
-}

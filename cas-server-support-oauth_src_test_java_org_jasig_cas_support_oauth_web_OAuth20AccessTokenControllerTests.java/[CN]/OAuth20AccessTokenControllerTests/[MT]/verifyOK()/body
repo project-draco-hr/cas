@@ -10,9 +10,9 @@
   map.put(NAME,VALUE);
   final List<String> list=Arrays.asList(VALUE,VALUE);
   map.put(NAME2,list);
-  final Principal p=TestUtils.getPrincipal(ID,map);
-  final TicketGrantingTicketImpl impl=new TicketGrantingTicketImpl(TGT_ID,TestUtils.getAuthentication(p),new NeverExpiresExpirationPolicy());
-  ((OAuth20WrapperController)oauth20WrapperController).getTicketRegistry().addTicket(new ServiceTicketImpl(CODE,impl,TestUtils.getService(),false,new ExpirationPolicy(){
+  final Principal p=org.jasig.cas.authentication.TestUtils.getPrincipal(ID,map);
+  final TicketGrantingTicketImpl impl=new TicketGrantingTicketImpl(TGT_ID,org.jasig.cas.authentication.TestUtils.getAuthentication(p),new NeverExpiresExpirationPolicy());
+  ((OAuth20WrapperController)oauth20WrapperController).getTicketRegistry().addTicket(new ServiceTicketImpl(CODE,impl,org.jasig.cas.authentication.TestUtils.getService(),false,new ExpirationPolicy(){
     private static final long serialVersionUID=-7321055962209199811L;
     @Override public boolean isExpired(    final TicketState ticketState){
       return false;
@@ -24,8 +24,8 @@
   assertEquals("text/plain",mockResponse.getContentType());
   assertEquals(200,mockResponse.getStatus());
   final String body=mockResponse.getContentAsString();
-  assertTrue(body.startsWith(OAuthConstants.ACCESS_TOKEN + "=" + TGT_ID+ "&"+ OAuthConstants.EXPIRES+ "="));
+  assertTrue(body.startsWith(OAuthConstants.ACCESS_TOKEN + '=' + TGT_ID+ '&'+ OAuthConstants.EXPIRES+ '='));
   final int delta=2;
-  final int timeLeft=Integer.parseInt(StringUtils.substringAfter(body,"&" + OAuthConstants.EXPIRES + "="));
+  final int timeLeft=Integer.parseInt(StringUtils.substringAfter(body,'&' + OAuthConstants.EXPIRES + '='));
   assertTrue(timeLeft >= TIMEOUT - 10 - delta);
 }

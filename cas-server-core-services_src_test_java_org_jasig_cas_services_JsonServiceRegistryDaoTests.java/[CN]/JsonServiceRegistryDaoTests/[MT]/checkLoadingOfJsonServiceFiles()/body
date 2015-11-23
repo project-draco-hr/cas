@@ -1,0 +1,6 @@
+{
+  prepTests();
+  verifySaveAttributeReleasePolicyMappingRules();
+  verifySaveAttributeReleasePolicyAllowedAttrRulesAndFilter();
+  assertEquals(this.dao.load().size(),2);
+}

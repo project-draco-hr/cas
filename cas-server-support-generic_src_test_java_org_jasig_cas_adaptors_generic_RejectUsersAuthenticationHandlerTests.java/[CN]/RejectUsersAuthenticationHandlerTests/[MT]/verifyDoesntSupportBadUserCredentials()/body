@@ -1,8 +1,6 @@
 {
   try {
-    final RegisteredServiceImpl svc=new RegisteredServiceImpl();
-    svc.setServiceId("https://some.app.edu");
-    assertFalse(this.authenticationHandler.supports(new HttpBasedServiceCredential(new URL("http://www.rutgers.edu"),svc)));
+    assertFalse(this.authenticationHandler.supports(new HttpBasedServiceCredential(new URL("http://www.rutgers.edu"),org.jasig.cas.authentication.TestUtils.getRegisteredService())));
   }
  catch (  final MalformedURLException e) {
     fail("Could not resolve URL.");

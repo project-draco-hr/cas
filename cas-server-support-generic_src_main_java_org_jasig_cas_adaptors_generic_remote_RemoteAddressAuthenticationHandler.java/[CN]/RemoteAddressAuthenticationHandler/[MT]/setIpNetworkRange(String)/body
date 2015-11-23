@@ -1,5 +1,5 @@
 {
-  if (ipAddressRange != null) {
+  if (StringUtils.isNotBlank(ipAddressRange)) {
     final String[] splitAddress=ipAddressRange.split("/");
     if (splitAddress.length == 2) {
       final String network=splitAddress[0].trim();
