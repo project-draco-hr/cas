@@ -9,5 +9,5 @@
     return false;
   }
   final DefaultRegisteredServiceProperty rhs=(DefaultRegisteredServiceProperty)obj;
-  return new EqualsBuilder().append(this.id,rhs.id).append(this.values,rhs.values).isEquals();
+  return new EqualsBuilder().append(this.name,rhs.name).append(this.values,rhs.values).isEquals();
 }
