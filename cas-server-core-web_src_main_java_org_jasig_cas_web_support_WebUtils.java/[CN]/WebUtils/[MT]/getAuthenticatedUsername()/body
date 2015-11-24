@@ -5,7 +5,10 @@
   final ProfileManager manager=new ProfileManager(context);
   final UserProfile profile=manager.get(true);
   if (profile != null) {
-    return profile.getId();
+    final String id=profile.getId();
+    if (id != null) {
+      return id;
+    }
   }
-  return null;
+  return UNKNOWN_USER;
 }
