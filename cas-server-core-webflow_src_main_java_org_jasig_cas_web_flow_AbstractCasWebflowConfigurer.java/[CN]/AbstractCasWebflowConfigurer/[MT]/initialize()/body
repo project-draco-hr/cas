@@ -1,6 +1,7 @@
 {
   try {
     logger.debug("Initializing CAS webflow configuration...");
+    doInitialize();
   }
  catch (  final Exception e) {
     logger.error(e.getMessage(),e);
