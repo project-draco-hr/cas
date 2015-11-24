@@ -1,0 +1,3 @@
+{
+  return this.flowDefinitionRegistry.getFlowDefinition(this.subflowId);
+}

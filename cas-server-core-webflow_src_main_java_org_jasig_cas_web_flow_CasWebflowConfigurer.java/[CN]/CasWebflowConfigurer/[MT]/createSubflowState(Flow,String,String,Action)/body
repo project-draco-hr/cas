@@ -1,0 +1,7 @@
+{
+  final SubflowState state=new SubflowState(flow,id,new BasicSubflowExpression(subflow,this.flowDefinitionRegistry));
+  if (entryAction != null) {
+    state.getEntryActionList().add(entryAction);
+  }
+  return state;
+}

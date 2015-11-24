@@ -1,0 +1,4 @@
+{
+  final Flow flow=(Flow)this.flowDefinitionRegistry.getFlowDefinition(FLOW_ID_LOGIN);
+  return flow;
+}

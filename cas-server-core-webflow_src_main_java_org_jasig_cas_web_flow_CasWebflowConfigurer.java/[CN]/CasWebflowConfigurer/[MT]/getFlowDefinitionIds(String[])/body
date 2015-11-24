@@ -1,0 +1,7 @@
+{
+  String[] flowIds=flowDefinitionRegistry.getFlowDefinitionIds();
+  for (  final String flowId : excludedFlowIds) {
+    flowIds=ArrayUtils.removeElement(flowIds,flowId);
+  }
+  return Arrays.asList(flowIds);
+}

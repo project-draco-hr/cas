@@ -1,0 +1,8 @@
+{
+  try {
+    logger.debug("Initializing CAS webflow configuration...");
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+}
