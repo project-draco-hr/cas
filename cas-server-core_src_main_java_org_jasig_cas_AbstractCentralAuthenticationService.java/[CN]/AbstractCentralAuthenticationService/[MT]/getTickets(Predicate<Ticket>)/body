@@ -2,7 +2,7 @@
   final Collection<Ticket> c=new HashSet<>(this.ticketRegistry.getTickets());
   final Iterator<Ticket> it=c.iterator();
   while (it.hasNext()) {
-    if (!predicate.evaluate(it.next())) {
+    if (!predicate.apply(it.next())) {
       it.remove();
     }
   }
