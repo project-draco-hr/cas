@@ -5,7 +5,7 @@
     final String wa=request.getParameter(WA);
     if (StringUtils.isNotBlank(wa) && wa.equalsIgnoreCase(WSIGNIN)) {
       final String wresult=request.getParameter(WRESULT);
-      logger.debug("Parameter [wresult] received: {}",wresult);
+      logger.debug("Parameter [{}] received: {}",WRESULT,wresult);
       final Assertion assertion=wsFederationHelper.parseTokenFromString(wresult);
       if (wsFederationHelper.validateSignature(assertion,configuration)) {
         final WsFederationCredential credential=wsFederationHelper.createCredentialFromToken(assertion);

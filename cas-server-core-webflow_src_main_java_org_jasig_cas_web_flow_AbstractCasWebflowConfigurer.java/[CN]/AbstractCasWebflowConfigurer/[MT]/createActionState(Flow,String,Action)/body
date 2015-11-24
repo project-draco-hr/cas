@@ -1,0 +1,7 @@
+{
+  final ActionState actionState=new ActionState(flow,name);
+  logger.debug("Created action state {}",actionState.getId());
+  actionState.getActionList().addAll(actions);
+  logger.debug("Added action to the action state {} list of actions: {}",actionState.getId(),actionState.getActionList());
+  return actionState;
+}

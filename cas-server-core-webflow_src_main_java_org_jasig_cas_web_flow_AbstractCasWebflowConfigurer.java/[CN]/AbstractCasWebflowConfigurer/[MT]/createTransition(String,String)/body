@@ -1,0 +1,5 @@
+{
+  final DefaultTransitionCriteria criteria=new DefaultTransitionCriteria(new LiteralExpression(criteriaOutcome));
+  final DefaultTargetStateResolver resolver=new DefaultTargetStateResolver(targetState);
+  return new Transition(criteria,resolver);
+}

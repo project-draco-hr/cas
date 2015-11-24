@@ -1,0 +1,8 @@
+{
+  if (state == null) {
+    logger.debug("Cannot add default transition of [{}] to the given state is null and cannot be found in the flow.",targetState);
+    return;
+  }
+  final Transition transition=createTransition(targetState);
+  state.getTransitionSet().add(transition);
+}

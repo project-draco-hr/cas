@@ -1,0 +1,5 @@
+{
+  flow.setStartState(state);
+  final TransitionableState startState=getStartState(flow);
+  logger.debug("Start state is now set to {}",startState.getId());
+}
