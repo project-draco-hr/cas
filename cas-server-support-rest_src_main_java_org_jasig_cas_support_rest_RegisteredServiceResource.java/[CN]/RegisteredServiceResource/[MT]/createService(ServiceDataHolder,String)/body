@@ -8,8 +8,6 @@
       throw new InvalidTicketException("Ticket-granting ticket " + tgtId + " is not found");
     }
     final Map<String,Object> attributes=ticket.getAuthentication().getPrincipal().getAttributes();
-    final Map<String,Set<String>> requiredAttrs=new HashMap<>();
-    requiredAttrs.put(this.attributeName,Collections.singleton(this.attributeValue));
     if (attributes.containsKey(this.attributeName)) {
       final Collection<String> attributeValuesToCompare=new HashSet<>();
       final Object value=attributes.get(this.attributeName);
