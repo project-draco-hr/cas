@@ -1,0 +1,17 @@
+{
+  final OpenSamlConfigBean configBean=ApplicationContextProvider.getApplicationContext().getBean(OpenSamlConfigBean.class);
+  try (final InputStream in=getResourceInputStream()){
+    logger.debug("Parsing [{}]",this.metadataLocation.getFilename());
+    final Document document=configBean.getParserPool().parse(in);
+    final List<MetadataResolver> resolvers=buildSingleMetadataResolver(document);
+    this.metadataResolver=new ChainingMetadataResolver();
+synchronized (this.lock) {
+      this.metadataResolver.setId(ChainingMetadataResolver.class.getCanonicalName());
+      this.metadataResolver.setResolvers(resolvers);
+      this.metadataResolver.initialize();
+    }
+  }
+ catch (  final Exception e) {
+    logger.warn("Could not retrieve input stream from resource. Moving on...",e);
+  }
+}

@@ -1,4 +1,7 @@
 {
   super.copyFrom(source);
   final SamlRegisteredService samlRegisteredService=(SamlRegisteredService)source;
+  setSignAssertions(samlRegisteredService.isSignAssertions());
+  setSigningCredential(samlRegisteredService.getSigningCredential());
+  setSupportedNameFormats(samlRegisteredService.getSupportedNameFormats());
 }

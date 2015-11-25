@@ -1,0 +1,4 @@
+{
+  this.metadataLocation=metadataLocation;
+  loadMetadataFromResource();
+}

@@ -1,4 +1,6 @@
 {
   super();
   this.supportedNameFormats.add(NameID.UNSPECIFIED);
+  this.supportedNameFormats.add(NameID.TRANSIENT);
+  this.supportedNameFormats.add(NameID.EMAIL);
 }
