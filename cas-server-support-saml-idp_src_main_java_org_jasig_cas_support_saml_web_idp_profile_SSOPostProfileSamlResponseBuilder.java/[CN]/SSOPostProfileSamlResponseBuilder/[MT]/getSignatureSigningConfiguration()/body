@@ -1,0 +1,12 @@
+{
+  final BasicSignatureSigningConfiguration config=DefaultSecurityConfigurationBootstrap.buildDefaultSignatureSigningConfiguration();
+  final PrivateKeyFactoryBean privateKeyFactoryBean=new PrivateKeyFactoryBean();
+  privateKeyFactoryBean.setLocation(new FileSystemResource(this.signingKeyFile));
+  privateKeyFactoryBean.setAlgorithm("RSA");
+  final PrivateKey privateKey=privateKeyFactoryBean.getObject();
+  final X509Certificate certificate=readCertificate(new FileSystemResource(this.signingCertFile));
+  final List<Credential> creds=new ArrayList<>();
+  creds.add(new BasicX509Credential(certificate,privateKey));
+  config.setSigningCredentials(creds);
+  return config;
+}

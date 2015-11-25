@@ -19,7 +19,7 @@
   final Assertion assertion=validator.validate(ticket,serviceUrl);
   logValidationAssertion(assertion);
   if (assertion.isValid()) {
-    final RegisteredService registeredService=getRegisteredServiceAndVerify(authnRequest);
+    final SamlRegisteredService registeredService=getRegisteredServiceAndVerify(authnRequest);
     logger.debug("Preparing SAML response to {}",registeredService);
     final Response samlResponse=responseBuilder.build(authnRequest,request,response,assertion,registeredService);
   }

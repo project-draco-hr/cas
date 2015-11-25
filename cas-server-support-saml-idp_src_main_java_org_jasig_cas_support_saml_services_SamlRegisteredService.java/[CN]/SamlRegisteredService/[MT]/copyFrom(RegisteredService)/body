@@ -1,4 +1,4 @@
 {
   super.copyFrom(source);
-  final SamlRegisteredService oAuthRegisteredService=(SamlRegisteredService)source;
+  final SamlRegisteredService samlRegisteredService=(SamlRegisteredService)source;
 }

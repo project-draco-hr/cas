@@ -7,7 +7,7 @@
   if (statements != null && !statements.isEmpty()) {
     assertion=newAssertion(statements,this.entityId,new DateTime(),id);
     assertion.setSubject(buildSubject(authnRequest,casAssertion,service));
-    signAssertion(authnRequest,casAssertion,service);
+    signAssertion(authnRequest,statements,assertion,service);
     samlResponse.getAssertions().add(assertion);
   }
   final Status status=newStatus(StatusCode.SUCCESS,StatusCode.SUCCESS);

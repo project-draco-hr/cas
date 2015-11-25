@@ -9,19 +9,21 @@
     throw new SAMLException("No signing credential is specified for relying party configuration");
   }
   logger.debug("Signing assertion to relying party {}",service.getServiceId());
-  Signature signature=signatureBuilder.buildObject(Signature.DEFAULT_ELEMENT_NAME);
+  final XMLObjectBuilder signatureBuilder=openSamlConfigBean.getBuilderFactory().getBuilder(Signature.DEFAULT_ELEMENT_NAME);
+  if (signatureBuilder == null) {
+    throw new SAMLException("No signature builder can be determined");
+  }
+  final Signature signature=(Signature)signatureBuilder.buildObject(Signature.DEFAULT_ELEMENT_NAME);
   signature.setSigningCredential(signatureCredential);
-  try {
-    SecurityHelper.prepareSignatureParams(signature,signatureCredential,null,null);
-  }
- catch (  SecurityException e) {
-    throw new ProfileException("Error preparing signature for signing",e);
-  }
   assertion.setSignature(signature);
-  Marshaller assertionMarshaller=Configuration.getMarshallerFactory().getMarshaller(assertion);
   try {
+    final Marshaller assertionMarshaller=this.openSamlConfigBean.getMarshallerFactory().getMarshaller(assertion);
+    if (assertionMarshaller == null) {
+      throw new SAMLException("No signature marshaller is available");
+    }
     assertionMarshaller.marshall(assertion);
-    Signer.signObject(signature);
+    final SignatureSigningParameters signingParameters=buildSignatureSigningParameters(service.getSsoDescriptor());
+    SignatureSupport.signObject(assertion,signingParameters);
   }
  catch (  final Exception e) {
     logger.error("Unable to marshall assertion for signing",e);

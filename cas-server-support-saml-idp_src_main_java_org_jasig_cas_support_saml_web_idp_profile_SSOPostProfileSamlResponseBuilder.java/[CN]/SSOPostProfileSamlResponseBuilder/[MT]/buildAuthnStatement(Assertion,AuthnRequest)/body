@@ -1,2 +1,8 @@
 {
+  final AuthnStatement statement=newAuthnStatement(getAuthenticationMethodFromAssertion(assertion),new DateTime(assertion.getAuthenticationDate()));
+  if (assertion.getValidUntilDate() != null) {
+    statement.setSessionNotOnOrAfter(new DateTime(assertion.getValidUntilDate()));
+  }
+  statement.setSubjectLocality(buildSubjectLocality(authnRequest));
+  return statement;
 }

@@ -1,4 +1,4 @@
 AuthnRequest authnRequest
 List<Statement> statements
-Assertion casAssertion
+org.opensaml.saml.saml2.core.Assertion assertion
 SamlRegisteredService service

@@ -4,5 +4,9 @@
   if (registeredService == null || !registeredService.getAccessStrategy().isServiceAccessAllowed()) {
     throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
   }
-  return registeredService;
+  if (registeredService instanceof SamlRegisteredService) {
+    return (SamlRegisteredService)registeredService;
+  }
+  logger.error("Service {} is found in registry but it is not a SAML service",serviceId);
+  throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
 }
