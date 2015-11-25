@@ -1,5 +1,0 @@
-{
-  if (this.restCredentialCollector == null) {
-    this.restCredentialCollector=new DefaultRestCredentialCollector();
-  }
-}

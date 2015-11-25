@@ -1,0 +1,9 @@
+{
+synchronized (this.lock) {
+    if (this.grantedTicketAlready) {
+      throw new IllegalStateException("PGT already generated for this ST. Cannot grant more than one TGT for ST");
+    }
+    this.grantedTicketAlready=Boolean.TRUE;
+  }
+  return new ProxyGrantingTicketImpl(id,service,this.getGrantingTicket(),authentication,expirationPolicy);
+}

@@ -1,8 +1,0 @@
-{
-  final String uid=requestBody.getFirst("username");
-  final String psw=requestBody.getFirst("password");
-  if (StringUtils.isBlank(uid) || StringUtils.isBlank(psw)) {
-    throw new IllegalArgumentException("Username/Password must be defined in the REST request");
-  }
-  return new UsernamePasswordCredential(uid,psw);
-}

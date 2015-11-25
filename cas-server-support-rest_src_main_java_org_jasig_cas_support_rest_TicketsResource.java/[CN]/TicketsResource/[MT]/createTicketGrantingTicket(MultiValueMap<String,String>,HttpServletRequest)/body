@@ -1,7 +1,6 @@
 {
   try (Formatter fmt=new Formatter()){
-    final Credential credential=this.restCredentialCollector.collect(requestBody);
-    final TicketGrantingTicket tgtId=this.cas.createTicketGrantingTicket(credential);
+    final TicketGrantingTicket tgtId=this.cas.createTicketGrantingTicket(this.credentialFactory.fromRequestBody(requestBody));
     final URI ticketReference=new URI(request.getRequestURL().toString() + '/' + tgtId.getId());
     final HttpHeaders headers=new HttpHeaders();
     headers.setLocation(ticketReference);
