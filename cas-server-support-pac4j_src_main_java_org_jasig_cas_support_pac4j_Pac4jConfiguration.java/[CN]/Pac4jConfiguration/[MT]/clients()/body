@@ -11,8 +11,10 @@
   final ConfigFactory configFactory=new ConfigPropertiesFactory(properties);
   final Config propertiesConfig=configFactory.build();
   allClients.addAll(propertiesConfig.getClients().getClients());
-  allClients.addAll(Arrays.<Client>asList(clients));
-  if (allClients == null || allClients.size() == 0) {
+  if (clients != null && clients.length > 0) {
+    allClients.addAll(Arrays.<Client>asList(clients));
+  }
+  if (allClients.isEmpty()) {
     throw new IllegalArgumentException("At least one pac4j client must be defined");
   }
   return new Clients(serverLoginUrl,allClients);

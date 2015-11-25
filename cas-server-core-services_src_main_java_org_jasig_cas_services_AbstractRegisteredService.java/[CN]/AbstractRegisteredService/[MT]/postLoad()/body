@@ -14,4 +14,7 @@
   if (this.accessStrategy == null) {
     this.accessStrategy=new DefaultRegisteredServiceAccessStrategy();
   }
+  if (this.properties == null) {
+    this.properties=new HashMap<>();
+  }
 }
