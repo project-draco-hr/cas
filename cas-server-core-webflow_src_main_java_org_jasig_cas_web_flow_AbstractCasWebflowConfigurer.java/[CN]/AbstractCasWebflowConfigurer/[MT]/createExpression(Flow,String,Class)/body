@@ -1,0 +1,4 @@
+{
+  final ParserContext parserContext=new FluentParserContext().expectResult(expectedType);
+  return getSpringExpressionParser().parseExpression(expression,parserContext);
+}

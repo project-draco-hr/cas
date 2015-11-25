@@ -1,0 +1,3 @@
+TransitionableState state
+String criteriaOutcome
+String targetState
