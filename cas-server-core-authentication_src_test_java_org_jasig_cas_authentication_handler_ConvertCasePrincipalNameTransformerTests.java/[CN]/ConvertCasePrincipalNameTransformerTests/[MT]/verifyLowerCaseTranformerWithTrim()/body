@@ -1,4 +1,6 @@
 {
-  final String result=new ConvertCasePrincipalNameTransformer().transform("   UID  ");
+  final ConvertCasePrincipalNameTransformer transformer=new ConvertCasePrincipalNameTransformer();
+  transformer.init();
+  final String result=transformer.transform("   UID  ");
   assertEquals(result,"uid");
 }

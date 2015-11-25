@@ -1,0 +1,3 @@
+{
+  return StringUtils.isNotBlank(msg) && TICKET_ID_PATTERN.matcher(msg).find();
+}

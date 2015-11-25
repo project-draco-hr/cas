@@ -1,0 +1,4 @@
+{
+  this.subflowId=subflowId;
+  this.flowDefinitionRegistry=definitionRegistry;
+}

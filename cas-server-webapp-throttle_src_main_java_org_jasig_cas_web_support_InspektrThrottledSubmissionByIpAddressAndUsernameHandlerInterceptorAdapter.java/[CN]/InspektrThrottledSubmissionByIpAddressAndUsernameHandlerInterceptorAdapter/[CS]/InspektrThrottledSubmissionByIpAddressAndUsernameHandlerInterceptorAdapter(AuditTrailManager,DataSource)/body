@@ -1,4 +1,4 @@
 {
   this.auditTrailManager=auditTrailManager;
-  this.jdbcTemplate=new JdbcTemplate(dataSource);
+  init();
 }

@@ -1,0 +1,5 @@
+{
+  final ProxyGrantingTicket t=this.getTicket().grantProxyGrantingTicket(id,authentication,expirationPolicy);
+  updateTicket();
+  return t;
+}

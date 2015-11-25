@@ -1,6 +1,8 @@
 {
   super();
-  setDataSource(datasource);
-  this.sql=sql;
-  this.algorithmName=algorithmName;
+  if (datasource != null) {
+    setDataSource(datasource);
+    this.sql=sql;
+    this.algorithmName=algorithmName;
+  }
 }

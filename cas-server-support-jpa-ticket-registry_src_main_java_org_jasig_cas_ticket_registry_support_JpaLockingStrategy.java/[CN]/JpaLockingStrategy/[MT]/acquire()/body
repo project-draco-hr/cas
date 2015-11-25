@@ -1,5 +1,5 @@
 {
-  Lock lock;
+  final Lock lock;
   try {
     lock=entityManager.find(Lock.class,applicationId,LockModeType.PESSIMISTIC_WRITE);
   }

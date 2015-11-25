@@ -1,0 +1,11 @@
+{
+  final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final Service svc=org.jasig.cas.authentication.TestUtils.getService("proxyService");
+  final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),svc);
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter("service",svc.getId());
+  request.addParameter("ticket",sId.getId());
+  request.addParameter("format",ValidationResponseType.JSON.name());
+  final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
+  assertEquals(modelAndView.getViewName(),AbstractServiceValidateController.DEFAULT_SERVICE_VIEW_NAME_JSON);
+}

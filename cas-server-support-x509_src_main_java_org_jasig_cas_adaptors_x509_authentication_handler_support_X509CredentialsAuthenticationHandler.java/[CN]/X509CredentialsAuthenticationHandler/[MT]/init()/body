@@ -1,0 +1,11 @@
+{
+  if (this.regExSubjectDnPattern == null) {
+    throw new IllegalArgumentException("Subject DN pattern is not configured");
+  }
+  if (this.revocationChecker == null) {
+    throw new IllegalArgumentException("Revocation checker is not configured");
+  }
+  if (this.regExTrustedIssuerDnPattern == null) {
+    throw new IllegalArgumentException("Trusted issuer DN pattern is not configured");
+  }
+}

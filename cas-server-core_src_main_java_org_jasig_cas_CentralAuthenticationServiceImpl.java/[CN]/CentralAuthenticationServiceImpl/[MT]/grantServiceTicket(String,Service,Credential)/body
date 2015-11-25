@@ -13,7 +13,7 @@
     ticketGrantingTicket.getSupplementalAuthentications().add(currentAuthentication);
   }
   if (currentAuthentication == null && !registeredService.getAccessStrategy().isServiceAccessAllowedForSso()) {
-    logger.warn("ServiceManagement: Service [{}] is not allowed to use SSO.",service.getId());
+    logger.warn("Service [{}] is not allowed to use SSO.",service.getId());
     throw new UnauthorizedSsoServiceException();
   }
   evaluateProxiedServiceIfNeeded(service,ticketGrantingTicket,registeredService);
@@ -26,10 +26,10 @@
     principalAttrs=releasePolicy.getAttributes(principal);
   }
  else {
-    principalAttrs=new HashedMap<>();
+    principalAttrs=new HashMap<>();
   }
   if (!registeredService.getAccessStrategy().doPrincipalAttributesAllowServiceAccess(principalAttrs)) {
-    logger.warn("ServiceManagement: Cannot grant service ticket because Service [{}] is not authorized for use by [{}].",service.getId(),principal);
+    logger.warn("Cannot grant service ticket because Service [{}] is not authorized for use by [{}].",service.getId(),principal);
     throw new UnauthorizedServiceForPrincipalException();
   }
   final String uniqueTicketIdGenKey=service.getClass().getName();
@@ -44,5 +44,6 @@
   final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication != null,this.onlyTrackMostRecentSession);
   this.ticketRegistry.addTicket(serviceTicket);
   logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principal.getId());
+  doPublishEvent(new CasServiceTicketGrantedEvent(this,ticketGrantingTicket,serviceTicket));
   return serviceTicket;
 }

@@ -11,6 +11,7 @@
   this.warnCookieGenerator=new CookieRetrievingCookieGenerator();
   this.serviceRegistryDao=new InMemoryServiceRegistryDaoImpl();
   this.serviceManager=new DefaultServicesManagerImpl(serviceRegistryDao);
+  this.serviceManager.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
   this.serviceManager.reload();
   this.warnCookieGenerator.setCookieName("test");
   this.ticketGrantingTicketCookieGenerator=new CookieRetrievingCookieGenerator();

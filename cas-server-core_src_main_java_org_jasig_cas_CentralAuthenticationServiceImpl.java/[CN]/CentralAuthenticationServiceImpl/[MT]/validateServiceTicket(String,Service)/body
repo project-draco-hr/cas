@@ -27,7 +27,9 @@ synchronized (serviceTicket) {
     final Principal modifiedPrincipal=this.principalFactory.createPrincipal(principalId,attributesToRelease);
     final AuthenticationBuilder builder=DefaultAuthenticationBuilder.newInstance(authentication);
     builder.setPrincipal(modifiedPrincipal);
-    return new ImmutableAssertion(builder.build(),serviceTicket.getGrantingTicket().getChainedAuthentications(),serviceTicket.getService(),serviceTicket.isFromNewLogin());
+    final Assertion assertion=new ImmutableAssertion(builder.build(),serviceTicket.getGrantingTicket().getChainedAuthentications(),serviceTicket.getService(),serviceTicket.isFromNewLogin());
+    doPublishEvent(new CasServiceTicketValidatedEvent(this,serviceTicket,assertion));
+    return assertion;
   }
   finally {
     if (serviceTicket.isExpired()) {

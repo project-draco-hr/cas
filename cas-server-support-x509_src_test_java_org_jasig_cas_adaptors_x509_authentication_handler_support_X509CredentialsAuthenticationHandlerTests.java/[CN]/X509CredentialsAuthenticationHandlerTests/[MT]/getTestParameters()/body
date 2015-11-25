@@ -45,14 +45,14 @@
   ResourceCRLRevocationChecker checker;
   handler=new X509CredentialsAuthenticationHandler();
   checker=new ResourceCRLRevocationChecker(new ClassPathResource("userCA-valid.crl"));
-  checker.afterPropertiesSet();
+  checker.init();
   handler.setRevocationChecker(checker);
   handler.setTrustedIssuerDnPattern(".*");
   credential=new X509CertificateCredential(createCertificates("user-valid.crt"));
   params.add(new Object[]{handler,new X509CertificateCredential(createCertificates("user-valid.crt")),true,new DefaultHandlerResult(handler,credential,new DefaultPrincipalFactory().createPrincipal(credential.getId()))});
   handler=new X509CredentialsAuthenticationHandler();
   checker=new ResourceCRLRevocationChecker(new ClassPathResource("userCA-valid.crl"));
-  checker.afterPropertiesSet();
+  checker.init();
   handler.setRevocationChecker(checker);
   handler.setTrustedIssuerDnPattern(".*");
   params.add(new Object[]{handler,new X509CertificateCredential(createCertificates("user-revoked.crt")),true,new RevokedCertificateException(null,null)});
@@ -62,7 +62,7 @@
   handler.setTrustedIssuerDnPattern(".*");
   checker=new ResourceCRLRevocationChecker(new ClassPathResource("userCA-expired.crl"));
   checker.setExpiredCRLPolicy(zeroThresholdPolicy);
-  checker.afterPropertiesSet();
+  checker.init();
   handler.setRevocationChecker(checker);
   params.add(new Object[]{handler,new X509CertificateCredential(createCertificates("user-valid.crt")),true,new ExpiredCRLException(null,null)});
   return params;
