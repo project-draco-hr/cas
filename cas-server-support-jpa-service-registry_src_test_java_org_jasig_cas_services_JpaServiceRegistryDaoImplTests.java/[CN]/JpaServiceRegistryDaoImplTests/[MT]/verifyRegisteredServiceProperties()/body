@@ -19,7 +19,6 @@
   propertyMap.put("field2",property2);
   r.setProperties(propertyMap);
   this.dao.save(r);
-  final List<RegisteredService> services=this.dao.load();
-  final RegisteredService r2=services.get(0);
+  final RegisteredService r2=this.dao.load().get(0);
   assertEquals(r2.getProperties().size(),2);
 }
