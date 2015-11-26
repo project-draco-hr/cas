@@ -1,6 +1,5 @@
 {
   final SubjectLocality subjectLocality=newSamlObject(SubjectLocality.class);
-  final InetAddress address=InetAddress.getByName(new URL(authnRequest.getIssuer().getValue()).getHost());
-  subjectLocality.setAddress(address.getHostAddress());
+  subjectLocality.setAddress(authnRequest.getIssuer().getValue());
   return subjectLocality;
 }

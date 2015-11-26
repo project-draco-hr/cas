@@ -1,3 +1,7 @@
 {
+  final Object object=assertion.getAttributes().get(CasProtocolConstants.VALIDATION_AUTHENTICATION_METHOD_ATTRIBUTE_NAME);
+  if (object != null) {
+    return object.toString();
+  }
   return "";
 }

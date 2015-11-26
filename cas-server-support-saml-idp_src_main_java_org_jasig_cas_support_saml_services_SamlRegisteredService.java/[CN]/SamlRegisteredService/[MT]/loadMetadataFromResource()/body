@@ -1,7 +1,7 @@
 {
   final OpenSamlConfigBean configBean=ApplicationContextProvider.getApplicationContext().getBean(OpenSamlConfigBean.class);
-  try (final InputStream in=getResourceInputStream()){
-    logger.debug("Parsing [{}]",this.metadataLocation.getFilename());
+  try (final InputStream in=this.metadataLocationResource.getInputStream()){
+    logger.debug("Parsing [{}]",this.metadataLocationResource.getFilename());
     final Document document=configBean.getParserPool().parse(in);
     final List<MetadataResolver> resolvers=buildSingleMetadataResolver(document);
     this.metadataResolver=new ChainingMetadataResolver();

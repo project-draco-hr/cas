@@ -7,7 +7,7 @@
   metadataProvider.setFailFastInitialization(true);
   metadataProvider.setRequireValidMetadata(true);
   metadataProvider.setId(metadataProvider.getClass().getCanonicalName());
-  logger.debug("Initializing metadata resolver for [{}]",this.metadataLocation.getURL());
+  logger.debug("Initializing metadata resolver for [{}]",this.metadataLocationResource.getURL());
   try {
     metadataProvider.initialize();
   }
