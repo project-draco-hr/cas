@@ -1,0 +1,38 @@
+{
+  final ProxyGrantingTicket proxyGrantingTicketObject=getTicket(proxyGrantingTicket,ProxyGrantingTicket.class);
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  verifyRegisteredServiceProperties(registeredService,service);
+  if (proxyGrantingTicketObject.getAuthentication() == null && !registeredService.getAccessStrategy().isServiceAccessAllowedForSso()) {
+    logger.warn("Service [{}] is not allowed to use SSO.",service.getId());
+    throw new UnauthorizedSsoServiceException();
+  }
+  evaluateProxiedServiceIfNeeded(service,proxyGrantingTicketObject,registeredService);
+  getAuthenticationSatisfiedByPolicy(proxyGrantingTicketObject,new ServiceContext(service,registeredService));
+  final List<Authentication> authentications=proxyGrantingTicketObject.getChainedAuthentications();
+  final Principal principal=authentications.get(authentications.size() - 1).getPrincipal();
+  final RegisteredServiceAttributeReleasePolicy releasePolicy=registeredService.getAttributeReleasePolicy();
+  final Map<String,Object> principalAttrs;
+  if (releasePolicy != null) {
+    principalAttrs=releasePolicy.getAttributes(principal);
+  }
+ else {
+    principalAttrs=new HashMap<>();
+  }
+  if (!registeredService.getAccessStrategy().doPrincipalAttributesAllowServiceAccess(principalAttrs)) {
+    logger.warn("Cannot grant proxy ticket because Service [{}] is not authorized for use by [{}].",service.getId(),principal);
+    throw new UnauthorizedServiceForPrincipalException();
+  }
+  final String uniqueTicketIdGenKey=service.getClass().getName();
+  logger.debug("Looking up proxy ticket id generator for [{}]",uniqueTicketIdGenKey);
+  UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(uniqueTicketIdGenKey);
+  if (serviceTicketUniqueTicketIdGenerator == null) {
+    serviceTicketUniqueTicketIdGenerator=this.defaultServiceTicketIdGenerator;
+    logger.debug("Service ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
+  }
+  final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ProxyTicket.PROXY_TICKET_PREFIX);
+  final ProxyTicket serviceTicket=proxyGrantingTicketObject.grantProxyTicket(ticketId,service,this.serviceTicketExpirationPolicy,this.onlyTrackMostRecentSession);
+  this.ticketRegistry.addTicket(serviceTicket);
+  logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principal.getId());
+  doPublishEvent(new CasProxyTicketGrantedEvent(this,proxyGrantingTicketObject,serviceTicket));
+  return serviceTicket;
+}

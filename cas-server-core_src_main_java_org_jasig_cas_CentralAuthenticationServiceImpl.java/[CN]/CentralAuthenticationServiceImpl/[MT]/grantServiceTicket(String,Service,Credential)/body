@@ -39,8 +39,7 @@
     serviceTicketUniqueTicketIdGenerator=this.defaultServiceTicketIdGenerator;
     logger.debug("Service ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
   }
-  final String ticketPrefix=authentications.size() == 1 ? ServiceTicket.PREFIX : ServiceTicket.PROXY_TICKET_PREFIX;
-  final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ticketPrefix);
+  final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX);
   final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication != null,this.onlyTrackMostRecentSession);
   this.ticketRegistry.addTicket(serviceTicket);
   logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principal.getId());
