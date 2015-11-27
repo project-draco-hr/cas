@@ -4,5 +4,5 @@
   authz.setRequireAllAttributes(false);
   final Map<String,Object> pAttrs=this.getPrincipalAttributes();
   pAttrs.remove("cn");
-  assertTrue(authz.doPrincipalAttributesAllowServiceAccess(pAttrs));
+  assertTrue(authz.doPrincipalAttributesAllowServiceAccess("test",pAttrs));
 }

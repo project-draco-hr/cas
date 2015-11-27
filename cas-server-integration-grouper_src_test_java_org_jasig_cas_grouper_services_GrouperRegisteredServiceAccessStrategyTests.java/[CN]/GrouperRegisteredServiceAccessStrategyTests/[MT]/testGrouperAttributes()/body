@@ -1,0 +1,7 @@
+{
+  final GrouperRegisteredServiceAccessStrategy strategy=new GrouperRegisteredServiceAccessStrategy();
+  final Map<String,Set<String>> requiredAttributes=new HashMap<>();
+  requiredAttributes.put("memberOf",Collections.singleton("admin"));
+  strategy.setRequiredAttributes(requiredAttributes);
+  strategy.doPrincipalAttributesAllowServiceAccess("GrouperSystem",(Map)TestUtils.getTestAttributes());
+}

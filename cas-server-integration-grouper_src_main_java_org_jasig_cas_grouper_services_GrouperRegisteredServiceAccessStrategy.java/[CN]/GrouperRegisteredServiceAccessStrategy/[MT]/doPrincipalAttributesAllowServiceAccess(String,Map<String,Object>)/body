@@ -1,0 +1,12 @@
+{
+  final Map<String,Object> allAttributes=new HashMap<>(principalAttributes);
+  final List<String> grouperGroups=new ArrayList<>();
+  final GcGetGroups groupsClient=new GcGetGroups().addSubjectId(principal);
+  for (  final WsGetGroupsResult groupsResult : groupsClient.execute().getResults()) {
+    for (    final WsGroup group : groupsResult.getWsGroups()) {
+      grouperGroups.add(constructGrouperGroupAttribute(group));
+    }
+  }
+  allAttributes.put(constructGrouperGroupsAttribute(),grouperGroups);
+  return super.doPrincipalAttributesAllowServiceAccess(principal,allAttributes);
+}
