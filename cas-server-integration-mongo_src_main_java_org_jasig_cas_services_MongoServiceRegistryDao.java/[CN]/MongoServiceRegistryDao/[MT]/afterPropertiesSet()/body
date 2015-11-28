@@ -1,10 +1,15 @@
 {
-  if (this.dropCollection) {
-    LOGGER.debug("Dropping database collection: {}",this.collectionName);
-    this.mongoTemplate.dropCollection(this.collectionName);
+  if (this.mongoTemplate == null) {
+    LOGGER.warn("Mongo template is not correctly configured");
   }
-  if (!this.mongoTemplate.collectionExists(this.collectionName)) {
-    LOGGER.debug("Creating database collection: {}",this.collectionName);
-    this.mongoTemplate.createCollection(this.collectionName);
+ else {
+    if (this.dropCollection) {
+      LOGGER.debug("Dropping database collection: {}",this.collectionName);
+      this.mongoTemplate.dropCollection(this.collectionName);
+    }
+    if (!this.mongoTemplate.collectionExists(this.collectionName)) {
+      LOGGER.debug("Creating database collection: {}",this.collectionName);
+      this.mongoTemplate.createCollection(this.collectionName);
+    }
   }
 }
