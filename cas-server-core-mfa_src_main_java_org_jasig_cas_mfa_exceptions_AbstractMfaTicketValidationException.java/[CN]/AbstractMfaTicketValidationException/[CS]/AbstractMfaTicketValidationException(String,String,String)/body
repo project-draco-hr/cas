@@ -1,5 +1,0 @@
-{
-  super(msg);
-  this.code=c;
-  this.authenticationMethod=authnMethod;
-}

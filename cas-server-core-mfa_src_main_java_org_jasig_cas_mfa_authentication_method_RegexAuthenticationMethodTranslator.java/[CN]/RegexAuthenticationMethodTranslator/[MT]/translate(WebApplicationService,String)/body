@@ -1,0 +1,11 @@
+{
+  for (  final Map.Entry<Pattern,String> patternStringEntry : translationMap.entrySet()) {
+    if (patternStringEntry.getKey().matcher(triggerValue).matches()) {
+      return this.translationMap.get(patternStringEntry.getKey());
+    }
+  }
+  if (this.defaultMfaMethod != null) {
+    return defaultMfaMethod;
+  }
+  throw new UnrecognizedMfaMethodException(triggerValue,targetService.getId());
+}

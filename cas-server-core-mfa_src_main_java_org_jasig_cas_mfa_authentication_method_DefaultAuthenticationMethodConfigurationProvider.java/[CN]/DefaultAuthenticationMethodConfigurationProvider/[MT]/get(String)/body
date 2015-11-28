@@ -1,0 +1,7 @@
+{
+  if (this.authenticationMethodsMap.containsKey(name)) {
+    final Integer rank=this.authenticationMethodsMap.get(name);
+    return new AuthenticationMethod(name,rank);
+  }
+  return null;
+}

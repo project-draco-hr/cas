@@ -1,0 +1,4 @@
+{
+  final AuthenticationMethod m=(AuthenticationMethod)o;
+  return new CompareToBuilder().append(this.name,m.getName()).toComparison();
+}

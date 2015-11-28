@@ -1,0 +1,9 @@
+{
+  for (final Iterator<AuthenticationMethod> it=this.authnMethods.iterator(); it.hasNext(); ) {
+    final AuthenticationMethod f=it.next();
+    if (f.getName().equals(name)) {
+      return f;
+    }
+  }
+  return null;
+}

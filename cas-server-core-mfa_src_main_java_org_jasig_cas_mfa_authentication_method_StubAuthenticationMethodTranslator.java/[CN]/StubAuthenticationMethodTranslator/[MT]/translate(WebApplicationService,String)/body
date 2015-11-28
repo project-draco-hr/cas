@@ -1,0 +1,11 @@
+{
+  for (  final Map.Entry<Set<String>,String> setStringEntry : this.translationMap.entrySet()) {
+    if (setStringEntry.getKey().contains(receivedAuthenticationMethod)) {
+      return this.translationMap.get(setStringEntry.getKey());
+    }
+  }
+  if (this.ignoreIfNoMatchIsFound) {
+    return receivedAuthenticationMethod;
+  }
+  throw new UnrecognizedMfaMethodException(receivedAuthenticationMethod,targetService.getId());
+}
