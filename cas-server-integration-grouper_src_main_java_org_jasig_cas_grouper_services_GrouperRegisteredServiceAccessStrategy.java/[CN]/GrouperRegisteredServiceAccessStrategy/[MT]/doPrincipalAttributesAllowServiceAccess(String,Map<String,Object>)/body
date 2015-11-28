@@ -25,7 +25,7 @@
       grouperGroups.add(groupName);
     }
   }
-  logger.debug("Adding [{}] under attribute name [{}] to collection of CAS attributes",grouperGroups,constructGrouperGroupsAttribute());
-  allAttributes.put(constructGrouperGroupsAttribute(),grouperGroups);
+  logger.debug("Adding [{}] under attribute name [{}] to collection of CAS attributes",grouperGroups,GROUPER_GROUPS_ATTRIBUTE_NAME);
+  allAttributes.put(GROUPER_GROUPS_ATTRIBUTE_NAME,grouperGroups);
   return super.doPrincipalAttributesAllowServiceAccess(principal,allAttributes);
 }
