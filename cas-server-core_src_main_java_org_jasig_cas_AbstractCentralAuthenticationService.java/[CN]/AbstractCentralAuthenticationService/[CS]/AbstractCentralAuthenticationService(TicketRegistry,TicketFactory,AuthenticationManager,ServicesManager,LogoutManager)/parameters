@@ -1,7 +1,5 @@
 TicketRegistry ticketRegistry
 TicketFactory ticketFactory
 AuthenticationManager authenticationManager
-Map<String,UniqueTicketIdGenerator> uniqueTicketIdGeneratorsForService
-ExpirationPolicy serviceTicketExpirationPolicy
 ServicesManager servicesManager
 LogoutManager logoutManager

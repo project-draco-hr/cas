@@ -1,8 +1,6 @@
 {
   this.ticketRegistry=ticketRegistry;
   this.authenticationManager=authenticationManager;
-  this.uniqueTicketIdGeneratorsForService=uniqueTicketIdGeneratorsForService;
-  this.serviceTicketExpirationPolicy=serviceTicketExpirationPolicy;
   this.servicesManager=servicesManager;
   this.logoutManager=logoutManager;
   this.ticketFactory=ticketFactory;

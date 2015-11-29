@@ -1,11 +1,9 @@
 {
   this.action=new X509CertificateCredentialsNonInteractiveAction();
-  final Map<String,UniqueTicketIdGenerator> idGenerators=new HashMap<>();
-  idGenerators.put(SimpleWebApplicationServiceImpl.class.getName(),new DefaultUniqueTicketIdGenerator());
   final X509CredentialsAuthenticationHandler handler=new X509CredentialsAuthenticationHandler();
   handler.setTrustedIssuerDnPattern("CN=\\w+,DC=jasig,DC=org");
   final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(handler,new X509SerialNumberPrincipalResolver()));
-  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),authenticationManager,new DefaultTicketFactory(),idGenerators,new NeverExpiresExpirationPolicy(),mock(ServicesManager.class),mock(LogoutManager.class));
+  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),authenticationManager,new DefaultTicketFactory(),mock(ServicesManager.class),mock(LogoutManager.class));
   centralAuthenticationService.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
   this.action.setCentralAuthenticationService(centralAuthenticationService);
   this.action.afterPropertiesSet();

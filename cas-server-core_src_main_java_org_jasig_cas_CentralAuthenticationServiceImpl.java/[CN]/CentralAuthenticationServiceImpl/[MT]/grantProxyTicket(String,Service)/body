@@ -22,15 +22,8 @@
     logger.warn("Cannot grant proxy ticket because Service [{}] is not authorized for use by [{}].",service.getId(),principal);
     throw new UnauthorizedServiceForPrincipalException();
   }
-  final String uniqueTicketIdGenKey=service.getClass().getName();
-  logger.debug("Looking up proxy ticket id generator for [{}]",uniqueTicketIdGenKey);
-  UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(uniqueTicketIdGenKey);
-  if (serviceTicketUniqueTicketIdGenerator == null) {
-    serviceTicketUniqueTicketIdGenerator=this.defaultServiceTicketIdGenerator;
-    logger.debug("Service ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
-  }
-  final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ProxyTicket.PROXY_TICKET_PREFIX);
-  final ProxyTicket serviceTicket=proxyGrantingTicketObject.grantProxyTicket(ticketId,service,this.serviceTicketExpirationPolicy,this.onlyTrackMostRecentSession);
+  final ProxyTicketFactory factory=this.ticketFactory.get(ProxyTicket.class);
+  final ProxyTicket serviceTicket=factory.create(proxyGrantingTicketObject,service);
   this.ticketRegistry.addTicket(serviceTicket);
   logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principal.getId());
   doPublishEvent(new CasProxyTicketGrantedEvent(this,proxyGrantingTicketObject,serviceTicket));
