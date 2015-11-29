@@ -4,7 +4,7 @@
   final Map<String,UniqueTicketIdGenerator> idGenerators=new HashMap<>();
   idGenerators.put(SimpleWebApplicationServiceImpl.class.getName(),new DefaultUniqueTicketIdGenerator());
   final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(new PrincipalBearingCredentialsAuthenticationHandler(),new PrincipalBearingPrincipalResolver()));
-  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),authenticationManager,new DefaultUniqueTicketIdGenerator(),idGenerators,new NeverExpiresExpirationPolicy(),new NeverExpiresExpirationPolicy(),mock(ServicesManager.class),mock(LogoutManager.class));
+  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),authenticationManager,new DefaultTicketFactory(),idGenerators,new NeverExpiresExpirationPolicy(),mock(ServicesManager.class),mock(LogoutManager.class));
   centralAuthenticationService.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
   this.action.setCentralAuthenticationService(centralAuthenticationService);
 }

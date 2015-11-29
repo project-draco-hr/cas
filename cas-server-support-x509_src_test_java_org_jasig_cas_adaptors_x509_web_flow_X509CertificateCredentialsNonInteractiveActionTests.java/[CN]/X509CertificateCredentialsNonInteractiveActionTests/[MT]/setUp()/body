@@ -5,7 +5,7 @@
   final X509CredentialsAuthenticationHandler handler=new X509CredentialsAuthenticationHandler();
   handler.setTrustedIssuerDnPattern("CN=\\w+,DC=jasig,DC=org");
   final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(handler,new X509SerialNumberPrincipalResolver()));
-  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),authenticationManager,new DefaultUniqueTicketIdGenerator(),idGenerators,new NeverExpiresExpirationPolicy(),new NeverExpiresExpirationPolicy(),mock(ServicesManager.class),mock(LogoutManager.class));
+  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),authenticationManager,new DefaultTicketFactory(),idGenerators,new NeverExpiresExpirationPolicy(),mock(ServicesManager.class),mock(LogoutManager.class));
   centralAuthenticationService.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
   this.action.setCentralAuthenticationService(centralAuthenticationService);
   this.action.afterPropertiesSet();

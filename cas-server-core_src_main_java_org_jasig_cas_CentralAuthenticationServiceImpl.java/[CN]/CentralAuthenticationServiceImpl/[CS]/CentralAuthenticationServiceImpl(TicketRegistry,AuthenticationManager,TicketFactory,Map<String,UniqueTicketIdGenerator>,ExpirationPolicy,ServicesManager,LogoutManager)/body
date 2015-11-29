@@ -1,0 +1,3 @@
+{
+  super(ticketRegistry,ticketFactory,authenticationManager,uniqueTicketIdGeneratorsForService,serviceTicketExpirationPolicy,servicesManager,logoutManager);
+}

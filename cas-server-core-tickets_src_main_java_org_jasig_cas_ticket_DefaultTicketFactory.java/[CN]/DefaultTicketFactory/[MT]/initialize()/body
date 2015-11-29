@@ -1,0 +1,5 @@
+{
+  this.factoryMap=new HashMap<>();
+  this.factoryMap.put(ProxyGrantingTicket.class.getCanonicalName(),this.proxyGrantingTicketFactory);
+  this.factoryMap.put(TicketGrantingTicket.class.getCanonicalName(),this.ticketGrantingTicketFactory);
+}
