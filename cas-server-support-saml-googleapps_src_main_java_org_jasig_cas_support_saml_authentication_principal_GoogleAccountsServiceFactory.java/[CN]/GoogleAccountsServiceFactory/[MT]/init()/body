@@ -1,4 +1,9 @@
 {
-  createGoogleAppsPrivateKey();
-  createGoogleAppsPublicKey();
+  try {
+    createGoogleAppsPrivateKey();
+    createGoogleAppsPublicKey();
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
 }
