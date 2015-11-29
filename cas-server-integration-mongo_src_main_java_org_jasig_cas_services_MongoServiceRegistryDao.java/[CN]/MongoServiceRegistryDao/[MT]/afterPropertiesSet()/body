@@ -1,6 +1,6 @@
 {
   if (this.mongoTemplate == null) {
-    LOGGER.warn("Mongo template is not correctly configured");
+    throw new RuntimeException("Mongo template is not correctly configured");
   }
  else {
     if (this.dropCollection) {
