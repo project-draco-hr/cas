@@ -1,4 +1,4 @@
 {
-  final TicketFactory factory=this.factoryMap.get(clazz.getCanonicalName());
-  return (T)factory;
+  validateFactoryInstances();
+  return (T)this.factoryMap.get(clazz.getCanonicalName());
 }
