@@ -2,7 +2,7 @@
   this.action=new PrincipalFromRequestUserPrincipalNonInteractiveCredentialsAction();
   this.action.setPrincipalFactory(new DefaultPrincipalFactory());
   final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(new PrincipalBearingCredentialsAuthenticationHandler(),new PrincipalBearingPrincipalResolver()));
-  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),authenticationManager,new DefaultTicketFactory(),mock(ServicesManager.class),mock(LogoutManager.class));
-  centralAuthenticationService.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
+  final AbstractCentralAuthenticationService centralAuthenticationService=(AbstractCentralAuthenticationService)getCentralAuthenticationService();
+  centralAuthenticationService.setAuthenticationManager(authenticationManager);
   this.action.setCentralAuthenticationService(centralAuthenticationService);
 }
