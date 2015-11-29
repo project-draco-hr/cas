@@ -2,5 +2,5 @@
   final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
   final ServiceTicket serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),getService());
   getCentralAuthenticationService().destroyTicketGrantingTicket(ticketId.getId());
-  getCentralAuthenticationService().delegateTicketGrantingTicket(serviceTicketId.getId(),org.jasig.cas.services.TestUtils.getHttpBasedServiceCredentials());
+  getCentralAuthenticationService().createProxyGrantingTicket(serviceTicketId.getId(),org.jasig.cas.services.TestUtils.getHttpBasedServiceCredentials());
 }
