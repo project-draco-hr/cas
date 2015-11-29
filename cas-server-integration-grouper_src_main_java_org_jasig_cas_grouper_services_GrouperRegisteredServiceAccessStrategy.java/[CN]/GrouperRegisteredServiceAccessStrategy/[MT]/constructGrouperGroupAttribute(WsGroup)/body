@@ -1,0 +1,12 @@
+{
+switch (this.groupField) {
+case DISPLAY_EXTENSION:
+    return group.getDisplayExtension();
+case DISPLAY_NAME:
+  return group.getDisplayName();
+case EXTENSION:
+return group.getExtension();
+default :
+return group.getName();
+}
+}
