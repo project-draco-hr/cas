@@ -1,3 +1,0 @@
-{
-  super(ticketRegistry,ticketFactory,authenticationManager,servicesManager,logoutManager);
-}
