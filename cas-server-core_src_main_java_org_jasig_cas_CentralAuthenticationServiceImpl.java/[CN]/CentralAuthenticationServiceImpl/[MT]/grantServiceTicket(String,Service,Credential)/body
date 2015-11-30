@@ -32,15 +32,8 @@
     logger.warn("Cannot grant service ticket because Service [{}] is not authorized for use by [{}].",service.getId(),principal);
     throw new UnauthorizedServiceForPrincipalException();
   }
-  final String uniqueTicketIdGenKey=service.getClass().getName();
-  logger.debug("Looking up service ticket id generator for [{}]",uniqueTicketIdGenKey);
-  UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(uniqueTicketIdGenKey);
-  if (serviceTicketUniqueTicketIdGenerator == null) {
-    serviceTicketUniqueTicketIdGenerator=this.defaultServiceTicketIdGenerator;
-    logger.debug("Service ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
-  }
-  final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX);
-  final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication != null,this.onlyTrackMostRecentSession);
+  final ServiceTicketFactory factory=this.ticketFactory.get(ServiceTicket.class);
+  final ServiceTicket serviceTicket=factory.create(ticketGrantingTicket,service,currentAuthentication != null);
   this.ticketRegistry.addTicket(serviceTicket);
   logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principal.getId());
   doPublishEvent(new CasServiceTicketGrantedEvent(this,ticketGrantingTicket,serviceTicket));
