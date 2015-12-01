@@ -1,3 +1,8 @@
 {
+  final String username=requestBody.getFirst("username");
+  final String password=requestBody.getFirst("password");
+  if (username == null || password == null) {
+    throw new BadRequestException("Invalid payload. 'username' and 'password' form fields are required.");
+  }
   return new UsernamePasswordCredential(requestBody.getFirst("username"),requestBody.getFirst("password"));
 }
