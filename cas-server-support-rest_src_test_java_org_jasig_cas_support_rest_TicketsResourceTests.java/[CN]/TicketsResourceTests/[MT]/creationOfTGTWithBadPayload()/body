@@ -1,0 +1,4 @@
+{
+  configureCasMockTGTCreationToThrow(new RuntimeException("Other exception"));
+  this.mockMvc.perform(post("/cas/v1/tickets").param("no_username_param","test").param("no_password_param","test")).andExpect(status().is4xxClientError()).andExpect(content().string("Invalid payload. 'username' and 'password' form fields are required."));
+}

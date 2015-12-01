@@ -6,7 +6,7 @@
     }
   }
  catch (  final Exception e) {
-    logger.trace("Unable to obtain the http request",e);
+    LOGGER.trace("Unable to obtain the http request",e);
   }
   return null;
 }
