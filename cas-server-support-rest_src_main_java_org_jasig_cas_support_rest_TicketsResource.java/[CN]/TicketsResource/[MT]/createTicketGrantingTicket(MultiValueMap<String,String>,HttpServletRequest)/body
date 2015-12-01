@@ -9,9 +9,9 @@
     fmt.format("%s %s",HttpStatus.CREATED,HttpStatus.CREATED.getReasonPhrase()).format("</title></head><body><h1>TGT Created</h1><form action=\"%s",ticketReference.toString()).format("\" method=\"POST\">Service:<input type=\"text\" name=\"service\" value=\"\">").format("<br><input type=\"submit\" value=\"Submit\"></form></body></html>");
     return new ResponseEntity<>(fmt.toString(),headers,HttpStatus.CREATED);
   }
- catch (  AuthenticationException e) {
+ catch (  final AuthenticationException e) {
     final List<String> authnExceptions=new LinkedList<>();
-    for (    Map.Entry<String,Class<? extends Exception>> handlerErrorEntry : e.getHandlerErrors().entrySet()) {
+    for (    final Map.Entry<String,Class<? extends Exception>> handlerErrorEntry : e.getHandlerErrors().entrySet()) {
       authnExceptions.add(handlerErrorEntry.getValue().getSimpleName());
     }
     final Map<String,List<String>> errorsMap=new HashMap<>();
@@ -20,7 +20,7 @@
     LOGGER.error(String.format("Caused by: %s",authnExceptions));
     return new ResponseEntity<>(this.jacksonObjectMapper.writer().withDefaultPrettyPrinter().writeValueAsString(errorsMap),HttpStatus.UNAUTHORIZED);
   }
-catch (  BadRequestException e) {
+catch (  final BadRequestException e) {
     LOGGER.error(e.getMessage(),e);
     return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
   }
