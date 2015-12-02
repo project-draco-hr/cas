@@ -1,3 +1,0 @@
-{
-  return new UsernamePasswordCredential(requestBody.getFirst("username"),requestBody.getFirst("password"));
-}

@@ -6,6 +6,6 @@
     }
     return this.rememberMeExpirationPolicy.isExpired(ticketState);
   }
-  logger.warn("No expiration policy settings are defined");
+  LOGGER.warn("No expiration policy settings are defined");
   return false;
 }

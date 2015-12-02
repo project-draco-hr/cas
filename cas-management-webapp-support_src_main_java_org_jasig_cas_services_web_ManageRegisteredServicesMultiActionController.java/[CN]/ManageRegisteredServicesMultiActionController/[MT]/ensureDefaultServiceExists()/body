@@ -1,4 +1,5 @@
 {
+  this.servicesManager.reload();
   final Collection<RegisteredService> c=this.servicesManager.getAllServices();
   if (c == null) {
     throw new IllegalStateException("Services cannot be empty");

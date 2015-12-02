@@ -1,0 +1,12 @@
+{
+  try {
+    final ViewFactory viewFactory=this.flowBuilderServices.getViewFactoryCreator().createViewFactory(new LiteralExpression(viewId),this.flowBuilderServices.getExpressionParser(),this.flowBuilderServices.getConversionService(),null,this.flowBuilderServices.getValidator(),this.flowBuilderServices.getValidationHintResolver());
+    final ViewState viewState=new ViewState(flow,id,viewFactory);
+    logger.debug("Added view state {}",viewState.getId());
+    return viewState;
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+  return null;
+}

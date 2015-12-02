@@ -1,4 +1,4 @@
 {
   this.cas.destroyTicketGrantingTicket(tgtId);
-  return new ResponseEntity<String>(tgtId,HttpStatus.OK);
+  return new ResponseEntity<>(tgtId,HttpStatus.OK);
 }

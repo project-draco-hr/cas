@@ -8,11 +8,13 @@
     final PersistentIdGenerator generator=anonymous.getPersistentIdGenerator();
     if (generator instanceof ShibbolethCompatiblePersistentIdGenerator) {
       final ShibbolethCompatiblePersistentIdGenerator sh=(ShibbolethCompatiblePersistentIdGenerator)generator;
-      String salt=new String(sh.getSalt(),Charset.defaultCharset());
-      if (Base64.isBase64(salt)) {
-        salt=new String(Base64.decodeBase64(salt));
+      if (sh.getSalt() != null) {
+        final String salt=new String(sh.getSalt(),Charset.defaultCharset());
+        uBean.setValue(salt);
       }
-      uBean.setValue(salt);
+ else {
+        throw new IllegalArgumentException("Salt cannot be null");
+      }
     }
   }
  else   if (provider instanceof PrincipalAttributeRegisteredServiceUsernameProvider) {

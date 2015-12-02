@@ -1,6 +1,6 @@
 {
   try {
-    return ByteSource.wrap(this.salt).read();
+    return ByteSource.wrap(convertSaltToByteArray()).read();
   }
  catch (  final IOException e) {
     LOGGER.warn("Salt cannot be read because the byte array from source could not be consumed");

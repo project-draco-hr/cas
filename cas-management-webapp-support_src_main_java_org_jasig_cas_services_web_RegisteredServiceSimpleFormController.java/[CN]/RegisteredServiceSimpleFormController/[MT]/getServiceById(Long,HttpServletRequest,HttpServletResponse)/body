@@ -14,8 +14,7 @@
       bean=RegisteredServiceEditBean.fromRegisteredService(service);
     }
     final RegisteredServiceEditBean.FormData formData=bean.getFormData();
-    final List<String> possibleAttributeNames=new ArrayList<>();
-    possibleAttributeNames.addAll(this.personAttributeDao.getPossibleUserAttributeNames());
+    final List<String> possibleAttributeNames=new ArrayList<>(this.personAttributeDao.getPossibleUserAttributeNames());
     Collections.sort(possibleAttributeNames);
     formData.setAvailableAttributes(possibleAttributeNames);
     bean.setStatus(HttpServletResponse.SC_OK);
