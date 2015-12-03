@@ -1,0 +1,8 @@
+{
+  final Principal principalMismatched=validatePossibleMismatchedPrincipal(authentication);
+  if (principalMismatched != null) {
+    LOGGER.warn("The provided principal [{}] does not match the authentication chain. CAS has no record of " + "this principal ever having authenticated in the active authentication context.",authentication.getPrincipal());
+    throw new IllegalArgumentException(new MixedPrincipalException(authentication,authentication.getPrincipal(),principalMismatched));
+  }
+  return this.authentications.add(authentication);
+}

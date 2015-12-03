@@ -1,0 +1,16 @@
+{
+  final Set<Object> c=new HashSet<>();
+  if (obj instanceof Collection) {
+    c.addAll((Collection<Object>)obj);
+  }
+ else   if (obj instanceof Map) {
+    throw new UnsupportedOperationException(Map.class.getCanonicalName() + " is not supported");
+  }
+ else   if (obj.getClass().isArray()) {
+    c.addAll(Arrays.asList((Object[])obj));
+  }
+ else {
+    c.add(obj);
+  }
+  return c;
+}
