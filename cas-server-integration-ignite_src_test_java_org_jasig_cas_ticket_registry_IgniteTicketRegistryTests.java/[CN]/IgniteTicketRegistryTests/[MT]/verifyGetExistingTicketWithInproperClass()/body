@@ -1,0 +1,10 @@
+{
+  try {
+    this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
+    this.ticketRegistry.getTicket("TEST",ServiceTicket.class);
+  }
+ catch (  final ClassCastException e) {
+    return;
+  }
+  fail("ClassCastException expected.");
+}
