@@ -1,0 +1,5 @@
+{
+  if (attributeReleasePolicyMapper == null) {
+    attributeReleasePolicyMapper=new DefaultAttributeReleasePolicyMapper(attributeFilterMapper,principalAttributesRepositoryMapper);
+  }
+}

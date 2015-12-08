@@ -5,8 +5,8 @@
   svc.setName("name");
   svc.setId(1000);
   svc.setEvaluationOrder(1000);
-  final RegisteredServiceEditBean data=RegisteredServiceEditBean.fromRegisteredService(svc);
-  this.controller.saveService(new MockHttpServletRequest(),new MockHttpServletResponse(),data.getServiceData(),mock(BindingResult.class));
+  final RegisteredServiceEditBean.ServiceData data=registeredServiceFactory.createServiceData(svc);
+  this.controller.saveService(new MockHttpServletRequest(),new MockHttpServletResponse(),data,mock(BindingResult.class));
   final Collection<RegisteredService> services=this.manager.getAllServices();
   assertEquals(1,services.size());
   for (  final RegisteredService rs : this.manager.getAllServices()) {

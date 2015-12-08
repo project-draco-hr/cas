@@ -3,7 +3,9 @@
   attributes.put("test",Arrays.asList(new Object[]{"test"}));
   this.repository=new StubPersonAttributeDao();
   this.repository.setBackingMap(attributes);
+  this.registeredServiceFactory=new DefaultRegisteredServiceFactory();
+  this.registeredServiceFactory.initializeDefaults();
   this.manager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
   this.manager.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
-  this.controller=new RegisteredServiceSimpleFormController(this.manager,this.repository);
+  this.controller=new RegisteredServiceSimpleFormController(this.manager,this.repository,this.registeredServiceFactory);
 }

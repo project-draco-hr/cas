@@ -1,0 +1,5 @@
+{
+  super(servicesManager);
+  this.personAttributeDao=personAttributeDao;
+  this.registeredServiceFactory=registeredServiceFactory;
+}
