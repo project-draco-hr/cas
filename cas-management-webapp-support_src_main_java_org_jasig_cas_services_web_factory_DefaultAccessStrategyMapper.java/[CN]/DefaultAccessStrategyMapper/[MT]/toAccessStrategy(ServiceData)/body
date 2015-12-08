@@ -1,0 +1,20 @@
+{
+  final RegisteredServiceSupportAccessEditBean supportAccess=bean.getSupportAccess();
+  final TimeBasedRegisteredServiceAccessStrategy accessStrategy=new TimeBasedRegisteredServiceAccessStrategy();
+  accessStrategy.setEnabled(supportAccess.isCasEnabled());
+  accessStrategy.setSsoEnabled(supportAccess.isSsoEnabled());
+  accessStrategy.setRequireAllAttributes(supportAccess.isRequireAll());
+  final Map<String,Set<String>> requiredAttrs=supportAccess.getRequiredAttr();
+  final Set<Map.Entry<String,Set<String>>> entries=requiredAttrs.entrySet();
+  final Iterator<Map.Entry<String,Set<String>>> it=entries.iterator();
+  while (it.hasNext()) {
+    final Map.Entry<String,Set<String>> entry=it.next();
+    if (entry.getValue().isEmpty()) {
+      it.remove();
+    }
+  }
+  accessStrategy.setRequiredAttributes(requiredAttrs);
+  accessStrategy.setEndingDateTime(supportAccess.getEndingTime());
+  accessStrategy.setStartingDateTime(supportAccess.getStartingTime());
+  return accessStrategy;
+}
