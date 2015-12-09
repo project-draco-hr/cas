@@ -8,7 +8,7 @@
       properties.put(name.substring(CAS_PAC4J_PREFIX.length()),casProperties.getProperty(name));
     }
   }
-  final ConfigFactory configFactory=new ConfigPropertiesFactory(properties);
+  final ConfigFactory configFactory=new PropertiesConfigFactory(properties);
   final Config propertiesConfig=configFactory.build();
   allClients.addAll(propertiesConfig.getClients().getClients());
   if (clients != null && clients.length > 0) {
