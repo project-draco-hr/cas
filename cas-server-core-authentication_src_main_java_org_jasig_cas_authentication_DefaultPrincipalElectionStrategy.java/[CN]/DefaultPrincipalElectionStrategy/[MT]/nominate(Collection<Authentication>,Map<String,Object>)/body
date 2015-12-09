@@ -1,0 +1,6 @@
+{
+  final Principal principal=authentications.iterator().next().getPrincipal();
+  final Principal finalPrincipal=this.principalFactory.createPrincipal(principal.getId(),principalAttributes);
+  LOGGER.debug("Nominated [{}] as the primary principal",finalPrincipal);
+  return finalPrincipal;
+}

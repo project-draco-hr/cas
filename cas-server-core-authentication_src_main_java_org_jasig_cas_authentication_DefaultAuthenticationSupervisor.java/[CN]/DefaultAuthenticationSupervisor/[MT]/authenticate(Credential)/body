@@ -4,5 +4,6 @@
     final Authentication authentication=this.authenticationManager.authenticate(sanitizedCredentials.toArray(new Credential[]{}));
     return this.authenticationContextBuilder.collect(authentication);
   }
+  LOGGER.warn("No credentials were provided for authentication");
   return false;
 }

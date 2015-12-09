@@ -3,7 +3,8 @@
   this.action.setPrincipalFactory(new DefaultPrincipalFactory());
   final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(new PrincipalBearingCredentialsAuthenticationHandler(),new PrincipalBearingPrincipalResolver()));
   final AbstractCentralAuthenticationService centralAuthenticationService=(AbstractCentralAuthenticationService)getCentralAuthenticationService();
-  centralAuthenticationService.setAuthenticationManager(authenticationManager);
   this.action.setCentralAuthenticationService(centralAuthenticationService);
-  this.action.setCentralAuthenticationService(centralAuthenticationService);
+  final DefaultAuthenticationSupervisor supervisor=(DefaultAuthenticationSupervisor)getAuthenticationSupervisor();
+  supervisor.setAuthenticationManager(authenticationManager);
+  this.action.setAuthenticationSupervisor(supervisor);
 }

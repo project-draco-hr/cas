@@ -1,6 +1,8 @@
 {
   final Credential c=org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword();
-  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(c);
+  getAuthenticationSupervisor().authenticate(c);
+  final AuthenticationContext ctx=this.getAuthenticationSupervisor().build();
+  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockRequestContext context=new MockRequestContext();
   WebUtils.putLoginTicket(context,"LOGIN");

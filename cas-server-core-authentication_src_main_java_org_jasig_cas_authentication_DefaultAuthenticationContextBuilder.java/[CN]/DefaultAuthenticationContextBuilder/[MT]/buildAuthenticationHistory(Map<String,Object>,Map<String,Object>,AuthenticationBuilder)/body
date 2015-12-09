@@ -1,0 +1,22 @@
+{
+  LOGGER.debug("Collecting authentication history based on [{}] authentication events",this.authentications.size());
+  for (  final Authentication authn : this.authentications) {
+    final Principal authenticatedPrincipal=authn.getPrincipal();
+    LOGGER.debug("Evaluating authentication principal [{}] for inclusion in context",authenticatedPrincipal);
+    principalAttributes.putAll(authenticatedPrincipal.getAttributes());
+    LOGGER.debug("Collected principal attributes [{}] for inclusion in context for principal [{}]",principalAttributes,authenticatedPrincipal.getId());
+    for (    final String attrName : authn.getAttributes().keySet()) {
+      if (!authenticationAttributes.containsKey(attrName)) {
+        authenticationAttributes.put(attrName,authn.getAttributes().get(attrName));
+      }
+ else {
+        final Object oldValue=authenticationAttributes.remove(attrName);
+        final Collection<Object> listOfValues=convertValueToCollection(oldValue);
+        listOfValues.add(authn.getAttributes().get(attrName));
+        authenticationAttributes.put(attrName,listOfValues);
+      }
+    }
+    LOGGER.debug("Collected authentication attributes [{}] for inclusion in context",authenticationAttributes);
+    authenticationBuilder.addSuccesses(authn.getSuccesses()).addFailures(authn.getFailures()).addCredentials(authn.getCredentials());
+  }
+}

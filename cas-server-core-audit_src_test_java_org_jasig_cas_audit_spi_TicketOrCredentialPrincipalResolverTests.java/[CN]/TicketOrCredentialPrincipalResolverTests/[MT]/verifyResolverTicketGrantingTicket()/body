@@ -1,6 +1,9 @@
 {
   final Credential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(c);
+  getAuthenticationSupervisor().authenticate(c);
+  final AuthenticationContext ctx=this.getAuthenticationSupervisor().build();
+  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket st=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),TestUtils.getService(),ctx);
   final TicketOrCredentialPrincipalResolver res=new TicketOrCredentialPrincipalResolver(getCentralAuthenticationService());
   final JoinPoint jp=mock(JoinPoint.class);
   when(jp.getArgs()).thenReturn(new Object[]{ticketId.getId()});

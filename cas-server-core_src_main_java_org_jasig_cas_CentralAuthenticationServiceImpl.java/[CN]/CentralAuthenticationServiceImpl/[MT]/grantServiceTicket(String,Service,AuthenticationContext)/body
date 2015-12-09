@@ -2,14 +2,7 @@
   final TicketGrantingTicket ticketGrantingTicket=getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   verifyRegisteredServiceProperties(registeredService,service);
-  final Authentication currentAuthentication=context.getAuthentication();
-  if (currentAuthentication != null) {
-    final Authentication original=ticketGrantingTicket.getAuthentication();
-    if (!currentAuthentication.getPrincipal().equals(original.getPrincipal())) {
-      throw new MixedPrincipalException(currentAuthentication,currentAuthentication.getPrincipal(),original.getPrincipal());
-    }
-    ticketGrantingTicket.getSupplementalAuthentications().add(currentAuthentication);
-  }
+  final Authentication currentAuthentication=evaluatePossibilityOfMixedPrincipals(context,ticketGrantingTicket);
   if (currentAuthentication == null && !registeredService.getAccessStrategy().isServiceAccessAllowedForSso()) {
     logger.warn("Service [{}] is not allowed to use SSO.",service.getId());
     throw new UnauthorizedSsoServiceException();
