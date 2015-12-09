@@ -1,4 +1,5 @@
 {
-  final AuthenticationContext ctx=getAuthenticationContext(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  this.authenticationSupervisor.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationContext ctx=this.authenticationSupervisor.build();
   this.cas.createProxyGrantingTicket(ST_ID,ctx);
 }

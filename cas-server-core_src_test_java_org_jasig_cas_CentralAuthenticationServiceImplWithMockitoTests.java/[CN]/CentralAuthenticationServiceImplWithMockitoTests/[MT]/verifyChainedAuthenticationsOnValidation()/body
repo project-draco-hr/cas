@@ -1,6 +1,6 @@
 {
   final Service svc=org.jasig.cas.services.TestUtils.getService(SVC2_ID);
-  final ServiceTicket st=this.cas.grantServiceTicket(TGT2_ID,svc);
+  final ServiceTicket st=this.cas.grantServiceTicket(TGT2_ID,svc,this.authenticationSupervisor.build());
   assertNotNull(st);
   final Assertion assertion=this.cas.validateServiceTicket(st.getId(),svc);
   assertNotNull(assertion);

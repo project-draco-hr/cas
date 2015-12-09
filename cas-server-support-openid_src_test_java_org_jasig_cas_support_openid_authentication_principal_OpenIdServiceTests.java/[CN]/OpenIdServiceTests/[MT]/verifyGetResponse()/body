@@ -3,8 +3,10 @@
     request.removeParameter(OpenIdProtocolConstants.OPENID_ASSOCHANDLE);
     request.addParameter(OpenIdProtocolConstants.OPENID_ASSOCHANDLE,association.getHandle());
     openIdService=openIdServiceFactory.createService(request);
-    final String tgt=centralAuthenticationService.createTicketGrantingTicket(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword()).getId();
-    final String st=centralAuthenticationService.grantServiceTicket(tgt,openIdService).getId();
+    this.authenticationSupervisor.authenticate(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+    final AuthenticationContext ctx=this.authenticationSupervisor.build();
+    final String tgt=centralAuthenticationService.createTicketGrantingTicket(ctx).getId();
+    final String st=centralAuthenticationService.grantServiceTicket(tgt,openIdService,ctx).getId();
     centralAuthenticationService.validateServiceTicket(st,openIdService);
     final Response response=this.openIdService.getResponse(st);
     assertNotNull(response);
