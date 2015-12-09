@@ -1,0 +1,4 @@
+{
+  getAuthenticationSupervisor().authenticate(credentials);
+  return getAuthenticationSupervisor().build();
+}

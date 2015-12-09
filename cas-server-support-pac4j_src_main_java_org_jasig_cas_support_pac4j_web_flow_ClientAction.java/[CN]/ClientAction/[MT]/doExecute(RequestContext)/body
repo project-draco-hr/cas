@@ -34,9 +34,12 @@
     restoreRequestAttribute(request,session,LOCALE);
     restoreRequestAttribute(request,session,METHOD);
     if (credentials != null) {
-      final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(new ClientCredential(credentials));
-      WebUtils.putTicketGrantingTicketInScopes(context,tgt);
-      return success();
+      if (this.authenticationSupervisor.authenticate(new ClientCredential(credentials))) {
+        final AuthenticationContext authenticationContext=this.authenticationSupervisor.build();
+        final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
+        WebUtils.putTicketGrantingTicketInScopes(context,tgt);
+        return success();
+      }
     }
   }
   prepareForLoginPage(context);

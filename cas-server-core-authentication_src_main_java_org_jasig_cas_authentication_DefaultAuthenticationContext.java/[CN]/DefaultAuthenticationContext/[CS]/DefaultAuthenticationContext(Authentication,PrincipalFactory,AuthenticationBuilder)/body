@@ -1,5 +1,0 @@
-{
-  collect(authentication);
-  this.principalFactory=principalFactory;
-  this.authenticationBuilder=authenicationBuilder;
-}

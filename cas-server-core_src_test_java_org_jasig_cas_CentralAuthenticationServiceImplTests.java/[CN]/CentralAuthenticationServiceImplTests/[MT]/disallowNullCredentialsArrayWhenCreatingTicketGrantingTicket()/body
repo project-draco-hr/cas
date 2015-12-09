@@ -1,0 +1,4 @@
+{
+  final AuthenticationContext ctx=getAuthenticationContext(new Credential[]{null,null});
+  getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+}

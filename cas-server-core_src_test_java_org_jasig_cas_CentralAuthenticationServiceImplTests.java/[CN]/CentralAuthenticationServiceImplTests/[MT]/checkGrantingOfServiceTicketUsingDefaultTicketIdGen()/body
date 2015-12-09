@@ -1,7 +1,8 @@
 {
   final Service mockService=mock(Service.class);
   when(mockService.getId()).thenReturn("testDefault");
-  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final ServiceTicket serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),mockService);
+  final AuthenticationContext ctx=getAuthenticationContext(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),mockService,ctx);
   assertNotNull(serviceTicketId);
 }

@@ -1,6 +1,8 @@
 {
-  final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(newUserPassCredentials("alice","alice"));
+  authenticationSupervisor.authenticate(newUserPassCredentials("alice","alice"));
+  final AuthenticationContext ctx=authenticationSupervisor.build();
+  final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(ctx);
   assertNotNull(tgt);
-  final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),newService("https://example.com/normal/"));
+  final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),newService("https://example.com/normal/"),ctx);
   assertNotNull(st);
 }

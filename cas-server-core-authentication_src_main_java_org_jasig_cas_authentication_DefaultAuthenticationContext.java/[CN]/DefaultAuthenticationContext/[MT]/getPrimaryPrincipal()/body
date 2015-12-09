@@ -1,7 +1,0 @@
-{
-  final Authentication primary=getPrimaryAuthentication();
-  if (primary == null) {
-    return NullPrincipal.getInstance();
-  }
-  return getPrimaryAuthentication().getPrincipal();
-}

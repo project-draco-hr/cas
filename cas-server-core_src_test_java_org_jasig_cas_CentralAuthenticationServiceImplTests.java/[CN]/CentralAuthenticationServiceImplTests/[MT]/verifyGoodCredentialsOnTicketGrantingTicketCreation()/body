@@ -1,6 +1,7 @@
 {
   try {
-    assertNotNull(getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword()));
+    final AuthenticationContext ctx=getAuthenticationContext(TestUtils.getCredentialsWithSameUsernameAndPassword());
+    assertNotNull(getCentralAuthenticationService().createTicketGrantingTicket(ctx));
   }
  catch (  final AbstractTicketException e) {
     fail("Exception expected");

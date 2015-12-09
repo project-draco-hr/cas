@@ -1,0 +1,30 @@
+{
+  if (!isEmpty()) {
+    final Principal primaryPrincipal=this.authentications.iterator().next().getPrincipal();
+    final Map<String,Object> authenticationAttributes=new HashMap<>();
+    final Map<String,Object> principalAttributes=new HashMap<>();
+    final AuthenticationBuilder authenticationBuilder=DefaultAuthenticationBuilder.newInstance();
+    for (    final Authentication authn : this.authentications) {
+      final Principal authenticatedPrincipal=authn.getPrincipal();
+      principalAttributes.putAll(authenticatedPrincipal.getAttributes());
+      for (      final String attrName : authn.getAttributes().keySet()) {
+        if (!authenticationAttributes.containsKey(attrName)) {
+          authenticationAttributes.put(attrName,authn.getAttributes().get(attrName));
+        }
+ else {
+          final Object oldValue=authenticationAttributes.remove(attrName);
+          final Collection<Object> listOfValues=convertValueToCollection(oldValue);
+          listOfValues.add(authn.getAttributes().get(attrName));
+          authenticationAttributes.put(attrName,listOfValues);
+        }
+      }
+      authenticationBuilder.setSuccesses(authn.getSuccesses()).setFailures(authn.getFailures());
+    }
+    final Principal compositePrincipal=this.principalFactory.createPrincipal(primaryPrincipal.getId(),principalAttributes);
+    authenticationBuilder.setPrincipal(compositePrincipal);
+    authenticationBuilder.setAttributes(authenticationAttributes);
+    authenticationBuilder.setAuthenticationDate(DateTime.now());
+    return authenticationBuilder.build();
+  }
+  return null;
+}

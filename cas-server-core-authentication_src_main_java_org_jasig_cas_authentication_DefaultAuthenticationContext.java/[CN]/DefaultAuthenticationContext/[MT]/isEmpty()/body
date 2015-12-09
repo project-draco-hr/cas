@@ -1,3 +1,0 @@
-{
-  return !this.authentications.isEmpty() && getPrimaryAuthentication() != null && getPrimaryPrincipal() != null;
-}

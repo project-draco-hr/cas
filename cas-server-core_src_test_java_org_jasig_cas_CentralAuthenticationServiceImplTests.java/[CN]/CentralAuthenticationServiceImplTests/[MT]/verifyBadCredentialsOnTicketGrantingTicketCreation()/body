@@ -1,3 +1,4 @@
 {
-  getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithDifferentUsernameAndPassword());
+  final AuthenticationContext ctx=getAuthenticationContext(TestUtils.getCredentialsWithDifferentUsernameAndPassword());
+  getCentralAuthenticationService().createTicketGrantingTicket(ctx);
 }

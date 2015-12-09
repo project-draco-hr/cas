@@ -1,3 +1,4 @@
 {
-  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(new Credential[]{null});
+  final AuthenticationContext ctx=getAuthenticationContext(new Credential[]{null});
+  getCentralAuthenticationService().createTicketGrantingTicket(ctx);
 }

@@ -1,8 +1,11 @@
 {
   TicketGrantingTicket proxyGrantingTicketId=null;
   try {
-    proxyGrantingTicketId=this.centralAuthenticationService.createProxyGrantingTicket(serviceTicketId,serviceCredential);
-    logger.debug("Generated PGT [{}] off of service ticket [{}] and credential [{}]",proxyGrantingTicketId.getId(),serviceTicketId,serviceCredential);
+    if (this.authenticationSupervisor.authenticate(serviceCredential)) {
+      final AuthenticationContext authenticationContext=this.authenticationSupervisor.build();
+      proxyGrantingTicketId=this.centralAuthenticationService.createProxyGrantingTicket(serviceTicketId,authenticationContext);
+      logger.debug("Generated PGT [{}] off of service ticket [{}] and credential [{}]",proxyGrantingTicketId.getId(),serviceTicketId,serviceCredential);
+    }
   }
  catch (  final AuthenticationException e) {
     logger.info("Failed to authenticate service credential {}",serviceCredential);

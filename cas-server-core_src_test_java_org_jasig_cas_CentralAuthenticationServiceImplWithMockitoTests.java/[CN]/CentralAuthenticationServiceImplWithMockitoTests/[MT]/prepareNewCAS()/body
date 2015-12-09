@@ -21,6 +21,11 @@
   final ServiceTicket stMock2=createMockServiceTicket(ST2_ID,service2);
   final TicketGrantingTicket tgtMock2=createMockTicketGrantingTicket(TGT2_ID,stMock2,false,tgtRootMock,authnListMock);
   mockTicketRegistry(stMock,tgtMock,stMock2,tgtMock2);
+  final AuthenticationContext ctx=mock(AuthenticationContext.class);
+  when(ctx.getAuthentication()).thenReturn(this.authentication);
+  this.authenticationSupervisor=mock(AuthenticationSupervisor.class);
+  when(this.authenticationSupervisor.authenticate(any(Credential.class))).thenReturn(true);
+  when(this.authenticationSupervisor.build()).thenReturn(ctx);
   final ServicesManager smMock=getServicesManager(service1,service2);
   final DefaultTicketFactory factory=new DefaultTicketFactory();
   factory.setTicketGrantingTicketFactory(new DefaultTicketGrantingTicketFactory());
@@ -28,6 +33,6 @@
   factory.setServiceTicketFactory(new DefaultServiceTicketFactory());
   factory.setProxyTicketFactory(new DefaultProxyTicketFactory());
   factory.initialize();
-  this.cas=new CentralAuthenticationServiceImpl(ticketRegMock,mock(AuthenticationManager.class),factory,smMock,mock(LogoutManager.class));
+  this.cas=new CentralAuthenticationServiceImpl(ticketRegMock,factory,smMock,mock(LogoutManager.class));
   this.cas.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
 }

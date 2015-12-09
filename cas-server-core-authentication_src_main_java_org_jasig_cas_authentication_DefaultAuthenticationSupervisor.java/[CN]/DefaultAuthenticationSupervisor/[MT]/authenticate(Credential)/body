@@ -1,0 +1,8 @@
+{
+  final Set<Credential> sanitizedCredentials=sanitizeCredentials(credentials);
+  if (!sanitizedCredentials.isEmpty()) {
+    final Authentication authentication=this.authenticationManager.authenticate(sanitizedCredentials.toArray(new Credential[]{}));
+    return this.authenticationContextBuilder.collect(authentication);
+  }
+  return false;
+}

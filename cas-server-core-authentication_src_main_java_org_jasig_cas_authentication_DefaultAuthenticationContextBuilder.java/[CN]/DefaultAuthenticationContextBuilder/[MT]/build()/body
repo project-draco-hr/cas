@@ -1,0 +1,7 @@
+{
+  final Authentication authentication=buildAuthentication();
+  if (authentication == null) {
+    throw new RuntimeException(new GeneralSecurityException("Authentication context cannot be produced"));
+  }
+  return new DefaultAuthenticationContext(authentication);
+}
