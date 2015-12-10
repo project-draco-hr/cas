@@ -1,0 +1,27 @@
+{
+  this.manager=new PolicyBasedAuthenticationManager(new SimpleTestUsernamePasswordAuthenticationHandler());
+  final int concurrentSize=100;
+  final ExecutorService executor=Executors.newFixedThreadPool(concurrentSize);
+  try {
+    final List<AuthenticationContextGenerator> generators=new ArrayList<>(concurrentSize);
+    for (int i=0; i < concurrentSize; i++) {
+      generators.add(new AuthenticationContextGenerator(this.manager,this.builder,TestUtils.getCredentialsWithSameUsernameAndPassword("user" + i)));
+    }
+    final List<Future<AuthenticationContextBuilder>> results=executor.invokeAll(generators);
+    for (    final Future<AuthenticationContextBuilder> result : results) {
+      final AuthenticationContextBuilder resultBuilder=result.get();
+      assertEquals(resultBuilder.size(),concurrentSize);
+      final AuthenticationContext ctx=resultBuilder.build();
+      assertNotNull(ctx.getAuthentication());
+      assertEquals(ctx.getAuthentication().getSuccesses().size(),1);
+      assertEquals(ctx.getAuthentication().getCredentials().size(),concurrentSize);
+      assertEquals(ctx.getAuthentication().getFailures().size(),0);
+    }
+  }
+ catch (  final Exception e) {
+    logger.error("checkBuilderWithManyThreads produced an error",e);
+  }
+ finally {
+    executor.shutdownNow();
+  }
+}
