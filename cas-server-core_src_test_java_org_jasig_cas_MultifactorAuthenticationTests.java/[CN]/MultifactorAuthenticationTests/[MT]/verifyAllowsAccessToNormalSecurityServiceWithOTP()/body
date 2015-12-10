@@ -1,5 +1,5 @@
 {
-  authenticationTransactionManager.authenticate(new OneTimePasswordCredential("alice","31415"));
+  authenticationTransactionManager.processAuthenticationAttempt(new OneTimePasswordCredential("alice","31415"));
   final AuthenticationContext ctx=authenticationTransactionManager.build();
   final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(ctx);
   assertNotNull(tgt);

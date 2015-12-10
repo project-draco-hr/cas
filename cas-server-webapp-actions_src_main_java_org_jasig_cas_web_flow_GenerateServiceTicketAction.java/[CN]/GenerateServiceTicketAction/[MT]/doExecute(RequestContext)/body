@@ -3,7 +3,7 @@
   final String ticketGrantingTicket=WebUtils.getTicketGrantingTicketId(context);
   try {
     final Credential credential=WebUtils.getCredential(context);
-    this.authenticationTransactionManager.authenticate(credential);
+    this.authenticationTransactionManager.processAuthenticationAttempt(credential);
     final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
     final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicket,service,authenticationContext);
     WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);

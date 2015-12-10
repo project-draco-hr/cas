@@ -1,4 +1,4 @@
 {
-  getAuthenticationTransactionManager().authenticate(credentials);
+  getAuthenticationTransactionManager().processAuthenticationAttempt(credentials);
   return getAuthenticationTransactionManager().build();
 }

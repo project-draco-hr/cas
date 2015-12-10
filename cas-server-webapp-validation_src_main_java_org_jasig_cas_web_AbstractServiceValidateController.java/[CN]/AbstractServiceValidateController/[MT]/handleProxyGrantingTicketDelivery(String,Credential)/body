@@ -1,7 +1,7 @@
 {
   TicketGrantingTicket proxyGrantingTicketId=null;
   try {
-    this.authenticationTransactionManager.authenticate(serviceCredential);
+    this.authenticationTransactionManager.processAuthenticationAttempt(serviceCredential);
     final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
     proxyGrantingTicketId=this.centralAuthenticationService.createProxyGrantingTicket(serviceTicketId,authenticationContext);
     logger.debug("Generated proxy-granting ticket [{}] off of service ticket [{}] and credential [{}]",proxyGrantingTicketId.getId(),serviceTicketId,serviceCredential);

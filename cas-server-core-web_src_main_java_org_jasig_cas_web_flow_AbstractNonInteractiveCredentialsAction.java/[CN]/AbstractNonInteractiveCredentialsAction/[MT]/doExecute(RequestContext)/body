@@ -7,7 +7,7 @@
   final Service service=WebUtils.getService(context);
   if (isRenewPresent(context) && ticketGrantingTicketId != null && service != null) {
     try {
-      this.authenticationTransactionManager.authenticate(credential);
+      this.authenticationTransactionManager.processAuthenticationAttempt(credential);
       final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
       final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,authenticationContext);
       WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
@@ -24,7 +24,7 @@ catch (    final AbstractTicketException e) {
     }
   }
   try {
-    this.authenticationTransactionManager.authenticate(credential);
+    this.authenticationTransactionManager.processAuthenticationAttempt(credential);
     final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
     final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
     WebUtils.putTicketGrantingTicketInScopes(context,tgt);

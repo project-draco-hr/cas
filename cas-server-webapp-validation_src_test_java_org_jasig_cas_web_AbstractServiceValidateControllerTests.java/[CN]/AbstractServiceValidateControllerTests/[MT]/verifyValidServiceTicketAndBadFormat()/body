@@ -1,5 +1,5 @@
 {
-  getAuthenticationTransactionManager().authenticate(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  getAuthenticationTransactionManager().processAuthenticationAttempt(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
   final AuthenticationContext ctx=getAuthenticationTransactionManager().build();
   final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final Service svc=org.jasig.cas.authentication.TestUtils.getService("proxyService");
