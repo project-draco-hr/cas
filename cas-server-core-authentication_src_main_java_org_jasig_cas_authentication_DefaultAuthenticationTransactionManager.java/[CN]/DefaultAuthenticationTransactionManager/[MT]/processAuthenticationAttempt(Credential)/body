@@ -10,4 +10,5 @@
  else {
     LOGGER.debug("No credentials were provided for authentication");
   }
+  return authenticationContextBuilder;
 }
