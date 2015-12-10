@@ -1,0 +1,7 @@
+{
+  timer.cancel();
+  timer.purge();
+  if (cluster != null) {
+    cluster.disconnect();
+  }
+}

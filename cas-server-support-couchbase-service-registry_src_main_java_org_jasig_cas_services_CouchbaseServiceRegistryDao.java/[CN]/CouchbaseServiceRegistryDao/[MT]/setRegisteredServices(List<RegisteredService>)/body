@@ -1,0 +1,5 @@
+{
+  this.registeredServices.addAll(services);
+  this.initialId=services.size();
+  TIMER.scheduleAtFixedRate(this,new Date(),TimeUnit.SECONDS.toMillis(RETRY_INTERVAL));
+}

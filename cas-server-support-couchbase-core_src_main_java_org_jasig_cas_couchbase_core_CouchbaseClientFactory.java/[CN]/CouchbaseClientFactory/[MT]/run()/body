@@ -1,0 +1,15 @@
+{
+  try {
+    logger.debug("Trying to connect to couchbase bucket {}",bucketName);
+    cluster=CouchbaseCluster.create(nodes);
+    bucket=cluster.openBucket(bucketName,password);
+    logger.info("Connected to Couchbase bucket {}.",bucketName);
+    if (views != null) {
+      doEnsureIndexes(designDocument,views);
+    }
+    timer.cancel();
+  }
+ catch (  final Exception e) {
+    logger.error("Failed to connect to Couchbase bucket {}: {}, retrying...",bucketName,e);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (bucket != null) {
+    return bucket;
+  }
+ else {
+    throw new RuntimeException("Conncetion to bucket " + bucketName + " not initialized yet.");
+  }
+}

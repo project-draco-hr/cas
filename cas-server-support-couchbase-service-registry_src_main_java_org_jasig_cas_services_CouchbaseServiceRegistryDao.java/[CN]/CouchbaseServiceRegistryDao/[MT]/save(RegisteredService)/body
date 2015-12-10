@@ -1,0 +1,12 @@
+{
+  if (service.getId() == RegisteredService.INITIAL_IDENTIFIER_VALUE && service instanceof AbstractRegisteredService) {
+    logger.debug("Service id not set. Setting it from counter in couchbase.");
+    final long id=couchbase.bucket().counter("LAST_ID",1,initialId).content().longValue();
+    ((AbstractRegisteredService)service).setId(id);
+  }
+  logger.debug("Saving service {}",service);
+  final StringWriter stringWriter=new StringWriter();
+  registeredServiceJsonSerializer.toJson(stringWriter,service);
+  couchbase.bucket().upsert(RawJsonDocument.create(String.valueOf(service.getId()),0,stringWriter.toString()));
+  return service;
+}
