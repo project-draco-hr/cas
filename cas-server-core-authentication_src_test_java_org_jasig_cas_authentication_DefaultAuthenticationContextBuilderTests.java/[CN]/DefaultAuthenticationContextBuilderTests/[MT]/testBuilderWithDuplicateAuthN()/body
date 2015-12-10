@@ -1,0 +1,6 @@
+{
+  final Authentication authN1=manager.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  builder.collect(authN1);
+  builder.collect(authN1);
+  assertEquals(builder.size(),1);
+}

@@ -1,0 +1,13 @@
+{
+  final Authentication authN1=manager.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  builder.collect(authN1);
+  final Authentication authN2=manager.authenticate(TestUtils.getCredentialsWithDifferentUsernameAndPassword("casuser","Mellon"));
+  builder.collect(authN2);
+  assertEquals(builder.size(),2);
+  final AuthenticationContext ctx=builder.build();
+  assertNotNull(ctx);
+  assertNotNull(ctx.getAuthentication());
+  assertEquals(ctx.getAuthentication().getPrincipal(),authN1.getPrincipal());
+  assertEquals(ctx.getAuthentication().getAttributes().size(),1);
+  assertTrue(ctx.getAuthentication().getAttributes().containsKey(AuthenticationManager.AUTHENTICATION_METHOD_ATTRIBUTE));
+}

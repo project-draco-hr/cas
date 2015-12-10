@@ -1,0 +1,16 @@
+{
+  this.builder.setPrincipalElectionStrategy(new PrincipalElectionStrategy(){
+    @Override public Principal nominate(    final Collection<Authentication> authentications,    final Map<String,Object> principalAttributes){
+      final Principal principal=mock(Principal.class);
+      when(principal.getId()).thenReturn(TestUtils.CONST_USERNAME);
+      return principal;
+    }
+  }
+);
+  authenticationSupervisor.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationContext ctx=authenticationSupervisor.build();
+  assertNotNull(ctx);
+  assertNotNull(ctx.getAuthentication());
+  assertNotNull(ctx.getAuthentication().getPrincipal());
+  assertEquals(ctx.getAuthentication().getPrincipal().getId(),TestUtils.CONST_USERNAME);
+}

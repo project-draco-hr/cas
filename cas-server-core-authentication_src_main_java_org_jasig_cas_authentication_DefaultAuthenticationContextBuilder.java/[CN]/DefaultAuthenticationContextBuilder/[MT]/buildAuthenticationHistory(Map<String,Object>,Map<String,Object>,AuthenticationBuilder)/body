@@ -13,7 +13,7 @@
           LOGGER.debug("Collected single authentication attribute [{}] -> [{}]",attrName,value);
         }
  else {
-          LOGGER.warn("Authentication attribute [{}] has no value and is not collected");
+          LOGGER.warn("Authentication attribute [{}] has no value and is not collected",attrName);
         }
       }
  else {

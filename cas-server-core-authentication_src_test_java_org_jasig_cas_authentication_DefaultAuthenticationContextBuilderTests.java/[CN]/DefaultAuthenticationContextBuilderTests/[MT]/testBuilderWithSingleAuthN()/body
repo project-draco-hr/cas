@@ -1,0 +1,8 @@
+{
+  final Authentication authN=manager.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  builder.collect(authN);
+  final AuthenticationContext ctx=builder.build();
+  assertNotNull(ctx);
+  assertNotNull(ctx.getAuthentication());
+  assertEquals(ctx.getAuthentication().getPrincipal(),authN.getPrincipal());
+}
