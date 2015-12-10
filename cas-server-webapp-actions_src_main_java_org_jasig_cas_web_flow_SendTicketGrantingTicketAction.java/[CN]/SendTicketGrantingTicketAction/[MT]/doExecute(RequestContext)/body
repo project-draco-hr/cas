@@ -14,7 +14,7 @@
     this.ticketGrantingTicketCookieGenerator.addCookie(WebUtils.getHttpServletRequest(context),WebUtils.getHttpServletResponse(context),ticketGrantingTicketId);
   }
   if (ticketGrantingTicketValueFromCookie != null && !ticketGrantingTicketId.equals(ticketGrantingTicketValueFromCookie)) {
-    this.authenticationSupervisor.clear();
+    this.authenticationTransactionManager.clear();
     this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketValueFromCookie);
   }
   return success();

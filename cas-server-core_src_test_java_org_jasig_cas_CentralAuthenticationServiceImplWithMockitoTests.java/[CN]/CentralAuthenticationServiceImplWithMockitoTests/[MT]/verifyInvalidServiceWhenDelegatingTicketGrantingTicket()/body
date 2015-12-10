@@ -1,5 +1,5 @@
 {
-  this.authenticationSupervisor.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final AuthenticationContext ctx=this.authenticationSupervisor.build();
+  this.authenticationTransactionManager.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationContext ctx=this.authenticationTransactionManager.build();
   this.cas.createProxyGrantingTicket(ST_ID,ctx);
 }

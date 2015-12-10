@@ -1,4 +1,4 @@
 {
-  getAuthenticationSupervisor().authenticate(credentials);
-  return getAuthenticationSupervisor().build();
+  getAuthenticationTransactionManager().authenticate(credentials);
+  return getAuthenticationTransactionManager().build();
 }

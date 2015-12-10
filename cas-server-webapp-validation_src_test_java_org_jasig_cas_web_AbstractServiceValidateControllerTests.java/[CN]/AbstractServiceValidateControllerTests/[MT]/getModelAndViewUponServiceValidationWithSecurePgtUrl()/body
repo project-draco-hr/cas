@@ -1,7 +1,7 @@
 {
   final Service service=org.jasig.cas.authentication.TestUtils.getService();
-  getAuthenticationSupervisor().authenticate(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final AuthenticationContext ctx=getAuthenticationSupervisor().build();
+  getAuthenticationTransactionManager().authenticate(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationContext ctx=getAuthenticationTransactionManager().build();
   final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),service,ctx);
   final MockHttpServletRequest request=new MockHttpServletRequest();

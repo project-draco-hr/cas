@@ -5,7 +5,7 @@
   final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(handler,new X509SerialNumberPrincipalResolver()));
   final AbstractCentralAuthenticationService centralAuthenticationService=(AbstractCentralAuthenticationService)getCentralAuthenticationService();
   this.action.setCentralAuthenticationService(centralAuthenticationService);
-  final DefaultAuthenticationSupervisor supervisor=(DefaultAuthenticationSupervisor)getAuthenticationSupervisor();
+  final DefaultAuthenticationTransactionManager supervisor=(DefaultAuthenticationTransactionManager)getAuthenticationTransactionManager();
   supervisor.setAuthenticationManager(authenticationManager);
-  this.action.setAuthenticationSupervisor(supervisor);
+  this.action.setAuthenticationTransactionManager(supervisor);
 }

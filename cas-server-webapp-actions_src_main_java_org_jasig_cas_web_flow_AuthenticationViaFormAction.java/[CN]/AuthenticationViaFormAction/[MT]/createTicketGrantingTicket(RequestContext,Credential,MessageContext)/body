@@ -1,7 +1,7 @@
 {
   try {
-    this.authenticationSupervisor.authenticate(credential);
-    final AuthenticationContext authenticationContext=this.authenticationSupervisor.build();
+    this.authenticationTransactionManager.authenticate(credential);
+    final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
     final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
     WebUtils.putTicketGrantingTicketInScopes(context,tgt);
     putWarnCookieIfRequestParameterPresent(context);

@@ -1,6 +1,6 @@
 {
-  getAuthenticationSupervisor().authenticate(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final AuthenticationContext ctx=getAuthenticationSupervisor().build();
+  getAuthenticationTransactionManager().authenticate(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationContext ctx=getAuthenticationTransactionManager().build();
   this.serviceValidateController.setProxyHandler(new Cas10ProxyHandler());
   final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final String origSvc="http://www.jasig.org?param=hello+world";

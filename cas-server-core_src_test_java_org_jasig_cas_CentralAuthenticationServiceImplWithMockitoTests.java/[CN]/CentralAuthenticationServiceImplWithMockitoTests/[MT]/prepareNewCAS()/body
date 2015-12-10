@@ -23,8 +23,8 @@
   mockTicketRegistry(stMock,tgtMock,stMock2,tgtMock2);
   final AuthenticationContext ctx=mock(AuthenticationContext.class);
   when(ctx.getAuthentication()).thenReturn(this.authentication);
-  this.authenticationSupervisor=mock(AuthenticationSupervisor.class);
-  when(this.authenticationSupervisor.build()).thenReturn(ctx);
+  this.authenticationTransactionManager=mock(AuthenticationTransactionManager.class);
+  when(this.authenticationTransactionManager.build()).thenReturn(ctx);
   final ServicesManager smMock=getServicesManager(service1,service2);
   final DefaultTicketFactory factory=new DefaultTicketFactory();
   factory.setTicketGrantingTicketFactory(new DefaultTicketGrantingTicketFactory());

@@ -29,8 +29,8 @@
           logger.warn("Session is most-likely empty: {}",ex.getMessage());
         }
         try {
-          this.authenticationSupervisor.authenticate(credential);
-          final AuthenticationContext authenticationContext=this.authenticationSupervisor.build();
+          this.authenticationTransactionManager.authenticate(credential);
+          final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
           WebUtils.putTicketGrantingTicketInScopes(context,this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext));
           logger.info("Token validated and new {} created: {}",credential.getClass().getName(),credential);
           return success();

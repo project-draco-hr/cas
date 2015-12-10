@@ -1,6 +1,6 @@
 {
-  authenticationSupervisor.authenticate(new OneTimePasswordCredential("alice","31415"));
-  final AuthenticationContext ctx=authenticationSupervisor.build();
+  authenticationTransactionManager.authenticate(new OneTimePasswordCredential("alice","31415"));
+  final AuthenticationContext ctx=authenticationTransactionManager.build();
   final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(ctx);
   assertNotNull(tgt);
   final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),newService("https://example.com/high/"),ctx);

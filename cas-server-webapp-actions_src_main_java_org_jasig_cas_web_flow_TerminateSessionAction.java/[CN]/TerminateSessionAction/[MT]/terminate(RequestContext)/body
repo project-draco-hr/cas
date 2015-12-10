@@ -5,7 +5,7 @@
     tgtId=this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request);
   }
   if (tgtId != null) {
-    this.authenticationSupervisor.clear();
+    this.authenticationTransactionManager.clear();
     final List<LogoutRequest> logoutRequests=this.centralAuthenticationService.destroyTicketGrantingTicket(tgtId);
     WebUtils.putLogoutRequests(context,logoutRequests);
   }

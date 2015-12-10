@@ -1,7 +1,7 @@
 {
   try {
     final String serviceId=requestBody.getFirst(CasProtocolConstants.PARAMETER_SERVICE);
-    final AuthenticationContext authenticationContext=this.authenticationSupervisor.build();
+    final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
     final ServiceTicket serviceTicketId=this.cas.grantServiceTicket(tgtId,this.webApplicationServiceFactory.createService(serviceId),authenticationContext);
     return new ResponseEntity<>(serviceTicketId.getId(),HttpStatus.OK);
   }

@@ -3,8 +3,8 @@
   final String ticketGrantingTicket=WebUtils.getTicketGrantingTicketId(context);
   try {
     final Credential credential=WebUtils.getCredential(context);
-    this.authenticationSupervisor.authenticate(credential);
-    final AuthenticationContext authenticationContext=this.authenticationSupervisor.build();
+    this.authenticationTransactionManager.authenticate(credential);
+    final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
     final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicket,service,authenticationContext);
     WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
     return success();
@@ -14,7 +14,7 @@
   }
 catch (  final AbstractTicketException e) {
     if (e instanceof InvalidTicketException) {
-      this.authenticationSupervisor.clear();
+      this.authenticationTransactionManager.clear();
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicket);
     }
     if (isGatewayPresent(context)) {
