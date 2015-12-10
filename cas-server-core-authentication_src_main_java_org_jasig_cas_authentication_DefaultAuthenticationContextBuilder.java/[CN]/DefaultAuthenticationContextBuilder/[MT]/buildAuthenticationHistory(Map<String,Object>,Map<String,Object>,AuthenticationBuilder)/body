@@ -7,16 +7,26 @@
     LOGGER.debug("Collected principal attributes [{}] for inclusion in context for principal [{}]",principalAttributes,authenticatedPrincipal.getId());
     for (    final String attrName : authn.getAttributes().keySet()) {
       if (!authenticationAttributes.containsKey(attrName)) {
-        authenticationAttributes.put(attrName,authn.getAttributes().get(attrName));
+        final Object value=authn.getAttributes().get(attrName);
+        if (value != null) {
+          authenticationAttributes.put(attrName,value);
+          LOGGER.debug("Collected single authentication attribute [{}] -> [{}]",attrName,value);
+        }
+ else {
+          LOGGER.warn("Authentication attribute [{}] has no value and is not collected");
+        }
       }
  else {
+        LOGGER.debug("Collecting multi-valued authentication attribute [{}]",attrName);
         final Object oldValue=authenticationAttributes.remove(attrName);
+        LOGGER.debug("Converting authentication attribute [{}] to a collection of values",attrName);
         final Collection<Object> listOfValues=convertValueToCollection(oldValue);
         listOfValues.add(authn.getAttributes().get(attrName));
         authenticationAttributes.put(attrName,listOfValues);
+        LOGGER.debug("Collected multi-valued authentication attribute [{}] -> [{}]",attrName,listOfValues);
       }
     }
-    LOGGER.debug("Collected authentication attributes [{}] for inclusion in context",authenticationAttributes);
+    LOGGER.debug("Finalized authentication attributes [{}] for inclusion in authentication context",authenticationAttributes);
     authenticationBuilder.addSuccesses(authn.getSuccesses()).addFailures(authn.getFailures()).addCredentials(authn.getCredentials());
   }
 }

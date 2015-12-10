@@ -26,7 +26,7 @@
   final ServiceTicketFactory factory=this.ticketFactory.get(ServiceTicket.class);
   final ServiceTicket serviceTicket=factory.create(ticketGrantingTicket,service,currentAuthentication != null);
   this.ticketRegistry.addTicket(serviceTicket);
-  logger.info("Granted ticket [{}] for service [{}] for user [{}]",serviceTicket.getId(),service.getId(),principal.getId());
+  logger.info("Granted ticket [{}] for service [{}] and principal [{}]",serviceTicket.getId(),service.getId(),principal.getId());
   doPublishEvent(new CasServiceTicketGrantedEvent(this,ticketGrantingTicket,serviceTicket));
   return serviceTicket;
 }

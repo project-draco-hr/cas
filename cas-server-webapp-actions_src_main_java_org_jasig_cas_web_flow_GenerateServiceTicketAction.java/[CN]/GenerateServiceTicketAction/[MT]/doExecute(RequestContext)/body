@@ -14,6 +14,7 @@
   }
 catch (  final AbstractTicketException e) {
     if (e instanceof InvalidTicketException) {
+      this.authenticationSupervisor.clear();
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicket);
     }
     if (isGatewayPresent(context)) {

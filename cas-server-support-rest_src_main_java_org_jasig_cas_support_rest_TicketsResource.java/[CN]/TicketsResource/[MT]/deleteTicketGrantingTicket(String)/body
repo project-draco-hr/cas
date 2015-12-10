@@ -1,4 +1,5 @@
 {
+  this.authenticationSupervisor.clear();
   this.cas.destroyTicketGrantingTicket(tgtId);
   return new ResponseEntity<>(tgtId,HttpStatus.OK);
 }
