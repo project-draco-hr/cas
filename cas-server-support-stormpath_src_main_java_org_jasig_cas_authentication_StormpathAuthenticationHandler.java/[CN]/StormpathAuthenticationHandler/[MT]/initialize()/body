@@ -1,0 +1,5 @@
+{
+  final StormpathAuthenticator authenticator=new StormpathAuthenticator(this.accessId,this.secretkey,this.applicationId);
+  authenticator.setPasswordEncoder(this.stormpathPasswordEncoder);
+  setAuthenticator(authenticator);
+}
