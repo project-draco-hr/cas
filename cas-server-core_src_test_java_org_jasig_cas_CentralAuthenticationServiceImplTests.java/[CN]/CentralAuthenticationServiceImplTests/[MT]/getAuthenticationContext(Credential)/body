@@ -1,6 +1,4 @@
 {
-  if (!getAuthenticationSupervisor().authenticate(credentials)) {
-    throw new AuthenticationException();
-  }
+  getAuthenticationSupervisor().authenticate(credentials);
   return getAuthenticationSupervisor().build();
 }

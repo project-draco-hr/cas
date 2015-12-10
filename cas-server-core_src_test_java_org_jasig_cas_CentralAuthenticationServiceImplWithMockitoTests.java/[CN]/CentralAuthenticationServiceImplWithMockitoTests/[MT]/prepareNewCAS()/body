@@ -24,7 +24,6 @@
   final AuthenticationContext ctx=mock(AuthenticationContext.class);
   when(ctx.getAuthentication()).thenReturn(this.authentication);
   this.authenticationSupervisor=mock(AuthenticationSupervisor.class);
-  when(this.authenticationSupervisor.authenticate(any(Credential.class))).thenReturn(true);
   when(this.authenticationSupervisor.build()).thenReturn(ctx);
   final ServicesManager smMock=getServicesManager(service1,service2);
   final DefaultTicketFactory factory=new DefaultTicketFactory();

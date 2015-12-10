@@ -16,7 +16,7 @@
   final Clients clients=new Clients(MY_LOGIN_URL,facebookClient);
   final TicketGrantingTicket tgt=new TicketGrantingTicketImpl(TGT_ID,mock(Authentication.class),mock(ExpirationPolicy.class));
   final CentralAuthenticationService casImpl=mock(CentralAuthenticationService.class);
-  when(casImpl.createTicketGrantingTicket(any(Credential.class))).thenReturn(tgt);
+  when(casImpl.createTicketGrantingTicket(any(AuthenticationContext.class))).thenReturn(tgt);
   final ClientAction action=new ClientAction();
   action.setCentralAuthenticationService(casImpl);
   action.setClients(clients);
