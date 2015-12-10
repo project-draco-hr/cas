@@ -3,7 +3,7 @@
   builder.collect(authN1);
   final Authentication authN2=manager.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
   builder.collect(authN2);
-  assertEquals(builder.size(),2);
+  assertEquals(builder.size(),1);
   final AuthenticationContext ctx=builder.build();
   assertNotNull(ctx);
   assertNotNull(ctx.getAuthentication());
