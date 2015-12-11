@@ -1,7 +1,5 @@
 {
   try {
-    TIMER.cancel();
-    TIMER.purge();
     couchbase.shutdown();
   }
  catch (  final Exception e) {

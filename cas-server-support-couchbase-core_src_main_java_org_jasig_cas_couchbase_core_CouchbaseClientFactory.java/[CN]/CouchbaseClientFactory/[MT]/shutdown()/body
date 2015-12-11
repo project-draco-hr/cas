@@ -1,7 +1,10 @@
 {
-  timer.cancel();
-  timer.purge();
-  if (cluster != null) {
-    cluster.disconnect();
+  try {
+    if (cluster != null) {
+      cluster.disconnect();
+    }
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
   }
 }
