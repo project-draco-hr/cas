@@ -1,7 +1,9 @@
 {
   try {
-    if (ticketId.startsWith(this.ticketGrantingTicketPrefix)) {
-      return entityManager.find(TicketGrantingTicketImpl.class,ticketId);
+    for (    final String prefix : this.ticketGrantingTicketPrefixes) {
+      if (ticketId.startsWith(prefix)) {
+        return entityManager.find(TicketGrantingTicketImpl.class,ticketId);
+      }
     }
     return entityManager.find(ServiceTicketImpl.class,ticketId);
   }
