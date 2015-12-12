@@ -1,0 +1,4 @@
+{
+  final JwtAuthenticator tokenAuthenticator=new JwtAuthenticator();
+  setAuthenticator(tokenAuthenticator);
+}

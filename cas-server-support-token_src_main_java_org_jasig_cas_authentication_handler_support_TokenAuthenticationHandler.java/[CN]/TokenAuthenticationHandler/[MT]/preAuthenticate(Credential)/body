@@ -1,0 +1,25 @@
+{
+  final TokenCredential tokenCredential=(TokenCredential)credential;
+  final TokenKey apiKey=this.keystore.get(tokenCredential.getService());
+  if (apiKey == null) {
+    logger.warn("API key not found in the token keystore for [{}]",tokenCredential.getService());
+    throw new RuntimeException(new CredentialNotFoundException("error.authentication.credentials.bad.token.apikey"));
+  }
+  final Token token=tokenCredential.getToken();
+  token.setKey(apiKey);
+  token.setRequiredTokenAttributes(this.requiredTokenAttributes);
+  token.setTokenAttributesMap(this.tokenAttributesMap);
+  tokenCredential.setToken(token);
+  try {
+    tokenCredential.setUserAttributes(token.getAttributes());
+  }
+ catch (  final Exception e) {
+    logger.warn("Could not decrypt token",e);
+    throw new RuntimeException(new CredentialNotFoundException("error.authentication.credentials.bad.token.key"));
+  }
+  if (!token.getAttributes().isValid()) {
+    logger.warn("Invalid token attributes detected.");
+    throw new RuntimeException(new CredentialNotFoundException("error.authentication.credentials.missing.required.attributes"));
+  }
+  return super.preAuthenticate(credential);
+}

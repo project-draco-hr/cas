@@ -1,0 +1,5 @@
+{
+  setRequiredTokenAttributes(requiredTokenAttributes);
+  setTokenAttributesMap(tokenAttributesMap);
+  putAll(tokenAttributes);
+}

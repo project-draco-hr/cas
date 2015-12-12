@@ -1,0 +1,13 @@
+{
+  if (obj == null) {
+    return false;
+  }
+  if (obj == this) {
+    return true;
+  }
+  if (obj.getClass() != getClass()) {
+    return false;
+  }
+  final TokenKey rhs=(TokenKey)obj;
+  return new EqualsBuilder().append(this.name,rhs.name).append(this.data,rhs.data).isEquals();
+}

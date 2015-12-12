@@ -1,0 +1,16 @@
+{
+  if (!StringUtils.isNotBlank(getUsername())) {
+    LOGGER.debug("Attributes are considered invalid because no username is specified");
+    return false;
+  }
+  if (this.requiredTokenAttributes != null && !this.requiredTokenAttributes.isEmpty()) {
+    for (    final String attr : this.requiredTokenAttributes) {
+      if (get(attr) == null) {
+        LOGGER.warn("Invalid attribute [{}] since it has no defined value",attr);
+        return false;
+      }
+    }
+  }
+  LOGGER.debug("All required token attributes are valid.");
+  return true;
+}
