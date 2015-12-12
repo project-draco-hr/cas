@@ -1,0 +1,13 @@
+{
+  if (this.isDecoded) {
+    return this.generated;
+  }
+  try {
+    this.decryptData();
+    return this.generated;
+  }
+ catch (  final Exception e) {
+    LOGGER.error("No generated timestamp available",e);
+  }
+  return new Date().getTime();
+}

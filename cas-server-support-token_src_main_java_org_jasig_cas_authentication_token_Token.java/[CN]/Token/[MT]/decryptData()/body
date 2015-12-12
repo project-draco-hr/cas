@@ -1,0 +1,16 @@
+{
+  try {
+    LOGGER.debug("Decrypting token with key = `{}`",new String(this.key.data()));
+    final String decryptedString=Crypto.decryptEncodedStringWithKey(this.tokenData,this.key);
+    final JSONObject jsonObject=new JSONObject(decryptedString);
+    LOGGER.debug("Decrypted token: {}",jsonObject);
+    this.generated=jsonObject.getLong("generated");
+    this.attributes=new TokenAttributes(jsonObject.getJSONObject("credentials").toString(),this.requiredTokenAttributes,this.tokenAttributesMap);
+    this.isDecoded=true;
+    LOGGER.debug("Token successfully decrypted.");
+  }
+ catch (  final Exception e) {
+    LOGGER.error("There was a problem decrypting the token data",e);
+    throw e;
+  }
+}
