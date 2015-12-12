@@ -1,0 +1,3 @@
+{
+  ((MongoAuthenticator)getAuthenticator()).setMongoClient(mongoClient);
+}

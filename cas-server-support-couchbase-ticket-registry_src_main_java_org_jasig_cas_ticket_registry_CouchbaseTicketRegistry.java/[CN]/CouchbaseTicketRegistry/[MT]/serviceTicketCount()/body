@@ -1,0 +1,3 @@
+{
+  return runQuery(ServiceTicket.PREFIX + '-');
+}

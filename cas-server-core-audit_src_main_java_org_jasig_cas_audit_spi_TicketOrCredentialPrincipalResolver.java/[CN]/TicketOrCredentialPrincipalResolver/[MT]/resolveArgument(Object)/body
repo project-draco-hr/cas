@@ -21,13 +21,7 @@
     LOGGER.debug("Could not locate ticket [{}] in the registry",arg1);
   }
  else {
-    final SecurityContext securityContext=SecurityContextHolder.getContext();
-    if (securityContext != null) {
-      final Authentication authentication=securityContext.getAuthentication();
-      if (authentication != null) {
-        return ((UserDetails)authentication.getPrincipal()).getUsername();
-      }
-    }
+    return WebUtils.getAuthenticatedUsername();
   }
   LOGGER.debug("Unable to determine the audit argument. Returning [{}]",UNKNOWN_USER);
   return UNKNOWN_USER;
