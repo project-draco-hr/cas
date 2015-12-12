@@ -1,4 +1,5 @@
 {
+  System.setProperty("com.couchbase.queryEnabled",Boolean.toString(this.queryEnabled));
   couchbase.ensureIndexes(UTIL_DOCUMENT,ALL_VIEWS);
   couchbase.initialize();
 }
