@@ -1,0 +1,4 @@
+{
+  couchbase.ensureIndexes(UTIL_DOCUMENT,ALL_VIEWS);
+  couchbase.initialize();
+}
