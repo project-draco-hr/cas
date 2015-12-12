@@ -1,3 +1,0 @@
-{
-  put(getAttribute("lastName"),lastName);
-}

@@ -1,6 +1,0 @@
-{
-  super(tokenId);
-  this.token=new Token(tokenId);
-  this.service=service;
-  this.username=username;
-}

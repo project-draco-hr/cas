@@ -1,3 +1,0 @@
-{
-  put(getAttribute("email"),email);
-}

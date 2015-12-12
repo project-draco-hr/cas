@@ -1,25 +1,18 @@
 {
   final TokenCredential tokenCredential=(TokenCredential)credential;
-  final TokenKey apiKey=this.keystore.get(tokenCredential.getService());
-  if (apiKey == null) {
-    logger.warn("API key not found in the token keystore for [{}]",tokenCredential.getService());
-    throw new RuntimeException(new CredentialNotFoundException("error.authentication.credentials.bad.token.apikey"));
+  final RegisteredService service=this.servicesManager.findServiceBy(tokenCredential.getService());
+  if (service == null || !service.getAccessStrategy().isServiceAccessAllowed()) {
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
   }
-  final Token token=tokenCredential.getToken();
-  token.setKey(apiKey);
-  token.setRequiredTokenAttributes(this.requiredTokenAttributes);
-  token.setTokenAttributesMap(this.tokenAttributesMap);
-  tokenCredential.setToken(token);
-  try {
-    tokenCredential.setUserAttributes(token.getAttributes());
+  if (service.getProperties().containsKey(TokenCredential.TOKEN_PARAMETER)) {
+    final RegisteredServiceProperty prop=service.getProperties().get(TokenCredential.TOKEN_PARAMETER);
+    final String tokenSecret=prop.getValue();
+    if (StringUtils.isNotBlank(tokenSecret)) {
+      final JwtAuthenticator tokenAuthenticator=new JwtAuthenticator(tokenSecret);
+      setAuthenticator(tokenAuthenticator);
+      return super.preAuthenticate(credential);
+    }
   }
- catch (  final Exception e) {
-    logger.warn("Could not decrypt token",e);
-    throw new RuntimeException(new CredentialNotFoundException("error.authentication.credentials.bad.token.key"));
-  }
-  if (!token.getAttributes().isValid()) {
-    logger.warn("Invalid token attributes detected.");
-    throw new RuntimeException(new CredentialNotFoundException("error.authentication.credentials.missing.required.attributes"));
-  }
-  return super.preAuthenticate(credential);
+  logger.warn("No token secret is defined for service [{}]. Ensure [{}] property is defined for service",service.getServiceId(),TokenCredential.TOKEN_PARAMETER);
+  return false;
 }
