@@ -1,3 +1,0 @@
-{
-  this.ticketGrantingTicketPrefixes=ImmutableList.of(ticketGrantingTicketPrefix);
-}
