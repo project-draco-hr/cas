@@ -1,6 +1,6 @@
 {
   final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
-  final String authTokenValue=request.getParameter(TokenCredential.TOKEN_PARAMETER);
+  final String authTokenValue=request.getParameter(TokenConstants.PARAMETER_NAME_TOKEN);
   final Service service=WebUtils.getService(context);
   if (StringUtils.isNotBlank(authTokenValue) && service != null) {
     try {

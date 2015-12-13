@@ -1,0 +1,16 @@
+{
+  if (service == null || !service.getAccessStrategy().isServiceAccessAllowed()) {
+    logger.debug("Service is not defined or its access is disabled in the registry");
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
+  }
+  if (service.getProperties().containsKey(TokenConstants.PARAMETER_NAME_TOKEN)) {
+    final RegisteredServiceProperty prop=service.getProperties().get(TokenConstants.PARAMETER_NAME_TOKEN);
+    final String tokenSecret=prop.getValue();
+    if (StringUtils.isNotBlank(tokenSecret)) {
+      logger.debug("Found {} for service [{}]",TokenConstants.PROPERTY_NAME_TOKEN_SECRET,service.getServiceId());
+      return tokenSecret;
+    }
+  }
+  logger.debug("Service [{}] does not define a property [{}] in the registry",service.getServiceId(),TokenConstants.PROPERTY_NAME_TOKEN_SECRET);
+  return null;
+}
