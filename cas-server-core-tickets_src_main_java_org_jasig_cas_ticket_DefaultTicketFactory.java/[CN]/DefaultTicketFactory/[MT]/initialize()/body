@@ -1,0 +1,8 @@
+{
+  this.factoryMap=new HashMap<>();
+  validateFactoryInstances();
+  this.factoryMap.put(ProxyGrantingTicket.class.getCanonicalName(),this.proxyGrantingTicketFactory);
+  this.factoryMap.put(TicketGrantingTicket.class.getCanonicalName(),this.ticketGrantingTicketFactory);
+  this.factoryMap.put(ServiceTicket.class.getCanonicalName(),this.serviceTicketFactory);
+  this.factoryMap.put(ProxyTicket.class.getCanonicalName(),this.proxyTicketFactory);
+}

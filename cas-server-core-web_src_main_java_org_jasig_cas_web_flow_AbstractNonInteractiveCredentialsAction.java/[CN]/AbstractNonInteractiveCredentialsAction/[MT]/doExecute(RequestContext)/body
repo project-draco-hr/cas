@@ -26,6 +26,7 @@ catch (    final AbstractTicketException e) {
     return success();
   }
  catch (  final Exception e) {
+    logger.warn(e.getMessage(),e);
     onError(context,credential);
     return error();
   }

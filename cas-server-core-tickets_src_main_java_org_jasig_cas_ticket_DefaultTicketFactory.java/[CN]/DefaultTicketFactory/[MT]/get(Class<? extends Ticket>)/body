@@ -1,0 +1,4 @@
+{
+  validateFactoryInstances();
+  return (T)this.factoryMap.get(clazz.getCanonicalName());
+}

@@ -1,0 +1,10 @@
+{
+  logger.debug("Adding ticket {}",ticket);
+  try {
+    final SerializableDocument document=SerializableDocument.create(ticket.getId(),getTimeout(ticket),ticket);
+    couchbase.bucket().upsert(document);
+  }
+ catch (  final Exception e) {
+    logger.error("Failed adding {}: {}",ticket,e);
+  }
+}
