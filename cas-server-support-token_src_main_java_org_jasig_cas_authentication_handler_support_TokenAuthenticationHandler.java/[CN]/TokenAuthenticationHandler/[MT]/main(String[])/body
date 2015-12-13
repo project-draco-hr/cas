@@ -1,7 +1,0 @@
-{
-  JwtGenerator<HttpProfile> g=new JwtGenerator<>("qwertyuiopasdfghjklzxcvbnm123456",true);
-  HttpProfile profile=new HttpProfile();
-  profile.setId("casuser");
-  final String token=g.generate(profile);
-  System.out.println(token);
-}

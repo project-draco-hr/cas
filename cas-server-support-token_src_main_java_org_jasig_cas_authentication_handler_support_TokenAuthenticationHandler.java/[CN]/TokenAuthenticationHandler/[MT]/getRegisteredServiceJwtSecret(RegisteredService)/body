@@ -3,8 +3,8 @@
     logger.debug("Service is not defined or its access is disabled in the registry");
     throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
   }
-  if (service.getProperties().containsKey(TokenConstants.PARAMETER_NAME_TOKEN)) {
-    final RegisteredServiceProperty prop=service.getProperties().get(TokenConstants.PARAMETER_NAME_TOKEN);
+  if (service.getProperties().containsKey(TokenConstants.PROPERTY_NAME_TOKEN_SECRET)) {
+    final RegisteredServiceProperty prop=service.getProperties().get(TokenConstants.PROPERTY_NAME_TOKEN_SECRET);
     final String tokenSecret=prop.getValue();
     if (StringUtils.isNotBlank(tokenSecret)) {
       logger.debug("Found {} for service [{}]",TokenConstants.PROPERTY_NAME_TOKEN_SECRET,service.getServiceId());
