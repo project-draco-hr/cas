@@ -1,1 +1,1 @@
-AbstractTicketDelegator<ServiceTicket>
+AbstractTicketDelegator<T>
