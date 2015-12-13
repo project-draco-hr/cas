@@ -1,6 +1,6 @@
 {
   try {
-    if (ticketId.startsWith(this.ticketGrantingTicketPrefix)) {
+    if (ticketId.startsWith(TicketGrantingTicket.PREFIX) || ticketId.startsWith(ProxyGrantingTicket.PROXY_GRANTING_TICKET_PREFIX)) {
       return entityManager.find(TicketGrantingTicketImpl.class,ticketId);
     }
     return entityManager.find(ServiceTicketImpl.class,ticketId);

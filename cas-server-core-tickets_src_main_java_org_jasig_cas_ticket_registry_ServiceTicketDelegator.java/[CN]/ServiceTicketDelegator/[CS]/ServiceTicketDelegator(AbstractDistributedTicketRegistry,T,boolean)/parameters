@@ -1,0 +1,3 @@
+AbstractDistributedTicketRegistry ticketRegistry
+T serviceTicket
+boolean callback

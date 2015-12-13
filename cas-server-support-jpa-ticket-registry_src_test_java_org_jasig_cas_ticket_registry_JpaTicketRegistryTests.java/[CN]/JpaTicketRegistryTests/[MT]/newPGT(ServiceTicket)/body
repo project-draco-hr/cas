@@ -1,0 +1,3 @@
+{
+  return parent.grantProxyGrantingTicket(ID_GENERATOR.getNewTicketId(ProxyGrantingTicket.PROXY_GRANTING_TICKET_PREFIX),TestUtils.getAuthentication(),EXP_POLICY_PGT);
+}
