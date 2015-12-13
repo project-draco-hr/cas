@@ -1,0 +1,43 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(requestContext);
+  final HttpServletResponse response=WebUtils.getHttpServletResponse(requestContext);
+  final String authHeader=request.getHeader(AUTHZ_HEADER);
+  if (authHeader != null) {
+    final StringTokenizer st=new StringTokenizer(authHeader);
+    if (st.hasMoreTokens()) {
+      final String basic=st.nextToken();
+      if ("basic".equalsIgnoreCase(basic)) {
+        try {
+          final String credentials=new String(Base64.decodeBase64(st.nextToken()),"UTF-8");
+          final int p=credentials.indexOf(':');
+          if (p != -1) {
+            final String username=credentials.substring(0,p).trim();
+            final String password=credentials.substring(p + 1).trim();
+            final UsernamePasswordCredential credential=new UsernamePasswordCredential(username,password);
+            LOGGER.debug("Received basic authentication request from credentials {} ",credential);
+            final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(credential);
+            WebUtils.putTicketGrantingTicketInScopes(requestContext,tgt);
+            return success();
+          }
+ else {
+            unauthorized(response,"Invalid authentication credentials.");
+          }
+        }
+ catch (        final UnsupportedEncodingException e) {
+          throw new Error("Couldn't retrieve authentication",e);
+        }
+      }
+ else {
+        LOGGER.warn("{} header does not specify a basic authentication request. Skipping basic authentication challenge",AUTHZ_HEADER);
+      }
+    }
+ else {
+      LOGGER.warn("{} header is malformed. Skipping basic authentication challenge",AUTHZ_HEADER);
+    }
+  }
+ else {
+    LOGGER.info("No {} header specified. Sending unauthorized challenge for credentials",AUTHZ_HEADER);
+    unauthorized(response);
+  }
+  return error();
+}
