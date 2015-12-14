@@ -1,0 +1,7 @@
+{
+  final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(getAuthenticationObjectsRepository().getPrincipalElectionStrategy());
+  final AuthenticationTransaction transaction=getAuthenticationObjectsRepository().getAuthenticationTransactionFactory().get(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  getAuthenticationObjectsRepository().getAuthenticationTransactionManager().handle(transaction,builder);
+  final AuthenticationContext ctx=builder.build();
+  return ctx;
+}

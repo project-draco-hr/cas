@@ -1,11 +1,9 @@
 {
-  authenticationTransactionManager.processAuthenticationAttempt(newUserPassCredentials("alice","alice"));
-  final AuthenticationContext ctx=authenticationTransactionManager.build();
+  final AuthenticationContext ctx=processAuthenticationAttempt(newUserPassCredentials("alice","alice"));
   final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(ctx);
   assertNotNull(tgt);
   final Service service=newService("https://example.com/high/");
-  authenticationTransactionManager.processAuthenticationAttempt(newUserPassCredentials("alice","alice"),new OneTimePasswordCredential("alice","31415"));
-  final AuthenticationContext ctx2=authenticationTransactionManager.build();
+  final AuthenticationContext ctx2=processAuthenticationAttempt(newUserPassCredentials("alice","alice"),new OneTimePasswordCredential("alice","31415"));
   final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),service,ctx2);
   assertNotNull(st);
   final Assertion assertion=cas.validateServiceTicket(st.getId(),service);

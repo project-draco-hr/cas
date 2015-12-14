@@ -21,10 +21,6 @@
   final ServiceTicket stMock2=createMockServiceTicket(ST2_ID,service2);
   final TicketGrantingTicket tgtMock2=createMockTicketGrantingTicket(TGT2_ID,stMock2,false,tgtRootMock,authnListMock);
   mockTicketRegistry(stMock,tgtMock,stMock2,tgtMock2);
-  final AuthenticationContext ctx=mock(AuthenticationContext.class);
-  when(ctx.getAuthentication()).thenReturn(this.authentication);
-  this.authenticationTransactionManager=mock(AuthenticationTransactionManager.class);
-  when(this.authenticationTransactionManager.build()).thenReturn(ctx);
   final ServicesManager smMock=getServicesManager(service1,service2);
   final DefaultTicketFactory factory=new DefaultTicketFactory();
   factory.setTicketGrantingTicketFactory(new DefaultTicketGrantingTicketFactory());

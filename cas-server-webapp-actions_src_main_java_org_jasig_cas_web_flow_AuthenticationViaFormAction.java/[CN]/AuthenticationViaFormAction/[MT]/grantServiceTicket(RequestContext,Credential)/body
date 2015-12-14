@@ -2,8 +2,10 @@
   final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
   try {
     final Service service=WebUtils.getService(context);
-    this.authenticationTransactionManager.processAuthenticationAttempt(credential);
-    final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
+    final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationObjectsRepository.getPrincipalElectionStrategy());
+    final AuthenticationTransaction transaction=this.authenticationObjectsRepository.getAuthenticationTransactionFactory().get(credential);
+    this.authenticationObjectsRepository.getAuthenticationTransactionManager().handle(transaction,builder);
+    final AuthenticationContext authenticationContext=builder.build();
     final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,authenticationContext);
     WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
     putWarnCookieIfRequestParameterPresent(context);
@@ -14,7 +16,6 @@
   }
 catch (  final TicketCreationException e) {
     logger.warn("Invalid attempt to access service using renew=true with different credential. Ending SSO session.");
-    this.authenticationTransactionManager.clear();
     this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
   }
 catch (  final AbstractTicketException e) {

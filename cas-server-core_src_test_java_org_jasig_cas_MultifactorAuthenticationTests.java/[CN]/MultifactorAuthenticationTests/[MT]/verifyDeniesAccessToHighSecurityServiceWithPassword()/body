@@ -1,6 +1,5 @@
 {
-  authenticationTransactionManager.processAuthenticationAttempt(newUserPassCredentials("alice","alice"));
-  final AuthenticationContext ctx=authenticationTransactionManager.build();
+  final AuthenticationContext ctx=processAuthenticationAttempt(newUserPassCredentials("alice","alice"));
   final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(ctx);
   assertNotNull(tgt);
   cas.grantServiceTicket(tgt.getId(),newService("https://example.com/high/"),ctx);

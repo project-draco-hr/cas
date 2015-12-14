@@ -1,3 +1,0 @@
-{
-  return this.principalElectionStrategy.nominate(ImmutableSet.copyOf(this.authentications),principalAttributes);
-}

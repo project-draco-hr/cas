@@ -1,7 +1,6 @@
 {
   final Map<String,Object> sessionsMap=new HashMap<>(1);
   try {
-    this.authenticationTransactionManager.clear();
     this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicket);
     sessionsMap.put("status",HttpServletResponse.SC_OK);
     sessionsMap.put("ticketGrantingTicket",ticketGrantingTicket);

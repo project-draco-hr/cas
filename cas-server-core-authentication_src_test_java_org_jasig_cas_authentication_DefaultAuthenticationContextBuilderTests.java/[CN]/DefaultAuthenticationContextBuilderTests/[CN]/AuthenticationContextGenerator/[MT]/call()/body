@@ -1,3 +1,0 @@
-{
-  return this.builder.collect(this.manager.authenticate(credential));
-}

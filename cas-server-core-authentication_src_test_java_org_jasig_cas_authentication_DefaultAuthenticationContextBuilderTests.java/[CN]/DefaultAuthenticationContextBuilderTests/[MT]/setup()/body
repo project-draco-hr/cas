@@ -1,9 +1,0 @@
-{
-  this.builder=new DefaultAuthenticationContextBuilder();
-  final DefaultPrincipalElectionStrategy principalStrategy=new DefaultPrincipalElectionStrategy();
-  principalStrategy.setPrincipalFactory(new DefaultPrincipalFactory());
-  builder.setPrincipalElectionStrategy(principalStrategy);
-  final AcceptUsersAuthenticationHandler handler=new AcceptUsersAuthenticationHandler();
-  handler.setUsers(Collections.singletonMap("casuser","Mellon"));
-  this.manager=new PolicyBasedAuthenticationManager(handler,new SimpleTestUsernamePasswordAuthenticationHandler());
-}

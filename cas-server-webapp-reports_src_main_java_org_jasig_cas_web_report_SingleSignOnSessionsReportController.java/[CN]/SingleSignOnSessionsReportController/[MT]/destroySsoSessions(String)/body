@@ -6,7 +6,6 @@
   for (  final Map<String,Object> sso : collection) {
     final String ticketGrantingTicket=sso.get(SsoSessionAttributeKeys.TICKET_GRANTING_TICKET.toString()).toString();
     try {
-      this.authenticationTransactionManager.clear();
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicket);
     }
  catch (    final Exception e) {

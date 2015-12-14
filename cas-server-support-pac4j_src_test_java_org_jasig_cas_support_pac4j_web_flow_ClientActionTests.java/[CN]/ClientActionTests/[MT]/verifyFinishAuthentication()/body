@@ -19,10 +19,6 @@
   when(casImpl.createTicketGrantingTicket(any(AuthenticationContext.class))).thenReturn(tgt);
   final ClientAction action=new ClientAction();
   action.setCentralAuthenticationService(casImpl);
-  final AuthenticationTransactionManager transMgmr=mock(AuthenticationTransactionManager.class);
-  when(transMgmr.processAuthenticationAttempt(any(Credential.class))).thenReturn(new DefaultAuthenticationContextBuilder());
-  when(transMgmr.build()).thenReturn(new DefaultAuthenticationContext(mock(Authentication.class)));
-  action.setAuthenticationTransactionManager(transMgmr);
   action.setClients(clients);
   final Event event=action.execute(mockRequestContext);
   assertEquals("success",event.getId());

@@ -1,7 +1,6 @@
 {
   final Credential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  getAuthenticationTransactionManager().processAuthenticationAttempt(c);
-  final AuthenticationContext ctx=this.getAuthenticationTransactionManager().build();
+  final AuthenticationContext ctx=getAuthenticationContext(c);
   final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final ServiceTicket st=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),TestUtils.getService(),ctx);
   final TicketOrCredentialPrincipalResolver res=new TicketOrCredentialPrincipalResolver(getCentralAuthenticationService());

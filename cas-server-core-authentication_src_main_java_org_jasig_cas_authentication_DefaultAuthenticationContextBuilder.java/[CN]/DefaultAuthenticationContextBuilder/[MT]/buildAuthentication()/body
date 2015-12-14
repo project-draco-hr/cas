@@ -3,11 +3,12 @@
     LOGGER.warn("No authentication event has been recorded; CAS cannot finalize the authentication context");
     return null;
   }
+  final Set<Authentication> authentications=getAuthentications();
   final Map<String,Object> authenticationAttributes=new HashMap<>();
   final Map<String,Object> principalAttributes=new HashMap<>();
   final AuthenticationBuilder authenticationBuilder=DefaultAuthenticationBuilder.newInstance();
-  buildAuthenticationHistory(authenticationAttributes,principalAttributes,authenticationBuilder);
-  final Principal primaryPrincipal=getPrimaryPrincipal(principalAttributes);
+  buildAuthenticationHistory(authentications,authenticationAttributes,principalAttributes,authenticationBuilder);
+  final Principal primaryPrincipal=getPrimaryPrincipal(authentications,principalAttributes);
   authenticationBuilder.setPrincipal(primaryPrincipal);
   LOGGER.debug("Determined primary authentication principal to be [{}]",primaryPrincipal);
   authenticationBuilder.setAttributes(authenticationAttributes);

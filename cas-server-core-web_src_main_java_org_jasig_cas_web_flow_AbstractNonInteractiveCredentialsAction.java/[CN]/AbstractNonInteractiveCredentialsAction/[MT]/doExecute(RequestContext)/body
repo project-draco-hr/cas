@@ -7,8 +7,10 @@
   final Service service=WebUtils.getService(context);
   if (isRenewPresent(context) && ticketGrantingTicketId != null && service != null) {
     try {
-      this.authenticationTransactionManager.processAuthenticationAttempt(credential);
-      final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
+      final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationObjectsRepository.getPrincipalElectionStrategy());
+      final AuthenticationTransaction transaction=this.authenticationObjectsRepository.getAuthenticationTransactionFactory().get(credential);
+      this.authenticationObjectsRepository.getAuthenticationTransactionManager().handle(transaction,builder);
+      final AuthenticationContext authenticationContext=builder.build();
       final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,authenticationContext);
       WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
       return result("warn");
@@ -18,14 +20,15 @@
       return error();
     }
 catch (    final AbstractTicketException e) {
-      this.authenticationTransactionManager.clear();
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
       logger.debug("Attempted to generate a ServiceTicket using renew=true with different credential",e);
     }
   }
   try {
-    this.authenticationTransactionManager.processAuthenticationAttempt(credential);
-    final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
+    final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationObjectsRepository.getPrincipalElectionStrategy());
+    final AuthenticationTransaction transaction=this.authenticationObjectsRepository.getAuthenticationTransactionFactory().get(credential);
+    this.authenticationObjectsRepository.getAuthenticationTransactionManager().handle(transaction,builder);
+    final AuthenticationContext authenticationContext=builder.build();
     final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
     WebUtils.putTicketGrantingTicketInScopes(context,tgt);
     onSuccess(context,credential);

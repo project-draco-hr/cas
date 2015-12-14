@@ -1,16 +1,18 @@
 {
   TicketGrantingTicket proxyGrantingTicketId=null;
   try {
-    this.authenticationTransactionManager.processAuthenticationAttempt(serviceCredential);
-    final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
+    final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationObjectsRepository.getPrincipalElectionStrategy());
+    final AuthenticationTransaction transaction=this.authenticationObjectsRepository.getAuthenticationTransactionFactory().get(credential);
+    this.authenticationObjectsRepository.getAuthenticationTransactionManager().handle(transaction,builder);
+    final AuthenticationContext authenticationContext=builder.build();
     proxyGrantingTicketId=this.centralAuthenticationService.createProxyGrantingTicket(serviceTicketId,authenticationContext);
-    logger.debug("Generated proxy-granting ticket [{}] off of service ticket [{}] and credential [{}]",proxyGrantingTicketId.getId(),serviceTicketId,serviceCredential);
+    logger.debug("Generated proxy-granting ticket [{}] off of service ticket [{}] and credential [{}]",proxyGrantingTicketId.getId(),serviceTicketId,credential);
   }
  catch (  final AuthenticationException e) {
-    logger.warn("Failed to authenticate service credential {}",serviceCredential);
+    logger.warn("Failed to authenticate service credential {}",credential);
   }
 catch (  final AbstractTicketException e) {
-    logger.error("Failed to create proxy granting ticket for {}",serviceCredential,e);
+    logger.error("Failed to create proxy granting ticket for {}",credential,e);
   }
   return proxyGrantingTicketId;
 }

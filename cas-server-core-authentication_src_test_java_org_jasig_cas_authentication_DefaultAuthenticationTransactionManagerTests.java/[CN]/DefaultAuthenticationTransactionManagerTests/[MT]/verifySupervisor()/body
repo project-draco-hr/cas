@@ -1,7 +1,0 @@
-{
-  authenticationSupervisor.processAuthenticationAttempt(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final AuthenticationContext ctx=authenticationSupervisor.build();
-  assertNotNull(ctx);
-  assertNotNull(ctx.getAuthentication());
-  assertNotNull(ctx.getAuthentication().getPrincipal());
-}

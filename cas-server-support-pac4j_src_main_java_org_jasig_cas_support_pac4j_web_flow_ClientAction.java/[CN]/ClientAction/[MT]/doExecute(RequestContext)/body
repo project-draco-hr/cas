@@ -34,8 +34,10 @@
     restoreRequestAttribute(request,session,LOCALE);
     restoreRequestAttribute(request,session,METHOD);
     if (credentials != null) {
-      this.authenticationTransactionManager.processAuthenticationAttempt(new ClientCredential(credentials));
-      final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
+      final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationObjectsRepository.getPrincipalElectionStrategy());
+      final AuthenticationTransaction transaction=this.authenticationObjectsRepository.getAuthenticationTransactionFactory().get(new ClientCredential(credentials));
+      this.authenticationObjectsRepository.getAuthenticationTransactionManager().handle(transaction,builder);
+      final AuthenticationContext authenticationContext=builder.build();
       final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
       WebUtils.putTicketGrantingTicketInScopes(context,tgt);
       return success();

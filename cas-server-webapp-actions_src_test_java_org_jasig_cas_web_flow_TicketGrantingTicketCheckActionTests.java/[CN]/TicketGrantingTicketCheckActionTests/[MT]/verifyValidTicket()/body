@@ -1,7 +1,6 @@
 {
   final MockRequestContext ctx=new MockRequestContext();
-  getAuthenticationTransactionManager().processAuthenticationAttempt(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final AuthenticationContext ctxAuthN=getAuthenticationTransactionManager().build();
+  final AuthenticationContext ctxAuthN=getAuthenticationContext(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
   final TicketGrantingTicket tgt=this.getCentralAuthenticationService().createTicketGrantingTicket(ctxAuthN);
   WebUtils.putTicketGrantingTicketInScopes(ctx,tgt);
   final TicketGrantingTicketCheckAction action=new TicketGrantingTicketCheckAction(this.getCentralAuthenticationService());

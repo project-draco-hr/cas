@@ -26,11 +26,13 @@
           restoreRequestAttribute(request,session,METHOD);
         }
  catch (        final Exception ex) {
-          logger.warn("Session is most-likely empty: {}",ex.getMessage());
+          logger.warn("Session is most likely empty: {}",ex.getMessage(),ex);
         }
         try {
-          this.authenticationTransactionManager.processAuthenticationAttempt(credential);
-          final AuthenticationContext authenticationContext=this.authenticationTransactionManager.build();
+          final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationObjectsRepository.getPrincipalElectionStrategy());
+          final AuthenticationTransaction transaction=this.authenticationObjectsRepository.getAuthenticationTransactionFactory().get(credential);
+          this.authenticationObjectsRepository.getAuthenticationTransactionManager().handle(transaction,builder);
+          final AuthenticationContext authenticationContext=builder.build();
           WebUtils.putTicketGrantingTicketInScopes(context,this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext));
           logger.info("Token validated and new {} created: {}",credential.getClass().getName(),credential);
           return success();
