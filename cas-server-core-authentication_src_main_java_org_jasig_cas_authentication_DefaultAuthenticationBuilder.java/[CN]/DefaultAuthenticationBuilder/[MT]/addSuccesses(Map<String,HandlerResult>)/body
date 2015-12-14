@@ -1,6 +1,2 @@
 {
-  for (  final Map.Entry<String,HandlerResult> entry : successes.entrySet()) {
-    addSuccess(entry.getKey(),entry.getValue());
-  }
-  return this;
 }

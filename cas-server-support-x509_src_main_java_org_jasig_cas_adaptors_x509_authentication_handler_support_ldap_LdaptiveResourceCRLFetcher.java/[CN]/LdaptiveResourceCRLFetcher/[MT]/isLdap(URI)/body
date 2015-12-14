@@ -1,0 +1,3 @@
+{
+  return r.getScheme().equalsIgnoreCase("ldap");
+}

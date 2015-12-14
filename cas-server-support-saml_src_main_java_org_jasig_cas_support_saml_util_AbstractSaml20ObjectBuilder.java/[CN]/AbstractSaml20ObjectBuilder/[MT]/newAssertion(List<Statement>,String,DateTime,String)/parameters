@@ -1,4 +1,0 @@
-List<Statement> authnStatement
-String issuer
-DateTime issuedAt
-String id

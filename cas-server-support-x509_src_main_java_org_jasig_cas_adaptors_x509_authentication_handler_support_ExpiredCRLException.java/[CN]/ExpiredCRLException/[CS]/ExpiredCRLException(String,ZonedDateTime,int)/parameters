@@ -1,0 +1,3 @@
+String identifier
+ZonedDateTime expirationDate
+int leniency

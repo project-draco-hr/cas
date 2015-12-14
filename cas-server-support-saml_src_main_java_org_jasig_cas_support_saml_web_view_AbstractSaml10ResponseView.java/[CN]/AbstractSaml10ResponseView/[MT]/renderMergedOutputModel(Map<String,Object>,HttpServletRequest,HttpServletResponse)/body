@@ -15,7 +15,7 @@
       }
     }
     logger.debug("Using {} as the recipient of the SAML response for {}",serviceId,service);
-    final Response samlResponse=this.samlObjectBuilder.newResponse(this.samlObjectBuilder.generateSecureRandomId(),DateTime.now().minusSeconds(this.skewAllowance),serviceId,service);
+    final Response samlResponse=this.samlObjectBuilder.newResponse(this.samlObjectBuilder.generateSecureRandomId(),ZonedDateTime.now(ZoneOffset.UTC).minusSeconds(this.skewAllowance),serviceId,service);
     prepareResponse(samlResponse,model);
     this.samlObjectBuilder.encodeSamlResponse(response,request,samlResponse);
   }

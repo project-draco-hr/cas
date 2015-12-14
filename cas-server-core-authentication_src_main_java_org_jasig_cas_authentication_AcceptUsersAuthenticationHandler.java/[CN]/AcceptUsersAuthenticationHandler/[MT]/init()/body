@@ -1,11 +1,2 @@
 {
-  if (StringUtils.isNotBlank(this.acceptedUsers) && this.users == null) {
-    final Set<String> usersPasswords=org.springframework.util.StringUtils.commaDelimitedListToSet(this.acceptedUsers);
-    final Map<String,String> parsedUsers=new HashMap<>();
-    for (    final String usersPassword : usersPasswords) {
-      final String[] splitArray=USERS_PASSWORDS_SPLITTER_PATTERN.split(usersPassword);
-      parsedUsers.put(splitArray[0],splitArray[1]);
-    }
-    setUsers(parsedUsers);
-  }
 }

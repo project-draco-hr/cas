@@ -9,12 +9,12 @@
   }
   boolean result=false;
   if (lock != null) {
-    final DateTime expDate=new DateTime(lock.getExpirationDate());
+    final ZonedDateTime expDate=ZonedDateTime.from(lock.getExpirationDate());
     if (lock.getUniqueId() == null) {
       logger.debug("{} trying to acquire {} lock.",uniqueId,applicationId);
       result=acquire(entityManager,lock);
     }
- else     if (new DateTime().isAfter(expDate)) {
+ else     if (ZonedDateTime.now(ZoneOffset.UTC).isAfter(expDate)) {
       logger.debug("{} trying to acquire expired {} lock.",uniqueId,applicationId);
       result=acquire(entityManager,lock);
     }

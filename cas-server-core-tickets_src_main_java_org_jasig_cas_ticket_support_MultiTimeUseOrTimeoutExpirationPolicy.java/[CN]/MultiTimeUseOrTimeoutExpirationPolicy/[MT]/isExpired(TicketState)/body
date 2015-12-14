@@ -8,10 +8,10 @@
     LOGGER.debug("Ticket usage count {} is greater than or equal to {}",countUses,this.numberOfUses);
     return true;
   }
-  final long systemTime=System.currentTimeMillis();
-  final long lastTimeUsed=ticketState.getLastTimeUsed();
-  final long difference=systemTime - lastTimeUsed;
-  if (difference >= this.timeToKillInMilliSeconds) {
+  final ZonedDateTime systemTime=ZonedDateTime.now(ZoneOffset.UTC);
+  final ZonedDateTime lastTimeUsed=ticketState.getLastTimeUsed();
+  final ZonedDateTime expirationTime=lastTimeUsed.plus(this.timeToKillInMilliSeconds,ChronoUnit.MILLIS);
+  if (systemTime.isAfter(expirationTime)) {
     LOGGER.debug("Ticket has expired because the difference between current time [{}] " + "and ticket time [{}] is greater than or equal to [{}]",systemTime,lastTimeUsed,this.timeToKillInMilliSeconds);
     return true;
   }

@@ -1,11 +1,2 @@
 {
-  final Set<String> keys=keySet();
-  final Collection<String> values=new ArrayList<>();
-  for (  final String key : keys) {
-    final String value=get(key);
-    if (value != null) {
-      values.add(value);
-    }
-  }
-  return values;
 }

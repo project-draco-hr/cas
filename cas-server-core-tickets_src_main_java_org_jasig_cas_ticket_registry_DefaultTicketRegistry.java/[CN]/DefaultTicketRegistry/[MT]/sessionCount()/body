@@ -1,9 +1,2 @@
 {
-  int count=0;
-  for (  final Ticket t : this.cache.values()) {
-    if (t instanceof TicketGrantingTicket) {
-      count++;
-    }
-  }
-  return count;
 }

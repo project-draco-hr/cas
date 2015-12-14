@@ -1,7 +1,5 @@
 {
-  final Iterator<RegisteredService> it=servicesManager.getAllServices().iterator();
-  while (it.hasNext()) {
-    final RegisteredService aService=it.next();
+  for (  final RegisteredService aService : servicesManager.getAllServices()) {
     if (aService instanceof OAuthRegisteredService) {
       final OAuthRegisteredService service=(OAuthRegisteredService)aService;
       if (service.getClientId().equals(clientId)) {

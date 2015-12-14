@@ -1,0 +1,6 @@
+{
+  if (isLdap(crl)) {
+    return fetchCRLFromLdap(crl);
+  }
+  return super.fetch(crl);
+}

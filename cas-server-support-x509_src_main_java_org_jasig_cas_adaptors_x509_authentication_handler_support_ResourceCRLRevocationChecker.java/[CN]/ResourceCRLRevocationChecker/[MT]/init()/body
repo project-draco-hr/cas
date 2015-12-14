@@ -15,7 +15,7 @@
     private final Logger logger=LoggerFactory.getLogger(this.getClass());
     @Override public void run(){
       try {
-        final Set<Resource> resources=ResourceCRLRevocationChecker.this.getResources();
+        final Set<Resource> resources=getResources();
         final Set<X509CRL> results=getFetcher().fetch(resources);
         ResourceCRLRevocationChecker.this.addCrls(results);
       }

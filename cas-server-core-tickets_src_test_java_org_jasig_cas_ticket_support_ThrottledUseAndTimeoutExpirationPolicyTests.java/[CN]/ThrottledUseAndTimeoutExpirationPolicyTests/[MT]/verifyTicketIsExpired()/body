@@ -1,4 +1,4 @@
 {
-  Thread.sleep(TIMEOUT + TIMEOUT_BUFFER);
+  expirationPolicy.setTimeToKillInMilliSeconds(-TIMEOUT);
   assertTrue(this.ticket.isExpired());
 }

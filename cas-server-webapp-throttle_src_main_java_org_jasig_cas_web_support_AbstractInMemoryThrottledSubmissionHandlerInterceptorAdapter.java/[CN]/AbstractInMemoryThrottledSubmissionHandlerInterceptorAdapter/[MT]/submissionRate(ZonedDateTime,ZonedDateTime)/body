@@ -1,0 +1,3 @@
+{
+  return SUBMISSION_RATE_DIVIDEND / (a.toInstant().toEpochMilli() - b.toInstant().toEpochMilli());
+}

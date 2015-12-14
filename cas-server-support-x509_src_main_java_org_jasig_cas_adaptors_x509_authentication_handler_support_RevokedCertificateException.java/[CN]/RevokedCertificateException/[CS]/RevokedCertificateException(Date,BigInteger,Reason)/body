@@ -1,5 +1,0 @@
-{
-  this.revocationDate=new DateTime(revoked);
-  this.serial=serial;
-  this.reason=reason;
-}

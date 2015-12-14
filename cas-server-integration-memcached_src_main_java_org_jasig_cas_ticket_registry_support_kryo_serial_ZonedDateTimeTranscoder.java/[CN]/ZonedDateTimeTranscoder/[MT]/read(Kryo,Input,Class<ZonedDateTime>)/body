@@ -1,0 +1,5 @@
+{
+  final long time=kryo.readObject(input,Long.class);
+  final ZoneId zone=ZoneId.of(input.readString());
+  return DateTimeUtils.zonedDateTimeOf(time,zone);
+}
