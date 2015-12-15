@@ -18,6 +18,9 @@
   final CentralAuthenticationService casImpl=mock(CentralAuthenticationService.class);
   when(casImpl.createTicketGrantingTicket(any(AuthenticationContext.class))).thenReturn(tgt);
   final ClientAction action=new ClientAction();
+  final AuthenticationManager authNManager=mock(AuthenticationManager.class);
+  when(authNManager.authenticate(any(Credential.class))).thenReturn(TestUtils.getAuthentication());
+  action.getAuthenticationObjectsRepository().getAuthenticationTransactionManager().setAuthenticationManager(authNManager);
   action.setCentralAuthenticationService(casImpl);
   action.setClients(clients);
   final Event event=action.execute(mockRequestContext);
