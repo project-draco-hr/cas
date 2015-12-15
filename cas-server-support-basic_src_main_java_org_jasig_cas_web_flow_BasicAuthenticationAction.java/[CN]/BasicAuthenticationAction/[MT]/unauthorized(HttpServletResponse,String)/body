@@ -1,4 +1,0 @@
-{
-  response.setHeader("WWW-Authenticate","Basic realm=\"CAS\"");
-  response.sendError(HttpStatus.SC_UNAUTHORIZED,message);
-}
