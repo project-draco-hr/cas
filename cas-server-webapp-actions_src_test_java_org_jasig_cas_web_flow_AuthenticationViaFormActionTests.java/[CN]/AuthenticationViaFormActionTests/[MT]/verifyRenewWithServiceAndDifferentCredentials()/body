@@ -1,6 +1,6 @@
 {
   final Credential c=org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword();
-  final AuthenticationContext ctx=getAuthenticationContext(c);
+  final AuthenticationContext ctx=getAuthenticationContext(TestUtils.getService("test"),c);
   final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockRequestContext context=new MockRequestContext();
@@ -8,7 +8,7 @@
   request.addParameter("lt","LOGIN");
   WebUtils.putTicketGrantingTicketInScopes(context,ticketGrantingTicket);
   request.addParameter("renew","true");
-  request.addParameter("service","test");
+  request.addParameter("service",TestUtils.getService("test").getId());
   request.addParameter("username","test2");
   request.addParameter("password","test2");
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
