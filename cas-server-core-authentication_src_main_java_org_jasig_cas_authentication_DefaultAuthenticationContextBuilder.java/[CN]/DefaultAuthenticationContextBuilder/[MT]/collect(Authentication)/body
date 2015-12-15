@@ -1,6 +1,4 @@
 {
-  final Set<Authentication> set=getAuthentications();
-  set.add(authentication);
-  this.authentications.set(set);
+  this.authentications.add(authentication);
   return this;
 }

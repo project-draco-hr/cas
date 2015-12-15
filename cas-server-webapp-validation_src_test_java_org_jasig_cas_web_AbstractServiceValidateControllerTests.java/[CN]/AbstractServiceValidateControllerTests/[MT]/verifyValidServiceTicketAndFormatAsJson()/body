@@ -1,7 +1,7 @@
 {
-  final AuthenticationContext ctx=getAuthenticationContext(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final Service svc=org.jasig.cas.authentication.TestUtils.getService("proxyService");
+  final AuthenticationContext ctx=getAuthenticationContext(svc,org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),svc,ctx);
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.addParameter("service",svc.getId());

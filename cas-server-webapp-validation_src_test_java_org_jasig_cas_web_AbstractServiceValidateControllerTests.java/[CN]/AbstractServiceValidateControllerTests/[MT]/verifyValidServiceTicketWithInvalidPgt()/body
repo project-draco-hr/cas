@@ -1,10 +1,10 @@
 {
-  final AuthenticationContext ctx=getAuthenticationContext(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationContext ctx=getAuthenticationContext(SERVICE,org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
   this.serviceValidateController.setProxyHandler(new Cas10ProxyHandler());
   final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
-  final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),org.jasig.cas.authentication.TestUtils.getService(),ctx);
+  final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),SERVICE,ctx);
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.addParameter("service",org.jasig.cas.authentication.TestUtils.getService().getId());
+  request.addParameter("service",SERVICE.getId());
   request.addParameter("ticket",sId.getId());
   request.addParameter("pgtUrl","duh");
   final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());

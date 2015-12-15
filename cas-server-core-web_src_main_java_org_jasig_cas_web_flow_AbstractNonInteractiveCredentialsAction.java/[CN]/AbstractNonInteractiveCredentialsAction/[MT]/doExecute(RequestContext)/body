@@ -10,7 +10,7 @@
       final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationObjectsRepository.getPrincipalElectionStrategy());
       final AuthenticationTransaction transaction=this.authenticationObjectsRepository.getAuthenticationTransactionFactory().get(credential);
       this.authenticationObjectsRepository.getAuthenticationTransactionManager().handle(transaction,builder);
-      final AuthenticationContext authenticationContext=builder.build();
+      final AuthenticationContext authenticationContext=builder.build(service);
       final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,authenticationContext);
       WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
       return result("warn");
@@ -28,7 +28,7 @@ catch (    final AbstractTicketException e) {
     final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationObjectsRepository.getPrincipalElectionStrategy());
     final AuthenticationTransaction transaction=this.authenticationObjectsRepository.getAuthenticationTransactionFactory().get(credential);
     this.authenticationObjectsRepository.getAuthenticationTransactionManager().handle(transaction,builder);
-    final AuthenticationContext authenticationContext=builder.build();
+    final AuthenticationContext authenticationContext=builder.build(service);
     final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
     WebUtils.putTicketGrantingTicketInScopes(context,tgt);
     onSuccess(context,credential);

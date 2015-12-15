@@ -1,10 +1,11 @@
 {
   TicketGrantingTicket proxyGrantingTicketId=null;
   try {
+    final ServiceTicket serviceTicket=this.centralAuthenticationService.getTicket(serviceTicketId,ServiceTicket.class);
     final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationObjectsRepository.getPrincipalElectionStrategy());
     final AuthenticationTransaction transaction=this.authenticationObjectsRepository.getAuthenticationTransactionFactory().get(credential);
     this.authenticationObjectsRepository.getAuthenticationTransactionManager().handle(transaction,builder);
-    final AuthenticationContext authenticationContext=builder.build();
+    final AuthenticationContext authenticationContext=builder.build(serviceTicket.getService());
     proxyGrantingTicketId=this.centralAuthenticationService.createProxyGrantingTicket(serviceTicketId,authenticationContext);
     logger.debug("Generated proxy-granting ticket [{}] off of service ticket [{}] and credential [{}]",proxyGrantingTicketId.getId(),serviceTicketId,credential);
   }

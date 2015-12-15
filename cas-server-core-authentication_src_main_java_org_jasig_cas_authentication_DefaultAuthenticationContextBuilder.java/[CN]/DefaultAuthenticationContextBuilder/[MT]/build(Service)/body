@@ -3,5 +3,5 @@
   if (authentication == null) {
     throw new RuntimeException(new GeneralSecurityException("Authentication context cannot be produced"));
   }
-  return new DefaultAuthenticationContext(authentication);
+  return new DefaultAuthenticationContext(authentication,service);
 }

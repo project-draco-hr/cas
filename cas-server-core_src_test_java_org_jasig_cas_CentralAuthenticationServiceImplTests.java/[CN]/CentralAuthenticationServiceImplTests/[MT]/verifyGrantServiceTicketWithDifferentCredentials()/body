@@ -1,6 +1,6 @@
 {
-  final AuthenticationContext ctx=getAuthenticationContext(TestUtils.getCredentialsWithSameUsernameAndPassword("testA"));
+  final AuthenticationContext ctx=getAuthenticationContext(getService(),TestUtils.getCredentialsWithSameUsernameAndPassword("testA"));
   final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
-  final AuthenticationContext ctx2=getAuthenticationContext(TestUtils.getCredentialsWithSameUsernameAndPassword("testB"));
+  final AuthenticationContext ctx2=getAuthenticationContext(getService(),TestUtils.getCredentialsWithSameUsernameAndPassword("testB"));
   getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),getService(),ctx2);
 }

@@ -1,7 +1,0 @@
-{
-  Set<Authentication> set=this.authentications.get();
-  if (set == null) {
-    set=Collections.synchronizedSet(new LinkedHashSet<Authentication>());
-  }
-  return set;
-}
