@@ -8,5 +8,5 @@
   mongoAuthenticator.setUsernameAttribute(this.usernameAttribute);
   mongoAuthenticator.setPasswordAttribute(this.passwordAttribute);
   mongoAuthenticator.setPasswordEncoder(this.mongoPasswordEncoder);
-  setAuthenticator(mongoAuthenticator);
+  return mongoAuthenticator;
 }
