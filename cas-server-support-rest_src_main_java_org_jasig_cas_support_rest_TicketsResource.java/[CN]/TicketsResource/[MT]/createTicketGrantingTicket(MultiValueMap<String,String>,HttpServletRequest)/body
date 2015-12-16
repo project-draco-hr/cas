@@ -5,7 +5,7 @@
     final AuthenticationTransaction transaction=this.authenticationObjectsRepository.getAuthenticationTransactionFactory().get(credential);
     this.authenticationObjectsRepository.getAuthenticationTransactionManager().handle(transaction,builder);
     final AuthenticationContext authenticationContext=builder.build();
-    final TicketGrantingTicket tgtId=this.cas.createTicketGrantingTicket(authenticationContext);
+    final TicketGrantingTicket tgtId=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
     final URI ticketReference=new URI(request.getRequestURL().toString() + '/' + tgtId.getId());
     final HttpHeaders headers=new HttpHeaders();
     headers.setLocation(ticketReference);
