@@ -3,6 +3,7 @@
   context.refresh();
   this.serviceValidateController=new ServiceValidateController();
   this.serviceValidateController.setCentralAuthenticationService(getCentralAuthenticationService());
+  this.serviceValidateController.setAuthenticationObjectsRepository(getAuthenticationObjectsRepository());
   final Cas20ProxyHandler proxyHandler=new Cas20ProxyHandler();
   proxyHandler.setHttpClient(new SimpleHttpClientFactoryBean().getObject());
   this.serviceValidateController.setProxyHandler(proxyHandler);
