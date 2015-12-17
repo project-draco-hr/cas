@@ -12,10 +12,7 @@
       }
       bean.setServiceData(registeredServiceFactory.createServiceData(service));
     }
-    final RegisteredServiceEditBean.FormData formData=bean.getFormData();
-    final List<String> possibleAttributeNames=new ArrayList<>(this.personAttributeDao.getPossibleUserAttributeNames());
-    Collections.sort(possibleAttributeNames);
-    formData.setAvailableAttributes(possibleAttributeNames);
+    bean.setFormData(registeredServiceFactory.createFormData());
     bean.setStatus(HttpServletResponse.SC_OK);
     JsonViewUtils.render(bean,response);
   }

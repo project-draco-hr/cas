@@ -4,8 +4,9 @@
   this.repository=new StubPersonAttributeDao();
   this.repository.setBackingMap(attributes);
   this.registeredServiceFactory=new DefaultRegisteredServiceFactory();
+  this.registeredServiceFactory.setFormDataPopulators(ImmutableList.of(new AttributeFormDataPopulator(this.repository)));
   this.registeredServiceFactory.initializeDefaults();
   this.manager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
   this.manager.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
-  this.controller=new RegisteredServiceSimpleFormController(this.manager,this.repository,this.registeredServiceFactory);
+  this.controller=new RegisteredServiceSimpleFormController(this.manager,this.registeredServiceFactory);
 }

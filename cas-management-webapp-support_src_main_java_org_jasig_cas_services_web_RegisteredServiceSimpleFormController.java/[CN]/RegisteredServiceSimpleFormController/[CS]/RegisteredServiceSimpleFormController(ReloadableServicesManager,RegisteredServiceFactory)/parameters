@@ -1,3 +1,2 @@
 ReloadableServicesManager servicesManager
-IPersonAttributeDao personAttributeDao
 RegisteredServiceFactory registeredServiceFactory
