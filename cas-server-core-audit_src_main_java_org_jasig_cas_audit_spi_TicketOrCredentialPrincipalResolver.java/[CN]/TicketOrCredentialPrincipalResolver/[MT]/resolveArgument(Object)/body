@@ -6,14 +6,14 @@
  else   if (arg1 instanceof String) {
     try {
       final Ticket ticket=this.centralAuthenticationService.getTicket((String)arg1,Ticket.class);
+      org.jasig.cas.authentication.Authentication casAuthentication=null;
       if (ticket instanceof ServiceTicket) {
-        final ServiceTicket serviceTicket=(ServiceTicket)ticket;
-        return serviceTicket.getGrantingTicket().getAuthentication().getPrincipal().getId();
+        casAuthentication=ServiceTicket.class.cast(ticket).getGrantingTicket().getAuthentication();
       }
  else       if (ticket instanceof TicketGrantingTicket) {
-        final TicketGrantingTicket tgt=(TicketGrantingTicket)ticket;
-        return tgt.getAuthentication().getPrincipal().getId();
+        casAuthentication=TicketGrantingTicket.class.cast(ticket).getAuthentication();
       }
+      return this.principalIdProvider.getPrincipalIdFrom(casAuthentication);
     }
  catch (    final InvalidTicketException e) {
       LOGGER.trace(e.getMessage(),e);
