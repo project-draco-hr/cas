@@ -1,0 +1,6 @@
+{
+  if (bucket != null) {
+    return bucket;
+  }
+  throw new RuntimeException("Connection to bucket " + bucketName + " not initialized yet.");
+}
