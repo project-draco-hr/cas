@@ -3,7 +3,7 @@
   this.action.setCentralAuthenticationService(getCentralAuthenticationService());
   this.action.afterPropertiesSet();
   final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(getAuthenticationObjectsRepository().getPrincipalElectionStrategy());
-  final AuthenticationTransaction transaction=getAuthenticationObjectsRepository().getAuthenticationTransactionFactory().get(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationTransaction transaction=getAuthenticationObjectsRepository().getAuthenticationTransactionFactory().get(TestUtils.getCredentialsWithSameUsernameAndPassword());
   getAuthenticationObjectsRepository().getAuthenticationTransactionManager().handle(transaction,builder);
   final AuthenticationContext ctx=builder.build(TestUtils.getService());
   this.ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
