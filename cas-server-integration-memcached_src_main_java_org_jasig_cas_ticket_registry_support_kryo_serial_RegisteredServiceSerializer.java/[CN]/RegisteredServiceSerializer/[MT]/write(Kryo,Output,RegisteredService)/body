@@ -1,3 +1,17 @@
 {
   kryo.writeObject(output,service.getServiceId());
+  kryo.writeObject(output,service.getName());
+  kryo.writeObject(output,service.getDescription());
+  kryo.writeObject(output,service.getId());
+  kryo.writeObject(output,service.getEvaluationOrder());
+  kryo.writeObject(output,service.getLogo());
+  kryo.writeObject(output,service.getLogoutType());
+  kryo.writeObject(output,service.getLogoutUrl());
+  kryo.writeObject(output,ImmutableSet.copyOf(service.getRequiredHandlers()));
+  kryo.writeObject(output,service.getTheme());
+  writeObjectByReflection(kryo,output,service.getPublicKey());
+  writeObjectByReflection(kryo,output,service.getProxyPolicy());
+  writeObjectByReflection(kryo,output,service.getAttributeReleasePolicy());
+  writeObjectByReflection(kryo,output,service.getUsernameAttributeProvider());
+  writeObjectByReflection(kryo,output,service.getAccessStrategy());
 }
