@@ -1,0 +1,5 @@
+{
+  final String className=obj.getClass().getCanonicalName();
+  kryo.writeObject(output,className);
+  kryo.writeObject(output,obj);
+}
