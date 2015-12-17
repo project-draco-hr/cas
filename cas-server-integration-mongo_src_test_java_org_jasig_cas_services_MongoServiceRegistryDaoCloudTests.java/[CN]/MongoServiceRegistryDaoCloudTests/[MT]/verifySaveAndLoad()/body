@@ -1,0 +1,16 @@
+{
+  final List<RegisteredService> list=new ArrayList<>();
+  for (int i=0; i < 5; i++) {
+    list.add(buildService(i));
+    this.serviceRegistryDao.save(list.get(i));
+  }
+  final List<RegisteredService> results=this.serviceRegistryDao.load();
+  assertEquals(results.size(),list.size());
+  for (int i=0; i < 5; i++) {
+    assertEquals(list.get(i),results.get(i));
+  }
+  for (int i=0; i < 5; i++) {
+    this.serviceRegistryDao.delete(results.get(i));
+  }
+  assertTrue(this.serviceRegistryDao.load().isEmpty());
+}
