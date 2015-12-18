@@ -1,4 +1,5 @@
 {
+  this.registeredServiceFactory.setRegisteredServiceMapper(new CustomRegisteredServiceMapper());
   final RegisteredServiceImpl r=new RegisteredServiceImpl();
   r.setId(1200);
   r.setName("name");
@@ -14,4 +15,6 @@
   final String content=response.getContentAsString();
   assertTrue(content.contains("services"));
   assertTrue(content.contains("uniqueDescription"));
+  assertTrue(content.contains("customComponent1"));
+  assertTrue(content.contains("key2"));
 }
