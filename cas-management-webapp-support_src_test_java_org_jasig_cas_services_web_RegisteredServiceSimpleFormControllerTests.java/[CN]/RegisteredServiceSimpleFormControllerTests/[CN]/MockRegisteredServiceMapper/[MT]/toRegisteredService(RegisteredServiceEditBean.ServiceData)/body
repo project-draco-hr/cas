@@ -1,0 +1,10 @@
+{
+  final RegisteredService baseSvc=base.toRegisteredService(data);
+  final Map<String,?> mockComponent=data.getCustomComponent("mock");
+  if (mockComponent == null || !"MockRegisteredService".equals(mockComponent.get("service_type"))) {
+    return baseSvc;
+  }
+  final MockRegisteredService svc=new MockRegisteredService();
+  svc.copyFrom(baseSvc);
+  return svc;
+}

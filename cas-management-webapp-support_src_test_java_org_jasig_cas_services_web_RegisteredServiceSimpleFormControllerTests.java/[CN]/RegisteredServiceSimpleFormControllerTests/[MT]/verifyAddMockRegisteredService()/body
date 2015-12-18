@@ -1,5 +1,6 @@
 {
-  final RegexRegisteredService svc=new RegexRegisteredService();
+  registeredServiceFactory.setRegisteredServiceMapper(new MockRegisteredServiceMapper());
+  final MockRegisteredService svc=new MockRegisteredService();
   svc.setDescription("description");
   svc.setServiceId("^serviceId");
   svc.setName("name");
@@ -10,6 +11,6 @@
   final Collection<RegisteredService> services=this.manager.getAllServices();
   assertEquals(1,services.size());
   for (  final RegisteredService rs : this.manager.getAllServices()) {
-    assertTrue(rs instanceof RegisteredService);
+    assertTrue(rs instanceof MockRegisteredService);
   }
 }
