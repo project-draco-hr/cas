@@ -1,0 +1,10 @@
+{
+  final HTTPPostEncoder encoder=new HTTPPostEncoder();
+  encoder.setHttpServletResponse(httpResponse);
+  encoder.setVelocityEngine(this.velocityEngineFactory.createVelocityEngine());
+  final MessageContext outboundMessageContext=new MessageContext<>();
+  outboundMessageContext.setMessage(samlResponse);
+  encoder.setMessageContext(outboundMessageContext);
+  encoder.initialize();
+  encoder.encode();
+}
