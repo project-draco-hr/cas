@@ -1,6 +1,6 @@
 {
   try {
-    final RegisteredService svcToUse=service.toRegisteredService(this.personAttributeDao);
+    final RegisteredService svcToUse=registeredServiceFactory.createRegisteredService(service);
     final RegisteredService newSvc=this.servicesManager.save(svcToUse);
     logger.info("Saved changes to service {}",svcToUse.getId());
     final Map<String,Object> model=new HashMap<>();

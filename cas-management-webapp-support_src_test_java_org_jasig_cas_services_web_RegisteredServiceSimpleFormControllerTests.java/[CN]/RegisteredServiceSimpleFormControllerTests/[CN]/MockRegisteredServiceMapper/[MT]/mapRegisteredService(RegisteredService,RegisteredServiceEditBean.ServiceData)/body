@@ -1,0 +1,6 @@
+{
+  base.mapRegisteredService(svc,bean);
+  if (svc instanceof MockRegisteredService) {
+    bean.setCustomComponent("mock",ImmutableMap.of("service_type","MockRegisteredService"));
+  }
+}
