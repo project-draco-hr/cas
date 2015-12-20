@@ -1,0 +1,12 @@
+{
+  final MongoClientURI uri=new MongoClientURI(this.mongoHostUri);
+  final MongoClient client=new MongoClient(uri);
+  LOGGER.info("Connected to MongoDb instance @ {} using database [{}]",uri.getHosts(),uri.getDatabase());
+  final MongoAuthenticator mongoAuthenticator=new MongoAuthenticator(client,this.attributes);
+  mongoAuthenticator.setUsersCollection(this.collectionName);
+  mongoAuthenticator.setUsersDatabase(uri.getDatabase());
+  mongoAuthenticator.setUsernameAttribute(this.usernameAttribute);
+  mongoAuthenticator.setPasswordAttribute(this.passwordAttribute);
+  mongoAuthenticator.setPasswordEncoder(this.mongoPasswordEncoder);
+  return mongoAuthenticator;
+}
