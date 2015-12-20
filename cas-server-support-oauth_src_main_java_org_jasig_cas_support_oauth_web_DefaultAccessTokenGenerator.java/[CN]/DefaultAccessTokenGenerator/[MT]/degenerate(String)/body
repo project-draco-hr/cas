@@ -1,0 +1,8 @@
+{
+  final String accessTokenEncoded=new String(CompressionUtils.decodeBase64(accessTokenInput));
+  final String[] token=accessTokenEncoded.split(UserProfile.SEPARATOR);
+  if (token.length == 2) {
+    return new Pair(token[0],this.webApplicationServiceFactory.createService(token[1]));
+  }
+  throw new IllegalArgumentException("Access token received must include both the id and the requesting service");
+}
