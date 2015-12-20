@@ -1,7 +1,7 @@
 {
   final String origSvc="http://www.jasig.org?param=hello+world";
   final Service svc=org.jasig.cas.authentication.TestUtils.getService(origSvc);
-  final AuthenticationContext ctx=getAuthenticationContext(svc,org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationContext ctx=org.jasig.cas.authentication.TestUtils.getAuthenticationContext(getAuthenticationSystemSupport(),svc);
   this.serviceValidateController.setProxyHandler(new Cas10ProxyHandler());
   final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),svc,ctx);

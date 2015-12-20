@@ -1,4 +1,0 @@
-{
-  final Set<Credential> sanitizedCredentials=sanitizeCredentials(credentials);
-  return new DefaultAuthenticationTransaction(sanitizedCredentials);
-}

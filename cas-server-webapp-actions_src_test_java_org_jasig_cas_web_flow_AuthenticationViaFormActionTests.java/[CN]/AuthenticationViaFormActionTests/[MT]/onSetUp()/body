@@ -6,6 +6,6 @@
   this.warnCookieGenerator.setCookieDomain("/");
   this.warnCookieGenerator.setCookiePath("/");
   this.action.setCentralAuthenticationService(getCentralAuthenticationService());
-  this.action.setAuthenticationObjectsRepository(getAuthenticationObjectsRepository());
+  this.action.setAuthenticationSystemSupport(getAuthenticationSystemSupport());
   this.action.setWarnCookieGenerator(this.warnCookieGenerator);
 }

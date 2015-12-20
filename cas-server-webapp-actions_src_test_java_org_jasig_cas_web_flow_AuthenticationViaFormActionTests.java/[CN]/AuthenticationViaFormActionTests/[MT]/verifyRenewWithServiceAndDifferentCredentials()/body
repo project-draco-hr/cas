@@ -1,6 +1,6 @@
 {
   final Credential c=org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword();
-  final AuthenticationContext ctx=getAuthenticationContext(TestUtils.getService("test"),c);
+  final AuthenticationContext ctx=org.jasig.cas.authentication.TestUtils.getAuthenticationContext(getAuthenticationSystemSupport(),TestUtils.getService("test"),c);
   final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockRequestContext context=new MockRequestContext();
