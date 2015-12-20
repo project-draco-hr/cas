@@ -1,8 +1,8 @@
 {
-  final AuthenticationContext ctx=getAuthenticationContext(getService(),TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationContext ctx=TestUtils.getAuthenticationContext(getAuthenticationSystemSupport(),getService());
   final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final ServiceTicket serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),getService(),ctx);
-  final AuthenticationContext ctx2=getAuthenticationContext(getService(),org.jasig.cas.services.TestUtils.getHttpBasedServiceCredentials());
+  final AuthenticationContext ctx2=TestUtils.getAuthenticationContext(getAuthenticationSystemSupport(),org.jasig.cas.services.TestUtils.getHttpBasedServiceCredentials());
   final TicketGrantingTicket pgt=getCentralAuthenticationService().createProxyGrantingTicket(serviceTicketId.getId(),ctx2);
   assertTrue(pgt.getId().startsWith(ProxyGrantingTicket.PROXY_GRANTING_TICKET_PREFIX));
 }

@@ -1,7 +1,6 @@
 {
   final Service svc=getService("TestSsoFalse");
-  final UsernamePasswordCredential cred=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  final AuthenticationContext ctx=getAuthenticationContext(svc,cred);
+  final AuthenticationContext ctx=TestUtils.getAuthenticationContext(getAuthenticationSystemSupport(),svc);
   final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),svc,null);
 }

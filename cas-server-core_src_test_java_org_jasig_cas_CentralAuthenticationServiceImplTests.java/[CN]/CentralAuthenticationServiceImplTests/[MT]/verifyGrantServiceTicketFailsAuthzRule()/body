@@ -1,5 +1,5 @@
 {
-  final AuthenticationContext ctx=getAuthenticationContext(getService("TestServiceAttributeForAuthzFails"),TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationContext ctx=TestUtils.getAuthenticationContext(getAuthenticationSystemSupport(),getService("TestServiceAttributeForAuthzFails"));
   final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),getService("TestServiceAttributeForAuthzFails"),ctx);
 }
