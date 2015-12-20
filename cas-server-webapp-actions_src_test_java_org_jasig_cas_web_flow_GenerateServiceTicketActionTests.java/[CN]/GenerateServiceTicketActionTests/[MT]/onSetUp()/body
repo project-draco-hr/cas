@@ -1,6 +1,7 @@
 {
   this.action=new GenerateServiceTicketAction();
   this.action.setCentralAuthenticationService(getCentralAuthenticationService());
+  this.action.setAuthenticationSystemSupport(getAuthenticationSystemSupport());
   this.action.afterPropertiesSet();
   final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(getAuthenticationSystemSupport().getPrincipalElectionStrategy());
   final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(TestUtils.getCredentialsWithSameUsernameAndPassword());
