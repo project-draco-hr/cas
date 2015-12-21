@@ -1,0 +1,6 @@
+{
+  if (filter instanceof RegisteredServiceRegexAttributeFilter) {
+    final RegisteredServiceRegexAttributeFilter regex=(RegisteredServiceRegexAttributeFilter)filter;
+    bean.getAttrRelease().setAttrFilter(regex.getPattern().pattern());
+  }
+}

@@ -1,4 +1,0 @@
-{
-  super(servicesManager);
-  this.defaultService=new WebApplicationServiceFactory().createService(defaultServiceUrl);
-}
