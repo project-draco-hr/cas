@@ -1,0 +1,4 @@
+{
+  final Authentication authentication=TestUtils.getAuthentication();
+  return new TicketGrantingTicketImpl("123",authentication,new NeverExpiresExpirationPolicy());
+}
