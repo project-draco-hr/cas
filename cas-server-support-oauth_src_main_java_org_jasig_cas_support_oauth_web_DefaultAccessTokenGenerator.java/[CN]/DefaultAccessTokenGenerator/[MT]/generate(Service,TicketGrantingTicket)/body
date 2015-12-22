@@ -1,0 +1,5 @@
+{
+  final String accessToken=ticketGrantingTicket.getId() + UserProfile.SEPARATOR + service.getId();
+  LOGGER.debug("Created access token {}, now encoding it as base64",accessToken);
+  return CompressionUtils.encodeBase64(accessToken.getBytes());
+}

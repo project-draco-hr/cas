@@ -1,0 +1,10 @@
+{
+  if (!service.getAccessStrategy().doPrincipalAttributesAllowServiceAccess(principal.getId(),principal.getAttributes())) {
+    logger.warn("Service [{}] is not authorized for use by [{}].",service.getServiceId(),principal);
+    jsonGenerator.writeStartObject();
+    jsonGenerator.writeStringField("error",UnauthorizedServiceForPrincipalException.CODE_UNAUTHZ_SERVICE);
+    jsonGenerator.writeEndObject();
+    return false;
+  }
+  return true;
+}
