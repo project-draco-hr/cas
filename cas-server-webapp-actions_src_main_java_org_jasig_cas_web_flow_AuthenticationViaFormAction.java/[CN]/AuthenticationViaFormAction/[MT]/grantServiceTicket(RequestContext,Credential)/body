@@ -4,8 +4,8 @@
     final Service service=WebUtils.getService(context);
     final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
     WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
-    putWarnCookieIfRequestParameterPresent(context);
-    return newEvent(WARN);
+    WebUtils.putWarnCookieIfRequestParameterPresent(this.warnCookieGenerator,context);
+    return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_WARN);
   }
  catch (  final AuthenticationException e) {
     return newEvent(AUTHENTICATION_FAILURE,e);
@@ -15,7 +15,7 @@ catch (  final TicketCreationException e) {
     this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
   }
 catch (  final AbstractTicketException e) {
-    return newEvent(ERROR,e);
+    return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_ERROR,e);
   }
-  return newEvent(ERROR);
+  return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_ERROR);
 }
