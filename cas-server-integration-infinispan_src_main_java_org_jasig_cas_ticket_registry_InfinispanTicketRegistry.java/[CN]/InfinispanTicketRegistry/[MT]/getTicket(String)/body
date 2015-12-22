@@ -1,0 +1,4 @@
+{
+  final Ticket ticket=this.cache.get(ticketId);
+  return getProxiedTicketInstance(ticket);
+}
