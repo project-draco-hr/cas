@@ -9,5 +9,7 @@
       warnCookieGenerator.removeCookie(response);
     }
   }
-  LOGGER.debug("No warning cookie generator is defined");
+ else {
+    LOGGER.debug("No warning cookie generator is defined");
+  }
 }
