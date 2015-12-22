@@ -2,6 +2,7 @@
   final RegisteredServiceImpl r=new RegisteredServiceImpl();
   r.setId(1200);
   r.setName("name");
+  r.setDescription("uniqueDescription");
   r.setServiceId("test");
   r.setEvaluationOrder(2);
   this.servicesManager.save(r);
@@ -10,5 +11,7 @@
   assertTrue(mv.getModel().containsKey("defaultServiceUrl"));
   assertTrue(mv.getModel().containsKey("status"));
   this.controller.getServices(response);
-  assertTrue(response.getContentAsString().contains("services"));
+  final String content=response.getContentAsString();
+  assertTrue(content.contains("services"));
+  assertTrue(content.contains("uniqueDescription"));
 }

@@ -1,0 +1,16 @@
+{
+  if (service == null || !service.getAccessStrategy().isServiceAccessAllowed()) {
+    logger.debug("Service is not defined/found or its access is disabled in the registry");
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
+  }
+  if (service.getProperties().containsKey(propName)) {
+    final RegisteredServiceProperty propSigning=service.getProperties().get(propName);
+    final String tokenSigningSecret=propSigning.getValue();
+    if (StringUtils.isNotBlank(tokenSigningSecret)) {
+      logger.debug("Found the secret value {} for service [{}]",propName,service.getServiceId());
+      return tokenSigningSecret;
+    }
+  }
+  logger.warn("Service [{}] does not define a property [{}] in the registry",service.getServiceId(),propName);
+  return null;
+}

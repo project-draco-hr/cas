@@ -1,0 +1,7 @@
+{
+  if (getTicket(ticketId) == null) {
+    return false;
+  }
+  this.cache.evict(ticketId);
+  return true;
+}

@@ -1,0 +1,5 @@
+{
+  super(servicesManager);
+  this.registeredServiceFactory=registeredServiceFactory;
+  this.defaultService=new WebApplicationServiceFactory().createService(defaultServiceUrl);
+}

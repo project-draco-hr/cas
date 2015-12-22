@@ -1,0 +1,11 @@
+{
+  final TicketGrantingTicket ticketGrantingTicket=(TicketGrantingTicket)this.ticketRegistry.getTicket(accessToken);
+  if (ticketGrantingTicket == null || ticketGrantingTicket.isExpired()) {
+    LOGGER.error("expired accessToken : {}",accessToken);
+    jsonGenerator.writeStartObject();
+    jsonGenerator.writeStringField("error",OAuthConstants.INVALID_REQUEST);
+    jsonGenerator.writeEndObject();
+    return null;
+  }
+  return ticketGrantingTicket;
+}

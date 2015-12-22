@@ -17,9 +17,10 @@
   }
   final TicketGrantingTicket ticketGrantingTicket=serviceTicket.getGrantingTicket();
   ticketRegistry.deleteTicket(serviceTicket.getId());
+  final String accessTokenEncoded=this.accessTokenGenerator.generate(serviceTicket.getService(),ticketGrantingTicket);
+  final int expires=(int)(this.timeout - TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - ticketGrantingTicket.getCreationTime()));
+  final String text=String.format("%s=%s&%s=%s",OAuthConstants.ACCESS_TOKEN,accessTokenEncoded,OAuthConstants.EXPIRES,expires);
+  logger.debug("OAuth access token response: {}",text);
   response.setContentType("text/plain");
-  final int expires=(int)(timeout - TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - ticketGrantingTicket.getCreationTime()));
-  final String text=String.format("%s=%s&%s=%s",OAuthConstants.ACCESS_TOKEN,ticketGrantingTicket.getId(),OAuthConstants.EXPIRES,expires);
-  logger.debug("text : {}",text);
   return OAuthUtils.writeText(response,text,HttpStatus.SC_OK);
 }

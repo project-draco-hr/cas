@@ -1,7 +1,7 @@
 {
   String accessToken=request.getParameter(OAuthConstants.ACCESS_TOKEN);
   if (StringUtils.isBlank(accessToken)) {
-    final String authHeader=request.getHeader("Authorization");
+    final String authHeader=request.getHeader(HttpConstants.AUTHORIZATION_HEADER);
     if (StringUtils.isNotBlank(authHeader) && authHeader.toLowerCase().startsWith(OAuthConstants.BEARER_TOKEN.toLowerCase() + ' ')) {
       accessToken=authHeader.substring(OAuthConstants.BEARER_TOKEN.length() + 1);
     }
@@ -16,26 +16,28 @@
       jsonGenerator.writeEndObject();
       return null;
     }
-    final TicketGrantingTicket ticketGrantingTicket=(TicketGrantingTicket)this.ticketRegistry.getTicket(accessToken);
-    if (ticketGrantingTicket == null || ticketGrantingTicket.isExpired()) {
-      LOGGER.error("expired accessToken : {}",accessToken);
-      jsonGenerator.writeStartObject();
-      jsonGenerator.writeStringField("error",OAuthConstants.EXPIRED_ACCESS_TOKEN);
-      jsonGenerator.writeEndObject();
-      return null;
+    try {
+      final Pair<String,Service> pair=this.accessTokenGenerator.degenerate(accessToken);
+      accessToken=pair.getFirst();
+      final TicketGrantingTicket ticketGrantingTicket=verifyAccessToken(accessToken,jsonGenerator);
+      if (ticketGrantingTicket == null) {
+        return null;
+      }
+      final RegisteredService service=verifyRegisteredService(jsonGenerator,pair);
+      if (service == null) {
+        return null;
+      }
+      final Principal principal=ticketGrantingTicket.getAuthentication().getPrincipal();
+      if (!verifyPrincipalServiceAccess(jsonGenerator,service,principal)) {
+        return null;
+      }
+      writeOutProfileResponse(jsonGenerator,service,principal);
     }
-    final Principal principal=ticketGrantingTicket.getAuthentication().getPrincipal();
-    jsonGenerator.writeStartObject();
-    jsonGenerator.writeStringField(ID,principal.getId());
-    jsonGenerator.writeArrayFieldStart(ATTRIBUTES);
-    final Map<String,Object> attributes=principal.getAttributes();
-    for (    final Map.Entry<String,Object> entry : attributes.entrySet()) {
+ catch (    final Exception e) {
       jsonGenerator.writeStartObject();
-      jsonGenerator.writeObjectField(entry.getKey(),entry.getValue());
+      jsonGenerator.writeStringField("error",OAuthConstants.INVALID_REQUEST + ". " + e.getMessage());
       jsonGenerator.writeEndObject();
     }
-    jsonGenerator.writeEndArray();
-    jsonGenerator.writeEndObject();
     return null;
   }
   finally {
