@@ -11,7 +11,7 @@
       final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(credential);
       this.authenticationSystemSupport.getAuthenticationTransactionManager().handle(transaction,builder);
       final AuthenticationContext authenticationContext=builder.build(service);
-      final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
+      final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,authenticationContext);
       WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
       onWarn(context,credential);
       return result("warn");
