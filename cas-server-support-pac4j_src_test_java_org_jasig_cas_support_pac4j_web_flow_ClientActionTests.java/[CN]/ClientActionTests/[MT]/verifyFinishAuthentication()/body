@@ -2,11 +2,11 @@
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest();
   mockRequest.setParameter(Clients.DEFAULT_CLIENT_NAME_PARAMETER,"FacebookClient");
   final MockHttpSession mockSession=new MockHttpSession();
-  mockSession.setAttribute(ClientAction.THEME,MY_THEME);
-  mockSession.setAttribute(ClientAction.LOCALE,MY_LOCALE);
-  mockSession.setAttribute(ClientAction.METHOD,MY_METHOD);
+  mockSession.setAttribute(ThemeChangeInterceptor.DEFAULT_PARAM_NAME,MY_THEME);
+  mockSession.setAttribute(LocaleChangeInterceptor.DEFAULT_PARAM_NAME,MY_LOCALE);
+  mockSession.setAttribute(CasProtocolConstants.PARAMETER_METHOD,MY_METHOD);
   final Service service=org.jasig.cas.authentication.TestUtils.getService(MY_SERVICE);
-  mockSession.setAttribute(ClientAction.SERVICE,service);
+  mockSession.setAttribute(CasProtocolConstants.PARAMETER_SERVICE,service);
   mockRequest.setSession(mockSession);
   final ServletExternalContext servletExternalContext=mock(ServletExternalContext.class);
   when(servletExternalContext.getNativeRequest()).thenReturn(mockRequest);
@@ -22,13 +22,13 @@
   action.setClients(clients);
   final Event event=action.execute(mockRequestContext);
   assertEquals("success",event.getId());
-  assertEquals(MY_THEME,mockRequest.getAttribute(ClientAction.THEME));
-  assertEquals(MY_LOCALE,mockRequest.getAttribute(ClientAction.LOCALE));
-  assertEquals(MY_METHOD,mockRequest.getAttribute(ClientAction.METHOD));
-  assertEquals(MY_SERVICE,mockRequest.getAttribute(ClientAction.SERVICE));
+  assertEquals(MY_THEME,mockRequest.getAttribute(ThemeChangeInterceptor.DEFAULT_PARAM_NAME));
+  assertEquals(MY_LOCALE,mockRequest.getAttribute(LocaleChangeInterceptor.DEFAULT_PARAM_NAME));
+  assertEquals(MY_METHOD,mockRequest.getAttribute(CasProtocolConstants.PARAMETER_METHOD));
+  assertEquals(MY_SERVICE,mockRequest.getAttribute(CasProtocolConstants.PARAMETER_SERVICE));
   final MutableAttributeMap flowScope=mockRequestContext.getFlowScope();
   final MutableAttributeMap requestScope=mockRequestContext.getRequestScope();
-  assertEquals(service,flowScope.get(ClientAction.SERVICE));
+  assertEquals(service,flowScope.get(CasProtocolConstants.PARAMETER_SERVICE));
   assertEquals(TGT_ID,flowScope.get(TGT_NAME));
   assertEquals(TGT_ID,requestScope.get(TGT_NAME));
 }
