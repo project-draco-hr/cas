@@ -9,6 +9,7 @@
     try {
       final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
       WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
+      onWarn(context,credential);
       return result("warn");
     }
  catch (    final AuthenticationException e) {
