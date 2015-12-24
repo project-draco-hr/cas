@@ -1,0 +1,32 @@
+{
+  logger.debug("Determining if SAML assertion to {} should be signed",service.getServiceId());
+  if (!service.isSignAssertions()) {
+    return;
+  }
+  logger.debug("Determining signing credential for assertion to relying party {}",service.getServiceId());
+  final Credential signatureCredential=null;
+  if (signatureCredential == null) {
+    throw new SAMLException("No signing credential is specified for relying party configuration");
+  }
+  logger.debug("Signing assertion to relying party {}",service.getServiceId());
+  final XMLObjectBuilder signatureBuilder=openSamlConfigBean.getBuilderFactory().getBuilder(Signature.DEFAULT_ELEMENT_NAME);
+  if (signatureBuilder == null) {
+    throw new SAMLException("No signature builder can be determined");
+  }
+  final Signature signature=(Signature)signatureBuilder.buildObject(Signature.DEFAULT_ELEMENT_NAME);
+  signature.setSigningCredential(signatureCredential);
+  assertion.setSignature(signature);
+  try {
+    final Marshaller assertionMarshaller=this.openSamlConfigBean.getMarshallerFactory().getMarshaller(assertion);
+    if (assertionMarshaller == null) {
+      throw new SAMLException("No signature marshaller is available");
+    }
+    assertionMarshaller.marshall(assertion);
+    final SignatureSigningParameters signingParameters=buildSignatureSigningParameters(adaptor.getSsoDescriptor());
+    SignatureSupport.signObject(assertion,signingParameters);
+  }
+ catch (  final Exception e) {
+    logger.error("Unable to marshall assertion for signing",e);
+    throw new SAMLException("Unable to marshall assertion for signing",e);
+  }
+}

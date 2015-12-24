@@ -22,9 +22,10 @@
     if (assertion.isValid()) {
       final SamlRegisteredService registeredService=getRegisteredServiceAndVerify(authnRequest);
       logger.debug("Preparing SAML response to {}",registeredService);
-      final Response samlResponse=responseBuilder.build(authnRequest,request,response,assertion,registeredService);
+      final SamlMetadataAdaptor adaptor=SamlMetadataAdaptor.adapt(registeredService.getChainingMetadataResolver(),getAssertionConsumerServiceFor(authnRequest));
+      final Response samlResponse=responseBuilder.build(authnRequest,request,response,assertion,registeredService,adaptor);
       logger.info("Built the SAML response {}",samlResponse);
-      encodeSamlResponse(samlResponse,response);
+      encodeSamlResponse(registeredService,samlResponse,response,adaptor);
     }
   }
   finally {

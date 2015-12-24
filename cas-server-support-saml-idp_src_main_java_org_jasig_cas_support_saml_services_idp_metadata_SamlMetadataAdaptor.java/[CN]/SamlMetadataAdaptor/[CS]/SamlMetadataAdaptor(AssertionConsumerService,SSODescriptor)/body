@@ -1,0 +1,4 @@
+{
+  this.assertionConsumerService=assertionConsumerService;
+  this.ssoDescriptor=ssoDescriptor;
+}

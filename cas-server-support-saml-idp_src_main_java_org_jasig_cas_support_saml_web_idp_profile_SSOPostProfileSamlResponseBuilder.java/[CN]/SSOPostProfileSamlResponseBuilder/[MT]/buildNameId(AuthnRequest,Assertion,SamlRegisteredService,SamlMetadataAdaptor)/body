@@ -1,0 +1,45 @@
+{
+  String requiredNameFormat=null;
+  if (authnRequest.getNameIDPolicy() != null) {
+    requiredNameFormat=authnRequest.getNameIDPolicy().getFormat();
+    if (requiredNameFormat != null && (requiredNameFormat.equals(NameID.ENCRYPTED) || requiredNameFormat.equals(NameID.UNSPECIFIED))) {
+      requiredNameFormat=null;
+    }
+  }
+  final List<String> supportedNameFormats=adaptor.getSupportedNameFormats();
+  if (requiredNameFormat != null) {
+    supportedNameFormats.clear();
+    supportedNameFormats.add(requiredNameFormat);
+  }
+  final Map<String,Object> principalAttributes=assertion.getPrincipal().getAttributes();
+  if (principalAttributes == null || principalAttributes.isEmpty()) {
+    if (requiredNameFormat != null) {
+      throw new SAMLException("No attributes for principal, so NameID format required is not supported");
+    }
+    logger.debug("No attributes for principal {}, no name identifier will be created.",assertion.getPrincipal().getName());
+    return null;
+  }
+  if (!supportedNameFormats.isEmpty()) {
+    logger.debug("SP-supported name formats: {}",supportedNameFormats);
+  }
+ else {
+    logger.debug("SP indicated no preferred name formats.");
+  }
+  for (  final String nameFormat : supportedNameFormats) {
+    final SAML2StringNameIDEncoder encoder=new SAML2StringNameIDEncoder();
+    encoder.setNameFormat(nameFormat);
+    if (authnRequest.getNameIDPolicy() != null) {
+      encoder.setNameQualifier(authnRequest.getNameIDPolicy().getSPNameQualifier());
+    }
+    final IdPAttribute attribute=new IdPAttribute(AttributePrincipal.class.getName());
+    final IdPAttributeValue<String> value=new StringAttributeValue(assertion.getPrincipal().getName());
+    attribute.setValues(Arrays.asList(value));
+    try {
+      return encoder.encode(attribute);
+    }
+ catch (    final Exception e) {
+      logger.error(e.getMessage(),e);
+    }
+  }
+  return null;
+}

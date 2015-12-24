@@ -1,9 +1,0 @@
-{
-  final List<Statement> statements=new ArrayList<>();
-  statements.add(buildAuthnStatement(assertion,authnRequest));
-  final AttributeStatement attributeStatement=buildAttributeStatement(assertion,authnRequest);
-  if (attributeStatement != null) {
-    statements.add(attributeStatement);
-  }
-  return buildResponse(authnRequest,statements,assertion,service);
-}

@@ -1,0 +1,11 @@
+{
+  try {
+    if (this.metadataLocationResource instanceof UrlResource) {
+      return this.metadataLocationResource.getURL().toExternalForm();
+    }
+    return this.metadataLocationResource.getFile().getCanonicalPath();
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

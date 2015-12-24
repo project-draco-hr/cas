@@ -1,0 +1,5 @@
+AuthnRequest authnRequest
+List<Statement> statements
+Assertion casAssertion
+SamlRegisteredService service
+SamlMetadataAdaptor adaptor

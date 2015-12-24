@@ -1,0 +1,18 @@
+{
+  final OpenSamlConfigBean configBean=ApplicationContextProvider.getApplicationContext().getBean(OpenSamlConfigBean.class);
+  try (final InputStream in=key.getInputStream()){
+    LOGGER.debug("Parsing [{}]",key.getFilename());
+    final Document document=configBean.getParserPool().parse(in);
+    final List<MetadataResolver> resolvers=buildSingleMetadataResolver(document,key);
+    final ChainingMetadataResolver metadataResolver=new ChainingMetadataResolver();
+synchronized (this.lock) {
+      metadataResolver.setId(ChainingMetadataResolver.class.getCanonicalName());
+      metadataResolver.setResolvers(resolvers);
+      metadataResolver.initialize();
+    }
+    return metadataResolver;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

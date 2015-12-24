@@ -1,0 +1,9 @@
+{
+  final NameID nameID=buildNameId(authnRequest,assertion,service,adaptor);
+  if (nameID == null) {
+    throw new SAMLException("NameID cannot be determined for authN request");
+  }
+  final Subject subject=newSubject(nameID.getFormat(),nameID.getValue(),authnRequest.getAssertionConsumerServiceURL(),new DateTime(assertion.getValidFromDate()),authnRequest.getID());
+  subject.setNameID(nameID);
+  return subject;
+}
