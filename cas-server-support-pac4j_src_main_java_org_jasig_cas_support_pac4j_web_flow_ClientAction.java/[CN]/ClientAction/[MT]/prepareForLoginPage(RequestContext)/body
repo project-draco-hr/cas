@@ -5,10 +5,10 @@
   final WebContext webContext=new J2EContext(request,response);
   final WebApplicationService service=WebUtils.getService(context);
   logger.debug("save service: {}",service);
-  session.setAttribute(SERVICE,service);
-  saveRequestParameter(request,session,THEME);
-  saveRequestParameter(request,session,LOCALE);
-  saveRequestParameter(request,session,METHOD);
+  session.setAttribute(CasProtocolConstants.PARAMETER_SERVICE,service);
+  saveRequestParameter(request,session,ThemeChangeInterceptor.DEFAULT_PARAM_NAME);
+  saveRequestParameter(request,session,LocaleChangeInterceptor.DEFAULT_PARAM_NAME);
+  saveRequestParameter(request,session,CasProtocolConstants.PARAMETER_METHOD);
   final LinkedHashMap<String,String> urls=new LinkedHashMap<>();
   for (  final Client client : this.clients.findAllClients()) {
     final IndirectClient indirectClient=(IndirectClient)client;

@@ -8,7 +8,7 @@
   final Conditions conditions=this.samlObjectBuilder.newConditions(issuedAt,service.getId(),this.issueLength);
   assertion.setConditions(conditions);
   final Subject subject=this.samlObjectBuilder.newSubject(getPrincipal(model).getId());
-  final Map<String,Object> attributesToSend=prepareSamlAttributes(model);
+  final Map<String,Object> attributesToSend=prepareSamlAttributes(model,service);
   if (!attributesToSend.isEmpty()) {
     assertion.getAttributeStatements().add(this.samlObjectBuilder.newAttributeStatement(subject,attributesToSend,VALIDATION_SAML_ATTRIBUTE_NAMESPACE));
   }
