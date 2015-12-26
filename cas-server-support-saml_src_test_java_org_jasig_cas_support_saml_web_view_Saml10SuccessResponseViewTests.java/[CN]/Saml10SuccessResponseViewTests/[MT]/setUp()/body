@@ -7,7 +7,7 @@
   list.add(regSvc);
   final InMemoryServiceRegistryDaoImpl dao=new InMemoryServiceRegistryDaoImpl();
   dao.setRegisteredServices(list);
-  final ServicesManager servicesManager=new DefaultServicesManagerImpl(dao);
+  new DefaultServicesManagerImpl(dao);
   this.response=new Saml10SuccessResponseView();
   this.response.setIssuer("testIssuer");
   this.response.setIssueLength(1000);
