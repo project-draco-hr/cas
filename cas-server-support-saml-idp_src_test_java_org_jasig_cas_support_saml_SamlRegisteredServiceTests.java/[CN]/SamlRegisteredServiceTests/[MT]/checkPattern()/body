@@ -7,6 +7,6 @@
   final InMemoryServiceRegistryDaoImpl dao=new InMemoryServiceRegistryDaoImpl();
   dao.setRegisteredServices(Arrays.asList(service));
   final DefaultServicesManagerImpl impl=new DefaultServicesManagerImpl(dao);
-  final RegisteredService s=impl.findServiceBy(new WebApplicationServiceFactory().createService("http://mmoayyed.unicon" + ".net:8081/sp/saml/SSO"));
+  final RegisteredService s=impl.findServiceBy(new WebApplicationServiceFactory().createService("http://mmoayyed.unicon.net:8081/sp/saml/SSO"));
   System.out.println(s);
 }
