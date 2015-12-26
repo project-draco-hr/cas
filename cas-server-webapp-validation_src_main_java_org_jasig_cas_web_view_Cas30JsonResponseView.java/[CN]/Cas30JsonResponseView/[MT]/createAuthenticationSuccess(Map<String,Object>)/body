@@ -2,12 +2,22 @@
   final CasServiceResponseAuthenticationSuccess success=new CasServiceResponseAuthenticationSuccess();
   final Authentication authentication=getPrimaryAuthenticationFrom(model);
   final Principal principal=getPrincipal(model);
-  if (!principal.getAttributes().isEmpty()) {
-    success.setAttributes(principal.getAttributes());
+  final Service service=getServiceFrom(model);
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  Map<String,Object> attributes=new HashMap<>(principal.getAttributes());
+  decideIfCredentialPasswordShouldBeReleasedAsAttribute(attributes,model,registeredService);
+  decideIfProxyGrantingTicketShouldBeReleasedAsAttribute(attributes,model,registeredService);
+  attributes=this.casAttributeEncoder.encodeAttributes(attributes,getServiceFrom(model));
+  if (!attributes.isEmpty()) {
+    success.setAttributes(attributes);
   }
   success.setUser(principal.getId());
-  if (!authentication.getAttributes().isEmpty()) {
-    success.setAuthenticationAttributes(authentication.getAttributes());
+  attributes=new HashMap<>(authentication.getAttributes());
+  decideIfCredentialPasswordShouldBeReleasedAsAttribute(attributes,model,registeredService);
+  decideIfProxyGrantingTicketShouldBeReleasedAsAttribute(attributes,model,registeredService);
+  attributes=this.casAttributeEncoder.encodeAttributes(attributes,getServiceFrom(model));
+  if (!attributes.isEmpty()) {
+    success.setAuthenticationAttributes(attributes);
   }
   final Collection<Authentication> chainedAuthentications=getChainedAuthentications(model);
   if (chainedAuthentications != null && !chainedAuthentications.isEmpty()) {
