@@ -1,14 +1,6 @@
 {
-  if (this.ticketGrantingTicketFactory == null) {
-    throw new RuntimeException("ticketGrantingTicketFactory cannot be null");
-  }
-  if (this.proxyGrantingTicketFactory == null) {
-    throw new RuntimeException("proxyGrantingTicketFactory cannot be null");
-  }
-  if (this.serviceTicketFactory == null) {
-    throw new RuntimeException("serviceTicketFactory cannot be null");
-  }
-  if (this.proxyTicketFactory == null) {
-    throw new RuntimeException("proxyTicketFactory cannot be null");
-  }
+  Assert.notNull(this.ticketGrantingTicketFactory,"ticketGrantingTicketFactory cannot be null");
+  Assert.notNull(this.proxyGrantingTicketFactory,"proxyGrantingTicketFactory cannot be null");
+  Assert.notNull(this.serviceTicketFactory,"serviceTicketFactory cannot be null");
+  Assert.notNull(this.proxyTicketFactory,"proxyTicketFactory cannot be null");
 }

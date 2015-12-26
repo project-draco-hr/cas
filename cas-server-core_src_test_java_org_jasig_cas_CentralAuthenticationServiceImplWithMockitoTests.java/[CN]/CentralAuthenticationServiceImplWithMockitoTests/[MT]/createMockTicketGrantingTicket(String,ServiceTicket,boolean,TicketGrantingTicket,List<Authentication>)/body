@@ -6,6 +6,7 @@
   when(tgtMock.grantServiceTicket(anyString(),argThat(new VerifyServiceByIdMatcher(svcId)),any(ExpirationPolicy.class),anyBoolean(),anyBoolean())).thenReturn(svcTicket);
   when(tgtMock.getRoot()).thenReturn(root);
   when(tgtMock.getChainedAuthentications()).thenReturn(chainedAuthnList);
+  when(tgtMock.getAuthentication()).thenReturn(this.authentication);
   when(svcTicket.getGrantingTicket()).thenReturn(tgtMock);
   return tgtMock;
 }

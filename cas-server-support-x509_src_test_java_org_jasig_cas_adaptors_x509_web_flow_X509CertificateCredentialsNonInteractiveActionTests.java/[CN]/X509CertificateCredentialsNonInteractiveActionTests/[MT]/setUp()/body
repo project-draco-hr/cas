@@ -4,6 +4,6 @@
   handler.setTrustedIssuerDnPattern("CN=\\w+,DC=jasig,DC=org");
   final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(handler,new X509SerialNumberPrincipalResolver()));
   final AbstractCentralAuthenticationService centralAuthenticationService=(AbstractCentralAuthenticationService)getCentralAuthenticationService();
-  centralAuthenticationService.setAuthenticationManager(authenticationManager);
   this.action.setCentralAuthenticationService(centralAuthenticationService);
+  this.action.getAuthenticationSystemSupport().getAuthenticationTransactionManager().setAuthenticationManager(authenticationManager);
 }

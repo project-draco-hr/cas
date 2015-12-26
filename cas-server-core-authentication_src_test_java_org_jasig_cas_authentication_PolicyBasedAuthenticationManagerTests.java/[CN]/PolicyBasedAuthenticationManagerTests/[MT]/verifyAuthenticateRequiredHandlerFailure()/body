@@ -1,6 +1,6 @@
 {
   final PolicyBasedAuthenticationManager manager=new PolicyBasedAuthenticationManager(newMockHandler("HandlerA",true),newMockHandler("HandlerB",false));
   manager.setAuthenticationPolicy(new RequiredHandlerAuthenticationPolicy("HandlerB"));
-  manager.authenticate(mock(Credential.class),mock(Credential.class));
+  manager.authenticate(transaction);
   fail("Should have thrown AbstractAuthenticationException");
 }

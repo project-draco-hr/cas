@@ -28,6 +28,6 @@
   factory.setServiceTicketFactory(new DefaultServiceTicketFactory());
   factory.setProxyTicketFactory(new DefaultProxyTicketFactory());
   factory.initialize();
-  this.cas=new CentralAuthenticationServiceImpl(ticketRegMock,mock(AuthenticationManager.class),factory,smMock,mock(LogoutManager.class));
+  this.cas=new CentralAuthenticationServiceImpl(ticketRegMock,factory,smMock,mock(LogoutManager.class));
   this.cas.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
 }

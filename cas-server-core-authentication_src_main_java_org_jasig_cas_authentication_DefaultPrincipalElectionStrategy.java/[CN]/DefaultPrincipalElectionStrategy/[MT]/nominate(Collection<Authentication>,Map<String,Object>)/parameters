@@ -1,0 +1,2 @@
+Collection<Authentication> authentications
+Map<String,Object> principalAttributes

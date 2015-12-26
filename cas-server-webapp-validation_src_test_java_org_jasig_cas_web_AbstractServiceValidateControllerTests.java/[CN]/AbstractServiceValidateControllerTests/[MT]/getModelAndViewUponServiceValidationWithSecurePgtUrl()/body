@@ -1,9 +1,9 @@
 {
-  final Service service=org.jasig.cas.authentication.TestUtils.getService();
-  final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),service);
+  final AuthenticationContext ctx=org.jasig.cas.authentication.TestUtils.getAuthenticationContext(getAuthenticationSystemSupport(),SERVICE);
+  final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),SERVICE,ctx);
   final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.addParameter("service",service.getId());
+  request.addParameter("service",SERVICE.getId());
   request.addParameter("ticket",sId.getId());
   request.addParameter("pgtUrl","https://www.github.com");
   return this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());

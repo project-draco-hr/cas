@@ -1,7 +1,0 @@
-{
-  this.ticketRegistry=ticketRegistry;
-  this.authenticationManager=authenticationManager;
-  this.servicesManager=servicesManager;
-  this.logoutManager=logoutManager;
-  this.ticketFactory=ticketFactory;
-}

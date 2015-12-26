@@ -8,28 +8,27 @@
       logger.debug("Parameter [{}] received: {}",WRESULT,wresult);
       final Assertion assertion=wsFederationHelper.parseTokenFromString(wresult);
       if (wsFederationHelper.validateSignature(assertion,configuration)) {
-        final WsFederationCredential credential=wsFederationHelper.createCredentialFromToken(assertion);
-        if (credential != null && credential.isValid(configuration.getRelyingPartyIdentifier(),configuration.getIdentityProviderIdentifier(),configuration.getTolerance())) {
-          if (configuration.getAttributeMutator() != null) {
-            configuration.getAttributeMutator().modifyAttributes(credential.getAttributes());
-          }
-        }
- else {
-          logger.warn("SAML assertions are blank or no longer valid.");
-          return error();
-        }
         try {
+          final WsFederationCredential credential=wsFederationHelper.createCredentialFromToken(assertion);
+          if (credential != null && credential.isValid(configuration.getRelyingPartyIdentifier(),configuration.getIdentityProviderIdentifier(),configuration.getTolerance())) {
+            if (configuration.getAttributeMutator() != null) {
+              configuration.getAttributeMutator().modifyAttributes(credential.getAttributes());
+            }
+          }
+ else {
+            logger.warn("SAML assertions are blank or no longer valid.");
+            return error();
+          }
           final Service service=(Service)session.getAttribute(SERVICE);
           context.getFlowScope().put(SERVICE,service);
           restoreRequestAttribute(request,session,THEME);
           restoreRequestAttribute(request,session,LOCALE);
           restoreRequestAttribute(request,session,METHOD);
-        }
- catch (        final Exception ex) {
-          logger.warn("Session is most-likely empty: {}",ex.getMessage());
-        }
-        try {
-          WebUtils.putTicketGrantingTicketInScopes(context,this.centralAuthenticationService.createTicketGrantingTicket(credential));
+          final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationSystemSupport.getPrincipalElectionStrategy());
+          final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(credential);
+          this.authenticationSystemSupport.getAuthenticationTransactionManager().handle(transaction,builder);
+          final AuthenticationContext authenticationContext=builder.build(service);
+          WebUtils.putTicketGrantingTicketInScopes(context,this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext));
           logger.info("Token validated and new {} created: {}",credential.getClass().getName(),credential);
           return success();
         }

@@ -1,0 +1,6 @@
+{
+  for (  final Map.Entry<String,Class<? extends Exception>> entry : failures.entrySet()) {
+    addFailure(entry.getKey(),entry.getValue());
+  }
+  return this;
+}
