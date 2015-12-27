@@ -1,29 +1,35 @@
 {
-  logger.debug("Determining if SAML assertion to {} should be signed",service.getServiceId());
-  if (!service.isSignAssertions()) {
-    return;
-  }
-  logger.debug("Determining signing credential for assertion to relying party {}",service.getServiceId());
-  final Credential signatureCredential=null;
-  if (signatureCredential == null) {
-    throw new SAMLException("No signing credential is specified for relying party configuration");
-  }
-  logger.debug("Signing assertion to relying party {}",service.getServiceId());
-  final XMLObjectBuilder signatureBuilder=openSamlConfigBean.getBuilderFactory().getBuilder(Signature.DEFAULT_ELEMENT_NAME);
-  if (signatureBuilder == null) {
-    throw new SAMLException("No signature builder can be determined");
-  }
-  final Signature signature=(Signature)signatureBuilder.buildObject(Signature.DEFAULT_ELEMENT_NAME);
-  signature.setSigningCredential(signatureCredential);
-  assertion.setSignature(signature);
   try {
-    final Marshaller assertionMarshaller=this.openSamlConfigBean.getMarshallerFactory().getMarshaller(assertion);
-    if (assertionMarshaller == null) {
-      throw new SAMLException("No signature marshaller is available");
+    logger.debug("Determining if SAML assertionfor {} should be signed",service.getEntityId());
+    if (!adaptor.isWantAssertionsSigned()) {
+      logger.debug("Relying party does not want assertions signed, so assertions will not be signed");
+      return;
     }
-    assertionMarshaller.marshall(assertion);
+    final MessageContext<org.opensaml.saml.saml2.core.Assertion> outboundContext=new MessageContext<>();
+    outboundContext.setMessage(assertion);
+    final List<AssertionConsumerService> assertionConsumerServices=adaptor.getAssertionConsumerServices();
+    final SAMLPeerEntityContext peerEntityContext=outboundContext.getSubcontext(SAMLPeerEntityContext.class,true);
+    if (peerEntityContext != null) {
+      final SAMLEndpointContext endpointContext=peerEntityContext.getSubcontext(SAMLEndpointContext.class,true);
+      if (endpointContext != null) {
+        endpointContext.setEndpoint(assertionConsumerServices.get(0));
+      }
+    }
+    final SecurityParametersContext secParametersContext=outboundContext.getSubcontext(SecurityParametersContext.class,true);
+    if (secParametersContext == null) {
+      throw new RuntimeException("No signature signing parameters could be determined");
+    }
     final SignatureSigningParameters signingParameters=buildSignatureSigningParameters(adaptor.getSsoDescriptor());
-    SignatureSupport.signObject(assertion,signingParameters);
+    secParametersContext.setSignatureSigningParameters(signingParameters);
+    final EndpointURLSchemeSecurityHandler handlerEnd=new EndpointURLSchemeSecurityHandler();
+    handlerEnd.initialize();
+    handlerEnd.invoke(outboundContext);
+    final SAMLOutboundDestinationHandler handlerDest=new SAMLOutboundDestinationHandler();
+    handlerDest.initialize();
+    handlerDest.invoke(outboundContext);
+    final SAMLOutboundProtocolMessageSigningHandler handler=new SAMLOutboundProtocolMessageSigningHandler();
+    handler.setSignErrorResponses(false);
+    handler.invoke(outboundContext);
   }
  catch (  final Exception e) {
     logger.error("Unable to marshall assertion for signing",e);

@@ -1,5 +1,11 @@
 {
   super.copyFrom(source);
-  final SamlRegisteredService samlRegisteredService=(SamlRegisteredService)source;
-  setSignAssertions(samlRegisteredService.isSignAssertions());
+  try {
+    final SamlRegisteredService samlRegisteredService=(SamlRegisteredService)source;
+    samlRegisteredService.setMetadataCacheExpirationMinutes(this.metadataCacheExpirationMinutes);
+    samlRegisteredService.setMetadataLocation(this.getMetadataLocation());
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
 }

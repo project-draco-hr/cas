@@ -1,0 +1,11 @@
+{
+  final File file=ResourceUtils.getResourceFrom(this.metadataLocation).getFile();
+  final String metadata=FileUtils.readFileToString(file);
+  final Pattern pattern=Pattern.compile("EntityDescriptor.+entityID=\\\"(.+?)\\\"\\>",Pattern.CASE_INSENSITIVE);
+  final Matcher matcher=pattern.matcher(metadata);
+  if (matcher.find()) {
+    final String entityID=matcher.group(1);
+    return entityID;
+  }
+  throw new IllegalArgumentException("Metadata resource " + file + " does not define an [entityID] for its EntityDescriptor element.");
+}

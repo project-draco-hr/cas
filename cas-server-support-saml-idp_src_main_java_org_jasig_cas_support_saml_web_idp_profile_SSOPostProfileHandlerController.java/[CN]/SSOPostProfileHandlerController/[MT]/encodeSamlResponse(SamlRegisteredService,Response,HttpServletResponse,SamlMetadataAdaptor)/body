@@ -11,6 +11,8 @@
   if (peerEntityContext != null) {
     final SAMLEndpointContext endpointContext=peerEntityContext.getSubcontext(SAMLEndpointContext.class,true);
     if (endpointContext != null) {
+      final AssertionConsumerService assertionConsumerService=assertionConsumerServices.get(0);
+      logger.info("Encoding SAML response for endpoint {} and binding {}",assertionConsumerService.getLocation(),assertionConsumerService.getBinding());
       endpointContext.setEndpoint(assertionConsumerServices.get(0));
     }
   }

@@ -7,13 +7,13 @@
   metadataProvider.setFailFastInitialization(true);
   metadataProvider.setRequireValidMetadata(true);
   metadataProvider.setId(metadataProvider.getClass().getCanonicalName());
-  LOGGER.debug("Initializing metadata resolver for [{}]",key.getURL());
+  LOGGER.debug("Initializing metadata resolver from [{}]",key);
   try {
     metadataProvider.initialize();
+    resolvers.add(metadataProvider);
+    return resolvers;
   }
  catch (  final ComponentInitializationException ex) {
-    LOGGER.warn("Could not initialize metadata resolver. Resource will be ignored",ex);
+    throw new RuntimeException("Could not initialize metadata resolver. Resource will be ignored",ex);
   }
-  resolvers.add(metadataProvider);
-  return resolvers;
 }

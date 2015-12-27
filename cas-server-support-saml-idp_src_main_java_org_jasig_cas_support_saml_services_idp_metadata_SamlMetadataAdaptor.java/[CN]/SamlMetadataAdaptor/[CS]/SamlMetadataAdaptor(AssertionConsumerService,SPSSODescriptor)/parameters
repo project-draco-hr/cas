@@ -1,2 +1,2 @@
 AssertionConsumerService assertionConsumerService
-SSODescriptor ssoDescriptor
+SPSSODescriptor ssoDescriptor

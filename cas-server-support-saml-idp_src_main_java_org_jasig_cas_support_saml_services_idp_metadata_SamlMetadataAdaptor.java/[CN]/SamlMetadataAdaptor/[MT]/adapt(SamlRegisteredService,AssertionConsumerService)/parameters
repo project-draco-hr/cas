@@ -1,2 +1,2 @@
-ChainingMetadataResolver metadataResolver
+SamlRegisteredService registeredService
 AssertionConsumerService assertionConsumerService

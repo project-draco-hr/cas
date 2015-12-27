@@ -1,6 +1,6 @@
 {
   try {
-    return this.cache.get(this.metadataLocationResource);
+    return this.cache.get(this.getMetadataLocation());
   }
  catch (  final Exception e) {
     logger.error(e.getMessage(),e);

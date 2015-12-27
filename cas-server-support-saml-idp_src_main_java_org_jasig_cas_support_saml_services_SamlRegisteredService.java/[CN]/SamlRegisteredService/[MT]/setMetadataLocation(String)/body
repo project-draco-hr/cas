@@ -1,17 +1,7 @@
 {
   try {
-    if (metadataLocation.startsWith("http")) {
-      this.metadataLocationResource=new UrlResource(metadataLocation);
-    }
- else     if (metadataLocation.startsWith("classpath")) {
-      this.metadataLocationResource=new ClassPathResource(metadataLocation);
-    }
- else {
-      this.metadataLocationResource=new FileSystemResource(metadataLocation);
-    }
-    if (!this.metadataLocationResource.exists() || !this.metadataLocationResource.isReadable()) {
-      throw new FileNotFoundException("Resource does not exist or is unreadable");
-    }
+    this.metadataLocation=metadataLocation;
+    this.entityId=parseEntityId();
   }
  catch (  final Exception e) {
     throw new IllegalArgumentException("Metadata location " + metadataLocation + " cannot be determined");

@@ -3,10 +3,11 @@
   final Response samlResponse=newResponse(id,new DateTime(),authnRequest.getID(),null);
   samlResponse.setVersion(SAMLVersion.VERSION_20);
   samlResponse.setIssuer(buildEntityIssuer());
-  org.opensaml.saml.saml2.core.Assertion assertion=null;
+  final org.opensaml.saml.saml2.core.Assertion assertion;
   if (statements != null && !statements.isEmpty()) {
     assertion=newAssertion(statements,this.entityId,new DateTime(),id);
     assertion.setSubject(buildSubject(authnRequest,casAssertion,service,adaptor));
+    assertion.setConditions(buildConditions(authnRequest,casAssertion,service,adaptor));
     signAssertion(authnRequest,statements,assertion,service,adaptor);
     samlResponse.getAssertions().add(assertion);
   }

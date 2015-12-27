@@ -1,5 +1,17 @@
 {
   final BasicSignatureSigningConfiguration config=DefaultSecurityConfigurationBootstrap.buildDefaultSignatureSigningConfiguration();
+  if (this.overrideBlackListedSignatureSigningAlgorithms != null && !this.overrideSignatureCanonicalizationAlgorithm.isEmpty()) {
+    config.setBlacklistedAlgorithms(this.overrideBlackListedSignatureSigningAlgorithms);
+  }
+  if (this.overrideSignatureAlgorithms != null && !this.overrideSignatureAlgorithms.isEmpty()) {
+    config.setSignatureAlgorithms(this.overrideSignatureAlgorithms);
+  }
+  if (this.overrideSignatureReferenceDigestMethods != null && !this.overrideSignatureReferenceDigestMethods.isEmpty()) {
+    config.setSignatureReferenceDigestMethods(this.overrideSignatureReferenceDigestMethods);
+  }
+  if (StringUtils.isNotBlank(overrideSignatureCanonicalizationAlgorithm)) {
+    config.setSignatureCanonicalizationAlgorithm(this.overrideSignatureCanonicalizationAlgorithm);
+  }
   final PrivateKeyFactoryBean privateKeyFactoryBean=new PrivateKeyFactoryBean();
   privateKeyFactoryBean.setLocation(new FileSystemResource(this.signingKeyFile));
   privateKeyFactoryBean.setAlgorithm("RSA");

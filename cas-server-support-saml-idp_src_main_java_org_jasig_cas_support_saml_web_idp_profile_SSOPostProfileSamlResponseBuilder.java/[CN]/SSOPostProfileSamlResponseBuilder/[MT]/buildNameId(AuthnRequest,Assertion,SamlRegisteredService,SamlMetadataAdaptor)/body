@@ -25,21 +25,21 @@
  else {
     logger.debug("SP indicated no preferred name formats.");
   }
-  for (  final String nameFormat : supportedNameFormats) {
-    final SAML2StringNameIDEncoder encoder=new SAML2StringNameIDEncoder();
-    encoder.setNameFormat(nameFormat);
-    if (authnRequest.getNameIDPolicy() != null) {
-      encoder.setNameQualifier(authnRequest.getNameIDPolicy().getSPNameQualifier());
-    }
-    final IdPAttribute attribute=new IdPAttribute(AttributePrincipal.class.getName());
-    final IdPAttributeValue<String> value=new StringAttributeValue(assertion.getPrincipal().getName());
-    attribute.setValues(Arrays.asList(value));
-    try {
+  try {
+    for (    final String nameFormat : supportedNameFormats) {
+      final SAML2StringNameIDEncoder encoder=new SAML2StringNameIDEncoder();
+      encoder.setNameFormat(nameFormat);
+      if (authnRequest.getNameIDPolicy() != null) {
+        encoder.setNameQualifier(authnRequest.getNameIDPolicy().getSPNameQualifier());
+      }
+      final IdPAttribute attribute=new IdPAttribute(AttributePrincipal.class.getName());
+      final IdPAttributeValue<String> value=new StringAttributeValue(assertion.getPrincipal().getName());
+      attribute.setValues(Collections.singletonList(value));
       return encoder.encode(attribute);
     }
- catch (    final Exception e) {
-      logger.error(e.getMessage(),e);
-    }
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
   }
   return null;
 }
