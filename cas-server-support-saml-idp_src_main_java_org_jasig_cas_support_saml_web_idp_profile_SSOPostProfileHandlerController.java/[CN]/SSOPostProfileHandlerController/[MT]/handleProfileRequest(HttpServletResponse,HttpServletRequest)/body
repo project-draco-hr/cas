@@ -1,11 +1,8 @@
 {
   logger.info("Received SAML profile request {}",request.getRequestURI());
-  final SAMLObject messageContext=decodeAuthnRequest(request);
-  if (messageContext instanceof AuthnRequest) {
-    final AuthnRequest authnRequest=(AuthnRequest)messageContext;
-    getRegisteredServiceAndVerify(authnRequest);
-    storeAuthnRequest(request,authnRequest);
-    logAuthnRequest(authnRequest);
-    performAuthentication(authnRequest,request,response);
-  }
+  final AuthnRequest authnRequest=decodeAuthenticationRequest(request,new HTTPPostDecoder());
+  verifySamlRegisteredService(authnRequest);
+  storeAuthnRequest(request,authnRequest);
+  logAuthnRequest(authnRequest);
+  performAuthentication(authnRequest,request,response);
 }

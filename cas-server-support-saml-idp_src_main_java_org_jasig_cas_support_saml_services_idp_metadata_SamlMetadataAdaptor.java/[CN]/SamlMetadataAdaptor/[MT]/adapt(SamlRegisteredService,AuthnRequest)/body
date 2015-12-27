@@ -1,5 +1,6 @@
 {
   try {
+    final AssertionConsumerService assertionConsumerService=getAssertionConsumerServiceFor(authnRequest);
     final CriteriaSet criterions=new CriteriaSet();
     criterions.add(new BindingCriterion(Collections.singletonList(SAMLConstants.SAML2_POST_BINDING_URI)));
     criterions.add(new EntityIdCriterion(registeredService.getEntityId()));

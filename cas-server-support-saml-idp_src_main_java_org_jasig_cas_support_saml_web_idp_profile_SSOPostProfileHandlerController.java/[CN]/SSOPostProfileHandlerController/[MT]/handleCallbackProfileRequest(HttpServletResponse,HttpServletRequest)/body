@@ -20,9 +20,9 @@
     final Assertion assertion=validator.validate(ticket,serviceUrl);
     logValidationAssertion(assertion);
     if (assertion.isValid()) {
-      final SamlRegisteredService registeredService=getRegisteredServiceAndVerify(authnRequest);
-      logger.debug("Preparing SAML response to {}",registeredService);
-      final SamlMetadataAdaptor adaptor=SamlMetadataAdaptor.adapt(registeredService,getAssertionConsumerServiceFor(authnRequest));
+      final SamlRegisteredService registeredService=verifySamlRegisteredService(authnRequest);
+      logger.debug("Preparing SAML response to {}",registeredService.getEntityId());
+      final SamlMetadataAdaptor adaptor=SamlMetadataAdaptor.adapt(registeredService,authnRequest);
       final Response samlResponse=responseBuilder.build(authnRequest,request,response,assertion,registeredService,adaptor);
       logger.info("Built the SAML response for {}. Encoding...",registeredService.getEntityId());
       encodeSamlResponse(registeredService,samlResponse,response,adaptor);
