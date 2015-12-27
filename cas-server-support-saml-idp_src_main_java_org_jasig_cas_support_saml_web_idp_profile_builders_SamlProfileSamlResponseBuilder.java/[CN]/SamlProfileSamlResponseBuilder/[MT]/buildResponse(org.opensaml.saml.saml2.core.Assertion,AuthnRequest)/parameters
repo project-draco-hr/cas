@@ -1,0 +1,2 @@
+org.opensaml.saml.saml2.core.Assertion assertion
+AuthnRequest authnRequest

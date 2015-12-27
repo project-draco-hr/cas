@@ -1,0 +1,5 @@
+{
+  final org.opensaml.saml.saml2.core.Assertion assertion=this.samlProfileSamlAssertionBuilder.build(authnRequest,request,response,casAssertion,service,adaptor);
+  final Response finalResponse=buildResponse(assertion,authnRequest);
+  return finalResponse;
+}

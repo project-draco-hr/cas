@@ -1,0 +1,6 @@
+AuthnRequest authnRequest
+HttpServletRequest request
+HttpServletResponse response
+Assertion casAssertion
+SamlRegisteredService service
+SamlMetadataAdaptor adaptor
