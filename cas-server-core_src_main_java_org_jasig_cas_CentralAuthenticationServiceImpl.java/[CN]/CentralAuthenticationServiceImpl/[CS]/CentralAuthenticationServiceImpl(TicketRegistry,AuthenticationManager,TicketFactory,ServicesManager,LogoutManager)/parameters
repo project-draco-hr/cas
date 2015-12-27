@@ -1,5 +1,0 @@
-TicketRegistry ticketRegistry
-AuthenticationManager authenticationManager
-TicketFactory ticketFactory
-ServicesManager servicesManager
-LogoutManager logoutManager

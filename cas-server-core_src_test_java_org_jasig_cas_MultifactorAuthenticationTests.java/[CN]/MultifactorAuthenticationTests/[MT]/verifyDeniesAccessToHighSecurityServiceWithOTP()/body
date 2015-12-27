@@ -1,6 +1,7 @@
 {
-  final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(new OneTimePasswordCredential("alice","31415"));
+  final AuthenticationContext ctx=processAuthenticationAttempt(HIGH_SERVICE,new OneTimePasswordCredential("alice","31415"));
+  final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(ctx);
   assertNotNull(tgt);
-  final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),newService("https://example.com/high/"));
+  final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),HIGH_SERVICE,ctx);
   assertNotNull(st);
 }

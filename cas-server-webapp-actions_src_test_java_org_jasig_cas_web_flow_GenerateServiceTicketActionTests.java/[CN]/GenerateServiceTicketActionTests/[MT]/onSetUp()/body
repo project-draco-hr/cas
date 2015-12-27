@@ -1,6 +1,11 @@
 {
   this.action=new GenerateServiceTicketAction();
   this.action.setCentralAuthenticationService(getCentralAuthenticationService());
+  this.action.setAuthenticationSystemSupport(getAuthenticationSystemSupport());
   this.action.afterPropertiesSet();
-  this.ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
+  final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(getAuthenticationSystemSupport().getPrincipalElectionStrategy());
+  final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  getAuthenticationSystemSupport().getAuthenticationTransactionManager().handle(transaction,builder);
+  final AuthenticationContext ctx=builder.build(TestUtils.getService());
+  this.ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
 }

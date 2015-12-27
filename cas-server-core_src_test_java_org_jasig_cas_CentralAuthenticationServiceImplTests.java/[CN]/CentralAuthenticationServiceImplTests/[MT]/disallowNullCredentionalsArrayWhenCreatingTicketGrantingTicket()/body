@@ -1,3 +1,0 @@
-{
-  getCentralAuthenticationService().createTicketGrantingTicket(new Credential[]{null,null});
-}

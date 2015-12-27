@@ -1,0 +1,6 @@
+{
+  this.ticketRegistry=ticketRegistry;
+  this.servicesManager=servicesManager;
+  this.logoutManager=logoutManager;
+  this.ticketFactory=ticketFactory;
+}
