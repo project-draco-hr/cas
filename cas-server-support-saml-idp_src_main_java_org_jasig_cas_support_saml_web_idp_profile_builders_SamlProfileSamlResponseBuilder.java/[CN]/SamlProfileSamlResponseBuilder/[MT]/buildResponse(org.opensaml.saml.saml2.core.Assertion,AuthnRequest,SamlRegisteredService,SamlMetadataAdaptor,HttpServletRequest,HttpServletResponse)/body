@@ -7,7 +7,7 @@
   final Status status=newStatus(StatusCode.SUCCESS,StatusCode.SUCCESS);
   samlResponse.setStatus(status);
   if (service.isSignResponses()) {
-    samlResponse=samlObjectEncoder.encode(samlResponse,service,adaptor,response,request);
+    samlResponse=samlObjectSigner.encode(samlResponse,service,adaptor,response,request);
   }
   return samlResponse;
 }

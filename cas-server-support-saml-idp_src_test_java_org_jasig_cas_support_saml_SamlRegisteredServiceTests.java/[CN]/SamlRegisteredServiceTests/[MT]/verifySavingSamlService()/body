@@ -2,7 +2,7 @@
   final SamlRegisteredService service=new SamlRegisteredService();
   service.setName("SAMLService");
   service.setServiceId("http://mmoayyed.unicon.net");
-  service.setMetadataLocation("/Users/Misagh/Workspace/GitWorkspace/shibboleth-sample-java-sp/src/main/resources/metadata/sp-metadata.xml");
+  service.setMetadataLocation("classpath:/sample-idp-metadata.xml");
   final JsonServiceRegistryDao dao=new JsonServiceRegistryDao(RESOURCE.getFile());
   dao.save(service);
 }

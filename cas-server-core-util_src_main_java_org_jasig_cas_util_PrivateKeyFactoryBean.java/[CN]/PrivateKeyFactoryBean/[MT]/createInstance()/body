@@ -2,7 +2,7 @@
   PrivateKey key=readPemPrivateKey();
   if (key == null) {
     LOGGER.debug("{} is not in PEM format. Trying next...",this.location.getFile());
-    key=readPKCSPrivateKey();
+    key=readDERPrivateKey();
   }
   return key;
 }

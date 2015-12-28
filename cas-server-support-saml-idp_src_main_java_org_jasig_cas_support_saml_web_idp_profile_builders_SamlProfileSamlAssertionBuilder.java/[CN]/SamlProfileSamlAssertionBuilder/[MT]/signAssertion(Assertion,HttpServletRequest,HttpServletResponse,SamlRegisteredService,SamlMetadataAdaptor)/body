@@ -1,7 +1,7 @@
 {
   try {
     if (service.isSignAssertions()) {
-      this.samlObjectEncoder.encode(assertion,service,adaptor,response,request);
+      this.samlObjectSigner.encode(assertion,service,adaptor,response,request);
     }
   }
  catch (  final Exception e) {

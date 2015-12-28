@@ -1,0 +1,4 @@
+{
+  logger.debug("Locating signature signing certificate file from {}",this.signingCertFile);
+  return readCertificate(new FileSystemResource(this.signingCertFile));
+}
