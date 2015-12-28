@@ -1,0 +1,10 @@
+{
+  final String authenticationMethod=getAuthenticationMethodFromAssertion(assertion,authnRequest,adaptor,service);
+  final AuthnStatement statement=newAuthnStatement(authenticationMethod,new DateTime(assertion.getAuthenticationDate()));
+  if (assertion.getValidUntilDate() != null) {
+    final DateTime dt=new DateTime(assertion.getValidUntilDate());
+    statement.setSessionNotOnOrAfter(dt.plusSeconds(this.skewAllowance));
+  }
+  statement.setSubjectLocality(buildSubjectLocality(assertion,authnRequest,adaptor));
+  return statement;
+}

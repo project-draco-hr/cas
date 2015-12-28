@@ -1,0 +1,6 @@
+org.opensaml.saml.saml2.core.Assertion assertion
+AuthnRequest authnRequest
+SamlRegisteredService service
+SamlMetadataAdaptor adaptor
+HttpServletRequest request
+HttpServletResponse response

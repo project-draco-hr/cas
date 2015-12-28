@@ -1,0 +1,3 @@
+AssertionConsumerService assertionConsumerService
+SPSSODescriptor ssoDescriptor
+EntityDescriptor entityDescriptor

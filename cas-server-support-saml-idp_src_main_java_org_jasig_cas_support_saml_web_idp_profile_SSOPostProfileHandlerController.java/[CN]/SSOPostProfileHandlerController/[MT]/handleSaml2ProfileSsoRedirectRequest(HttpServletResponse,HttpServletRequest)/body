@@ -1,0 +1,3 @@
+{
+  handleProfileRequest(response,request,new HTTPRedirectDeflateDecoder());
+}

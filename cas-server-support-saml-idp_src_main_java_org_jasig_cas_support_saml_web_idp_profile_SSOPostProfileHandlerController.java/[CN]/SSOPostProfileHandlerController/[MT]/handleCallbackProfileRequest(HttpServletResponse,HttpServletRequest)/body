@@ -18,15 +18,15 @@
     final String serviceUrl=constructServiceUrl(request,response,this.callbackService.getId(),this.casServerName);
     logger.debug("Created service url for validation: {}",serviceUrl);
     final Assertion assertion=validator.validate(ticket,serviceUrl);
-    logValidationAssertion(assertion);
-    if (assertion.isValid()) {
-      final SamlRegisteredService registeredService=verifySamlRegisteredService(authnRequest);
-      logger.debug("Preparing SAML response to {}",registeredService.getEntityId());
-      final SamlMetadataAdaptor adaptor=SamlMetadataAdaptor.adapt(registeredService,authnRequest);
-      final Response samlResponse=responseBuilder.build(authnRequest,request,response,assertion,registeredService,adaptor);
-      logger.info("Built the SAML response for {}. Encoding...",registeredService.getEntityId());
-      encodeSamlResponse(registeredService,samlResponse,response,adaptor);
+    logCasValidationAssertion(assertion);
+    if (!assertion.isValid()) {
+      throw new SamlException("CAS assertion received is invalid");
     }
+    final SamlRegisteredService registeredService=verifySamlRegisteredService(authnRequest);
+    final SamlMetadataAdaptor adaptor=SamlMetadataAdaptor.adapt(registeredService,authnRequest);
+    logger.debug("Preparing SAML response for {}",adaptor.getEntityId());
+    responseBuilder.build(authnRequest,request,response,assertion,registeredService,adaptor);
+    logger.info("Built the SAML response for {}",adaptor.getEntityId());
   }
   finally {
     storeAuthnRequest(request,null);

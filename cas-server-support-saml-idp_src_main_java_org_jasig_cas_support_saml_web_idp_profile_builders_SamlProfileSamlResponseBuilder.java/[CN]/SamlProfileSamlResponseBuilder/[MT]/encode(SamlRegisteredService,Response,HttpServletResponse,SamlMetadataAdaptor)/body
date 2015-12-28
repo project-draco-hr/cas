@@ -1,0 +1,29 @@
+{
+  try {
+    final List<AssertionConsumerService> assertionConsumerServices=adaptor.getAssertionConsumerServices();
+    if (assertionConsumerServices.isEmpty()) {
+      throw new SamlException(SamlException.CODE,"No assertion consumer services could be found in the metadata for service " + service.getServiceId() + " and metadata location "+ service.getMetadataLocation());
+    }
+    final HTTPPostEncoder encoder=new HTTPPostEncoder();
+    encoder.setHttpServletResponse(httpResponse);
+    encoder.setVelocityEngine(this.velocityEngineFactory.createVelocityEngine());
+    final MessageContext outboundMessageContext=new MessageContext<>();
+    final SAMLPeerEntityContext peerEntityContext=outboundMessageContext.getSubcontext(SAMLPeerEntityContext.class,true);
+    if (peerEntityContext != null) {
+      final SAMLEndpointContext endpointContext=peerEntityContext.getSubcontext(SAMLEndpointContext.class,true);
+      if (endpointContext != null) {
+        final AssertionConsumerService assertionConsumerService=assertionConsumerServices.get(0);
+        logger.info("Encoding SAML response for endpoint {} and binding {}",assertionConsumerService.getLocation(),assertionConsumerService.getBinding());
+        endpointContext.setEndpoint(assertionConsumerServices.get(0));
+      }
+    }
+    outboundMessageContext.setMessage(samlResponse);
+    encoder.setMessageContext(outboundMessageContext);
+    encoder.initialize();
+    encoder.encode();
+    return samlResponse;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

@@ -1,3 +1,3 @@
 {
-  return buildAuthnStatement(assertion,authnRequest);
+  return buildAuthnStatement(assertion,authnRequest,adaptor,service);
 }

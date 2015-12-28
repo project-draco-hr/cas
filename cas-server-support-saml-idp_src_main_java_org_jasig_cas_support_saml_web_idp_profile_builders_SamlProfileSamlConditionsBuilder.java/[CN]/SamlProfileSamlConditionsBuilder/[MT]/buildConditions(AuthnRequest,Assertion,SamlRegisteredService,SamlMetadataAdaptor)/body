@@ -1,5 +1,5 @@
 {
   final DateTime currentDateTime=new DateTime();
-  final Conditions conditions=newConditions(currentDateTime,currentDateTime.plusSeconds(this.skewAllowance),service.getEntityId());
+  final Conditions conditions=newConditions(currentDateTime,currentDateTime.plusSeconds(this.skewAllowance),adaptor.getEntityId());
   return conditions;
 }

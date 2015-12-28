@@ -1,0 +1,5 @@
+{
+  final SAMLOutboundProtocolMessageSigningHandler handler=new SAMLOutboundProtocolMessageSigningHandler();
+  handler.setSignErrorResponses(false);
+  handler.invoke(outboundContext);
+}

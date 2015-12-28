@@ -6,6 +6,6 @@
   final Assertion assertion=newAssertion(statements,this.entityId,DateTime.now(),id);
   assertion.setSubject(samlProfileSamlSubjectBuilder.build(authnRequest,request,response,casAssertion,service,adaptor));
   assertion.setConditions(samlProfileSamlConditionsBuilder.build(authnRequest,request,response,casAssertion,service,adaptor));
-  signAssertion(assertion,service,adaptor);
+  signAssertion(assertion,request,response,service,adaptor);
   return assertion;
 }

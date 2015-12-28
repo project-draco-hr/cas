@@ -1,3 +1,0 @@
-AuthnRequest authnRequest
-HttpServletRequest request
-HttpServletResponse response
