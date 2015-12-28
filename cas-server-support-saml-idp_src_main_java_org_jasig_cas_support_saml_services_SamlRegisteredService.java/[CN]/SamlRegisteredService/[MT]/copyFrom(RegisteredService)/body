@@ -2,7 +2,6 @@
   super.copyFrom(source);
   try {
     final SamlRegisteredService samlRegisteredService=(SamlRegisteredService)source;
-    samlRegisteredService.setMetadataCacheExpirationMinutes(this.metadataCacheExpirationMinutes);
     samlRegisteredService.setMetadataLocation(this.metadataLocation);
     samlRegisteredService.setSignAssertions(this.signAssertions);
     samlRegisteredService.setSignResponses(this.signResponses);

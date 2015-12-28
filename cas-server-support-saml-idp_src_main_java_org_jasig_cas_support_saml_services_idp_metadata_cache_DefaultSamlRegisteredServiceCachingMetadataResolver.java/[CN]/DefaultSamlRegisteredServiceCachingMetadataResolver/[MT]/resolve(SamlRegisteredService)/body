@@ -1,0 +1,10 @@
+{
+  try {
+    final ChainingMetadataResolver resolver=this.cache.get(service.getMetadataLocation());
+    this.cache.put(service.getMetadataLocation(),resolver);
+    return resolver;
+  }
+ catch (  final Exception e) {
+    throw new IllegalArgumentException("Metadata resolver could not be located from metadata " + service.getMetadataLocation(),e);
+  }
+}

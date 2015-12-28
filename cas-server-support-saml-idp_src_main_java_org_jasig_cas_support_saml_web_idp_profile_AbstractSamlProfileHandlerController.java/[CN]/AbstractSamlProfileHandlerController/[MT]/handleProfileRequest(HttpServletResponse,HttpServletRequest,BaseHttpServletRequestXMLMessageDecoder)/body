@@ -4,5 +4,5 @@
   verifySamlRegisteredService(authnRequest);
   storeAuthnRequest(request,authnRequest);
   logAuthnRequest(authnRequest);
-  performAuthentication(authnRequest,request,response,callbackService);
+  performAuthentication(authnRequest,request,response);
 }

@@ -1,3 +1,3 @@
 {
-  return new ToStringBuilder(this).appendSuper(super.toString()).append("metadataLocation",this.metadataLocation).append("metadataCacheExpirationMinutes",this.metadataCacheExpirationMinutes).append("signResponses",this.signResponses).append("signAssertions",this.signAssertions).toString();
+  return new ToStringBuilder(this).appendSuper(super.toString()).append("metadataLocation",this.metadataLocation).append("signResponses",this.signResponses).append("signAssertions",this.signAssertions).toString();
 }

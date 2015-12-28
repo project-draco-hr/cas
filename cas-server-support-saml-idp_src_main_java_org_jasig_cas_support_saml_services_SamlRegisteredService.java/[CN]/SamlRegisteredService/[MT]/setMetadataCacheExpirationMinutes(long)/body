@@ -1,4 +1,0 @@
-{
-  this.metadataCacheExpirationMinutes=metadataCacheExpirationMinutes;
-  initializeCache();
-}

@@ -1,0 +1,8 @@
+{
+  final String serviceUrl=constructServiceUrl(request,response,authnRequest);
+  logger.debug("Created service url {}",serviceUrl);
+  final String urlToRedirectTo=CommonUtils.constructRedirectUrl(this.casServerLoginUrl,CasProtocolConstants.PARAMETER_SERVICE,serviceUrl,authnRequest.isForceAuthn(),authnRequest.isPassive());
+  logger.debug("Redirecting SAML authN request to \"{}\"",urlToRedirectTo);
+  final AuthenticationRedirectStrategy authenticationRedirectStrategy=new DefaultAuthenticationRedirectStrategy();
+  authenticationRedirectStrategy.redirect(request,response,urlToRedirectTo);
+}

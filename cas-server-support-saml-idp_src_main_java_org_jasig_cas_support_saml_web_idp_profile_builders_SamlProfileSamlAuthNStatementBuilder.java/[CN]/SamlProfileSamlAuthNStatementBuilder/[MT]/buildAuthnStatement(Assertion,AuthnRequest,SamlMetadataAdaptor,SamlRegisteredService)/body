@@ -1,5 +1,5 @@
 {
-  final String authenticationMethod=getAuthenticationMethodFromAssertion(assertion,authnRequest,adaptor,service);
+  final String authenticationMethod=this.authnContextClassRefBuilder.build(assertion,authnRequest,adaptor,service);
   final AuthnStatement statement=newAuthnStatement(authenticationMethod,new DateTime(assertion.getAuthenticationDate()));
   if (assertion.getValidUntilDate() != null) {
     final DateTime dt=new DateTime(assertion.getValidUntilDate());

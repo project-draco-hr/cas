@@ -1,4 +1,0 @@
-AuthnRequest authnRequest
-HttpServletRequest request
-HttpServletResponse response
-Service callbackService
