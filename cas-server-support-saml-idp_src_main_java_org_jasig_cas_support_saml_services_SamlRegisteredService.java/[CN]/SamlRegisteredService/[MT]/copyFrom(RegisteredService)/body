@@ -3,7 +3,9 @@
   try {
     final SamlRegisteredService samlRegisteredService=(SamlRegisteredService)source;
     samlRegisteredService.setMetadataCacheExpirationMinutes(this.metadataCacheExpirationMinutes);
-    samlRegisteredService.setMetadataLocation(this.getMetadataLocation());
+    samlRegisteredService.setMetadataLocation(this.metadataLocation);
+    samlRegisteredService.setSignAssertions(this.signAssertions);
+    samlRegisteredService.setSignResponses(this.signResponses);
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);
