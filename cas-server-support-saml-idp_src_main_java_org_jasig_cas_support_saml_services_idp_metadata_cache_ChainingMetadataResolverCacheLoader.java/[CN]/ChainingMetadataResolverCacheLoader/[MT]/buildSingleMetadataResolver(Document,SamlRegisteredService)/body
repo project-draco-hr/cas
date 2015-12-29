@@ -1,15 +1,16 @@
 {
   try {
-    final OpenSamlConfigBean configBean=ApplicationContextProvider.getApplicationContext().getBean(OpenSamlConfigBean.class);
     final List<MetadataResolver> resolvers=new ArrayList<>();
     final Element metadataRoot=document.getDocumentElement();
     final DOMMetadataResolver metadataProvider=new DOMMetadataResolver(metadataRoot);
     metadataProvider.setParserPool(configBean.getParserPool());
-    metadataProvider.setFailFastInitialization(true);
-    metadataProvider.setRequireValidMetadata(true);
+    metadataProvider.setFailFastInitialization(this.failFastInitialization);
+    metadataProvider.setRequireValidMetadata(this.requireValidMetadata);
     metadataProvider.setId(metadataProvider.getClass().getCanonicalName());
-    LOGGER.debug("Initializing metadata resolver from [{}]",key);
+    buildMetadataFilters(service,metadataProvider);
+    LOGGER.info("Initializing metadata resolver from [{}]",service.getMetadataLocation());
     metadataProvider.initialize();
+    LOGGER.info("Initialized metadata resolver from [{}]",service.getMetadataLocation());
     resolvers.add(metadataProvider);
     return resolvers;
   }

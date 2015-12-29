@@ -9,5 +9,5 @@
     return false;
   }
   final SamlRegisteredService rhs=(SamlRegisteredService)obj;
-  return new EqualsBuilder().appendSuper(super.equals(obj)).append(this.metadataLocation,rhs.getMetadataLocation()).append(this.signResponses,rhs.isSignResponses()).append(this.signAssertions,rhs.isSignAssertions()).isEquals();
+  return new EqualsBuilder().appendSuper(super.equals(obj)).append(this.metadataLocation,rhs.getMetadataLocation()).append(this.signResponses,rhs.isSignResponses()).append(this.signAssertions,rhs.isSignAssertions()).append(this.requiredAuthenticationContextClass,rhs.getRequiredAuthenticationContextClass()).isEquals();
 }

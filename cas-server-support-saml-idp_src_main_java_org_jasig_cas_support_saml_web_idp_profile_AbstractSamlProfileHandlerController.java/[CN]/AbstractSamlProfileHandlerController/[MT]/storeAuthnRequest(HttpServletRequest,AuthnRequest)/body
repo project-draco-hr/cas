@@ -1,7 +1,7 @@
 {
   final HttpSession session=request.getSession();
   if (authnRequest != null) {
-    logger.debug("Storing authentication request issued by {} into session as {}",authnRequest.getIssuer().getValue(),AuthnRequest.class.getName());
+    logger.debug("Storing authentication request issued by [{}] into session as [{}]",authnRequest.getIssuer().getValue(),AuthnRequest.class.getName());
   }
  else {
     logger.debug("Removing authentication request from session");

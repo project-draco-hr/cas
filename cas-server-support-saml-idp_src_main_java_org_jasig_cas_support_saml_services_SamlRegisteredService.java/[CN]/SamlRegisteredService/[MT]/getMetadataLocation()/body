@@ -1,8 +1,3 @@
 {
-  try {
-    return this.metadataLocation;
-  }
- catch (  final Exception e) {
-    throw new RuntimeException(e);
-  }
+  return this.metadataLocation;
 }

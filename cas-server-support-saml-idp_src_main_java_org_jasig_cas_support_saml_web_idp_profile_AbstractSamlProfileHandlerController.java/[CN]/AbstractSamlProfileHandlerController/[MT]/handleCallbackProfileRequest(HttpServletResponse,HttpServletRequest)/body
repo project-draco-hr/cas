@@ -1,6 +1,6 @@
 {
   try {
-    logger.info("Received SAML callback profile request {}",request.getRequestURI());
+    logger.info("Received SAML callback profile request [{}]",request.getRequestURI());
     final AuthnRequest authnRequest=retrieveAuthnRequest(request);
     if (authnRequest == null) {
       logger.error("Can not validate the request because the original Authn request can not be found.");
@@ -9,14 +9,14 @@
     }
     final String ticket=CommonUtils.safeGetParameter(request,CasProtocolConstants.PARAMETER_TICKET);
     if (StringUtils.isBlank(ticket)) {
-      logger.error("Can not validate the request because no {} is provided via the request",CasProtocolConstants.PARAMETER_TICKET);
+      logger.error("Can not validate the request because no [{}] is provided via the request",CasProtocolConstants.PARAMETER_TICKET);
       response.setStatus(HttpServletResponse.SC_FORBIDDEN);
       return;
     }
     final Cas30ServiceTicketValidator validator=new Cas30ServiceTicketValidator(this.casServerPrefix);
     validator.setRenew(authnRequest.isForceAuthn());
     final String serviceUrl=constructServiceUrl(request,response,authnRequest);
-    logger.debug("Created service url for validation: {}",serviceUrl);
+    logger.debug("Created service url for validation: [{}]",serviceUrl);
     final Assertion assertion=validator.validate(ticket,serviceUrl);
     logCasValidationAssertion(assertion);
     if (!assertion.isValid()) {
@@ -24,9 +24,9 @@
     }
     final SamlRegisteredService registeredService=verifySamlRegisteredService(authnRequest);
     final SamlMetadataAdaptor adaptor=getSamlMetadataAdaptorForService(registeredService,authnRequest);
-    logger.debug("Preparing SAML response for {}",adaptor.getEntityId());
+    logger.debug("Preparing SAML response for [{}]",adaptor.getEntityId());
     responseBuilder.build(authnRequest,request,response,assertion,registeredService,adaptor);
-    logger.info("Built the SAML response for {}",adaptor.getEntityId());
+    logger.info("Built the SAML response for [{}]",adaptor.getEntityId());
   }
   finally {
     storeAuthnRequest(request,null);

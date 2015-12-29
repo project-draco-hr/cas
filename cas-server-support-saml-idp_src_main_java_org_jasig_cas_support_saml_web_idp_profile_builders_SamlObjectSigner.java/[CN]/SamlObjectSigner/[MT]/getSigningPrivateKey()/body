@@ -3,6 +3,6 @@
   privateKeyFactoryBean.setLocation(new FileSystemResource(this.signingKeyFile));
   privateKeyFactoryBean.setAlgorithm("RSA");
   privateKeyFactoryBean.setSingleton(false);
-  logger.debug("Locating signature signing key file from {}",this.signingKeyFile);
+  logger.debug("Locating signature signing key file from [{}]",this.signingKeyFile);
   return privateKeyFactoryBean.getObject();
 }
