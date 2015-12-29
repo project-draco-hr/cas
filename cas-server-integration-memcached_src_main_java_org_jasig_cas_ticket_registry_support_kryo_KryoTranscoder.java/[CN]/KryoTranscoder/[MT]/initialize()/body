@@ -5,6 +5,8 @@
   kryo.register(Date.class,new DefaultSerializers.DateSerializer());
   kryo.register(HardTimeoutExpirationPolicy.class);
   kryo.register(HashMap.class);
+  kryo.register(LinkedHashMap.class);
+  kryo.register(HashSet.class);
   kryo.register(DefaultHandlerResult.class);
   kryo.register(ImmutableAuthentication.class);
   kryo.register(MultiTimeUseOrTimeoutExpirationPolicy.class);
@@ -16,6 +18,8 @@
   kryo.register(TicketGrantingTicketExpirationPolicy.class);
   kryo.register(TicketGrantingTicketImpl.class);
   kryo.register(TimeoutExpirationPolicy.class);
+  kryo.register(UsernamePasswordCredential.class);
+  kryo.register(SimplePrincipal.class);
   kryo.register(URL.class,new URLSerializer());
   kryo.register(URI.class,new URISerializer());
   kryo.register(Pattern.class,new RegexSerializer());
@@ -31,6 +35,9 @@
   ImmutableSetSerializer.registerSerializers(kryo);
   ImmutableMapSerializer.registerSerializers(kryo);
   ImmutableMultimapSerializer.registerSerializers(kryo);
+  kryo.register(Collections.EMPTY_LIST.getClass(),new CollectionsEmptyListSerializer());
+  kryo.register(Collections.EMPTY_MAP.getClass(),new CollectionsEmptyMapSerializer());
+  kryo.register(Collections.EMPTY_SET.getClass(),new CollectionsEmptySetSerializer());
   if (serializerMap != null) {
     for (    final Map.Entry<Class<?>,Serializer> clazz : serializerMap.entrySet()) {
       kryo.register(clazz.getKey(),clazz.getValue());
