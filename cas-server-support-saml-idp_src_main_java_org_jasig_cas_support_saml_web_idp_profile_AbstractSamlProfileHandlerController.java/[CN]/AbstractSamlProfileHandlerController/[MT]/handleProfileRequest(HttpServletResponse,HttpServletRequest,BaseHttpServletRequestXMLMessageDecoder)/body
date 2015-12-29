@@ -3,6 +3,6 @@
   final AuthnRequest authnRequest=decodeAuthenticationRequest(request,decoder);
   verifySamlRegisteredService(authnRequest);
   storeAuthnRequest(request,authnRequest);
-  logAuthnRequest(authnRequest);
+  SamlIdPUtils.logSamlObject(this.configBean,authnRequest);
   performAuthentication(authnRequest,request,response);
 }

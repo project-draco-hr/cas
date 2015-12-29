@@ -7,5 +7,6 @@
   assertion.setSubject(samlProfileSamlSubjectBuilder.build(authnRequest,request,response,casAssertion,service,adaptor));
   assertion.setConditions(samlProfileSamlConditionsBuilder.build(authnRequest,request,response,casAssertion,service,adaptor));
   signAssertion(assertion,request,response,service,adaptor);
+  encryptAssertion(assertion,request,response,service,adaptor);
   return assertion;
 }

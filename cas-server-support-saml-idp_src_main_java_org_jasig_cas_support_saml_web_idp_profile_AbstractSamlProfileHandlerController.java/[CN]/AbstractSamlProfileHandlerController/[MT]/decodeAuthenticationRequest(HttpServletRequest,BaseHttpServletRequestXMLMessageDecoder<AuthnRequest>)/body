@@ -6,7 +6,6 @@
     decoder.decode();
     final AuthnRequest authnRequest=decoder.getMessageContext().getMessage();
     logger.debug("Decoded authentication request from http request");
-    logAuthnRequest(authnRequest);
     return authnRequest;
   }
  catch (  final Exception e) {
