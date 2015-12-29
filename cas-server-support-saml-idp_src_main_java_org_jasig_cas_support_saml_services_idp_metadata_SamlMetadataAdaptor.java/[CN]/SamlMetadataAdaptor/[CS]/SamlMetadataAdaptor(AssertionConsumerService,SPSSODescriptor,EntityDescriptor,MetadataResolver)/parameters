@@ -1,3 +1,4 @@
 AssertionConsumerService assertionConsumerService
 SPSSODescriptor ssoDescriptor
 EntityDescriptor entityDescriptor
+MetadataResolver metadataResolver

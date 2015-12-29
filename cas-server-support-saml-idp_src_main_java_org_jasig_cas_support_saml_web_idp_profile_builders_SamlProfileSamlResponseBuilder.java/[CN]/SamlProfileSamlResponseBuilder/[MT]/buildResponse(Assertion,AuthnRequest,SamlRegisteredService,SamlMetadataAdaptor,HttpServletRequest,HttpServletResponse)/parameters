@@ -1,5 +1,6 @@
-T samlObject
+Assertion assertion
+AuthnRequest authnRequest
 SamlRegisteredService service
 SamlMetadataAdaptor adaptor
-HttpServletResponse response
 HttpServletRequest request
+HttpServletResponse response

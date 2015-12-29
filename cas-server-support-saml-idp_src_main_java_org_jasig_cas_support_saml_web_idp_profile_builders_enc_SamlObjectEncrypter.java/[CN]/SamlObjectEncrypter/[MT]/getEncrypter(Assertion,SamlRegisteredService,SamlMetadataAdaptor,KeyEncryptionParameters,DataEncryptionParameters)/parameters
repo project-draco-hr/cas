@@ -1,0 +1,5 @@
+Assertion samlObject
+SamlRegisteredService service
+SamlMetadataAdaptor adaptor
+KeyEncryptionParameters keyEncParams
+DataEncryptionParameters dataEncParams

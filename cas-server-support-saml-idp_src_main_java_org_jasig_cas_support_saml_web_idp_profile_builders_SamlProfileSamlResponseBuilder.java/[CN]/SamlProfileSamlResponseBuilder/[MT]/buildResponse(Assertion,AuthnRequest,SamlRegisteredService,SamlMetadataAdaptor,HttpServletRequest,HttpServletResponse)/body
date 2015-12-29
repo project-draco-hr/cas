@@ -3,13 +3,14 @@
   Response samlResponse=newResponse(id,new DateTime(),authnRequest.getID(),null);
   samlResponse.setVersion(SAMLVersion.VERSION_20);
   samlResponse.setIssuer(buildEntityIssuer());
-  if (assertion instanceof EncryptedAssertion) {
+  final SAMLObject finalAssertion=encryptAssertion(assertion,request,response,service,adaptor);
+  if (finalAssertion instanceof EncryptedAssertion) {
     logger.debug("Built assertion is encrypted, so the response will add it to the encrypted assertions collection");
-    samlResponse.getEncryptedAssertions().add(EncryptedAssertion.class.cast(assertion));
+    samlResponse.getEncryptedAssertions().add(EncryptedAssertion.class.cast(finalAssertion));
   }
  else {
     logger.debug("Built assertion is not encrypted, so the response will add it to the assertions collection");
-    samlResponse.getAssertions().add(assertion);
+    samlResponse.getAssertions().add(Assertion.class.cast(finalAssertion));
   }
   final Status status=newStatus(StatusCode.SUCCESS,StatusCode.SUCCESS);
   samlResponse.setStatus(status);

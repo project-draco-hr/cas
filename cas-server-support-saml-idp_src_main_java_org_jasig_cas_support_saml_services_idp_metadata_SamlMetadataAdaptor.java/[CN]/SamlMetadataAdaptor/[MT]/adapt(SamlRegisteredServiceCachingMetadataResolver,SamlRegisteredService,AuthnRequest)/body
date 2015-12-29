@@ -17,7 +17,7 @@
     final SPSSODescriptor ssoDescriptor=entityDescriptor.getSPSSODescriptor(SAMLConstants.SAML20P_NS);
     if (ssoDescriptor != null) {
       LOGGER.debug("Located SPSSODescriptor in metadata for [{}]. Metadata is valid until [{}]",issuer,ssoDescriptor.getValidUntil());
-      return new SamlMetadataAdaptor(assertionConsumerService,ssoDescriptor,entityDescriptor);
+      return new SamlMetadataAdaptor(assertionConsumerService,ssoDescriptor,entityDescriptor,chainingMetadataResolver);
     }
     throw new SamlException("Could not locate SPSSODescriptor in the metadata for " + issuer);
   }
