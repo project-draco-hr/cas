@@ -1,3 +1,4 @@
 {
   serviceId=id;
+  servicePattern=null;
 }
