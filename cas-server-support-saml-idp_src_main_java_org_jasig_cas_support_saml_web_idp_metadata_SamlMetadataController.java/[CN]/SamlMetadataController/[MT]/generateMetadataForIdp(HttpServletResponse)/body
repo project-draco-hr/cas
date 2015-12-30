@@ -4,7 +4,7 @@
     return;
   }
   logger.debug("Preparing to generate metadata for entityId [{}]",this.entityId);
-  final GenerateSamlMetadata generator=new GenerateSamlMetadata(this.metadataLocation,this.hostName,this.entityId,this.scope);
+  final GenerateSamlIdpMetadata generator=new GenerateSamlIdpMetadata(this.metadataLocation,this.hostName,this.entityId,this.scope);
   if (generator.isMetadataMissing()) {
     logger.debug("Metadata does not exist at [{}]. Creating...",this.metadataLocation);
     generator.generate();
