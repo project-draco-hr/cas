@@ -1,16 +1,6 @@
 {
-  if (StringUtils.isBlank(this.entityId) || StringUtils.isBlank(this.hostName) || StringUtils.isAllLowerCase(this.scope)) {
-    logger.warn("Metadata cannot be generated, because the SAML Identity Provider is not configured." + " Examine settings and ensure metadata location, entityId, hostName and scope are all defined");
-    return;
-  }
-  logger.debug("Preparing to generate metadata for entityId [{}]",this.entityId);
-  final GenerateSamlIdpMetadata generator=new GenerateSamlIdpMetadata(this.metadataLocation,this.hostName,this.entityId,this.scope);
-  if (generator.isMetadataMissing()) {
-    logger.debug("Metadata does not exist at [{}]. Creating...",this.metadataLocation);
-    generator.generate();
-  }
-  logger.debug("Metadata is available at [{}]",generator.getMetadataFile());
-  final String contents=FileUtils.readFileToString(generator.getMetadataFile());
+  final File metadataFile=this.metadataAndCertificatesGenerationService.performGenerationSteps();
+  final String contents=FileUtils.readFileToString(metadataFile);
   response.setContentType("text/xml;charset=UTF-8");
   response.setStatus(HttpServletResponse.SC_OK);
   final PrintWriter writer=response.getWriter();
