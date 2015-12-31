@@ -1,2 +1,2 @@
-String accessToken
 JsonGenerator jsonGenerator
+UserProfile profile
