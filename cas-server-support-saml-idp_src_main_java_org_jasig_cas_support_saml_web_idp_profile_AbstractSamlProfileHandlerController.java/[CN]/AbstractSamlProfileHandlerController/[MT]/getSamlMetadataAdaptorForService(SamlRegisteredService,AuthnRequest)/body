@@ -1,3 +1,0 @@
-{
-  return SamlMetadataAdaptor.adapt(this.samlRegisteredServiceCachingMetadataResolver,registeredService,authnRequest);
-}

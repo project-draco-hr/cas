@@ -1,6 +1,0 @@
-Assertion assertion
-AuthnRequest authnRequest
-SamlRegisteredService service
-SamlMetadataAdaptor adaptor
-HttpServletRequest request
-HttpServletResponse response

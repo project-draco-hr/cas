@@ -1,3 +1,0 @@
-T samlObject
-SamlMetadataAdaptor adaptor
-MessageContext<T> outboundContext

@@ -1,6 +1,0 @@
-AuthnRequest authnRequest
-HttpServletRequest request
-HttpServletResponse response
-org.jasig.cas.client.validation.Assertion casAssertion
-SamlRegisteredService service
-SamlMetadataAdaptor adaptor
