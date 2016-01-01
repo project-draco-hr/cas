@@ -1,3 +1,3 @@
 {
-  handleProfileRequest(response,request,new HTTPRedirectDeflateDecoder());
+  handleSsoPostProfileRequest(response,request,new HTTPRedirectDeflateDecoder());
 }

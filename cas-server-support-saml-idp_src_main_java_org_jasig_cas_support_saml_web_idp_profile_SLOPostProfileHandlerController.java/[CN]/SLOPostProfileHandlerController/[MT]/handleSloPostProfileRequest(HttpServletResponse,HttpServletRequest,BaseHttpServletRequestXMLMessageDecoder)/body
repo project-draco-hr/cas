@@ -1,0 +1,12 @@
+{
+  final LogoutRequest logoutRequest=decodeRequest(request,decoder,LogoutRequest.class);
+  final SamlRegisteredService registeredService=verifySamlRegisteredService(logoutRequest.getDestination());
+  final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=SamlRegisteredServiceServiceProviderMetadataFacade.get(this.samlRegisteredServiceCachingMetadataResolver,registeredService,logoutRequest);
+  SamlIdPUtils.logSamlObject(this.configBean,logoutRequest);
+  if (!logoutRequest.isSigned()) {
+    throw new SAMLException("Logout request is not signed but should be");
+  }
+ else {
+    this.samlObjectSigner.verifySamlProfileRequestIfNeeded(logoutRequest,registeredService,adaptor);
+  }
+}

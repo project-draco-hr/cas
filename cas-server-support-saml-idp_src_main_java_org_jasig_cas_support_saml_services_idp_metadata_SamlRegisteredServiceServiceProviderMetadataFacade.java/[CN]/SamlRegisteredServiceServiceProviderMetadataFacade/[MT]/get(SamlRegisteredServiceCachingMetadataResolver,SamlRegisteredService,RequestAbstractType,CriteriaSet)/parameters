@@ -1,0 +1,4 @@
+SamlRegisteredServiceCachingMetadataResolver resolver
+SamlRegisteredService registeredService
+RequestAbstractType request
+CriteriaSet criterions

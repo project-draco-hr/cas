@@ -22,7 +22,7 @@
     if (!assertion.isValid()) {
       throw new SamlException("CAS assertion received is invalid");
     }
-    final SamlRegisteredService registeredService=verifySamlRegisteredService(authnRequest);
+    final SamlRegisteredService registeredService=verifySamlRegisteredService(authnRequest.getAssertionConsumerServiceURL());
     final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=getSamlMetadataFacadeFor(registeredService,authnRequest);
     logger.debug("Preparing SAML response for [{}]",adaptor.getEntityId());
     responseBuilder.build(authnRequest,request,response,assertion,registeredService,adaptor);
