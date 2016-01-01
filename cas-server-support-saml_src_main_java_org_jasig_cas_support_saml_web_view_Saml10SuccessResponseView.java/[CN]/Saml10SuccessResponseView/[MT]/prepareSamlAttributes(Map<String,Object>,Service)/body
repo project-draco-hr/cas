@@ -1,6 +1,5 @@
 {
   final Map<String,Object> authnAttributes=new HashMap<>(getAuthenticationAttributesAsMultiValuedAttributes(model));
-  new HashMap<>(getAuthenticationAttributesAsMultiValuedAttributes(model));
   if (isRememberMeAuthentication(model)) {
     authnAttributes.remove(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME);
     authnAttributes.put(this.rememberMeAttributeName,Boolean.TRUE.toString());

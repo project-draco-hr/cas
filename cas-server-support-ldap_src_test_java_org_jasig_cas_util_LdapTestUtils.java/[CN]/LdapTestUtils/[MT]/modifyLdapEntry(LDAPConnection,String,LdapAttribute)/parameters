@@ -1,0 +1,3 @@
+LDAPConnection serverCon
+String dn
+LdapAttribute attr
