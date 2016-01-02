@@ -1,7 +1,7 @@
 {
   try {
     final URLBuilder builder=new URLBuilder(this.callbackService.getId());
-    builder.getQueryParams().add(new Pair<>("entityId",authnRequest.getIssuer().getValue()));
+    builder.getQueryParams().add(new Pair<>(SamlProtocolConstants.PARAMETER_ENTITY_ID,authnRequest.getIssuer().getValue()));
     final String url=builder.buildURL();
     logger.debug("Built service callback url [{}]",url);
     return CommonUtils.constructServiceUrl(request,response,url,this.casServerName,CasProtocolConstants.PARAMETER_SERVICE,CasProtocolConstants.PARAMETER_TICKET,false);

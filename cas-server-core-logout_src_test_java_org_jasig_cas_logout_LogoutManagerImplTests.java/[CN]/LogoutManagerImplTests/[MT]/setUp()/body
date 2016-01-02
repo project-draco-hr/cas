@@ -2,7 +2,7 @@
   when(client.isValidEndPoint(any(String.class))).thenReturn(true);
   when(client.isValidEndPoint(any(URL.class))).thenReturn(true);
   when(client.sendMessageToEndPoint(any(HttpMessage.class))).thenReturn(true);
-  this.logoutManager=new LogoutManagerImpl(servicesManager,client,new SamlCompliantLogoutMessageCreator());
+  this.logoutManager=new LogoutManagerImpl(new SamlCompliantLogoutMessageCreator());
   this.services=new HashMap<>();
   this.simpleWebApplicationServiceImpl=org.jasig.cas.services.TestUtils.getService(URL);
   this.services.put(ID,this.simpleWebApplicationServiceImpl);

@@ -1,5 +1,5 @@
 {
-  this.logoutManager=new LogoutManagerImpl(this.servicesManager,new SimpleHttpClientFactoryBean().getObject(),new SamlCompliantLogoutMessageCreator());
+  this.logoutManager=new LogoutManagerImpl(new SamlCompliantLogoutMessageCreator());
   this.frontChannelLogoutAction=new FrontChannelLogoutAction(this.logoutManager);
   this.request=new MockHttpServletRequest();
   this.response=new MockHttpServletResponse();

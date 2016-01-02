@@ -4,7 +4,7 @@
     throw new SAMLException("Logout request is not signed but should be.");
   }
  else   if (logoutRequest.isSigned()) {
-    final ChainingMetadataResolver resolver=getMetadataResolverForAllSamlServices(logoutRequest);
+    final MetadataResolver resolver=SamlIdPUtils.getMetadataResolverForAllSamlServices(this.servicesManager,logoutRequest.getIssuer().getValue(),this.samlRegisteredServiceCachingMetadataResolver);
     this.samlObjectSigner.verifySamlProfileRequestIfNeeded(logoutRequest,resolver);
   }
   SamlIdPUtils.logSamlObject(this.configBean,logoutRequest);

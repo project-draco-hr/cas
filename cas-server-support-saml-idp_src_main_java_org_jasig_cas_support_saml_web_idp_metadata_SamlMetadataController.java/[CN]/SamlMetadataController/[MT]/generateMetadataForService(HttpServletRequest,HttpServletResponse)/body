@@ -1,5 +1,5 @@
 {
-  final String entityID=request.getParameter("entityId");
+  final String entityID=request.getParameter(SamlProtocolConstants.PARAMETER_ENTITY_ID);
   final String authnRequestSigned=StringUtils.defaultString(request.getParameter("authnRequestSigned"),"false");
   final String wantAssertionsSigned=StringUtils.defaultString(request.getParameter("wantAssertionsSigned"),"false");
   final String x509Certificate=request.getParameter("x509Certificate");
