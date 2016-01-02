@@ -1,0 +1,15 @@
+{
+  final Predicate p=Predicates.instanceOf(SamlRegisteredService.class);
+  final Collection<RegisteredService> registeredServices=this.servicesManager.findServiceBy(p);
+  final List<MetadataResolver> resolvers=new ArrayList<>();
+  final ChainingMetadataResolver resolver=new ChainingMetadataResolver();
+  for (  final RegisteredService registeredService : registeredServices) {
+    final SamlRegisteredService samlRegisteredService=SamlRegisteredService.class.cast(registeredService);
+    final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=SamlRegisteredServiceServiceProviderMetadataFacade.get(this.samlRegisteredServiceCachingMetadataResolver,samlRegisteredService,request);
+    resolvers.add(adaptor.getMetadataResolver());
+  }
+  resolver.setResolvers(resolvers);
+  resolver.setId(getClass().getName());
+  resolver.initialize();
+  return resolver;
+}
