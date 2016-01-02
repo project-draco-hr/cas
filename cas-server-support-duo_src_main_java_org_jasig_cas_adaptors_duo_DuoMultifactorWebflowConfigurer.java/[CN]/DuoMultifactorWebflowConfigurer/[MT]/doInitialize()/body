@@ -1,0 +1,12 @@
+{
+  final Flow flow=getLoginFlow();
+  final SubflowState subflowState=createSubflowState(flow,MFA_DUO_EVENT_ID,MFA_DUO_EVENT_ID);
+  final List<DefaultMapping> mappings=new ArrayList<>();
+  final Mapper inputMapper=createMapperToSubflowState(mappings);
+  final SubflowAttributeMapper subflowMapper=createSubflowAttributeMapper(inputMapper,null);
+  subflowState.setAttributeMapper(subflowMapper);
+  subflowState.getTransitionSet().add(createTransition(MFA_SUCCESS_EVENT_ID,TRANSITION_ID_SEND_TICKET_GRANTING_TICKET));
+  final ActionState actionState=(ActionState)flow.getState(TRANSITION_ID_REAL_SUBMIT);
+  logger.debug("Retrieved action state {}",actionState.getId());
+  createTransitionForState(actionState,MFA_DUO_EVENT_ID,MFA_DUO_EVENT_ID);
+}

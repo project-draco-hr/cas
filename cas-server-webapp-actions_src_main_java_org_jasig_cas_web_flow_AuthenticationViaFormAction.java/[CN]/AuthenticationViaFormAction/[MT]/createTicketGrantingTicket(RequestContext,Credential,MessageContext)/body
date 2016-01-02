@@ -1,18 +1,11 @@
 {
   try {
-    final Service service=WebUtils.getService(context);
     final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationSystemSupport.getPrincipalElectionStrategy());
     final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(credential);
     this.authenticationSystemSupport.getAuthenticationTransactionManager().handle(transaction,builder);
-    final AuthenticationContext authenticationContext=builder.build(service);
-    final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
-    WebUtils.putTicketGrantingTicketInScopes(context,tgt);
     WebUtils.putWarnCookieIfRequestParameterPresent(this.warnCookieGenerator,context);
-    putPublicWorkstationToFlowIfRequestParameterPresent(context);
-    if (addWarningMessagesToMessageContextIfNeeded(tgt,messageContext)) {
-      return newEvent(SUCCESS_WITH_WARNINGS);
-    }
-    return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_SUCCESS);
+    WebUtils.putPublicWorkstationToFlowIfRequestParameterPresent(context);
+    return this.authenticationContextWebflowEventResolver.resolve(builder,context,messageContext);
   }
  catch (  final AuthenticationException e) {
     logger.debug(e.getMessage(),e);

@@ -7,5 +7,5 @@
   if (this.ignoreIfNoMatchIsFound) {
     return receivedAuthenticationMethod;
   }
-  throw new UnrecognizedMfaMethodException(receivedAuthenticationMethod,targetService.getId());
+  throw new UnrecognizedAuthenticationMethodException(receivedAuthenticationMethod);
 }

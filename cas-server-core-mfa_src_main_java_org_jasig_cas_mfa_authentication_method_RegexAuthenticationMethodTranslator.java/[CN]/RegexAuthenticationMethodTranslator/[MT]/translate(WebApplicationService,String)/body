@@ -7,5 +7,5 @@
   if (this.defaultMfaMethod != null) {
     return defaultMfaMethod;
   }
-  throw new UnrecognizedMfaMethodException(triggerValue,targetService.getId());
+  throw new UnrecognizedAuthenticationMethodException(triggerValue);
 }

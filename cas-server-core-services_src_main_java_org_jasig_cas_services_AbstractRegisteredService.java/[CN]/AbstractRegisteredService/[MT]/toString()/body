@@ -16,5 +16,6 @@
   toStringBuilder.append("logoutUrl",this.logoutUrl);
   toStringBuilder.append("requiredHandlers",this.requiredHandlers);
   toStringBuilder.append("properties",this.properties);
+  toStringBuilder.append("authenticationPolicy",this.authenticationPolicy);
   return toStringBuilder.toString();
 }
