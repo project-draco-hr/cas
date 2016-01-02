@@ -1,0 +1,6 @@
+{
+  Assert.notNull(this.ticketGrantingTicketFactory,"ticketGrantingTicketFactory cannot be null");
+  Assert.notNull(this.proxyGrantingTicketFactory,"proxyGrantingTicketFactory cannot be null");
+  Assert.notNull(this.serviceTicketFactory,"serviceTicketFactory cannot be null");
+  Assert.notNull(this.proxyTicketFactory,"proxyTicketFactory cannot be null");
+}

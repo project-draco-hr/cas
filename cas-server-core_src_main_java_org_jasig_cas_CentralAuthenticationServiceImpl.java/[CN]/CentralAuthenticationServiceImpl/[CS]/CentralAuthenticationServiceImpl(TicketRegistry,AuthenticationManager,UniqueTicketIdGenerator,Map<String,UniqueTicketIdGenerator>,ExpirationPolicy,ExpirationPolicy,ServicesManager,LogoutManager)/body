@@ -1,3 +1,0 @@
-{
-  super(ticketRegistry,authenticationManager,ticketGrantingTicketUniqueTicketIdGenerator,uniqueTicketIdGeneratorsForService,ticketGrantingTicketExpirationPolicy,serviceTicketExpirationPolicy,servicesManager,logoutManager);
-}

@@ -10,7 +10,7 @@
   ClientInfoHolder.setClientInfo(new ClientInfo(request));
   getThrottle().preHandle(request,response,null);
   try {
-    authenticationManager.authenticate(badCredentials(username));
+    authenticationManager.authenticate(AuthenticationTransaction.wrap(badCredentials(username)));
   }
  catch (  final AuthenticationException e) {
     getThrottle().postHandle(request,response,null,null);

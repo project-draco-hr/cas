@@ -2,20 +2,24 @@
   final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
   try {
     final Service service=WebUtils.getService(context);
-    final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,credential);
+    final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationSystemSupport.getPrincipalElectionStrategy());
+    final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(credential);
+    this.authenticationSystemSupport.getAuthenticationTransactionManager().handle(transaction,builder);
+    final AuthenticationContext authenticationContext=builder.build(service);
+    final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicketId,service,authenticationContext);
     WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
-    putWarnCookieIfRequestParameterPresent(context);
-    return newEvent(WARN);
+    WebUtils.putWarnCookieIfRequestParameterPresent(this.warnCookieGenerator,context);
+    return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_WARN);
   }
  catch (  final AuthenticationException e) {
     return newEvent(AUTHENTICATION_FAILURE,e);
   }
 catch (  final TicketCreationException e) {
-    logger.warn("Invalid attempt to access service using renew=true with different credential. " + "Ending SSO session.");
+    logger.warn("Invalid attempt to access service using renew=true with different credential. Ending SSO session.");
     this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
   }
 catch (  final AbstractTicketException e) {
-    return newEvent(ERROR,e);
+    return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_ERROR,e);
   }
-  return newEvent(ERROR);
+  return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_ERROR);
 }

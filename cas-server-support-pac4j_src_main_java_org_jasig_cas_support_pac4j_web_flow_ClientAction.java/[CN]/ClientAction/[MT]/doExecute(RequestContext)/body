@@ -24,17 +24,21 @@
       externalContext.recordResponseComplete();
       return new Event(this,"stop");
     }
-    final Service service=(Service)session.getAttribute(SERVICE);
-    context.getFlowScope().put(SERVICE,service);
+    final Service service=(Service)session.getAttribute(CasProtocolConstants.PARAMETER_SERVICE);
+    context.getFlowScope().put(CasProtocolConstants.PARAMETER_SERVICE,service);
     logger.debug("retrieve service: {}",service);
     if (service != null) {
-      request.setAttribute(SERVICE,service.getId());
+      request.setAttribute(CasProtocolConstants.PARAMETER_SERVICE,service.getId());
     }
-    restoreRequestAttribute(request,session,THEME);
-    restoreRequestAttribute(request,session,LOCALE);
-    restoreRequestAttribute(request,session,METHOD);
+    restoreRequestAttribute(request,session,ThemeChangeInterceptor.DEFAULT_PARAM_NAME);
+    restoreRequestAttribute(request,session,LocaleChangeInterceptor.DEFAULT_PARAM_NAME);
+    restoreRequestAttribute(request,session,CasProtocolConstants.PARAMETER_METHOD);
     if (credentials != null) {
-      final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(new ClientCredential(credentials));
+      final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationSystemSupport.getPrincipalElectionStrategy());
+      final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(new ClientCredential(credentials));
+      this.authenticationSystemSupport.getAuthenticationTransactionManager().handle(transaction,builder);
+      final AuthenticationContext authenticationContext=builder.build(service);
+      final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
       WebUtils.putTicketGrantingTicketInScopes(context,tgt);
       return success();
     }

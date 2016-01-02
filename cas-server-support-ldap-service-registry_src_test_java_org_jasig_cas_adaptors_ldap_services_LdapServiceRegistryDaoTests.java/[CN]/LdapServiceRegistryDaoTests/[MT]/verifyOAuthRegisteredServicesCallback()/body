@@ -1,0 +1,10 @@
+{
+  final OAuthRegisteredCallbackAuthorizeService r=new OAuthRegisteredCallbackAuthorizeService();
+  r.setName("testoauth");
+  r.setServiceId(OAuthConstants.CALLBACK_AUTHORIZE_URL);
+  r.setTheme("theme");
+  r.setDescription("description");
+  r.setAttributeReleasePolicy(new ReturnAllAttributeReleasePolicy());
+  final RegisteredService r2=this.dao.save(r);
+  assertEquals(r,r2);
+}

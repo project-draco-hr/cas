@@ -1,0 +1,3 @@
+{
+  modifyLdapEntry(serverCon,dn.getDn(),attr);
+}

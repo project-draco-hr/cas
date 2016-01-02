@@ -1,0 +1,4 @@
+TicketRegistry ticketRegistry
+TicketFactory ticketFactory
+ServicesManager servicesManager
+LogoutManager logoutManager

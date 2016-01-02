@@ -1,0 +1,4 @@
+{
+  this.ticketRegistry=this.applicationContext.getBean("igniteTicketRegistry",TicketRegistry.class);
+  initTicketRegistry();
+}

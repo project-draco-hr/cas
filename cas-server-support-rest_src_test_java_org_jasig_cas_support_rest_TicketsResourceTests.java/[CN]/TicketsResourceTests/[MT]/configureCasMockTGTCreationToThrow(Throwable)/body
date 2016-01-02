@@ -1,0 +1,3 @@
+{
+  when(this.casMock.createTicketGrantingTicket(any(AuthenticationContext.class))).thenThrow(e);
+}

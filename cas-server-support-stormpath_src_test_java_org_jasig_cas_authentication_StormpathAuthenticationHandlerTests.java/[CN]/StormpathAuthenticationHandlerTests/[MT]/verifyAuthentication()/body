@@ -1,0 +1,6 @@
+{
+  final HandlerResult result=this.authenticationHandler.authenticate(TestUtils.getCredentialsWithDifferentUsernameAndPassword("casuser","12345678mM"));
+  assertEquals(result.getPrincipal().getId(),"casuser");
+  assertTrue(result.getPrincipal().getAttributes().containsKey("fullName"));
+  assertTrue(result.getPrincipal().getAttributes().containsKey("email"));
+}

@@ -1,3 +1,0 @@
-AbstractDistributedTicketRegistry ticketRegistry
-TicketGrantingTicket ticketGrantingTicket
-boolean callback

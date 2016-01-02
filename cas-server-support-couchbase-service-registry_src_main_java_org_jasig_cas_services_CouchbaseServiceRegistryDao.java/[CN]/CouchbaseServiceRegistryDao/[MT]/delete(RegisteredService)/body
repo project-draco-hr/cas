@@ -1,0 +1,5 @@
+{
+  logger.debug("Deleting service {}",service);
+  couchbase.bucket().remove(String.valueOf(service.getId()));
+  return true;
+}

@@ -1,0 +1,10 @@
+{
+  return new TransactionTemplate(txManager).execute(new TransactionCallback<ProxyTicket>(){
+    @Override public ProxyTicket doInTransaction(    final TransactionStatus status){
+      final ProxyTicket st=newPT(parent);
+      jpaTicketRegistry.addTicket(st);
+      return st;
+    }
+  }
+);
+}

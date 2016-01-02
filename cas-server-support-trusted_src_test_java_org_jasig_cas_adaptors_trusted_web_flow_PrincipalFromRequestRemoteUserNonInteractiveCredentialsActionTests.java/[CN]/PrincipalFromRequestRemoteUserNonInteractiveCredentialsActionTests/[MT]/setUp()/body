@@ -1,10 +1,8 @@
 {
   this.action=new PrincipalFromRequestRemoteUserNonInteractiveCredentialsAction();
   this.action.setPrincipalFactory(new DefaultPrincipalFactory());
-  final Map<String,UniqueTicketIdGenerator> idGenerators=new HashMap<>();
-  idGenerators.put(SimpleWebApplicationServiceImpl.class.getName(),new DefaultUniqueTicketIdGenerator());
   final AuthenticationManager authenticationManager=new PolicyBasedAuthenticationManager(Collections.<AuthenticationHandler,PrincipalResolver>singletonMap(new PrincipalBearingCredentialsAuthenticationHandler(),new PrincipalBearingPrincipalResolver()));
-  final CentralAuthenticationServiceImpl centralAuthenticationService=new CentralAuthenticationServiceImpl(new DefaultTicketRegistry(),authenticationManager,new DefaultUniqueTicketIdGenerator(),idGenerators,new NeverExpiresExpirationPolicy(),new NeverExpiresExpirationPolicy(),mock(ServicesManager.class),mock(LogoutManager.class));
-  centralAuthenticationService.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
+  final AbstractCentralAuthenticationService centralAuthenticationService=(AbstractCentralAuthenticationService)getCentralAuthenticationService();
   this.action.setCentralAuthenticationService(centralAuthenticationService);
+  this.action.getAuthenticationSystemSupport().getAuthenticationTransactionManager().setAuthenticationManager(authenticationManager);
 }

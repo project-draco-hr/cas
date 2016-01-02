@@ -1,0 +1,15 @@
+{
+  final Map<String,Object> authnAttributes=new HashMap<>(getAuthenticationAttributesAsMultiValuedAttributes(model));
+  if (isRememberMeAuthentication(model)) {
+    authnAttributes.remove(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME);
+    authnAttributes.put(this.rememberMeAttributeName,Boolean.TRUE.toString());
+  }
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  final Map<String,Object> attributesToReturn=new HashMap<>();
+  attributesToReturn.putAll(getPrincipalAttributesAsMultiValuedAttributes(model));
+  attributesToReturn.putAll(authnAttributes);
+  decideIfCredentialPasswordShouldBeReleasedAsAttribute(attributesToReturn,model,registeredService);
+  decideIfProxyGrantingTicketShouldBeReleasedAsAttribute(attributesToReturn,model,registeredService);
+  final Map<String,Object> finalAttributes=this.casAttributeEncoder.encodeAttributes(attributesToReturn,service);
+  return finalAttributes;
+}

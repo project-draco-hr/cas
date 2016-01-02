@@ -1,0 +1,15 @@
+{
+  if (this.mongoTemplate == null) {
+    throw new RuntimeException("Mongo template is not correctly configured");
+  }
+ else {
+    if (this.dropCollection) {
+      LOGGER.debug("Dropping database collection: {}",this.collectionName);
+      this.mongoTemplate.dropCollection(this.collectionName);
+    }
+    if (!this.mongoTemplate.collectionExists(this.collectionName)) {
+      LOGGER.debug("Creating database collection: {}",this.collectionName);
+      this.mongoTemplate.createCollection(this.collectionName);
+    }
+  }
+}

@@ -8,7 +8,17 @@
   final ServiceTicket stFromDb=(ServiceTicket)getTicketInTransaction(newSt.getId());
   assertNotNull(stFromDb);
   assertEquals(newSt.getId(),stFromDb.getId());
+  final ProxyGrantingTicket newPgt=grantProxyGrantingTicketInTransaction(stFromDb);
+  final ProxyGrantingTicket pgtFromDb=(ProxyGrantingTicket)getTicketInTransaction(newPgt.getId());
+  assertNotNull(pgtFromDb);
+  assertEquals(newPgt.getId(),pgtFromDb.getId());
+  final ProxyTicket newPt=grantProxyTicketInTransaction(pgtFromDb);
+  final ProxyTicket ptFromDb=(ProxyTicket)getTicketInTransaction(newPt.getId());
+  assertNotNull(ptFromDb);
+  assertEquals(newPt.getId(),ptFromDb.getId());
   deleteTicketInTransaction(newTgt.getId());
   assertNull(getTicketInTransaction(newTgt.getId()));
   assertNull(getTicketInTransaction(newSt.getId()));
+  assertNull(getTicketInTransaction(newPgt.getId()));
+  assertNull(getTicketInTransaction(newPt.getId()));
 }

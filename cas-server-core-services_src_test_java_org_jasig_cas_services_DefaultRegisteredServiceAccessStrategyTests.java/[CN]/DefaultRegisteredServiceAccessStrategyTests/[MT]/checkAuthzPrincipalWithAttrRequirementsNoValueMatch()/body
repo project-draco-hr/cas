@@ -5,5 +5,5 @@
   final Map<String,Object> pAttrs=this.getPrincipalAttributes();
   pAttrs.remove("cn");
   pAttrs.put("givenName","theName");
-  assertFalse(authz.doPrincipalAttributesAllowServiceAccess(pAttrs));
+  assertFalse(authz.doPrincipalAttributesAllowServiceAccess("test",pAttrs));
 }

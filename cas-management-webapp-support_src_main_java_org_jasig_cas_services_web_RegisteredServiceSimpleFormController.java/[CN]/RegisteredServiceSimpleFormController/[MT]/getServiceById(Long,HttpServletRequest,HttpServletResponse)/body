@@ -1,8 +1,7 @@
 {
   try {
-    RegisteredServiceEditBean bean=null;
+    final RegisteredServiceEditBean bean=new RegisteredServiceEditBean();
     if (id == -1) {
-      bean=new RegisteredServiceEditBean();
       bean.setServiceData(null);
     }
  else {
@@ -11,13 +10,9 @@
         logger.warn("Invalid service id specified [{}]. Cannot find service in the registry",id);
         throw new IllegalArgumentException("Service id " + id + " cannot be found");
       }
-      bean=RegisteredServiceEditBean.fromRegisteredService(service);
+      bean.setServiceData(registeredServiceFactory.createServiceData(service));
     }
-    final RegisteredServiceEditBean.FormData formData=bean.getFormData();
-    final List<String> possibleAttributeNames=new ArrayList<>();
-    possibleAttributeNames.addAll(this.personAttributeDao.getPossibleUserAttributeNames());
-    Collections.sort(possibleAttributeNames);
-    formData.setAvailableAttributes(possibleAttributeNames);
+    bean.setFormData(registeredServiceFactory.createFormData());
     bean.setStatus(HttpServletResponse.SC_OK);
     JsonViewUtils.render(bean,response);
   }

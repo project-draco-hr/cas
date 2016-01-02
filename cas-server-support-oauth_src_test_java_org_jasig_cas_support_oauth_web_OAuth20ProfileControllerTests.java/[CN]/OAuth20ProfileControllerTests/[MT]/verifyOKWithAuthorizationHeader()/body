@@ -1,6 +1,17 @@
 {
+  final Map<String,Object> map=new HashMap<>();
+  map.put(NAME,VALUE);
+  final List<String> list=Arrays.asList(VALUE,VALUE);
+  map.put(NAME2,list);
+  final Principal p=org.jasig.cas.authentication.TestUtils.getPrincipal(ID,map);
+  final TicketGrantingTicket impl=new TicketGrantingTicketImpl(TGT_ID,org.jasig.cas.authentication.TestUtils.getAuthentication(p),new NeverExpiresExpirationPolicy());
+  final HttpProfile profile=new HttpProfile();
+  profile.setId(ID);
+  profile.addAttributes(map);
+  profile.addAttribute(JwtConstants.EXPIRATION_TIME,DateUtils.addSeconds(new Date(),5));
+  ((OAuth20WrapperController)oauth20WrapperController).getTicketRegistry().addTicket(impl);
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.PROFILE_URL);
-  mockRequest.addHeader("Authorization",OAuthConstants.BEARER_TOKEN + ' ' + TGT_ID);
+  mockRequest.addHeader("Authorization",OAuthConstants.BEARER_TOKEN + ' ' + accessTokenJwtGenerator.generate(profile));
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   oauth20WrapperController.handleRequest(mockRequest,mockResponse);
   assertEquals(200,mockResponse.getStatus());
