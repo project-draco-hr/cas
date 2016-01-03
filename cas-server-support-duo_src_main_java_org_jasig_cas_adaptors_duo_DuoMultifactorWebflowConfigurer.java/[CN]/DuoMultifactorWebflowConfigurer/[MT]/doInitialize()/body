@@ -9,4 +9,5 @@
   final ActionState actionState=(ActionState)flow.getState(TRANSITION_ID_REAL_SUBMIT);
   logger.debug("Retrieved action state {}",actionState.getId());
   createTransitionForState(actionState,MFA_DUO_EVENT_ID,MFA_DUO_EVENT_ID);
+  registerFlowDefinitionIntoLoginFlowRegistry(this.duoFlowRegistry);
 }
