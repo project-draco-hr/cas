@@ -1,0 +1,8 @@
+{
+  final PrivateKeyFactoryBean privateKeyFactoryBean=new PrivateKeyFactoryBean();
+  privateKeyFactoryBean.setLocation(new FileSystemResource(this.encryptionKeyFile));
+  privateKeyFactoryBean.setAlgorithm(this.privateKeyAlgName);
+  privateKeyFactoryBean.setSingleton(false);
+  logger.debug("Locating encryption key file from [{}]",this.encryptionKeyFile);
+  return privateKeyFactoryBean.getObject();
+}

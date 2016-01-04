@@ -1,0 +1,5 @@
+{
+  final SAMLOutboundDestinationHandler handlerDest=new SAMLOutboundDestinationHandler();
+  handlerDest.initialize();
+  handlerDest.invoke(outboundContext);
+}

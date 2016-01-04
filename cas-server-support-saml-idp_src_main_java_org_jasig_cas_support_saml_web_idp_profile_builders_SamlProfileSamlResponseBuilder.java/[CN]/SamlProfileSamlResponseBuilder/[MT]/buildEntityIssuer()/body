@@ -1,0 +1,5 @@
+{
+  final Issuer issuer=newIssuer(this.entityId);
+  issuer.setFormat(Issuer.ENTITY);
+  return issuer;
+}

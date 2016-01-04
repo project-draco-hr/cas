@@ -1,0 +1,4 @@
+SamlRegisteredService service
+Response samlResponse
+HttpServletResponse httpResponse
+SamlRegisteredServiceServiceProviderMetadataFacade adaptor

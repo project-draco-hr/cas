@@ -1,0 +1,3 @@
+{
+  return service.getMetadataLocation().trim().endsWith("/entities/{0}");
+}

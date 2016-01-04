@@ -1,0 +1,3 @@
+{
+  this.singleLogoutServiceMessageHandler=singleLogoutServiceMessageHandler;
+}

@@ -1,0 +1,5 @@
+{
+  this.ssoDescriptor=ssoDescriptor;
+  this.entityDescriptor=entityDescriptor;
+  this.metadataResolver=metadataResolver;
+}

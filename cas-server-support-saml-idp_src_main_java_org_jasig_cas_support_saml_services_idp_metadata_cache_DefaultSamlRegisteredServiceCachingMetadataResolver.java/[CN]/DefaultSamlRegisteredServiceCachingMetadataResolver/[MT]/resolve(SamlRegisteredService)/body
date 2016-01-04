@@ -1,0 +1,16 @@
+{
+  ChainingMetadataResolver resolver=null;
+  try {
+    LOGGER.debug("Resolving metadata for [{}] at [{}].",service.getName(),service.getMetadataLocation());
+    resolver=this.cache.get(service);
+    return resolver;
+  }
+ catch (  final Exception e) {
+    throw new IllegalArgumentException("Metadata resolver could not be located from metadata " + service.getMetadataLocation(),e);
+  }
+ finally {
+    if (resolver != null) {
+      LOGGER.debug("Loaded and cached SAML metadata [{}] from [{}] for [{}] minute(s)",resolver.getId(),service.getMetadataLocation(),this.metadataCacheExpirationMinutes);
+    }
+  }
+}

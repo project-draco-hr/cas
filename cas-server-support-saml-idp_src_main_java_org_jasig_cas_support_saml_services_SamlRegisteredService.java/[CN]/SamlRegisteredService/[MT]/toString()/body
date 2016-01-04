@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this).appendSuper(super.toString()).append("metadataLocation",metadataLocation).append("metadataMaxValidity",metadataMaxValidity).append("requiredAuthenticationContextClass",requiredAuthenticationContextClass).append("metadataSignatureLocation",metadataSignatureLocation).append("signAssertions",signAssertions).append("signResponses",signResponses).append("encryptAssertions",encryptAssertions).toString();
+}

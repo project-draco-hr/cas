@@ -1,0 +1,7 @@
+{
+  final KeyEncryptionParameters keyEncParams=new KeyEncryptionParameters();
+  keyEncParams.setRecipient(adaptor.getEntityId());
+  keyEncParams.setEncryptionCredential(credential);
+  keyEncParams.setAlgorithm(EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSAOAEP);
+  return keyEncParams;
+}

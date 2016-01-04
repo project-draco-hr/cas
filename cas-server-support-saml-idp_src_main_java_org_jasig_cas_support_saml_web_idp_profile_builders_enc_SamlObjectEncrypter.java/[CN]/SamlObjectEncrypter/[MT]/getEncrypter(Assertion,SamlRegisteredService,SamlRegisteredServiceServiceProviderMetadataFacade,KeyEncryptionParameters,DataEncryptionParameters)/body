@@ -1,0 +1,5 @@
+{
+  final Encrypter encrypter=new Encrypter(dataEncParams,keyEncParams);
+  encrypter.setKeyPlacement(Encrypter.KeyPlacement.PEER);
+  return encrypter;
+}
