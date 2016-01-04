@@ -1,0 +1,8 @@
+{
+  if (rememberMeExpirationPolicy != null) {
+    LOGGER.debug("Using remember-me expiration policy of {}",rememberMeExpirationPolicy);
+  }
+  if (sessionExpirationPolicy != null) {
+    LOGGER.debug("Using session expiration policy of {}",sessionExpirationPolicy);
+  }
+}
