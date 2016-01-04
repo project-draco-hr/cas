@@ -1,24 +1,9 @@
 {
   final CasServiceResponseAuthenticationSuccess success=new CasServiceResponseAuthenticationSuccess();
-  final Authentication authentication=getPrimaryAuthenticationFrom(model);
+  success.setAttributes(getModelAttributes(model));
   final Principal principal=getPrincipal(model);
-  final Service service=getServiceFrom(model);
-  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-  Map<String,Object> attributes=new HashMap<>(principal.getAttributes());
-  decideIfCredentialPasswordShouldBeReleasedAsAttribute(attributes,model,registeredService);
-  decideIfProxyGrantingTicketShouldBeReleasedAsAttribute(attributes,model,registeredService);
-  attributes=this.casAttributeEncoder.encodeAttributes(attributes,getServiceFrom(model));
-  if (!attributes.isEmpty()) {
-    success.setAttributes(attributes);
-  }
   success.setUser(principal.getId());
-  attributes=new HashMap<>(authentication.getAttributes());
-  decideIfCredentialPasswordShouldBeReleasedAsAttribute(attributes,model,registeredService);
-  decideIfProxyGrantingTicketShouldBeReleasedAsAttribute(attributes,model,registeredService);
-  attributes=this.casAttributeEncoder.encodeAttributes(attributes,getServiceFrom(model));
-  if (!attributes.isEmpty()) {
-    success.setAuthenticationAttributes(attributes);
-  }
+  success.setProxyGrantingTicket(getProxyGrantingTicketIou(model));
   final Collection<Authentication> chainedAuthentications=getChainedAuthentications(model);
   if (chainedAuthentications != null && !chainedAuthentications.isEmpty()) {
     final List<String> proxies=new ArrayList<>();
