@@ -1,0 +1,18 @@
+{
+  try {
+    final CriteriaSet criteria=new CriteriaSet();
+    criteria.add(new SignatureSigningConfigurationCriterion(getSignatureSigningConfiguration()));
+    criteria.add(new RoleDescriptorCriterion(descriptor));
+    final SAMLMetadataSignatureSigningParametersResolver resolver=new SAMLMetadataSignatureSigningParametersResolver();
+    logger.debug("Resolving signature signing parameters for [{}]",descriptor.getElementQName().getLocalPart());
+    final SignatureSigningParameters params=resolver.resolveSingle(criteria);
+    if (params == null) {
+      throw new SAMLException("No signature signing parameter is available");
+    }
+    logger.debug("Created signature signing parameters." + "\nSignature algorithm: [{}]" + "\nSignature canonicalization algorithm: [{}]"+ "\nSignature reference digest methods: [{}]",params.getSignatureAlgorithm(),params.getSignatureCanonicalizationAlgorithm(),params.getSignatureReferenceDigestMethod());
+    return params;
+  }
+ catch (  final Exception e) {
+    throw new SAMLException(e.getMessage(),e);
+  }
+}

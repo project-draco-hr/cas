@@ -1,0 +1,15 @@
+{
+  try {
+    logger.debug("Attempting to encode [{}] for [{}]",samlObject.getClass().getName(),adaptor.getEntityId());
+    final MessageContext<T> outboundContext=new MessageContext<>();
+    prepareOutboundContext(samlObject,adaptor,outboundContext);
+    prepareSecurityParametersContext(adaptor,outboundContext);
+    prepareEndpointURLSchemeSecurityHandler(outboundContext);
+    prepareSamlOutboundDestinationHandler(outboundContext);
+    prepareSamlOutboundProtocolMessageSigningHandler(outboundContext);
+    return samlObject;
+  }
+ catch (  final Exception e) {
+    throw new SamlException(e.getMessage(),e);
+  }
+}

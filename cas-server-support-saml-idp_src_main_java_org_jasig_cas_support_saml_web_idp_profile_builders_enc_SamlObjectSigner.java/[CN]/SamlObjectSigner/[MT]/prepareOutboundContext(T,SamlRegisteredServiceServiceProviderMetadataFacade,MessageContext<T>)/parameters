@@ -1,0 +1,3 @@
+T samlObject
+SamlRegisteredServiceServiceProviderMetadataFacade adaptor
+MessageContext<T> outboundContext

@@ -1,0 +1,15 @@
+{
+  try {
+    final String logoutRequest=this.logoutMessageBuilder.create(request);
+    final SingleLogoutService logoutService=request.getService();
+    logoutService.setLoggedOutAlready(true);
+    LOGGER.debug("Sending logout request for [{}] to [{}]",logoutService.getId(),request.getLogoutUrl());
+    final LogoutHttpMessage msg=new LogoutHttpMessage(request.getLogoutUrl(),logoutRequest,this.asynchronous);
+    LOGGER.debug("Prepared logout message to send is [{}]",msg);
+    return this.httpClient.sendMessageToEndPoint(msg);
+  }
+ catch (  final Exception e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+  return false;
+}

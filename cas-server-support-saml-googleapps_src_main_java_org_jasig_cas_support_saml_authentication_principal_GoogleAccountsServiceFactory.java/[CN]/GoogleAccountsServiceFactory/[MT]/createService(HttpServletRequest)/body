@@ -5,7 +5,7 @@
   }
   final String relayState=request.getParameter(SamlProtocolConstants.PARAMETER_SAML_RELAY_STATE);
   final String xmlRequest=BUILDER.decodeSamlAuthnRequest(request.getParameter(SamlProtocolConstants.PARAMETER_SAML_REQUEST));
-  if (!StringUtils.hasText(xmlRequest)) {
+  if (StringUtils.isBlank(xmlRequest)) {
     logger.trace("SAML AuthN request not found in the request");
     return null;
   }
