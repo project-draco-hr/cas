@@ -1,5 +1,5 @@
 {
-  final AuthenticationBuilder builder=authenticateInternal(transaction.getCredentials());
+  final AuthenticationBuilder builder=authenticateInternal(transaction);
   final Authentication authentication=builder.build();
   final Principal principal=authentication.getPrincipal();
   if (principal instanceof NullPrincipal) {
