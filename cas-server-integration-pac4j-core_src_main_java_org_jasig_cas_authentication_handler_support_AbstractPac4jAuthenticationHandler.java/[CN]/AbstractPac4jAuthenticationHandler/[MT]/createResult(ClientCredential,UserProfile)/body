@@ -9,6 +9,7 @@
     }
     if (StringUtils.isNotBlank(id)) {
       credentials.setUserProfile(profile);
+      credentials.setTypedIdUsed(typedIdUsed);
       return new DefaultHandlerResult(this,new BasicCredentialMetaData(credentials),this.principalFactory.createPrincipal(id,profile.getAttributes()));
     }
     throw new FailedLoginException("No identifier found for this user profile: " + profile);
