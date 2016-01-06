@@ -1,17 +1,18 @@
 {
+  final Collection<Credential> credentials=transaction.getCredentials();
   final AuthenticationBuilder builder=new DefaultAuthenticationBuilder(NullPrincipal.getInstance());
   for (  final Credential c : credentials) {
     builder.addCredential(new BasicCredentialMetaData(c));
   }
   boolean found;
+  final Set<AuthenticationHandler> handlerSet=this.authenticationHandlerResolver.resolve(this.handlerResolverMap.keySet(),transaction);
   for (  final Credential credential : credentials) {
     found=false;
-    for (    final Map.Entry<AuthenticationHandler,PrincipalResolver> entry : this.handlerResolverMap.entrySet()) {
-      final AuthenticationHandler handler=entry.getKey();
+    for (    final AuthenticationHandler handler : handlerSet) {
       if (handler.supports(credential)) {
         found=true;
         try {
-          authenticateAndResolvePrincipal(builder,credential,entry.getValue(),handler);
+          authenticateAndResolvePrincipal(builder,credential,this.handlerResolverMap.get(handler),handler);
           if (this.authenticationPolicy.isSatisfiedBy(builder.build())) {
             return builder;
           }

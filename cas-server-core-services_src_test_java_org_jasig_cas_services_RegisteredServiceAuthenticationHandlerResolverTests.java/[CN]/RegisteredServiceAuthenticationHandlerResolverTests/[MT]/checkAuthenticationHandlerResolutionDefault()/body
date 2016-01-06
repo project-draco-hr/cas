@@ -1,0 +1,7 @@
+{
+  final RegisteredServiceAuthenticationHandlerResolver resolver=new RegisteredServiceAuthenticationHandlerResolver();
+  resolver.setServicesManager(this.defaultServicesManagerImpl);
+  final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(TestUtils.getService("serviceid1"),TestUtils.getCredentialsWithSameUsernameAndPassword("casuser"));
+  final Set<AuthenticationHandler> handlers=resolver.resolve(this.handlers,transaction);
+  assertEquals(handlers.size(),2);
+}
