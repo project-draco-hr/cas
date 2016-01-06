@@ -1,6 +1,6 @@
 {
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-  verifyRegisteredServiceProperties(registeredService,service);
+  RegisteredServiceAccessStrategySupport.ensureServiceAccessIsAllowed(service,registeredService);
   final ServiceTicket serviceTicket=this.ticketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
   if (serviceTicket == null) {
     logger.info("Service ticket [{}] does not exist.",serviceTicketId);
