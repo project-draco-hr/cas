@@ -20,17 +20,24 @@
     return false;
   }
   for (  final String key : copy) {
-    final Set<?> requiredValues=this.requiredAttributes.get(key);
-    final Set<?> availableValues;
+    final Set<String> requiredValues=this.requiredAttributes.get(key);
+    final Set<String> availableValues;
     final Object objVal=principalAttributes.get(key);
     if (objVal instanceof Collection) {
       final Collection valCol=(Collection)objVal;
-      availableValues=Sets.newHashSet(valCol.toArray());
+      availableValues=Sets.newHashSet(valCol.iterator());
     }
  else {
-      availableValues=Collections.singleton(objVal);
+      availableValues=Sets.newHashSet(objVal.toString());
     }
-    final Sets.SetView<?> differenceInValues=Sets.intersection(availableValues,requiredValues);
+    final Set<?> differenceInValues;
+    final Pattern pattern=RegexUtils.concatenate(requiredValues,this.caseInsensitive);
+    if (pattern != null) {
+      differenceInValues=Sets.filter(availableValues,Predicates.contains(pattern));
+    }
+ else {
+      differenceInValues=Sets.intersection(availableValues,requiredValues);
+    }
     if (!differenceInValues.isEmpty()) {
       logger.info("Principal is authorized to access the service");
       return true;

@@ -1,6 +1,8 @@
 {
   final DefaultRegisteredServiceAccessStrategy authz=new DefaultRegisteredServiceAccessStrategy();
-  authz.setRequiredAttributes(this.getRequiredAttributes());
+  final Map<String,Set<String>> reqs=this.getRequiredAttributes();
+  reqs.remove("phone");
+  authz.setRequiredAttributes(reqs);
   authz.setRequireAllAttributes(false);
   final Map<String,Object> pAttrs=this.getPrincipalAttributes();
   pAttrs.remove("cn");

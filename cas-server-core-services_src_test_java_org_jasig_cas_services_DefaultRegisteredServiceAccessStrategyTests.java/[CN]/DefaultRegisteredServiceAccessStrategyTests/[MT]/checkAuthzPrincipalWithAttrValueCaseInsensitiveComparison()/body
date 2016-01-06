@@ -1,10 +1,10 @@
 {
   final DefaultRegisteredServiceAccessStrategy authz=new DefaultRegisteredServiceAccessStrategy();
   final Map<String,Set<String>> reqs=this.getRequiredAttributes();
-  reqs.remove("phone");
   authz.setRequiredAttributes(reqs);
   final Map<String,Object> pAttrs=this.getPrincipalAttributes();
-  pAttrs.put("cn","CAS");
+  authz.setCaseInsensitive(true);
+  pAttrs.put("cn","cas");
   pAttrs.put("givenName","kaz");
-  assertFalse(authz.doPrincipalAttributesAllowServiceAccess("test",pAttrs));
+  assertTrue(authz.doPrincipalAttributesAllowServiceAccess("test",pAttrs));
 }
