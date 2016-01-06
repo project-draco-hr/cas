@@ -5,7 +5,7 @@
     builder.addCredential(new BasicCredentialMetaData(c));
   }
   boolean found;
-  final Set<AuthenticationHandler> handlerSet=filterAuthenticationHandlersForTransaction(transaction);
+  final Set<AuthenticationHandler> handlerSet=this.authenticationHandlerResolver.resolve(this.handlerResolverMap.keySet(),transaction);
   for (  final Credential credential : credentials) {
     found=false;
     for (    final AuthenticationHandler handler : handlerSet) {

@@ -8,7 +8,7 @@
     }
     if (!registeredService.getRequiredHandlers().isEmpty()) {
       logger.debug("Authentication transaction requires {} for service {}",registeredService.getRequiredHandlers(),service);
-      final Set<AuthenticationHandler> handlerSet=new LinkedHashSet<>(this.handlerResolverMap.keySet());
+      final Set<AuthenticationHandler> handlerSet=new LinkedHashSet<>(candidateHandlers);
       logger.info("Candidate authentication handlers examined this transaction are {}",handlerSet);
       final Iterator<AuthenticationHandler> it=handlerSet.iterator();
       while (it.hasNext()) {
@@ -25,6 +25,6 @@
       logger.debug("No specific authentication handlers are required for this transaction");
     }
   }
-  logger.debug("Authentication handlers used for this transaction are {}",this.handlerResolverMap.keySet());
-  return this.handlerResolverMap.keySet();
+  logger.debug("Authentication handlers used for this transaction are {}",candidateHandlers);
+  return candidateHandlers;
 }
