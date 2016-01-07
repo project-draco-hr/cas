@@ -1,27 +1,17 @@
 {
   final ProxyGrantingTicket proxyGrantingTicketObject=getTicket(proxyGrantingTicket,ProxyGrantingTicket.class);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-  verifyRegisteredServiceProperties(registeredService,service);
-  if (proxyGrantingTicketObject.getAuthentication() == null && !registeredService.getAccessStrategy().isServiceAccessAllowedForSso()) {
-    logger.warn("Service [{}] is not allowed to use SSO.",service.getId());
+  try {
+    RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(service,registeredService,proxyGrantingTicketObject);
+    RegisteredServiceAccessStrategySupport.ensureServiceSsoAccessIsAllowed(registeredService,service,proxyGrantingTicketObject);
+  }
+ catch (  final PrincipalException e) {
     throw new UnauthorizedSsoServiceException();
   }
   evaluateProxiedServiceIfNeeded(service,proxyGrantingTicketObject,registeredService);
   getAuthenticationSatisfiedByPolicy(proxyGrantingTicketObject,new ServiceContext(service,registeredService));
   final List<Authentication> authentications=proxyGrantingTicketObject.getChainedAuthentications();
   final Principal principal=authentications.get(authentications.size() - 1).getPrincipal();
-  final RegisteredServiceAttributeReleasePolicy releasePolicy=registeredService.getAttributeReleasePolicy();
-  final Map<String,Object> principalAttrs;
-  if (releasePolicy != null) {
-    principalAttrs=releasePolicy.getAttributes(principal);
-  }
- else {
-    principalAttrs=new HashMap<>();
-  }
-  if (!registeredService.getAccessStrategy().doPrincipalAttributesAllowServiceAccess(principal.getId(),principalAttrs)) {
-    logger.warn("Cannot grant proxy ticket because Service [{}] is not authorized for use by [{}].",service.getId(),principal);
-    throw new UnauthorizedServiceForPrincipalException();
-  }
   final ProxyTicketFactory factory=this.ticketFactory.get(ProxyTicket.class);
   final ProxyTicket proxyTicket=factory.create(proxyGrantingTicketObject,service);
   this.ticketRegistry.addTicket(proxyTicket);

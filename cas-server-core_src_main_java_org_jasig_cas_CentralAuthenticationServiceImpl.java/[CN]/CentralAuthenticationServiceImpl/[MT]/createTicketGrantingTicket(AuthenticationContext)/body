@@ -3,17 +3,7 @@
   final Service service=context.getService();
   if (service != null) {
     final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-    if (registeredService == null || !registeredService.getAccessStrategy().isServiceAccessAllowed()) {
-      logger.warn("Service [{}] is not allowed to use SSO.",registeredService);
-      throw new UnauthorizedSsoServiceException();
-    }
-    final Principal principal=authentication.getPrincipal();
-    if (!registeredService.getAccessStrategy().doPrincipalAttributesAllowServiceAccess(principal.getId(),principal.getAttributes())) {
-      logger.warn("Cannot grant ticket-granting ticket because Service [{}] is not authorized for use by [{}].",service.getId(),principal);
-      final Map<String,Class<? extends Exception>> handlerErrors=new HashMap<>();
-      handlerErrors.put(UnauthorizedServiceForPrincipalException.class.getSimpleName(),UnauthorizedServiceForPrincipalException.class);
-      throw new PrincipalException(UnauthorizedServiceForPrincipalException.CODE_UNAUTHZ_SERVICE,handlerErrors,new HashMap());
-    }
+    RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
   }
   final TicketGrantingTicketFactory factory=this.ticketFactory.get(TicketGrantingTicket.class);
   final TicketGrantingTicket ticketGrantingTicket=factory.create(authentication);

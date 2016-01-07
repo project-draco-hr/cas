@@ -1,6 +1,7 @@
 {
   String principalId=principal.getId();
   final Map<String,Object> attributes=getPrincipalAttributes(principal,service);
+  logger.debug("Principal attributes available for selection of username attribute [{}] are [{}].",this.usernameAttribute,attributes);
   if (attributes.containsKey(this.usernameAttribute)) {
     principalId=attributes.get(this.usernameAttribute).toString();
   }
