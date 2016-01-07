@@ -4,6 +4,7 @@
     return true;
   }
  catch (  final PatternSyntaxException exception) {
+    LOGGER.debug("Pattern {} is not a valid regex.",pattern);
     return false;
   }
 }

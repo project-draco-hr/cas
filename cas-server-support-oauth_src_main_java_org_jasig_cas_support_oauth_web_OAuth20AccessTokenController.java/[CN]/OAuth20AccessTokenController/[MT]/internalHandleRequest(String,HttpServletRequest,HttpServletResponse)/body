@@ -19,7 +19,7 @@
     }
     final TicketGrantingTicket ticketGrantingTicket=serviceTicket.getGrantingTicket();
     ticketRegistry.deleteTicket(serviceTicket.getId());
-    RegisteredServiceAccessStrategySupport.ensureServiceAccessIsAllowed(serviceTicket,service,ticketGrantingTicket);
+    RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(serviceTicket,service,ticketGrantingTicket);
     final Principal principal=ticketGrantingTicket.getAuthentication().getPrincipal();
     final Map<String,Object> attributes=new HashMap<>(service.getAttributeReleasePolicy().getAttributes(principal));
     if (attributes.containsKey(JwtConstants.SUBJECT) || attributes.containsKey(JwtConstants.ISSUE_TIME) || attributes.containsKey(JwtConstants.ISSUER)|| attributes.containsKey(JwtConstants.AUDIENCE)|| attributes.containsKey(JwtConstants.EXPIRATION_TIME)) {

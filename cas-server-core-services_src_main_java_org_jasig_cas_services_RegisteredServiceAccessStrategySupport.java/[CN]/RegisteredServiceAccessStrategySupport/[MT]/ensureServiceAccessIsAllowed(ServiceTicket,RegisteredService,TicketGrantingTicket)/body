@@ -1,3 +1,0 @@
-{
-  ensureServiceAccessIsAllowed(serviceTicket.getService(),registeredService,ticketGrantingTicket.getAuthentication());
-}
