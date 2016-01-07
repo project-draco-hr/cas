@@ -3,7 +3,7 @@
   final String type=proxyPolicy.getType();
   if (StringUtils.equalsIgnoreCase(type,RegisteredServiceProxyPolicyBean.Types.REGEX.toString())) {
     final String value=proxyPolicy.getValue();
-    if (StringUtils.isNotBlank(value) && isValidRegex(value)) {
+    if (StringUtils.isNotBlank(value) && RegexUtils.isValidRegex(value)) {
       return new RegexMatchingRegisteredServiceProxyPolicy(value);
     }
  else {

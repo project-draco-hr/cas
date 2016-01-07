@@ -1,5 +1,5 @@
 {
-  if (isValidRegexPattern(id)) {
+  if (RegexUtils.isValidRegex(id)) {
     return new RegexRegisteredService();
   }
   if (new AntPathMatcher().isPattern(id)) {
