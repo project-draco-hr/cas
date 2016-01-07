@@ -1,7 +1,6 @@
 {
   try {
-    Pattern.compile(pattern);
-    LOGGER.debug("Pattern {} is a valid regex.",pattern);
+    LOGGER.debug("Pattern {} is a valid regex.",Pattern.compile(pattern).pattern());
     return true;
   }
  catch (  final PatternSyntaxException exception) {
