@@ -1,3 +1,8 @@
 {
-  return this.cache.values();
+  final Collection<Ticket> allTickets=new HashSet<>();
+  for (  final Ticket ticket : this.cache.values()) {
+    final Ticket proxiedTicket=getProxiedTicketInstance(ticket);
+    allTickets.add(proxiedTicket);
+  }
+  return decodeTickets(allTickets);
 }
