@@ -1,10 +1,7 @@
 {
   try (Formatter fmt=new Formatter()){
     final Credential credential=this.credentialFactory.fromRequestBody(requestBody);
-    final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationSystemSupport.getPrincipalElectionStrategy());
-    final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(credential);
-    this.authenticationSystemSupport.getAuthenticationTransactionManager().handle(transaction,builder);
-    final AuthenticationContext authenticationContext=builder.build();
+    final AuthenticationContext authenticationContext=this.authenticationSystemSupport.handleFinalizedAuthenticationAttempt(null,credential);
     final TicketGrantingTicket tgtId=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
     final URI ticketReference=new URI(request.getRequestURL().toString() + '/' + tgtId.getId());
     final HttpHeaders headers=new HttpHeaders();
