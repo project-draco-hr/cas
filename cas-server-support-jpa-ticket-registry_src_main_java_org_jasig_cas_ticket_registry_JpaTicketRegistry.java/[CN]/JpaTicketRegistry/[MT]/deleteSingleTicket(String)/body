@@ -1,3 +1,14 @@
 {
-  return removeTicket(ticketId);
+  final Ticket ticket=getTicket(ticketId);
+  int failureCount=0;
+  if (ticket instanceof ServiceTicket) {
+    failureCount=deleteServiceTickets(ticketId);
+  }
+ else   if (ticket instanceof TicketGrantingTicket) {
+    failureCount=deleteTicketGrantingTickets(ticketId);
+  }
+ else {
+    throw new IllegalArgumentException("Invalid ticket type with id " + ticketId);
+  }
+  return failureCount == 0;
 }

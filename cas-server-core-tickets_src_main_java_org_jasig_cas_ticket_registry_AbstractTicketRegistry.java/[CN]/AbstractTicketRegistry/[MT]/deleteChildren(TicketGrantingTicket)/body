@@ -11,9 +11,4 @@
       }
     }
   }
-  final Collection<ProxyGrantingTicket> proxyGrantingTickets=ticket.getProxyGrantingTickets();
-  for (  final ProxyGrantingTicket proxyGrantingTicket : proxyGrantingTickets) {
-    logger.debug("Removing proxy-granting ticket [{}]",proxyGrantingTicket.getId());
-    deleteTicket(proxyGrantingTicket.getId());
-  }
 }
