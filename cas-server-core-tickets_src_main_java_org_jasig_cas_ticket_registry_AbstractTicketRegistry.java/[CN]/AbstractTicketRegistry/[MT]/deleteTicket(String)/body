@@ -7,7 +7,7 @@
     return false;
   }
   if (ticket instanceof TicketGrantingTicket) {
-    logger.debug("Removing children of ticket [{}] from the registry.",ticket);
+    logger.debug("Removing children of ticket [{}] from the registry.",ticket.getId());
     deleteChildren((TicketGrantingTicket)ticket);
   }
   logger.debug("Removing ticket [{}] from the registry.",ticket);
