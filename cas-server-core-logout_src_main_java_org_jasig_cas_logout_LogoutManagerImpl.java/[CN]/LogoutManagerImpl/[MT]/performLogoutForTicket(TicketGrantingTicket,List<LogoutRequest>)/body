@@ -1,0 +1,13 @@
+{
+  final Map<String,Service> services=ticket.getServices();
+  for (  final Map.Entry<String,Service> entry : services.entrySet()) {
+    final Service service=entry.getValue();
+    if (service instanceof SingleLogoutService) {
+      final LogoutRequest logoutRequest=this.singleLogoutServiceMessageHandler.handle((SingleLogoutService)service,entry.getKey());
+      if (logoutRequest != null) {
+        LOGGER.debug("Captured logout request [{}]",logoutRequest);
+        logoutRequests.add(logoutRequest);
+      }
+    }
+  }
+}

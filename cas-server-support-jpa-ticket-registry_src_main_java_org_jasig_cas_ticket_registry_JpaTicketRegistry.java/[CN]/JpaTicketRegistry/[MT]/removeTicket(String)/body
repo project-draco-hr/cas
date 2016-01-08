@@ -1,0 +1,13 @@
+{
+  try {
+    final Ticket ticket=getTicket(ticketId);
+    final Date creationDate=new Date(ticket.getCreationTime());
+    logger.debug("Removing Ticket [{}] created: {}",ticket,creationDate.toString());
+    entityManager.remove(ticket);
+    return true;
+  }
+ catch (  final Exception e) {
+    logger.error("Error removing {} from registry.",ticketId,e);
+  }
+  return false;
+}

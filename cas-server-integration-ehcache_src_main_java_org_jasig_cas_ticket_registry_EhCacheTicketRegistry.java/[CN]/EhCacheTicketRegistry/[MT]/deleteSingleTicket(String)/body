@@ -1,0 +1,7 @@
+{
+  final Ticket ticket=getTicket(ticketId);
+  if (ticket instanceof ServiceTicket) {
+    return this.serviceTicketsCache.remove(ticketId);
+  }
+  return this.ticketGrantingTicketsCache.remove(ticket);
+}
