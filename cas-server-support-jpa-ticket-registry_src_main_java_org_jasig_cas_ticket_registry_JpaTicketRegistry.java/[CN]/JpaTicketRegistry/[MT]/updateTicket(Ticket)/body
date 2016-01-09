@@ -1,7 +1,4 @@
 {
   entityManager.merge(ticket);
-  if (ticket.getGrantingTicket() != null) {
-    entityManager.merge(ticket.getGrantingTicket());
-  }
   logger.debug("Updated ticket [{}].",ticket);
 }
