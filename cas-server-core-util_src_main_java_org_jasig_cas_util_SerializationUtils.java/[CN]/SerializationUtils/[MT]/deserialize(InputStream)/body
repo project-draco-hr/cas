@@ -1,0 +1,21 @@
+{
+  ObjectInputStream in=null;
+  try {
+    in=new ObjectInputStream(inputStream);
+    final T obj=(T)in.readObject();
+    return obj;
+  }
+ catch (  final ClassNotFoundException|IOException e) {
+    throw new DeserializationException(e);
+  }
+ finally {
+    if (in != null) {
+      try {
+        in.close();
+      }
+ catch (      final IOException e) {
+        throw new DeserializationException(e);
+      }
+    }
+  }
+}

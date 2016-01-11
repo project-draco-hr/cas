@@ -1,0 +1,5 @@
+{
+  final ByteArrayOutputStream outBytes=new ByteArrayOutputStream();
+  serialize(object,outBytes);
+  return outBytes.toByteArray();
+}

@@ -5,7 +5,7 @@
   final MessageDigest messageDigest=getMessageDigest();
   messageDigest.update(consumeByteSourceOrNull(this.salt));
   messageDigest.update(key.toLowerCase().getBytes(Charset.defaultCharset()));
-  final String hash=getFormattedText(messageDigest.digest());
+  final String hash=EncodingUtils.hexEncode(messageDigest.digest());
   logger.debug("Generated hash of value [{}] for key [{}].",hash,key);
   return hash;
 }
