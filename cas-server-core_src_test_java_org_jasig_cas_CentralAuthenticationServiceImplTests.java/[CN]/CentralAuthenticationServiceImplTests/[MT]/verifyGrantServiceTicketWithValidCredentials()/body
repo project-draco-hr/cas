@@ -1,5 +1,5 @@
 {
-  final AuthenticationContext ctx=TestUtils.getAuthenticationContext(getAuthenticationSystemSupport(),getService());
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),getService());
   final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),getService(),ctx);
 }

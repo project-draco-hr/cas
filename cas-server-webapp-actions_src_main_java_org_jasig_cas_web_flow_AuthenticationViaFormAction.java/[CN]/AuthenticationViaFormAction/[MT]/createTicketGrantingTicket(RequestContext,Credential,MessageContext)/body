@@ -1,8 +1,8 @@
 {
   try {
     final Service service=WebUtils.getService(context);
-    final AuthenticationContext authenticationContext=this.authenticationSystemSupport.handleFinalizedAuthenticationAttempt(service,credential);
-    final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
+    final AuthenticationResult authenticationResult=this.authenticationSystemSupport.handleAndFinalizeSingleAuthenticationTransaction(service,credential);
+    final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationResult);
     WebUtils.putTicketGrantingTicketInScopes(context,tgt);
     WebUtils.putWarnCookieIfRequestParameterPresent(this.warnCookieGenerator,context);
     putPublicWorkstationToFlowIfRequestParameterPresent(context);

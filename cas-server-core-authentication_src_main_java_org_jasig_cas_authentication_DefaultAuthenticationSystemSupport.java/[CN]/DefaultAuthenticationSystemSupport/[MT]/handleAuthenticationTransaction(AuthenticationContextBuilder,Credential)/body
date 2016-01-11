@@ -1,4 +1,0 @@
-{
-  final AuthenticationTransaction tx=AuthenticationTransaction.wrap(credential);
-  this.authenticationTransactionManager.handle(tx,authenticationContextBuilder);
-}

@@ -1,8 +1,8 @@
 {
   try (Formatter fmt=new Formatter()){
     final Credential credential=this.credentialFactory.fromRequestBody(requestBody);
-    final AuthenticationContext authenticationContext=this.authenticationSystemSupport.handleFinalizedAuthenticationAttempt(null,credential);
-    final TicketGrantingTicket tgtId=this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext);
+    final AuthenticationResult authenticationResult=this.authenticationSystemSupport.handleAndFinalizeSingleAuthenticationTransaction(null,credential);
+    final TicketGrantingTicket tgtId=this.centralAuthenticationService.createTicketGrantingTicket(authenticationResult);
     final URI ticketReference=new URI(request.getRequestURL().toString() + '/' + tgtId.getId());
     final HttpHeaders headers=new HttpHeaders();
     headers.setLocation(ticketReference);

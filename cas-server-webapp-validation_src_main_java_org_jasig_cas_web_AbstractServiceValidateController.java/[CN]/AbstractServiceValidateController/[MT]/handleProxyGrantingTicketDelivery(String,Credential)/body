@@ -2,8 +2,8 @@
   TicketGrantingTicket proxyGrantingTicketId=null;
   try {
     final ServiceTicket serviceTicket=this.centralAuthenticationService.getTicket(serviceTicketId,ServiceTicket.class);
-    final AuthenticationContext authenticationContext=this.authenticationSystemSupport.handleFinalizedAuthenticationAttempt(serviceTicket.getService(),credential);
-    proxyGrantingTicketId=this.centralAuthenticationService.createProxyGrantingTicket(serviceTicketId,authenticationContext);
+    final AuthenticationResult authenticationResult=this.authenticationSystemSupport.handleAndFinalizeSingleAuthenticationTransaction(serviceTicket.getService(),credential);
+    proxyGrantingTicketId=this.centralAuthenticationService.createProxyGrantingTicket(serviceTicketId,authenticationResult);
     logger.debug("Generated proxy-granting ticket [{}] off of service ticket [{}] and credential [{}]",proxyGrantingTicketId.getId(),serviceTicketId,credential);
   }
  catch (  final AuthenticationException e) {

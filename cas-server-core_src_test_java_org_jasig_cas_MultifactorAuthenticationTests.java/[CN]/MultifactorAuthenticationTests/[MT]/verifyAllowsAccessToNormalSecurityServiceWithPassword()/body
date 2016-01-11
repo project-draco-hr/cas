@@ -1,5 +1,5 @@
 {
-  final AuthenticationContext ctx=processAuthenticationAttempt(NORMAL_SERVICE,newUserPassCredentials("alice","alice"));
+  final AuthenticationResult ctx=processAuthenticationAttempt(NORMAL_SERVICE,newUserPassCredentials("alice","alice"));
   final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(ctx);
   assertNotNull(tgt);
   final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),NORMAL_SERVICE,ctx);
