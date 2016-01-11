@@ -1,7 +1,18 @@
 {
   final Ticket ticket=getTicket(ticketId);
-  if (ticket instanceof ServiceTicket) {
-    return this.serviceTicketsCache.remove(ticketId);
+  if (ticket == null) {
+    logger.debug("Ticket {} cannot be retrieved from the cache",ticketId);
+    return true;
   }
-  return this.ticketGrantingTicketsCache.remove(ticket);
+  if (ticket instanceof ServiceTicket) {
+    if (this.serviceTicketsCache.remove(ticket.getId())) {
+      logger.debug("Service ticket {} is removed",ticket.getId());
+    }
+  }
+ else {
+    if (this.ticketGrantingTicketsCache.remove(ticket.getId())) {
+      logger.debug("Ticket-granting ticket {} is removed",ticket.getId());
+    }
+  }
+  return true;
 }
