@@ -3,5 +3,5 @@
   if (StringUtils.isBlank(useUrl)) {
     useUrl="/";
   }
-  return OAuthUtils.redirectTo(OAuthUtils.addParameter(useUrl,"error",error));
+  return OAuthUtils.redirectTo(CommonHelper.addParameter(useUrl,"error",error));
 }

@@ -1,0 +1,3 @@
+{
+  return checkParameterExist(request,OAuthConstants.CLIENT_ID) && checkParameterExist(request,OAuthConstants.REDIRECT_URI) && checkParameterExist(request,OAuthConstants.CLIENT_SECRET)&& checkParameterExist(request,OAuthConstants.CODE)&& checkServiceValid(request)&& checkCallbackValid(request)&& checkClientSecret(request);
+}

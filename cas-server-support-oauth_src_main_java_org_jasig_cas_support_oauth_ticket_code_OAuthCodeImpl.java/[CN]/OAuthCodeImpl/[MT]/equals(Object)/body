@@ -1,0 +1,13 @@
+{
+  if (object == null) {
+    return false;
+  }
+  if (object == this) {
+    return true;
+  }
+  if (!(object instanceof OAuthCode)) {
+    return false;
+  }
+  final Ticket ticket=(Ticket)object;
+  return new EqualsBuilder().append(ticket.getId(),this.getId()).isEquals();
+}

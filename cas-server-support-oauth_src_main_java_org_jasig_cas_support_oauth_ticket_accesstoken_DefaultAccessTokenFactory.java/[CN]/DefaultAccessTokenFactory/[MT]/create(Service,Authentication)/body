@@ -1,0 +1,5 @@
+{
+  CommonHelper.assertNotNull("oAuthAcccessTokenExpirationPolicy",oAuthAcccessTokenExpirationPolicy);
+  final String codeId=defaultServiceTicketIdGenerator.getNewTicketId(OAuthCode.PREFIX);
+  return new AccessTokenImpl(codeId,service,authentication,oAuthAcccessTokenExpirationPolicy);
+}
