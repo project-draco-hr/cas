@@ -1,12 +1,16 @@
 {
   try {
-    final SerializableDocument document=couchbase.bucket().get(ticketId,SerializableDocument.class);
+    final String encTicketId=encodeTicketId(ticketId);
+    if (ticketId == null) {
+      return null;
+    }
+    final SerializableDocument document=couchbase.bucket().get(encTicketId,SerializableDocument.class);
     if (document != null) {
       final Ticket t=(Ticket)document.content();
       logger.debug("Got ticket {} from registry.",t);
       return getProxiedTicketInstance(t);
     }
-    logger.debug("Ticket {} not found in registry.",ticketId);
+    logger.debug("Ticket {} not found in registry.",encTicketId);
     return null;
   }
  catch (  final Exception e) {

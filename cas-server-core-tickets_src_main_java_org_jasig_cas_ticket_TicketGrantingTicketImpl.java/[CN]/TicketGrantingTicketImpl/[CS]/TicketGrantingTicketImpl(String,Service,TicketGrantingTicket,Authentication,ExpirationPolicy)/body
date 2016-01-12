@@ -4,6 +4,7 @@
     throw new IllegalArgumentException("Must specify proxiedBy when providing parent TGT");
   }
   Assert.notNull(authentication,"authentication cannot be null");
+  this.ticketGrantingTicket=parentTicketGrantingTicket;
   this.authentication=authentication;
   this.proxiedBy=proxiedBy;
 }

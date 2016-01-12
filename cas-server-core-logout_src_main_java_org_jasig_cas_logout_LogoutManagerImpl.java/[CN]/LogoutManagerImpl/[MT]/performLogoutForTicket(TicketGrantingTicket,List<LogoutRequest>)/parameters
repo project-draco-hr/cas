@@ -1,0 +1,2 @@
+TicketGrantingTicket ticket
+List<LogoutRequest> logoutRequests
