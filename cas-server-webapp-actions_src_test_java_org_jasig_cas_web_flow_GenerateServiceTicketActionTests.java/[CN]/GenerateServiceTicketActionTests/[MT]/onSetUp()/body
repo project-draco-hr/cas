@@ -3,6 +3,6 @@
   this.action.setCentralAuthenticationService(getCentralAuthenticationService());
   this.action.setAuthenticationSystemSupport(getAuthenticationSystemSupport());
   this.action.afterPropertiesSet();
-  final AuthenticationContext ctx=getAuthenticationSystemSupport().handleFinalizedAuthenticationAttempt(TestUtils.getService(),TestUtils.getCredentialsWithSameUsernameAndPassword());
-  this.ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final AuthenticationResult authnResult=getAuthenticationSystemSupport().handleAndFinalizeSingleAuthenticationTransaction(TestUtils.getService(),TestUtils.getCredentialsWithSameUsernameAndPassword());
+  this.ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(authnResult);
 }

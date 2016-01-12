@@ -1,5 +1,3 @@
 {
-  final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.principalElectionStrategy);
-  this.handleAuthenticationTransaction(builder,credential);
-  return builder;
+  return this.handleAuthenticationTransaction(new DefaultAuthenticationResultBuilder(this.principalElectionStrategy),credential);
 }

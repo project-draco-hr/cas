@@ -1,0 +1,4 @@
+{
+  this.authenticationTransactionManager.handle(AuthenticationTransaction.wrap(credential),authenticationResultBuilder);
+  return authenticationResultBuilder;
+}

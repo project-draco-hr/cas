@@ -1,8 +1,8 @@
 {
-  final AuthenticationContext ctx=processAuthenticationAttempt(HIGH_SERVICE,newUserPassCredentials("alice","alice"));
+  final AuthenticationResult ctx=processAuthenticationAttempt(HIGH_SERVICE,newUserPassCredentials("alice","alice"));
   final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(ctx);
   assertNotNull(tgt);
-  final AuthenticationContext ctx2=processAuthenticationAttempt(HIGH_SERVICE,newUserPassCredentials("alice","alice"),new OneTimePasswordCredential("alice","31415"));
+  final AuthenticationResult ctx2=processAuthenticationAttempt(HIGH_SERVICE,newUserPassCredentials("alice","alice"),new OneTimePasswordCredential("alice","31415"));
   final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),HIGH_SERVICE,ctx2);
   assertNotNull(st);
   final Assertion assertion=cas.validateServiceTicket(st.getId(),HIGH_SERVICE);

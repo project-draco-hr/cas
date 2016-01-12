@@ -24,8 +24,8 @@
           restoreRequestAttribute(request,session,THEME);
           restoreRequestAttribute(request,session,LOCALE);
           restoreRequestAttribute(request,session,METHOD);
-          final AuthenticationContext authenticationContext=this.authenticationSystemSupport.handleFinalizedAuthenticationAttempt(service,credential);
-          WebUtils.putTicketGrantingTicketInScopes(context,this.centralAuthenticationService.createTicketGrantingTicket(authenticationContext));
+          final AuthenticationResult authenticationResult=this.authenticationSystemSupport.handleAndFinalizeSingleAuthenticationTransaction(service,credential);
+          WebUtils.putTicketGrantingTicketInScopes(context,this.centralAuthenticationService.createTicketGrantingTicket(authenticationResult));
           logger.info("Token validated and new {} created: {}",credential.getClass().getName(),credential);
           return success();
         }

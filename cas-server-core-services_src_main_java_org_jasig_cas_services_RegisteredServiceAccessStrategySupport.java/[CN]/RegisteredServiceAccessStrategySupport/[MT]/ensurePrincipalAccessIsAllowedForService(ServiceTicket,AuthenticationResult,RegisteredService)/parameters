@@ -1,0 +1,3 @@
+ServiceTicket serviceTicket
+AuthenticationResult context
+RegisteredService registeredService
