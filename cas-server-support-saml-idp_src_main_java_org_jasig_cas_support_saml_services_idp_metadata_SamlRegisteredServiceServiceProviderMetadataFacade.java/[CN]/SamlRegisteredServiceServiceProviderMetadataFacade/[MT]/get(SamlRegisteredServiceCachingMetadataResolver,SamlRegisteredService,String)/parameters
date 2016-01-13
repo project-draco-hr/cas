@@ -1,0 +1,3 @@
+SamlRegisteredServiceCachingMetadataResolver resolver
+SamlRegisteredService registeredService
+String entityID

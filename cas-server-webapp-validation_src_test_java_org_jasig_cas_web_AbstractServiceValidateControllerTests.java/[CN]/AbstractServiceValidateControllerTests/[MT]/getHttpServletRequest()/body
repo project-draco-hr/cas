@@ -1,5 +1,5 @@
 {
-  final AuthenticationContext ctx=org.jasig.cas.authentication.TestUtils.getAuthenticationContext(getAuthenticationSystemSupport(),SERVICE);
+  final AuthenticationResult ctx=org.jasig.cas.authentication.TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),SERVICE);
   final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   getCentralAuthenticationService().grantServiceTicket(tId.getId(),SERVICE,ctx);
   final ServiceTicket sId2=getCentralAuthenticationService().grantServiceTicket(tId.getId(),SERVICE,null);

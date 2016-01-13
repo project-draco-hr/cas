@@ -1,0 +1,24 @@
+{
+  try {
+    final ChainingMetadataResolver metadataResolver=new ChainingMetadataResolver();
+    final List<MetadataResolver> metadataResolvers=new ArrayList<>();
+    if (isDynamicMetadataQueryConfigured(service)) {
+      resolveMetadataDynamically(service,metadataResolvers);
+    }
+ else {
+      resolveMetadataFromResource(service,metadataResolvers);
+    }
+    if (metadataResolvers.isEmpty()) {
+      throw new SamlException("No metadata resolvers could be configured for service " + service.getName() + " with metadata location "+ service.getMetadataLocation());
+    }
+synchronized (this.lock) {
+      metadataResolver.setId(ChainingMetadataResolver.class.getCanonicalName());
+      metadataResolver.setResolvers(metadataResolvers);
+      metadataResolver.initialize();
+    }
+    return metadataResolver;
+  }
+ catch (  final Exception e) {
+    throw new SamlException(e.getMessage(),e);
+  }
+}

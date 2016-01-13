@@ -1,4 +1,4 @@
 {
   super(createDelegatedView());
-  logger.debug("Rendering {}",this.getClass().getSimpleName());
+  logger.debug("Initializing {}",this.getClass().getSimpleName());
 }

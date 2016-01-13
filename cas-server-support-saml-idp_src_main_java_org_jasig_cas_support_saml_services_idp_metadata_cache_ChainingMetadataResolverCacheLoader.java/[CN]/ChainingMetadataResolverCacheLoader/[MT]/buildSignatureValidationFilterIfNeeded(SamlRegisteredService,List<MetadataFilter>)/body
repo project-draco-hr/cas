@@ -1,0 +1,25 @@
+{
+  if (StringUtils.isBlank(service.getMetadataSignatureLocation())) {
+    logger.warn("No metadata signature location is defined for {}, so SignatureValidationFilter will not be invoked",service.getMetadataLocation());
+    return;
+  }
+  final AbstractResource resource=ResourceUtils.getResourceFrom(service.getMetadataSignatureLocation());
+  final List<KeyInfoProvider> keyInfoProviderList=new ArrayList<>();
+  keyInfoProviderList.add(new RSAKeyValueProvider());
+  keyInfoProviderList.add(new DSAKeyValueProvider());
+  keyInfoProviderList.add(new DEREncodedKeyValueProvider());
+  keyInfoProviderList.add(new InlineX509DataProvider());
+  logger.debug("Attempting to resolve credentials from {} for {}",service.getMetadataSignatureLocation(),service.getMetadataLocation());
+  final BasicProviderKeyInfoCredentialResolver keyInfoResolver=new BasicProviderKeyInfoCredentialResolver(keyInfoProviderList);
+  final BasicResourceCredentialFactoryBean credentialFactoryBean=new BasicResourceCredentialFactoryBean();
+  credentialFactoryBean.setPublicKeyInfo(resource);
+  credentialFactoryBean.afterPropertiesSet();
+  final BasicCredential credential=credentialFactoryBean.getObject();
+  logger.info("Successfully resolved credentials from {} for {}",service.getMetadataSignatureLocation(),service.getMetadataLocation());
+  final StaticCredentialResolver resolver=new StaticCredentialResolver(credential);
+  final ExplicitKeySignatureTrustEngine trustEngine=new ExplicitKeySignatureTrustEngine(resolver,keyInfoResolver);
+  final SignatureValidationFilter signatureValidationFilter=new SignatureValidationFilter(trustEngine);
+  signatureValidationFilter.setRequireSignedRoot(false);
+  metadataFilterList.add(signatureValidationFilter);
+  logger.debug("Added metadata SignatureValidationFilter with signature from [{}]",service.getMetadataSignatureLocation());
+}

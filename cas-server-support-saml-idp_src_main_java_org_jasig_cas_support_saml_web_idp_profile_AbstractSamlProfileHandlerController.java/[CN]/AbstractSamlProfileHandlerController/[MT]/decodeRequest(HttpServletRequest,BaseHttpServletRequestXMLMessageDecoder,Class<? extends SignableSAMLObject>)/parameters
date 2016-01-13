@@ -1,0 +1,3 @@
+HttpServletRequest request
+BaseHttpServletRequestXMLMessageDecoder decoder
+Class<? extends SignableSAMLObject> clazz

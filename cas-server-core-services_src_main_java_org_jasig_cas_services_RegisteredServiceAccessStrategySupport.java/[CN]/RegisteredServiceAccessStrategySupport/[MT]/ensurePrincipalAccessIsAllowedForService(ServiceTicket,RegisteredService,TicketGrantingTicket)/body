@@ -1,0 +1,3 @@
+{
+  ensurePrincipalAccessIsAllowedForService(serviceTicket.getService(),registeredService,ticketGrantingTicket.getAuthentication());
+}

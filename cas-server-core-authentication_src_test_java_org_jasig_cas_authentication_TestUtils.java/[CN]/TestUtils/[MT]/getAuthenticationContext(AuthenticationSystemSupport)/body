@@ -1,3 +1,0 @@
-{
-  return getAuthenticationContext(support,getService(),getCredentialsWithSameUsernameAndPassword());
-}

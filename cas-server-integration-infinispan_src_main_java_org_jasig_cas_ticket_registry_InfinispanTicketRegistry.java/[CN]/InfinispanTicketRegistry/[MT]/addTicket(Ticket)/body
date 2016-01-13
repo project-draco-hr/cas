@@ -1,3 +1,4 @@
 {
+  final Ticket ticket=encodeTicket(ticketToAdd);
   this.cache.put(ticket.getId(),ticket);
 }

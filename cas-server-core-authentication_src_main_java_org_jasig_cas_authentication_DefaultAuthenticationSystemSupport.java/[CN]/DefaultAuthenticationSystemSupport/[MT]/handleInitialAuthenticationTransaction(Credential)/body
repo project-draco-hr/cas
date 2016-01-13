@@ -1,0 +1,3 @@
+{
+  return this.handleAuthenticationTransaction(new DefaultAuthenticationResultBuilder(this.principalElectionStrategy),credential);
+}

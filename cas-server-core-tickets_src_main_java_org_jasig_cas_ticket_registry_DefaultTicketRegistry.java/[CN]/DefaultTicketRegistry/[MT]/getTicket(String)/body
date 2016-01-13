@@ -1,11 +1,8 @@
 {
+  final String encTicketId=encodeTicketId(ticketId);
   if (ticketId == null) {
     return null;
   }
-  logger.debug("Attempting to retrieve ticket [{}]",ticketId);
-  final Ticket ticket=this.cache.get(ticketId);
-  if (ticket != null) {
-    logger.debug("Ticket [{}] found in registry.",ticketId);
-  }
-  return ticket;
+  final Ticket ticket=decodeTicket(this.cache.get(encTicketId));
+  return getProxiedTicketInstance(ticket);
 }

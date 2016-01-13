@@ -1,0 +1,5 @@
+{
+  final List<Authentication> authentications=ticketGrantingTicket.getChainedAuthentications();
+  final Authentication authentication=authentications.get(authentications.size() - 1);
+  ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
+}

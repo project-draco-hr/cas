@@ -1,0 +1,9 @@
+{
+  final DefaultRegisteredServiceAccessStrategy authz=new DefaultRegisteredServiceAccessStrategy();
+  final Map<String,Set<String>> reqs=this.getRequiredAttributes();
+  reqs.remove("cn");
+  reqs.remove("givenName");
+  authz.setRequiredAttributes(reqs);
+  final Map<String,Object> pAttrs=this.getPrincipalAttributes();
+  assertTrue(authz.doPrincipalAttributesAllowServiceAccess("test",pAttrs));
+}

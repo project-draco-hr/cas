@@ -1,7 +1,0 @@
-{
-  final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(support.getPrincipalElectionStrategy());
-  final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(credentials);
-  support.getAuthenticationTransactionManager().handle(transaction,builder);
-  final AuthenticationContext ctx=builder.build(service);
-  return ctx;
-}

@@ -6,7 +6,7 @@
     if (servicesManager != null) {
       final RegisteredService registeredService=servicesManager.findServiceBy(service);
       if (registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed()) {
-        logger.debug("Located service {} in the registry. Attempting to resolve attributes for {}",service.getId(),p.getId());
+        logger.debug("Located service {} in the registry. Attempting to resolve attributes for {}",registeredService,p.getId());
         if (registeredService.getAttributeReleasePolicy() == null) {
           logger.debug("No attribute release policy is defined for {}. Returning default principal attributes",service.getId());
           return p.getAttributes();

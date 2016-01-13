@@ -1,0 +1,13 @@
+{
+  super.copyFrom(source);
+  try {
+    final SamlRegisteredService samlRegisteredService=(SamlRegisteredService)source;
+    samlRegisteredService.setMetadataLocation(this.metadataLocation);
+    samlRegisteredService.setSignAssertions(this.signAssertions);
+    samlRegisteredService.setSignResponses(this.signResponses);
+    samlRegisteredService.setRequiredAuthenticationContextClass(this.requiredAuthenticationContextClass);
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

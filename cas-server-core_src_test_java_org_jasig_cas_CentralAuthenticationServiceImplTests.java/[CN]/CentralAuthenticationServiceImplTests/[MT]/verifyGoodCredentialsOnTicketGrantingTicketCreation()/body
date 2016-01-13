@@ -1,6 +1,6 @@
 {
   try {
-    final AuthenticationContext ctx=TestUtils.getAuthenticationContext(getAuthenticationSystemSupport());
+    final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport());
     assertNotNull(getCentralAuthenticationService().createTicketGrantingTicket(ctx));
   }
  catch (  final AbstractTicketException e) {
