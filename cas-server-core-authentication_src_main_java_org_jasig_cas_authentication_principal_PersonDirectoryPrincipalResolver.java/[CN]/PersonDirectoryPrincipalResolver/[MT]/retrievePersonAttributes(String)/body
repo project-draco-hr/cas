@@ -1,0 +1,11 @@
+{
+  final IPersonAttributes personAttributes=this.attributeRepository.getPerson(principalId);
+  final Map<String,List<Object>> attributes;
+  if (personAttributes == null) {
+    attributes=null;
+  }
+ else {
+    attributes=personAttributes.getAttributes();
+  }
+  return attributes;
+}
