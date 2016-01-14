@@ -1,20 +1,13 @@
 {
   logger.debug("Attempting to resolve a principal...");
-  String principalId=extractPrincipalId(credential);
+  final String principalId=extractPrincipalId(credential);
   if (principalId == null) {
     logger.debug("Got null for extracted principal ID; returning null.");
     return null;
   }
   logger.debug("Creating SimplePrincipal for [{}]",principalId);
-  final IPersonAttributes personAttributes=this.attributeRepository.getPerson(principalId);
-  final Map<String,List<Object>> attributes;
-  if (personAttributes == null) {
-    logger.debug("Principal id [{}] could not be found",principalId);
-    attributes=null;
-  }
- else {
-    attributes=personAttributes.getAttributes();
-  }
+  final Map<String,List<Object>> attributes=retrievePersonAttributes(principalId);
+  logger.debug("Principal id [{}] could not be found",principalId);
   if (attributes == null || attributes.isEmpty()) {
     logger.debug("Principal id [{}] did not specify any attributes",principalId);
     if (!this.returnNullIfNoAttributes) {
@@ -25,24 +18,6 @@
     return null;
   }
   logger.debug("Retrieved [{}] attribute(s) from the repository",attributes.size());
-  final Map<String,Object> convertedAttributes=new HashMap<>();
-  for (  final Map.Entry<String,List<Object>> entry : attributes.entrySet()) {
-    final String key=entry.getKey();
-    logger.debug("Found attribute [{}]",key);
-    final List<Object> values=entry.getValue();
-    if (StringUtils.isNotBlank(this.principalAttributeName) && StringUtils.equalsIgnoreCase(key,this.principalAttributeName)) {
-      if (values.isEmpty()) {
-        logger.debug("{} is empty, using {} for principal",this.principalAttributeName,principalId);
-      }
- else {
-        principalId=values.get(0).toString();
-        logger.debug("Found principal attribute value {}; removing {} from attribute map.",principalId,this.principalAttributeName);
-      }
-    }
- else {
-      convertedAttributes.put(key,values.size() == 1 ? values.get(0) : values);
-    }
-  }
-  logger.debug("Creating a principal with id [{}] and attributes [{}]",principalId,convertedAttributes);
-  return this.principalFactory.createPrincipal(principalId,convertedAttributes);
+  final Pair<String,Map<String,Object>> pair=convertPersonAttributesToPrincipal(principalId,attributes);
+  return this.principalFactory.createPrincipal(pair.getFirst(),pair.getSecond());
 }

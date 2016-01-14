@@ -1,0 +1,2 @@
+String extractedPrincipalId
+Map<String,List<Object>> attributes
