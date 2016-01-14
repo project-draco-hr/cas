@@ -1,0 +1,10 @@
+{
+  final AuthenticationResult authenticationResult=authenticationSystemSupport.finalizeAllAuthenticationTransactions(authenticationResultBuilder,service);
+  final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationResult);
+  WebUtils.putTicketGrantingTicketInScopes(context,tgt);
+  WebUtils.putAuthenticationResult(authenticationResult,context);
+  if (addWarningMessagesToMessageContextIfNeeded(tgt,context.getMessageContext())) {
+    return newEvent(SUCCESS_WITH_WARNINGS);
+  }
+  return newEvent(CasWebflowConstants.TRANSITION_ID_SUCCESS);
+}

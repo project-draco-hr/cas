@@ -1,0 +1,6 @@
+{
+  if (!checkLoginTicketIfExists(context)) {
+    return returnInvalidLoginTicketEvent(context);
+  }
+  return null;
+}

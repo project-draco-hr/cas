@@ -1,2 +1,2 @@
 AuthenticationTransaction authenticationTransaction
-AuthenticationResultBuilder authenticationContext
+AuthenticationResultBuilder authenticationResult

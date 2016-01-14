@@ -1,0 +1,6 @@
+{
+  if (isRequestAskingForServiceTicket(context)) {
+    return grantServiceTicket(context);
+  }
+  return null;
+}

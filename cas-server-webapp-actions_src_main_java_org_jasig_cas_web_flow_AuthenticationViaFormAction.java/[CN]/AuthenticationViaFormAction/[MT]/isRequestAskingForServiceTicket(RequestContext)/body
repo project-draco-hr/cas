@@ -1,5 +1,0 @@
-{
-  final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
-  final Service service=WebUtils.getService(context);
-  return (StringUtils.isNotBlank(context.getRequestParameters().get(CasProtocolConstants.PARAMETER_RENEW)) && ticketGrantingTicketId != null && service != null);
-}

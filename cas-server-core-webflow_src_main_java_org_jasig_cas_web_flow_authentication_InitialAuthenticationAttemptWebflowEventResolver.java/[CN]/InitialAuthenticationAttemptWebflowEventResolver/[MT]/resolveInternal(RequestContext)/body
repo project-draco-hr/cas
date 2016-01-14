@@ -1,0 +1,23 @@
+{
+  try {
+    final Credential credential=getCredentialFromContext(context);
+    final AuthenticationResultBuilder authenticationResultBuilder=this.authenticationSystemSupport.handleInitialAuthenticationTransaction(credential);
+    final Service service=WebUtils.getService(context);
+    if (service != null) {
+      final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+      RegisteredServiceAccessStrategySupport.ensureServiceAccessIsAllowed(service,registeredService);
+      if (StringUtils.isNotBlank(registeredService.getAuthenticationPolicy().getAuthenticationMethod())) {
+        return buildEventByServiceAuthenticationMethod(context,registeredService,authenticationResultBuilder);
+      }
+    }
+    return grantTicketGrantingTicketToAuthenticationResult(context,authenticationResultBuilder,service);
+  }
+ catch (  final AuthenticationException e) {
+    logger.debug(e.getMessage(),e);
+    return newEvent(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,e);
+  }
+catch (  final Exception e) {
+    logger.debug(e.getMessage(),e);
+    return newEvent(CasWebflowConstants.TRANSITION_ID_ERROR,e);
+  }
+}

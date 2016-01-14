@@ -1,0 +1,5 @@
+{
+  WebUtils.putWarnCookieIfRequestParameterPresent(this.warnCookieGenerator,context);
+  WebUtils.putPublicWorkstationToFlowIfRequestParameterPresent(context);
+  return resolveInternal(context);
+}

@@ -1,0 +1,13 @@
+{
+  try {
+    final Credential credential=getCredentialFromContext(requestContext);
+    AuthenticationResultBuilder builder=WebUtils.getAuthenticationResultBuilder(requestContext);
+    builder=this.authenticationSystemSupport.handleAuthenticationTransaction(builder,credential);
+    final Service service=WebUtils.getService(requestContext);
+    return grantTicketGrantingTicketToAuthenticationResult(requestContext,builder,service);
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+    return new Event(this,"error");
+  }
+}
