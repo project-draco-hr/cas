@@ -1,8 +1,0 @@
-{
-  this.defaultMfaMethod=defaultMfaMethod;
-  final Map<Pattern,String> optimizedMap=new LinkedHashMap<>();
-  for (  final Map.Entry<String,String> stringStringEntry : translationMap.entrySet()) {
-    optimizedMap.put(Pattern.compile(stringStringEntry.getKey()),stringStringEntry.getValue());
-  }
-  this.translationMap=optimizedMap;
-}

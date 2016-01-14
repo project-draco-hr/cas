@@ -1,0 +1,14 @@
+{
+  final AuthenticationException ex;
+  if (e instanceof AuthenticationException) {
+    ex=(AuthenticationException)e;
+  }
+ else   if (e.getCause() instanceof AuthenticationException) {
+    ex=(AuthenticationException)e.getCause();
+  }
+ else {
+    return null;
+  }
+  logger.debug(ex.getMessage(),ex);
+  return newEvent(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,ex);
+}
