@@ -1,9 +1,9 @@
 {
   try {
-    final AuthenticationResult authenticationResult=this.authenticationSystemSupport.handleAndFinalizeSingleAuthenticationTransaction(service,credential);
     WebUtils.putWarnCookieIfRequestParameterPresent(this.warnCookieGenerator,context);
     WebUtils.putPublicWorkstationToFlowIfRequestParameterPresent(context);
-    return this.authenticationContextWebflowEventResolver.resolve(builder,context,messageContext);
+    final AuthenticationResultBuilder authenticationResult=this.authenticationSystemSupport.handleInitialAuthenticationTransaction(credential);
+    return this.authenticationContextWebflowEventResolver.resolve(authenticationResult,context,messageContext);
   }
  catch (  final AuthenticationException e) {
     logger.debug(e.getMessage(),e);

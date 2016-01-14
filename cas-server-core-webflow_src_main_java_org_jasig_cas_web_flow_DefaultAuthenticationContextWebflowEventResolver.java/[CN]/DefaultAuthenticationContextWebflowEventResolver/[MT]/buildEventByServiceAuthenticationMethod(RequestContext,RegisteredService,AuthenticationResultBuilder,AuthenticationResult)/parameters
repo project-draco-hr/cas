@@ -1,0 +1,4 @@
+RequestContext context
+RegisteredService service
+AuthenticationResultBuilder builder
+AuthenticationResult authenticationContext

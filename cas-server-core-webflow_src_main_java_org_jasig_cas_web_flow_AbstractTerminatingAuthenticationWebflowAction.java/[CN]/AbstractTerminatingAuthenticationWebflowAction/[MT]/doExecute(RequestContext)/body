@@ -2,10 +2,10 @@
   try {
     final Credential credential=WebUtils.getCredential(requestContext);
     final Service service=WebUtils.getService(requestContext);
-    final AuthenticationContextBuilder builder=WebUtils.getAuthenticationContextBuilder(requestContext);
+    final AuthenticationResultBuilder builder=WebUtils.getAuthenticationContextBuilder(requestContext);
     final AuthenticationTransaction transaction=AuthenticationTransaction.wrap(credential);
     this.authenticationSystemSupport.getAuthenticationTransactionManager().handle(transaction,builder);
-    final AuthenticationContext authenticationContext=builder.build(service);
+    final AuthenticationResult authenticationContext=builder.build(service);
     return resolveSuccessfulAuthenticationEvent(requestContext,authenticationContext);
   }
  catch (  final Exception e) {

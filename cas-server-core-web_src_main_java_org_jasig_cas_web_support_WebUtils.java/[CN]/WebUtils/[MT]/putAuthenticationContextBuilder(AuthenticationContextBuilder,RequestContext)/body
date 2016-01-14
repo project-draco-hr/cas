@@ -1,3 +1,0 @@
-{
-  ctx.getConversationScope().put("authenticationContextBuilder",builder);
-}

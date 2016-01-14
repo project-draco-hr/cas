@@ -1,4 +1,5 @@
 {
   this.authentication=authentication;
   this.service=service;
+  this.principal=this.authentication.getPrincipal();
 }
