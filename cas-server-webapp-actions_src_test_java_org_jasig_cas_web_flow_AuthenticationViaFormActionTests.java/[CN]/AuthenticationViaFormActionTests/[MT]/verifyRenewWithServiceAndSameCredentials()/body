@@ -15,5 +15,5 @@
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   context.getFlowScope().put("service",TestUtils.getService());
   final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("warn",this.action.submit(context,c,messageContext).getId());
+  assertEquals("warn",this.action.doExecute(context).getId());
 }

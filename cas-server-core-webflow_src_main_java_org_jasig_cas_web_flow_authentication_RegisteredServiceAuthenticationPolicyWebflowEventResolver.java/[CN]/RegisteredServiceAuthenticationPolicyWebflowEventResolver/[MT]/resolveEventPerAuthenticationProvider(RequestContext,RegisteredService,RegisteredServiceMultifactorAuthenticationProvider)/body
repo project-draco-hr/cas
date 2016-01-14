@@ -1,0 +1,17 @@
+{
+  final String identifier=provider.provide(service.getAuthenticationPolicy());
+  if (StringUtils.isBlank(identifier)) {
+    logger.warn("Multifactor authentication provider {} could not provide CAS with its identifier.",provider);
+    return null;
+  }
+  logger.debug("Attempting to build an event based on the authentication provider [{}] and service [{}]",provider,service.getName());
+  final Event event=new Event(this,identifier);
+  logger.debug("Resulting event id is [{}]. Locating transitions in the context for that event id...",event.getId());
+  final TransitionDefinition def=context.getMatchingTransition(event.getId());
+  if (def == null) {
+    logger.warn("Transition definition cannot be found for event [{}]",event.getId());
+    throw new UnrecognizedAuthenticationMethodException(identifier);
+  }
+  logger.debug("Found matching transition [{}] with target [{}] for event [{}].",def.getId(),def.getTargetStateId(),event.getId());
+  return event;
+}

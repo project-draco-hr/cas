@@ -1,0 +1,21 @@
+{
+  final RegisteredService service=WebUtils.getRegisteredService(context);
+  final RegisteredServiceAuthenticationPolicy policy=service.getAuthenticationPolicy();
+  if (service.getAuthenticationPolicy().getMultifactorAuthenticationProviders().isEmpty()) {
+    return null;
+  }
+  final Set<String> providers=policy.getMultifactorAuthenticationProviders();
+  for (  final String provider : providers) {
+    final RegisteredServiceMultifactorAuthenticationProvider providerClass=loadMultifactorAuthenticationProvider(provider);
+    if (providerClass == null) {
+      logger.warn("Could not locate [{}] bean id in the application context as an authentication provider. " + "Are you missing a dependency in your configuration?",provider);
+    }
+    final Event event=resolveEventPerAuthenticationProvider(context,service,providerClass);
+    if (event != null) {
+      logger.debug("Resolved authentication event {} based on authentication provider {}",event,providerClass);
+      return event;
+    }
+  }
+  logger.warn("No authentication provider could be resoled for this registered service");
+  return null;
+}

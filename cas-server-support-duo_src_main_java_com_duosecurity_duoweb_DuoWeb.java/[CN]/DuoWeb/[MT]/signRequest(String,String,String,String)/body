@@ -1,3 +1,0 @@
-{
-  return signRequest(ikey,skey,akey,username,System.currentTimeMillis() / 1000);
-}

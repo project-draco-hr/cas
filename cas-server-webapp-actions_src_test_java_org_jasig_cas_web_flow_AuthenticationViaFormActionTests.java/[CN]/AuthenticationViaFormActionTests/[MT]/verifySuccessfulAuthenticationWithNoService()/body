@@ -9,5 +9,5 @@
   final Credential c=org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword();
   putCredentialInRequestScope(context,c);
   final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("success",this.action.submit(context,c,messageContext).getId());
+  assertEquals("success",this.action.doExecute(context).getId());
 }

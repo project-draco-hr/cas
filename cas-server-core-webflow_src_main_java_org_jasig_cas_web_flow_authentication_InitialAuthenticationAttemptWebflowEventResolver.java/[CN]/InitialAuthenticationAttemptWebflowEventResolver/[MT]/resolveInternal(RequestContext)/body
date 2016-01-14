@@ -1,16 +1,19 @@
 {
   try {
     final Credential credential=getCredentialFromContext(context);
-    final AuthenticationResultBuilder authenticationResultBuilder=this.authenticationSystemSupport.handleInitialAuthenticationTransaction(credential);
+    final AuthenticationResultBuilder builder=this.authenticationSystemSupport.handleInitialAuthenticationTransaction(credential);
+    WebUtils.putAuthenticationResultBuilder(builder,context);
+    WebUtils.putAuthentication(builder.getInitialAuthentication(),context);
     final Service service=WebUtils.getService(context);
     if (service != null) {
       final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
       RegisteredServiceAccessStrategySupport.ensureServiceAccessIsAllowed(service,registeredService);
-      if (StringUtils.isNotBlank(registeredService.getAuthenticationPolicy().getAuthenticationMethod())) {
-        return buildEventByServiceAuthenticationMethod(context,registeredService,authenticationResultBuilder);
+      final Event event=registeredServiceAuthenticationPolicyWebflowEventResolver.resolve(context);
+      if (event != null) {
+        return event;
       }
     }
-    return grantTicketGrantingTicketToAuthenticationResult(context,authenticationResultBuilder,service);
+    return grantTicketGrantingTicketToAuthenticationResult(context,builder,service);
   }
  catch (  final AuthenticationException e) {
     logger.debug(e.getMessage(),e);

@@ -1,3 +1,0 @@
-{
-  return verifyResponse(ikey,skey,akey,sig_response,System.currentTimeMillis() / 1000);
-}

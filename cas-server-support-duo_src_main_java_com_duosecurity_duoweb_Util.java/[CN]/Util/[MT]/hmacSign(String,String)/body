@@ -1,7 +1,0 @@
-{
-  SecretKeySpec key=new SecretKeySpec(skey.getBytes(),"HmacSHA1");
-  Mac mac=Mac.getInstance("HmacSHA1");
-  mac.init(key);
-  byte[] raw=mac.doFinal(data.getBytes());
-  return bytesToHex(raw);
-}

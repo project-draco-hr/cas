@@ -13,5 +13,5 @@
   request.addParameter("password","test2");
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("success",this.action.submit(context,c,messageContext).getId());
+  assertEquals("success",this.action.doExecute(context).getId());
 }

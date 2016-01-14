@@ -13,5 +13,5 @@
   putCredentialInRequestScope(context,c2);
   context.getRequestScope().put("org.springframework.validation.BindException.credentials",new BindException(c2,"credentials"));
   final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("error",this.action.submit(context,c2,messageContext).getId());
+  assertEquals("error",this.action.doExecute(context).getId());
 }

@@ -5,7 +5,4 @@
   this.warnCookieGenerator.setCookieName("TGT");
   this.warnCookieGenerator.setCookieDomain("/");
   this.warnCookieGenerator.setCookiePath("/");
-  this.action.setCentralAuthenticationService(getCentralAuthenticationService());
-  this.action.setAuthenticationSystemSupport(getAuthenticationSystemSupport());
-  this.action.setWarnCookieGenerator(this.warnCookieGenerator);
 }
