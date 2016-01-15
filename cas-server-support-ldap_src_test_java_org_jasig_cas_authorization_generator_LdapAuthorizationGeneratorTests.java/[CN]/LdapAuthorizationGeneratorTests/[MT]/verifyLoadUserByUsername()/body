@@ -1,12 +1,2 @@
 {
-  for (  final LdapEntry entry : getEntries()) {
-    if (entry.getAttribute("objectclass").getStringValues().contains(CAS_SERVICE_DETAILS_OBJ_CLASS)) {
-      final String username=getUsername(entry);
-      final CommonProfile profile=new CommonProfile();
-      profile.setId(username);
-      ldapAuthorizationGenerator.generate(profile);
-      assertTrue(hasAuthority(profile,"ROLE_ADMINISTRATORS"));
-      assertTrue(hasAuthority(profile,"ROLE_USERS"));
-    }
-  }
 }
