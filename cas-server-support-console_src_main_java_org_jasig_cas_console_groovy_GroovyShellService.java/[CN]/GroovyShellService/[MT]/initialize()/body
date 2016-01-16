@@ -1,0 +1,16 @@
+{
+  this.serverThread=new Thread(){
+    @Override public void run(){
+      try {
+        logger.info("Launching groovy service background thread...");
+        launch();
+      }
+ catch (      final Exception e) {
+        logger.error(e.getMessage(),e);
+      }
+    }
+  }
+;
+  serverThread.setDaemon(false);
+  serverThread.start();
+}
