@@ -1,6 +1,8 @@
 {
   this.warnCookieGenerator=new CookieRetrievingCookieGenerator();
+  this.warnCookieGenerator.setCookiePath("");
   this.tgtCookieGenerator=new CookieRetrievingCookieGenerator();
+  this.tgtCookieGenerator.setCookiePath("");
   this.action.setTicketGrantingTicketCookieGenerator(this.tgtCookieGenerator);
   this.action.setWarnCookieGenerator(this.warnCookieGenerator);
   final ArgumentExtractor[] argExtractors=new ArgumentExtractor[]{new DefaultArgumentExtractor(new WebApplicationServiceFactory())};

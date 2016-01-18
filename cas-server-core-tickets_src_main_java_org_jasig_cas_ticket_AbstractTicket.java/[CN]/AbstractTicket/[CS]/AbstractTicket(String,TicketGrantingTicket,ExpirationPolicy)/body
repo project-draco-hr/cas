@@ -5,5 +5,4 @@
   this.creationTime=System.currentTimeMillis();
   this.lastTimeUsed=System.currentTimeMillis();
   this.expirationPolicy=expirationPolicy;
-  this.ticketGrantingTicket=ticket;
 }

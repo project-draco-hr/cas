@@ -1,10 +1,10 @@
 {
   try {
     final String serviceId=requestBody.getFirst(CasProtocolConstants.PARAMETER_SERVICE);
-    final AuthenticationContextBuilder builder=new DefaultAuthenticationContextBuilder(this.authenticationSystemSupport.getPrincipalElectionStrategy());
+    final AuthenticationResultBuilder builder=new DefaultAuthenticationResultBuilder(this.authenticationSystemSupport.getPrincipalElectionStrategy());
     final Service service=this.webApplicationServiceFactory.createService(serviceId);
-    final AuthenticationContext authenticationContext=builder.collect(this.ticketRegistrySupport.getAuthenticationFrom(tgtId)).build(service);
-    final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(tgtId,service,authenticationContext);
+    final AuthenticationResult authenticationResult=builder.collect(this.ticketRegistrySupport.getAuthenticationFrom(tgtId)).build(service);
+    final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(tgtId,service,authenticationResult);
     return new ResponseEntity<>(serviceTicketId.getId(),HttpStatus.OK);
   }
  catch (  final InvalidTicketException e) {

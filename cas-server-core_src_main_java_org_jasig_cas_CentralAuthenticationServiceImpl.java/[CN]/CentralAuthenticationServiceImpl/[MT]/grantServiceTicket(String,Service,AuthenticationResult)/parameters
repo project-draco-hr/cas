@@ -1,0 +1,3 @@
+String ticketGrantingTicketId
+Service service
+AuthenticationResult authenticationResult

@@ -1,4 +1,4 @@
 {
-  final AuthenticationContext ctx=TestUtils.getAuthenticationContext(getAuthenticationSystemSupport(),new Credential[]{null});
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),new Credential[]{null});
   getCentralAuthenticationService().createTicketGrantingTicket(ctx);
 }

@@ -1,0 +1,3 @@
+{
+  return deleteSingleTicket(ticketId.getId());
+}

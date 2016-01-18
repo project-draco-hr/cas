@@ -1,6 +1,6 @@
 {
   final MockRequestContext ctx=new MockRequestContext();
-  final AuthenticationContext ctxAuthN=TestUtils.getAuthenticationContext(getAuthenticationSystemSupport());
+  final AuthenticationResult ctxAuthN=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport());
   final TicketGrantingTicket tgt=this.getCentralAuthenticationService().createTicketGrantingTicket(ctxAuthN);
   WebUtils.putTicketGrantingTicketInScopes(ctx,tgt);
   final TicketGrantingTicketCheckAction action=new TicketGrantingTicketCheckAction(this.getCentralAuthenticationService());
