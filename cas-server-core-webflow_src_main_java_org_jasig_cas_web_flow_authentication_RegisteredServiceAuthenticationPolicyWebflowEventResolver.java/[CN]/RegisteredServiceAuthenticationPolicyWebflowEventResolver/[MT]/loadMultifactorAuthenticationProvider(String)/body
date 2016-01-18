@@ -1,9 +1,0 @@
-{
-  try {
-    return this.applicationContext.getBean(provider,RegisteredServiceMultifactorAuthenticationProvider.class);
-  }
- catch (  final Exception e) {
-    logger.warn(e.getMessage(),e);
-  }
-  return null;
-}

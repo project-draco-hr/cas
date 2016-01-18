@@ -1,6 +1,6 @@
 {
   if (!checkLoginTicketIfExists(context)) {
-    return returnInvalidLoginTicketEvent(context);
+    return ImmutableSet.of(returnInvalidLoginTicketEvent(context));
   }
   return null;
 }

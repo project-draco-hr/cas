@@ -1,0 +1,10 @@
+{
+  try {
+    return this.applicationContext.getBean(provider,RegisteredServiceMultifactorAuthenticationProvider.class);
+  }
+ catch (  final Exception e) {
+    logger.warn(e.getMessage(),e);
+  }
+  logger.warn("Could not locate [{}] bean id in the application context as an authentication provider. " + "Are you missing a dependency in your configuration?",provider);
+  throw new IllegalArgumentException("Could not locate " + provider + " in the application configuration",new AuthenticationException());
+}

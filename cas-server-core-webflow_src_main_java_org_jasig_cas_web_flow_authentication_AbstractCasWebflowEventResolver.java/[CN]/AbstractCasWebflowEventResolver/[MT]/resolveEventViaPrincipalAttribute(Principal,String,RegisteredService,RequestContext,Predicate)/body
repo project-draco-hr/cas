@@ -1,0 +1,43 @@
+{
+  final RegisteredServiceMultifactorAuthenticationProvider provider=getAuthenticationProviderForService(service);
+  if (provider == null) {
+    logger.debug("No authentication provider is associated with this service");
+    return null;
+  }
+  final Object attributeValue=principal.getAttributes().get(attributeName);
+  if (attributeValue == null) {
+    logger.debug("Attribute value for {} to determine event is not configured for {}",attributeName,principal.getId());
+    return null;
+  }
+  try {
+    if (attributeValue instanceof String) {
+      if (predicate.apply(attributeValue)) {
+        final String id=provider.provide(service);
+        final Event event=validateEventIdForMatchingTransitionInContext(id,context);
+        return ImmutableSet.of(event);
+      }
+      return null;
+    }
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+  final ImmutableSet.Builder<Event> builder=ImmutableSet.builder();
+  if (attributeValue instanceof List) {
+    final List<String> values=(List<String>)attributeValue;
+    for (    final String value : values) {
+      try {
+        if (predicate.apply(value)) {
+          final String id=provider.provide(service);
+          final Event event=validateEventIdForMatchingTransitionInContext(id,context);
+          builder.add(event);
+        }
+      }
+ catch (      final Exception e) {
+        logger.debug("Ignoring {} since no matching transition could be found",value);
+      }
+    }
+    return builder.build();
+  }
+  return null;
+}

@@ -1,0 +1,7 @@
+{
+  final Set<Event> events=resolve(context);
+  if (events == null || events.isEmpty()) {
+    return null;
+  }
+  return events.iterator().next();
+}

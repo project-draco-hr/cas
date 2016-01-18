@@ -4,10 +4,10 @@
     AuthenticationResultBuilder builder=WebUtils.getAuthenticationResultBuilder(requestContext);
     builder=this.authenticationSystemSupport.handleAuthenticationTransaction(builder,credential);
     final Service service=WebUtils.getService(requestContext);
-    return grantTicketGrantingTicketToAuthenticationResult(requestContext,builder,service);
+    return ImmutableSet.of(grantTicketGrantingTicketToAuthenticationResult(requestContext,builder,service));
   }
  catch (  final Exception e) {
     logger.error(e.getMessage(),e);
-    return new Event(this,"error");
+    return ImmutableSet.of(new Event(this,"error"));
   }
 }

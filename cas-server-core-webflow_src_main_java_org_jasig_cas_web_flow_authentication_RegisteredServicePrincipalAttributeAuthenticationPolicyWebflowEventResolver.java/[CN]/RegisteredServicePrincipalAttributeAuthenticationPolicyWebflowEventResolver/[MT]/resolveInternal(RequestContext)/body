@@ -1,0 +1,13 @@
+{
+  final RegisteredService service=WebUtils.getRegisteredService(context);
+  final Authentication authentication=WebUtils.getAuthentication(context);
+  final RegisteredServiceAuthenticationPolicy policy=service.getAuthenticationPolicy();
+  if (service.getAuthenticationPolicy().getMultifactorAuthenticationProviders().isEmpty()) {
+    return null;
+  }
+  if (StringUtils.isBlank(policy.getPrincipalAttributeNameTrigger()) || StringUtils.isBlank(policy.getPrincipalAttributeValueToMatch())) {
+    return null;
+  }
+  final Principal principal=authentication.getPrincipal();
+  return resolveEventViaPrincipalAttribute(principal,policy.getPrincipalAttributeNameTrigger(),service,context,Predicates.containsPattern(policy.getPrincipalAttributeValueToMatch()));
+}
