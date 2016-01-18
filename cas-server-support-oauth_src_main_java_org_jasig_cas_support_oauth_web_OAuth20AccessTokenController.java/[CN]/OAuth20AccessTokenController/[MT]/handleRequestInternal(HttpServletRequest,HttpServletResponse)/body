@@ -4,7 +4,7 @@
   }
   final String codeParameter=request.getParameter(OAuthConstants.CODE);
   final OAuthCodeImpl code=(OAuthCodeImpl)ticketRegistry.getTicket(codeParameter);
-  if (code == null || code.isExpired()) {
+  if (code.isExpired()) {
     logger.error("Code expired: {}",code);
     return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_GRANT,HttpStatus.SC_BAD_REQUEST);
   }
