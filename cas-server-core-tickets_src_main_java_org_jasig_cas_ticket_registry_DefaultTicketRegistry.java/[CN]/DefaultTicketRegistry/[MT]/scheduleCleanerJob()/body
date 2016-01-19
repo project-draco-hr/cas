@@ -4,13 +4,8 @@
       logger.info("Preparing to schedule job to clean up after tickets...");
       final JobDetail job=JobBuilder.newJob(this.getClass()).withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).build();
       final Trigger trigger=TriggerBuilder.newTrigger().withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).startAt(DateTime.now().plusSeconds(this.startDelay).toDate()).withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(this.refreshInterval).repeatForever()).build();
-      final JobFactory jobFactory=new CasSpringBeanJobFactory(this.applicationContext);
-      final SchedulerFactory schFactory=new StdSchedulerFactory();
-      final Scheduler sch=schFactory.getScheduler();
-      sch.setJobFactory(jobFactory);
-      sch.start();
-      logger.debug("Started {} scheduler",this.getClass().getSimpleName());
-      sch.scheduleJob(job,trigger);
+      logger.debug("Scheduling {} job",this.getClass().getSimpleName());
+      scheduler.scheduleJob(job,trigger);
       logger.info("{} will clean tickets every {} minutes",this.getClass().getSimpleName(),TimeUnit.SECONDS.toMinutes(this.refreshInterval));
     }
   }
