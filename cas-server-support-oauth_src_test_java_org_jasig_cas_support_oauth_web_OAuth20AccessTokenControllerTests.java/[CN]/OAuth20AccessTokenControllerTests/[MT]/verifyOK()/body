@@ -25,7 +25,7 @@
   assertTrue(body.contains(OAuthConstants.ACCESS_TOKEN + '='));
   assertTrue(body.contains(OAuthConstants.EXPIRES + '='));
   final String accessTokenId=StringUtils.substringBetween(body,OAuthConstants.ACCESS_TOKEN + '=',"&");
-  final AccessTokenImpl accessToken=(AccessTokenImpl)oAuth20AccessTokenController.getTicketRegistry().getTicket(accessTokenId);
+  final AccessToken accessToken=oAuth20AccessTokenController.getTicketRegistry().getTicket(accessTokenId,AccessToken.class);
   assertEquals(principal,accessToken.getAuthentication().getPrincipal());
   final int delta=2;
   final int timeLeft=Integer.parseInt(StringUtils.substringAfter(body,'&' + OAuthConstants.EXPIRES + '='));

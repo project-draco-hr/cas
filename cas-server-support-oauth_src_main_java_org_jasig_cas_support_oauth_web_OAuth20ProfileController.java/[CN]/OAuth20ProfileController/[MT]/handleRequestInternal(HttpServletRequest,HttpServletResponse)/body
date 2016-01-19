@@ -17,7 +17,7 @@
       return null;
     }
     try {
-      final AccessTokenImpl accessTokenTicket=(AccessTokenImpl)ticketRegistry.getTicket(accessToken);
+      final AccessToken accessTokenTicket=ticketRegistry.getTicket(accessToken,AccessToken.class);
       if (accessTokenTicket == null || accessTokenTicket.isExpired()) {
         logger.error("Expired access token: {}",OAuthConstants.ACCESS_TOKEN);
         jsonGenerator.writeStartObject();

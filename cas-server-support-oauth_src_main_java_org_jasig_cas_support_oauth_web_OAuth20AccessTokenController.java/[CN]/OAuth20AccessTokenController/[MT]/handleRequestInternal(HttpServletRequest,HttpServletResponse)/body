@@ -3,8 +3,8 @@
     return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,HttpStatus.SC_BAD_REQUEST);
   }
   final String codeParameter=request.getParameter(OAuthConstants.CODE);
-  final OAuthCodeImpl code=(OAuthCodeImpl)ticketRegistry.getTicket(codeParameter);
-  if (code.isExpired()) {
+  final OAuthCode code=ticketRegistry.getTicket(codeParameter,OAuthCode.class);
+  if (code == null || code.isExpired()) {
     logger.error("Code expired: {}",code);
     return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_GRANT,HttpStatus.SC_BAD_REQUEST);
   }

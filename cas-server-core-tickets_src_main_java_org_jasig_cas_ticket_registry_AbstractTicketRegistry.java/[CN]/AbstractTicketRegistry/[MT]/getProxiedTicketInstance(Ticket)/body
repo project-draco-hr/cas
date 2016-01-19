@@ -2,6 +2,12 @@
   if (ticket == null) {
     return null;
   }
+  if (ticket instanceof AccessToken) {
+    return new AccessTokenDelegator<>(this,(AccessToken)ticket,needsCallback());
+  }
+  if (ticket instanceof OAuthCode) {
+    return new OAuthCodeDelegator<>(this,(OAuthCode)ticket,needsCallback());
+  }
   if (ticket instanceof ProxyGrantingTicket) {
     return new ProxyGrantingTicketDelegator(this,(ProxyGrantingTicket)ticket,needsCallback());
   }
