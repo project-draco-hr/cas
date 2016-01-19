@@ -26,7 +26,7 @@
   final String redirectUrl=redirectView.getUrl();
   assertTrue(redirectUrl.startsWith(REDIRECT_URI + "?code=COD-"));
   final String code=StringUtils.substringAfter(redirectUrl,"?code=");
-  final OAuthCodeImpl oAuthCode=(OAuthCodeImpl)oAuth20AuthorizeController.getTicketRegistry().getTicket(code);
+  final OAuthCode oAuthCode=(OAuthCode)oAuth20AuthorizeController.getTicketRegistry().getTicket(code);
   assertNotNull(oAuthCode);
   final Principal principal=oAuthCode.getAuthentication().getPrincipal();
   assertEquals(ID,principal.getId());
