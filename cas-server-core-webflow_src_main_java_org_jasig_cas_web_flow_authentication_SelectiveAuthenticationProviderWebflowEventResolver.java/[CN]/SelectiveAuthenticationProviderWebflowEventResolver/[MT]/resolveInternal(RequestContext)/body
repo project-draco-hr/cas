@@ -1,0 +1,4 @@
+{
+  final Set<Event> resolvedEvents=getResolvedEventsAsAttribute(context);
+  return resolveEventsInternal(resolvedEvents);
+}

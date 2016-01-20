@@ -1,0 +1,22 @@
+{
+  try {
+    final Set<MultifactorAuthenticationProvider> providers=getAuthenticationProviderForService(service);
+    if (providers != null && !providers.isEmpty()) {
+      final MultifactorAuthenticationProvider provider=multifactorAuthenticationProviderSelector.resolve(providers,service,principal);
+      logger.debug("Selected multifactor authentication provider for this transaction is {}",provider);
+      final String identifier=provider.buildIdentifier(service);
+      if (StringUtils.isBlank(identifier)) {
+        logger.warn("Multifactor authentication provider {} could not buildIdentifier CAS with its identifier.",provider);
+        return null;
+      }
+      logger.debug("Attempting to build an event based on the authentication provider [{}] and service [{}]",provider,service.getName());
+      final Event event=validateEventIdForMatchingTransitionInContext(identifier,context,buildEventAttributeMap(principal,service,provider));
+      return ImmutableSet.of(event);
+    }
+    logger.debug("No multifactor authentication providers could be located for {}",service);
+    return null;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

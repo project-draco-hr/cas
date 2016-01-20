@@ -1,19 +1,24 @@
 {
-  final RegisteredServiceMultifactorAuthenticationProvider provider=getAuthenticationProviderForService(service);
-  if (provider == null) {
+  final Set<MultifactorAuthenticationProvider> providers=getAuthenticationProviderForService(service);
+  if (providers == null || providers.isEmpty()) {
     logger.debug("No authentication provider is associated with this service");
     return null;
   }
+  logger.debug("Locating principal attribute value for {}",attributeName);
   final Object attributeValue=principal.getAttributes().get(attributeName);
   if (attributeValue == null) {
     logger.debug("Attribute value for {} to determine event is not configured for {}",attributeName,principal.getId());
     return null;
   }
+  logger.debug("Selecting a multifactor authentication provider out of {} for {} and service {}",providers,principal.getId(),service);
+  final MultifactorAuthenticationProvider provider=multifactorAuthenticationProviderSelector.resolve(providers,service,principal);
   try {
     if (attributeValue instanceof String) {
+      logger.debug("Attribute value {} is a single-valued attribute",attributeValue);
       if (predicate.apply(attributeValue)) {
-        final String id=provider.provide(service);
-        final Event event=validateEventIdForMatchingTransitionInContext(id,context);
+        logger.debug("Attribute value predicate {} has successfully matched the [{}]",predicate,attributeValue);
+        final String id=provider.buildIdentifier(service);
+        final Event event=validateEventIdForMatchingTransitionInContext(id,context,buildEventAttributeMap(principal,service,provider));
         return ImmutableSet.of(event);
       }
       return null;
@@ -24,12 +29,14 @@
   }
   final ImmutableSet.Builder<Event> builder=ImmutableSet.builder();
   if (attributeValue instanceof List) {
+    logger.debug("Attribute value {} is a multi-valued attribute",attributeValue);
     final List<String> values=(List<String>)attributeValue;
     for (    final String value : values) {
       try {
         if (predicate.apply(value)) {
-          final String id=provider.provide(service);
-          final Event event=validateEventIdForMatchingTransitionInContext(id,context);
+          logger.debug("Attribute value predicate {} has successfully matched the [{}]",predicate,value);
+          final String id=provider.buildIdentifier(service);
+          final Event event=validateEventIdForMatchingTransitionInContext(id,context,buildEventAttributeMap(principal,service,provider));
           builder.add(event);
         }
       }

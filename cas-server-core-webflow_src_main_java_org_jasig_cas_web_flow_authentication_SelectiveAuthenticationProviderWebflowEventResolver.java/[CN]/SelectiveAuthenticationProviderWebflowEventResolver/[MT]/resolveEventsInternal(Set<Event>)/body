@@ -1,0 +1,4 @@
+{
+  logger.debug("Final collection of resolved events for this authentication sequence are {}",resolveEvents);
+  return resolveEvents;
+}

@@ -1,5 +1,7 @@
 {
+  logger.debug("Finalizing authentication transactions and issuing ticket-granting ticket");
   final AuthenticationResult authenticationResult=authenticationSystemSupport.finalizeAllAuthenticationTransactions(authenticationResultBuilder,service);
+  logger.debug("Resulting final authentication is {} with principal {}",authenticationResult.getAuthentication(),authenticationResult.getPrincipal());
   final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationResult);
   WebUtils.putTicketGrantingTicketInScopes(context,tgt);
   WebUtils.putAuthenticationResult(authenticationResult,context);

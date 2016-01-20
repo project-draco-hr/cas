@@ -6,9 +6,9 @@
     return null;
   }
   final Principal principal=authentication.getPrincipal();
-  if (StringUtils.isBlank(this.attributeName)) {
-    logger.debug("Attribute name to determine event is not configured for {}",principal.getId());
+  if (StringUtils.isBlank(this.attributeName) || StringUtils.isBlank(this.attributeValue)) {
+    logger.debug("Attribute name/value to determine event is not configured for {}",principal.getId());
     return null;
   }
-  return resolveEventViaPrincipalAttribute(principal,this.attributeName,service,context,Predicates.alwaysTrue());
+  return resolveEventViaPrincipalAttribute(principal,this.attributeName,service,context,Predicates.containsPattern(this.attributeValue));
 }

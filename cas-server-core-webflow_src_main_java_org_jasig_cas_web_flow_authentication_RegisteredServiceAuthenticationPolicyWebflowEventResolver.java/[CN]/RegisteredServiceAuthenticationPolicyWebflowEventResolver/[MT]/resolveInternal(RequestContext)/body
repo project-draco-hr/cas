@@ -1,8 +1,13 @@
 {
   final RegisteredService service=WebUtils.getRegisteredService(context);
-  if (service.getAuthenticationPolicy().getMultifactorAuthenticationProviders().isEmpty()) {
+  final Authentication authentication=WebUtils.getAuthentication(context);
+  if (service == null || authentication == null) {
+    logger.debug("No service or authentication is available to determine event for principal");
     return null;
   }
-  final Set<Event> event=resolveEventPerAuthenticationProvider(context,service);
-  return event;
+  if (service.getAuthenticationPolicy().getMultifactorAuthenticationProviders().isEmpty()) {
+    logger.debug("Authentication policy does not contain any multifactor authentication providers");
+    return null;
+  }
+  return resolveEventPerAuthenticationProvider(authentication.getPrincipal(),context,service);
 }
