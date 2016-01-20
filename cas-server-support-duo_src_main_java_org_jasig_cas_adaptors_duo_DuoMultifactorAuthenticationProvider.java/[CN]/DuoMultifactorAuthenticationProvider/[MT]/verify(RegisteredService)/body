@@ -1,10 +1,10 @@
 {
   if (duoAuthenticationService.canPing()) {
-    return DuoMultifactorWebflowConfigurer.MFA_DUO_EVENT_ID;
+    return true;
   }
- else   if (service.getAuthenticationPolicy().isFailOpen()) {
+  if (service.getAuthenticationPolicy().isFailOpen()) {
     logger.warn("Duo could not be reached. Since the authentication provider is configured to fail-open, authentication will " + "proceed without Duo for service {}",service.getServiceId());
-    return null;
+    return false;
   }
   throw new AuthenticationException();
 }

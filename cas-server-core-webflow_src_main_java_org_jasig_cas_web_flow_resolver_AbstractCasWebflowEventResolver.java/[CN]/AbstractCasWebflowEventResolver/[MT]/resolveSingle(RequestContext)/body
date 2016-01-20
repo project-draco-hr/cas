@@ -3,5 +3,7 @@
   if (events == null || events.isEmpty()) {
     return null;
   }
-  return events.iterator().next();
+  final Event event=events.iterator().next();
+  logger.info("Resolved single event [{}] via [{}] for this context",event.getId(),event.getSource().getClass().getName());
+  return event;
 }
