@@ -21,7 +21,7 @@
     this.serviceMap=temp;
   }
  else {
-    LOGGER.warn("{} errors encoutered when loading service definitions. New definitions are not loaded until errors are " + "corrected",errorCount);
+    LOGGER.warn("{} errors encountered when loading service definitions. New definitions are not loaded until errors are " + "corrected",errorCount);
   }
   return new ArrayList<>(this.serviceMap.values());
 }

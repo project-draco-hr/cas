@@ -1,0 +1,4 @@
+{
+  this.jsonServiceRegistryConfigWatcher.close();
+  this.jsonServiceRegistryWatcherThread.interrupt();
+}
