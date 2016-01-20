@@ -1,0 +1,50 @@
+{
+  final String tgt=WebUtils.getTicketGrantingTicketId(context);
+  final RegisteredService service=WebUtils.getRegisteredService(context);
+  if (service == null) {
+    logger.debug("No service is available to determine event for principal");
+    return resumeFlow();
+  }
+  if (StringUtils.isBlank(tgt)) {
+    logger.trace("TGT is blank; proceed with flow normally.");
+    return resumeFlow();
+  }
+  final Authentication authentication=ticketRegistrySupport.getAuthenticationFrom(tgt);
+  if (authentication == null) {
+    logger.trace("TGT has no authentication and is blank; proceed with flow normally.");
+    return resumeFlow();
+  }
+  final AuthenticationResultBuilder builder=this.authenticationSystemSupport.handleInitialAuthenticationTransaction(authentication);
+  WebUtils.putAuthenticationResultBuilder(builder,context);
+  WebUtils.putAuthentication(authentication,context);
+  final Event event=initialAuthenticationAttemptWebflowEventResolver.resolveSingle(context);
+  if (event == null) {
+    logger.trace("Request does not indicate a requirement for authentication policy; proceed with flow normally.");
+    return resumeFlow();
+  }
+  if (event.getId().equals(CasWebflowConstants.TRANSITION_ID_ERROR)) {
+    return ImmutableSet.of(event);
+  }
+  final Set<MultifactorAuthenticationProvider> satisfiedProviders=getSatisfiedAuthenticationProviders(authentication);
+  if (satisfiedProviders == null) {
+    logger.debug("No satisfied multifactor authentication providers are recorded; proceed with flow normally.");
+    return resumeFlow();
+  }
+  final Map<String,MultifactorAuthenticationProvider> providerMap=getAllMultifactorAuthenticationProvidersFromApplicationContext();
+  final MultifactorAuthenticationProvider requestedProvider=locateRequestedProvider(providerMap.values(),event);
+  if (requestedProvider == null) {
+    logger.debug("Requested authentication provider is not available; proceed with flow normally.");
+    return resumeFlow();
+  }
+  if (!satisfiedProviders.isEmpty()) {
+    final MultifactorAuthenticationProvider[] providersArray=satisfiedProviders.toArray(new MultifactorAuthenticationProvider[]{});
+    OrderComparator.sortIfNecessary(providersArray);
+    for (    final MultifactorAuthenticationProvider provider : providersArray) {
+      if (provider.getOrder() > requestedProvider.getOrder()) {
+        logger.debug("Provider {} already satisfies the authentication requirements of {}; proceed with flow normally.",provider,requestedProvider);
+        return resumeFlow();
+      }
+    }
+  }
+  return ImmutableSet.of(validateEventIdForMatchingTransitionInContext(requestedProvider.getId(),context,buildEventAttributeMap(authentication.getPrincipal(),service,requestedProvider)));
+}

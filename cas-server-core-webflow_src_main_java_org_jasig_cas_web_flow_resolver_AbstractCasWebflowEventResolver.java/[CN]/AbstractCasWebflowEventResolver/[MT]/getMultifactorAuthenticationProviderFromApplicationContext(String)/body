@@ -4,8 +4,8 @@
     return this.applicationContext.getBean(provider,MultifactorAuthenticationProvider.class);
   }
  catch (  final Exception e) {
-    logger.warn("Could not locate [{}] bean id in the application context as an authentication provider. " + "Are you missing a dependency in your configuration?",provider);
-    logger.warn(e.getMessage(),e);
+    logger.warn("Could not locate [{}] bean id in the application context as an authentication provider.",provider);
+    logger.debug(e.getMessage(),e);
   }
   return null;
 }

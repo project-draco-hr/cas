@@ -1,0 +1,14 @@
+{
+  final Set<String> satisfiedHandlers=Set.class.cast(authentication.getAttributes().get(AuthenticationHandler.SUCCESSFUL_AUTHENTICATION_HANDLERS));
+  if (satisfiedHandlers == null || satisfiedHandlers.isEmpty()) {
+    return null;
+  }
+  final Set<MultifactorAuthenticationProvider> satisfiedProviders=new HashSet<>(satisfiedHandlers.size());
+  for (  final String satisfiedHandler : satisfiedHandlers) {
+    final MultifactorAuthenticationProvider provider=getMultifactorAuthenticationProviderFromApplicationContext(satisfiedHandler);
+    if (provider != null) {
+      satisfiedProviders.add(provider);
+    }
+  }
+  return satisfiedProviders;
+}

@@ -3,7 +3,7 @@
     return this.applicationContext.getBeansOfType(MultifactorAuthenticationProvider.class);
   }
  catch (  final Exception e) {
-    logger.warn("Could not locate beans of type {} in the application context",MultifactorAuthenticationProvider.class,e);
+    logger.warn("Could not locate beans of type {} in the application context",MultifactorAuthenticationProvider.class);
   }
   return null;
 }
