@@ -1,13 +1,12 @@
 {
-  final Set<MultifactorAuthenticationProvider> providers=getAuthenticationProviderForService(service);
-  if (providers == null || providers.isEmpty()) {
-    logger.debug("No authentication provider is associated with this service");
-    return null;
-  }
   logger.debug("Locating principal attribute value for {}",attributeName);
   final Object attributeValue=principal.getAttributes().get(attributeName);
   if (attributeValue == null) {
     logger.debug("Attribute value for {} to determine event is not configured for {}",attributeName,principal.getId());
+    return null;
+  }
+  if (providers == null || providers.isEmpty()) {
+    logger.debug("No authentication provider is associated with this service");
     return null;
   }
   logger.debug("Selecting a multifactor authentication provider out of {} for {} and service {}",providers,principal.getId(),service);

@@ -2,4 +2,5 @@ Principal principal
 String attributeName
 RegisteredService service
 RequestContext context
+Set<MultifactorAuthenticationProvider> providers
 Predicate predicate

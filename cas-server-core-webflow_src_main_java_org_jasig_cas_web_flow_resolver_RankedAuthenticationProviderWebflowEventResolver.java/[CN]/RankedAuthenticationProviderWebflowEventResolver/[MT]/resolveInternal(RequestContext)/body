@@ -22,7 +22,7 @@
     logger.trace("Request does not indicate a requirement for authentication policy; proceed with flow normally.");
     return resumeFlow();
   }
-  if (event.getId().equals(CasWebflowConstants.TRANSITION_ID_ERROR)) {
+  if (event.getId().equals(CasWebflowConstants.TRANSITION_ID_ERROR) || event.getId().equals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE)) {
     return ImmutableSet.of(event);
   }
   final Set<MultifactorAuthenticationProvider> satisfiedProviders=getSatisfiedAuthenticationProviders(authentication);
