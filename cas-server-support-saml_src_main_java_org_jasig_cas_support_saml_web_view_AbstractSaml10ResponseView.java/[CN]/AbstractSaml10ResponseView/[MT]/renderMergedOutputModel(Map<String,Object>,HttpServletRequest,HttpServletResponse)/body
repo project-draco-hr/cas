@@ -1,14 +1,20 @@
 {
-  response.setCharacterEncoding(this.encoding);
-  final WebApplicationService service=this.samlArgumentExtractor.extractService(request);
-  final String serviceId=service != null ? service.getId() : "UNKNOWN";
+  String serviceId=null;
   try {
+    response.setCharacterEncoding(this.encoding);
+    final WebApplicationService service=this.samlArgumentExtractor.extractService(request);
+    if (StringUtils.isBlank(service.getId())) {
+      serviceId="UNKNOWN";
+    }
+ else {
+      serviceId=new URL(service.getId()).getHost();
+    }
     final Response samlResponse=this.samlObjectBuilder.newResponse(this.samlObjectBuilder.generateSecureRandomId(),DateTime.now().minusSeconds(this.skewAllowance),serviceId,service);
     prepareResponse(samlResponse,model);
     this.samlObjectBuilder.encodeSamlResponse(response,request,samlResponse);
   }
  catch (  final Exception e) {
-    logger.error("Error generating SAML response for service {}.",serviceId);
+    logger.error("Error generating SAML response for service {}.",serviceId,e);
     throw e;
   }
 }
