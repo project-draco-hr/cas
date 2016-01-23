@@ -15,7 +15,7 @@
  else {
       regSvc=determineServiceTypeByPattern(data.getServiceId());
     }
-    final long assignedId=data.getAssignedId();
+    final long assignedId=Long.parseLong(data.getAssignedId());
     if (assignedId <= 0) {
       regSvc.setId(RegisteredService.INITIAL_IDENTIFIER_VALUE);
     }
