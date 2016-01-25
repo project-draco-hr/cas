@@ -1,9 +1,16 @@
 {
+  if (this.logConfigurationFile == null || !this.logConfigurationFile.exists()) {
+    throw new RuntimeException("Log4j configuration file cannot be located");
+  }
   try {
-    if (!INITIALIZED.get() && this.loggerContext != null) {
-      final ServletContextEvent event=new ServletContextEvent(this.context);
-      this.loggerContext.contextInitialized(event);
-      LOGGER.debug("Initialized logging context via [{}]. Logs will be written to [{}]",this.loggerContext.getClass().getSimpleName(),this.logConfigurationFile);
+    if (!INITIALIZED.get()) {
+      final LoggerContext context=(LoggerContext)LogManager.getContext(false);
+      final URI oldLocation=context.getConfigLocation();
+      final URI location=logConfigurationFile.getURI();
+      if (!location.equals(oldLocation)) {
+        context.setConfigLocation(location);
+        LOGGER.debug("Updated logging config file from [{}] to [{}]",oldLocation,location);
+      }
       INITIALIZED.set(true);
     }
   }
