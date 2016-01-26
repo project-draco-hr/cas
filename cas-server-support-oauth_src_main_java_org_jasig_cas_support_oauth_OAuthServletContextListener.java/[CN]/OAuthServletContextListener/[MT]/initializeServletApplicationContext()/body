@@ -14,4 +14,6 @@
     addRegisteredServiceToServicesManager(service);
     servicesManager.reload();
   }
+  ticketRegistry.getTicketDelegators().add(0,new Pair(AccessToken.class,AbstractTicketDelegator.getDefaultConstructor(AccessTokenDelegator.class)));
+  ticketRegistry.getTicketDelegators().add(1,new Pair(OAuthCode.class,AbstractTicketDelegator.getDefaultConstructor(OAuthCodeDelegator.class)));
 }

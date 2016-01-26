@@ -1,0 +1,8 @@
+{
+  try {
+    return (Constructor<? extends AbstractTicketDelegator>)Class.forName(clazz.getName()).getDeclaredConstructors()[0];
+  }
+ catch (  final ClassNotFoundException e) {
+    throw new RuntimeException(e);
+  }
+}
