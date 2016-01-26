@@ -1,5 +1,0 @@
-{
-  final Thread thread=new Thread(new JsonServiceRegistryConfigWatcher(this));
-  thread.start();
-  LOGGER.debug("Started service registry watcher thread");
-}

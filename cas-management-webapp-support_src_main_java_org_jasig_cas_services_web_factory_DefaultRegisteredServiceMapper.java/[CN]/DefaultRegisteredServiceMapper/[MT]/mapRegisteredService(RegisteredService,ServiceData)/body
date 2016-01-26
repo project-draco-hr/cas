@@ -1,5 +1,5 @@
 {
-  bean.setAssignedId(svc.getId());
+  bean.setAssignedId(Long.toString(svc.getId()));
   bean.setServiceId(svc.getServiceId());
   bean.setName(svc.getName());
   bean.setDescription(svc.getDescription());
