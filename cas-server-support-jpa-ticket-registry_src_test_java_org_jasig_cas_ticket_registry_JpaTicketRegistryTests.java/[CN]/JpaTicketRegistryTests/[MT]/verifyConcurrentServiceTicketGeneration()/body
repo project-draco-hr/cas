@@ -19,4 +19,6 @@
  finally {
     executor.shutdownNow();
   }
+  TicketGrantingTicket tgtFromDb=(TicketGrantingTicket)getTicketInTransaction(newTgt.getId());
+  assertEquals(CONCURRENT_SIZE,tgtFromDb.getCountOfUses());
 }
