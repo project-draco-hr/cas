@@ -9,7 +9,7 @@
       try {
         return constructor.newInstance(this,ticket,needsCallback());
       }
- catch (      final InstantiationException|IllegalAccessException|InvocationTargetException e) {
+ catch (      final Exception e) {
         throw new RuntimeException(e);
       }
     }
