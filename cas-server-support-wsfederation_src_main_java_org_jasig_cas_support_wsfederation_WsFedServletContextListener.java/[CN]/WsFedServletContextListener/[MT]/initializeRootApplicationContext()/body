@@ -1,3 +1,8 @@
 {
-  addAuthenticationHandlerPrincipalResolver(adfsAuthNHandler,adfsPrincipalResolver);
+  if (!this.useResolver) {
+    addAuthenticationHandler(adfsAuthNHandler);
+  }
+ else {
+    addAuthenticationHandlerPrincipalResolver(adfsAuthNHandler,adfsPrincipalResolver);
+  }
 }

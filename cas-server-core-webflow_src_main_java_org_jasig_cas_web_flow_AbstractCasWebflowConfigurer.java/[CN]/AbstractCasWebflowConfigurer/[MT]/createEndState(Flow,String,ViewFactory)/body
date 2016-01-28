@@ -1,0 +1,11 @@
+{
+  try {
+    final EndState endState=new EndState(flow,id);
+    final Action finalResponseAction=new ViewFactoryActionAdapter(viewFactory);
+    endState.setFinalResponseAction(finalResponseAction);
+    logger.debug("Created end state state {} on flow id {}, backed by view factory {}",id,flow.getId(),viewFactory);
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+}
