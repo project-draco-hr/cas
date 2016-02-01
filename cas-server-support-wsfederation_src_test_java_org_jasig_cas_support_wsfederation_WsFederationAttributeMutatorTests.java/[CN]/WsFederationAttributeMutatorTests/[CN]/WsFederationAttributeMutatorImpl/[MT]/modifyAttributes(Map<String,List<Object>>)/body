@@ -1,0 +1,8 @@
+{
+  List values=new ArrayList();
+  values.add("newtest");
+  attributes.put("test",values);
+  values=new ArrayList();
+  values.add("testing");
+  attributes.put("upn",values);
+}
