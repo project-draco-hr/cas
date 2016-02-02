@@ -16,7 +16,7 @@
     final MulticastConfig multicastConfig=new MulticastConfig().setEnabled(this.hazelcastProperties.isMulticastEnabled());
     final JoinConfig joinConfig=new JoinConfig().setMulticastConfig(multicastConfig).setTcpIpConfig(tcpIpConfig);
     final NetworkConfig networkConfig=new NetworkConfig().setPort(this.hazelcastProperties.getPort()).setPortAutoIncrement(this.hazelcastProperties.isPortAutoIncrement()).setJoin(joinConfig);
-    final MapConfig mapConfig=new MapConfig().setName("tickets").setMaxIdleSeconds(this.hazelcastProperties.getMaxIdleSeconds()).setEvictionPolicy(this.hazelcastProperties.getEvictionPolicy()).setEvictionPercentage(this.hazelcastProperties.getEvictionPercentage()).setMaxSizeConfig(new MaxSizeConfig().setMaxSizePolicy(this.hazelcastProperties.getMaxSizePolicy()).setSize(this.hazelcastProperties.getMaxHeapSizePercentage()));
+    final MapConfig mapConfig=new MapConfig().setName(this.hazelcastProperties.getMapName()).setMaxIdleSeconds(this.hazelcastProperties.getMaxIdleSeconds()).setEvictionPolicy(this.hazelcastProperties.getEvictionPolicy()).setEvictionPercentage(this.hazelcastProperties.getEvictionPercentage()).setMaxSizeConfig(new MaxSizeConfig().setMaxSizePolicy(this.hazelcastProperties.getMaxSizePolicy()).setSize(this.hazelcastProperties.getMaxHeapSizePercentage()));
     final Map<String,MapConfig> mapConfigs=new HashMap<>();
     mapConfigs.put("tickets",mapConfig);
     config.setMapConfigs(mapConfigs).setNetworkConfig(networkConfig);
