@@ -1,6 +1,7 @@
 {
   if (this.authentications.isEmpty()) {
-    throw new IllegalArgumentException("Authentication chain is empty; no authentications have been collected yet");
+    LOGGER.warn("Authentication chain is empty as no authentications have been collected");
+    return Optional.empty();
   }
-  return this.authentications.iterator().next();
+  return Optional.of(this.authentications.iterator().next());
 }
