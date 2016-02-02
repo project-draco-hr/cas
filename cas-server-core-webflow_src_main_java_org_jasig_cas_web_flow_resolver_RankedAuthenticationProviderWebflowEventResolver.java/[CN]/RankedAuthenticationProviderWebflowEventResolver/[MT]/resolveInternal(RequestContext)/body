@@ -14,7 +14,7 @@
     logger.trace("TGT has no authentication and is blank; proceed with flow normally.");
     return resumeFlow();
   }
-  final AuthenticationResultBuilder builder=this.authenticationSystemSupport.handleInitialAuthenticationTransaction(authentication);
+  final AuthenticationResultBuilder builder=this.authenticationSystemSupport.establishAuthenticationContextFromInitial(authentication);
   WebUtils.putAuthenticationResultBuilder(builder,context);
   WebUtils.putAuthentication(authentication,context);
   final Event event=initialAuthenticationAttemptWebflowEventResolver.resolveSingle(context);
