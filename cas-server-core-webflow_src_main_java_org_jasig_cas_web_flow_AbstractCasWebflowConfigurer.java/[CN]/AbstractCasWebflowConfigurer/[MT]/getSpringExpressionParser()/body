@@ -8,5 +8,10 @@
   parser.addPropertyAccessor(new MapAdaptablePropertyAccessor());
   parser.addPropertyAccessor(new MessageSourcePropertyAccessor());
   parser.addPropertyAccessor(new ScopeSearchingPropertyAccessor());
+  parser.addPropertyAccessor(new BeanExpressionContextAccessor());
+  parser.addPropertyAccessor(new MapAccessor());
+  parser.addPropertyAccessor(new MapAdaptablePropertyAccessor());
+  parser.addPropertyAccessor(new EnvironmentAccessor());
+  parser.addPropertyAccessor(new ReflectivePropertyAccessor());
   return parser;
 }
