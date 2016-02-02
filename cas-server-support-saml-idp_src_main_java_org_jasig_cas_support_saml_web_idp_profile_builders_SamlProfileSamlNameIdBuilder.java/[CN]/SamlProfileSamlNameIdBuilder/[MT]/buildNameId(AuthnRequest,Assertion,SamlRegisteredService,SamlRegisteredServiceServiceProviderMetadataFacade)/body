@@ -1,6 +1,9 @@
 {
   final List<String> supportedNameFormats=adaptor.getSupportedNameFormats();
   logger.debug("Metadata for [{}] declares support for the following NameIDs [{}]",adaptor.getEntityId(),supportedNameFormats);
+  if (supportedNameFormats.isEmpty()) {
+    supportedNameFormats.add(NameIDType.TRANSIENT);
+  }
   String requiredNameFormat=null;
   if (authnRequest.getNameIDPolicy() != null) {
     requiredNameFormat=authnRequest.getNameIDPolicy().getFormat();
