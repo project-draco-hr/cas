@@ -5,7 +5,7 @@
     logger.debug("No service or authentication is available to determine event for principal");
     return null;
   }
-  final RegisteredServiceAuthenticationPolicy policy=service.getAuthenticationPolicy();
+  final RegisteredServiceMultifactorPolicy policy=service.getAuthenticationPolicy();
   if (policy == null || policy.getMultifactorAuthenticationProviders().isEmpty()) {
     logger.debug("Authentication policy does not contain any multifactor authentication providers");
     return null;

@@ -15,7 +15,7 @@
     this.accessStrategy=new DefaultRegisteredServiceAccessStrategy();
   }
   if (this.authenticationPolicy == null) {
-    this.authenticationPolicy=new DefaultRegisteredServiceAuthenticationPolicy();
+    this.authenticationPolicy=new DefaultRegisteredServiceMultifactorPolicy();
   }
   if (this.properties == null) {
     this.properties=new HashMap<>();
