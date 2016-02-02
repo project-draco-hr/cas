@@ -15,5 +15,5 @@
   this.setPublicKey(source.getPublicKey());
   this.setRequiredHandlers(source.getRequiredHandlers());
   this.setProperties(source.getProperties());
-  this.setAuthenticationPolicy(source.getAuthenticationPolicy());
+  this.setMultifactorPolicy(source.getMultifactorPolicy());
 }
