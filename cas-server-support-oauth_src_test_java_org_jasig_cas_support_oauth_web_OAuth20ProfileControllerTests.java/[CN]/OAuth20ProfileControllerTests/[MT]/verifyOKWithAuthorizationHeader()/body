@@ -8,7 +8,7 @@
   final HttpProfile profile=new HttpProfile();
   profile.setId(ID);
   profile.addAttributes(map);
-  profile.addAttribute(JwtConstants.EXPIRATION_TIME,ZonedDateTime.now().plusSeconds(5));
+  profile.addAttribute(JwtConstants.EXPIRATION_TIME,Date.from(ZonedDateTime.now().plusSeconds(5).toInstant()));
   ((OAuth20WrapperController)oauth20WrapperController).getTicketRegistry().addTicket(impl);
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.PROFILE_URL);
   mockRequest.addHeader("Authorization",OAuthConstants.BEARER_TOKEN + ' ' + accessTokenJwtGenerator.generate(profile));
