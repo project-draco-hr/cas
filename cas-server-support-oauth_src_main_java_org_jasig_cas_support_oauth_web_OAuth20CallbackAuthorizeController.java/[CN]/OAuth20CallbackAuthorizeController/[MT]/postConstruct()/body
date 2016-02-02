@@ -1,5 +1,3 @@
 {
-  if (callbackController != null) {
-    callbackController.setConfig(config);
-  }
+  callbackController.setConfig(config);
 }

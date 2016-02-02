@@ -1,5 +1,4 @@
 {
-  CommonHelper.assertNotNull("expirationPolicy",expirationPolicy);
   final String codeId=oAuthCodeIdGenerator.getNewTicketId(OAuthCode.PREFIX);
   return new OAuthCodeImpl(codeId,service,authentication,expirationPolicy);
 }

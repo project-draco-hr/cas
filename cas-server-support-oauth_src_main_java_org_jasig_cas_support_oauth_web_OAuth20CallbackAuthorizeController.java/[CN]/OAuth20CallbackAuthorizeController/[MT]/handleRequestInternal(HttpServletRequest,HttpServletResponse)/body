@@ -1,4 +1,3 @@
 {
-  CommonHelper.assertNotNull("callbackController",callbackController);
   return new ModelAndView(callbackController.callback(request,response));
 }
