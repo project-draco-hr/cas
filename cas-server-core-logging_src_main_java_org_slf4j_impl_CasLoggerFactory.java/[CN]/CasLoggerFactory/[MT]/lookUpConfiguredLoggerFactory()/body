@@ -1,0 +1,15 @@
+{
+  final Set<Class<? extends ILoggerFactory>> loggerFactories=new HashSet<>();
+  final String configuredLoggerFactory=System.getProperty(ENVIRONMENT_VAR_LOGGER_FACTORY);
+  if (StringUtils.isNotBlank(configuredLoggerFactory)) {
+    Util.report("Instructed logger factory to use is " + configuredLoggerFactory);
+    try {
+      final Class clazz=Class.forName(configuredLoggerFactory);
+      loggerFactories.add(clazz);
+    }
+ catch (    final Exception e) {
+      Util.report("Could not locate the provided logger factory: " + configuredLoggerFactory + ". Error: "+ e.getMessage());
+    }
+  }
+  return loggerFactories;
+}
