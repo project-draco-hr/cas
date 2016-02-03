@@ -4,7 +4,7 @@
   final List<String> list=Arrays.asList(VALUE,VALUE);
   map.put(NAME2,list);
   final Principal principal=org.jasig.cas.authentication.TestUtils.getPrincipal(ID,map);
-  final Authentication authentication=new OAuthAuthentication(new DateTime(),principal);
+  final Authentication authentication=new OAuthAuthentication(ZonedDateTime.now(),principal);
   final AccessTokenImpl accessToken=(AccessTokenImpl)accessTokenFactory.create(TestUtils.getService(),authentication);
   oAuth20ProfileController.getTicketRegistry().addTicket(accessToken);
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.PROFILE_URL);
