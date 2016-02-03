@@ -1,7 +1,10 @@
 {
   final Ticket ticket=getTicket(ticketId);
   int failureCount=0;
-  if (ticket instanceof ServiceTicket) {
+  if (ticket instanceof OAuthToken) {
+    failureCount=deleteOAuthTokens(ticketId);
+  }
+ else   if (ticket instanceof ServiceTicket) {
     failureCount=deleteServiceTickets(ticketId);
   }
  else   if (ticket instanceof TicketGrantingTicket) {

@@ -2,17 +2,17 @@
   if (ticket == null) {
     return null;
   }
-  if (ticket instanceof ProxyGrantingTicket) {
-    return new ProxyGrantingTicketDelegator(this,(ProxyGrantingTicket)ticket,needsCallback());
+  for (  final Pair<Class<? extends Ticket>,Constructor<? extends AbstractTicketDelegator>> ticketDelegator : ticketDelegators) {
+    final Class<? extends Ticket> clazz=ticketDelegator.getFirst();
+    if (clazz.isAssignableFrom(ticket.getClass())) {
+      final Constructor<? extends AbstractTicketDelegator> constructor=ticketDelegator.getSecond();
+      try {
+        return constructor.newInstance(this,ticket,needsCallback());
+      }
+ catch (      final Exception e) {
+        throw new RuntimeException(e);
+      }
+    }
   }
-  if (ticket instanceof TicketGrantingTicket) {
-    return new TicketGrantingTicketDelegator<>(this,(TicketGrantingTicket)ticket,needsCallback());
-  }
-  if (ticket instanceof ProxyTicket) {
-    return new ProxyTicketDelegator(this,(ProxyTicket)ticket,needsCallback());
-  }
-  if (ticket instanceof ServiceTicket) {
-    return new ServiceTicketDelegator<>(this,(ServiceTicket)ticket,needsCallback());
-  }
-  throw new IllegalStateException("Cannot wrap ticket of type: " + ticket.getClass() + " with a proxy delegator");
+  throw new IllegalStateException("Cannot wrap ticket of type: " + ticket.getClass() + " with a ticket delegator");
 }
