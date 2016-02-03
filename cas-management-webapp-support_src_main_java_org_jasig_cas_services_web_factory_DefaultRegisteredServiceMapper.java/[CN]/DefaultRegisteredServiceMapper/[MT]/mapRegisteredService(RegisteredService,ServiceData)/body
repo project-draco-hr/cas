@@ -7,7 +7,7 @@
     bean.setLogoUrl(svc.getLogo().toExternalForm());
   }
   bean.setRequiredHandlers(svc.getRequiredHandlers());
-  if (svc instanceof OAuthRegisteredCallbackAuthorizeService) {
+  if (svc instanceof OAuthCallbackAuthorizeService) {
     bean.setType(RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ.toString());
   }
   if (svc instanceof OAuthRegisteredService) {

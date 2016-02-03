@@ -1,0 +1,10 @@
+{
+  final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+  final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+  logger.debug("Found: {} for: {}",service,clientId);
+  if (service == null || !service.getAccessStrategy().isServiceAccessAllowed()) {
+    logger.error("Service {} is not found in the registry or it is disabled.",clientId);
+    return false;
+  }
+  return true;
+}
