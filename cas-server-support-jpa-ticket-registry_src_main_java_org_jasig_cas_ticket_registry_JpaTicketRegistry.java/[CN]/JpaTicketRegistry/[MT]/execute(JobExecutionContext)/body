@@ -17,6 +17,10 @@
             logoutManager.performLogout((TicketGrantingTicket)ticket);
             deleteTicket(ticket.getId());
           }
+ else           if (ticket instanceof OAuthToken) {
+            logger.debug("Cleaning up expired OAuth token [{}]",ticket.getId());
+            deleteTicket(ticket.getId());
+          }
  else           if (ticket instanceof ServiceTicket) {
             logger.debug("Cleaning up expired service ticket [{}]",ticket.getId());
             deleteTicket(ticket.getId());

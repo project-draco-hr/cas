@@ -1,0 +1,4 @@
+{
+  final String codeId=accessTokenIdGenerator.getNewTicketId(AccessToken.PREFIX);
+  return new AccessTokenImpl(codeId,service,authentication,expirationPolicy);
+}
