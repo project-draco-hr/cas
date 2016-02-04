@@ -1,7 +1,8 @@
 {
-  final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+  final UsernamePasswordCredentials credential=getCredentials(request);
+  final String clientId=credential.getUsername();
+  final String clientSecret=credential.getPassword();
   final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
-  final String clientSecret=request.getParameter(OAuthConstants.CLIENT_SECRET);
   logger.debug("Found: {} for: {} in secret check",service,clientId);
   if (!StringUtils.equals(service.getClientSecret(),clientSecret)) {
     logger.error("Wrong client secret for service: {}",service);

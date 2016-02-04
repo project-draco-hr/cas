@@ -1,0 +1,12 @@
+{
+  final UsernamePasswordCredentials credential=getCredentials(request);
+  if (StringUtils.isBlank(credential.getUsername())) {
+    logger.error("Missing clientId");
+    return false;
+  }
+ else   if (StringUtils.isBlank(credential.getPassword())) {
+    logger.error("Missing secret");
+    return false;
+  }
+  return true;
+}

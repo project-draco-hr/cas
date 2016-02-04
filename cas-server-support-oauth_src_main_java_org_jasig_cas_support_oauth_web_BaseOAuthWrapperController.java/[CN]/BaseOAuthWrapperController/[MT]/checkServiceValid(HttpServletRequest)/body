@@ -1,5 +1,5 @@
 {
-  final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+  final String clientId=getClientId(request);
   final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
   logger.debug("Found: {} for: {}",service,clientId);
   if (service == null || !service.getAccessStrategy().isServiceAccessAllowed()) {

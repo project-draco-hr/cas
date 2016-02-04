@@ -1,5 +1,5 @@
 {
-  final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+  final String clientId=getClientId(request);
   final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
   final String redirectUri=request.getParameter(OAuthConstants.REDIRECT_URI);
   final String serviceId=service.getServiceId();
