@@ -6,8 +6,8 @@
   mockRequest.setParameter(OAuthConstants.CLIENT_SECRET,CLIENT_SECRET);
   mockRequest.setParameter(OAuthConstants.CODE,CODE);
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
-  ((OAuth20WrapperController)oauth20WrapperController).getServicesManager().save(getRegisteredService(OTHER_REDIRECT_URI,CLIENT_SECRET));
-  oauth20WrapperController.handleRequest(mockRequest,mockResponse);
+  oAuth20AccessTokenController.getServicesManager().save(getRegisteredService(OTHER_REDIRECT_URI,CLIENT_SECRET));
+  oAuth20AccessTokenController.handleRequest(mockRequest,mockResponse);
   assertEquals(400,mockResponse.getStatus());
   assertEquals("error=" + OAuthConstants.INVALID_REQUEST,mockResponse.getContentAsString());
 }

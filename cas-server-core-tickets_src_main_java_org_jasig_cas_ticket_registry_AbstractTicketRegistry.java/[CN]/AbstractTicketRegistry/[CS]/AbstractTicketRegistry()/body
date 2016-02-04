@@ -1,0 +1,6 @@
+{
+  ticketDelegators.add(new Pair(ProxyGrantingTicket.class,AbstractTicketDelegator.getDefaultConstructor(ProxyGrantingTicketDelegator.class)));
+  ticketDelegators.add(new Pair(TicketGrantingTicket.class,AbstractTicketDelegator.getDefaultConstructor(TicketGrantingTicketDelegator.class)));
+  ticketDelegators.add(new Pair(ProxyTicket.class,AbstractTicketDelegator.getDefaultConstructor(ProxyTicketDelegator.class)));
+  ticketDelegators.add(new Pair(ServiceTicket.class,AbstractTicketDelegator.getDefaultConstructor(ServiceTicketDelegator.class)));
+}
