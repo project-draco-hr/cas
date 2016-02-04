@@ -3,6 +3,9 @@
   final String ticketGrantingTicket=WebUtils.getTicketGrantingTicketId(context);
   try {
     final Authentication authentication=ticketRegistrySupport.getAuthenticationFrom(ticketGrantingTicket);
+    if (authentication == null) {
+      throw new InvalidTicketException(new AuthenticationException("No authentication found for ticket " + ticketGrantingTicket),ticketGrantingTicket);
+    }
     final AuthenticationResultBuilder authenticationResultBuilder=authenticationSystemSupport.establishAuthenticationContextFromInitial(authentication);
     final AuthenticationResult authenticationResult=authenticationResultBuilder.build(service);
     final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicket,service,authenticationResult);
