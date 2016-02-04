@@ -1,23 +1,2 @@
 {
-  if (statistics == null || statistics.length == 0) {
-    return desc;
-  }
-  final StringBuilder sb=new StringBuilder();
-  if (desc != null) {
-    sb.append(desc);
-    if (!desc.endsWith(".")) {
-      sb.append('.');
-    }
-    sb.append(' ');
-  }
-  sb.append("Cache statistics: [");
-  int i=0;
-  for (  final CacheStatistics stats : statistics) {
-    if (i++ > 0) {
-      sb.append('|');
-    }
-    stats.toString(sb);
-  }
-  sb.append(']');
-  return sb.toString();
 }

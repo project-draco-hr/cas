@@ -1,6 +1,6 @@
 {
-  final DateTime currentDateTime=new DateTime();
-  final DateTime notBeforeIssueInstant=DateTime.parse("2003-04-17T00:46:02Z");
+  final ZonedDateTime currentDateTime=ZonedDateTime.now(ZoneOffset.UTC);
+  final ZonedDateTime notBeforeIssueInstant=ZonedDateTime.parse("2003-04-17T00:46:02Z");
   final ApplicationContext context=ApplicationContextProvider.getApplicationContext();
   final ServicesManager servicesManager=context.getBean("servicesManager",ServicesManager.class);
   final RegisteredService registeredService=servicesManager.findServiceBy(service);

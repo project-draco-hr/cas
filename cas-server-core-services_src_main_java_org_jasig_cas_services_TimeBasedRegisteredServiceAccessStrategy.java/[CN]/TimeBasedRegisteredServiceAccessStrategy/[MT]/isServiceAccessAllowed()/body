@@ -1,14 +1,14 @@
 {
-  final DateTime now=DateTime.now();
+  final ZonedDateTime now=ZonedDateTime.now(ZoneOffset.UTC);
   if (this.startingDateTime != null) {
-    final DateTime st=DateTime.parse(this.startingDateTime);
+    final ZonedDateTime st=ZonedDateTime.parse(this.startingDateTime);
     if (now.isBefore(st)) {
       logger.warn("Service access not allowed because it starts at {}. Now is {}",this.startingDateTime,now);
       return false;
     }
   }
   if (this.endingDateTime != null) {
-    final DateTime et=DateTime.parse(this.endingDateTime);
+    final ZonedDateTime et=ZonedDateTime.parse(this.endingDateTime);
     if (now.isAfter(et)) {
       logger.warn("Service access not allowed because it ended at {}. Now is {}",this.endingDateTime,now);
       return false;

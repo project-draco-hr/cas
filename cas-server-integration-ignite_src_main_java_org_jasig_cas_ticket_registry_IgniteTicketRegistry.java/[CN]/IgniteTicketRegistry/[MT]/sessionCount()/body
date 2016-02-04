@@ -1,3 +1,3 @@
 {
-  return BooleanUtils.toInteger(this.supportRegistryState,this.ticketGrantingTicketsCache.size(CachePeekMode.ALL),super.sessionCount());
+  return BooleanUtils.toInteger(this.supportRegistryState,this.ticketGrantingTicketsCache.size(CachePeekMode.ALL),(int)super.sessionCount());
 }

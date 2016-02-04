@@ -4,5 +4,5 @@
   final DeflaterOutputStream deflaterOutputStream=new DeflaterOutputStream(byteOutputStream);
   deflaterOutputStream.write(xmlBytes,0,xmlBytes.length);
   deflaterOutputStream.close();
-  return CompressionUtils.encodeBase64(byteOutputStream.toByteArray());
+  return EncodingUtils.encodeBase64(byteOutputStream.toByteArray());
 }

@@ -1,9 +1,7 @@
 {
   lock.setUniqueId(uniqueId);
   if (lockTimeout > 0) {
-    final Calendar cal=Calendar.getInstance();
-    cal.add(Calendar.SECOND,lockTimeout);
-    lock.setExpirationDate(cal.getTime());
+    lock.setExpirationDate(ZonedDateTime.now(ZoneOffset.UTC).plusSeconds(lockTimeout));
   }
  else {
     lock.setExpirationDate(null);

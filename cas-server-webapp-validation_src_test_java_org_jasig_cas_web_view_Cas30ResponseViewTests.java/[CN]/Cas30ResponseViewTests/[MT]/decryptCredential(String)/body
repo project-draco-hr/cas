@@ -8,7 +8,7 @@
     logger.debug("Initializing cipher based on [{}]",privateKey.getAlgorithm());
     final Cipher cipher=Cipher.getInstance(privateKey.getAlgorithm());
     logger.debug("Decoding value [{}]",cred);
-    final byte[] cred64=CompressionUtils.decodeBase64ToByteArray(cred);
+    final byte[] cred64=EncodingUtils.decodeBase64(cred);
     logger.debug("Initializing decrypt-mode via private key [{}]",privateKey.getAlgorithm());
     cipher.init(Cipher.DECRYPT_MODE,privateKey);
     final byte[] cipherData=cipher.doFinal(cred64);

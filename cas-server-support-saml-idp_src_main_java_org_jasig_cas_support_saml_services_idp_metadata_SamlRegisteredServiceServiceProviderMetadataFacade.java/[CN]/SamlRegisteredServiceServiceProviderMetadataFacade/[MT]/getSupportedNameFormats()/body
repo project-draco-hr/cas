@@ -1,12 +1,2 @@
 {
-  final List<String> nameIdFormats=new ArrayList<>();
-  final List<XMLObject> children=this.ssoDescriptor.getOrderedChildren();
-  if (children != null) {
-    for (    final XMLObject child : children) {
-      if (child instanceof NameIDFormat) {
-        nameIdFormats.add(((NameIDFormat)child).getFormat());
-      }
-    }
-  }
-  return nameIdFormats;
 }

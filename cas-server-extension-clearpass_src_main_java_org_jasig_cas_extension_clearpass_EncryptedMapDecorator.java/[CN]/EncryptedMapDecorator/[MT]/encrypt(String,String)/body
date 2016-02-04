@@ -12,7 +12,7 @@
     System.arraycopy(int2byte(this.ivSize),0,ivCiphertext,0,INTEGER_LEN);
     System.arraycopy(ivValue,0,ivCiphertext,INTEGER_LEN,this.ivSize);
     System.arraycopy(ciphertext,0,ivCiphertext,INTEGER_LEN + this.ivSize,ciphertext.length);
-    return CompressionUtils.encodeBase64(ivCiphertext);
+    return EncodingUtils.encodeBase64(ivCiphertext);
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);

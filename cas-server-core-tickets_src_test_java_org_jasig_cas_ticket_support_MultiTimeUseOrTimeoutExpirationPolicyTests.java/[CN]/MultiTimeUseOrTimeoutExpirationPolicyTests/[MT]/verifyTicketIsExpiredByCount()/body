@@ -1,6 +1,2 @@
 {
-  for (int i=0; i < NUMBER_OF_USES; i++) {
-    this.ticket.grantServiceTicket("test",org.jasig.cas.services.TestUtils.getService(),new NeverExpiresExpirationPolicy(),false,true);
-  }
-  assertTrue(this.ticket.isExpired());
 }

@@ -1,24 +1,2 @@
 {
-  final Collection<Cache.Entry<String,Ticket>> serviceTickets;
-  final Collection<Cache.Entry<String,Ticket>> tgtTicketsTickets;
-  final IgniteBiPredicate<String,Ticket> filter=new IgniteBiPredicate<String,Ticket>(){
-    @Override public boolean apply(    final String key,    final Ticket t){
-      return !t.isExpired();
-    }
-  }
-;
-  QueryCursor<Cache.Entry<String,Ticket>> cursor=ticketGrantingTicketsCache.query(new ScanQuery<>(filter));
-  tgtTicketsTickets=cursor.getAll();
-  cursor=serviceTicketsCache.query(new ScanQuery<>(filter));
-  serviceTickets=cursor.getAll();
-  final Collection<Ticket> allTickets=new HashSet<>(serviceTickets.size() + tgtTicketsTickets.size());
-  for (  final Cache.Entry<String,Ticket> entry : serviceTickets) {
-    final Ticket proxiedTicket=getProxiedTicketInstance(entry.getValue());
-    allTickets.add(proxiedTicket);
-  }
-  for (  final Cache.Entry<String,Ticket> entry : tgtTicketsTickets) {
-    final Ticket proxiedTicket=getProxiedTicketInstance(entry.getValue());
-    allTickets.add(proxiedTicket);
-  }
-  return decodeTickets(allTickets);
 }

@@ -6,5 +6,5 @@
   if (StringUtils.isBlank(ticketId)) {
     return ticketId;
   }
-  return CompressionUtils.sha512Hex(ticketId);
+  return DigestUtils.sha512(ticketId);
 }

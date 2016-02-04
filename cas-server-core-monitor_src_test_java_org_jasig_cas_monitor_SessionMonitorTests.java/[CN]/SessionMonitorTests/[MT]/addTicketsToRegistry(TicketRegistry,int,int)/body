@@ -1,12 +1,2 @@
 {
-  TicketGrantingTicketImpl ticket=null;
-  for (int i=0; i < tgtCount; i++) {
-    ticket=new TicketGrantingTicketImpl(GENERATOR.getNewTicketId("TGT"),org.jasig.cas.authentication.TestUtils.getAuthentication(),TEST_EXP_POLICY);
-    registry.addTicket(ticket);
-  }
-  if (ticket != null) {
-    for (int i=0; i < stCount; i++) {
-      registry.addTicket(ticket.grantServiceTicket(GENERATOR.getNewTicketId("ST"),new MockService("junit"),TEST_EXP_POLICY,false,true));
-    }
-  }
 }

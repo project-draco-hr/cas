@@ -1,19 +1,2 @@
 {
-  if (e != null) {
-    final MessageBuilder builder=new MessageBuilder();
-    for (    final Class<? extends Exception> kind : this.errors) {
-      for (      final Class<? extends Exception> handlerError : e.getHandlerErrors().values()) {
-        if (handlerError != null && handlerError.equals(kind)) {
-          final String handlerErrorName=handlerError.getSimpleName();
-          final String messageCode=this.messageBundlePrefix + handlerErrorName;
-          messageContext.addMessage(builder.error().code(messageCode).build());
-          return handlerErrorName;
-        }
-      }
-    }
-  }
-  final String messageCode=this.messageBundlePrefix + UNKNOWN;
-  logger.trace("Unable to translate handler errors of the authentication exception {}. Returning {} by default...",e,messageCode);
-  messageContext.addMessage(new MessageBuilder().error().code(messageCode).build());
-  return UNKNOWN;
 }

@@ -1,5 +1,6 @@
 {
   this.ticket.grantServiceTicket("test",org.jasig.cas.services.TestUtils.getService(),this.expirationPolicy,false,true);
-  Thread.sleep(TIMEOUT - TIMEOUT_BUFFER);
+  expirationPolicy.setTimeToKillInMilliSeconds(TIMEOUT);
+  expirationPolicy.setTimeInBetweenUsesInMilliSeconds(-10);
   assertFalse(this.ticket.isExpired());
 }

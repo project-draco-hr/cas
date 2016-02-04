@@ -1,4 +1,4 @@
 {
-  Thread.sleep(TIMEOUT + 10);
-  assertTrue(this.ticket.isExpired());
+  ticket=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),new TimeoutExpirationPolicy(-100));
+  assertTrue(ticket.isExpired());
 }

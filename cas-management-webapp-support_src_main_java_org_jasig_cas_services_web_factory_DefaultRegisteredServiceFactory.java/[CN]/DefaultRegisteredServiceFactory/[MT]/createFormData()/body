@@ -1,9 +1,2 @@
 {
-  final FormData data=new FormData();
-  if (formDataPopulators != null) {
-    for (    final FormDataPopulator populator : formDataPopulators) {
-      populator.populateFormData(data);
-    }
-  }
-  return data;
 }

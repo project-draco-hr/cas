@@ -1,8 +1,2 @@
 {
-  final List<X509Certificate> certificates=new ArrayList<>();
-  for (  final X509TrustManager trustManager : trustManagers) {
-    final List<X509Certificate> list=Arrays.asList(trustManager.getAcceptedIssuers());
-    certificates.addAll(list);
-  }
-  return certificates.toArray(new X509Certificate[]{});
 }

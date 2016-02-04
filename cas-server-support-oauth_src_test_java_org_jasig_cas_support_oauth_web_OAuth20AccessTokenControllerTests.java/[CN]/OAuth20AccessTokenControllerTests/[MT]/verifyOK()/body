@@ -7,7 +7,7 @@
   final List<String> list=Arrays.asList(VALUE,VALUE);
   map.put(NAME2,list);
   final Principal principal=org.jasig.cas.authentication.TestUtils.getPrincipal(ID,map);
-  final Authentication authentication=new OAuthAuthentication(new DateTime(),principal);
+  final Authentication authentication=new OAuthAuthentication(ZonedDateTime.now(),principal);
   final Service service=new OAuthWebApplicationService("" + registeredService.getId(),registeredService.getServiceId());
   final OAuthCodeImpl code=(OAuthCodeImpl)oAuthCodeFactory.create(service,authentication);
   oAuth20AccessTokenController.getTicketRegistry().addTicket(code);

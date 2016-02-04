@@ -1,8 +1,5 @@
 {
-  Assert.notNull(attributes,"Attributes cannot be null");
   this.attributes.clear();
-  for (  final Map.Entry<String,Object> entry : attributes.entrySet()) {
-    this.attributes.put(entry.getKey(),entry.getValue());
-  }
+  this.attributes.putAll(attributes);
   return this;
 }

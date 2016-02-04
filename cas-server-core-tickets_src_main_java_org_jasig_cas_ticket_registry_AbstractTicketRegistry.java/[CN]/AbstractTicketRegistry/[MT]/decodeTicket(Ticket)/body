@@ -8,7 +8,7 @@
   }
   logger.info("Attempting to decode {}",result);
   final EncodedTicket encodedTicket=(EncodedTicket)result;
-  final Ticket ticket=CompressionUtils.decodeAndSerializeObject(encodedTicket.getEncoded(),this.cipherExecutor,Ticket.class);
+  final Ticket ticket=SerializationUtils.decodeAndSerializeObject(encodedTicket.getEncoded(),this.cipherExecutor,Ticket.class);
   logger.info("Decoded {}",ticket);
   return ticket;
 }

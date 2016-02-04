@@ -1,8 +1,2 @@
 {
-  final List<String> aliases=new ArrayList<>();
-  for (  final X509KeyManager keyManager : keyManagers) {
-    final List<String> list=Arrays.asList(keyManager.getServerAliases(keyType,issuers));
-    aliases.addAll(list);
-  }
-  return aliases.toArray(new String[]{});
 }

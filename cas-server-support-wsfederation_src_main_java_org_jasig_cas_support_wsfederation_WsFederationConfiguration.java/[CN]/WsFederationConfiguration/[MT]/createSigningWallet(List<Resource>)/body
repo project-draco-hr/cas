@@ -1,7 +1,2 @@
 {
-  final List<Credential> signingCerts=new ArrayList<>();
-  for (  final Resource file : signingCertificateFiles) {
-    signingCerts.add(getSigningCredential(file));
-  }
-  this.signingWallet=signingCerts;
 }

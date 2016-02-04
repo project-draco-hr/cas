@@ -13,7 +13,7 @@
   assertEquals(attr.size(),1);
   assertTrue(attr.containsKey("attr3"));
   final byte[] data=SerializationUtils.serialize(policy);
-  final ReturnAllowedAttributeReleasePolicy p2=SerializationUtils.deserialize(data);
+  final ReturnAllowedAttributeReleasePolicy p2=SerializationUtils.deserializeAndCheckObject(data,ReturnAllowedAttributeReleasePolicy.class);
   assertNotNull(p2);
   assertEquals(p2.getAllowedAttributes(),policy.getAllowedAttributes());
   assertEquals(p2.getAttributeFilter(),policy.getAttributeFilter());

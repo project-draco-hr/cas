@@ -14,7 +14,7 @@
   assertEquals(attr.size(),1);
   assertTrue(attr.containsKey("newAttr1"));
   final byte[] data=SerializationUtils.serialize(policy);
-  final ReturnMappedAttributeReleasePolicy p2=SerializationUtils.deserialize(data);
+  final ReturnMappedAttributeReleasePolicy p2=SerializationUtils.deserializeAndCheckObject(data,ReturnMappedAttributeReleasePolicy.class);
   assertNotNull(p2);
   assertEquals(p2.getAllowedAttributes(),policy.getAllowedAttributes());
 }

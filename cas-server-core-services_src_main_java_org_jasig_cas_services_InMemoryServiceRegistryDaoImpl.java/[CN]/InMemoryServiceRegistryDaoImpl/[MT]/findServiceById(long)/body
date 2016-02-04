@@ -1,8 +1,2 @@
 {
-  for (  final RegisteredService r : this.registeredServices) {
-    if (r.getId() == id) {
-      return r;
-    }
-  }
-  return null;
 }

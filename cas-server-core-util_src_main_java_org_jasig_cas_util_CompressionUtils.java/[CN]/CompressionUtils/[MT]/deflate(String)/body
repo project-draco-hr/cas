@@ -7,7 +7,7 @@
     final int resultSize=deflater.deflate(buffer);
     final byte[] output=new byte[resultSize];
     System.arraycopy(buffer,0,output,0,resultSize);
-    return encodeBase64(output);
+    return EncodingUtils.encodeBase64(output);
   }
  catch (  final UnsupportedEncodingException e) {
     throw new RuntimeException("Cannot find encoding:" + UTF8_ENCODING,e);

@@ -1,15 +1,15 @@
 {
-  final DateTime retrievedOn=new DateTime().withZone(DateTimeZone.UTC);
+  final ZonedDateTime retrievedOn=ZonedDateTime.now(ZoneOffset.UTC);
   LOGGER.debug("Retrieved on {}",retrievedOn);
   final WsFederationCredential credential=new WsFederationCredential();
   credential.setRetrievedOn(retrievedOn);
   credential.setId(assertion.getID());
   credential.setIssuer(assertion.getIssuer());
-  credential.setIssuedOn(assertion.getIssueInstant());
+  credential.setIssuedOn(DateTimeUtils.zonedDateTimeOf(assertion.getIssueInstant()));
   final Conditions conditions=assertion.getConditions();
   if (conditions != null) {
-    credential.setNotBefore(conditions.getNotBefore());
-    credential.setNotOnOrAfter(conditions.getNotOnOrAfter());
+    credential.setNotBefore(DateTimeUtils.zonedDateTimeOf(conditions.getNotBefore()));
+    credential.setNotOnOrAfter(DateTimeUtils.zonedDateTimeOf(conditions.getNotOnOrAfter()));
     credential.setAudience(conditions.getAudienceRestrictionConditions().get(0).getAudiences().get(0).getUri());
   }
   if (!assertion.getAuthenticationStatements().isEmpty()) {

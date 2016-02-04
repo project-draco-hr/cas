@@ -3,7 +3,7 @@
   final CredentialMetaData credentialMetaData=new BasicCredentialMetaData(credential);
   final AuthenticationBuilder builder=new DefaultAuthenticationBuilder();
   builder.setPrincipal(this.principalFactory.createPrincipal(USERNAME,principalAttributes));
-  builder.setAuthenticationDate(new DateTime());
+  builder.setAuthenticationDate(ZonedDateTime.now(ZoneOffset.UTC));
   builder.addCredential(credentialMetaData);
   builder.addAttribute(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME,Boolean.TRUE);
   final AuthenticationHandler handler=new MockAuthenticationHandler();

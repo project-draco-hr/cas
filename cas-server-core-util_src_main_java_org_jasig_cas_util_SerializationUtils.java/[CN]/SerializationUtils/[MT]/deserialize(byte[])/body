@@ -1,0 +1,4 @@
+{
+  final ByteArrayInputStream inputStream=new ByteArrayInputStream(inBytes);
+  return deserialize(inputStream);
+}

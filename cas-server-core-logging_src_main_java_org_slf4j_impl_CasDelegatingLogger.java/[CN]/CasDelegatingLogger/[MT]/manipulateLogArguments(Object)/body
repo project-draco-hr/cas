@@ -1,26 +1,2 @@
 {
-  try {
-    if (args == null || args.length == 0) {
-      return args;
-    }
-    final Object[] out=new Object[args.length];
-    for (int i=0; i < args.length; i++) {
-      if (args[i] != null) {
-        final String message=args[i].toString();
-        if (ticketIdPresentInLogMessage(message)) {
-          out[i]=removeTicketId(message);
-        }
- else {
-          out[i]=args[i];
-        }
-      }
- else {
-        out[i]=null;
-      }
-    }
-    return out;
-  }
- catch (  final Exception e) {
-    throw new RuntimeException(e);
-  }
 }

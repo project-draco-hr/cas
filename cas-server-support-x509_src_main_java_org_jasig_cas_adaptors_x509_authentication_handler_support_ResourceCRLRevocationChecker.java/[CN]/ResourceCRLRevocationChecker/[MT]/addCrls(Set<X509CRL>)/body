@@ -1,7 +1,5 @@
 {
-  final Iterator<X509CRL> it=results.iterator();
-  while (it.hasNext()) {
-    final X509CRL entry=it.next();
+  for (  final X509CRL entry : results) {
     addCRL(entry.getIssuerX500Principal(),entry);
   }
 }

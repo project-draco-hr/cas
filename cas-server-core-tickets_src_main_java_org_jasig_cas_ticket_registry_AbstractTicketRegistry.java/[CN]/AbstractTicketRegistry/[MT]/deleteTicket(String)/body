@@ -1,21 +1,2 @@
 {
-  if (ticketId == null) {
-    return false;
-  }
-  final Ticket ticket=getTicket(ticketId);
-  if (ticket == null) {
-    return false;
-  }
-  if (ticket instanceof TicketGrantingTicket) {
-    logger.debug("Removing children of ticket [{}] from the registry.",ticket.getId());
-    final TicketGrantingTicket tgt=(TicketGrantingTicket)ticket;
-    deleteChildren(tgt);
-    final Collection<ProxyGrantingTicket> proxyGrantingTickets=tgt.getProxyGrantingTickets();
-    for (    final ProxyGrantingTicket proxyGrantingTicket : proxyGrantingTickets) {
-      logger.debug("Removing proxy-granting ticket [{}]",proxyGrantingTicket.getId());
-      deleteTicket(proxyGrantingTicket.getId());
-    }
-  }
-  logger.debug("Removing ticket [{}] from the registry.",ticket);
-  return deleteSingleTicket(ticketId);
 }

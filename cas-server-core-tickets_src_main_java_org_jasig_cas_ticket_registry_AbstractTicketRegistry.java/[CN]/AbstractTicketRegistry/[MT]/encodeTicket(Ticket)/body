@@ -7,7 +7,7 @@
     return ticket;
   }
   logger.info("Encoding [{}]",ticket);
-  final byte[] encodedTicketObject=CompressionUtils.serializeAndEncodeObject(this.cipherExecutor,ticket);
+  final byte[] encodedTicketObject=SerializationUtils.serializeAndEncodeObject(this.cipherExecutor,ticket);
   final String encodedTicketId=encodeTicketId(ticket.getId());
   final Ticket encodedTicket=new EncodedTicket(ByteSource.wrap(encodedTicketObject),encodedTicketId);
   logger.info("Created [{}]",encodedTicket);

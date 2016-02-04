@@ -1,11 +1,2 @@
 {
-  return this.centralAuthenticationService.getTickets(new Predicate<Ticket>(){
-    @Override public boolean apply(    @Nullable final Ticket ticket){
-      if (ticket instanceof TicketGrantingTicket) {
-        return !ticket.isExpired();
-      }
-      return false;
-    }
-  }
-);
 }
