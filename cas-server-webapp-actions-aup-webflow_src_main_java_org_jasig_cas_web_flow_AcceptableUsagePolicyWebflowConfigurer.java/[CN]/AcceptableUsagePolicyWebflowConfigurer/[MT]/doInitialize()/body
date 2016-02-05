@@ -5,7 +5,7 @@
   createStateDefaultTransition(actionState,"acceptableUsagePolicyView");
   final ViewState viewState=createViewState(flow,"acceptableUsagePolicyView","casAcceptableUsagePolicyView");
   createTransitionForState(viewState,CasWebflowConstants.TRANSITION_ID_SUBMIT,"aupAcceptedAction");
-  createStateDefaultTransition(actionState,CasWebflowConstants.STATE_ID_GENERATE_LOGIN_TICKET);
+  createStateDefaultTransition(actionState,CasWebflowConstants.STATE_ID_INIT_LOGIN_FORM);
   final ActionState aupAcceptedAction=createActionState(flow,"aupAcceptedAction",createEvaluateAction("acceptableUsagePolicyFormAction.submit(flowRequestContext, flowScope.credential, messageContext)"));
   aupAcceptedAction.getTransitionSet().add(createTransition(CasWebflowConstants.TRANSITION_ID_SUCCESS,CasWebflowConstants.TRANSITION_ID_SEND_TICKET_GRANTING_TICKET));
   aupAcceptedAction.getTransitionSet().add(createTransition(CasWebflowConstants.TRANSITION_ID_ERROR,getStartState(flow).getId()));

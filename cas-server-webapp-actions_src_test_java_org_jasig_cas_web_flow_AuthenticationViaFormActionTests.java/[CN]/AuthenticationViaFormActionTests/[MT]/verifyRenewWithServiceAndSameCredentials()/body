@@ -6,8 +6,6 @@
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockRequestContext context=new MockRequestContext();
   WebUtils.putTicketGrantingTicketInScopes(context,ticketGrantingTicket);
-  WebUtils.putLoginTicket(context,"LOGIN");
-  request.addParameter("lt","LOGIN");
   request.addParameter("renew","true");
   request.addParameter("service",TestUtils.getService(TestUtils.CONST_TEST_URL).getId());
   request.addParameter("username","test");

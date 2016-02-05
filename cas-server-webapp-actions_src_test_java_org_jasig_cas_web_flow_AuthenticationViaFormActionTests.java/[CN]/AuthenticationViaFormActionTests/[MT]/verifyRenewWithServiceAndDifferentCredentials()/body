@@ -4,8 +4,6 @@
   final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockRequestContext context=new MockRequestContext();
-  WebUtils.putLoginTicket(context,"LOGIN");
-  request.addParameter("lt","LOGIN");
   WebUtils.putTicketGrantingTicketInScopes(context,ticketGrantingTicket);
   request.addParameter("renew","true");
   request.addParameter("service",TestUtils.getService("test").getId());

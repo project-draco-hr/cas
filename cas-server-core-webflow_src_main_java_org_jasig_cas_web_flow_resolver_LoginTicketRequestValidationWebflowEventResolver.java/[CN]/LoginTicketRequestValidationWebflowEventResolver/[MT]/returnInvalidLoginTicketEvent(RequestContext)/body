@@ -1,6 +1,0 @@
-{
-  final String loginTicketFromRequest=WebUtils.getLoginTicketFromRequest(context);
-  logger.warn("Invalid login ticket [{}]",loginTicketFromRequest);
-  context.getMessageContext().addMessage(new MessageBuilder().error().code("error.invalid.loginticket").build());
-  return newEvent(CasWebflowConstants.TRANSITION_ID_ERROR);
-}

@@ -1,6 +1,0 @@
-{
-  final String loginTicketFromFlowScope=WebUtils.getLoginTicketFromFlowScope(context);
-  final String loginTicketFromRequest=WebUtils.getLoginTicketFromRequest(context);
-  logger.trace("Comparing login ticket in the flow scope [{}] with login ticket in the request [{}]",loginTicketFromFlowScope,loginTicketFromRequest);
-  return StringUtils.equals(loginTicketFromFlowScope,loginTicketFromRequest);
-}

@@ -1,8 +1,4 @@
 {
-  final Event event=this.loginTicketRequestValidationWebflowEventResolver.resolveSingle(requestContext);
-  if (event != null) {
-    return event;
-  }
   final Event serviceTicketEvent=this.serviceTicketRequestWebflowEventResolver.resolveSingle(requestContext);
   if (serviceTicketEvent != null) {
     return serviceTicketEvent;

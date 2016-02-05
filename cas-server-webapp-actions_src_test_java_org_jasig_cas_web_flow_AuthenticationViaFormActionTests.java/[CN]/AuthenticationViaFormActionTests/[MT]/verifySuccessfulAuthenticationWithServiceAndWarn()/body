@@ -2,8 +2,6 @@
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockHttpServletResponse response=new MockHttpServletResponse();
   final MockRequestContext context=new MockRequestContext();
-  WebUtils.putLoginTicket(context,"LOGIN");
-  request.addParameter("lt","LOGIN");
   request.addParameter("username","test");
   request.addParameter("password","test");
   request.addParameter("warn","true");
