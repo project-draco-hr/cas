@@ -1,20 +1,2 @@
 {
-  final Map<String,Status> results=new LinkedHashMap<>(this.monitors.size());
-  StatusCode code=StatusCode.UNKNOWN;
-  Status result;
-  for (  final Monitor monitor : this.monitors) {
-    try {
-      result=monitor.observe();
-      final StatusCode resCode=result.getCode();
-      if (resCode.value() > code.value()) {
-        code=resCode;
-      }
-    }
- catch (    final Exception e) {
-      code=StatusCode.ERROR;
-      result=new Status(code,e.getClass().getSimpleName() + ": " + e.getMessage());
-    }
-    results.put(monitor.getName(),result);
-  }
-  return new HealthStatus(code,results);
 }

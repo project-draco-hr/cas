@@ -1,10 +1,2 @@
 {
-  return new TransactionTemplate(txManager).execute(new TransactionCallback<String>(){
-    @Override public String doInTransaction(    final TransactionStatus status){
-      final ServiceTicket st=newST((TicketGrantingTicket)jpaTicketRegistry.getTicket(parentTgtId));
-      jpaTicketRegistry.addTicket(st);
-      return st.getId();
-    }
-  }
-);
 }

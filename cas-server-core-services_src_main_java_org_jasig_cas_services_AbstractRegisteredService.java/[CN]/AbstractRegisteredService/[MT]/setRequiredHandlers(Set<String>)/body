@@ -3,7 +3,5 @@
   if (handlers == null) {
     return;
   }
-  for (  final String handler : handlers) {
-    getRequiredHandlers().add(handler);
-  }
+  getRequiredHandlers().addAll(handlers);
 }

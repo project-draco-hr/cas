@@ -1,0 +1,3 @@
+{
+  return timestampOf(time.toInstant());
+}

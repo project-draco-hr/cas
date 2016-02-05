@@ -1,9 +1,2 @@
 {
-  for (  final AuthenticationMetaDataPopulator populator : this.authenticationMetaDataPopulators) {
-    for (    final Credential credential : credentials) {
-      if (populator.supports(credential)) {
-        populator.populateAttributes(builder,credential);
-      }
-    }
-  }
 }

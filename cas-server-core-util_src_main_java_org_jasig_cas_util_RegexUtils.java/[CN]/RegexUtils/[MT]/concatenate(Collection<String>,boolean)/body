@@ -1,9 +1,5 @@
 {
-  final StringBuilder builder=new StringBuilder(requiredValues.size());
-  for (  final String requiredValue : requiredValues) {
-    builder.append('(').append(requiredValue).append(")|");
-  }
-  final String pattern=StringUtils.removeEnd(builder.toString(),"|");
+  final String pattern=requiredValues.stream().collect(Collectors.joining("|","(",")"));
   if (isValidRegex(pattern)) {
     return Pattern.compile(pattern,caseInsensitive ? Pattern.CASE_INSENSITIVE : 0);
   }

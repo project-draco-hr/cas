@@ -1,0 +1,5 @@
+{
+  this.revocationDate=ZonedDateTime.from(revoked);
+  this.serial=serial;
+  this.reason=reason;
+}

@@ -1,23 +1,2 @@
 {
-  final Collection<Ticket> tickets=new ArrayList<>();
-  for (int i=0; i < TICKETS_IN_REGISTRY; i++) {
-    final TicketGrantingTicket ticketGrantingTicket=new TicketGrantingTicketImpl("TEST" + i,org.jasig.cas.authentication.TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
-    final ServiceTicket st=ticketGrantingTicket.grantServiceTicket("tests" + i,org.jasig.cas.services.TestUtils.getService(),new NeverExpiresExpirationPolicy(),false,true);
-    tickets.add(ticketGrantingTicket);
-    tickets.add(st);
-    this.ticketRegistry.addTicket(ticketGrantingTicket);
-    this.ticketRegistry.addTicket(st);
-  }
-  try {
-    final Collection<Ticket> ticketRegistryTickets=this.ticketRegistry.getTickets();
-    assertEquals("The size of the registry is not the same as the collection.",ticketRegistryTickets.size(),tickets.size());
-    for (    final Ticket ticket : tickets) {
-      if (!ticketRegistryTickets.contains(ticket)) {
-        fail("Ticket was added to registry but was not found in retrieval of collection of all tickets.");
-      }
-    }
-  }
- catch (  final Exception e) {
-    fail("Caught an exception. But no exception should have been thrown.");
-  }
 }

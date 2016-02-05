@@ -3,22 +3,22 @@
     logger.warn("Audience is invalid: {}",this.getAudience());
     return false;
   }
-  if (!this.getIssuer().equalsIgnoreCase(expectedIssuer)) {
-    logger.warn("Issuer is invalid: {}",this.getIssuer());
+  if (!this.issuer.equalsIgnoreCase(expectedIssuer)) {
+    logger.warn("Issuer is invalid: {}",this.issuer);
     return false;
   }
-  final DateTime retrievedOnTimeDrift=this.getRetrievedOn().minusMillis(timeDrift);
-  if (this.getIssuedOn().isBefore(retrievedOnTimeDrift)) {
-    logger.warn("Ticket is issued before the allowed drift. Issued on {} while allowed drift is {}",this.getIssuedOn(),retrievedOnTimeDrift);
+  final ZonedDateTime retrievedOnTimeDrift=this.getRetrievedOn().minus(timeDrift,ChronoUnit.MILLIS);
+  if (this.issuedOn.isBefore(retrievedOnTimeDrift)) {
+    logger.warn("Ticket is issued before the allowed drift. Issued on {} while allowed drift is {}",this.issuedOn,retrievedOnTimeDrift);
     return false;
   }
-  final DateTime retrievedOnTimeAfterDrift=this.getRetrievedOn().plusMillis(timeDrift);
-  if (this.getIssuedOn().isAfter(retrievedOnTimeAfterDrift)) {
-    logger.warn("Ticket is issued after the allowed drift. Issued on {} while allowed drift is {}",this.getIssuedOn(),retrievedOnTimeAfterDrift);
+  final ZonedDateTime retrievedOnTimeAfterDrift=this.retrievedOn.plus(timeDrift,ChronoUnit.MILLIS);
+  if (this.issuedOn.isAfter(retrievedOnTimeAfterDrift)) {
+    logger.warn("Ticket is issued after the allowed drift. Issued on {} while allowed drift is {}",this.issuedOn,retrievedOnTimeAfterDrift);
     return false;
   }
-  if (this.getRetrievedOn().isAfter(this.getNotOnOrAfter())) {
-    logger.warn("Ticket is too late because it's retrieved on {} which is after {}.",this.getRetrievedOn(),this.getNotOnOrAfter());
+  if (this.retrievedOn.isAfter(this.notOnOrAfter)) {
+    logger.warn("Ticket is too late because it's retrieved on {} which is after {}.",this.retrievedOn,this.notOnOrAfter);
     return false;
   }
   logger.debug("WsFed Credential is validated for {} and {}.",expectedAudience,expectedIssuer);

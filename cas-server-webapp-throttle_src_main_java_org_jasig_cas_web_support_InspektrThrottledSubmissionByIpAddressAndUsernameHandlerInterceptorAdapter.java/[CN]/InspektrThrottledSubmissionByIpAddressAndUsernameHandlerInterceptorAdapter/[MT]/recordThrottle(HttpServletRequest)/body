@@ -10,7 +10,7 @@
       }
     }
 ;
-    final AuditActionContext context=new AuditActionContext(userToUse,userToUse,INSPEKTR_ACTION,this.applicationCode,new java.util.Date(),clientInfo.getClientIpAddress(),clientInfo.getServerIpAddress(),auditPointRuntimeInfo);
+    final AuditActionContext context=new AuditActionContext(userToUse,userToUse,INSPEKTR_ACTION,this.applicationCode,DateTimeUtils.dateOf(ZonedDateTime.now(ZoneOffset.UTC)),clientInfo.getClientIpAddress(),clientInfo.getServerIpAddress(),auditPointRuntimeInfo);
     this.auditTrailManager.record(context);
   }
  else {

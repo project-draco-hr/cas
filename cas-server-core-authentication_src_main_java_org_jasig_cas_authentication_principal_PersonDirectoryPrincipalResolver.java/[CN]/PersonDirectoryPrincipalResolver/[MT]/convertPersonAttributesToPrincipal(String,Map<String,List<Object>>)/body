@@ -1,22 +1,2 @@
 {
-  final Map<String,Object> convertedAttributes=new HashMap<>();
-  String principalId=extractedPrincipalId;
-  for (  final Map.Entry<String,List<Object>> entry : attributes.entrySet()) {
-    final String key=entry.getKey();
-    logger.debug("Found attribute [{}]",key);
-    final List<Object> values=entry.getValue();
-    if (StringUtils.isNotBlank(this.principalAttributeName) && key.equalsIgnoreCase(this.principalAttributeName)) {
-      if (values.isEmpty()) {
-        logger.debug("{} is empty, using {} for principal",this.principalAttributeName,extractedPrincipalId);
-      }
- else {
-        principalId=values.get(0).toString();
-        logger.debug("Found principal attribute value {}; removing {} from attribute map.",extractedPrincipalId,this.principalAttributeName);
-      }
-    }
- else {
-      convertedAttributes.put(key,values.size() == 1 ? values.get(0) : values);
-    }
-  }
-  return new Pair<>(principalId,convertedAttributes);
 }

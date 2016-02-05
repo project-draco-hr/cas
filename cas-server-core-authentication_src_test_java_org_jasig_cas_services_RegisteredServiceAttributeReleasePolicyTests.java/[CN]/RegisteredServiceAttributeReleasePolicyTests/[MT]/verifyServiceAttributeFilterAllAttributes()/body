@@ -10,6 +10,6 @@
   final Map<String,Object> attr=policy.getAttributes(p);
   assertEquals(attr.size(),map.size());
   final byte[] data=SerializationUtils.serialize(policy);
-  final ReturnAllAttributeReleasePolicy p2=SerializationUtils.deserialize(data);
+  final ReturnAllAttributeReleasePolicy p2=SerializationUtils.deserializeAndCheckObject(data,ReturnAllAttributeReleasePolicy.class);
   assertNotNull(p2);
 }

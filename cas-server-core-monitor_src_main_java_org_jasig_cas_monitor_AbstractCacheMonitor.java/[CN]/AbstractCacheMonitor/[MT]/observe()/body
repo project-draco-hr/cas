@@ -1,22 +1,2 @@
 {
-  CacheStatus status;
-  try {
-    final CacheStatistics[] statistics=getStatistics();
-    if (statistics == null || statistics.length == 0) {
-      return new CacheStatus(StatusCode.ERROR,"Cache statistics not available.");
-    }
-    StatusCode overall=StatusCode.OK;
-    StatusCode code;
-    for (    final CacheStatistics stats : statistics) {
-      code=status(stats);
-      if (code.value() > overall.value()) {
-        overall=code;
-      }
-    }
-    status=new CacheStatus(overall,null,statistics);
-  }
- catch (  final Exception e) {
-    status=new CacheStatus(e);
-  }
-  return status;
 }

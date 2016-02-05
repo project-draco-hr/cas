@@ -1,27 +1,2 @@
 {
-  final Map<Long,RegisteredService> temp=new ConcurrentHashMap<>();
-  int errorCount=0;
-  final Collection<File> c=FileUtils.listFiles(this.serviceRegistryDirectory.toFile(),new String[]{FILE_EXTENSION},true);
-  for (  final File file : c) {
-    if (file.length() > 0) {
-      final RegisteredService service=loadRegisteredServiceFromFile(file);
-      if (service == null) {
-        LOGGER.warn("Could not load service definition from file {}",file);
-        errorCount++;
-      }
- else {
-        if (temp.containsKey(service.getId())) {
-          LOGGER.warn("Found a service definition [{}] with a duplicate id [{}]. " + "This will overwrite previous service definitions and is likely a " + "configuration problem. Make sure all services have a unique id and try again.",service.getServiceId(),service.getId());
-        }
-        temp.put(service.getId(),service);
-      }
-    }
-  }
-  if (errorCount == 0) {
-    this.serviceMap=temp;
-  }
- else {
-    LOGGER.warn("{} errors encountered when loading service definitions. New definitions are not loaded until errors are " + "corrected",errorCount);
-  }
-  return new ArrayList<>(this.serviceMap.values());
 }

@@ -9,13 +9,11 @@
       logger.debug("Located entry [{}]. Retrieving first attribute [{}]",entry,attribute);
       return fetchX509CRLFromAttribute(attribute);
     }
- else {
-      logger.debug("Failed to execute the search [{}]",result);
-    }
+    logger.debug("Failed to execute the search [{}]",result);
     throw new CertificateException("Failed to establish a connection ldap and search.");
   }
  catch (  final LdapException e) {
     logger.error(e.getMessage(),e);
-    throw new CertificateException(e);
+    throw new CertificateException(e.getMessage());
   }
 }

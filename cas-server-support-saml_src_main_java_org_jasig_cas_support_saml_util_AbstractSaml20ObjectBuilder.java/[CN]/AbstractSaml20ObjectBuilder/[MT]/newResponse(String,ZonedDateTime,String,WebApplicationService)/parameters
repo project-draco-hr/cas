@@ -1,0 +1,4 @@
+String id
+ZonedDateTime issueInstant
+String recipient
+WebApplicationService service

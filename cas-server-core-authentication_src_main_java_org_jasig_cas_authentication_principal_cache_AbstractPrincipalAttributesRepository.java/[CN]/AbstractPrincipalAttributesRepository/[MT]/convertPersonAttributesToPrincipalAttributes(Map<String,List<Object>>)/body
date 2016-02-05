@@ -1,8 +1,2 @@
 {
-  final Map<String,Object> convertedAttributes=new HashMap<>();
-  for (  final Map.Entry<String,List<Object>> entry : attributes.entrySet()) {
-    final List<Object> values=entry.getValue();
-    convertedAttributes.put(entry.getKey(),values.size() == 1 ? values.get(0) : values);
-  }
-  return convertedAttributes;
 }

@@ -1,6 +1,6 @@
 {
   this.authentication=mock(Authentication.class);
-  when(this.authentication.getAuthenticationDate()).thenReturn(DateTime.now());
+  when(this.authentication.getAuthenticationDate()).thenReturn(ZonedDateTime.now(ZoneOffset.UTC));
   final CredentialMetaData metadata=new BasicCredentialMetaData(TestUtils.getCredentialsWithSameUsernameAndPassword("principal"));
   final Map<String,HandlerResult> successes=new HashMap<>();
   successes.put("handler1",new DefaultHandlerResult(mock(AuthenticationHandler.class),metadata));

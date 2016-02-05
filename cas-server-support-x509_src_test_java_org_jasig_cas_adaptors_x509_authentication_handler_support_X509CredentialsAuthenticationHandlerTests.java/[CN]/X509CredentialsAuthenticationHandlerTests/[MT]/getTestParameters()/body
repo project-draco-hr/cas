@@ -55,7 +55,7 @@
   checker.init();
   handler.setRevocationChecker(checker);
   handler.setTrustedIssuerDnPattern(".*");
-  params.add(new Object[]{handler,new X509CertificateCredential(createCertificates("user-revoked.crt")),true,new RevokedCertificateException(null,null)});
+  params.add(new Object[]{handler,new X509CertificateCredential(createCertificates("user-revoked.crt")),true,new RevokedCertificateException(ZonedDateTime.now(ZoneOffset.UTC),null)});
   final ThresholdExpiredCRLRevocationPolicy zeroThresholdPolicy=new ThresholdExpiredCRLRevocationPolicy();
   zeroThresholdPolicy.setThreshold(0);
   handler=new X509CredentialsAuthenticationHandler();
@@ -64,6 +64,6 @@
   checker.setExpiredCRLPolicy(zeroThresholdPolicy);
   checker.init();
   handler.setRevocationChecker(checker);
-  params.add(new Object[]{handler,new X509CertificateCredential(createCertificates("user-valid.crt")),true,new ExpiredCRLException(null,null)});
+  params.add(new Object[]{handler,new X509CertificateCredential(createCertificates("user-valid.crt")),true,new ExpiredCRLException(null,ZonedDateTime.now(ZoneOffset.UTC))});
   return params;
 }

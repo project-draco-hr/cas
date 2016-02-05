@@ -1,7 +1,2 @@
 {
-  final DefaultMapper inputMapper=new DefaultMapper();
-  for (  final DefaultMapping mapping : mappings) {
-    inputMapper.addMapping(mapping);
-  }
-  return inputMapper;
 }

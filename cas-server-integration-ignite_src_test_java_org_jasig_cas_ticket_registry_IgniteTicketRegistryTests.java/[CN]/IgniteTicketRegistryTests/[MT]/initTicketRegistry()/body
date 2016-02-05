@@ -1,6 +1,2 @@
 {
-  final Iterator<Ticket> it=this.ticketRegistry.getTickets().iterator();
-  while (it.hasNext()) {
-    this.ticketRegistry.deleteTicket(it.next().getId());
-  }
 }

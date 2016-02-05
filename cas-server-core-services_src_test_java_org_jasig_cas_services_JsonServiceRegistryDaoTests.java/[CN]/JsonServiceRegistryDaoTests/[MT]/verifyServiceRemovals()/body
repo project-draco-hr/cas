@@ -1,18 +1,2 @@
 {
-  final List<RegisteredService> list=new ArrayList<>(5);
-  for (int i=1; i < 5; i++) {
-    final RegexRegisteredService r=new RegexRegisteredService();
-    r.setServiceId("^https://.+");
-    r.setName("testServiceType");
-    r.setTheme("testtheme");
-    r.setEvaluationOrder(1000);
-    r.setId(i * 100);
-    list.add(this.dao.save(r));
-  }
-  for (  final RegisteredService r2 : list) {
-    Thread.sleep(500);
-    this.dao.delete(r2);
-    Thread.sleep(2000);
-    assertNull(this.dao.findServiceById(r2.getId()));
-  }
 }

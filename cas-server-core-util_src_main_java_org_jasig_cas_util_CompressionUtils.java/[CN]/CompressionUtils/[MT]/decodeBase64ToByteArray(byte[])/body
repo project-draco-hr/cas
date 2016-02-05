@@ -1,9 +1,0 @@
-{
-  try {
-    return Base64.decodeBase64(data);
-  }
- catch (  final Exception e) {
-    LOGGER.error("Base64 decoding failed",e);
-    return null;
-  }
-}

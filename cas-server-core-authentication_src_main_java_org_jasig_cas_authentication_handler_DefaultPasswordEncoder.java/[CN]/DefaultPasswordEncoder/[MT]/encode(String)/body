@@ -7,17 +7,11 @@
     return null;
   }
   try {
-    final MessageDigest messageDigest=MessageDigest.getInstance(this.encodingAlgorithm);
     final String encodingCharToUse=StringUtils.isNotBlank(this.characterEncoding) ? this.characterEncoding : Charset.defaultCharset().name();
     LOGGER.warn("Using {} as the character encoding algorithm to update the digest",encodingCharToUse);
-    messageDigest.update(password.getBytes(encodingCharToUse));
-    final byte[] digest=messageDigest.digest();
-    return getFormattedText(digest);
+    return DigestUtils.digest(this.encodingAlgorithm,password.getBytes(encodingCharToUse));
   }
- catch (  final NoSuchAlgorithmException e) {
-    throw new SecurityException(e);
-  }
-catch (  final UnsupportedEncodingException e) {
+ catch (  final UnsupportedEncodingException e) {
     throw new RuntimeException(e);
   }
 }

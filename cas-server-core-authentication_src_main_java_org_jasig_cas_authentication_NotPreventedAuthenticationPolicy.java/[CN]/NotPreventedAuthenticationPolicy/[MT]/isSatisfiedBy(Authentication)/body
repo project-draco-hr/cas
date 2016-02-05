@@ -1,8 +1,2 @@
 {
-  for (  final String handler : authentication.getFailures().keySet()) {
-    if (authentication.getFailures().get(handler).isAssignableFrom(PreventedException.class)) {
-      return false;
-    }
-  }
-  return super.isSatisfiedBy(authentication);
 }

@@ -8,7 +8,7 @@
     if (verified) {
       final String payload=jws.getPayload();
       logger.debug("Successfully decoded value. Result in Base64-encoding is [{}]",payload);
-      return CompressionUtils.decodeBase64(payload);
+      return EncodingUtils.decodeBase64(payload);
     }
     return null;
   }

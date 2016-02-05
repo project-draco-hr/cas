@@ -1,0 +1,8 @@
+{
+  final Assertion assertion=newSamlObject(Assertion.class);
+  assertion.setID(id);
+  assertion.setIssueInstant(DateTimeUtils.dateTimeOf(issuedAt));
+  assertion.setIssuer(newIssuer(issuer));
+  assertion.getStatements().addAll(authnStatement);
+  return assertion;
+}

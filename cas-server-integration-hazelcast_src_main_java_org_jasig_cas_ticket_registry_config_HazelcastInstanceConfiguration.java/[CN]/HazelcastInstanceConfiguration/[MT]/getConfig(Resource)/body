@@ -1,5 +1,5 @@
 {
-  Config config;
+  final Config config;
   if (configLocation.exists()) {
     final URL configUrl=configLocation.getURL();
     config=new XmlConfigBuilder(configUrl).build();

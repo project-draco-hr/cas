@@ -1,3 +1,3 @@
 {
-  return other instanceof MockTicketGrantingTicket && ((MockTicketGrantingTicket)other).getId().equals(this.id) && ((MockTicketGrantingTicket)other).getCountOfUses() == this.usageCount && ((MockTicketGrantingTicket)other).getCreationTime() == this.creationDate.getTime() && ((MockTicketGrantingTicket)other).getAuthentication().equals(this.authentication);
+  return other instanceof MockTicketGrantingTicket && ((MockTicketGrantingTicket)other).getId().equals(this.id) && ((MockTicketGrantingTicket)other).getCountOfUses() == this.usageCount && ((MockTicketGrantingTicket)other).getCreationTime().equals(this.creationDate) && ((MockTicketGrantingTicket)other).getAuthentication().equals(this.authentication);
 }

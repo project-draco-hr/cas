@@ -1,5 +1,5 @@
 {
-  final DateTime currentDateTime=DateTime.now();
+  final ZonedDateTime currentDateTime=ZonedDateTime.now(ZoneOffset.UTC);
   final Conditions conditions=newConditions(currentDateTime,currentDateTime.plusSeconds(this.skewAllowance),adaptor.getEntityId());
   return conditions;
 }

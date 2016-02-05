@@ -1,26 +1,2 @@
 {
-  final FilenameFilter filter=new FilenameFilter(){
-    @Override public boolean accept(    final File dir,    final String name){
-      return name.endsWith("groovy");
-    }
-  }
-;
-  final ClassLoader thisClassLoader=this.getClass().getClassLoader();
-  try (final GroovyClassLoader loader=new GroovyClassLoader(thisClassLoader)){
-    final File[] files=this.scriptsLocation.getFile().listFiles(filter);
-    for (    final File file : files) {
-      try {
-        final Class c=loader.parseClass(file);
-        final String fileNameWithOutExt=FilenameUtils.removeExtension(file.getName());
-        binding.setVariable(fileNameWithOutExt,c.newInstance());
-        logger.debug("Add custom groovy script [{}] to the binding",fileNameWithOutExt);
-      }
- catch (      final Exception e) {
-        logger.error(e.getMessage(),e);
-      }
-    }
-  }
- catch (  final Exception e) {
-    logger.error(e.getMessage(),e);
-  }
 }
