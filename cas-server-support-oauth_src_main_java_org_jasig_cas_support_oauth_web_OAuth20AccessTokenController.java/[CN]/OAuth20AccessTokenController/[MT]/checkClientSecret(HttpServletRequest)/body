@@ -1,7 +1,12 @@
 {
-  final UsernamePasswordCredentials credential=getCredentials(request);
-  final String clientId=credential.getUsername();
-  final String clientSecret=credential.getPassword();
+  final Optional<UsernamePasswordCredentials> opCredentials=getCredentials(request);
+  if (!opCredentials.isPresent()) {
+    logger.error("Missing credentials");
+    return false;
+  }
+  final UsernamePasswordCredentials credentials=opCredentials.get();
+  final String clientId=credentials.getUsername();
+  final String clientSecret=credentials.getPassword();
   final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
   logger.debug("Found: {} for: {} in secret check",service,clientId);
   if (!StringUtils.equals(service.getClientSecret(),clientSecret)) {

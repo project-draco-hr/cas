@@ -13,10 +13,5 @@
       logger.error("Cannot get clientId / secret from header",e);
     }
   }
-  if (credentials != null) {
-    return credentials;
-  }
- else {
-    return new UsernamePasswordCredentials(null,null,null);
-  }
+  return Optional.ofNullable(credentials);
 }

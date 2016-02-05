@@ -1,10 +1,17 @@
 {
-  final UsernamePasswordCredentials credential=getCredentials(request);
-  if (StringUtils.isBlank(credential.getUsername())) {
+  final Optional<UsernamePasswordCredentials> opCredentials=getCredentials(request);
+  if (!opCredentials.isPresent()) {
+    logger.error("Missing credentials");
+    return false;
+  }
+  final UsernamePasswordCredentials credentials=opCredentials.get();
+  final String clientId=credentials.getUsername();
+  final String clientSecret=credentials.getPassword();
+  if (StringUtils.isBlank(credentials.getUsername())) {
     logger.error("Missing clientId");
     return false;
   }
- else   if (StringUtils.isBlank(credential.getPassword())) {
+ else   if (StringUtils.isBlank(credentials.getPassword())) {
     logger.error("Missing secret");
     return false;
   }
