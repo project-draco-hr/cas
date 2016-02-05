@@ -9,7 +9,7 @@
   mockRequest.setScheme(CAS_SCHEME);
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   final OAuthRegisteredService service=getRegisteredService(REDIRECT_URI,SERVICE_NAME);
-  service.setBypassApprovalPrompt(false);
+  service.setBypassApprovalPrompt(true);
   oAuth20AuthorizeController.getServicesManager().save(service);
   final CasProfile profile=new CasProfile();
   profile.setId(ID);
@@ -20,8 +20,17 @@
   mockRequest.setSession(session);
   session.putValue(Pac4jConstants.USER_PROFILE,profile);
   final ModelAndView modelAndView=oAuth20AuthorizeController.handleRequest(mockRequest,mockResponse);
-  assertEquals(OAuthConstants.CONFIRM_VIEW,modelAndView.getViewName());
-  final Map<String,Object> model=modelAndView.getModel();
-  assertEquals(CommonHelper.addParameter(AUTHORIZE_URL,OAuthConstants.BYPASS_APPROVAL_PROMPT,"true"),model.get("callbackUrl"));
-  assertEquals(SERVICE_NAME,model.get("serviceName"));
+  final View view=modelAndView.getView();
+  assertTrue(view instanceof RedirectView);
+  final RedirectView redirectView=(RedirectView)view;
+  final String redirectUrl=redirectView.getUrl();
+  assertTrue(redirectUrl.startsWith(REDIRECT_URI + "?code=OC-"));
+  final String code=StringUtils.substringAfter(redirectUrl,"?code=");
+  final OAuthCode oAuthCode=(OAuthCode)oAuth20AuthorizeController.getTicketRegistry().getTicket(code);
+  assertNotNull(oAuthCode);
+  final Principal principal=oAuthCode.getAuthentication().getPrincipal();
+  assertEquals(ID,principal.getId());
+  final Map<String,Object> principalAttributes=principal.getAttributes();
+  assertEquals(1,principalAttributes.size());
+  assertEquals(FIRST_NAME,principalAttributes.get(FIRST_NAME_ATTRIBUTE));
 }

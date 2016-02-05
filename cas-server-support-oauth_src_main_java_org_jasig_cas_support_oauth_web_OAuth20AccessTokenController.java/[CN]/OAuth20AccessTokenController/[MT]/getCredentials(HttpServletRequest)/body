@@ -1,0 +1,17 @@
+{
+  final String id=request.getParameter(OAuthConstants.CLIENT_ID);
+  final String secret=request.getParameter(OAuthConstants.CLIENT_SECRET);
+  UsernamePasswordCredentials credentials=null;
+  if (StringUtils.isNotBlank(id) && StringUtils.isNotBlank(secret)) {
+    credentials=new UsernamePasswordCredentials(id,secret,null);
+  }
+ else {
+    try {
+      credentials=basicAuthExtractor.extract(new J2EContext(request,null));
+    }
+ catch (    final TechnicalException e) {
+      logger.error("Cannot get clientId / secret from header",e);
+    }
+  }
+  return Optional.ofNullable(credentials);
+}
