@@ -6,7 +6,7 @@
     @Nullable @Override public String apply(    @Nullable final String input){
       try {
         if (StringUtils.isNotBlank(input)) {
-          final String metadataLocation=service.getMetadataLocation().replace("{0}",URLEncoder.encode(input,"UTF-8"));
+          final String metadataLocation=service.getMetadataLocation().replace("{0}",EncodingUtils.urlEncode(input));
           logger.info("Constructed dynamic metadata query [{}] for [{}]",metadataLocation,service.getName());
           return metadataLocation;
         }

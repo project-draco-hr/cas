@@ -1,0 +1,9 @@
+{
+  final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.AUTHORIZE_URL);
+  mockRequest.setParameter(OAuthConstants.CLIENT_ID,CLIENT_ID);
+  mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
+  mockRequest.setParameter(OAuthConstants.RESPONSE_TYPE,"badvalue");
+  final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
+  final ModelAndView modelAndView=oAuth20AuthorizeController.handleRequest(mockRequest,mockResponse);
+  assertEquals(OAuthConstants.ERROR_VIEW,modelAndView.getViewName());
+}
