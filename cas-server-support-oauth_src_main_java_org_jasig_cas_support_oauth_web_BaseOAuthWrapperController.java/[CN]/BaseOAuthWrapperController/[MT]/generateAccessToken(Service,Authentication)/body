@@ -1,0 +1,5 @@
+{
+  final AccessToken accessToken=accessTokenFactory.create(service,authentication);
+  ticketRegistry.addTicket(accessToken);
+  return accessToken;
+}

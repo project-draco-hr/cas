@@ -3,6 +3,7 @@
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.AUTHORIZE_URL);
   mockRequest.setParameter(OAuthConstants.CLIENT_ID,CLIENT_ID);
   mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
+  mockRequest.setParameter(OAuthConstants.RESPONSE_TYPE,OAuthResponseType.TOKEN.name().toLowerCase());
   mockRequest.setServerName(CAS_SERVER);
   mockRequest.setServerPort(CAS_PORT);
   mockRequest.setScheme(CAS_SCHEME);
@@ -24,11 +25,12 @@
   assertTrue(view instanceof RedirectView);
   final RedirectView redirectView=(RedirectView)view;
   final String redirectUrl=redirectView.getUrl();
-  assertTrue(redirectUrl.startsWith(REDIRECT_URI + "?code=OC-"));
-  final String code=StringUtils.substringBefore(StringUtils.substringAfter(redirectUrl,"?code="),"&state=");
-  final OAuthCode oAuthCode=(OAuthCode)oAuth20AuthorizeController.getTicketRegistry().getTicket(code);
-  assertNotNull(oAuthCode);
-  final Principal principal=oAuthCode.getAuthentication().getPrincipal();
+  assertTrue(redirectUrl.startsWith(REDIRECT_URI + "#access_token="));
+  assertTrue(redirectUrl.contains("&" + OAuthConstants.STATE + "="+ STATE));
+  final String code=StringUtils.substringBetween(redirectUrl,"#access_token=","&token_type=bearer");
+  final AccessToken accessToken=(AccessToken)oAuth20AuthorizeController.getTicketRegistry().getTicket(code);
+  assertNotNull(accessToken);
+  final Principal principal=accessToken.getAuthentication().getPrincipal();
   assertEquals(ID,principal.getId());
   final Map<String,Object> principalAttributes=principal.getAttributes();
   assertEquals(1,principalAttributes.size());

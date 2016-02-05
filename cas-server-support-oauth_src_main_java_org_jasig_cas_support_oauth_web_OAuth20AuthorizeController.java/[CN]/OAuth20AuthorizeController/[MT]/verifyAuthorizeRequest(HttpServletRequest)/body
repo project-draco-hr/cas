@@ -1,3 +1,5 @@
 {
-  return checkParameterExist(request,OAuthConstants.CLIENT_ID) && checkParameterExist(request,OAuthConstants.REDIRECT_URI) && checkServiceValid(request)&& checkCallbackValid(request);
+  final boolean checkParameterExist=checkParameterExist(request,OAuthConstants.CLIENT_ID) && checkParameterExist(request,OAuthConstants.REDIRECT_URI) && checkParameterExist(request,OAuthConstants.RESPONSE_TYPE);
+  final String responseType=request.getParameter(OAuthConstants.RESPONSE_TYPE);
+  return checkParameterExist && checkResponseTypes(responseType,OAuthResponseType.CODE,OAuthResponseType.TOKEN) && checkServiceValid(request)&& checkCallbackValid(request);
 }
