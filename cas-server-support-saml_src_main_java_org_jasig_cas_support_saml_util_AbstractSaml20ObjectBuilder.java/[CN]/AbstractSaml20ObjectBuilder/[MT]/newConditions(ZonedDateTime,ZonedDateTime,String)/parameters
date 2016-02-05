@@ -1,0 +1,3 @@
+ZonedDateTime notBefore
+ZonedDateTime notOnOrAfter
+String audienceUri

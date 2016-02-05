@@ -1,6 +1,6 @@
 {
   try {
-    final String base64=CompressionUtils.encodeBase64(value);
+    final String base64=EncodingUtils.encodeBase64(value);
     final JsonWebSignature jws=new JsonWebSignature();
     jws.setPayload(base64);
     jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.HMAC_SHA512);

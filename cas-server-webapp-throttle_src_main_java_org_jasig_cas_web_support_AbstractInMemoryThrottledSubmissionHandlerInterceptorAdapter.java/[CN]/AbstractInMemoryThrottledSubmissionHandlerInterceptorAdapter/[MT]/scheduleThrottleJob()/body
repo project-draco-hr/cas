@@ -3,7 +3,7 @@
     if (shouldScheduleCleanerJob()) {
       logger.info("Preparing to schedule throttle job");
       final JobDetail job=JobBuilder.newJob(this.getClass()).withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).build();
-      final Trigger trigger=TriggerBuilder.newTrigger().withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).startAt(new Date(System.currentTimeMillis() + this.startDelay)).withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInMinutes(this.refreshInterval).repeatForever()).build();
+      final Trigger trigger=TriggerBuilder.newTrigger().withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).startAt(DateTimeUtils.dateOf(ZonedDateTime.now(ZoneOffset.UTC).plus(this.startDelay,ChronoUnit.MILLIS))).withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInMinutes(this.refreshInterval).repeatForever()).build();
       logger.debug("Scheduling {} job",this.getClass().getName());
       scheduler.scheduleJob(job,trigger);
       logger.info("{} will clean tickets every {} seconds",this.getClass().getSimpleName(),TimeUnit.MILLISECONDS.toSeconds(this.refreshInterval));

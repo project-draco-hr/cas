@@ -1,3 +1,0 @@
-{
-  return SUBMISSION_RATE_DIVIDEND / (a.getTime() - b.getTime());
-}

@@ -1,14 +1,2 @@
 {
-  final Map<String,Object> attributesToReturn=new HashMap<>();
-  final Set<Map.Entry<String,Object>> entries=attributes.entrySet();
-  for (  final Map.Entry<String,Object> entry : entries) {
-    final Object value=entry.getValue();
-    if (value instanceof Collection || value instanceof Map || value instanceof Object[]|| value instanceof Iterator|| value instanceof Enumeration) {
-      attributesToReturn.put(entry.getKey(),value);
-    }
- else {
-      attributesToReturn.put(entry.getKey(),Collections.singleton(value));
-    }
-  }
-  return attributesToReturn;
 }

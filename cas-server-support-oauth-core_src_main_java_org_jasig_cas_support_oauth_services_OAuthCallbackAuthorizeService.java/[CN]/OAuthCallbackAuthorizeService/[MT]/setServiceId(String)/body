@@ -1,6 +1,6 @@
 {
-  if (!id.endsWith(OAuthConstants.CALLBACK_AUTHORIZE_URL)) {
-    final String msg=String.format("OAuth callback authorize service id must end with [%s]",OAuthConstants.CALLBACK_AUTHORIZE_URL);
+  if (!id.endsWith(OAuthConstants.CALLBACK_AUTHORIZE_URL_DEFINITION)) {
+    final String msg=String.format("OAuth callback authorize service id must end with [%s]",OAuthConstants.CALLBACK_AUTHORIZE_URL_DEFINITION);
     throw new IllegalArgumentException(msg);
   }
   super.setServiceId(id);

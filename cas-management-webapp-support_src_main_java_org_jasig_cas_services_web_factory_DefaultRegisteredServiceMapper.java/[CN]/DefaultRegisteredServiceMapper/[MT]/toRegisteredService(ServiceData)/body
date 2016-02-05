@@ -3,7 +3,7 @@
     final AbstractRegisteredService regSvc;
     final String type=data.getType();
     if (StringUtils.equalsIgnoreCase(type,RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ.toString())) {
-      regSvc=new OAuthRegisteredCallbackAuthorizeService();
+      regSvc=new OAuthCallbackAuthorizeService();
     }
  else     if (StringUtils.equalsIgnoreCase(type,RegisteredServiceTypeEditBean.OAUTH.toString())) {
       regSvc=new OAuthRegisteredService();

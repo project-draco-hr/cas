@@ -1,8 +1,0 @@
-{
-  final byte[] decoded=cipher.decode(object);
-  final Object result=SerializationUtils.deserialize(decoded);
-  if (!type.isAssignableFrom(result.getClass())) {
-    throw new ClassCastException("Decoded object is of type " + result.getClass() + " when we were expecting "+ type);
-  }
-  return (T)result;
-}

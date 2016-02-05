@@ -1,18 +1,2 @@
 {
-  updateState();
-  final List<Authentication> authentications=getChainedAuthentications();
-  service.setPrincipal(authentications.get(authentications.size() - 1).getPrincipal());
-  if (onlyTrackMostRecentSession) {
-    final String path=normalizePath(service);
-    final Collection<Service> existingServices=services.values();
-    for (    final Service existingService : existingServices) {
-      final String existingPath=normalizePath(existingService);
-      if (StringUtils.equals(path,existingPath)) {
-        existingServices.remove(existingService);
-        LOGGER.trace("Removed previous tickets for service: {}",existingService);
-        break;
-      }
-    }
-  }
-  this.services.put(id,service);
 }

@@ -1,7 +1,7 @@
 {
-  standardCred.setNotBefore(new DateTime().withZone(DateTimeZone.UTC).plusDays(1));
-  standardCred.setNotOnOrAfter(new DateTime().withZone(DateTimeZone.UTC).plusHours(1).plusDays(1));
-  standardCred.setIssuedOn(new DateTime().withZone(DateTimeZone.UTC).plusDays(1));
+  standardCred.setNotBefore(ZonedDateTime.now(ZoneOffset.UTC).plusDays(1));
+  standardCred.setNotOnOrAfter(ZonedDateTime.now(ZoneOffset.UTC).plusHours(1).plusDays(1));
+  standardCred.setIssuedOn(ZonedDateTime.now(ZoneOffset.UTC).plusDays(1));
   final boolean result=standardCred.isValid("urn:federation:cas","http://adfs.example.com/adfs/services/trust",2000);
   assertFalse("testIsValidEarlyToken() - False",result);
 }

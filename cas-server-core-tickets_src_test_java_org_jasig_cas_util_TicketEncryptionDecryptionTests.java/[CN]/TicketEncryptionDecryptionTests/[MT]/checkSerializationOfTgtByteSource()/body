@@ -1,5 +1,5 @@
 {
-  final ByteSource bytes=ByteSource.wrap(CompressionUtils.serializeAndEncodeObject(cipher,tgt));
-  final Ticket obj=CompressionUtils.decodeAndSerializeObject(bytes.read(),cipher,Ticket.class);
+  final ByteSource bytes=ByteSource.wrap(SerializationUtils.serializeAndEncodeObject(cipher,tgt));
+  final Ticket obj=SerializationUtils.decodeAndSerializeObject(bytes.read(),cipher,Ticket.class);
   assertNotNull(obj);
 }

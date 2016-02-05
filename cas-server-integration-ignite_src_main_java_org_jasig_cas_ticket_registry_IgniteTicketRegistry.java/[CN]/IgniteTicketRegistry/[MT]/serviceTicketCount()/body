@@ -1,3 +1,3 @@
 {
-  return BooleanUtils.toInteger(this.supportRegistryState,this.serviceTicketsCache.size(CachePeekMode.ALL),super.serviceTicketCount());
+  return BooleanUtils.toInteger(this.supportRegistryState,this.serviceTicketsCache.size(CachePeekMode.ALL),(int)super.serviceTicketCount());
 }

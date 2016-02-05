@@ -3,7 +3,7 @@
     if (shouldScheduleCleanerJob()) {
       logger.info("Preparing to schedule job to clean up after tickets...");
       final JobDetail job=JobBuilder.newJob(this.getClass()).withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).build();
-      final Trigger trigger=TriggerBuilder.newTrigger().withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).startAt(DateTime.now().plusSeconds(this.startDelay).toDate()).withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(this.refreshInterval).repeatForever()).build();
+      final Trigger trigger=TriggerBuilder.newTrigger().withIdentity(this.getClass().getSimpleName().concat(UUID.randomUUID().toString())).startAt(DateTimeUtils.dateOf(ZonedDateTime.now(ZoneOffset.UTC).plusSeconds(this.startDelay))).withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(this.refreshInterval).repeatForever()).build();
       logger.debug("Scheduling {} job",this.getClass().getSimpleName());
       scheduler.scheduleJob(job,trigger);
       logger.info("{} will clean tickets every {} minutes",this.getClass().getSimpleName(),TimeUnit.SECONDS.toMinutes(this.refreshInterval));

@@ -1,0 +1,4 @@
+{
+  final Config hzConfig=getConfig(resourceLoader.getResource(hazelcastConfigLocation));
+  return Hazelcast.newHazelcastInstance(hzConfig);
+}

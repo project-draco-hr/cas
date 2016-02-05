@@ -1,5 +1,5 @@
 {
   final byte[] data=SerializationUtils.serialize(this.filter);
-  final RegisteredServiceAttributeFilter secondFilter=SerializationUtils.deserialize(data);
+  final RegisteredServiceAttributeFilter secondFilter=SerializationUtils.deserializeAndCheckObject(data,RegisteredServiceAttributeFilter.class);
   assertEquals(secondFilter,this.filter);
 }

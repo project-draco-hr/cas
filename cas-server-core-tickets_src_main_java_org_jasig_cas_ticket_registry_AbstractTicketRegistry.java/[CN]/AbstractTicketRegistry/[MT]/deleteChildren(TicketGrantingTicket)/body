@@ -1,14 +1,2 @@
 {
-  final Map<String,Service> services=ticket.getServices();
-  if (services != null && !services.isEmpty()) {
-    for (    final Map.Entry<String,Service> entry : services.entrySet()) {
-      final String ticketId=entry.getKey();
-      if (deleteSingleTicket(ticketId)) {
-        logger.debug("Removed ticket [{}]",entry.getKey());
-      }
- else {
-        logger.debug("Unable to remove ticket [{}]",entry.getKey());
-      }
-    }
-  }
 }

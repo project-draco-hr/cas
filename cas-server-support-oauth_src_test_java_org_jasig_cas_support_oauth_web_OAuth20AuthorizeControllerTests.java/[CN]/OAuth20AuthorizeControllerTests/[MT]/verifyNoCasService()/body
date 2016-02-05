@@ -4,6 +4,6 @@
   mockRequest.setParameter(OAuthConstants.CLIENT_ID,CLIENT_ID);
   mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
-  final ModelAndView modelAndView=oauth20WrapperController.handleRequest(mockRequest,mockResponse);
+  final ModelAndView modelAndView=oAuth20AuthorizeController.handleRequest(mockRequest,mockResponse);
   assertEquals(OAuthConstants.ERROR_VIEW,modelAndView.getViewName());
 }

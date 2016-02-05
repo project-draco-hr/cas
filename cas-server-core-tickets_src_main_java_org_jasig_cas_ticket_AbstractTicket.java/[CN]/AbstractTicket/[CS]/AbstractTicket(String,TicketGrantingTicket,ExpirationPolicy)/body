@@ -2,7 +2,7 @@
   Assert.notNull(expirationPolicy,"expirationPolicy cannot be null");
   Assert.notNull(id,"id cannot be null");
   this.id=id;
-  this.creationTime=System.currentTimeMillis();
-  this.lastTimeUsed=System.currentTimeMillis();
+  this.creationTime=ZonedDateTime.now(ZoneOffset.UTC);
+  this.lastTimeUsed=ZonedDateTime.now(ZoneOffset.UTC);
   this.expirationPolicy=expirationPolicy;
 }

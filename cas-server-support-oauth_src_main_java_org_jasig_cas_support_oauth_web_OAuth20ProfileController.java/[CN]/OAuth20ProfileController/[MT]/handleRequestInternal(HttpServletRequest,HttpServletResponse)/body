@@ -1,0 +1,40 @@
+{
+  String accessToken=request.getParameter(OAuthConstants.ACCESS_TOKEN);
+  if (StringUtils.isBlank(accessToken)) {
+    final String authHeader=request.getHeader(HttpConstants.AUTHORIZATION_HEADER);
+    if (StringUtils.isNotBlank(authHeader) && authHeader.toLowerCase().startsWith(OAuthConstants.BEARER_TOKEN.toLowerCase() + ' ')) {
+      accessToken=authHeader.substring(OAuthConstants.BEARER_TOKEN.length() + 1);
+    }
+  }
+  logger.debug("{}: {}",OAuthConstants.ACCESS_TOKEN,accessToken);
+  try (final JsonGenerator jsonGenerator=this.jsonFactory.createJsonGenerator(response.getWriter())){
+    response.setContentType("application/json");
+    if (StringUtils.isBlank(accessToken)) {
+      logger.error("Missing {}",OAuthConstants.ACCESS_TOKEN);
+      jsonGenerator.writeStartObject();
+      jsonGenerator.writeStringField("error",OAuthConstants.MISSING_ACCESS_TOKEN);
+      jsonGenerator.writeEndObject();
+      return null;
+    }
+    try {
+      final AccessToken accessTokenTicket=ticketRegistry.getTicket(accessToken,AccessToken.class);
+      if (accessTokenTicket == null || accessTokenTicket.isExpired()) {
+        logger.error("Expired access token: {}",OAuthConstants.ACCESS_TOKEN);
+        jsonGenerator.writeStartObject();
+        jsonGenerator.writeStringField("error",OAuthConstants.EXPIRED_ACCESS_TOKEN);
+        jsonGenerator.writeEndObject();
+        return null;
+      }
+      writeOutProfileResponse(jsonGenerator,accessTokenTicket.getAuthentication().getPrincipal());
+    }
+ catch (    final Exception e) {
+      jsonGenerator.writeStartObject();
+      jsonGenerator.writeStringField("error",OAuthConstants.INVALID_REQUEST + ". " + e.getMessage());
+      jsonGenerator.writeEndObject();
+    }
+    return null;
+  }
+  finally {
+    response.flushBuffer();
+  }
+}

@@ -1,0 +1,3 @@
+AbstractTicketRegistry ticketRegistry
+T oauthCode
+boolean callback

@@ -1,22 +1,2 @@
 {
-  final Map<SocketAddress,Map<String,String>> allStats=memcachedClient.getStats();
-  final List<CacheStatistics> statsList=new ArrayList<>();
-  for (  final Map.Entry<SocketAddress,Map<String,String>> entry : allStats.entrySet()) {
-    final SocketAddress key=entry.getKey();
-    final Map<String,String> statsMap=entry.getValue();
-    if (!statsMap.isEmpty()) {
-      final long size=Long.parseLong(statsMap.get("bytes"));
-      final long capacity=Long.parseLong(statsMap.get("limit_maxbytes"));
-      final long evictions=Long.parseLong(statsMap.get("evictions"));
-      final String name;
-      if (key instanceof InetSocketAddress) {
-        name=((InetSocketAddress)key).getHostName();
-      }
- else {
-        name=key.toString();
-      }
-      statsList.add(new SimpleCacheStatistics(size,capacity,evictions,name));
-    }
-  }
-  return statsList.toArray(new CacheStatistics[statsList.size()]);
 }

@@ -1,0 +1,9 @@
+{
+  final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.PROFILE_URL);
+  mockRequest.setParameter(OAuthConstants.ACCESS_TOKEN,"DOES NOT EXIST");
+  final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
+  oAuth20ProfileController.handleRequest(mockRequest,mockResponse);
+  assertEquals(200,mockResponse.getStatus());
+  assertEquals(CONTENT_TYPE,mockResponse.getContentType());
+  assertEquals("{\"error\":\"" + OAuthConstants.EXPIRED_ACCESS_TOKEN + "\"}",mockResponse.getContentAsString());
+}

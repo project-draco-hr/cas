@@ -1,0 +1,12 @@
+{
+  final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+  final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+  final String redirectUri=request.getParameter(OAuthConstants.REDIRECT_URI);
+  final String serviceId=service.getServiceId();
+  logger.debug("Found: {} for: {} vs redirectUri: {}",service,clientId,redirectUri);
+  if (!redirectUri.matches(serviceId)) {
+    logger.error("Unsupported {}: {} for serviceId: {}",OAuthConstants.REDIRECT_URI,redirectUri,serviceId);
+    return false;
+  }
+  return true;
+}

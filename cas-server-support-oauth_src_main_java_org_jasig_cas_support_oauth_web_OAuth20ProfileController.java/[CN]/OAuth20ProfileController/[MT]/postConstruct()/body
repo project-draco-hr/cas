@@ -1,3 +1,0 @@
-{
-  CommonHelper.assertNotNull("encryptionSecret",accessTokenJwtAuthenticator.getEncryptionSecret());
-}

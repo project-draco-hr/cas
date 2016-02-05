@@ -1,6 +1,2 @@
 {
-  for (  final Object arg : args1AsArray) {
-    builder.append(resolveArgument(arg));
-  }
-  return builder.toString();
 }

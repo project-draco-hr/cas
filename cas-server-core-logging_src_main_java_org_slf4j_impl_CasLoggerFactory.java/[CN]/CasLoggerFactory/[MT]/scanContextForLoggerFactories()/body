@@ -1,0 +1,8 @@
+{
+  final Set<Class<? extends ILoggerFactory>> loggerFactories;
+  final Collection<URL> set=ClasspathHelper.forPackage(PACKAGE_TO_SCAN);
+  final Reflections reflections=new Reflections(new ConfigurationBuilder().addUrls(set).setScanners(new SubTypesScanner()));
+  loggerFactories=reflections.getSubTypesOf(ILoggerFactory.class);
+  loggerFactories.remove(this.getClass());
+  return loggerFactories;
+}

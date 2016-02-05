@@ -1,4 +1,4 @@
 {
   final HashCodeBuilder bldr=new HashCodeBuilder(17,33);
-  return bldr.append(this.id).append(this.usageCount).append(this.creationDate.getTime()).append(this.authentication).toHashCode();
+  return bldr.append(this.id).append(this.usageCount).append(this.creationDate).append(this.authentication).toHashCode();
 }

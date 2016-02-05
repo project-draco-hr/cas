@@ -1,16 +1,16 @@
 {
   final Collection<Object[]> params=new ArrayList<>();
-  final Date now=new Date();
-  final Date twoHoursAgo=new Date(now.getTime() - 7200000);
-  final Date oneHourAgo=new Date(now.getTime() - 3600000);
-  final Date halfHourAgo=new Date(now.getTime() - 1800000);
+  final ZonedDateTime now=ZonedDateTime.now(ZoneOffset.UTC);
+  final ZonedDateTime twoHoursAgo=now.minusHours(2);
+  final ZonedDateTime oneHourAgo=now.minusHours(1);
+  final ZonedDateTime halfHourAgo=now.minusMinutes(30);
   final X500Principal issuer=new X500Principal("CN=CAS");
   final ThresholdExpiredCRLRevocationPolicy zeroThreshold=new ThresholdExpiredCRLRevocationPolicy();
   zeroThreshold.setThreshold(0);
-  params.add(new Object[]{zeroThreshold,new MockX509CRL(issuer,oneHourAgo,new Date(now.getTime() - 1)),new ExpiredCRLException("CN=CAS",new Date())});
+  params.add(new Object[]{zeroThreshold,new MockX509CRL(issuer,DateTimeUtils.dateOf(oneHourAgo),DateTimeUtils.dateOf(now.minusSeconds(1))),new ExpiredCRLException("CN=CAS",ZonedDateTime.now(ZoneOffset.UTC))});
   final ThresholdExpiredCRLRevocationPolicy oneHourThreshold=new ThresholdExpiredCRLRevocationPolicy();
   oneHourThreshold.setThreshold(3600);
-  params.add(new Object[]{oneHourThreshold,new MockX509CRL(issuer,twoHoursAgo,new Date(oneHourAgo.getTime() - 1)),new ExpiredCRLException("CN=CAS",new Date())});
-  params.add(new Object[]{oneHourThreshold,new MockX509CRL(issuer,twoHoursAgo,halfHourAgo),null});
+  params.add(new Object[]{oneHourThreshold,new MockX509CRL(issuer,DateTimeUtils.dateOf(twoHoursAgo),DateTimeUtils.dateOf(oneHourAgo.minusSeconds(1))),new ExpiredCRLException("CN=CAS",ZonedDateTime.now(ZoneOffset.UTC))});
+  params.add(new Object[]{oneHourThreshold,new MockX509CRL(issuer,DateTimeUtils.dateOf(twoHoursAgo),DateTimeUtils.dateOf(halfHourAgo)),null});
   return params;
 }

@@ -1,10 +1,2 @@
 {
-  return new TransactionTemplate(txManager).execute(new TransactionCallback<ProxyGrantingTicket>(){
-    @Override public ProxyGrantingTicket doInTransaction(    final TransactionStatus status){
-      final ProxyGrantingTicket pgt=newPGT(parent);
-      jpaTicketRegistry.addTicket(pgt);
-      return pgt;
-    }
-  }
-);
 }

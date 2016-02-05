@@ -1,7 +1,7 @@
 {
   final OAuthCallbackAuthorizeService r=new OAuthCallbackAuthorizeService();
   r.setName("test345");
-  r.setServiceId(OAuthConstants.CALLBACK_AUTHORIZE_URL);
+  r.setServiceId(OAuthConstants.CALLBACK_AUTHORIZE_URL_DEFINITION);
   r.setTheme("theme");
   r.setDescription("description");
   r.setAttributeReleasePolicy(new ReturnAllAttributeReleasePolicy());

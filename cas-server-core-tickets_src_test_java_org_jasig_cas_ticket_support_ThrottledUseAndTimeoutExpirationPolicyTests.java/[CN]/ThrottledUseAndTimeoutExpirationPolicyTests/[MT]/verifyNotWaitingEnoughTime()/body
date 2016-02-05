@@ -1,4 +1,5 @@
 {
   this.ticket.grantServiceTicket("test",org.jasig.cas.services.TestUtils.getService(),this.expirationPolicy,false,true);
+  expirationPolicy.setTimeToKillInMilliSeconds(TIMEOUT);
   assertTrue(this.ticket.isExpired());
 }

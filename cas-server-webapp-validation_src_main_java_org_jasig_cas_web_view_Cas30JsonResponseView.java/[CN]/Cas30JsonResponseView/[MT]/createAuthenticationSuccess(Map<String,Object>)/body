@@ -1,16 +1,2 @@
 {
-  final CasServiceResponseAuthenticationSuccess success=new CasServiceResponseAuthenticationSuccess();
-  success.setAttributes(getModelAttributes(model));
-  final Principal principal=getPrincipal(model);
-  success.setUser(principal.getId());
-  success.setProxyGrantingTicket(getProxyGrantingTicketIou(model));
-  final Collection<Authentication> chainedAuthentications=getChainedAuthentications(model);
-  if (chainedAuthentications != null && !chainedAuthentications.isEmpty()) {
-    final List<String> proxies=new ArrayList<>();
-    for (    final Authentication authn : chainedAuthentications) {
-      proxies.add(authn.getPrincipal().getId());
-    }
-    success.setProxies(proxies);
-  }
-  return success;
 }
