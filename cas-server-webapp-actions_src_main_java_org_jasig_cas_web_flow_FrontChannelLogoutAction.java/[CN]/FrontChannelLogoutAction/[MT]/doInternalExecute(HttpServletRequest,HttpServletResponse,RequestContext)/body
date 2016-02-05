@@ -12,7 +12,7 @@
         final String logoutMessage=logoutManager.createFrontChannelLogoutMessage(logoutRequest);
         LOGGER.debug("Front-channel logout message to send under [{}] is [{}]",this.logoutRequestParameter,logoutMessage);
         final UriComponentsBuilder builder=UriComponentsBuilder.fromHttpUrl(logoutUrl);
-        builder.queryParam(this.logoutRequestParameter,URLEncoder.encode(logoutMessage,"UTF-8"));
+        builder.queryParam(this.logoutRequestParameter,EncodingUtils.urlEncode(logoutMessage));
         return result(REDIRECT_APP_EVENT,DEFAULT_FLOW_ATTRIBUTE_LOGOUT_URL,builder.build().toUriString());
       }
     }
