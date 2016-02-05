@@ -7,9 +7,8 @@
   WebUtils.putTicketGrantingTicketInScopes(context,ticketGrantingTicket);
   request.addParameter("renew","true");
   request.addParameter("service",TestUtils.getService("test").getId());
-  request.addParameter("username","test2");
-  request.addParameter("password","test2");
+  final Credential c2=org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword();
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
-  final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("success",this.action.doExecute(context).getId());
+  putCredentialInRequestScope(context,c2);
+  assertEquals(CasWebflowConstants.TRANSITION_ID_SUCCESS,this.action.doExecute(context).getId());
 }

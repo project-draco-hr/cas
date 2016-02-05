@@ -12,6 +12,5 @@
   request.addParameter("password","test");
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   context.getFlowScope().put("service",TestUtils.getService());
-  final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("warn",this.action.doExecute(context).getId());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_WARN,this.action.doExecute(context).getId());
 }

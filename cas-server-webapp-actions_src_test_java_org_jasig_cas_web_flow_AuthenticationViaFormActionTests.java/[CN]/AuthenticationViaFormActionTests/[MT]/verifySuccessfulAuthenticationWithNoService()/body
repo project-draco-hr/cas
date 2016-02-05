@@ -6,6 +6,5 @@
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   final Credential c=org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword();
   putCredentialInRequestScope(context,c);
-  final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("success",this.action.doExecute(context).getId());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_SUCCESS,this.action.doExecute(context).getId());
 }

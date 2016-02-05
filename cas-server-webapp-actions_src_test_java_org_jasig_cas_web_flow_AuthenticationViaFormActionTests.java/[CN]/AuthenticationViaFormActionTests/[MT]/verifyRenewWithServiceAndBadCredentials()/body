@@ -11,7 +11,5 @@
   final Credential c2=org.jasig.cas.authentication.TestUtils.getCredentialsWithDifferentUsernameAndPassword();
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   putCredentialInRequestScope(context,c2);
-  context.getRequestScope().put("org.springframework.validation.BindException.credentials",new BindException(c2,"credentials"));
-  final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("error",this.action.doExecute(context).getId());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,this.action.doExecute(context).getId());
 }
