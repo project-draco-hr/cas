@@ -1,5 +1,10 @@
 {
-  final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+  final Optional<String> opClientId=getClientId(request);
+  if (!opClientId.isPresent()) {
+    logger.error("Missing clientId");
+    return false;
+  }
+  final String clientId=opClientId.get();
   final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
   final String redirectUri=request.getParameter(OAuthConstants.REDIRECT_URI);
   final String serviceId=service.getServiceId();

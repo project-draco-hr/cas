@@ -12,9 +12,16 @@
   final OAuthCodeImpl code=(OAuthCodeImpl)oAuthCodeFactory.create(service,authentication);
   oAuth20AccessTokenController.getTicketRegistry().addTicket(code);
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.ACCESS_TOKEN_URL);
-  mockRequest.setParameter(OAuthConstants.CLIENT_ID,CLIENT_ID);
   mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
-  mockRequest.setParameter(OAuthConstants.CLIENT_SECRET,CLIENT_SECRET);
+  if (basicAuth) {
+    final String auth=CLIENT_ID + ":" + CLIENT_SECRET;
+    final String value=Base64.encodeBase64String(auth.getBytes("UTF-8"));
+    mockRequest.addHeader(HttpConstants.AUTHORIZATION_HEADER,HttpConstants.BASIC_HEADER_PREFIX + value);
+  }
+ else {
+    mockRequest.setParameter(OAuthConstants.CLIENT_ID,CLIENT_ID);
+    mockRequest.setParameter(OAuthConstants.CLIENT_SECRET,CLIENT_SECRET);
+  }
   mockRequest.setParameter(OAuthConstants.CODE,code.getId());
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   oAuth20AccessTokenController.handleRequest(mockRequest,mockResponse);
