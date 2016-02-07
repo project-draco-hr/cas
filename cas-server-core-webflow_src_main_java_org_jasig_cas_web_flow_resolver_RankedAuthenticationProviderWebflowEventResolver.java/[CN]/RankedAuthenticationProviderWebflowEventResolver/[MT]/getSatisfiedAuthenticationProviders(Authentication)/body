@@ -1,14 +1,17 @@
 {
-  final Set<String> satisfiedHandlers=Set.class.cast(authentication.getAttributes().get(AuthenticationHandler.SUCCESSFUL_AUTHENTICATION_HANDLERS));
-  if (satisfiedHandlers == null || satisfiedHandlers.isEmpty()) {
+  final Collection<Object> contexts=CollectionUtils.convertValueToCollection(authentication.getAttributes().get(this.authenticationContextAttribute));
+  if (contexts == null || contexts.isEmpty()) {
     return null;
   }
-  final Set<MultifactorAuthenticationProvider> satisfiedProviders=new HashSet<>(satisfiedHandlers.size());
-  for (  final String satisfiedHandler : satisfiedHandlers) {
-    final MultifactorAuthenticationProvider provider=getMultifactorAuthenticationProviderFromApplicationContext(satisfiedHandler);
-    if (provider != null) {
-      satisfiedProviders.add(provider);
+  final Collection<MultifactorAuthenticationProvider> providers=getAllMultifactorAuthenticationProvidersFromApplicationContext().values();
+  final Iterator<MultifactorAuthenticationProvider> iterator=providers.iterator();
+  for (  final Object context : contexts) {
+    while (iterator.hasNext()) {
+      final MultifactorAuthenticationProvider provider=iterator.next();
+      if (!provider.getId().equals(context)) {
+        iterator.remove();
+      }
     }
   }
-  return satisfiedProviders;
+  return providers;
 }

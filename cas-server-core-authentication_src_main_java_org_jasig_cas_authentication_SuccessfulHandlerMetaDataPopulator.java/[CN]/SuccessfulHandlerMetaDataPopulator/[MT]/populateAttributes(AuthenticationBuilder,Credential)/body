@@ -3,5 +3,5 @@
   if (successes != null && !successes.isEmpty()) {
     successes=new HashSet(successes);
   }
-  builder.addAttribute(AuthenticationHandler.SUCCESSFUL_AUTHENTICATION_HANDLERS,successes);
+  builder.mergeAttribute(AuthenticationHandler.SUCCESSFUL_AUTHENTICATION_HANDLERS,successes);
 }

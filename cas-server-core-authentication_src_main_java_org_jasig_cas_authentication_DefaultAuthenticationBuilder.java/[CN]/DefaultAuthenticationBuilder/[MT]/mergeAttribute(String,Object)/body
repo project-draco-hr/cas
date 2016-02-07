@@ -1,0 +1,9 @@
+{
+  final Object currentValue=this.attributes.get(key);
+  if (currentValue == null) {
+    return addAttribute(key,value);
+  }
+  final Collection collection=CollectionUtils.convertValueToCollection(currentValue);
+  collection.addAll(CollectionUtils.convertValueToCollection(value));
+  return addAttribute(key,collection);
+}
