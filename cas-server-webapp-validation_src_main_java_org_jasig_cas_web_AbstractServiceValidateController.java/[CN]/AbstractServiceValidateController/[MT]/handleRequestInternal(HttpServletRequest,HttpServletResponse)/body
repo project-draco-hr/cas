@@ -16,7 +16,7 @@
     }
     final Assertion assertion=this.centralAuthenticationService.validateServiceTicket(serviceTicketId,service);
     if (!validateAssertion(request,serviceTicketId,assertion)) {
-      return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_TICKET,CasProtocolConstants.ERROR_CODE_INVALID_TICKET,null,request,service);
+      return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_TICKET,CasProtocolConstants.ERROR_CODE_INVALID_TICKET,new Object[]{serviceTicketId},request,service);
     }
     String proxyIou=null;
     if (serviceCredential != null && this.proxyHandler.canHandle(serviceCredential)) {

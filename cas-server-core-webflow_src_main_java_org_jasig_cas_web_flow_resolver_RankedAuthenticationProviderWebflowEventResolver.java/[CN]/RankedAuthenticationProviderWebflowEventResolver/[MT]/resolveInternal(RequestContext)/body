@@ -44,7 +44,7 @@
         logger.debug("Current provider {} already satisfies the authentication requirements of {}; proceed with flow normally.",provider,requestedProvider);
         return resumeFlow();
       }
-      if (provider.getOrder() > requestedProvider.getOrder()) {
+      if (provider.getOrder() >= requestedProvider.getOrder()) {
         logger.debug("Provider {} already satisfies the authentication requirements of {}; proceed with flow normally.",provider,requestedProvider);
         return resumeFlow();
       }

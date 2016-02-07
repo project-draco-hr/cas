@@ -1,3 +1,0 @@
-{
-  return isSatisfiedByInternal(assertion) && (!this.renew || assertion.isFromNewLogin());
-}
