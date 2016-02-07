@@ -1,0 +1,24 @@
+{
+  final ImmutableSet.Builder<Event> builder=ImmutableSet.builder();
+  if (attributeValue instanceof List) {
+    logger.debug("Attribute value {} is a multi-valued attribute",attributeValue);
+    final List<String> values=(List<String>)attributeValue;
+    for (    final String value : values) {
+      try {
+        if (predicate.apply(value)) {
+          logger.debug("Attribute value predicate {} has successfully matched the [{}]",predicate,value);
+          if (provider.verify(service)) {
+            final String id=provider.getId();
+            final Event event=validateEventIdForMatchingTransitionInContext(id,context,buildEventAttributeMap(principal,service,provider));
+            builder.add(event);
+          }
+        }
+      }
+ catch (      final Exception e) {
+        logger.debug("Ignoring {} since no matching transition could be found",value);
+      }
+    }
+    return builder.build();
+  }
+  return null;
+}

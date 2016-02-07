@@ -1,0 +1,19 @@
+{
+  try {
+    if (attributeValue instanceof String) {
+      logger.debug("Attribute value {} is a single-valued attribute",attributeValue);
+      if (predicate.apply(attributeValue)) {
+        logger.debug("Attribute value predicate {} has successfully matched the [{}]",predicate,attributeValue);
+        if (provider.verify(service)) {
+          final String id=provider.getId();
+          final Event event=validateEventIdForMatchingTransitionInContext(id,context,buildEventAttributeMap(principal,service,provider));
+          return ImmutableSet.of(event);
+        }
+      }
+    }
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+  return null;
+}

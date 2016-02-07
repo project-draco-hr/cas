@@ -1,6 +1,6 @@
 Principal principal
-String attributeName
+Object attributeValue
 RegisteredService service
 RequestContext context
-Set<MultifactorAuthenticationProvider> providers
+MultifactorAuthenticationProvider provider
 Predicate predicate
