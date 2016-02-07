@@ -9,5 +9,5 @@
     return false;
   }
   final DefaultRegisteredServiceMultifactorPolicy rhs=(DefaultRegisteredServiceMultifactorPolicy)obj;
-  return new EqualsBuilder().append(this.multifactorAuthenticationProviders,rhs.multifactorAuthenticationProviders).append(this.failOpen,rhs.failOpen).append(this.principalAttributeNameTrigger,rhs.principalAttributeNameTrigger).append(this.principalAttributeValueToMatch,rhs.principalAttributeValueToMatch).isEquals();
+  return new EqualsBuilder().append(this.multifactorAuthenticationProviders,rhs.multifactorAuthenticationProviders).append(this.failureMode,rhs.failureMode).append(this.principalAttributeNameTrigger,rhs.principalAttributeNameTrigger).append(this.principalAttributeValueToMatch,rhs.principalAttributeValueToMatch).isEquals();
 }

@@ -5,7 +5,7 @@
   r.setTheme("theme");
   r.setDescription("description");
   final DefaultRegisteredServiceMultifactorPolicy policy=new DefaultRegisteredServiceMultifactorPolicy();
-  policy.setFailOpen(true);
+  policy.setFailureMode(RegisteredServiceMultifactorPolicy.FailureModes.PHANTOM);
   final Set<String> set=new HashSet<>();
   set.add("duoAuthenticationProvider");
   policy.setMultifactorAuthenticationProviders(set);
