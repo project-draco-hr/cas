@@ -1,0 +1,16 @@
+{
+  final Collection<Object> contexts=CollectionUtils.convertValueToCollection(authentication.getAttributes().get(this.authenticationContextAttribute));
+  if (contexts == null || contexts.isEmpty()) {
+    return null;
+  }
+  final Iterator<MultifactorAuthenticationProvider> iterator=providers.iterator();
+  for (  final Object context : contexts) {
+    while (iterator.hasNext()) {
+      final MultifactorAuthenticationProvider provider=iterator.next();
+      if (!provider.getId().equals(context)) {
+        iterator.remove();
+      }
+    }
+  }
+  return providers;
+}

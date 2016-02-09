@@ -1,10 +1,7 @@
 {
-  final AbstractCasProtocolValidationSpecification validationSpecification=this.getCommandClass();
   final ServletRequestDataBinder binder=new ServletRequestDataBinder(validationSpecification,"validationSpecification");
   initBinder(request,binder);
   binder.bind(request);
-  validationSpecification.setAuthenticationContextAttribute(this.authenticationContextAttribute);
-  validationSpecification.setAuthenticationContextParameter(this.authenticationContextParameter);
   if (!validationSpecification.isSatisfiedBy(assertion,request)) {
     logger.warn("Service ticket [{}] does not satisfy validation specification.",serviceTicketId);
     return false;

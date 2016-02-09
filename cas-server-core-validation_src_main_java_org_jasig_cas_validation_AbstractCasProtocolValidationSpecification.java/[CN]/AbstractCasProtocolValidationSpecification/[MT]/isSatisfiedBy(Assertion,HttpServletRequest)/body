@@ -1,2 +1,3 @@
 {
+  return isSatisfiedByInternal(assertion) && (!this.renew || assertion.isFromNewLogin()) && authenticationContextValidationSpecification.isSatisfiedBy(assertion,request);
 }

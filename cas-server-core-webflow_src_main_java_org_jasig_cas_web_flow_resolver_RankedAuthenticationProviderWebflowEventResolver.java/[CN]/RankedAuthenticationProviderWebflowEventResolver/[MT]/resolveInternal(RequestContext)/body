@@ -25,30 +25,13 @@
   if (event.getId().equals(CasWebflowConstants.TRANSITION_ID_ERROR) || event.getId().equals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE)) {
     return ImmutableSet.of(event);
   }
-  final Collection<MultifactorAuthenticationProvider> satisfiedProviders=getSatisfiedAuthenticationProviders(authentication);
-  if (satisfiedProviders == null) {
-    logger.debug("No satisfied multifactor authentication providers are recorded; proceed with flow normally.");
+  final Pair<Boolean,Optional<MultifactorAuthenticationProvider>> result=this.authenticationContextValidator.validate(authentication,event.getId());
+  if (result.getFirst()) {
     return resumeFlow();
   }
-  final Map<String,MultifactorAuthenticationProvider> providerMap=getAllMultifactorAuthenticationProvidersFromApplicationContext();
-  final MultifactorAuthenticationProvider requestedProvider=locateRequestedProvider(providerMap.values(),event);
-  if (requestedProvider == null) {
-    logger.debug("Requested authentication provider is not available; proceed with flow normally.");
-    return resumeFlow();
+  if (result.getSecond().isPresent()) {
+    return ImmutableSet.of(validateEventIdForMatchingTransitionInContext(event.getId(),context,buildEventAttributeMap(authentication.getPrincipal(),service,result.getSecond().get())));
   }
-  if (!satisfiedProviders.isEmpty()) {
-    final MultifactorAuthenticationProvider[] providersArray=satisfiedProviders.toArray(new MultifactorAuthenticationProvider[]{});
-    OrderComparator.sortIfNecessary(providersArray);
-    for (    final MultifactorAuthenticationProvider provider : providersArray) {
-      if (provider.equals(requestedProvider)) {
-        logger.debug("Current provider {} already satisfies the authentication requirements of {}; proceed with flow normally.",provider,requestedProvider);
-        return resumeFlow();
-      }
-      if (provider.getOrder() >= requestedProvider.getOrder()) {
-        logger.debug("Provider {} already satisfies the authentication requirements of {}; proceed with flow normally.",provider,requestedProvider);
-        return resumeFlow();
-      }
-    }
-  }
-  return ImmutableSet.of(validateEventIdForMatchingTransitionInContext(requestedProvider.getId(),context,buildEventAttributeMap(authentication.getPrincipal(),service,requestedProvider)));
+  logger.warn("The authentication context cannot be satisfied and the requested context {} is unrecognized",event.getId());
+  return ImmutableSet.of(new Event(this,CasWebflowConstants.TRANSITION_ID_ERROR));
 }
