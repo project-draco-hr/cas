@@ -1,0 +1,21 @@
+{
+  if (isAvailable()) {
+    return true;
+  }
+  RegisteredServiceMultifactorPolicy.FailureModes failureMode=RegisteredServiceMultifactorPolicy.FailureModes.CLOSED;
+  final RegisteredServiceMultifactorPolicy policy=service.getMultifactorPolicy();
+  if (policy != null) {
+    failureMode=policy.getFailureMode();
+    logger.debug("Multifactor failure mode for {} is defined as {}",service.getServiceId(),failureMode);
+  }
+ else   if (StringUtils.isNotBlank(this.globalFailureMode)) {
+    failureMode=RegisteredServiceMultifactorPolicy.FailureModes.valueOf(this.globalFailureMode);
+    logger.debug("Using global multifactor failure mode for {} defined as {}",service.getServiceId(),failureMode);
+  }
+  if (failureMode == RegisteredServiceMultifactorPolicy.FailureModes.CLOSED) {
+    logger.warn("{} could not be reached. Authentication shall fail for {}",getClass().getSimpleName());
+    throw new AuthenticationException();
+  }
+  logger.warn("{} could not be reached. Since the authentication provider is configured for the " + "failure mode of {} authentication will proceed without {} for service {}",getClass().getSimpleName(),failureMode,getClass().getSimpleName(),service.getServiceId());
+  return false;
+}

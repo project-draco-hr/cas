@@ -1,0 +1,4 @@
+{
+  final Optional<MultifactorAuthenticationProvider> result=(Optional<MultifactorAuthenticationProvider>)model.get(this.authenticationContextAttribute);
+  return result;
+}

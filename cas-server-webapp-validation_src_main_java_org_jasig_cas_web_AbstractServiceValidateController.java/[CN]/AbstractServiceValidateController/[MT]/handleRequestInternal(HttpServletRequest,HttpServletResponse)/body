@@ -18,6 +18,10 @@
     if (!validateAssertion(request,serviceTicketId,assertion)) {
       return generateErrorView(CasProtocolConstants.ERROR_CODE_INVALID_TICKET,CasProtocolConstants.ERROR_CODE_INVALID_TICKET,new Object[]{serviceTicketId},request,service);
     }
+    final Pair<Boolean,Optional<MultifactorAuthenticationProvider>> ctxResult=validateAuthenticationContext(assertion,request);
+    if (!ctxResult.getFirst()) {
+      throw new UnsatisfiedAuthenticationContextTicketValidationException(assertion.getService());
+    }
     String proxyIou=null;
     if (serviceCredential != null && this.proxyHandler.canHandle(serviceCredential)) {
       proxyIou=this.proxyHandler.handle(serviceCredential,proxyGrantingTicketId);
@@ -27,7 +31,7 @@
     }
     onSuccessfulValidation(serviceTicketId,assertion);
     logger.debug("Successfully validated service ticket {} for service [{}]",serviceTicketId,service.getId());
-    return generateSuccessView(assertion,proxyIou,service,proxyGrantingTicketId);
+    return generateSuccessView(assertion,proxyIou,service,ctxResult.getSecond(),proxyGrantingTicketId);
   }
  catch (  final AbstractTicketValidationException e) {
     final String code=e.getCode();

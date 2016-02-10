@@ -1,8 +1,2 @@
 {
-  for (  final MultifactorAuthenticationProvider provider : providersArray) {
-    if (provider.getId().equals(requestedProvider)) {
-      return provider;
-    }
-  }
-  return null;
 }

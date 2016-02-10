@@ -1,0 +1,7 @@
+{
+  final RegisteredServiceMultifactorPolicy policy=service.getMultifactorPolicy();
+  if (policy == null || policy.getFailureMode() == null) {
+    return RegisteredServiceMultifactorPolicy.FailureModes.valueOf(this.globalFailureMode);
+  }
+  return policy.getFailureMode();
+}

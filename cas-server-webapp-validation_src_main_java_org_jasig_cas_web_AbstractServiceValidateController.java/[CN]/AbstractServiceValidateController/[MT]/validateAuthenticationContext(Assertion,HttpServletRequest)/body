@@ -1,0 +1,12 @@
+{
+  final String requestedContext=request.getParameter(this.authenticationContextParameter);
+  if (!StringUtils.hasLength(requestedContext)) {
+    logger.debug("No particular authentication context is required for this request");
+    return new Pair(true,Optional.empty());
+  }
+  logger.debug("Locating the primary authentication associated with this service request {}",assertion.getService());
+  final RegisteredService service=this.servicesManager.findServiceBy(assertion.getService());
+  RegisteredServiceAccessStrategySupport.ensureServiceAccessIsAllowed(assertion.getService(),service);
+  final Pair<Boolean,Optional<MultifactorAuthenticationProvider>> result=this.authenticationContextValidator.validate(assertion.getPrimaryAuthentication(),requestedContext,service);
+  return result;
+}
