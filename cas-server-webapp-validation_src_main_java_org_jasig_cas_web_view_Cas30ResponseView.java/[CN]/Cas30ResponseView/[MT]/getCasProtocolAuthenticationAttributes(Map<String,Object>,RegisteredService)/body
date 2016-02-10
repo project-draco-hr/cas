@@ -5,7 +5,7 @@
   filteredAuthenticationAttributes.put(CasProtocolConstants.VALIDATION_REMEMBER_ME_ATTRIBUTE_NAME,Collections.singleton(isRememberMeAuthentication(model)));
   final Optional<MultifactorAuthenticationProvider> contextProvider=getSatisfiedMultifactorAuthenticationProvider(model);
   if (contextProvider.isPresent()) {
-    filteredAuthenticationAttributes.put(this.authenticationContextAttribute,Collections.singleton(contextProvider.get()));
+    filteredAuthenticationAttributes.put(this.authenticationContextAttribute,Collections.singleton(contextProvider.get().getId()));
   }
   return filteredAuthenticationAttributes;
 }
