@@ -1,5 +1,5 @@
 {
-  if (!verifyAccessTokenRequest(request)) {
+  if (!verifyAccessTokenRequest(request,response)) {
     return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,HttpStatus.SC_BAD_REQUEST);
   }
   final String codeParameter=request.getParameter(OAuthConstants.CODE);

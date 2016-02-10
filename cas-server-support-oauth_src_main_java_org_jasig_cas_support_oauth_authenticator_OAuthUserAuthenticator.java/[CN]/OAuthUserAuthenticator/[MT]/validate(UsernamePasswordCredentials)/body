@@ -1,0 +1,17 @@
+{
+  final UsernamePasswordCredential casCredential=new UsernamePasswordCredential(credentials.getUsername(),credentials.getPassword());
+  try {
+    final Authentication authentication=authenticationManager.authenticate(AuthenticationTransaction.wrap(casCredential));
+    final Principal principal=authentication.getPrincipal();
+    final OAuthUserProfile profile=new OAuthUserProfile();
+    profile.setId(principal.getId());
+    final Map<String,Object> attributes=principal.getAttributes();
+    if (attributes != null) {
+      profile.addAttributes(attributes);
+    }
+    credentials.setUserProfile(profile);
+  }
+ catch (  final AuthenticationException e) {
+    throw new CredentialsException("Cannot login using internal CAS authentication manager",e);
+  }
+}

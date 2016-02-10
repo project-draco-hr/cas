@@ -1,18 +1,10 @@
 {
-  clearAllServices();
-  final RegisteredService registeredService=getRegisteredService(REDIRECT_URI,CLIENT_SECRET);
-  oAuth20AccessTokenController.getServicesManager().save(registeredService);
-  final Map<String,Object> map=new HashMap<>();
-  map.put(NAME,VALUE);
-  final List<String> list=Arrays.asList(VALUE,VALUE);
-  map.put(NAME2,list);
-  final Principal principal=org.jasig.cas.authentication.TestUtils.getPrincipal(ID,map);
-  final Authentication authentication=new OAuthAuthentication(ZonedDateTime.now(),principal);
-  final Service service=new OAuthWebApplicationService("" + registeredService.getId(),registeredService.getServiceId());
-  final OAuthCodeImpl code=(OAuthCodeImpl)oAuthCodeFactory.create(service,authentication);
-  oAuth20AccessTokenController.getTicketRegistry().addTicket(code);
+  final Principal principal=createPrincipal();
+  final RegisteredService service=addRegisteredService();
+  final OAuthCodeImpl code=addCode(principal,service);
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.ACCESS_TOKEN_URL);
   mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
+  mockRequest.setParameter(OAuthConstants.GRANT_TYPE,OAuthGrantType.AUTHORIZATION_CODE.name().toLowerCase());
   if (basicAuth) {
     final String auth=CLIENT_ID + ":" + CLIENT_SECRET;
     final String value=Base64.encodeBase64String(auth.getBytes("UTF-8"));
@@ -24,6 +16,7 @@
   }
   mockRequest.setParameter(OAuthConstants.CODE,code.getId());
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
+  requiresAuthenticationInterceptor.preHandle(mockRequest,mockResponse,null);
   oAuth20AccessTokenController.handleRequest(mockRequest,mockResponse);
   assertNull(oAuth20AccessTokenController.getTicketRegistry().getTicket((code.getId())));
   assertEquals("text/plain",mockResponse.getContentType());
