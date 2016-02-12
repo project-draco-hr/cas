@@ -1,7 +1,7 @@
 {
   logger.debug("Grant type: {}",type);
   for (  final OAuthGrantType expectedType : expectedTypes) {
-    if (StringUtils.equals(type,expectedType.name().toLowerCase())) {
+    if (isGrantType(type,expectedType)) {
       return true;
     }
   }

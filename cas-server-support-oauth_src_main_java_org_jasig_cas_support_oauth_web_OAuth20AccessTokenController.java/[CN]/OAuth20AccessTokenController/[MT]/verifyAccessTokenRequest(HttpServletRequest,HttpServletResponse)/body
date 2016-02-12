@@ -9,12 +9,13 @@
   if (profile == null) {
     return false;
   }
-  if (OAuthGrantType.AUTHORIZATION_CODE.name().equalsIgnoreCase(grantType)) {
+  if (isGrantType(grantType,OAuthGrantType.AUTHORIZATION_CODE)) {
     final String clientId=profile.getId();
     final String redirectUri=request.getParameter(OAuthConstants.REDIRECT_URI);
     return profile instanceof OAuthClientProfile && validator.checkParameterExist(request,OAuthConstants.REDIRECT_URI) && validator.checkParameterExist(request,OAuthConstants.CODE)&& validator.checkCallbackValid(clientId,redirectUri);
   }
  else {
-    return profile instanceof OAuthUserProfile;
+    final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+    return profile instanceof OAuthUserProfile && validator.checkParameterExist(request,OAuthConstants.CLIENT_ID) && validator.checkServiceValid(clientId);
   }
 }
