@@ -1,0 +1,3 @@
+{
+  this.errors=errors != null ? ImmutableList.copyOf(errors) : ImmutableList.of();
+}

@@ -1,0 +1,18 @@
+{
+  final TicketExceptionHandler handler=new TicketExceptionHandler();
+  final MessageContext ctx=mock(MessageContext.class);
+  final ContextualAuthenticationPolicy<?> policy=new ContextualAuthenticationPolicy<Object>(){
+    @Override public Object getContext(){
+      return null;
+    }
+    @Override public boolean isSatisfiedBy(    final Authentication authentication){
+      return false;
+    }
+  }
+;
+  final String id=handler.handle(new UnsatisfiedAuthenticationPolicyException(policy),ctx);
+  assertEquals(id,"UnsatisfiedAuthenticationPolicyException");
+  ArgumentCaptor<DefaultMessageResolver> message=ArgumentCaptor.forClass(DefaultMessageResolver.class);
+  verify(ctx,times(1)).addMessage(message.capture());
+  assertArrayEquals(new String[]{"ticketFailure.UnsatisfiedAuthenticationPolicyException"},message.getValue().getCodes());
+}
