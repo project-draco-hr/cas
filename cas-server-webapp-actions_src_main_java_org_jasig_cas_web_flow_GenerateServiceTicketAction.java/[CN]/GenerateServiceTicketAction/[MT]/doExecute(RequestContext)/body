@@ -22,6 +22,7 @@ catch (  final AbstractTicketException e) {
     if (isGatewayPresent(context)) {
       return result("gateway");
     }
+    return newEvent(TICKET_FAILURE,e);
   }
   return error();
 }
