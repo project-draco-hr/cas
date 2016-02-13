@@ -1,11 +1,11 @@
 {
   Assert.notNull(this.mongoTemplate);
   if (this.dropCollection) {
-    LOGGER.debug("Dropping database collection: {}",this.collectionName);
+    logger.debug("Dropping database collection: {}",this.collectionName);
     this.mongoTemplate.dropCollection(this.collectionName);
   }
   if (!this.mongoTemplate.collectionExists(this.collectionName)) {
-    LOGGER.debug("Creating database collection: {}",this.collectionName);
+    logger.debug("Creating database collection: {}",this.collectionName);
     this.mongoTemplate.createCollection(this.collectionName);
   }
 }

@@ -1,5 +1,19 @@
 {
-  if (casEventsRepository != null) {
-    casEventsRepository.save(event);
+  if (casEventRepository != null) {
+    final CasEventDTO dto=new CasEventDTO();
+    dto.setType(event.getClass().getCanonicalName());
+    dto.putTimestamp(event.getTimestamp());
+    dto.putCreationTime(event.getTicketGrantingTicket().getCreationTime());
+    dto.putId(event.getTicketGrantingTicket().getId());
+    final HttpServletRequest request=getRequest();
+    if (request != null) {
+      String ipAddress=request.getHeader("X-FORWARDED-FOR");
+      if (ipAddress == null) {
+        ipAddress=request.getRemoteAddr();
+      }
+      dto.putLocation(ipAddress);
+      dto.putAgent(request.getHeader("user-agent"));
+    }
+    casEventRepository.save(dto);
   }
 }
