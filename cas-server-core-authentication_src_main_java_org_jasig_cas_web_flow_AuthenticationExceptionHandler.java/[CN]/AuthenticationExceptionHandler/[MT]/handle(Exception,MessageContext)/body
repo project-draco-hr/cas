@@ -1,0 +1,14 @@
+{
+  if (e instanceof AuthenticationException) {
+    return handleAuthenticationException((AuthenticationException)e,messageContext);
+  }
+ else   if (e instanceof AbstractTicketException) {
+    return handleAbstractTicketException((AbstractTicketException)e,messageContext);
+  }
+ else {
+    logger.trace("Unable to translate handler errors of the authentication exception {}. " + "Returning {} by default...",e,UNKNOWN);
+    final String messageCode=this.messageBundlePrefix + UNKNOWN;
+    messageContext.addMessage(new MessageBuilder().error().code(messageCode).build());
+    return UNKNOWN;
+  }
+}
