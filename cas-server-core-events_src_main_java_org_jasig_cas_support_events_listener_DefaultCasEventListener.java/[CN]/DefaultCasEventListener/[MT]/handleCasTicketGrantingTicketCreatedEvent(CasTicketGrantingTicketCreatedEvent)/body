@@ -1,0 +1,5 @@
+{
+  if (casEventsRepository != null) {
+    casEventsRepository.save(event);
+  }
+}
