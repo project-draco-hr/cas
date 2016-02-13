@@ -1,0 +1,13 @@
+{
+  final TicketGrantingTicket ticket=new MockTicketGrantingTicket("casuser");
+  final CasTicketGrantingTicketCreatedEvent event=new CasTicketGrantingTicketCreatedEvent(this,ticket);
+  final CasEventDTO dto=new CasEventDTO();
+  dto.setType(event.getClass().getCanonicalName());
+  dto.putTimestamp(event.getTimestamp());
+  dto.putCreationTime(event.getTicketGrantingTicket().getCreationTime());
+  dto.putId(event.getTicketGrantingTicket().getId());
+  this.repository.save(dto);
+  final Collection<CasEventDTO> col=this.repository.load();
+  assertEquals(col.size(),1);
+  assertFalse(col.stream().findFirst().get().getProperties().isEmpty());
+}
