@@ -1,3 +1,4 @@
 {
+  logger.info("Shutting down Hazelcast instance {}",hz.getConfig().getInstanceName());
   this.hz.shutdown();
 }
