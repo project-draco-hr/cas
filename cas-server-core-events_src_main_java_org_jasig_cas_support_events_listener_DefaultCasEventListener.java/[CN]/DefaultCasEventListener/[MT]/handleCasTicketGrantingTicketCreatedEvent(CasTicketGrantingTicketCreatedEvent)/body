@@ -5,15 +5,10 @@
     dto.putTimestamp(event.getTimestamp());
     dto.putCreationTime(event.getTicketGrantingTicket().getCreationTime());
     dto.putId(event.getTicketGrantingTicket().getId());
-    final HttpServletRequest request=getRequest();
-    if (request != null) {
-      String ipAddress=request.getHeader("X-FORWARDED-FOR");
-      if (ipAddress == null) {
-        ipAddress=request.getRemoteAddr();
-      }
-      dto.putLocation(ipAddress);
-      dto.putAgent(request.getHeader("user-agent"));
-    }
+    final ClientInfo clientInfo=ClientInfoHolder.getClientInfo();
+    dto.putClientIpAddress(clientInfo.getClientIpAddress());
+    dto.putServerIpAddress(clientInfo.getServerIpAddress());
+    dto.putAgent(WebUtils.getHttpServletRequestUserAgent());
     casEventRepository.save(dto);
   }
 }

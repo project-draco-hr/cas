@@ -1,0 +1,6 @@
+{
+  if (request != null) {
+    return request.getHeader(USER_AGENT_HEADER);
+  }
+  return null;
+}
