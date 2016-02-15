@@ -6,7 +6,7 @@
     return obj;
   }
  catch (  final ClassNotFoundException|IOException e) {
-    throw new DeserializationException(e);
+    throw new RuntimeException(e);
   }
  finally {
     if (in != null) {
@@ -14,7 +14,7 @@
         in.close();
       }
  catch (      final IOException e) {
-        throw new DeserializationException(e);
+        throw new RuntimeException(e);
       }
     }
   }
