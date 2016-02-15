@@ -1,0 +1,12 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest();
+  final HttpRequestGeoLocation loc=new HttpRequestGeoLocation();
+  if (request != null) {
+    final String[] geoLocation=request.getParameter("geolocation").split(",");
+    loc.setLatitude(geoLocation[0]);
+    loc.setLongitude(geoLocation[1]);
+    loc.setAccuracy(geoLocation[2]);
+    loc.setTimestamp(geoLocation[3]);
+  }
+  return loc;
+}

@@ -10,6 +10,8 @@
     dto.putClientIpAddress(clientInfo.getClientIpAddress());
     dto.putServerIpAddress(clientInfo.getServerIpAddress());
     dto.putAgent(WebUtils.getHttpServletRequestUserAgent());
+    final HttpRequestGeoLocation location=WebUtils.getHttpServletRequestGeoLocation();
+    dto.putGeoLocation(location);
     casEventRepository.save(dto);
   }
 }
