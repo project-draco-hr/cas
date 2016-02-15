@@ -1,0 +1,9 @@
+{
+  this.previousLastTimeUsed=this.lastTimeUsed;
+  this.lastTimeUsed=ZonedDateTime.now(ZoneOffset.UTC);
+  this.countOfUses++;
+  if (getGrantingTicket() != null && !getGrantingTicket().isExpired()) {
+    final TicketState state=TicketState.class.cast(getGrantingTicket());
+    state.update();
+  }
+}

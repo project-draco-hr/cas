@@ -1,5 +1,5 @@
 {
   final ServiceTicket serviceTicket=new ServiceTicketImpl(id,this,service,this.getCountOfUses() == 0 || credentialsProvided,expirationPolicy);
-  updateServiceAndTrackSession(serviceTicket.getId(),service,onlyTrackMostRecentSession);
+  updateStateAndTrackServiceSession(serviceTicket.getId(),service,onlyTrackMostRecentSession);
   return serviceTicket;
 }
