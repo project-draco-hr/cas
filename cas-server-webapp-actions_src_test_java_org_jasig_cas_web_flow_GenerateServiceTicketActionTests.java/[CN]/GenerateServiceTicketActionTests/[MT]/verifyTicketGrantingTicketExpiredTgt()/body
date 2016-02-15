@@ -6,5 +6,5 @@
   request.addParameter("service","service");
   WebUtils.putTicketGrantingTicketInScopes(context,this.ticketGrantingTicket);
   this.ticketGrantingTicket.markTicketExpired();
-  assertEquals(AbstractCasWebflowConfigurer.EVENT_AUTHENTICATION_FAILURE,this.action.execute(context).getId());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,this.action.execute(context).getId());
 }
