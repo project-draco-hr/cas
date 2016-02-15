@@ -1,10 +1,10 @@
 {
-  final AuthenticationException ex;
-  if (e instanceof AuthenticationException) {
-    ex=(AuthenticationException)e;
+  final Exception ex;
+  if (e instanceof AuthenticationException || e instanceof AbstractTicketException) {
+    ex=e;
   }
- else   if (e.getCause() instanceof AuthenticationException) {
-    ex=(AuthenticationException)e.getCause();
+ else   if (e.getCause() instanceof AuthenticationException || e.getCause() instanceof AbstractTicketException) {
+    ex=(Exception)e.getCause();
   }
  else {
     return null;

@@ -9,15 +9,7 @@
     WebUtils.putWarnCookieIfRequestParameterPresent(this.warnCookieGenerator,context);
     return newEvent(CasWebflowConstants.TRANSITION_ID_WARN);
   }
- catch (  final AuthenticationException e) {
+ catch (  final AuthenticationException|AbstractTicketException e) {
     return newEvent(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,e);
   }
-catch (  final TicketCreationException e) {
-    logger.warn("Invalid attempt to access service using renew=true with different credential. Ending SSO session.");
-    this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
-  }
-catch (  final AbstractTicketException e) {
-    return newEvent(CasWebflowConstants.TRANSITION_ID_ERROR,e);
-  }
-  return newEvent(CasWebflowConstants.TRANSITION_ID_ERROR);
 }

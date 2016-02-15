@@ -12,16 +12,13 @@
     WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
     return success();
   }
- catch (  final AuthenticationException e) {
-    logger.error("Could not verify credentials to grant service ticket",e);
-  }
-catch (  final AbstractTicketException e) {
+ catch (  final AbstractTicketException e) {
     if (e instanceof InvalidTicketException) {
       this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicket);
     }
     if (isGatewayPresent(context)) {
       return result("gateway");
     }
+    return newEvent(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,e);
   }
-  return error();
 }
