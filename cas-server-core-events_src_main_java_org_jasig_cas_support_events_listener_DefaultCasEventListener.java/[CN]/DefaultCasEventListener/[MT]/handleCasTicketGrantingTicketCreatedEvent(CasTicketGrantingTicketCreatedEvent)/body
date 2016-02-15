@@ -1,10 +1,11 @@
 {
   if (casEventRepository != null) {
-    final CasEventDTO dto=new CasEventDTO();
+    final CasEvent dto=new CasEvent();
     dto.setType(event.getClass().getCanonicalName());
     dto.putTimestamp(event.getTimestamp());
     dto.putCreationTime(event.getTicketGrantingTicket().getCreationTime());
     dto.putId(event.getTicketGrantingTicket().getId());
+    dto.setPrincipalId(event.getTicketGrantingTicket().getAuthentication().getPrincipal().getId());
     final ClientInfo clientInfo=ClientInfoHolder.getClientInfo();
     dto.putClientIpAddress(clientInfo.getClientIpAddress());
     dto.putServerIpAddress(clientInfo.getServerIpAddress());

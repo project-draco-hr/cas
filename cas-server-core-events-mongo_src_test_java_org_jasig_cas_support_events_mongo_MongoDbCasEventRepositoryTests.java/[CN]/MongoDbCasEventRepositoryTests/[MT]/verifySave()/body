@@ -1,7 +1,7 @@
 {
   final TicketGrantingTicket ticket=new MockTicketGrantingTicket("casuser");
   final CasTicketGrantingTicketCreatedEvent event=new CasTicketGrantingTicketCreatedEvent(this,ticket);
-  final CasEventDTO dto=new CasEventDTO();
+  final CasEvent dto=new CasEvent();
   dto.setType(event.getClass().getCanonicalName());
   dto.putTimestamp(event.getTimestamp());
   dto.putCreationTime(event.getTicketGrantingTicket().getCreationTime());
