@@ -6,5 +6,9 @@
   dto.putTimestamp(event.getTimestamp());
   dto.putCreationTime(event.getTicketGrantingTicket().getCreationTime());
   dto.putId(event.getTicketGrantingTicket().getId());
-  this.repository.save(dto);
+  dto.setPrincipalId(event.getTicketGrantingTicket().getAuthentication().getPrincipal().getId());
+  getRepositoryInstance().save(dto);
+  final Collection<CasEvent> col=getRepositoryInstance().load();
+  assertEquals(col.size(),1);
+  assertFalse(col.stream().findFirst().get().getProperties().isEmpty());
 }
