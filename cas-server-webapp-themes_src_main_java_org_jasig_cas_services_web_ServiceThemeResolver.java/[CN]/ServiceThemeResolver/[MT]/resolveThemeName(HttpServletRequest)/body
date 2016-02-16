@@ -2,7 +2,7 @@
   if (this.servicesManager == null) {
     return getDefaultThemeName();
   }
-  final String userAgent=request.getHeader("User-Agent");
+  final String userAgent=WebUtils.getHttpServletRequestUserAgent(request);
   if (StringUtils.isBlank(userAgent)) {
     return getDefaultThemeName();
   }

@@ -1,0 +1,3 @@
+{
+  return this.entityManager.createQuery("SELECT r FROM CasEvent r",CasEvent.class).getResultList();
+}
