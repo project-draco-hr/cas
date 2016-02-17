@@ -1,3 +1,8 @@
 {
-  return parent.grantProxyGrantingTicket(ID_GENERATOR.getNewTicketId(ProxyGrantingTicket.PROXY_GRANTING_TICKET_PREFIX),TestUtils.getAuthentication(),EXP_POLICY_PGT);
+  try {
+    return parent.grantProxyGrantingTicket(ID_GENERATOR.getNewTicketId(ProxyGrantingTicket.PROXY_GRANTING_TICKET_PREFIX),TestUtils.getAuthentication(),EXP_POLICY_PGT);
+  }
+ catch (  final AbstractTicketException e) {
+    throw new RuntimeException(e);
+  }
 }

@@ -9,14 +9,9 @@
     return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_WARN);
   }
  catch (  final AuthenticationException e) {
-    return newEvent(AUTHENTICATION_FAILURE,e);
-  }
-catch (  final TicketCreationException e) {
-    logger.warn("Invalid attempt to access service using renew=true with different credential. Ending SSO session.");
-    this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicketId);
+    return newEvent(AbstractCasWebflowConfigurer.EVENT_AUTHENTICATION_FAILURE,e);
   }
 catch (  final AbstractTicketException e) {
-    return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_ERROR,e);
+    return newEvent(AbstractCasWebflowConfigurer.EVENT_AUTHENTICATION_FAILURE,e);
   }
-  return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_ERROR);
 }

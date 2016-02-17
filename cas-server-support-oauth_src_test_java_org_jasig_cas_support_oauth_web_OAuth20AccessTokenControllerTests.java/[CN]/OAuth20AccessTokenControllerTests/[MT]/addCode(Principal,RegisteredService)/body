@@ -1,7 +1,7 @@
 {
   final Authentication authentication=new OAuthAuthentication(ZonedDateTime.now(),principal);
-  final Service service=new OAuthWebApplicationService("" + registeredService.getId(),registeredService.getServiceId());
-  final OAuthCodeImpl code=(OAuthCodeImpl)oAuthCodeFactory.create(service,authentication);
+  final Service service=new OAuthWebApplicationService(String.valueOf(registeredService.getId()),registeredService.getServiceId());
+  final OAuthCode code=oAuthCodeFactory.create(service,authentication);
   oAuth20AccessTokenController.getTicketRegistry().addTicket(code);
   return code;
 }

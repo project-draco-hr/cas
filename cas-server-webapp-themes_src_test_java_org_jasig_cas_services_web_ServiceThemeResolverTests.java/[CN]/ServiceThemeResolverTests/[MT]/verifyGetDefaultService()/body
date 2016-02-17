@@ -1,6 +1,6 @@
 {
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.setParameter("service","myServiceId");
-  request.addHeader("User-Agent","Mozilla");
+  request.addHeader(WebUtils.USER_AGENT_HEADER,"Mozilla");
   assertEquals("test",this.serviceThemeResolver.resolveThemeName(request));
 }

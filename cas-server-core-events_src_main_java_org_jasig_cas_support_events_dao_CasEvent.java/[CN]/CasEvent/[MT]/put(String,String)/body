@@ -1,0 +1,8 @@
+{
+  if (StringUtils.isBlank(value)) {
+    this.properties.remove(key);
+  }
+ else {
+    this.properties.put(key,value);
+  }
+}

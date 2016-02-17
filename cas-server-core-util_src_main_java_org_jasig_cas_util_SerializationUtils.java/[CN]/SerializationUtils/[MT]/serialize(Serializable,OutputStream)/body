@@ -5,7 +5,7 @@
     out.writeObject(object);
   }
  catch (  final IOException e) {
-    throw new SerializationException(e);
+    throw new RuntimeException(e);
   }
  finally {
     if (out != null) {
@@ -13,7 +13,7 @@
         out.close();
       }
  catch (      final IOException e) {
-        throw new SerializationException(e);
+        throw new RuntimeException(e);
       }
     }
   }

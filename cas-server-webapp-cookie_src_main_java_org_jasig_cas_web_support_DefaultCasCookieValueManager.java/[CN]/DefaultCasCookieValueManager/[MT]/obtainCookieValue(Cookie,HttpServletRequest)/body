@@ -18,8 +18,9 @@
   if (!remoteAddr.equals(request.getRemoteAddr())) {
     throw new IllegalStateException("Invalid cookie. Required remote address does not match " + request.getRemoteAddr());
   }
-  if (!userAgent.equals(request.getHeader("user-agent"))) {
-    throw new IllegalStateException("Invalid cookie. Required user-agent does not match " + request.getHeader("user-agent"));
+  final String agent=WebUtils.getHttpServletRequestUserAgent(request);
+  if (!userAgent.equals(agent)) {
+    throw new IllegalStateException("Invalid cookie. Required user-agent does not match " + agent);
   }
   return value;
 }

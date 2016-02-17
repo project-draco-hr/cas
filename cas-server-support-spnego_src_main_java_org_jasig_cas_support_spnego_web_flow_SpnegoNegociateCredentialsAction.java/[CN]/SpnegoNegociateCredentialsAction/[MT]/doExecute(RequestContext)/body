@@ -2,7 +2,7 @@
   final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
   final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
   final String authorizationHeader=request.getHeader(SpnegoConstants.HEADER_AUTHORIZATION);
-  final String userAgent=request.getHeader(SpnegoConstants.HEADER_USER_AGENT);
+  final String userAgent=WebUtils.getHttpServletRequestUserAgent(request);
   LOGGER.debug("Authorization header [{}], User Agent header [{}]",authorizationHeader,userAgent);
   if (!StringUtils.hasText(userAgent) || this.supportedBrowser.isEmpty()) {
     LOGGER.debug("User Agent header [{}] is empty, or no browsers are supported",userAgent);

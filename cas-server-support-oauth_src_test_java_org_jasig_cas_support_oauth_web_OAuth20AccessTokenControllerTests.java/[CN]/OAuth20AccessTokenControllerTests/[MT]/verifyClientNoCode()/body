@@ -6,7 +6,7 @@
   mockRequest.setParameter(OAuthConstants.GRANT_TYPE,OAuthGrantType.AUTHORIZATION_CODE.name().toLowerCase());
   final Principal principal=createPrincipal();
   final RegisteredService service=addRegisteredService();
-  final OAuthCodeImpl code=addCode(principal,service);
+  final OAuthCode code=addCode(principal,service);
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   requiresAuthenticationInterceptor.preHandle(mockRequest,mockResponse,null);
   oAuth20AccessTokenController.handleRequest(mockRequest,mockResponse);

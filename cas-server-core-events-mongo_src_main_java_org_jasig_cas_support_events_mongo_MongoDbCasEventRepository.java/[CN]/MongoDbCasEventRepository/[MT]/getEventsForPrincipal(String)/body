@@ -1,0 +1,5 @@
+{
+  final Query query=new Query();
+  query.addCriteria(Criteria.where("principalId").is(id));
+  return this.mongoTemplate.find(query,CasEvent.class,this.collectionName);
+}

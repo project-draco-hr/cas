@@ -13,10 +13,10 @@
   }
  catch (  final AuthenticationException e) {
     logger.debug(e.getMessage(),e);
-    return newEvent(AUTHENTICATION_FAILURE,e);
+    return newEvent(AbstractCasWebflowConfigurer.EVENT_AUTHENTICATION_FAILURE,e);
   }
 catch (  final Exception e) {
     logger.debug(e.getMessage(),e);
-    return newEvent(AbstractCasWebflowConfigurer.TRANSITION_ID_ERROR,e);
+    return newEvent(AbstractCasWebflowConfigurer.EVENT_AUTHENTICATION_FAILURE,e);
   }
 }

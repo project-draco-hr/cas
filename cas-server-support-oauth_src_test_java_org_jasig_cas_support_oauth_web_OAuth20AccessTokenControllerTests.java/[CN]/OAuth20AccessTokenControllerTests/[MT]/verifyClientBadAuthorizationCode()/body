@@ -6,7 +6,7 @@
   mockRequest.setParameter(OAuthConstants.GRANT_TYPE,"badValue");
   final Principal principal=createPrincipal();
   final RegisteredService service=addRegisteredService();
-  final OAuthCodeImpl code=addCode(principal,service);
+  final OAuthCode code=addCode(principal,service);
   mockRequest.setParameter(OAuthConstants.CODE,code.getId());
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   requiresAuthenticationInterceptor.preHandle(mockRequest,mockResponse,null);
