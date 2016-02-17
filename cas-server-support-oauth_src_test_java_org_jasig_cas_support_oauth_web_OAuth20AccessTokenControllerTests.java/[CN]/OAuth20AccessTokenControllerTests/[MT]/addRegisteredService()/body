@@ -1,5 +1,5 @@
 {
   final RegisteredService registeredService=getRegisteredService(REDIRECT_URI,CLIENT_SECRET);
-  validator.getServicesManager().save(registeredService);
+  servicesManager.save(registeredService);
   return registeredService;
 }

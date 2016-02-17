@@ -1,9 +1,0 @@
-{
-  final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
-  logger.debug("Found: {} for: {} in secret check",service,clientId);
-  if (!StringUtils.equals(service.getClientSecret(),clientSecret)) {
-    logger.error("Wrong client secret for service: {}",service);
-    return false;
-  }
-  return true;
-}

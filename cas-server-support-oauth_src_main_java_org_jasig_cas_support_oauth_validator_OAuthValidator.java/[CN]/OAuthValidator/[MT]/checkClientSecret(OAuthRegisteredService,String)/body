@@ -1,0 +1,8 @@
+{
+  logger.debug("Found: {} in secret check",registeredService);
+  if (!StringUtils.equals(registeredService.getClientSecret(),clientSecret)) {
+    logger.error("Wrong client secret for service: {}",registeredService);
+    return false;
+  }
+  return true;
+}
