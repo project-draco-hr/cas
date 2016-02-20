@@ -1,0 +1,3 @@
+{
+  return new AuditTrailManagementAspect(this.appCode,this.principalResolver,ImmutableList.of(this.auditTrailManager),auditActionResolverMap,auditResourceResolverMap);
+}

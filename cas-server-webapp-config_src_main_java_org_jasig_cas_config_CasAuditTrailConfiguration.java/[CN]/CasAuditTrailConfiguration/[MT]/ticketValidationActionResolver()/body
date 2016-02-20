@@ -1,0 +1,3 @@
+{
+  return new DefaultAuditActionResolver("D","_FAILED");
+}
