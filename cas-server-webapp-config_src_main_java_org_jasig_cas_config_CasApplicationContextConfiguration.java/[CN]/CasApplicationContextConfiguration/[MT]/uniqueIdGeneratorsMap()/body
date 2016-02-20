@@ -1,0 +1,5 @@
+{
+  final Map<String,UniqueTicketIdGenerator> map=new HashMap<>();
+  map.put("org.jasig.cas.authentication.principal.SimpleWebApplicationServiceImpl",this.serviceTicketUniqueIdGenerator);
+  return map;
+}

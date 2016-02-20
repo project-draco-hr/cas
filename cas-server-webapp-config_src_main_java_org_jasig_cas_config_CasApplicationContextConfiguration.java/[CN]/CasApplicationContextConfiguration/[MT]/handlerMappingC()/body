@@ -1,0 +1,9 @@
+{
+  final SimpleUrlHandlerMapping bean=new SimpleUrlHandlerMapping();
+  bean.setOrder(URL_HANDLER_MAPPING_ORDER);
+  bean.setAlwaysUseFullPath(true);
+  final Properties properties=new Properties();
+  properties.put("/authorizationFailure.html",this.passThroughController);
+  bean.setMappings(properties);
+  return bean;
+}
