@@ -1,7 +1,0 @@
-{
-  if (this.startDelay > 0 && this.applicationContext.getParent() == null && scheduler != null) {
-    logger.debug("Found CAS servlet application context for ticket management");
-    return true;
-  }
-  return false;
-}

@@ -3,7 +3,7 @@
   logger.debug("Locating token secret for service [{}]",tokenCredential.getService());
   final RegisteredService service=this.servicesManager.findServiceBy(tokenCredential.getService());
   final String signingSecret=getRegisteredServiceJwtSigningSecret(service);
-  final String encryptionSecret=getRegisteredServiceJwtSigningSecret(service);
+  final String encryptionSecret=getRegisteredServiceJwtEncryptionSecret(service);
   if (StringUtils.isNotBlank(signingSecret)) {
     if (StringUtils.isBlank(encryptionSecret)) {
       logger.warn("JWT authentication is configured to share a single key for both signing/encryption");

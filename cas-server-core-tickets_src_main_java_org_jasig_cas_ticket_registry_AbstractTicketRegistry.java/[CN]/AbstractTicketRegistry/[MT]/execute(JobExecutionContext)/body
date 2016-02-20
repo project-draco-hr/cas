@@ -1,6 +1,6 @@
 {
-  SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
   try {
+    SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     cleanupTickets();
   }
  catch (  final Exception e) {

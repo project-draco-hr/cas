@@ -1,0 +1,9 @@
+{
+  logger.debug("Attempting to acquire ticket cleanup lock.");
+  if (!this.jpaLockingStrategy.acquire()) {
+    logger.warn("Could not obtain lock. Aborting cleanup.");
+    return false;
+  }
+  logger.debug("Acquired lock. Proceeding with cleanup.");
+  return super.preCleanupTickets();
+}
