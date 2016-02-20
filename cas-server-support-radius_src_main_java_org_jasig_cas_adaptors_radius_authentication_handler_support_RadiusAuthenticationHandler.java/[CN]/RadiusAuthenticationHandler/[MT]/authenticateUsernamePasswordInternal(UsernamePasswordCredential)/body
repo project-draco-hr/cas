@@ -10,7 +10,7 @@
         for (        final RadiusAttribute attribute : response.getAttributes()) {
           attributes.put(attribute.getAttributeName(),attribute.getValue().toString());
         }
-        return createHandlerResult(credential,this.principalFactory.createPrincipal(username,attributes),new ArrayList<MessageDescriptor>());
+        return createHandlerResult(credential,this.principalFactory.createPrincipal(username,attributes),new ArrayList<>());
       }
       if (!this.failoverOnAuthenticationFailure) {
         throw new FailedLoginException("Radius authentication failed for user " + username);
