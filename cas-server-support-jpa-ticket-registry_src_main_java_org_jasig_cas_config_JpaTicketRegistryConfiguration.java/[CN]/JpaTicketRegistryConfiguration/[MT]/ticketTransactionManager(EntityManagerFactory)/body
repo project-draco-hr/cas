@@ -1,0 +1,5 @@
+{
+  final JpaTransactionManager mgmr=new JpaTransactionManager();
+  mgmr.setEntityManagerFactory(emf);
+  return mgmr;
+}

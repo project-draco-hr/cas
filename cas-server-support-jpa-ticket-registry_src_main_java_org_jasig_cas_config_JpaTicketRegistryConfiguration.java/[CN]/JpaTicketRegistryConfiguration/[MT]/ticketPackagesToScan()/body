@@ -1,0 +1,3 @@
+{
+  return new String[]{"org.jasig.cas.ticket","org.jasig.cas.adaptors.jdbc"};
+}
