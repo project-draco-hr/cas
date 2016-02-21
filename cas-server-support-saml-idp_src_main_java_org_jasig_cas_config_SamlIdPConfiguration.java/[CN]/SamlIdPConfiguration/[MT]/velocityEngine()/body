@@ -1,0 +1,16 @@
+{
+  final VelocityEngineFactoryBean bean=new VelocityEngineFactoryBean();
+  final Properties properties=new Properties();
+  properties.setProperty("runtime.log.logsystem.class",SLF4JLogChute.class.getName());
+  properties.setProperty("input.encoding","UTF-8");
+  properties.setProperty("output.encoding","UTF-8");
+  properties.setProperty("resource.loader","file, classpath, string");
+  properties.setProperty("classpath.resource.loader.class",ClasspathResourceLoader.class.getName());
+  properties.setProperty("string.resource.loader.class",StringResourceLoader.class.getName());
+  properties.setProperty("file.resource.loader.class",FileResourceLoader.class.getName());
+  properties.setProperty("file.resource.loader.path",this.resourceLoaderPath);
+  properties.setProperty("file.resource.loader.cache","false");
+  bean.setOverrideLogging(false);
+  bean.setVelocityProperties(properties);
+  return bean;
+}

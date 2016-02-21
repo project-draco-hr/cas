@@ -1,0 +1,3 @@
+{
+  return new ClassPathResource("template-sp-metadata.xml");
+}
