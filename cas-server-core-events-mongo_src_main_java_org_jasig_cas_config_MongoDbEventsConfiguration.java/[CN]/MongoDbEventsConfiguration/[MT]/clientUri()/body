@@ -1,0 +1,3 @@
+{
+  return new MongoClientURI(this.clientUri);
+}
