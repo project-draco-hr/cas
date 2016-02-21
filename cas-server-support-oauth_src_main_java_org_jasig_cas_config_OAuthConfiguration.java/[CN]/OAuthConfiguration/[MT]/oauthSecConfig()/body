@@ -1,0 +1,5 @@
+{
+  final CasClient client=new CasClient(this.casLoginUrl);
+  client.setName("CasOAuthClient");
+  return new Config(this.callbackUrl,client);
+}
