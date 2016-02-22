@@ -1,5 +1,13 @@
 {
-  final CasClient client=new CasClient(this.casLoginUrl);
-  client.setName("CasOAuthClient");
-  return new Config(this.callbackUrl,client);
+  final CasClient oauthCasClient=new CasClient(this.casLoginUrl);
+  oauthCasClient.setName("CasOAuthClient");
+  final DirectBasicAuthClient basicAuthClient=new DirectBasicAuthClient(this.oAuthClientAuthenticator);
+  basicAuthClient.setName("clientBasicAuth");
+  final DirectFormClient directFormClient=new DirectFormClient(this.oAuthClientAuthenticator);
+  basicAuthClient.setName("clientForm");
+  directFormClient.setUsernameParameter("client_id");
+  directFormClient.setPasswordParameter("client_secret");
+  final DirectFormClient userFormClient=new DirectFormClient(this.oAuthClientAuthenticator);
+  basicAuthClient.setName("userForm");
+  return new Config(this.callbackUrl,oauthCasClient,basicAuthClient,directFormClient,userFormClient);
 }

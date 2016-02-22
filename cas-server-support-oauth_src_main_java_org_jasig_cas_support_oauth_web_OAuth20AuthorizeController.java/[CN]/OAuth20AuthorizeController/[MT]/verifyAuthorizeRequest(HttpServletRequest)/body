@@ -1,5 +1,8 @@
 {
-  final boolean checkParameterExist=checkParameterExist(request,OAuthConstants.CLIENT_ID) && checkParameterExist(request,OAuthConstants.REDIRECT_URI) && checkParameterExist(request,OAuthConstants.RESPONSE_TYPE);
+  final boolean checkParameterExist=validator.checkParameterExist(request,OAuthConstants.CLIENT_ID) && validator.checkParameterExist(request,OAuthConstants.REDIRECT_URI) && validator.checkParameterExist(request,OAuthConstants.RESPONSE_TYPE);
   final String responseType=request.getParameter(OAuthConstants.RESPONSE_TYPE);
-  return checkParameterExist && checkResponseTypes(responseType,OAuthResponseType.CODE,OAuthResponseType.TOKEN) && checkServiceValid(request)&& checkCallbackValid(request);
+  final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+  final String redirectUri=request.getParameter(OAuthConstants.REDIRECT_URI);
+  final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+  return checkParameterExist && checkResponseTypes(responseType,OAuthResponseType.CODE,OAuthResponseType.TOKEN) && validator.checkServiceValid(registeredService)&& validator.checkCallbackValid(registeredService,redirectUri);
 }

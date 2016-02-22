@@ -1,3 +1,0 @@
-{
-  return OAuthUtils.writeText(response,"error=" + error,status);
-}
