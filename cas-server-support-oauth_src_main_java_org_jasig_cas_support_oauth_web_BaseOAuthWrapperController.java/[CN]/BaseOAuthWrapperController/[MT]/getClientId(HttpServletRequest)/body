@@ -1,3 +1,0 @@
-{
-  return Optional.ofNullable(request.getParameter(OAuthConstants.CLIENT_ID));
-}

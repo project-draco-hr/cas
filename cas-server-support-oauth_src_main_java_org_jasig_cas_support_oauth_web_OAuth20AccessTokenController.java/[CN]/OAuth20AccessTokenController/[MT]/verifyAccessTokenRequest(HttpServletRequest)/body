@@ -1,4 +1,0 @@
-{
-  final boolean checkParameterExist=checkClientCredentialsExist(request) && checkParameterExist(request,OAuthConstants.REDIRECT_URI) && checkParameterExist(request,OAuthConstants.CODE);
-  return checkParameterExist && checkServiceValid(request) && checkCallbackValid(request)&& checkClientSecret(request);
-}

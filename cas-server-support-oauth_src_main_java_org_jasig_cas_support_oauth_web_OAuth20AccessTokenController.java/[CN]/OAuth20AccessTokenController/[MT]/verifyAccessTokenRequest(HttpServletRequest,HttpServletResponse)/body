@@ -1,0 +1,23 @@
+{
+  final String grantType=request.getParameter(OAuthConstants.GRANT_TYPE);
+  if (!checkGrantTypes(grantType,OAuthGrantType.AUTHORIZATION_CODE,OAuthGrantType.PASSWORD)) {
+    return false;
+  }
+  final J2EContext context=new J2EContext(request,response);
+  final ProfileManager manager=new ProfileManager(context);
+  final UserProfile profile=manager.get(true);
+  if (profile == null) {
+    return false;
+  }
+  if (isGrantType(grantType,OAuthGrantType.AUTHORIZATION_CODE)) {
+    final String clientId=profile.getId();
+    final String redirectUri=request.getParameter(OAuthConstants.REDIRECT_URI);
+    final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+    return profile instanceof OAuthClientProfile && validator.checkParameterExist(request,OAuthConstants.REDIRECT_URI) && validator.checkParameterExist(request,OAuthConstants.CODE)&& validator.checkCallbackValid(registeredService,redirectUri);
+  }
+ else {
+    final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+    final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+    return profile instanceof OAuthUserProfile && validator.checkParameterExist(request,OAuthConstants.CLIENT_ID) && validator.checkServiceValid(registeredService);
+  }
+}

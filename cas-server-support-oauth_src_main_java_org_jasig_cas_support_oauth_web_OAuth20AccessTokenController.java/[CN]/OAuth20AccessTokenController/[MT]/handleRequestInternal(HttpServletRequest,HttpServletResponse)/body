@@ -1,20 +1,33 @@
 {
   response.setContentType("text/plain");
-  if (!verifyAccessTokenRequest(request)) {
-    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST,HttpStatus.SC_BAD_REQUEST);
+  if (!verifyAccessTokenRequest(request,response)) {
+    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST);
   }
-  final String codeParameter=request.getParameter(OAuthConstants.CODE);
-  final OAuthCode code=ticketRegistry.getTicket(codeParameter,OAuthCode.class);
-  if (code == null || code.isExpired()) {
-    logger.error("Code expired: {}",code);
-    if (code != null) {
-      ticketRegistry.deleteTicket(code.getId());
+  final String grantType=request.getParameter(OAuthConstants.GRANT_TYPE);
+  final Service service;
+  final Authentication authentication;
+  if (isGrantType(grantType,OAuthGrantType.AUTHORIZATION_CODE)) {
+    final String codeParameter=request.getParameter(OAuthConstants.CODE);
+    final OAuthCode code=ticketRegistry.getTicket(codeParameter,OAuthCode.class);
+    if (code == null || code.isExpired()) {
+      logger.error("Code expired: {}",code);
+      if (code != null) {
+        ticketRegistry.deleteTicket(code.getId());
+      }
+      return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_GRANT);
     }
-    return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_GRANT,HttpStatus.SC_BAD_REQUEST);
+    ticketRegistry.deleteTicket(code.getId());
+    service=code.getService();
+    authentication=code.getAuthentication();
   }
-  ticketRegistry.deleteTicket(code.getId());
-  final Service service=code.getService();
-  final Authentication authentication=code.getAuthentication();
+ else {
+    final J2EContext context=new J2EContext(request,response);
+    final ProfileManager manager=new ProfileManager(context);
+    final OAuthUserProfile profile=(OAuthUserProfile)manager.get(true);
+    final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+    service=createService(OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId));
+    authentication=createAuthentication(profile);
+  }
   final AccessToken accessToken=generateAccessToken(service,authentication);
   final String text=String.format("%s=%s&%s=%s",OAuthConstants.ACCESS_TOKEN,accessToken.getId(),OAuthConstants.EXPIRES,timeout);
   logger.debug("OAuth access token response: {}",text);
