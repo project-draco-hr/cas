@@ -1,0 +1,5 @@
+{
+  final CookieLocaleResolver resolver=new CookieLocaleResolver();
+  resolver.setDefaultLocale(Locale.ENGLISH);
+  return resolver;
+}

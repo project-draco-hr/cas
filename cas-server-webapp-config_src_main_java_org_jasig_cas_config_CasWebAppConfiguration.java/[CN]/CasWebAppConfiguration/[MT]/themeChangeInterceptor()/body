@@ -1,0 +1,5 @@
+{
+  final ThemeChangeInterceptor bean=new ThemeChangeInterceptor();
+  bean.setParamName(this.themeParamName);
+  return bean;
+}
