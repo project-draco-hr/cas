@@ -1,4 +1,3 @@
 {
-  requiresAuthenticationInterceptor=new RequiresAuthenticationInterceptor(oauthSecConfig,"clientBasicAuth,clientForm,userForm");
   clearAllServices();
 }
