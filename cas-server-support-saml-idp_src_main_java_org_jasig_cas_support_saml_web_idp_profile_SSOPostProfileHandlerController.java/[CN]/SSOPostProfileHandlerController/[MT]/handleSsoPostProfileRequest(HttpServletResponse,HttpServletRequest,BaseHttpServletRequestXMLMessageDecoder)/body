@@ -13,6 +13,5 @@
     this.samlObjectSigner.verifySamlProfileRequestIfNeeded(authnRequest,adaptor.getMetadataResolver());
   }
   SamlIdPUtils.logSamlObject(this.configBean,authnRequest);
-  storeAuthnRequest(request,authnRequest);
   issueAuthenticationRequestRedirect(authnRequest,request,response);
 }
