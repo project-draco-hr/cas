@@ -1,5 +1,0 @@
-{
-  this.previousLastTimeUsed=this.lastTimeUsed;
-  this.lastTimeUsed=ZonedDateTime.now(ZoneOffset.UTC);
-  this.countOfUses++;
-}

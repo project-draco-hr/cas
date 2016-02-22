@@ -1,3 +1,3 @@
 {
-  return new HashSet<String>(this.cache.getKeys());
+  return new HashSet<>(this.cache.getKeys());
 }

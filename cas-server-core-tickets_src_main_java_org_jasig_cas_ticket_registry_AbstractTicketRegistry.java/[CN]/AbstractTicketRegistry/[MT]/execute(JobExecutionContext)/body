@@ -1,0 +1,9 @@
+{
+  try {
+    SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+    cleanupTickets();
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+}

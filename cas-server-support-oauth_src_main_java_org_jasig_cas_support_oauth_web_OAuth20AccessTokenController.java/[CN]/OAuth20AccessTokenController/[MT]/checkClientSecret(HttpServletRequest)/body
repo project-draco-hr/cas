@@ -8,6 +8,10 @@
   final String clientId=credentials.getUsername();
   final String clientSecret=credentials.getPassword();
   final OAuthRegisteredService service=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+  if (service == null) {
+    logger.warn("OAuth registered service could not be found");
+    return false;
+  }
   logger.debug("Found: {} for: {} in secret check",service,clientId);
   if (!StringUtils.equals(service.getClientSecret(),clientSecret)) {
     logger.error("Wrong client secret for service: {}",service);

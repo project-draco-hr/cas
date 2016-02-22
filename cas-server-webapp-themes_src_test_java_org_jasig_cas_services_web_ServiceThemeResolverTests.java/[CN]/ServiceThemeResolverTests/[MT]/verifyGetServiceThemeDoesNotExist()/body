@@ -11,6 +11,6 @@
   scope.put("service",org.jasig.cas.services.TestUtils.getService(r.getServiceId()));
   when(ctx.getFlowScope()).thenReturn(scope);
   RequestContextHolder.setRequestContext(ctx);
-  request.addHeader("User-Agent","Mozilla");
+  request.addHeader(WebUtils.USER_AGENT_HEADER,"Mozilla");
   assertEquals("test",this.serviceThemeResolver.resolveThemeName(request));
 }

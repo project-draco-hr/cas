@@ -5,8 +5,6 @@
     return false;
   }
   final UsernamePasswordCredentials credentials=opCredentials.get();
-  final String clientId=credentials.getUsername();
-  final String clientSecret=credentials.getPassword();
   if (StringUtils.isBlank(credentials.getUsername())) {
     logger.error("Missing clientId");
     return false;
