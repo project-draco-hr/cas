@@ -1,6 +1,0 @@
-{
-  final ModelAndView mv=this.mvc.perform(get("/manage.html")).andExpect(status().isOk()).andReturn().getModelAndView();
-  assertNotNull(mv);
-  assertNotNull(mv.getModel().get("defaultServiceUrl"));
-  assertNotNull(mv.getModel().get("status"));
-}

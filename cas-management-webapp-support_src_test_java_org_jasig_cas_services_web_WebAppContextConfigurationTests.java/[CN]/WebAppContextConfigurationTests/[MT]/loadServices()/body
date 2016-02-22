@@ -1,6 +1,0 @@
-{
-  final MockHttpServletResponse response=this.mvc.perform(get("/getServices.html")).andExpect(status().isOk()).andReturn().getResponse();
-  final String resp=response.getContentAsString();
-  assertTrue(resp.contains("services"));
-  assertTrue(resp.contains("status"));
-}
