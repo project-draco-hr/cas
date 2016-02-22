@@ -13,7 +13,7 @@
     logger.debug("Using global multifactor failure mode for {} defined as {}",service.getServiceId(),failureMode);
   }
   if (failureMode == RegisteredServiceMultifactorPolicy.FailureModes.CLOSED) {
-    logger.warn("{} could not be reached. Authentication shall fail for {}",getClass().getSimpleName());
+    logger.warn("{} could not be reached. Authentication shall fail for {}",getClass().getSimpleName(),service.getServiceId());
     throw new AuthenticationException();
   }
   logger.warn("{} could not be reached. Since the authentication provider is configured for the " + "failure mode of {} authentication will proceed without {} for service {}",getClass().getSimpleName(),failureMode,getClass().getSimpleName(),service.getServiceId());

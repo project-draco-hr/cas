@@ -9,7 +9,7 @@ synchronized (this.lock) {
       this.metadataResolver.setResolvers(resolvers);
       logger.info("Collected metadata from [{}] resource(s). Initializing aggregate resolver...",resolvers.size());
       this.metadataResolver.initialize();
-      logger.info("Metadata aggregate initialized successfully.",resolvers.size());
+      logger.info("Metadata aggregate initialized successfully with {} resolvers.",resolvers.size());
     }
   }
  catch (  final Exception e) {

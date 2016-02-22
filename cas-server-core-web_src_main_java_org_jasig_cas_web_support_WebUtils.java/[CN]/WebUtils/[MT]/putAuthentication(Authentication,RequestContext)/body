@@ -1,3 +1,3 @@
 {
-  ctx.getConversationScope().put("authentication",authentication);
+  ctx.getConversationScope().put(PARAMETER_AUTHENTICATION,authentication);
 }
