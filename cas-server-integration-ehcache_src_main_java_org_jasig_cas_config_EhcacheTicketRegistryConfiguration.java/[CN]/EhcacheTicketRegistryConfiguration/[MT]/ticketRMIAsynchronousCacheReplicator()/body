@@ -1,0 +1,3 @@
+{
+  return new RMIAsynchronousCacheReplicator(this.replicatePuts,this.replicatePutsViaCopy,this.replicateUpdates,this.replicateUpdatesViaCopy,this.replicateRemovals,this.replicationInterval,this.maximumBatchSize);
+}

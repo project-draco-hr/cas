@@ -1,0 +1,21 @@
+{
+  final BasicParserPool pool=new BasicParserPool();
+  pool.setMaxPoolSize(POOL_SIZE);
+  pool.setCoalescing(true);
+  pool.setIgnoreComments(true);
+  pool.setXincludeAware(false);
+  pool.setExpandEntityReferences(false);
+  pool.setIgnoreComments(true);
+  pool.setNamespaceAware(true);
+  final Map<String,Object> attributes=new HashMap<>();
+  attributes.put("http://apache.org/xml/properties/security-manager",new SecurityManager());
+  pool.setBuilderAttributes(attributes);
+  final Map<String,Boolean> features=new HashMap<>();
+  features.put("http://apache.org/xml/features/disallow-doctype-decl",Boolean.TRUE);
+  features.put("http://apache.org/xml/features/validation/schema/normalized-value",Boolean.FALSE);
+  features.put("http://javax.xml.XMLConstants/feature/secure-processing",Boolean.TRUE);
+  features.put("http://xml.org/sax/features/external-general-entities",Boolean.FALSE);
+  features.put("http://xml.org/sax/features/external-parameter-entities",Boolean.FALSE);
+  pool.setBuilderFeatures(features);
+  return pool;
+}

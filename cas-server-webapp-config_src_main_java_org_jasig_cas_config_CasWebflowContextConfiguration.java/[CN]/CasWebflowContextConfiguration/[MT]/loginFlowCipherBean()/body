@@ -1,0 +1,15 @@
+{
+  try {
+    final KeyStoreFactoryBean factory=new KeyStoreFactoryBean(new URLResource(this.keystoreFile.getURL()),this.keystoreType,this.keystorePassword);
+    final BufferedBlockCipherBean resolver=new BufferedBlockCipherBean();
+    resolver.setKeyAlias(this.keyAlias);
+    resolver.setKeyStore(factory.newInstance());
+    resolver.setKeyPassword(this.keyPassword);
+    resolver.setNonce(new RBGNonce());
+    resolver.setBlockCipherSpec(new BufferedBlockCipherSpec(this.algName,this.cipherMode,this.cipherPadding));
+    return resolver;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

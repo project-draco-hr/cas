@@ -1,3 +1,10 @@
 {
-  return new EhCacheStatistics[]{new EhCacheStatistics(cache)};
+  final List<CacheStatistics> list=new ArrayList<>();
+  if (this.ticketGrantingTicketsCache != null) {
+    list.add(new EhCacheStatistics(this.ticketGrantingTicketsCache));
+  }
+  if (this.serviceTicketsCache != null) {
+    list.add(new EhCacheStatistics(this.serviceTicketsCache));
+  }
+  return list.toArray(new CacheStatistics[]{});
 }

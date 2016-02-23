@@ -1,0 +1,9 @@
+{
+  final String registeredServiceId=registeredService.getServiceId();
+  logger.debug("Found: {} vs redirectUri: {}",registeredService,redirectUri);
+  if (!redirectUri.matches(registeredServiceId)) {
+    logger.error("Unsupported {}: {} for registeredServiceId: {}",OAuthConstants.REDIRECT_URI,redirectUri,registeredServiceId);
+    return false;
+  }
+  return true;
+}

@@ -1,0 +1,4 @@
+{
+  final Principal principal=principalFactory.createPrincipal(profile.getId(),profile.getAttributes());
+  return new OAuthAuthentication(ZonedDateTime.now(),principal);
+}

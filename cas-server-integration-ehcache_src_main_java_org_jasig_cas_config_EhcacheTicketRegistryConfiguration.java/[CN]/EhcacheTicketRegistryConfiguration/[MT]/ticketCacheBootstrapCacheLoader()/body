@@ -1,0 +1,3 @@
+{
+  return new RMIBootstrapCacheLoader(this.loaderAsync,this.maxChunkSize);
+}

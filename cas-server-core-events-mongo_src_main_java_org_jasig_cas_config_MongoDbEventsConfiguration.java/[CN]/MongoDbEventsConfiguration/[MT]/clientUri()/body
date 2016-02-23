@@ -1,0 +1,6 @@
+{
+  if (StringUtils.isBlank(this.clientUri)) {
+    throw new RuntimeException("MongoDb Client URI must be defined for CAS events");
+  }
+  return new MongoClientURI(this.clientUri);
+}

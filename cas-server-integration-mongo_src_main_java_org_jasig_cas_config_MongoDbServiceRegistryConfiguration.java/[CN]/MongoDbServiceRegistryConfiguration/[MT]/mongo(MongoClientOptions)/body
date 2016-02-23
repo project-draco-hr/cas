@@ -1,0 +1,7 @@
+{
+  final MongoClientFactoryBean bean=new MongoClientFactoryBean();
+  bean.setHost(this.host);
+  bean.setPort(this.port);
+  bean.setMongoClientOptions(mongoClientOptions);
+  return bean;
+}

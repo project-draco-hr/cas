@@ -1,0 +1,3 @@
+{
+  return OAuthUtils.writeText(response,"error=" + error,HttpStatus.SC_BAD_REQUEST);
+}

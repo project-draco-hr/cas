@@ -1,7 +1,0 @@
-{
-  final Optional<UsernamePasswordCredentials> credentials=getCredentials(request);
-  if (credentials.isPresent()) {
-    return Optional.ofNullable(credentials.get().getUsername());
-  }
-  return Optional.empty();
-}

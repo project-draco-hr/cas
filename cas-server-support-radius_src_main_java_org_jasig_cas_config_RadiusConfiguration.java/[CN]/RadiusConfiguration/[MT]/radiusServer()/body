@@ -1,0 +1,11 @@
+{
+  final JRadiusServerImpl impl=new JRadiusServerImpl(this.protocol,radiusClientFactory());
+  impl.setRetries(this.retries);
+  impl.setNasIdentifier(this.nasIdentifier);
+  impl.setNasPort(this.nasPort);
+  impl.setNasPortId(this.nasPortId);
+  impl.setNasRealPort(this.nasRealPort);
+  impl.setNasIpAddress(this.nasIp);
+  impl.setNasIpv6Address(this.nasIpv6);
+  return impl;
+}

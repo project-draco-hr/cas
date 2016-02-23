@@ -1,0 +1,3 @@
+{
+  return new CharacterEncodingFilter("UTF-8",true);
+}

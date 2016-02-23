@@ -1,0 +1,9 @@
+{
+  final MemcachedClientFactoryBean bean=new MemcachedClientFactoryBean();
+  bean.setServers(this.servers);
+  bean.setLocatorType(this.locatorType);
+  bean.setTranscoder(this.transcoder);
+  bean.setFailureMode(this.failureMode);
+  bean.setHashAlg(this.hashAlgorithm);
+  return bean;
+}

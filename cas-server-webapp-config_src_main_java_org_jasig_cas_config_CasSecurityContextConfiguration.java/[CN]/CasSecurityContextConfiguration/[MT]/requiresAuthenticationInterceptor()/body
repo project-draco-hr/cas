@@ -1,0 +1,3 @@
+{
+  return new RequiresAuthenticationInterceptor(new Config(new IpClient(new IpRegexpAuthenticator(this.regexPattern))),"IpClient");
+}

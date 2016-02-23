@@ -1,4 +1,0 @@
-{
-  final MockHttpServletResponse response=this.mvc.perform(post("/updateRegisteredServiceEvaluationOrder.html").param("id","0")).andExpect(status().isOk()).andReturn().getResponse();
-  assertTrue(response.getContentAsString().contains("\"status\" : " + HttpServletResponse.SC_OK));
-}
