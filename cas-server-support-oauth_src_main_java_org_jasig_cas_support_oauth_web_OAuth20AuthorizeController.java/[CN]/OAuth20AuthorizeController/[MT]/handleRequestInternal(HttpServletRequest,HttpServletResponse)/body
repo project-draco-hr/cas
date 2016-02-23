@@ -8,6 +8,7 @@
   final String bypassApprovalParameter=request.getParameter(OAuthConstants.BYPASS_APPROVAL_PROMPT);
   logger.debug("bypassApprovalParameter: {}",bypassApprovalParameter);
   final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+  RegisteredServiceAccessStrategySupport.ensureServiceAccessIsAllowed(clientId,registeredService);
   final boolean bypassApprovalService=registeredService.isBypassApprovalPrompt();
   logger.debug("bypassApprovalService: {}",bypassApprovalService);
   final J2EContext context=new J2EContext(request,response);
