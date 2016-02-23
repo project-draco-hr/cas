@@ -1,5 +1,0 @@
-{
-  this.mvc.perform(get("/manage.html"));
-  final MockHttpServletResponse response=this.mvc.perform(post("/deleteRegisteredService.html").param("id","200")).andExpect(status().isOk()).andReturn().getResponse();
-  assertTrue(response.getContentAsString().contains("\"status\" : " + HttpServletResponse.SC_OK));
-}

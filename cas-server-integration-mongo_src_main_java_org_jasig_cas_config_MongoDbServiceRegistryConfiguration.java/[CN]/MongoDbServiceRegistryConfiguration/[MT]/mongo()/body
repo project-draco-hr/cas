@@ -1,0 +1,13 @@
+{
+  final MongoClientOptionsFactoryBean bean=new MongoClientOptionsFactoryBean();
+  bean.setWriteConcern(this.writeConcern);
+  bean.setHeartbeatConnectTimeout(this.heartBeatConnectionTimeout);
+  bean.setHeartbeatSocketTimeout(this.heartBeatSocketTimeout);
+  bean.setMaxConnectionLifeTime(this.maxConnectionsLifeTime);
+  bean.setSocketKeepAlive(this.socketKeepAlive);
+  bean.setMaxConnectionIdleTime(this.idleTime);
+  bean.setConnectionsPerHost(this.connectionsPerHost);
+  bean.setSocketTimeout(this.socketTimeout);
+  bean.setConnectTimeout(this.connectTimeout);
+  return bean;
+}

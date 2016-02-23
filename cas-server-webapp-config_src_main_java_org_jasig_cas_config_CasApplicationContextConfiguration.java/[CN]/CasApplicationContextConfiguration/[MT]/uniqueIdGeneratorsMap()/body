@@ -1,0 +1,5 @@
+{
+  final Map<String,UniqueTicketIdGenerator> map=new HashMap<>();
+  map.put(SimpleWebApplicationServiceImpl.class.getName(),this.serviceTicketUniqueIdGenerator);
+  return map;
+}

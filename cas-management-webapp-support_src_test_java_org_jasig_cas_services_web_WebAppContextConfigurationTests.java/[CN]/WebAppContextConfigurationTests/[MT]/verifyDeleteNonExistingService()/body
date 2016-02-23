@@ -1,3 +1,0 @@
-{
-  this.mvc.perform(post("/deleteRegisteredService.html").param("id","666")).andExpect(status().isInternalServerError());
-}

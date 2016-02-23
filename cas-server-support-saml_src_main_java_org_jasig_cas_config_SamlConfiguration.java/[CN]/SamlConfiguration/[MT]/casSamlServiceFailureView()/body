@@ -1,0 +1,6 @@
+{
+  final Saml10FailureResponseView view=new Saml10FailureResponseView();
+  view.setServicesManager(this.servicesManager);
+  view.setCasAttributeEncoder(this.casAttributeEncoder);
+  return view;
+}

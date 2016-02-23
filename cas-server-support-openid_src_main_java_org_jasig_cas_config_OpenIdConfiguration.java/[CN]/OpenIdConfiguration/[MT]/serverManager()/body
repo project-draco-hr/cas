@@ -1,0 +1,6 @@
+{
+  final ServerManager manager=new ServerManager();
+  manager.setOPEndpointUrl(this.endpoint);
+  manager.setEnforceRpId(this.enforceRpId);
+  return manager;
+}

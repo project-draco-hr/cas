@@ -1,0 +1,5 @@
+{
+  final LocaleChangeInterceptor bean=new LocaleChangeInterceptor();
+  bean.setParamName(this.localeParamName);
+  return bean;
+}

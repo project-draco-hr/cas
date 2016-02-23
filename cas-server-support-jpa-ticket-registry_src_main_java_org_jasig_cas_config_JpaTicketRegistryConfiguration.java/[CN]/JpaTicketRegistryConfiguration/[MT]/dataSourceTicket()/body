@@ -1,0 +1,23 @@
+{
+  try {
+    final ComboPooledDataSource bean=new ComboPooledDataSource();
+    bean.setDriverClass(this.driverClass);
+    bean.setJdbcUrl(this.jdbcUrl);
+    bean.setUser(this.user);
+    bean.setPassword(this.password);
+    bean.setInitialPoolSize(this.initialPoolSize);
+    bean.setMinPoolSize(this.minPoolSize);
+    bean.setMaxPoolSize(this.maxPoolSize);
+    bean.setMaxIdleTimeExcessConnections(this.maxIdleTimeExcessConnections);
+    bean.setCheckoutTimeout(this.checkoutTimeout);
+    bean.setAcquireIncrement(this.acquireIncrement);
+    bean.setAcquireRetryAttempts(this.acquireRetryAttempts);
+    bean.setAcquireRetryDelay(this.acquireRetryDelay);
+    bean.setIdleConnectionTestPeriod(this.idleConnectionTestPeriod);
+    bean.setPreferredTestQuery(this.preferredTestQuery);
+    return bean;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}
