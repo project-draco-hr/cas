@@ -1,0 +1,5 @@
+{
+  final CredentialMetaData metadata=new BasicCredentialMetaData(new BasicIdentifiableCredential(principal.getId()));
+  final HandlerResult handlerResult=new DefaultHandlerResult(principal.getClass().getCanonicalName(),metadata,principal,new ArrayList<>());
+  return DefaultAuthenticationBuilder.newInstance().setPrincipal(principal).addCredential(metadata).setAuthenticationDate(ZonedDateTime.now()).addSuccess(principal.getClass().getCanonicalName(),handlerResult).build();
+}

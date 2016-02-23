@@ -1,0 +1,9 @@
+{
+  String callbackUrl=context.getFullRequestURL();
+  callbackUrl=CommonHelper.addParameter(callbackUrl,OAuthConstants.BYPASS_APPROVAL_PROMPT,"true");
+  final Map<String,Object> model=new HashMap<>();
+  model.put("callbackUrl",callbackUrl);
+  model.put("serviceName",registeredService.getName());
+  logger.debug("callbackUrl: {}",callbackUrl);
+  return new ModelAndView(OAuthConstants.CONFIRM_VIEW,model);
+}
