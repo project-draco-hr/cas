@@ -1,4 +1,4 @@
 {
-  final String encodedRawPassword=encode(rawPassword.toString());
-  return encodedPassword.equals(encodedRawPassword);
+  final String encodedRawPassword=(rawPassword != null) ? encode(rawPassword.toString()) : null;
+  return StringUtils.equals(encodedRawPassword,encodedPassword);
 }
