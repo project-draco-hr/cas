@@ -3,7 +3,7 @@
   final String expectedEncodedPassword="expectedEncodedPassword";
   final MockPasswordEncoder mockPasswordEncoder=new MockPasswordEncoder();
   mockPasswordEncoder.setExpectedEncodedPassword(expectedEncodedPassword);
-  passwordEncoder.setSpringPasswordEncoder(mockPasswordEncoder);
+  passwordEncoder.setDelegate(mockPasswordEncoder);
   assertEquals("password is encoded",expectedEncodedPassword,passwordEncoder.encode(rawPassword));
   assertEquals("collaborator has been called",1,mockPasswordEncoder.getEncodeCalledCount());
 }

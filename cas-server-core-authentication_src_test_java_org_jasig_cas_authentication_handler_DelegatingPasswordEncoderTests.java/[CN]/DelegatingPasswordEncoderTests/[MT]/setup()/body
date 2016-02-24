@@ -1,3 +1,0 @@
-{
-  passwordEncoder=new DelegatingPasswordEncoder();
-}
