@@ -1,0 +1,4 @@
+Set<String> availableProviders
+HttpServletRequest request
+RegisteredService service
+Principal principal

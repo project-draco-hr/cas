@@ -1,0 +1,7 @@
+{
+  final DefaultRegisteredServiceMultifactorPolicy policy=new DefaultRegisteredServiceMultifactorPolicy();
+  policy.setMultifactorAuthenticationProviders(ImmutableSet.copyOf(providers));
+  final RegexRegisteredService service=new RegexRegisteredService();
+  service.setMultifactorPolicy(policy);
+  return service;
+}

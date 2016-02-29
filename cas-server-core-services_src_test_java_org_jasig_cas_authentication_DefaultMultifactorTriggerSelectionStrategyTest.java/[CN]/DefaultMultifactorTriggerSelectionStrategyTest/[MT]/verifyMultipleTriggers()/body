@@ -1,0 +1,4 @@
+{
+  assertThat(strategy.resolve(VALID_PROVIDERS,mockRequest(MFA_VALID_1),mockService(MFA_VALID_2),mockPrincipal(P_ATTR_1,MFA_VALID_2)).orElse(null),is(MFA_VALID_1));
+  assertThat(strategy.resolve(VALID_PROVIDERS,mockRequest(MFA_INVALID),mockService(MFA_VALID_1),mockPrincipal(P_ATTR_1,MFA_VALID_2)).orElse(null),is(MFA_VALID_1));
+}

@@ -1,0 +1,5 @@
+{
+  strategy=new DefaultMultifactorTriggerSelectionStrategy();
+  strategy.setRequestParameter(REQUEST_PARAM);
+  strategy.setPrincipalAttribute(P_ATTRS_12);
+}
