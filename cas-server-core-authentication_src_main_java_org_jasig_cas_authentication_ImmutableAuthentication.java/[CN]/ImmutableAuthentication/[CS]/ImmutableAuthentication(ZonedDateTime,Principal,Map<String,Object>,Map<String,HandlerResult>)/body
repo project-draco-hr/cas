@@ -1,0 +1,12 @@
+{
+  Assert.notNull(date,"Date cannot be null");
+  Assert.notNull(principal,"Principal cannot be null");
+  Assert.notNull(successes,"Successes cannot be null");
+  Assert.notEmpty(successes,"Successes cannot be empty");
+  this.authenticationDate=date;
+  this.principal=principal;
+  this.attributes=attributes.isEmpty() ? null : attributes;
+  this.successes=successes;
+  this.credentials=null;
+  this.failures=null;
+}
