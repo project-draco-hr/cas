@@ -1,0 +1,5 @@
+{
+  if (attributeResolver instanceof InitializableComponent && !((InitializableComponent)attributeResolver).isInitialized()) {
+    ((InitializableComponent)attributeResolver).initialize();
+  }
+}
