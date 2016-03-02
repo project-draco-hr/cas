@@ -1,5 +1,10 @@
 {
   if (attributeResolver instanceof InitializableComponent && !((InitializableComponent)attributeResolver).isInitialized()) {
-    ((InitializableComponent)attributeResolver).initialize();
+    try {
+      ((InitializableComponent)attributeResolver).initialize();
+    }
+ catch (    final ComponentInitializationException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
