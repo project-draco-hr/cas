@@ -1,0 +1,4 @@
+{
+  this(ticketCache);
+  setSupportRegistryState(supportRegistryState);
+}

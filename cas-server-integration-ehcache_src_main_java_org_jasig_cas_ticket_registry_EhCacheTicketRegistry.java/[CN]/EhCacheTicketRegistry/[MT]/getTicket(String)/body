@@ -3,10 +3,7 @@
   if (ticketId == null) {
     return null;
   }
-  Element element=this.serviceTicketsCache.get(ticketId);
-  if (element == null) {
-    element=this.ticketGrantingTicketsCache.get(ticketId);
-  }
+  final Element element=this.ehcacheTicketsCache.get(ticketId);
   if (element == null) {
     logger.debug("No ticket by id [{}] is found in the registry",ticketId);
     return null;

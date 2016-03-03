@@ -1,0 +1,13 @@
+{
+  final long intval;
+  if (result instanceof Long) {
+    intval=(Long)result;
+  }
+ else   if (result instanceof Integer) {
+    intval=new Long((Integer)result);
+  }
+ else {
+    intval=((Number)result).longValue();
+  }
+  return intval;
+}

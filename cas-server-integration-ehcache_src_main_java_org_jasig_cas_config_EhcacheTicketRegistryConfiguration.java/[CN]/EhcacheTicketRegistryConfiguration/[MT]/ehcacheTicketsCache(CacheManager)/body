@@ -1,9 +1,9 @@
 {
   final EhCacheFactoryBean bean=new EhCacheFactoryBean();
-  bean.setCacheName(this.ticketGrantingTicketsCacheName);
-  bean.setCacheEventListeners(ImmutableSet.of(ticketRMIAsynchronousCacheReplicator()));
-  bean.setTimeToIdle(this.ticketGrantingTicketsCacheTimeToIdle);
-  bean.setTimeToLive(this.ticketGrantingTicketsCacheTimeToLive);
+  bean.setCacheName(this.cacheName);
+  bean.setCacheEventListeners(ImmutableSet.of(ticketRMISynchronousCacheReplicator()));
+  bean.setTimeToIdle(this.cacheTimeToIdle);
+  bean.setTimeToLive(this.cacheTimeToLive);
   bean.setCacheManager(manager);
   bean.setBootstrapCacheLoader(ticketCacheBootstrapCacheLoader());
   bean.setDiskExpiryThreadIntervalSeconds(this.diskExpiryThreadIntervalSeconds);
