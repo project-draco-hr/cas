@@ -1,6 +1,0 @@
-{
-  this.registry=hz.getMap(mapName);
-  this.ticketGrantingTicketTimeoutInSeconds=ticketGrantingTicketTimeoutInSeconds;
-  this.serviceTicketTimeoutInSeconds=serviceTicketTimeoutInSeconds;
-  this.hz=hz;
-}

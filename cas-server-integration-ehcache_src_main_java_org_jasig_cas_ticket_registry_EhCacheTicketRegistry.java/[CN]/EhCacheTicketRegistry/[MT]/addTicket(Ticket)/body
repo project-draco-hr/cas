@@ -1,6 +1,8 @@
 {
   final Ticket ticket=encodeTicket(ticketToAdd);
   final Element element=new Element(ticket.getId(),ticket);
+  element.setTimeToIdle(ticketToAdd.getExpirationPolicy().getTimeToIdle().intValue());
+  element.setTimeToLive(ticketToAdd.getExpirationPolicy().getTimeToIdle().intValue());
   logger.debug("Adding ticket {} to the cache {}",ticket.getId(),this.ehcacheTicketsCache.getName());
   this.ehcacheTicketsCache.put(element);
 }
