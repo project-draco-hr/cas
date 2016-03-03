@@ -1,14 +1,5 @@
 {
   final Ticket ticket=encodeTicket(ticketToAdd);
-  if (ticket instanceof ServiceTicket) {
-    logger.debug("Adding service ticket {} to the cache {}",ticket.getId(),this.serviceTicketsCache.getName());
-    this.serviceTicketsCache.put(ticket.getId(),(ServiceTicket)ticket);
-  }
- else   if (ticket instanceof TicketGrantingTicket) {
-    logger.debug("Adding ticket granting ticket {} to the cache {}",ticket.getId(),this.ticketGrantingTicketsCache.getName());
-    this.ticketGrantingTicketsCache.put(ticket.getId(),(TicketGrantingTicket)ticket);
-  }
- else {
-    throw new IllegalArgumentException("Invalid ticket type " + ticket);
-  }
+  logger.debug("Adding ticket {} to the cache {}",ticket.getId(),this.ticketIgniteCache.getName());
+  this.ticketIgniteCache.put(ticket.getId(),ticket);
 }

@@ -3,15 +3,11 @@
   if (ticketId == null) {
     return null;
   }
-  Ticket ticket=this.serviceTicketsCache.get(ticketId);
-  if (ticket == null) {
-    ticket=this.ticketGrantingTicketsCache.get(ticketId);
-  }
+  final Ticket ticket=this.ticketIgniteCache.get(ticketId);
   if (ticket == null) {
     logger.debug("No ticket by id [{}] is found in the registry",ticketId);
     return null;
   }
   final Ticket proxiedTicket=decodeTicket(ticket);
-  ticket=getProxiedTicketInstance(proxiedTicket);
-  return ticket;
+  return getProxiedTicketInstance(proxiedTicket);
 }
