@@ -1,5 +1,5 @@
 {
   final String value="ThisIsATestValueThatIsGoingToBeEncodedAndDecodedAgainAndAgain";
-  final CipherExecutor<byte[],byte[]> cc=new ShiroCipherExecutor("0000","1234");
+  final CipherExecutor<byte[],byte[]> cc=new BinaryCipherExecutor("0000","1234");
   cc.encode(value.getBytes());
 }
