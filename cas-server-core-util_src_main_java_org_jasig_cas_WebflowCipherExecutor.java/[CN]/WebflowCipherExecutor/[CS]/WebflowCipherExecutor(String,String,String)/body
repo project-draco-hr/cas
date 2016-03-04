@@ -1,0 +1,4 @@
+{
+  super(secretKeyEncryption,secretKeySigning);
+  setSecretKeyAlgorithm(secretKeyAlg);
+}

@@ -6,15 +6,15 @@
   }
   String secretKeyToUse=secretKeyEncryption;
   if (StringUtils.isBlank(secretKeyToUse)) {
-    logger.warn("TGC secretKeyEncryption is not defined. CAS will attempt to auto-generate the encryption key");
+    logger.warn("Secret key for encryption is not defined. CAS will attempt to auto-generate the encryption key");
     secretKeyToUse=generateOctetJsonWebKeyOfSize(ENCRYPTION_KEY_SIZE);
-    logger.warn("Generated TGC encryption key {} of size {}. The generated key MUST be added to CAS TGC settings.",secretKeyToUse,ENCRYPTION_KEY_SIZE);
+    logger.warn("Generated encryption key {} of size {}. The generated key MUST be added to CAS settings.",secretKeyToUse,ENCRYPTION_KEY_SIZE);
   }
   String signingKeyToUse=secretKeySigning;
   if (StringUtils.isBlank(signingKeyToUse)) {
-    logger.warn("TGC secretKeySigning is not defined. CAS will attempt to auto-generate the signing key");
+    logger.warn("Secret key for signing is not defined. CAS will attempt to auto-generate the signing key");
     signingKeyToUse=generateOctetJsonWebKeyOfSize(SIGNING_KEY_SIZE);
-    logger.warn("Generated TGC signing key {} of size {}. The generated key MUST be added to CAS TGC settings.",signingKeyToUse,SIGNING_KEY_SIZE);
+    logger.warn("Generated signing key {} of size {}. The generated key MUST be added to CAS settings.",signingKeyToUse,SIGNING_KEY_SIZE);
   }
   setSigningKey(signingKeyToUse);
   this.secretKeyEncryptionKey=prepareJsonWebTokenKey(secretKeyToUse);

@@ -1,0 +1,17 @@
+{
+  String signingKeyToUse=signingSecretKey;
+  if (StringUtils.isBlank(signingKeyToUse)) {
+    logger.warn("Secret key for signing is not defined. CAS will attempt to auto-generate the signing key");
+    signingKeyToUse=generateOctetJsonWebKeyOfSize(SIGNING_KEY_SIZE);
+    logger.warn("Generated signing key {} of size {}. The generated key MUST be added to CAS settings.",signingKeyToUse,SIGNING_KEY_SIZE);
+  }
+  setSigningKey(signingKeyToUse);
+  if (StringUtils.isBlank(encryptionSecretKey)) {
+    logger.warn("No encryption key is defined. CAS will attempt to auto-generate keys");
+    this.encryptionSecretKey=RandomStringUtils.randomAlphabetic(ENCRYPTION_KEY_SIZE);
+    logger.warn("Generated encryption key {} of size {}. The generated key MUST be added to CAS TGC settings.",this.encryptionSecretKey,ENCRYPTION_KEY_SIZE);
+  }
+ else {
+    this.encryptionSecretKey=encryptionSecretKey;
+  }
+}
