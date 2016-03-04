@@ -4,7 +4,8 @@
     return ticket;
   }
   if (ticket == null) {
-    return ticket;
+    logger.debug("Ticket passed is null and cannot be encoded");
+    return null;
   }
   logger.info("Encoding [{}]",ticket);
   final byte[] encodedTicketObject=SerializationUtils.serializeAndEncodeObject(this.cipherExecutor,ticket);
