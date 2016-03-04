@@ -1,3 +1,6 @@
 {
-  return Long.MAX_VALUE;
+  if (this.rememberMeExpirationPolicy != null) {
+    return rememberMeExpirationPolicy.getTimeToIdle();
+  }
+  return 0L;
 }
