@@ -3,5 +3,5 @@
   if (old == null || !callback) {
     return old;
   }
-  return this.ticketRegistry.getTicket(old.getId(),Ticket.class);
+  return this.ticketRegistry.getTicket(old.getId(),TicketGrantingTicket.class);
 }
