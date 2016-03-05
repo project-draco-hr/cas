@@ -1,13 +1,20 @@
 {
   try {
-    final KeyStoreFactoryBean factory=new KeyStoreFactoryBean(new URLResource(this.keystoreFile.getURL()),this.keystoreType,this.keystorePassword);
-    final BufferedBlockCipherBean resolver=new BufferedBlockCipherBean();
-    resolver.setKeyAlias(this.keyAlias);
-    resolver.setKeyStore(factory.newInstance());
-    resolver.setKeyPassword(this.keyPassword);
-    resolver.setNonce(new RBGNonce());
-    resolver.setBlockCipherSpec(new BufferedBlockCipherSpec(this.algName,this.cipherMode,this.cipherPadding));
-    return resolver;
+    return new CipherBean(){
+      @Override public byte[] encrypt(      final byte[] bytes){
+        return webflowCipherExecutor.encode(bytes);
+      }
+      @Override public void encrypt(      final InputStream inputStream,      final OutputStream outputStream){
+        throw new RuntimeException(new OperationNotSupportedException("Encrypting input stream is not supported"));
+      }
+      @Override public byte[] decrypt(      final byte[] bytes){
+        return webflowCipherExecutor.decode(bytes);
+      }
+      @Override public void decrypt(      final InputStream inputStream,      final OutputStream outputStream){
+        throw new RuntimeException(new OperationNotSupportedException("Decrypting input stream is not supported"));
+      }
+    }
+;
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);

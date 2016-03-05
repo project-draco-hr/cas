@@ -1,0 +1,5 @@
+{
+  final String encoded=encryptValue(value);
+  final String signed=new String(sign(encoded.getBytes()));
+  return signed;
+}
