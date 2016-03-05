@@ -1,3 +1,3 @@
 {
-  return new ToStringBuilder(this).append("ticketGrantingTicketsCache",this.ticketGrantingTicketsCache).append("serviceTicketsCache",this.serviceTicketsCache).toString();
+  return new ToStringBuilder(this).appendSuper(super.toString()).append("cacheName",cacheName).append("keyStoreType",keyStoreType).append("keyStoreFilePath",keyStoreFilePath).append("keyStorePassword",keyStorePassword).append("trustStoreType",trustStoreType).append("protocol",protocol).append("keyAlgorithm",keyAlgorithm).append("trustStoreFilePath",trustStoreFilePath).append("trustStorePassword",trustStorePassword).append("supportRegistryState",supportRegistryState).toString();
 }
