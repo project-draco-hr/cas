@@ -1,5 +1,5 @@
 {
   final ZonedDateTime now=ZonedDateTime.now(ZoneOffset.UTC);
   final ZonedDateTime expirationTime=now.plus(this.timeToKillInMilliSeconds,ChronoUnit.MILLIS);
-  return (ticketState == null) || (now.isAfter(expirationTime));
+  return ticketState == null || now.isAfter(expirationTime);
 }

@@ -1,4 +1,0 @@
-{
-  setServiceTicketsCache(serviceTicketsCache);
-  setTicketGrantingTicketsCache(ticketGrantingTicketsCache);
-}

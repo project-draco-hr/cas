@@ -1,8 +1,7 @@
 {
   final List<TicketGrantingTicketImpl> tgts=entityManager.createQuery("select t from TicketGrantingTicketImpl t",TicketGrantingTicketImpl.class).getResultList();
   final List<ServiceTicketImpl> sts=entityManager.createQuery("select s from ServiceTicketImpl s",ServiceTicketImpl.class).getResultList();
-  final List<Ticket> tickets=new ArrayList<>();
-  tickets.addAll(tgts);
+  final List<Ticket> tickets=new ArrayList<>(tgts);
   tickets.addAll(sts);
   return tickets;
 }
