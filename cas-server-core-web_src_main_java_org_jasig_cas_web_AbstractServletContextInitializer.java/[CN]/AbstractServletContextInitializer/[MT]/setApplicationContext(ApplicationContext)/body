@@ -1,7 +1,7 @@
 {
   this.applicationContext=applicationContext;
   try {
-    logger.info("Initializing {} root application context",contextInitializerName);
+    logger.debug("Initializing {} root application context",contextInitializerName);
     initializeRootApplicationContext();
     logger.info("Initialized {} root application context successfully",contextInitializerName);
     logger.info("Initializing {} servlet application context",contextInitializerName);

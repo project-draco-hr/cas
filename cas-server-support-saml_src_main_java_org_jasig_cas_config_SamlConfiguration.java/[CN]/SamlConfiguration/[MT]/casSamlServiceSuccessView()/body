@@ -1,0 +1,8 @@
+{
+  final Saml10SuccessResponseView view=new Saml10SuccessResponseView();
+  view.setServicesManager(this.servicesManager);
+  view.setCasAttributeEncoder(this.casAttributeEncoder);
+  view.setIssuer(this.issuer);
+  view.setSkewAllowance(this.skewAllowance);
+  return view;
+}

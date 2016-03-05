@@ -1,0 +1,10 @@
+{
+  try {
+    final Properties properties=new Properties();
+    properties.load(this.userPropertiesFile.getInputStream());
+    return properties;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

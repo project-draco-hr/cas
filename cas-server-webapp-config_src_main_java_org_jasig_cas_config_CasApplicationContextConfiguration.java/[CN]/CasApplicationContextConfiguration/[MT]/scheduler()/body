@@ -1,0 +1,10 @@
+{
+  final SchedulerFactoryBean factory=new SchedulerFactoryBean();
+  factory.setWaitForJobsToCompleteOnShutdown(this.waitForJobsToCompleteOnShutdown);
+  factory.setJobFactory(this.casSpringBeanJobFactory);
+  final Properties properties=new Properties();
+  properties.put("org.quartz.scheduler.interruptJobsOnShutdown",this.interruptJobs);
+  properties.put("org.quartz.scheduler.interruptJobsOnShutdownWithWait",this.interruptJobs);
+  factory.setQuartzProperties(properties);
+  return factory;
+}

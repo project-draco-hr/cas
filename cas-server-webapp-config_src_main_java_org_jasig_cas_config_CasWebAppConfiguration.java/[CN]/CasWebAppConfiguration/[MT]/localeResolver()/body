@@ -1,0 +1,5 @@
+{
+  final CookieLocaleResolver bean=new CookieLocaleResolver();
+  bean.setDefaultLocale(this.defaultLocale);
+  return bean;
+}

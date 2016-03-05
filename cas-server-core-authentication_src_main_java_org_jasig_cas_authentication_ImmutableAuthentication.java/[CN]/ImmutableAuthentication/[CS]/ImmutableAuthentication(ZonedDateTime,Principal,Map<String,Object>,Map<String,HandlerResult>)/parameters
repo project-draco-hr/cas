@@ -1,0 +1,4 @@
+ZonedDateTime date
+Principal principal
+Map<String,Object> attributes
+Map<String,HandlerResult> successes

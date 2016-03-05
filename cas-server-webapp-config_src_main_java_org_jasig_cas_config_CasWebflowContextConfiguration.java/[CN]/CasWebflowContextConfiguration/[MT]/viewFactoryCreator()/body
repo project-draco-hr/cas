@@ -1,0 +1,5 @@
+{
+  final MvcViewFactoryCreator resolver=new MvcViewFactoryCreator();
+  resolver.setViewResolvers(ImmutableList.of(viewResolver(),internalViewResolver()));
+  return resolver;
+}

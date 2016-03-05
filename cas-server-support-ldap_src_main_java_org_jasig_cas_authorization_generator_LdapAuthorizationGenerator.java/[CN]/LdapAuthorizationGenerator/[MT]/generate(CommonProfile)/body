@@ -1,4 +1,7 @@
 {
+  Assert.notNull(this.connectionFactory,"connectionFactory must not be null");
+  Assert.notNull(this.roleSearchExecutor,"roleSearchExecutor must not be null");
+  Assert.notNull(this.userSearchExecutor,"userSearchExecutor must not be null");
   final String username=profile.getId();
   final SearchResult userResult;
   try {
@@ -32,15 +35,5 @@
  catch (  final LdapException e) {
     throw new RuntimeException("LDAP error fetching roles for user.",e);
   }
-  LdapAttribute roleAttribute;
-  for (  final LdapEntry entry : roleResult.getEntries()) {
-    roleAttribute=entry.getAttribute(this.roleAttributeName);
-    if (roleAttribute == null) {
-      logger.warn("Role attribute not found on entry {}",entry);
-      continue;
-    }
-    for (    final String role : roleAttribute.getStringValues()) {
-      profile.addRole(this.rolePrefix + role.toUpperCase());
-    }
-  }
+  addProfileRolesFromAttributes(profile,roleResult);
 }

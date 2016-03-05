@@ -1,0 +1,6 @@
+{
+  final Slf4jLoggingAuditTrailManager mgmr=new Slf4jLoggingAuditTrailManager();
+  mgmr.setUseSingleLine(this.useSingleLine);
+  mgmr.setEntrySeparator(this.entrySeparator);
+  return mgmr;
+}

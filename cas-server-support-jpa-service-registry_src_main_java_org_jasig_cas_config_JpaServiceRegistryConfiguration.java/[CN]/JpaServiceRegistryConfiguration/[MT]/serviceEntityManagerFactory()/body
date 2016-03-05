@@ -1,0 +1,13 @@
+{
+  final LocalContainerEntityManagerFactoryBean bean=new LocalContainerEntityManagerFactoryBean();
+  bean.setJpaVendorAdapter(jpaServiceVendorAdapter());
+  bean.setPersistenceUnitName("jpaServiceRegistryContext");
+  bean.setPackagesToScan(jpaServicePackagesToScan());
+  bean.setDataSource(dataSourceService());
+  final Properties properties=new Properties();
+  properties.put("hibernate.dialect",this.hibernateDialect);
+  properties.put("hibernate.hbm2ddl.auto",this.hibernateHbm2DdlAuto);
+  properties.put("hibernate.jdbc.batch_size",this.hibernateBatchSize);
+  bean.setJpaProperties(properties);
+  return bean;
+}

@@ -1,0 +1,6 @@
+{
+  final ResourceBundleViewResolver resolver=new ResourceBundleViewResolver();
+  resolver.setOrder(0);
+  resolver.setBasename("cas_views");
+  return resolver;
+}

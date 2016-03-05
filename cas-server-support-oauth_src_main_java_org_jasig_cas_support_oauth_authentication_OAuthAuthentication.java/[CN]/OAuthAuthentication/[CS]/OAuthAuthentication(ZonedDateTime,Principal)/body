@@ -1,4 +1,0 @@
-{
-  this.authenticationDate=authenticationDate;
-  this.principal=principal;
-}

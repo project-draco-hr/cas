@@ -1,0 +1,5 @@
+{
+  final CasDefaultFlowUrlHandler handler=new CasDefaultFlowUrlHandler();
+  handler.setFlowExecutionKeyParameter("RelayState");
+  return handler;
+}

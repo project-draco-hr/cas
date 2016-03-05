@@ -1,7 +1,7 @@
 {
   logger.debug("Response type: {}",type);
   for (  final OAuthResponseType expectedType : expectedTypes) {
-    if (StringUtils.equals(type,expectedType.name().toLowerCase())) {
+    if (isResponseType(type,expectedType)) {
       return true;
     }
   }

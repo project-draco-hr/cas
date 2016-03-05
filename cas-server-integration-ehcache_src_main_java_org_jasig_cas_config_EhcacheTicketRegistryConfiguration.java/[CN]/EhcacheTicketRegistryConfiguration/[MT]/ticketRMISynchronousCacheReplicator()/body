@@ -1,0 +1,3 @@
+{
+  return new RMISynchronousCacheReplicator(this.replicatePuts,this.replicatePutsViaCopy,this.replicateUpdates,this.replicateUpdatesViaCopy,this.replicateRemovals);
+}

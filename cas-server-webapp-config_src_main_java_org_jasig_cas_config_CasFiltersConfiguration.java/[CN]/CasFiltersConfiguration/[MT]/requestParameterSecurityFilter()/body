@@ -1,0 +1,8 @@
+{
+  final RequestParameterPolicyEnforcementFilter filter=new RequestParameterPolicyEnforcementFilter();
+  filter.setAllowMultiValueParameters(this.allowMultiValueParameters);
+  filter.setParametersToCheck(StringUtils.commaDelimitedListToSet(this.paramsToCheck));
+  filter.setCharactersToForbid(ImmutableSet.of());
+  filter.setOnlyPostParameters(StringUtils.commaDelimitedListToSet(this.onlyPostParams));
+  return filter;
+}

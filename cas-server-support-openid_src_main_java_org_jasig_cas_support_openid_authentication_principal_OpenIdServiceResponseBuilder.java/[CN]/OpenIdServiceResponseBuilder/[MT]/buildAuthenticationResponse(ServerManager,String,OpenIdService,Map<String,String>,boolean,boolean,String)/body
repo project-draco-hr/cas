@@ -4,5 +4,6 @@
   if (!associated) {
     parameters.put(OpenIdProtocolConstants.OPENID_ASSOCHANDLE,ticketId);
   }
+  logger.debug("Parameters passed for the OpenID response are {}",parameters.keySet());
   return buildRedirect(service,parameters);
 }

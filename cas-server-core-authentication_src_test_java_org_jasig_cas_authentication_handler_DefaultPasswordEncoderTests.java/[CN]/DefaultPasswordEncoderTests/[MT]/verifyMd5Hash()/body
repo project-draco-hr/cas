@@ -1,3 +1,3 @@
 {
-  assertEquals("1f3870be274f6c49b3e31a0c6728957f",this.passwordEncoder.encode("apple"));
+  assertEquals(TEST_STRING_MD5,this.passwordEncoder.encode(TEST_STRING));
 }
