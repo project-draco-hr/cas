@@ -5,8 +5,6 @@
     logger.debug("igniteConfiguration.cacheConfiguration={}",igniteConfiguration.getCacheConfiguration());
     logger.debug("igniteConfiguration.getDiscoverySpi={}",igniteConfiguration.getDiscoverySpi());
     logger.debug("igniteConfiguration.getSslContextFactory={}",igniteConfiguration.getSslContextFactory());
-    logger.debug("Ticket-granting ticket timeout: [{}s]",this.ticketGrantingTicketTimeoutInSeconds);
-    logger.debug("Service ticket timeout: [{}s]",this.serviceTicketTimeoutInSeconds);
   }
   if (Ignition.state() == IgniteState.STOPPED) {
     ignite=Ignition.start(igniteConfiguration);
@@ -14,8 +12,5 @@
  else   if (Ignition.state() == IgniteState.STARTED) {
     ignite=Ignition.ignite();
   }
-  serviceTicketsCache=ignite.getOrCreateCache(servicesCacheName);
-  serviceTicketsCache.getConfiguration(CacheConfiguration.class).setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(new Duration(TimeUnit.SECONDS,serviceTicketTimeoutInSeconds)));
-  ticketGrantingTicketsCache=ignite.getOrCreateCache(ticketsCacheName);
-  ticketGrantingTicketsCache.getConfiguration(CacheConfiguration.class).setExpiryPolicyFactory(CreatedExpiryPolicy.factoryOf(new Duration(TimeUnit.SECONDS,ticketGrantingTicketTimeoutInSeconds)));
+  ticketIgniteCache=ignite.getOrCreateCache(cacheName);
 }
