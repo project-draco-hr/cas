@@ -1,0 +1,6 @@
+{
+  request.setContextPath(contextPath);
+  request.setServletPath(servletPath);
+  request.setPathInfo(pathInfo);
+  request.setRequestURI(contextPath + servletPath + pathInfo);
+}
