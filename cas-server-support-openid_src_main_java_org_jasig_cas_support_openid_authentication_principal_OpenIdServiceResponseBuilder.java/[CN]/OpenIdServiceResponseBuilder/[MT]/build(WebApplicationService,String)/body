@@ -13,7 +13,7 @@
   boolean successFullAuthentication=true;
   Assertion assertion=null;
   try {
-    if ((associated && associationValid) || !associated) {
+    if (associated && associationValid) {
       assertion=centralAuthenticationService.validateServiceTicket(ticketId,service);
       logger.debug("Validated openid ticket {} for {}",ticketId,service);
     }

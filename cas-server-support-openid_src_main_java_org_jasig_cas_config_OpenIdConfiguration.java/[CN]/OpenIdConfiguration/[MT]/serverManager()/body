@@ -2,6 +2,5 @@
   final ServerManager manager=new ServerManager();
   manager.setOPEndpointUrl(this.endpoint);
   manager.setEnforceRpId(this.enforceRpId);
-  LOGGER.info("Creating openid server manager with OP endpoint {}",this.endpoint);
   return manager;
 }
