@@ -1,7 +1,0 @@
-{
-  final AssertionConsumerService acs=new AssertionConsumerServiceBuilder().buildObject();
-  acs.setBinding(authnRequest.getProtocolBinding());
-  acs.setLocation(authnRequest.getAssertionConsumerServiceURL());
-  acs.setResponseLocation(authnRequest.getAssertionConsumerServiceURL());
-  return acs;
-}
