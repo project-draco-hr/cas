@@ -1,5 +1,0 @@
-{
-  logger.debug("Adding ticket [{}] with ttl [{}s]",ticket.getId(),ttl);
-  final Ticket encTicket=encodeTicket(ticket);
-  this.registry.set(encTicket.getId(),encTicket,ttl,TimeUnit.SECONDS);
-}

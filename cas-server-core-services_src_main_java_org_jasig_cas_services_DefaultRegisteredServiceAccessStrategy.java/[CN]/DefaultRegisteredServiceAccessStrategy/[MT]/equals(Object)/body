@@ -9,5 +9,5 @@
     return false;
   }
   final DefaultRegisteredServiceAccessStrategy rhs=(DefaultRegisteredServiceAccessStrategy)obj;
-  return new EqualsBuilder().append(this.enabled,rhs.enabled).append(this.ssoEnabled,rhs.ssoEnabled).append(this.requireAllAttributes,rhs.requireAllAttributes).append(this.requiredAttributes,rhs.requiredAttributes).append(this.unauthorizedRedirectUrl,rhs.unauthorizedRedirectUrl).append(this.caseInsensitive,rhs.caseInsensitive).isEquals();
+  return new EqualsBuilder().append(this.enabled,rhs.enabled).append(this.ssoEnabled,rhs.ssoEnabled).append(this.requireAllAttributes,rhs.requireAllAttributes).append(this.requiredAttributes,rhs.requiredAttributes).append(this.unauthorizedRedirectUrl,rhs.unauthorizedRedirectUrl).append(this.caseInsensitive,rhs.caseInsensitive).append(this.rejectedAttributes,rhs.rejectedAttributes).isEquals();
 }

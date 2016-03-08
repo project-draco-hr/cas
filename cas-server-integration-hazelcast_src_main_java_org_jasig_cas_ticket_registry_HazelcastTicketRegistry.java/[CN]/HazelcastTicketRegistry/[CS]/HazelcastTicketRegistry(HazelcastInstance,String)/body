@@ -1,0 +1,4 @@
+{
+  this.registry=hz.getMap(mapName);
+  this.hz=hz;
+}

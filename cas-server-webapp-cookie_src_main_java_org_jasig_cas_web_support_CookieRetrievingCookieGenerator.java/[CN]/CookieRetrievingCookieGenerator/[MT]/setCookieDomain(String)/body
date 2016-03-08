@@ -1,0 +1,3 @@
+{
+  super.setCookieDomain(StringUtils.defaultIfEmpty(cookieDomain,null));
+}
