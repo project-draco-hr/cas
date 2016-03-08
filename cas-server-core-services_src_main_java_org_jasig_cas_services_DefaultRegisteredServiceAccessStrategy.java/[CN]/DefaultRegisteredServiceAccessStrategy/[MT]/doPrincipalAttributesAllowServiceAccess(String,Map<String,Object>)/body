@@ -1,2 +1,19 @@
 {
+  if (this.rejectedAttributes.isEmpty() && this.requiredAttributes.isEmpty()) {
+    logger.debug("Skipping access strategy policy, since no attributes rules are defined");
+    return true;
+  }
+  if (!enoughAttributesAvailableToProcess(principal,principalAttributes)) {
+    logger.debug("Access is denied. There are not enough attributes available to satisfy requirements");
+    return false;
+  }
+  if (doRejectedAttributesRefusePrincipalAccess(principalAttributes)) {
+    logger.debug("Access is denied. The principal carries attributes that would reject service access");
+    return false;
+  }
+  if (!doRequiredAttributesAllowPrincipalAccess(principalAttributes)) {
+    logger.debug("Access is denied. The principal does not have the required attributes specified by this strategy");
+    return false;
+  }
+  return true;
 }
