@@ -1,0 +1,9 @@
+{
+  final DefaultRegisteredServiceAccessStrategy authz=new DefaultRegisteredServiceAccessStrategy();
+  authz.setRequireAllAttributes(false);
+  final Map<String,Set<String>> rejectedAttributes=this.getRejectedAttributes();
+  authz.setRejectedAttributes(rejectedAttributes);
+  final Map<String,Object> pAttrs=this.getPrincipalAttributes();
+  pAttrs.put("role","nomatch");
+  assertTrue(authz.doPrincipalAttributesAllowServiceAccess("test",pAttrs));
+}
