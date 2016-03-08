@@ -1,4 +1,3 @@
 {
   super.setFailureView(failureView);
-  this.failureView=failureView;
 }

@@ -1,4 +1,3 @@
 {
   super.setSuccessView(successView);
-  this.successView=successView;
 }
