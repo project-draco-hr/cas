@@ -17,11 +17,13 @@
   final String serviceUrl=constructServiceUrl(request,response,authnRequest);
   logger.debug("Created service url for validation: [{}]",serviceUrl);
   final Assertion assertion=validator.validate(ticket,serviceUrl);
+  Thread.sleep(1);
   logCasValidationAssertion(assertion);
   if (!assertion.isValid()) {
-    throw new SamlException("CAS assertion received is invalid");
+    throw new SamlException("CAS assertion received is invalid. This normally indicates that the assertion received has expired " + " and is not valid within the time constraints of the authentication event");
   }
-  final SamlRegisteredService registeredService=verifySamlRegisteredService(authnRequest.getAssertionConsumerServiceURL());
+  final AssertionConsumerService acs=SamlIdPUtils.getAssertionConsumerServiceFor(authnRequest,this.servicesManager,samlRegisteredServiceCachingMetadataResolver);
+  final SamlRegisteredService registeredService=verifySamlRegisteredService(acs.getLocation());
   final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=getSamlMetadataFacadeFor(registeredService,authnRequest);
   logger.debug("Preparing SAML response for [{}]",adaptor.getEntityId());
   responseBuilder.build(authnRequest,request,response,assertion,registeredService,adaptor);

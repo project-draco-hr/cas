@@ -1,6 +1,7 @@
 {
   final AuthnRequest authnRequest=decodeRequest(request,decoder,AuthnRequest.class);
-  final SamlRegisteredService registeredService=verifySamlRegisteredService(authnRequest.getAssertionConsumerServiceURL());
+  final AssertionConsumerService acs=SamlIdPUtils.getAssertionConsumerServiceFor(authnRequest,this.servicesManager,samlRegisteredServiceCachingMetadataResolver);
+  final SamlRegisteredService registeredService=verifySamlRegisteredService(acs.getLocation());
   final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=SamlRegisteredServiceServiceProviderMetadataFacade.get(this.samlRegisteredServiceCachingMetadataResolver,registeredService,authnRequest);
   if (!authnRequest.isSigned()) {
     if (adaptor.isAuthnRequestsSigned()) {
