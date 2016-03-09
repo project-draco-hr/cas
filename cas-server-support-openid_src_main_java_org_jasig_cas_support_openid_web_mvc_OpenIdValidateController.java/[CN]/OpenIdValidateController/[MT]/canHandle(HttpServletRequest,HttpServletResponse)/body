@@ -1,0 +1,9 @@
+{
+  final String openIdMode=request.getParameter(OpenIdProtocolConstants.OPENID_MODE);
+  if (StringUtils.equals(openIdMode,OpenIdProtocolConstants.CHECK_AUTHENTICATION)) {
+    logger.info("Handling request. openid.mode : {}",openIdMode);
+    return true;
+  }
+  logger.info("Cannot handle request. openid.mode : {}",openIdMode);
+  return false;
+}
