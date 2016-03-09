@@ -1,4 +1,4 @@
-Set<String> availableProviders
+Map<String,MultifactorAuthenticationProvider> availableProviders
 HttpServletRequest request
 RegisteredService service
 Principal principal

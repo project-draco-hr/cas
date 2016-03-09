@@ -1,14 +1,14 @@
 {
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockService(MFA_VALID_1),null).orElse(null),is(MFA_VALID_1));
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockService(MFA_VALID_2),null).orElse(null),is(MFA_VALID_2));
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockService(MFA_INVALID,MFA_VALID_1,MFA_VALID_2),null).orElse(null),is(MFA_VALID_1));
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockService(MFA_BEAN_1),null).orElse(null),is(MFA_PROVIDER_ID_1));
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockService(MFA_BEAN_2),null).orElse(null),is(MFA_PROVIDER_ID_2));
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockService(MFA_INVALID,MFA_BEAN_1,MFA_BEAN_2),null).orElse(null),is(MFA_PROVIDER_ID_1));
   assertThat(strategy.resolve(VALID_PROVIDERS,null,mockService(MFA_INVALID),null).orElse(null),nullValue());
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_VALID_1,RS_ATTR_1,VALUE_1),mockPrincipal(RS_ATTR_1,VALUE_1)).orElse(null),is(MFA_VALID_1));
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_VALID_1,RS_ATTR_1,VALUE_1),mockPrincipal(RS_ATTR_1,VALUE_2)).orElse(null),nullValue());
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_VALID_1,RS_ATTRS_12,VALUE_1),mockPrincipal(RS_ATTR_1,VALUE_1)).orElse(null),is(MFA_VALID_1));
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_VALID_1,RS_ATTRS_12,VALUE_1),mockPrincipal(RS_ATTR_2,VALUE_1)).orElse(null),is(MFA_VALID_1));
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_VALID_1,RS_ATTRS_12,VALUE_1),mockPrincipal(RS_ATTR_3,VALUE_1)).orElse(null),nullValue());
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_VALID_1,RS_ATTRS_12,VALUE_PATTERN),mockPrincipal(RS_ATTR_2,VALUE_1)).orElse(null),is(MFA_VALID_1));
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_VALID_1,RS_ATTRS_12,VALUE_PATTERN),mockPrincipal(RS_ATTR_2,VALUE_2)).orElse(null),is(MFA_VALID_1));
-  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_VALID_1,RS_ATTRS_12,VALUE_PATTERN),mockPrincipal(RS_ATTR_2,VALUE_NOMATCH)).orElse(null),nullValue());
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_BEAN_1,RS_ATTR_1,VALUE_1),mockPrincipal(RS_ATTR_1,VALUE_1)).orElse(null),is(MFA_PROVIDER_ID_1));
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_BEAN_1,RS_ATTR_1,VALUE_1),mockPrincipal(RS_ATTR_1,VALUE_2)).orElse(null),nullValue());
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_BEAN_1,RS_ATTRS_12,VALUE_1),mockPrincipal(RS_ATTR_1,VALUE_1)).orElse(null),is(MFA_PROVIDER_ID_1));
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_BEAN_1,RS_ATTRS_12,VALUE_1),mockPrincipal(RS_ATTR_2,VALUE_1)).orElse(null),is(MFA_PROVIDER_ID_1));
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_BEAN_1,RS_ATTRS_12,VALUE_1),mockPrincipal(RS_ATTR_3,VALUE_1)).orElse(null),nullValue());
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_BEAN_1,RS_ATTRS_12,VALUE_PATTERN),mockPrincipal(RS_ATTR_2,VALUE_1)).orElse(null),is(MFA_PROVIDER_ID_1));
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_BEAN_1,RS_ATTRS_12,VALUE_PATTERN),mockPrincipal(RS_ATTR_2,VALUE_2)).orElse(null),is(MFA_PROVIDER_ID_1));
+  assertThat(strategy.resolve(VALID_PROVIDERS,null,mockPrincipalService(MFA_BEAN_1,RS_ATTRS_12,VALUE_PATTERN),mockPrincipal(RS_ATTR_2,VALUE_NOMATCH)).orElse(null),nullValue());
 }
