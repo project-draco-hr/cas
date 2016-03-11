@@ -1,0 +1,3 @@
+{
+  return urlEncode(key,encoding) + "=" + urlEncode(value,encoding);
+}
