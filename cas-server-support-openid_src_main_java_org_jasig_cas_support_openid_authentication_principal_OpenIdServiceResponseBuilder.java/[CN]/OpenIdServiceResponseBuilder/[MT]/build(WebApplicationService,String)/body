@@ -30,5 +30,5 @@
     successFullAuthentication=false;
   }
   final String id=determineIdentity(service,assertion);
-  return buildAuthenticationResponse(serverManager,ticketId,service,parameters,associated,successFullAuthentication,id);
+  return buildAuthenticationResponse(serverManager,service,parameters,associated,successFullAuthentication,id);
 }
