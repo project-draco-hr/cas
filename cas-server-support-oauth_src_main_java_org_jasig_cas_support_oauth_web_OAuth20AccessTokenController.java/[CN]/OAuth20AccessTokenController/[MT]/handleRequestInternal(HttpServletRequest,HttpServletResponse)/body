@@ -6,30 +6,45 @@
   final String grantType=request.getParameter(OAuthConstants.GRANT_TYPE);
   final Service service;
   final Authentication authentication;
-  if (isGrantType(grantType,OAuthGrantType.AUTHORIZATION_CODE)) {
-    final String codeParameter=request.getParameter(OAuthConstants.CODE);
-    final OAuthCode code=ticketRegistry.getTicket(codeParameter,OAuthCode.class);
-    if (code == null || code.isExpired()) {
-      logger.error("Code expired: {}",code);
-      if (code != null) {
-        ticketRegistry.deleteTicket(code.getId());
-      }
+  final boolean generateRefreshToken;
+  if (isGrantType(grantType,OAuthGrantType.AUTHORIZATION_CODE) || isGrantType(grantType,OAuthGrantType.REFRESH_TOKEN)) {
+    final J2EContext context=new J2EContext(request,response);
+    final ProfileManager manager=new ProfileManager(context);
+    final UserProfile profile=manager.get(true);
+    final String clientId=profile.getId();
+    final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+    generateRefreshToken=registeredService.isGenerateRefreshToken() && isGrantType(grantType,OAuthGrantType.AUTHORIZATION_CODE);
+    final String parameterName;
+    if (isGrantType(grantType,OAuthGrantType.AUTHORIZATION_CODE)) {
+      parameterName=OAuthConstants.CODE;
+    }
+ else {
+      parameterName=OAuthConstants.REFRESH_TOKEN;
+    }
+    final OAuthToken token=getToken(request,parameterName);
+    if (token == null) {
       return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_GRANT);
     }
-    ticketRegistry.deleteTicket(code.getId());
-    service=code.getService();
-    authentication=code.getAuthentication();
+    service=token.getService();
+    authentication=token.getAuthentication();
   }
  else {
+    final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
+    final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+    generateRefreshToken=registeredService.isGenerateRefreshToken();
     final J2EContext context=new J2EContext(request,response);
     final ProfileManager manager=new ProfileManager(context);
     final OAuthUserProfile profile=(OAuthUserProfile)manager.get(true);
-    final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
-    service=createService(OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId));
+    service=createService(registeredService);
     authentication=createAuthentication(profile);
   }
   final AccessToken accessToken=generateAccessToken(service,authentication);
-  final String text=String.format("%s=%s&%s=%s",OAuthConstants.ACCESS_TOKEN,accessToken.getId(),OAuthConstants.EXPIRES,timeout);
+  String text=String.format("%s=%s&%s=%s",OAuthConstants.ACCESS_TOKEN,accessToken.getId(),OAuthConstants.EXPIRES,timeout);
+  if (generateRefreshToken) {
+    final RefreshToken refreshToken=refreshTokenFactory.create(service,authentication);
+    ticketRegistry.addTicket(refreshToken);
+    text+="&" + OAuthConstants.REFRESH_TOKEN + "="+ refreshToken.getId();
+  }
   logger.debug("OAuth access token response: {}",text);
   return OAuthUtils.writeText(response,text,HttpStatus.SC_OK);
 }
