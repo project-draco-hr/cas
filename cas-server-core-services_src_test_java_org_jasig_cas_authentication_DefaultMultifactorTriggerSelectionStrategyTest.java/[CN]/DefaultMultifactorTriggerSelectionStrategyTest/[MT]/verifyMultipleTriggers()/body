@@ -1,4 +1,4 @@
 {
-  assertThat(strategy.resolve(VALID_PROVIDERS,mockRequest(MFA_PROVIDER_ID_1),mockService(MFA_BEAN_2),mockPrincipal(P_ATTR_1,MFA_PROVIDER_ID_2)).orElse(null),is(MFA_PROVIDER_ID_1));
+  assertThat(strategy.resolve(VALID_PROVIDERS,mockRequest(MFA_PROVIDER_ID_1),mockService(MFA_PROVIDER_ID_2),mockPrincipal(P_ATTR_1,MFA_PROVIDER_ID_2)).orElse(null),is(MFA_PROVIDER_ID_1));
   assertThat(strategy.resolve(VALID_PROVIDERS,mockRequest(MFA_INVALID),mockService(MFA_PROVIDER_ID_1),mockPrincipal(P_ATTR_1,MFA_PROVIDER_ID_2)).orElse(null),is(MFA_PROVIDER_ID_1));
 }
