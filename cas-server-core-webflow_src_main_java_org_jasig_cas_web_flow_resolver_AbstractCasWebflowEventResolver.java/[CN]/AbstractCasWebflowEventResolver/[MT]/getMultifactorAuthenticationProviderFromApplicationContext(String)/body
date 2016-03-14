@@ -1,10 +1,2 @@
 {
-  try {
-    logger.debug("Locating bean definition for {}",provider);
-    return this.applicationContext.getBean(provider,MultifactorAuthenticationProvider.class);
-  }
- catch (  final Exception e) {
-    logger.debug("Could not locate [{}] bean id in the application context as an authentication provider.",provider);
-  }
-  return null;
 }

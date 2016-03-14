@@ -1,5 +1,4 @@
 ServerManager serverManager
-String ticketId
 OpenIdService service
 Map<String,String> parameters
 boolean associated
