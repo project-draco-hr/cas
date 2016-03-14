@@ -22,7 +22,8 @@
     logger.trace("Request does not indicate a requirement for authentication policy; proceed with flow normally.");
     return resumeFlow();
   }
-  if (event.getId().equals(CasWebflowConstants.TRANSITION_ID_ERROR) || event.getId().equals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE)) {
+  if (event.getId().equals(CasWebflowConstants.TRANSITION_ID_ERROR) || event.getId().equals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE) || event.getId().equals(CasWebflowConstants.TRANSITION_ID_SUCCESS)) {
+    logger.debug("Returning webflow event as {}",event.getId());
     return ImmutableSet.of(event);
   }
   final Pair<Boolean,Optional<MultifactorAuthenticationProvider>> result=this.authenticationContextValidator.validate(authentication,event.getId(),service);

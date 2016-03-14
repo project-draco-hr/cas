@@ -4,6 +4,8 @@
     LOGGER.debug("Successful authentication; Collecting authentication result [{}]",authentication);
     authenticationResult.collect(authentication);
   }
-  LOGGER.debug("Transaction ignored since there are no credentials to authenticate");
+ else {
+    LOGGER.debug("Transaction ignored since there are no credentials to authenticate");
+  }
   return this;
 }
