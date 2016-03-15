@@ -8,6 +8,8 @@
     }
     return null;
   }
-  ticketRegistry.deleteTicket(token.getId());
+  if (token instanceof OAuthCode) {
+    ticketRegistry.deleteTicket(token.getId());
+  }
   return token;
 }
