@@ -1,0 +1,9 @@
+{
+  if (xmlViewsFile.exists()) {
+    final XmlViewResolver bean=new XmlViewResolver();
+    bean.setOrder(VIEW_RESOLVER_XML_ORDER);
+    bean.setLocation(xmlViewsFile);
+    return bean;
+  }
+  return beanNameViewResolver();
+}
