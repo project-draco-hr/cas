@@ -1,5 +1,5 @@
 {
-  final RegisteredService registeredService=getRegisteredService(REDIRECT_URI,CLIENT_SECRET);
+  final OAuthRegisteredService registeredService=getRegisteredService(REDIRECT_URI,CLIENT_SECRET);
   servicesManager.save(registeredService);
   return registeredService;
 }

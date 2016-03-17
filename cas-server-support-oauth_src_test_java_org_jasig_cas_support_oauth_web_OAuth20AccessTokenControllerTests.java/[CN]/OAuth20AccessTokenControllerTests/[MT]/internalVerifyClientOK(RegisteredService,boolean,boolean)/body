@@ -1,6 +1,5 @@
 {
   final Principal principal=createPrincipal();
-  final RegisteredService service=addRegisteredService();
   final OAuthCode code=addCode(principal,service);
   final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.ACCESS_TOKEN_URL);
   mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
@@ -23,11 +22,13 @@
   assertEquals(200,mockResponse.getStatus());
   final String body=mockResponse.getContentAsString();
   assertTrue(body.contains(OAuthConstants.ACCESS_TOKEN + '='));
+  if (refreshToken) {
+    assertTrue(body.contains(OAuthConstants.REFRESH_TOKEN + '='));
+  }
   assertTrue(body.contains(OAuthConstants.EXPIRES + '='));
   final String accessTokenId=StringUtils.substringBetween(body,OAuthConstants.ACCESS_TOKEN + '=',"&");
   final AccessToken accessToken=oAuth20AccessTokenController.getTicketRegistry().getTicket(accessTokenId,AccessToken.class);
   assertEquals(principal,accessToken.getAuthentication().getPrincipal());
-  final int delta=2;
-  final int timeLeft=Integer.parseInt(StringUtils.substringAfter(body,'&' + OAuthConstants.EXPIRES + '='));
-  assertTrue(timeLeft >= TIMEOUT - 10 - delta);
+  final int timeLeft=getTimeLeft(body,refreshToken);
+  assertTrue(timeLeft >= TIMEOUT - 10 - DELTA);
 }

@@ -1,0 +1,10 @@
+{
+  final int timeLeft;
+  if (refreshToken) {
+    timeLeft=Integer.parseInt(StringUtils.substringBetween(body,'&' + OAuthConstants.EXPIRES + '=','&' + OAuthConstants.REFRESH_TOKEN));
+  }
+ else {
+    timeLeft=Integer.parseInt(StringUtils.substringAfter(body,'&' + OAuthConstants.EXPIRES + '='));
+  }
+  return timeLeft;
+}

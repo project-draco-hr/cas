@@ -9,5 +9,5 @@
     return false;
   }
   final OAuthRegisteredService rhs=(OAuthRegisteredService)obj;
-  return new EqualsBuilder().appendSuper(super.equals(obj)).append(this.clientSecret,rhs.clientSecret).append(this.clientId,rhs.clientId).append(this.bypassApprovalPrompt,rhs.bypassApprovalPrompt).isEquals();
+  return new EqualsBuilder().appendSuper(super.equals(obj)).append(this.clientSecret,rhs.clientSecret).append(this.clientId,rhs.clientId).append(this.bypassApprovalPrompt,rhs.bypassApprovalPrompt).append(this.generateRefreshToken,rhs.generateRefreshToken).isEquals();
 }

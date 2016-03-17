@@ -1,0 +1,4 @@
+{
+  final RegisteredService service=addRegisteredService();
+  internalVerifyRefreshTokenOk(service);
+}
