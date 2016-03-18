@@ -25,6 +25,11 @@
     if (registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed()) {
       logger.debug("Placing registered service [{}] with id [{}] in context scope",registeredService.getServiceId(),registeredService.getId());
       WebUtils.putRegisteredService(context,registeredService);
+      final RegisteredServiceAccessStrategy accessStrategy=registeredService.getAccessStrategy();
+      if (accessStrategy.getUnauthorizedRedirectUrl() != null) {
+        logger.debug("Placing registered service's unauthorized redirect url [{}] with id [{}] in context scope",accessStrategy.getUnauthorizedRedirectUrl(),registeredService.getServiceId());
+        WebUtils.putUnauthorizedRedirectUrl(context,accessStrategy.getUnauthorizedRedirectUrl());
+      }
     }
   }
  else   if (!this.enableFlowOnAbsentServiceRequest) {
