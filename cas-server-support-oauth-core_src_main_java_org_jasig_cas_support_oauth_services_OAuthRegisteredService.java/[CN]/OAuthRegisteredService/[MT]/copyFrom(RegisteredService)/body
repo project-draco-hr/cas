@@ -4,4 +4,5 @@
   this.setClientId(oAuthRegisteredService.getClientId());
   this.setClientSecret(oAuthRegisteredService.getClientSecret());
   this.setBypassApprovalPrompt(oAuthRegisteredService.isBypassApprovalPrompt());
+  this.setGenerateRefreshToken(oAuthRegisteredService.isGenerateRefreshToken());
 }

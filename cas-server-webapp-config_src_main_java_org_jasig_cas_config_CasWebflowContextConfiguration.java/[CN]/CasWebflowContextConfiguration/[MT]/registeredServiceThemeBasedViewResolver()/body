@@ -1,0 +1,8 @@
+{
+  final RegisteredServiceThemeBasedViewResolver bean=new RegisteredServiceThemeBasedViewResolver(this.servicesManager);
+  bean.setPrefix(this.pathPrefix);
+  bean.setSuffix(".jsp");
+  bean.setCache(false);
+  bean.setOrder(VIEW_RESOLVER_SERVICE_ORDER);
+  return bean;
+}

@@ -1,0 +1,7 @@
+{
+  final Authentication authentication=getAuthentication(principal);
+  final Service service=new OAuthWebApplicationService(registeredService);
+  final RefreshToken refreshToken=oAuthRefreshTokenFactory.create(service,authentication);
+  oAuth20AccessTokenController.getTicketRegistry().addTicket(refreshToken);
+  return refreshToken;
+}

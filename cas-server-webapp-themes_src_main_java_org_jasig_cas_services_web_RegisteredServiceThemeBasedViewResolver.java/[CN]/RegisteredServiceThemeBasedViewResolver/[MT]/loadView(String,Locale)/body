@@ -1,0 +1,22 @@
+{
+  final RequestContext requestContext=RequestContextHolder.getRequestContext();
+  final WebApplicationService service=WebUtils.getService(requestContext);
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  if (service != null && registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed() && StringUtils.hasText(registeredService.getTheme())) {
+    final InternalResourceView view=BeanUtils.instantiateClass(InternalResourceView.class);
+    final String defaultThemePrefix=String.format(THEME_LOCATION_PATTERN,getPrefix(),"default");
+    final String defaultViewUrl=defaultThemePrefix + viewName + getSuffix();
+    view.setUrl(defaultViewUrl);
+    LOGGER.debug("Attempting to locate views for service [{}] with theme [{}]",registeredService.getServiceId(),registeredService.getTheme());
+    final String themePrefix=String.format(THEME_LOCATION_PATTERN,getPrefix(),registeredService.getTheme());
+    LOGGER.debug("Prefix [{}] set for service [{}] with theme [{}]",themePrefix,service,registeredService.getTheme());
+    final String viewUrl=themePrefix + viewName + getSuffix();
+    view.setUrl(viewUrl);
+    view.setAlwaysInclude(false);
+    view.setExposeContextBeansAsAttributes(false);
+    view.setPreventDispatchLoop(true);
+    LOGGER.debug("View resolved: {}",view.getUrl());
+    return view;
+  }
+  return null;
+}

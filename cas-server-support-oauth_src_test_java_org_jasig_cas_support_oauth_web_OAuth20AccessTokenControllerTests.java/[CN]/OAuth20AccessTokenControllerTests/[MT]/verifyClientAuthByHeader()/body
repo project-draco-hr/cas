@@ -1,3 +1,4 @@
 {
-  internalVerifyOK(true);
+  final RegisteredService service=addRegisteredService();
+  internalVerifyClientOK(service,true,false);
 }

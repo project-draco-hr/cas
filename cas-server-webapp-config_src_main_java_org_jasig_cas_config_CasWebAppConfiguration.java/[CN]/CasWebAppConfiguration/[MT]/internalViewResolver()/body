@@ -1,6 +1,0 @@
-{
-  final RegisteredServiceThemeBasedViewResolver bean=new RegisteredServiceThemeBasedViewResolver(this.servicesManager);
-  bean.setPrefix(this.pathPrefix);
-  bean.setOrder(URL_VIEW_RESOLVER_ORDER + 1);
-  return bean;
-}

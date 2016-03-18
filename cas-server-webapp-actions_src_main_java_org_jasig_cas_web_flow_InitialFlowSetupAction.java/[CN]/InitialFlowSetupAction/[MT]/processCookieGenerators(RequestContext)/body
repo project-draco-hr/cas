@@ -18,4 +18,9 @@
   }
   WebUtils.putTicketGrantingTicketInScopes(context,this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request));
   WebUtils.putWarningCookie(context,Boolean.valueOf(this.warnCookieGenerator.retrieveCookieValue(request)));
+  final RegisteredServiceAccessStrategy accessStrategy=registeredService.getAccessStrategy();
+  if (accessStrategy.getUnauthorizedRedirectUrl() != null) {
+    logger.debug("Placing registered service's unauthorized redirect url [{}] with id [{}] in context scope",accessStrategy.getUnauthorizedRedirectUrl(),registeredService.getServiceId());
+    WebUtils.putUnauthorizedRedirectUrl(context,accessStrategy.getUnauthorizedRedirectUrl());
+  }
 }
