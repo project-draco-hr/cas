@@ -1,0 +1,3 @@
+{
+  return ctx.getConversationScope().get(PARAMETER_AUTHENTICATION,Authentication.class);
+}

@@ -1,0 +1,4 @@
+{
+  this.rank=null;
+  this.name=null;
+}

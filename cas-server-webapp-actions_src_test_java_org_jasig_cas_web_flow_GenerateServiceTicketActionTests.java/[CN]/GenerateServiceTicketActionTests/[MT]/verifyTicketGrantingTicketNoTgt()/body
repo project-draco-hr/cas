@@ -7,5 +7,5 @@
   final TicketGrantingTicket tgt=mock(TicketGrantingTicket.class);
   when(tgt.getId()).thenReturn("bleh");
   WebUtils.putTicketGrantingTicketInScopes(context,tgt);
-  assertEquals(AbstractCasWebflowConfigurer.EVENT_AUTHENTICATION_FAILURE,this.action.execute(context).getId());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,this.action.execute(context).getId());
 }

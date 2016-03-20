@@ -1,0 +1,24 @@
+{
+  if (providers == null || providers.isEmpty()) {
+    logger.debug("No authentication provider is associated with this service");
+    return null;
+  }
+  logger.debug("Locating principal attribute value for {}",attributeNames);
+  for (  final String attributeName : attributeNames) {
+    final Object attributeValue=principal.getAttributes().get(attributeName);
+    if (attributeValue == null) {
+      logger.debug("Attribute value for {} to determine event is not configured for {}",attributeName,principal.getId());
+      continue;
+    }
+    logger.debug("Selecting a multifactor authentication provider out of {} for {} and service {}",providers,principal.getId(),service);
+    final MultifactorAuthenticationProvider provider=multifactorAuthenticationProviderSelector.resolve(providers,service,principal);
+    Set<Event> results=resolveEventViaSinglePrincipalAttribute(principal,attributeValue,service,context,provider,predicate);
+    if (results == null || results.isEmpty()) {
+      results=resolveEventViaMultivaluedPrincipalAttribute(principal,attributeValue,service,context,provider,predicate);
+    }
+    if (results != null && !results.isEmpty()) {
+      return results;
+    }
+  }
+  return null;
+}

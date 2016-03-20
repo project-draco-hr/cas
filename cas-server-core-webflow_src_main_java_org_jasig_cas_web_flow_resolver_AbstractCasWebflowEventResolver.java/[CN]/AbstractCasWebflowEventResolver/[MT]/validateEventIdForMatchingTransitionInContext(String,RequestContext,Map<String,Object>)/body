@@ -1,0 +1,17 @@
+{
+  try {
+    final AttributeMap<Object> attributesMap=new LocalAttributeMap<>(attributes);
+    final Event event=new Event(this,eventId,attributesMap);
+    logger.debug("Resulting event id is [{}]. Locating transitions in the context for that event id...",event.getId());
+    final TransitionDefinition def=context.getMatchingTransition(event.getId());
+    if (def == null) {
+      logger.warn("Transition definition cannot be found for event [{}]",event.getId());
+      throw new AuthenticationException();
+    }
+    logger.debug("Found matching transition [{}] with target [{}] for event [{}] with attributes {}.",def.getId(),def.getTargetStateId(),event.getId(),event.getAttributes());
+    return event;
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e);
+  }
+}

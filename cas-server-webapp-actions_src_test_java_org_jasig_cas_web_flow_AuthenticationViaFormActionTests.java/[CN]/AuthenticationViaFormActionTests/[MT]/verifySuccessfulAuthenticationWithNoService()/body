@@ -1,13 +1,10 @@
 {
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockRequestContext context=new MockRequestContext();
-  WebUtils.putLoginTicket(context,"LOGIN");
-  request.addParameter("lt","LOGIN");
   request.addParameter("username","test");
   request.addParameter("password","test");
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   final Credential c=org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword();
   putCredentialInRequestScope(context,c);
-  final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("success",this.action.submit(context,c,messageContext).getId());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_SUCCESS,this.action.doExecute(context).getId());
 }

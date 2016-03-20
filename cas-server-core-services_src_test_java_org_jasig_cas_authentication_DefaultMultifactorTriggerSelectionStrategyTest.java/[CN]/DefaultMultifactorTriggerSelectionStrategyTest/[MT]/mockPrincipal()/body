@@ -1,0 +1,3 @@
+{
+  return principalFactory.createPrincipal("user");
+}

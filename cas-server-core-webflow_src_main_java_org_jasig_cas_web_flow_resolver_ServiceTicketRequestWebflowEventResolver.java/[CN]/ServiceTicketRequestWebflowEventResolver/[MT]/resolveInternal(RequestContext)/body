@@ -1,0 +1,6 @@
+{
+  if (isRequestAskingForServiceTicket(context)) {
+    return ImmutableSet.of(grantServiceTicket(context));
+  }
+  return null;
+}

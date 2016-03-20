@@ -11,7 +11,7 @@
   successes.put("handler1",new DefaultHandlerResult(authenticationHandler,credential1));
   final Map<String,Class<? extends Exception>> failures=new HashMap<>();
   failures.put("handler2",FailedLoginException.class);
-  final ImmutableAuthentication auth=new ImmutableAuthentication(ZonedDateTime.now(ZoneOffset.UTC),credentials,new DefaultPrincipalFactory().createPrincipal("test"),attributes,successes,failures);
+  final DefaultAuthentication auth=new DefaultAuthentication(ZonedDateTime.now(ZoneOffset.UTC),credentials,new DefaultPrincipalFactory().createPrincipal("test"),attributes,successes,failures);
   try {
     auth.getCredentials().add(new BasicCredentialMetaData(new UsernamePasswordCredential()));
     fail("Should have failed");

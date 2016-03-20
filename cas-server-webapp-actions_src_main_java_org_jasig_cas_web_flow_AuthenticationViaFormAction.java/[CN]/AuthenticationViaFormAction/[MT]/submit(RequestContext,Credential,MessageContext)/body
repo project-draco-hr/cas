@@ -1,9 +1,0 @@
-{
-  if (!checkLoginTicketIfExists(context)) {
-    return returnInvalidLoginTicketEvent(context,messageContext);
-  }
-  if (isRequestAskingForServiceTicket(context)) {
-    return grantServiceTicket(context,credential);
-  }
-  return createTicketGrantingTicket(context,credential,messageContext);
-}

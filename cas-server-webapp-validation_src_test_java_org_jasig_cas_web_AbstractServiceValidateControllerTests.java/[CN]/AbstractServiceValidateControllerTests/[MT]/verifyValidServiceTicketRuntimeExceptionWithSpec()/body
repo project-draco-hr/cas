@@ -1,5 +1,4 @@
 {
-  this.serviceValidateController.setValidationSpecificationClass(MockValidationSpecification.class);
+  this.serviceValidateController.setValidationSpecification(new MockValidationSpecification(false));
   assertEquals(AbstractServiceValidateController.DEFAULT_SERVICE_FAILURE_VIEW_NAME,this.serviceValidateController.handleRequestInternal(getHttpServletRequest(),new MockHttpServletResponse()).getViewName());
-  fail("Expected exception");
 }

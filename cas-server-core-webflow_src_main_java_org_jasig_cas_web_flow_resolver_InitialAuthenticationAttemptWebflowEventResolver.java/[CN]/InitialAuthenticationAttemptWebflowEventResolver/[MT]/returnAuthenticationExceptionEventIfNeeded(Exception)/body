@@ -1,0 +1,14 @@
+{
+  final Exception ex;
+  if (e instanceof AuthenticationException || e instanceof AbstractTicketException) {
+    ex=e;
+  }
+ else   if (e.getCause() instanceof AuthenticationException || e.getCause() instanceof AbstractTicketException) {
+    ex=(Exception)e.getCause();
+  }
+ else {
+    return null;
+  }
+  logger.debug(ex.getMessage(),ex);
+  return newEvent(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,ex);
+}

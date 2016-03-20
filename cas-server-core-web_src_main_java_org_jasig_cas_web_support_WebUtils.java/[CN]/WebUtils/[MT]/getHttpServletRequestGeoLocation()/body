@@ -1,6 +1,6 @@
 {
   final int latIndex=0;
-  final int oongIndex=1;
+  final int longIndex=1;
   final int accuIndex=2;
   final int timeIndex=3;
   final HttpServletRequest request=WebUtils.getHttpServletRequest();
@@ -10,7 +10,7 @@
     if (StringUtils.isNotBlank(geoLocationParam)) {
       final String[] geoLocation=geoLocationParam.split(",");
       loc.setLatitude(geoLocation[latIndex]);
-      loc.setLongitude(geoLocation[oongIndex]);
+      loc.setLongitude(geoLocation[longIndex]);
       loc.setAccuracy(geoLocation[accuIndex]);
       loc.setTimestamp(geoLocation[timeIndex]);
     }

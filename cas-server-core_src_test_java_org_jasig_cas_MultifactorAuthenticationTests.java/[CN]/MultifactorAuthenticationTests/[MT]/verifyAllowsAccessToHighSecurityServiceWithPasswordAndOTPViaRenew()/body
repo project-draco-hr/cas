@@ -9,5 +9,5 @@
   assertEquals(2,assertion.getPrimaryAuthentication().getSuccesses().size());
   assertTrue(assertion.getPrimaryAuthentication().getSuccesses().containsKey("passwordHandler"));
   assertTrue(assertion.getPrimaryAuthentication().getSuccesses().containsKey("oneTimePasswordHandler"));
-  assertTrue(assertion.getPrimaryAuthentication().getAttributes().containsKey(SuccessfulHandlerMetaDataPopulator.SUCCESSFUL_AUTHENTICATION_HANDLERS));
+  assertTrue(assertion.getPrimaryAuthentication().getAttributes().containsKey(AuthenticationHandler.SUCCESSFUL_AUTHENTICATION_HANDLERS));
 }

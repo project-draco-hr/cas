@@ -1,0 +1,7 @@
+{
+  logger.debug("Final collection of resolved events for this authentication sequence are:");
+  for (  final Event resolveEvent : resolveEvents) {
+    logger.debug("Event id [{}] resolved from {}",resolveEvent.getId(),resolveEvent.getSource().getClass().getName());
+  }
+  return resolveEvents;
+}

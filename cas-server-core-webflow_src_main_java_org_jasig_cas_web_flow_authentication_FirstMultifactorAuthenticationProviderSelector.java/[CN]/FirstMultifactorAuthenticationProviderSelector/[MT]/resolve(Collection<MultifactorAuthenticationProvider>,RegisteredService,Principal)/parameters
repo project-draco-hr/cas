@@ -1,0 +1,3 @@
+Collection<MultifactorAuthenticationProvider> providers
+RegisteredService service
+Principal principal

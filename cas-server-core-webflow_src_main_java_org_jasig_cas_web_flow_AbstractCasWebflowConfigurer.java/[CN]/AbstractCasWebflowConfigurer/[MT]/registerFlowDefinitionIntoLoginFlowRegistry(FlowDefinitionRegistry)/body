@@ -1,0 +1,8 @@
+{
+  final String[] flowIds=sourceRegistry.getFlowDefinitionIds();
+  for (  final String flowId : flowIds) {
+    final FlowDefinition definition=sourceRegistry.getFlowDefinition(flowId);
+    logger.debug("Registering flow definition [{}]",flowId);
+    this.loginFlowDefinitionRegistry.registerFlowDefinition(definition);
+  }
+}

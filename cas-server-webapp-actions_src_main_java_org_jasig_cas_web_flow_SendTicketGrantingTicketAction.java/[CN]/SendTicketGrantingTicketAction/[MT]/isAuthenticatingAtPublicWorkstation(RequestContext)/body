@@ -1,7 +1,0 @@
-{
-  if (ctx.getFlowScope().contains(AuthenticationViaFormAction.PUBLIC_WORKSTATION_ATTRIBUTE)) {
-    LOGGER.debug("Public workstation flag detected. SSO session will be considered renewed.");
-    return true;
-  }
-  return false;
-}

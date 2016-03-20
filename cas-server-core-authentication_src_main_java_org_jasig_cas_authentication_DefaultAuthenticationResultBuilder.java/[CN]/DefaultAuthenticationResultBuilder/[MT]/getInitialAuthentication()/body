@@ -1,0 +1,6 @@
+{
+  if (this.authentications.isEmpty()) {
+    LOGGER.warn("Authentication chain is empty as no authentications have been collected");
+  }
+  return this.authentications.stream().findFirst();
+}
