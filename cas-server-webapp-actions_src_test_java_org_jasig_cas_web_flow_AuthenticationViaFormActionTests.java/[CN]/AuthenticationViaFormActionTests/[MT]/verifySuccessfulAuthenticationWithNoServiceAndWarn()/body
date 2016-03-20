@@ -2,16 +2,13 @@
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockHttpServletResponse response=new MockHttpServletResponse();
   final MockRequestContext context=new MockRequestContext();
-  WebUtils.putLoginTicket(context,"LOGIN");
-  request.addParameter("lt","LOGIN");
   request.addParameter("username","test");
   request.addParameter("password","test");
   request.addParameter("warn","true");
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,response));
   final Credential c=org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword();
   putCredentialInRequestScope(context,c);
-  final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("success",this.action.submit(context,c,messageContext).getId());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_SUCCESS,this.action.doExecute(context).getId());
   assertNotNull(WebUtils.getTicketGrantingTicketId(context));
   assertNotNull(response.getCookie(this.warnCookieGenerator.getCookieName()));
 }

@@ -1,0 +1,22 @@
+{
+  final Set<Object> c=new HashSet<>();
+  if (obj == null) {
+    LOGGER.debug("Converting null obj to empty collection");
+  }
+ else   if (obj instanceof Collection) {
+    c.addAll((Collection<Object>)obj);
+    LOGGER.debug("Converting multi-valued attribute [{}] for the authentication result",obj);
+  }
+ else   if (obj instanceof Map) {
+    throw new UnsupportedOperationException(Map.class.getCanonicalName() + " is not supported");
+  }
+ else   if (obj.getClass().isArray()) {
+    c.addAll(Arrays.asList((Object[])obj));
+    LOGGER.debug("Converting array attribute [{}] for the authentication result",obj);
+  }
+ else {
+    c.add(obj);
+    LOGGER.debug("Converting attribute [{}] for the authentication result",obj);
+  }
+  return c;
+}

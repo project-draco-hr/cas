@@ -1,7 +1,11 @@
 {
   final Credential cFromRequest=(Credential)context.getRequestScope().get("credential");
   final Credential cFromFlow=(Credential)context.getFlowScope().get("credential");
-  final Credential credential=cFromRequest != null ? cFromRequest : cFromFlow;
+  Credential credential=cFromRequest != null ? cFromRequest : cFromFlow;
+  if (credential == null) {
+    final FlowSession session=context.getFlowExecutionContext().getActiveSession();
+    credential=session.getScope().get("credential",Credential.class);
+  }
   if (credential != null && StringUtils.isBlank(credential.getId())) {
     return null;
   }

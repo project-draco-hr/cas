@@ -1,0 +1,9 @@
+{
+  final Set<Event> events=resolve(context);
+  if (events == null || events.isEmpty()) {
+    return null;
+  }
+  final Event event=events.iterator().next();
+  logger.debug("Resolved single event [{}] via [{}] for this context",event.getId(),event.getSource().getClass().getName());
+  return event;
+}

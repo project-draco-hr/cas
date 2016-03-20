@@ -6,14 +6,11 @@
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final MockRequestContext context=new MockRequestContext();
   WebUtils.putTicketGrantingTicketInScopes(context,ticketGrantingTicket);
-  WebUtils.putLoginTicket(context,"LOGIN");
-  request.addParameter("lt","LOGIN");
   request.addParameter("renew","true");
   request.addParameter("service",TestUtils.getService(TestUtils.CONST_TEST_URL).getId());
   request.addParameter("username","test");
   request.addParameter("password","test");
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   context.getFlowScope().put("service",TestUtils.getService());
-  final MessageContext messageContext=mock(MessageContext.class);
-  assertEquals("warn",this.action.submit(context,c,messageContext).getId());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_WARN,this.action.doExecute(context).getId());
 }

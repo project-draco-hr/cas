@@ -1,0 +1,15 @@
+{
+  final SubflowState subflowState=createSubflowState(flow,subflowId,subflowId);
+  final ActionState actionState=(ActionState)flow.getState(CasWebflowConstants.TRANSITION_ID_REAL_SUBMIT);
+  final String targetStateId=actionState.getTransition(CasWebflowConstants.TRANSITION_ID_SUCCESS).getTargetStateId();
+  final List<DefaultMapping> mappings=new ArrayList<>();
+  final Mapper inputMapper=createMapperToSubflowState(mappings);
+  final SubflowAttributeMapper subflowMapper=createSubflowAttributeMapper(inputMapper,null);
+  subflowState.setAttributeMapper(subflowMapper);
+  subflowState.getTransitionSet().add(createTransition(CasWebflowConstants.TRANSITION_ID_SUCCESS,targetStateId));
+  logger.debug("Retrieved action state {}",actionState.getId());
+  createTransitionForState(actionState,subflowId,subflowId);
+  registerFlowDefinitionIntoLoginFlowRegistry(registry);
+  final TransitionableState state=flow.getTransitionableState(CasWebflowConstants.TRANSITION_ID_INITIAL_AUTHN_REQUEST_VALIDATION_CHECK);
+  createTransitionForState(state,subflowId,subflowId);
+}
