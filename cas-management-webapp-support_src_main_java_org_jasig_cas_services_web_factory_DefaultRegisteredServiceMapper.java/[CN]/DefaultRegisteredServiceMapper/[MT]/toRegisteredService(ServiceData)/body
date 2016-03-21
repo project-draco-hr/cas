@@ -12,6 +12,7 @@
       ((OAuthRegisteredService)regSvc).setClientSecret(oauthBean.getClientSecret());
       ((OAuthRegisteredService)regSvc).setBypassApprovalPrompt(oauthBean.isBypass());
       ((OAuthRegisteredService)regSvc).setGenerateRefreshToken(oauthBean.isRefreshToken());
+      ((OAuthRegisteredService)regSvc).setJsonFormat(oauthBean.isJsonFormat());
     }
  else {
       regSvc=determineServiceTypeByPattern(data.getServiceId());

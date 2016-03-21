@@ -18,17 +18,29 @@
   requiresAuthenticationInterceptor.preHandle(mockRequest,mockResponse,null);
   oAuth20AccessTokenController.handleRequest(mockRequest,mockResponse);
   assertNull(oAuth20AccessTokenController.getTicketRegistry().getTicket((code.getId())));
-  assertEquals("text/plain",mockResponse.getContentType());
   assertEquals(200,mockResponse.getStatus());
   final String body=mockResponse.getContentAsString();
-  assertTrue(body.contains(OAuthConstants.ACCESS_TOKEN + '='));
-  if (refreshToken) {
-    assertTrue(body.contains(OAuthConstants.REFRESH_TOKEN + '='));
+  final String accessTokenId;
+  if (json) {
+    assertEquals("application/json",mockResponse.getContentType());
+    assertTrue(body.contains('"' + OAuthConstants.ACCESS_TOKEN + "\":\"AT-"));
+    if (refreshToken) {
+      assertTrue(body.contains('"' + OAuthConstants.REFRESH_TOKEN + "\":\"RT-"));
+    }
+    assertTrue(body.contains('"' + OAuthConstants.EXPIRES + "\":7"));
+    accessTokenId=StringUtils.substringBetween(body,OAuthConstants.ACCESS_TOKEN + "\":\"","\",\"");
   }
-  assertTrue(body.contains(OAuthConstants.EXPIRES + '='));
-  final String accessTokenId=StringUtils.substringBetween(body,OAuthConstants.ACCESS_TOKEN + '=',"&");
+ else {
+    assertEquals("text/plain",mockResponse.getContentType());
+    assertTrue(body.contains(OAuthConstants.ACCESS_TOKEN + "=AT-"));
+    if (refreshToken) {
+      assertTrue(body.contains(OAuthConstants.REFRESH_TOKEN + "=RT-"));
+    }
+    assertTrue(body.contains(OAuthConstants.EXPIRES + '='));
+    accessTokenId=StringUtils.substringBetween(body,OAuthConstants.ACCESS_TOKEN + '=',"&");
+  }
   final AccessToken accessToken=oAuth20AccessTokenController.getTicketRegistry().getTicket(accessTokenId,AccessToken.class);
   assertEquals(principal,accessToken.getAuthentication().getPrincipal());
-  final int timeLeft=getTimeLeft(body,refreshToken);
+  final int timeLeft=getTimeLeft(body,refreshToken,json);
   assertTrue(timeLeft >= TIMEOUT - 10 - DELTA);
 }
