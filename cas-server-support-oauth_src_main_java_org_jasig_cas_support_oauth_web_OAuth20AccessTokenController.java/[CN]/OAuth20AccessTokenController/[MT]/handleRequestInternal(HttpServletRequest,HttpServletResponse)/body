@@ -7,6 +7,7 @@
   final Service service;
   final Authentication authentication;
   final boolean generateRefreshToken;
+  final boolean jsonFormat;
   if (isGrantType(grantType,OAuthGrantType.AUTHORIZATION_CODE) || isGrantType(grantType,OAuthGrantType.REFRESH_TOKEN)) {
     final J2EContext context=new J2EContext(request,response);
     final ProfileManager manager=new ProfileManager(context);
@@ -14,6 +15,7 @@
     final String clientId=profile.getId();
     final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
     generateRefreshToken=registeredService.isGenerateRefreshToken() && isGrantType(grantType,OAuthGrantType.AUTHORIZATION_CODE);
+    jsonFormat=registeredService.isJsonFormat();
     final String parameterName;
     if (isGrantType(grantType,OAuthGrantType.AUTHORIZATION_CODE)) {
       parameterName=OAuthConstants.CODE;
@@ -32,6 +34,7 @@
     final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
     final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
     generateRefreshToken=registeredService.isGenerateRefreshToken();
+    jsonFormat=registeredService.isJsonFormat();
     final J2EContext context=new J2EContext(request,response);
     final ProfileManager manager=new ProfileManager(context);
     final OAuthUserProfile profile=(OAuthUserProfile)manager.get(true);
@@ -39,12 +42,32 @@
     authentication=createAuthentication(profile);
   }
   final AccessToken accessToken=generateAccessToken(service,authentication);
-  String text=String.format("%s=%s&%s=%s",OAuthConstants.ACCESS_TOKEN,accessToken.getId(),OAuthConstants.EXPIRES,timeout);
+  final String accessTokenId=accessToken.getId();
+  String refreshTokenId=null;
   if (generateRefreshToken) {
     final RefreshToken refreshToken=refreshTokenFactory.create(service,authentication);
     ticketRegistry.addTicket(refreshToken);
-    text+="&" + OAuthConstants.REFRESH_TOKEN + "="+ refreshToken.getId();
+    refreshTokenId=refreshToken.getId();
   }
-  logger.debug("OAuth access token response: {}",text);
-  return OAuthUtils.writeText(response,text,HttpStatus.SC_OK);
+  logger.debug("access token: {} / timeout: {} / refresh token: {}",accessTokenId,timeout,refreshTokenId);
+  if (jsonFormat) {
+    response.setContentType("application/json");
+    try (final JsonGenerator jsonGenerator=this.jsonFactory.createGenerator(response.getWriter())){
+      jsonGenerator.writeStartObject();
+      jsonGenerator.writeStringField(OAuthConstants.ACCESS_TOKEN,accessTokenId);
+      jsonGenerator.writeNumberField(OAuthConstants.EXPIRES,timeout);
+      if (CommonHelper.isNotBlank(refreshTokenId)) {
+        jsonGenerator.writeStringField(OAuthConstants.REFRESH_TOKEN,refreshTokenId);
+      }
+      jsonGenerator.writeEndObject();
+    }
+     return null;
+  }
+ else {
+    String text=String.format("%s=%s&%s=%s",OAuthConstants.ACCESS_TOKEN,accessTokenId,OAuthConstants.EXPIRES,timeout);
+    if (CommonHelper.isNotBlank(refreshTokenId)) {
+      text+="&" + OAuthConstants.REFRESH_TOKEN + "="+ refreshTokenId;
+    }
+    return OAuthUtils.writeText(response,text,HttpStatus.SC_OK);
+  }
 }

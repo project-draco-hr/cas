@@ -18,6 +18,7 @@
     oauthBean.setClientId(oauth.getClientId());
     oauthBean.setClientSecret(oauth.getClientSecret());
     oauthBean.setRefreshToken(oauth.isGenerateRefreshToken());
+    oauthBean.setJsonFormat(oauth.isJsonFormat());
   }
   bean.setTheme(svc.getTheme());
   bean.setEvalOrder(svc.getEvaluationOrder());

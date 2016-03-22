@@ -1,0 +1,5 @@
+{
+  final OAuthRegisteredService service=addRegisteredService();
+  service.setJsonFormat(true);
+  internalVerifyClientOK(service,false,false,true);
+}

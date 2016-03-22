@@ -1,5 +1,6 @@
 {
   final OAuthRegisteredService registeredService=addRegisteredService();
   registeredService.setGenerateRefreshToken(true);
-  internalVerifyUserAuth(true,false);
+  registeredService.setJsonFormat(true);
+  internalVerifyUserAuth(true,true);
 }

@@ -1,4 +1,4 @@
 {
   addRegisteredService();
-  internalVerifyUserAuth(false);
+  internalVerifyUserAuth(false,false);
 }
