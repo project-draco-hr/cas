@@ -1,9 +1,0 @@
-{
-  final MockRequestContext requestContext=new MockRequestContext();
-  RequestContextHolder.setRequestContext(requestContext);
-  final WebApplicationService webApplicationService=new WebApplicationServiceFactory().createService("myServiceId");
-  requestContext.getFlowScope().put("service",webApplicationService);
-  final InternalResourceView view=(InternalResourceView)this.registeredServiceThemeBasedViewResolver.loadView("casLoginView",Locale.getDefault());
-  assertNotNull(view);
-  assertEquals("/WEB-INF/view/jsp/myTheme/ui/casLoginView.jsp",view.getUrl());
-}
