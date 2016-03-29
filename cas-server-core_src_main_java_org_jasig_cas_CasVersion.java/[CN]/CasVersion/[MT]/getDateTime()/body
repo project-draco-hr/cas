@@ -11,13 +11,13 @@
       return DateTimeUtils.zonedDateTimeOf(file.lastModified());
     }
     if ("vfs".equals(resource.getProtocol())) {
-      final File file=new VfsResource(resource).getFile();
+      final File file=new VfsResource(resource.openConnection().getContent()).getFile();
       return DateTimeUtils.zonedDateTimeOf(file.lastModified());
     }
     LOGGER.warn("Unhandled url protocol: {} resource: {}",resource.getProtocol(),resource);
     return ZonedDateTime.now();
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
 }
