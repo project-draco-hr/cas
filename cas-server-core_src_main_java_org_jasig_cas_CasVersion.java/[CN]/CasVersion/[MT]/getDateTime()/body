@@ -5,12 +5,17 @@
     if ("file".equals(resource.getProtocol())) {
       return DateTimeUtils.zonedDateTimeOf(new File(resource.toURI()).lastModified());
     }
- else     if ("jar".equals(resource.getProtocol())) {
+    if ("jar".equals(resource.getProtocol())) {
       final String path=resource.getPath();
       final File file=new File(path.substring(5,path.indexOf('!')));
       return DateTimeUtils.zonedDateTimeOf(file.lastModified());
     }
-    throw new IllegalArgumentException("Unhandled url protocol: " + resource.getProtocol() + " for class: "+ clazz.getName()+ " resource: "+ resource);
+    if ("vfs".equals(resource.getProtocol())) {
+      final File file=new VfsResource(resource).getFile();
+      return DateTimeUtils.zonedDateTimeOf(file.lastModified());
+    }
+    LOGGER.warn("Unhandled url protocol: {} resource: {}",resource.getProtocol(),resource);
+    return ZonedDateTime.now();
   }
  catch (  final Exception e) {
     throw new RuntimeException(e);
