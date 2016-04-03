@@ -1,0 +1,3 @@
+AuthnRequest authnRequest
+ServicesManager servicesManager
+SamlRegisteredServiceCachingMetadataResolver resolver

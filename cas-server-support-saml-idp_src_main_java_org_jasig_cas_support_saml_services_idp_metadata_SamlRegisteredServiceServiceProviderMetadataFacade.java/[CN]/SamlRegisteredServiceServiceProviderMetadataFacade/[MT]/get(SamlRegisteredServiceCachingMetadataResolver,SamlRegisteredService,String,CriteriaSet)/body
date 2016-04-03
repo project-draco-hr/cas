@@ -3,7 +3,7 @@
     criterions.add(new BindingCriterion(Collections.singletonList(SAMLConstants.SAML2_POST_BINDING_URI)));
     criterions.add(new EntityIdCriterion(entityID));
     LOGGER.info("Adapting SAML metadata for CAS service [{}] issued by [{}]",registeredService.getName(),entityID);
-    LOGGER.info("Locating metadata for entityID [{}], with binding [{}] and ACS endpoint [{}]",entityID,SAMLConstants.SAML2_POST_BINDING_URI,entityID);
+    LOGGER.info("Locating metadata for entityID [{}] with binding [{}]",entityID,SAMLConstants.SAML2_POST_BINDING_URI);
     final ChainingMetadataResolver chainingMetadataResolver=resolver.resolve(registeredService);
     final EntityDescriptor entityDescriptor=chainingMetadataResolver.resolveSingle(criterions);
     if (entityDescriptor == null) {
