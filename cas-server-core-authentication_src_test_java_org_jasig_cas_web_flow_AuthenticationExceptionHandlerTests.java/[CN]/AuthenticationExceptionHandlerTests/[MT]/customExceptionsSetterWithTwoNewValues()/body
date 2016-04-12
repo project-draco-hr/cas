@@ -1,0 +1,10 @@
+{
+  AuthenticationExceptionHandler handler=new AuthenticationExceptionHandler();
+  List<Class<? extends Exception>> twoCustomErrors=new ArrayList<>();
+  twoCustomErrors.add(GeneralSecurityException.class);
+  twoCustomErrors.add(PreventedException.class);
+  handler.setErrors(twoCustomErrors);
+  assertTrue(handler.containsCustomErrors());
+  assertTrue(handler.getErrors().containsAll(twoCustomErrors));
+  assertEquals(12,handler.getErrors().size());
+}
