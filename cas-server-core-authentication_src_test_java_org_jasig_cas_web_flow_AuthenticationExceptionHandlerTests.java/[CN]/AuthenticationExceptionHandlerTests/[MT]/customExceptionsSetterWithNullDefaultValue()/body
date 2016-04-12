@@ -1,7 +1,7 @@
 {
-  AuthenticationExceptionHandler handler=new AuthenticationExceptionHandler();
+  final AuthenticationExceptionHandler handler=new AuthenticationExceptionHandler();
   assertFalse(handler.containsCustomErrors());
-  List<Class<? extends Exception>> nullCustomErrors=new ArrayList<>();
+  final List<Class<? extends Exception>> nullCustomErrors=new ArrayList<>();
   nullCustomErrors.add(null);
   handler.setErrors(nullCustomErrors);
   assertFalse(handler.containsCustomErrors());
