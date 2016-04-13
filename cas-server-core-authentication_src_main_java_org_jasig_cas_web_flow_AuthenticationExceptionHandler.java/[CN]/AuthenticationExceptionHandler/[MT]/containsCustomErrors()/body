@@ -1,0 +1,3 @@
+{
+  return !(DEFAULT_ERROR_LIST.size() == this.errors.size()) && (this.errors.containsAll(DEFAULT_ERROR_LIST));
+}
