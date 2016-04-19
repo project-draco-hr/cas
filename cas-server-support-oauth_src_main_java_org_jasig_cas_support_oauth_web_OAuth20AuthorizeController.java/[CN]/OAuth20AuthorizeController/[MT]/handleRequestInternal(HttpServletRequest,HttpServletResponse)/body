@@ -1,5 +1,6 @@
 {
   if (!verifyAuthorizeRequest(request)) {
+    logger.error("Authorize request verification fails");
     return new ModelAndView(OAuthConstants.ERROR_VIEW);
   }
   final String clientId=request.getParameter(OAuthConstants.CLIENT_ID);
@@ -21,11 +22,19 @@
   final ProfileManager manager=new ProfileManager(context);
   final UserProfile profile=manager.get(true);
   if (profile == null) {
+    logger.error("Unexpected null profile");
     return new ModelAndView(OAuthConstants.ERROR_VIEW);
   }
   if (bypassApprovalService || bypassApprovalParameter != null) {
-    final Authentication authentication=createAuthentication(profile);
     final Service service=createService(registeredService);
+    final Authentication authentication=createAuthentication(profile,registeredService);
+    try {
+      RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
+    }
+ catch (    final UnauthorizedServiceException|PrincipalException e) {
+      logger.error(e.getMessage(),e);
+      return new ModelAndView(OAuthConstants.ERROR_VIEW);
+    }
     final String responseType=request.getParameter(OAuthConstants.RESPONSE_TYPE);
     final String callbackUrl;
     if (isResponseType(responseType,OAuthResponseType.CODE)) {

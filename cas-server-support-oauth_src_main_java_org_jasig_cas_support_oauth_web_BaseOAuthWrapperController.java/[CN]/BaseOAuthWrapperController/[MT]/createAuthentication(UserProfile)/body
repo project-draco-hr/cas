@@ -1,7 +1,0 @@
-{
-  final Principal principal=principalFactory.createPrincipal(profile.getId(),profile.getAttributes());
-  final String authenticator=profile.getClass().getCanonicalName();
-  final CredentialMetaData metadata=new BasicCredentialMetaData(new BasicIdentifiableCredential(profile.getId()));
-  final HandlerResult handlerResult=new DefaultHandlerResult(authenticator,metadata,principal,new ArrayList<>());
-  return DefaultAuthenticationBuilder.newInstance().addAttribute("permissions",profile.getPermissions()).addAttribute("roles",profile.getRoles()).addCredential(metadata).setPrincipal(principal).setAuthenticationDate(ZonedDateTime.now()).addSuccess(profile.getClass().getCanonicalName(),handlerResult).build();
-}

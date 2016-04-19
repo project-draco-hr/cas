@@ -16,6 +16,7 @@
   profile.setId(ID);
   final Map<String,Object> attributes=new HashMap<>();
   attributes.put(FIRST_NAME_ATTRIBUTE,FIRST_NAME);
+  attributes.put(LAST_NAME_ATTRIBUTE,LAST_NAME);
   profile.addAttributes(attributes);
   final MockHttpSession session=new MockHttpSession();
   mockRequest.setSession(session);
