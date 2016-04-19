@@ -1,4 +1,0 @@
-{
-  this.hzTicketRegistry1.shutdown();
-  this.hzTicketRegistry2.shutdown();
-}

@@ -1,3 +1,0 @@
-{
-  return DateTimeUtils.zonedDateTimeOf(0);
-}

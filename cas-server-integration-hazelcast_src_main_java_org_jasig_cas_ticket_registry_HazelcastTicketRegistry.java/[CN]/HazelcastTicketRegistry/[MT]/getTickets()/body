@@ -1,3 +1,17 @@
 {
-  return decodeTickets(this.registry.values());
+  final Collection<Ticket> collection=new HashSet<>();
+  final Lock lock=this.hz.getLock(getClass().getName());
+  lock.lock();
+  try {
+    final PagingPredicate pagingPredicate=new PagingPredicate(this.pageSize);
+    for (Collection<Ticket> entrySet=this.registry.values(pagingPredicate); !entrySet.isEmpty(); pagingPredicate.nextPage(), entrySet=this.registry.values(pagingPredicate)) {
+      for (      final Ticket entry : entrySet) {
+        collection.add(decodeTicket(entry));
+      }
+    }
+  }
+  finally {
+    lock.unlock();
+  }
+  return collection;
 }

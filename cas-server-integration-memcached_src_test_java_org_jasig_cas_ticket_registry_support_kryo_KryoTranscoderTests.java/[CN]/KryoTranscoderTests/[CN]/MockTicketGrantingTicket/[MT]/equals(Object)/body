@@ -1,3 +1,0 @@
-{
-  return other instanceof MockTicketGrantingTicket && ((MockTicketGrantingTicket)other).getId().equals(this.id) && ((MockTicketGrantingTicket)other).getCountOfUses() == this.usageCount && ((MockTicketGrantingTicket)other).getCreationTime().equals(this.creationDate) && ((MockTicketGrantingTicket)other).getAuthentication().equals(this.authentication);
-}
