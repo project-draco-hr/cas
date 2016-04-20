@@ -1,0 +1,3 @@
+{
+  return compareTo((Ticket)obj) == 0;
+}
