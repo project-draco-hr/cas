@@ -1,4 +1,7 @@
 {
-  final QueryAndEncodeDatabaseAuthenticationHandler q=new QueryAndEncodeDatabaseAuthenticationHandler(this.dataSource,buildSql("makesNoSenseInSql"),ALG_NAME);
+  final QueryAndEncodeDatabaseAuthenticationHandler q=new QueryAndEncodeDatabaseAuthenticationHandler();
+  q.setDataSource(dataSource);
+  q.setAlgorithmName(ALG_NAME);
+  q.setSql(buildSql("makesNoSenseInSql"));
   q.authenticateUsernamePasswordInternal(TestUtils.getCredentialsWithSameUsernameAndPassword());
 }
