@@ -1,0 +1,5 @@
+{
+  final ApplicationContext ctx=new FileSystemXmlApplicationContext("classpath:HazelcastTicketRegistryTests-context.xml");
+  this.hzTicketRegistry1=ctx.getBean("hzTicketRegistry1",HazelcastTicketRegistry.class);
+  this.hzTicketRegistry2=ctx.getBean("hzTicketRegistry2",HazelcastTicketRegistry.class);
+}
