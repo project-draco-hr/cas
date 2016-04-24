@@ -1,7 +1,7 @@
 {
   final LocalContainerEntityManagerFactoryBean bean=new LocalContainerEntityManagerFactoryBean();
   bean.setJpaVendorAdapter(ticketJpaVendorAdapter());
-  bean.setPersistenceUnitName("jpaServiceRegistryContext");
+  bean.setPersistenceUnitName("jpaTicketRegistryContext");
   bean.setPackagesToScan(ticketPackagesToScan());
   bean.setDataSource(dataSourceTicket());
   final Properties properties=new Properties();
