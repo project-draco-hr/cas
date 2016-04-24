@@ -8,8 +8,7 @@
     logger.debug("No ticket by id [{}] is found in the registry",ticketId);
     return null;
   }
-  final Ticket proxiedTicket=decodeTicket((Ticket)element.getObjectValue());
-  final Ticket ticket=getProxiedTicketInstance(proxiedTicket);
+  final Ticket ticket=decodeTicket((Ticket)element.getObjectValue());
   final CacheConfiguration config=new CacheConfiguration();
   config.setTimeToIdleSeconds(ticket.getExpirationPolicy().getTimeToIdle());
   config.setTimeToLiveSeconds(ticket.getExpirationPolicy().getTimeToIdle());

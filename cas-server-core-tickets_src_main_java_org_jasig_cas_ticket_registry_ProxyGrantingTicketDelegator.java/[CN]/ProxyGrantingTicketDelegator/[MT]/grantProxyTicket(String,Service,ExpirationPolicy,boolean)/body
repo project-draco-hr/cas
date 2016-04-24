@@ -1,5 +1,0 @@
-{
-  final ProxyTicket t=this.getTicket().grantProxyTicket(id,service,expirationPolicy,onlyTrackMostRecentSession);
-  updateTicket();
-  return t;
-}

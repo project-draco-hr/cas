@@ -8,6 +8,5 @@
     logger.debug("No ticket by id [{}] is found in the registry",ticketId);
     return null;
   }
-  final Ticket proxiedTicket=decodeTicket(ticket);
-  return getProxiedTicketInstance(proxiedTicket);
+  return decodeTicket(ticket);
 }

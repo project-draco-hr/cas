@@ -1,3 +1,0 @@
-{
-  super(ticketRegistry,oauthCode,callback);
-}

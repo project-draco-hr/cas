@@ -1,5 +1,4 @@
 {
   final String encTicketId=encodeTicketId(ticketId);
-  final Ticket ticket=decodeTicket(this.registry.get(encTicketId));
-  return getProxiedTicketInstance(ticket);
+  return decodeTicket(this.registry.get(encTicketId));
 }

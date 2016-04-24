@@ -1,7 +1,0 @@
-{
-  final TicketGrantingTicket old=this.ticket.getGrantingTicket();
-  if (old == null || !callback) {
-    return old;
-  }
-  return this.ticketRegistry.getTicket(old.getId(),TicketGrantingTicket.class);
-}

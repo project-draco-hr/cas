@@ -14,6 +14,7 @@
   final Principal principal=authentications.get(authentications.size() - 1).getPrincipal();
   final ProxyTicketFactory factory=this.ticketFactory.get(ProxyTicket.class);
   final ProxyTicket proxyTicket=factory.create(proxyGrantingTicketObject,service);
+  this.ticketRegistry.updateTicket(proxyGrantingTicketObject);
   this.ticketRegistry.addTicket(proxyTicket);
   logger.info("Granted ticket [{}] for service [{}] for user [{}]",proxyTicket.getId(),service.getId(),principal.getId());
   doPublishEvent(new CasProxyTicketGrantedEvent(this,proxyGrantingTicketObject,proxyTicket));

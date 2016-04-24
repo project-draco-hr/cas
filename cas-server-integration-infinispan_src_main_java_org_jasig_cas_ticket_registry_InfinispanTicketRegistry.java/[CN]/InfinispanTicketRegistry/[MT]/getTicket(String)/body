@@ -4,5 +4,5 @@
     return null;
   }
   final Ticket ticket=this.cache.get(encTicketId);
-  return getProxiedTicketInstance(ticket);
+  return ticket;
 }

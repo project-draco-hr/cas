@@ -1,3 +1,3 @@
 {
-  return getProxiedTicketInstance(this.tickets.get(ticketId));
+  return this.tickets.get(ticketId);
 }

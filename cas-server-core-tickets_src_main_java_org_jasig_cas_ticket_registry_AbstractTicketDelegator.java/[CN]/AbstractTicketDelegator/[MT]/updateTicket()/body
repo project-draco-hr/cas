@@ -1,3 +1,0 @@
-{
-  this.ticketRegistry.updateTicket(this.ticket);
-}
