@@ -8,6 +8,7 @@
   this.registry.addTicket(st1);
   this.registry.addTicket(st2);
   this.registry.addTicket(st3);
+  this.registry.updateTicket(tgt);
   assertNotNull(this.registry.getTicket("TGT",TicketGrantingTicket.class));
   assertNotNull(this.registry.getTicket("ST1",ServiceTicket.class));
   assertNotNull(this.registry.getTicket("ST2",ServiceTicket.class));
