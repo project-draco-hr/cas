@@ -1,6 +1,7 @@
 {
   response.setContentType("text/plain");
   if (!verifyAccessTokenRequest(request,response)) {
+    logger.error("Access token request verification fails");
     return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_REQUEST);
   }
   final String grantType=request.getParameter(OAuthConstants.GRANT_TYPE);
@@ -25,6 +26,7 @@
     }
     final OAuthToken token=getToken(request,parameterName);
     if (token == null) {
+      logger.error("No token found for authorization_code or refresh_token grant types");
       return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_GRANT);
     }
     service=token.getService();
@@ -39,7 +41,14 @@
     final ProfileManager manager=new ProfileManager(context);
     final OAuthUserProfile profile=(OAuthUserProfile)manager.get(true);
     service=createService(registeredService);
-    authentication=createAuthentication(profile);
+    authentication=createAuthentication(profile,registeredService);
+    try {
+      RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
+    }
+ catch (    final UnauthorizedServiceException|PrincipalException e) {
+      logger.error(e.getMessage(),e);
+      return OAuthUtils.writeTextError(response,OAuthConstants.INVALID_GRANT);
+    }
   }
   final AccessToken accessToken=generateAccessToken(service,authentication);
   final String accessTokenId=accessToken.getId();
