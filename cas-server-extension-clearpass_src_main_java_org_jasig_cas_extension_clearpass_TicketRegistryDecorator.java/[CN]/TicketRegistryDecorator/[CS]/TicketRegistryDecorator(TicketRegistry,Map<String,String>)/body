@@ -1,4 +1,0 @@
-{
-  this.ticketRegistry=actualTicketRegistry;
-  this.cache=cache;
-}
