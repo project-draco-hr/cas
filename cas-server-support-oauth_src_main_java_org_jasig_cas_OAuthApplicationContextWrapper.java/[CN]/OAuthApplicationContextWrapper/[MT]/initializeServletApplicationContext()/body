@@ -1,0 +1,13 @@
+{
+  final String oAuthCallbackUrl=this.casServerUrl + OAuthConstants.BASE_OAUTH20_URL + '/'+ OAuthConstants.CALLBACK_AUTHORIZE_URL_DEFINITION;
+  final ReloadableServicesManager servicesManager=getServicesManager();
+  final Service callbackService=this.webApplicationServiceFactory.createService(oAuthCallbackUrl);
+  if (!servicesManager.matchesExistingService(callbackService)) {
+    final OAuthCallbackAuthorizeService service=new OAuthCallbackAuthorizeService();
+    service.setName("OAuth Callback url");
+    service.setDescription("OAuth Wrapper Callback Url");
+    service.setServiceId(oAuthCallbackUrl);
+    addRegisteredServiceToServicesManager(service);
+    servicesManager.reload();
+  }
+}

@@ -6,10 +6,10 @@
     return false;
   }
   final UsernamePasswordCredential that=(UsernamePasswordCredential)o;
-  if (password != null ? !password.equals(that.password) : that.password != null) {
+  if (this.password != null ? !this.password.equals(that.password) : that.password != null) {
     return false;
   }
-  if (username != null ? !username.equals(that.username) : that.username != null) {
+  if (this.username != null ? !this.username.equals(that.username) : that.username != null) {
     return false;
   }
   return true;

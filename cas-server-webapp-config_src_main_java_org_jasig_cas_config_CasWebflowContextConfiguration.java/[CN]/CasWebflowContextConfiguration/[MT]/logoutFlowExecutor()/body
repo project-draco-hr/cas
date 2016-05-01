@@ -1,0 +1,6 @@
+{
+  final FlowExecutorBuilder builder=new FlowExecutorBuilder(logoutFlowRegistry(),this.applicationContext);
+  builder.setAlwaysRedirectOnPause(this.alwaysPauseOnRedirect);
+  builder.setRedirectInSameState(this.redirectSameState);
+  return builder.build();
+}

@@ -1,7 +1,7 @@
 {
-  if (attributeResolver instanceof InitializableComponent && !((InitializableComponent)attributeResolver).isInitialized()) {
+  if (this.attributeResolver instanceof InitializableComponent && !((InitializableComponent)this.attributeResolver).isInitialized()) {
     try {
-      ((InitializableComponent)attributeResolver).initialize();
+      ((InitializableComponent)this.attributeResolver).initialize();
     }
  catch (    final ComponentInitializationException e) {
       throw new RuntimeException(e);

@@ -5,7 +5,7 @@
  else   if (e instanceof AbstractTicketException) {
     return handleAbstractTicketException((AbstractTicketException)e,messageContext);
   }
-  logger.trace("Unable to translate handler errors of the authentication exception {}. " + "Returning {} by default...",e,UNKNOWN);
+  logger.trace("Unable to translate errors of the authentication exception {}. " + "Returning {} by default...",e,UNKNOWN);
   final String messageCode=this.messageBundlePrefix + UNKNOWN;
   messageContext.addMessage(new MessageBuilder().error().code(messageCode).build());
   return UNKNOWN;

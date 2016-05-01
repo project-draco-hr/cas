@@ -1,3 +1,3 @@
 {
-  return request.getParameter(flowExecutionKeyParameter);
+  return request.getParameter(this.flowExecutionKeyParameter);
 }

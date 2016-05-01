@@ -12,11 +12,11 @@
     if (service != null) {
       logger.debug("Locating service {} in service registry to determine authentication policy",service);
       final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-      RegisteredServiceAccessStrategySupport.ensureServiceAccessIsAllowed(service,registeredService);
+      RegisteredServiceAccessStrategyUtils.ensureServiceAccessIsAllowed(service,registeredService);
       final Set<Event> resolvedEvents=resolveCandidateAuthenticationEvents(context,service,registeredService);
       if (!resolvedEvents.isEmpty()) {
         putResolvedEventsAsAttribute(context,resolvedEvents);
-        final Event finalResolvedEvent=selectiveAuthenticationProviderWebflowEventResolver.resolveSingle(context);
+        final Event finalResolvedEvent=this.selectiveAuthenticationProviderWebflowEventResolver.resolveSingle(context);
         if (finalResolvedEvent != null) {
           return ImmutableSet.of(finalResolvedEvent);
         }
@@ -34,6 +34,8 @@
       logger.debug(e.getMessage(),e);
       event=newEvent(CasWebflowConstants.TRANSITION_ID_ERROR,e);
     }
+    final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
+    response.setStatus(HttpStatus.UNAUTHORIZED.value());
     return ImmutableSet.of(event);
   }
 }

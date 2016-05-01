@@ -2,10 +2,10 @@
   if (this.rememberMeExpirationPolicy != null && this.sessionExpirationPolicy != null) {
     final Boolean b=(Boolean)ticketState.getAuthentication().getAttributes().get(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME);
     if (b == null || b.equals(Boolean.FALSE)) {
-      LOGGER.debug("Ticket is not associated with a remember-me authentication. Invoking {}",sessionExpirationPolicy);
+      LOGGER.debug("Ticket is not associated with a remember-me authentication. Invoking {}",this.sessionExpirationPolicy);
       return this.sessionExpirationPolicy.isExpired(ticketState);
     }
-    LOGGER.debug("Ticket is associated with a remember-me authentication. Invoking {}",rememberMeExpirationPolicy);
+    LOGGER.debug("Ticket is associated with a remember-me authentication. Invoking {}",this.rememberMeExpirationPolicy);
     return this.rememberMeExpirationPolicy.isExpired(ticketState);
   }
   LOGGER.warn("No expiration policy settings are defined");

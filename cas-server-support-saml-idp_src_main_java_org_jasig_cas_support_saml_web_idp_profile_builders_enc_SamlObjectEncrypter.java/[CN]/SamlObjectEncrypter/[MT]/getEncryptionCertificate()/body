@@ -1,4 +1,4 @@
 {
   logger.debug("Locating encryption certificate file from [{}]",this.encryptionCertFile);
-  return SamlIdPUtils.readCertificate(new FileSystemResource(this.encryptionCertFile));
+  return SamlUtils.readCertificate(new FileSystemResource(this.encryptionCertFile));
 }

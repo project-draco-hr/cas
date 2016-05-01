@@ -1,3 +1,3 @@
 {
-  return singleLogoutCallbacksDisabled;
+  return this.singleLogoutCallbacksDisabled;
 }

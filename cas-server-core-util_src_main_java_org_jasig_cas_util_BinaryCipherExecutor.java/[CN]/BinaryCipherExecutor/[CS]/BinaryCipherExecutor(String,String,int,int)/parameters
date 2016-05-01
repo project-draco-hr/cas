@@ -1,0 +1,4 @@
+String encryptionSecretKey
+String signingSecretKey
+int signingKeySize
+int encryptionKeySize

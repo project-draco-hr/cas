@@ -5,7 +5,7 @@
       for (      final URIBuilder.BasicNameValuePair basicNameValuePair : builder.getQueryParams()) {
         if (basicNameValuePair.getName().equalsIgnoreCase(SamlProtocolConstants.PARAMETER_ENTITY_ID)) {
           final String entityID=basicNameValuePair.getValue();
-          final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=SamlRegisteredServiceServiceProviderMetadataFacade.get(samlRegisteredServiceCachingMetadataResolver,SamlRegisteredService.class.cast(registeredService),entityID);
+          final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=SamlRegisteredServiceServiceProviderMetadataFacade.get(this.samlRegisteredServiceCachingMetadataResolver,SamlRegisteredService.class.cast(registeredService),entityID);
           final String location=adaptor.getSingleLogoutService().getLocation();
           return new URL(location);
         }

@@ -1,28 +1,14 @@
 {
-  final String password=getPasswordEncoder().encode(credential.getPassword());
-  final String username=credential.getUsername();
-  for (  final RadiusServer radiusServer : this.servers) {
-    logger.debug("Attempting to authenticate {} at {}",username,radiusServer);
-    try {
-      final RadiusResponse response=radiusServer.authenticate(username,password);
-      if (response != null) {
-        final Map<String,Object> attributes=new HashMap<>();
-        for (        final RadiusAttribute attribute : response.getAttributes()) {
-          attributes.put(attribute.getAttributeName(),attribute.getValue().toString());
-        }
-        return createHandlerResult(credential,this.principalFactory.createPrincipal(username,attributes),new ArrayList<>());
-      }
-      if (!this.failoverOnAuthenticationFailure) {
-        throw new FailedLoginException("Radius authentication failed for user " + username);
-      }
-      logger.debug("failoverOnAuthenticationFailure enabled -- trying next server");
+  try {
+    final String password=getPasswordEncoder().encode(credential.getPassword());
+    final String username=credential.getUsername();
+    final Pair<Boolean,Optional<Map<String,Object>>> result=RadiusUtils.authenticate(username,password,this.servers,this.failoverOnAuthenticationFailure,this.failoverOnException);
+    if (result.getFirst()) {
+      return createHandlerResult(credential,this.principalFactory.createPrincipal(username,result.getSecond().get()),new ArrayList<>());
     }
- catch (    final PreventedException e) {
-      if (!this.failoverOnException) {
-        throw e;
-      }
-      logger.warn("failoverOnException enabled -- trying next server.",e);
-    }
+    throw new FailedLoginException("Radius authentication failed for user " + username);
   }
-  throw new FailedLoginException("Radius authentication failed for user " + username);
+ catch (  final Exception e) {
+    throw new FailedLoginException("Radius authentication failed " + e.getMessage());
+  }
 }

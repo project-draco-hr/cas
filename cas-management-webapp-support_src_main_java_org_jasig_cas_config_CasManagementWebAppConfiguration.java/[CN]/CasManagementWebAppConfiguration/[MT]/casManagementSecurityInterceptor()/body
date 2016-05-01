@@ -1,3 +1,0 @@
-{
-  return new RequiresAuthenticationInterceptor(config(),"CasClient","securityHeaders,csrfToken,RequireAnyRoleAuthorizer");
-}

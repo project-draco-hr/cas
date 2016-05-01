@@ -5,7 +5,7 @@
     throw new InvalidTicketException(serviceTicketId);
   }
   final RegisteredService registeredService=this.servicesManager.findServiceBy(serviceTicket.getService());
-  RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(serviceTicket,authenticationResult,registeredService);
+  RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(serviceTicket,authenticationResult,registeredService);
   if (!registeredService.getProxyPolicy().isAllowedToProxy()) {
     logger.warn("ServiceManagement: Service [{}] attempted to proxy, but is not allowed.",serviceTicket.getService().getId());
     throw new UnauthorizedProxyingException();

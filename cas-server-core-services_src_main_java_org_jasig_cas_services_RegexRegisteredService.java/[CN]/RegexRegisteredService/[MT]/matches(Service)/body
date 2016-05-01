@@ -1,6 +1,6 @@
 {
-  if (servicePattern == null) {
-    servicePattern=createPattern(serviceId);
+  if (this.servicePattern == null) {
+    this.servicePattern=createPattern(this.serviceId);
   }
-  return service != null && servicePattern.matcher(service.getId()).matches();
+  return service != null && this.servicePattern.matcher(service.getId()).matches();
 }

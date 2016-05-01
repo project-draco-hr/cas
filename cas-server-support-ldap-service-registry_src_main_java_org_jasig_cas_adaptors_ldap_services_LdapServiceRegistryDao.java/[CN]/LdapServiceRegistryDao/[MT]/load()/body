@@ -1,11 +1,11 @@
 {
   final List<RegisteredService> list=new LinkedList<>();
-  if (ldapServiceMapper == null) {
+  if (this.ldapServiceMapper == null) {
     return list;
   }
-  try (final Connection connection=getConnection()){
-    final Response<SearchResult> response=executeSearchOperation(connection,new SearchFilter(this.loadFilter));
-    if (hasResults(response)) {
+  try {
+    final Response<SearchResult> response=LdapUtils.executeSearchOperation(this.connectionFactory,this.baseDn,new SearchFilter(this.loadFilter));
+    if (LdapUtils.containsResultEntry(response)) {
       for (      final LdapEntry entry : response.getResult().getEntries()) {
         final RegisteredService svc=this.ldapServiceMapper.mapToRegisteredService(entry);
         list.add(svc);

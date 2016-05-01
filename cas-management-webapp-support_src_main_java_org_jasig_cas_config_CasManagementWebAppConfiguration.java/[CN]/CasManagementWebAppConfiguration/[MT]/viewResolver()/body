@@ -1,6 +1,0 @@
-{
-  final ResourceBundleViewResolver bean=new ResourceBundleViewResolver();
-  bean.setOrder(0);
-  bean.setBasename(this.baseName);
-  return bean;
-}

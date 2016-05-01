@@ -1,6 +1,0 @@
-{
-  if (ticketGrantingTicket.getAuthentication() == null && !registeredService.getAccessStrategy().isServiceAccessAllowedForSso()) {
-    LOGGER.warn("Service [{}] is not allowed to use SSO.",service.getId());
-    throw new UnauthorizedSsoServiceException();
-  }
-}

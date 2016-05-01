@@ -1,6 +1,6 @@
 {
-  if (uiInfo != null) {
-    return getStringValues(uiInfo.getInformationURLs());
+  if (this.uiInfo != null) {
+    return getStringValues(this.uiInfo.getInformationURLs());
   }
   return new ArrayList<>();
 }

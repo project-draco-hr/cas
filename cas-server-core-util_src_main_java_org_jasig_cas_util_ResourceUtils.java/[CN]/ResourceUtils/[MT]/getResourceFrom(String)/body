@@ -1,16 +1,7 @@
 {
-  final AbstractResource metadataLocationResource;
-  if (metadataLocation.toLowerCase().startsWith("http")) {
-    metadataLocationResource=new UrlResource(metadataLocation);
-  }
- else   if (metadataLocation.toLowerCase().startsWith("classpath")) {
-    metadataLocationResource=new ClassPathResource(metadataLocation);
-  }
- else {
-    metadataLocationResource=new FileSystemResource(metadataLocation);
-  }
+  final AbstractResource metadataLocationResource=getRawResourceFrom(metadataLocation);
   if (!metadataLocationResource.exists() || !metadataLocationResource.isReadable()) {
-    throw new FileNotFoundException("Resource does not exist or is unreadable");
+    throw new FileNotFoundException("Resource " + metadataLocation + " does not exist or is unreadable");
   }
   return metadataLocationResource;
 }

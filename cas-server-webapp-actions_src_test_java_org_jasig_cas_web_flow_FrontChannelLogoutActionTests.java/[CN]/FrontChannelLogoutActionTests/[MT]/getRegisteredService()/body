@@ -1,5 +1,5 @@
 {
-  final RegisteredServiceImpl svc=new RegisteredServiceImpl();
+  final RegexRegisteredService svc=new RegexRegisteredService();
   svc.setServiceId("https://www.github.com");
   svc.setLogoutUrl(new URL("https://www.google.com"));
   svc.setName("Service logout test");

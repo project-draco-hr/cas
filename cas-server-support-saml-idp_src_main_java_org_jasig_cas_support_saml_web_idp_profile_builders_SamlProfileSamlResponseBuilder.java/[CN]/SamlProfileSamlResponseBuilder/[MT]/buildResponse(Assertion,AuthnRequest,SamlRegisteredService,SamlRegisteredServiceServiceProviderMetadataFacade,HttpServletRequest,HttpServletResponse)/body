@@ -3,6 +3,7 @@
   Response samlResponse=newResponse(id,ZonedDateTime.now(ZoneOffset.UTC),authnRequest.getID(),null);
   samlResponse.setVersion(SAMLVersion.VERSION_20);
   samlResponse.setIssuer(buildEntityIssuer());
+  samlResponse.setConsent(RequestAbstractType.UNSPECIFIED_CONSENT);
   final SAMLObject finalAssertion=encryptAssertion(assertion,request,response,service,adaptor);
   if (finalAssertion instanceof EncryptedAssertion) {
     logger.debug("Built assertion is encrypted, so the response will add it to the encrypted assertions collection");
@@ -14,10 +15,10 @@
   }
   final Status status=newStatus(StatusCode.SUCCESS,StatusCode.SUCCESS);
   samlResponse.setStatus(status);
-  SamlIdPUtils.logSamlObject(this.configBean,samlResponse);
+  SamlUtils.logSamlObject(this.configBean,samlResponse);
   if (service.isSignResponses()) {
     logger.debug("SAML entity id [{}] indicates that SAML responses should be signed",adaptor.getEntityId());
-    samlResponse=samlObjectSigner.encode(samlResponse,service,adaptor,response,request);
+    samlResponse=this.samlObjectSigner.encode(samlResponse,service,adaptor,response,request);
   }
   return samlResponse;
 }

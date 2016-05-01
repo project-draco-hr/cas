@@ -1,5 +1,5 @@
 {
-  if (this.startDelay > 0 && this.applicationContext.getParent() == null && scheduler != null) {
+  if (this.startDelay > 0 && this.applicationContext.getParent() == null && this.scheduler != null) {
     LOGGER.debug("Found CAS servlet application context for service management");
     return true;
   }

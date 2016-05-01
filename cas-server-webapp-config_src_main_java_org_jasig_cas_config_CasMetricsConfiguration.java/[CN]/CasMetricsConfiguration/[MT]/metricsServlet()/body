@@ -1,0 +1,9 @@
+{
+  final ServletRegistrationBean bean=new ServletRegistrationBean();
+  bean.setEnabled(true);
+  bean.setName("metricsServlet");
+  bean.setServlet(new MetricsServlet());
+  bean.setUrlMappings(Collections.singleton("/status/metrics"));
+  bean.setLoadOnStartup(1);
+  return bean;
+}

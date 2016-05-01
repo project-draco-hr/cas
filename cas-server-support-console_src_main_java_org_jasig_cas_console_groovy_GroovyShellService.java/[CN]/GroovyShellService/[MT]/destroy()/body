@@ -1,8 +1,8 @@
 {
-  logger.info("Closing serverSocket: {}",serverSocket);
+  logger.info("Closing serverSocket: {}",this.serverSocket);
   try {
-    serverSocket.close();
-    for (    final GroovyShellThread nextThread : threads) {
+    this.serverSocket.close();
+    for (    final GroovyShellThread nextThread : this.threads) {
       logger.info("Closing thread on port: {}",nextThread.getSocket());
       nextThread.destroy();
     }

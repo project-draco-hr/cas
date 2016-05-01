@@ -1,6 +1,6 @@
 {
   try {
-    final Set<Map.Entry<Resource,MetadataFilterChain>> entries=metadataResources.entrySet();
+    final Set<Map.Entry<Resource,MetadataFilterChain>> entries=this.metadataResources.entrySet();
     for (    final Map.Entry<Resource,MetadataFilterChain> entry : entries) {
       final Resource resource=entry.getKey();
       logger.debug("Loading [{}]",resource.getFilename());

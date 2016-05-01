@@ -1,5 +1,5 @@
 {
-  final ViewResult allKeys=couchbase.bucket().query(ViewQuery.from(UTIL_DOCUMENT,"all_tickets").startKey(prefix).endKey(prefix + END_TOKEN).reduce());
+  final ViewResult allKeys=this.couchbase.bucket().query(ViewQuery.from(UTIL_DOCUMENT,VIEW_NAME_ALL_TICKETS).startKey(prefix).endKey(prefix + END_TOKEN).reduce());
   final Iterator<ViewRow> iterator=allKeys.iterator();
   if (iterator.hasNext()) {
     final ViewRow res=iterator.next();

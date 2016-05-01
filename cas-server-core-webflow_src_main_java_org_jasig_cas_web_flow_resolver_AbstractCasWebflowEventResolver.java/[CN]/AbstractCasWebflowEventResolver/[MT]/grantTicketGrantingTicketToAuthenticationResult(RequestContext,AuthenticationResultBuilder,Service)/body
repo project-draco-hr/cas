@@ -1,12 +1,12 @@
 {
   logger.debug("Finalizing authentication transactions and issuing ticket-granting ticket");
-  final AuthenticationResult authenticationResult=authenticationSystemSupport.finalizeAllAuthenticationTransactions(authenticationResultBuilder,service);
+  final AuthenticationResult authenticationResult=this.authenticationSystemSupport.finalizeAllAuthenticationTransactions(authenticationResultBuilder,service);
   boolean issueTicketGrantingTicket=true;
   final Authentication authentication=authenticationResult.getAuthentication();
   final String ticketGrantingTicket=WebUtils.getTicketGrantingTicketId(context);
   if (StringUtils.hasText(ticketGrantingTicket)) {
     logger.debug("Located ticket-granting ticket in the context. Retrieving associated authentication");
-    final Authentication authenticationFromTgt=ticketRegistrySupport.getAuthenticationFrom(ticketGrantingTicket);
+    final Authentication authenticationFromTgt=this.ticketRegistrySupport.getAuthenticationFrom(ticketGrantingTicket);
     if (authentication.getPrincipal().equals(authenticationFromTgt.getPrincipal())) {
       logger.debug("Resulting authentication matches the authentication from context");
       issueTicketGrantingTicket=false;

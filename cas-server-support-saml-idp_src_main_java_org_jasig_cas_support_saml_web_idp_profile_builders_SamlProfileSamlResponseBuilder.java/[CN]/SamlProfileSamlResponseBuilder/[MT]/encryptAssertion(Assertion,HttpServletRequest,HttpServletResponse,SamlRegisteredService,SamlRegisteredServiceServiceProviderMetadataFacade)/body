@@ -2,7 +2,7 @@
   try {
     if (service.isEncryptAssertions()) {
       logger.info("SAML service [{}] requires assertions to be encrypted",adaptor.getEntityId());
-      final EncryptedAssertion encryptedAssertion=samlObjectEncrypter.encode(assertion,service,adaptor,response,request);
+      final EncryptedAssertion encryptedAssertion=this.samlObjectEncrypter.encode(assertion,service,adaptor,response,request);
       return encryptedAssertion;
     }
     logger.info("SAML registered service [{}] does not require assertions to be encrypted",adaptor.getEntityId());

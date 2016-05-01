@@ -5,7 +5,7 @@
       final ASN1TaggedObject obj=(ASN1TaggedObject)seq.getObjectAt(1);
       ASN1Primitive prim=obj.getObject();
       if (prim instanceof ASN1TaggedObject) {
-        prim=ASN1TaggedObject.getInstance(((ASN1TaggedObject)prim)).getObject();
+        prim=ASN1TaggedObject.getInstance(prim).getObject();
       }
       if (prim instanceof ASN1OctetString) {
         return new String(((ASN1OctetString)prim).getOctets());

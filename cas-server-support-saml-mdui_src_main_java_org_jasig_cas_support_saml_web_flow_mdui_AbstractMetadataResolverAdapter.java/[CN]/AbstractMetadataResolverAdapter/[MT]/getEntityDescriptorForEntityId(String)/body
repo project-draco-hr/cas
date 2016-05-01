@@ -2,7 +2,7 @@
   try {
     final CriteriaSet criterions=new CriteriaSet(new EntityIdCriterion(entityId));
     if (this.metadataResolver != null) {
-      return metadataResolver.resolveSingle(criterions);
+      return this.metadataResolver.resolveSingle(criterions);
     }
   }
  catch (  final Exception ex) {

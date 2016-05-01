@@ -1,6 +1,6 @@
 {
-  final RegisteredServiceImpl authorizedRegisteredService=new RegisteredServiceImpl();
-  final RegisteredServiceImpl unauthorizedRegisteredService=new RegisteredServiceImpl();
+  final RegexRegisteredService authorizedRegisteredService=new RegexRegisteredService();
+  final RegexRegisteredService unauthorizedRegisteredService=new RegexRegisteredService();
   unauthorizedRegisteredService.setAccessStrategy(new DefaultRegisteredServiceAccessStrategy(false,false));
   final List<RegisteredService> list=new ArrayList<>();
   list.add(authorizedRegisteredService);

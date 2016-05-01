@@ -1,0 +1,9 @@
+{
+  final ServiceData bean=new ServiceData();
+  this.registeredServiceMapper.mapRegisteredService(svc,bean);
+  this.accessStrategyMapper.mapAccessStrategy(svc.getAccessStrategy(),bean);
+  this.usernameAttributeProviderMapper.mapUsernameAttributeProvider(svc.getUsernameAttributeProvider(),bean);
+  this.proxyPolicyMapper.mapProxyPolicy(svc.getProxyPolicy(),bean);
+  this.attributeReleasePolicyMapper.mapAttributeReleasePolicy(svc.getAttributeReleasePolicy(),bean);
+  return bean;
+}

@@ -1,0 +1,6 @@
+{
+  final FlowDefinitionRegistryBuilder builder=new FlowDefinitionRegistryBuilder(this.applicationContext,this.builder);
+  builder.setBasePath("classpath*:/webflow");
+  builder.addFlowLocationPattern("/mfa-duo/*-webflow.xml");
+  return builder.build();
+}

@@ -2,11 +2,11 @@
   final Service service=WebUtils.getService(context);
   final String ticketGrantingTicket=WebUtils.getTicketGrantingTicketId(context);
   try {
-    final Authentication authentication=ticketRegistrySupport.getAuthenticationFrom(ticketGrantingTicket);
+    final Authentication authentication=this.ticketRegistrySupport.getAuthenticationFrom(ticketGrantingTicket);
     if (authentication == null) {
       throw new InvalidTicketException(new AuthenticationException("No authentication found for ticket " + ticketGrantingTicket),ticketGrantingTicket);
     }
-    final AuthenticationResultBuilder authenticationResultBuilder=authenticationSystemSupport.establishAuthenticationContextFromInitial(authentication);
+    final AuthenticationResultBuilder authenticationResultBuilder=this.authenticationSystemSupport.establishAuthenticationContextFromInitial(authentication);
     final AuthenticationResult authenticationResult=authenticationResultBuilder.build(service);
     final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicket,service,authenticationResult);
     WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);

@@ -3,5 +3,5 @@
   if (serviceTicketEvent != null) {
     return serviceTicketEvent;
   }
-  return initialAuthenticationAttemptWebflowEventResolver.resolveSingle(requestContext);
+  return this.initialAuthenticationAttemptWebflowEventResolver.resolveSingle(requestContext);
 }

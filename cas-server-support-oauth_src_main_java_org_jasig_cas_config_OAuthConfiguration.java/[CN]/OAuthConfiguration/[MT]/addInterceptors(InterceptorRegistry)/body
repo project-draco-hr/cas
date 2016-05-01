@@ -1,0 +1,4 @@
+{
+  registry.addInterceptor(requiresAuthenticationAuthorizeInterceptor()).addPathPatterns(OAuthConstants.BASE_OAUTH20_URL.concat("/").concat(OAuthConstants.AUTHORIZE_URL).concat("*"));
+  registry.addInterceptor(requiresAuthenticationAccessTokenInterceptor()).addPathPatterns(OAuthConstants.BASE_OAUTH20_URL.concat("/").concat(OAuthConstants.ACCESS_TOKEN_URL).concat("*"));
+}

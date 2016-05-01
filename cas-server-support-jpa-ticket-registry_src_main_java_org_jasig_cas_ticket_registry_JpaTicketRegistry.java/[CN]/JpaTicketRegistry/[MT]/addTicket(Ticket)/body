@@ -1,4 +1,4 @@
 {
-  entityManager.persist(ticket);
+  this.entityManager.persist(ticket);
   logger.debug("Added ticket [{}] to registry.",ticket);
 }

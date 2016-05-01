@@ -1,4 +1,5 @@
 {
+  SamlUtils.logSamlObject(this.configBean,samlMessage);
   final HTTPSOAP11Encoder encoder=new CasHttpSoap11Encoder();
   final MessageContext<SAMLObject> context=new MessageContext();
   context.setMessage(samlMessage);

@@ -3,7 +3,7 @@
   bean.setOrder(URL_HANDLER_MAPPING_ORDER);
   bean.setAlwaysUseFullPath(true);
   final Properties properties=new Properties();
-  properties.put("/authorizationFailure.html",passThroughController());
   bean.setMappings(properties);
+  bean.setRootHandler(rootController());
   return bean;
 }

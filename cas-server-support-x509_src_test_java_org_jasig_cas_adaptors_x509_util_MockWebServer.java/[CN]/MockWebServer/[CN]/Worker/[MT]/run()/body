@@ -4,7 +4,7 @@
       writeResponse(this.serverSocket.accept());
       Thread.sleep(500);
     }
- catch (    final SocketException se) {
+ catch (    final SocketException e) {
       logger.debug("Stopping on socket close.");
       this.running=false;
     }

@@ -4,7 +4,9 @@
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   final Map<String,Object> attributes=new HashMap<>();
   attributes.putAll(getCasPrincipalAttributes(model,registeredService));
-  attributes.putAll(getCasProtocolAuthenticationAttributes(model,registeredService));
+  if (this.releaseProtocolAttributes) {
+    attributes.putAll(getCasProtocolAuthenticationAttributes(model,registeredService));
+  }
   decideIfCredentialPasswordShouldBeReleasedAsAttribute(attributes,model,registeredService);
   decideIfProxyGrantingTicketShouldBeReleasedAsAttribute(attributes,model,registeredService);
   putCasResponseAttributesIntoModel(model,attributes,registeredService);

@@ -1,7 +1,7 @@
 {
   final SelectiveFlowHandlerAdapter handler=new SelectiveFlowHandlerAdapter();
   handler.setSupportedFlowId("logout");
-  handler.setFlowExecutor(this.logoutFlowExecutor);
+  handler.setFlowExecutor(logoutFlowExecutor());
   handler.setFlowUrlHandler(logoutFlowUrlHandler());
   return handler;
 }

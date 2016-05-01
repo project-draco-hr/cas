@@ -1,5 +1,5 @@
 {
-  this.dao.save(getRegisteredService());
+  this.dao.save(getRegexRegisteredService());
   this.dao.save(getRegexRegisteredService());
   final List<RegisteredService> services=this.dao.load();
   for (  final RegisteredService registeredService : services) {

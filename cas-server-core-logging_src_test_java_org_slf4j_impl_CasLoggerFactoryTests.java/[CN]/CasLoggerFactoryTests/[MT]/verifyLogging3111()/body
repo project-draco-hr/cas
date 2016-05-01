@@ -1,4 +1,0 @@
-{
-  logger.warn(getMarker("warn"),getMessageToLogWithParams(),ID2,ID1);
-  validateLogData();
-}

@@ -1,7 +1,7 @@
 {
   logger.debug("Deleting ticket {}",ticketId);
   try {
-    return couchbase.bucket().remove(ticketId) != null;
+    return this.couchbase.bucket().remove(ticketId) != null;
   }
  catch (  final Exception e) {
     logger.error("Failed deleting {}: {}",ticketId,e);

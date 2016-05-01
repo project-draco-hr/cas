@@ -1,0 +1,13 @@
+{
+  final Config cfg=config();
+  if (cfg.getClients() == null) {
+    return requiresAuthenticationStatusInterceptor();
+  }
+  final RequiresAuthenticationInterceptor interceptor=new RequiresAuthenticationInterceptor(cfg,"CasClient","securityHeaders,csrfToken,RequireAnyRoleAuthorizer"){
+    @Override protected void forbidden(    final WebContext context,    final List<Client> currentClients,    final UserProfile profile){
+      context.setResponseStatus(HttpStatus.SC_FORBIDDEN);
+    }
+  }
+;
+  return interceptor;
+}

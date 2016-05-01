@@ -1,8 +1,8 @@
 {
-  final ServletRequestDataBinder binder=new ServletRequestDataBinder(validationSpecification,"validationSpecification");
+  final ServletRequestDataBinder binder=new ServletRequestDataBinder(this.validationSpecification,"validationSpecification");
   initBinder(request,binder);
   binder.bind(request);
-  if (!validationSpecification.isSatisfiedBy(assertion,request)) {
+  if (!this.validationSpecification.isSatisfiedBy(assertion,request)) {
     logger.warn("Service ticket [{}] does not satisfy validation specification.",serviceTicketId);
     return false;
   }

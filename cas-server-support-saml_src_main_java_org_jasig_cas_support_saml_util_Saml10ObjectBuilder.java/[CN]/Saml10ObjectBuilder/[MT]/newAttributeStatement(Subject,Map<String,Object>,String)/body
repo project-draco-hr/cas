@@ -8,7 +8,9 @@
     }
     final Attribute attribute=newSamlObject(Attribute.class);
     attribute.setAttributeName(e.getKey());
-    attribute.setAttributeNamespace(attributeNamespace);
+    if (StringUtils.isNotBlank(attributeNamespace)) {
+      attribute.setAttributeNamespace(attributeNamespace);
+    }
     if (e.getValue() instanceof Collection<?>) {
       final Collection<?> c=(Collection<?>)e.getValue();
       for (      final Object value : c) {

@@ -1,0 +1,7 @@
+{
+  final SearchRequest sr=new SearchRequest(baseDn,filter);
+  sr.setBinaryAttributes(ReturnAttributes.ALL_USER.value());
+  sr.setReturnAttributes(ReturnAttributes.ALL_USER.value());
+  sr.setSearchScope(SearchScope.SUBTREE);
+  return sr;
+}

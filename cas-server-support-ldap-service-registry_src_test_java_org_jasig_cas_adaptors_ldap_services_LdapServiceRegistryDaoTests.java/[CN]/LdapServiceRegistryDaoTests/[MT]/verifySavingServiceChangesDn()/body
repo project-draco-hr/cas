@@ -1,5 +1,5 @@
 {
-  this.dao.save(getRegisteredService());
+  this.dao.save(getRegexRegisteredService());
   final List<RegisteredService> services=this.dao.load();
   final AbstractRegisteredService rs=(AbstractRegisteredService)this.dao.findServiceById(services.get(0).getId());
   final long originalId=rs.getId();

@@ -1,6 +1,0 @@
-{
-  final MockRequestContext requestContext=new MockRequestContext();
-  RequestContextHolder.setRequestContext(requestContext);
-  final InternalResourceView view=(InternalResourceView)this.registeredServiceThemeBasedViewResolver.loadView("casLoginView",Locale.getDefault());
-  assertNull(view);
-}

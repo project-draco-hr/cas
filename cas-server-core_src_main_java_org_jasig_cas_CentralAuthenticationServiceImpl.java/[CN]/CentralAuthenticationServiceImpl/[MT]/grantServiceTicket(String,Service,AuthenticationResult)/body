@@ -1,9 +1,9 @@
 {
   final TicketGrantingTicket ticketGrantingTicket=getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-  RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(service,registeredService,ticketGrantingTicket);
+  RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(service,registeredService,ticketGrantingTicket);
   final Authentication currentAuthentication=evaluatePossibilityOfMixedPrincipals(authenticationResult,ticketGrantingTicket);
-  RegisteredServiceAccessStrategySupport.ensureServiceSsoAccessIsAllowed(registeredService,service,currentAuthentication);
+  RegisteredServiceAccessStrategyUtils.ensureServiceSsoAccessIsAllowed(registeredService,service,ticketGrantingTicket);
   evaluateProxiedServiceIfNeeded(service,ticketGrantingTicket,registeredService);
   getAuthenticationSatisfiedByPolicy(ticketGrantingTicket.getRoot(),new ServiceContext(service,registeredService));
   final List<Authentication> authentications=ticketGrantingTicket.getChainedAuthentications();

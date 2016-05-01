@@ -1,4 +1,4 @@
 {
-  serviceId=id;
-  servicePattern=null;
+  this.serviceId=id;
+  this.servicePattern=null;
 }

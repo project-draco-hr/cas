@@ -1,5 +1,5 @@
 {
-  final List<String> flowIds=Arrays.asList(loginFlowDefinitionRegistry.getFlowDefinitionIds());
+  final List<String> flowIds=Arrays.asList(this.loginFlowDefinitionRegistry.getFlowDefinitionIds());
   flowIds.removeAll(excludedFlowIds);
   return flowIds;
 }

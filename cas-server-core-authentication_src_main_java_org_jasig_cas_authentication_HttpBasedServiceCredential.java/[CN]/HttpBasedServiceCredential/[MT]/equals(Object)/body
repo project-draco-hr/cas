@@ -17,5 +17,5 @@
  else   if (!this.callbackUrlAsString.equals(other.callbackUrlAsString)) {
     return false;
   }
-  return (this.service.equals(other.getService()));
+  return this.service.equals(other.getService());
 }

@@ -1,5 +1,5 @@
 {
-  if (casEventRepository != null) {
+  if (this.casEventRepository != null) {
     final CasEvent dto=new CasEvent();
     dto.setType(event.getClass().getCanonicalName());
     dto.putTimestamp(event.getTimestamp());
@@ -12,6 +12,6 @@
     dto.putAgent(WebUtils.getHttpServletRequestUserAgent());
     final HttpRequestGeoLocation location=WebUtils.getHttpServletRequestGeoLocation();
     dto.putGeoLocation(location);
-    casEventRepository.save(dto);
+    this.casEventRepository.save(dto);
   }
 }

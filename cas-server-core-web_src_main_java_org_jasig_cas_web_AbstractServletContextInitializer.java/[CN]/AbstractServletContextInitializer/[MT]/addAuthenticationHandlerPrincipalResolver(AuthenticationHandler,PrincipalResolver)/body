@@ -1,8 +1,0 @@
-{
-  logger.debug("Adding {} and {} to application context",handler,resolver);
-  final Map<AuthenticationHandler,PrincipalResolver> authenticationHandlersResolvers=applicationContext.getBean("authenticationHandlersResolvers",Map.class);
-  final Map<AuthenticationHandler,PrincipalResolver> cloned=new LinkedHashMap<>(authenticationHandlersResolvers);
-  authenticationHandlersResolvers.clear();
-  authenticationHandlersResolvers.put(handler,resolver);
-  authenticationHandlersResolvers.putAll(cloned);
-}

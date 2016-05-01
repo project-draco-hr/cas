@@ -1,3 +1,3 @@
 {
-  return new HashCodeBuilder().appendSuper(super.hashCode()).append(allowedAttributes).toHashCode();
+  return new HashCodeBuilder().appendSuper(super.hashCode()).append(this.allowedAttributes).toHashCode();
 }

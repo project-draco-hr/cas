@@ -1,7 +1,7 @@
 {
   final InMemoryServiceRegistryDaoImpl dao=new InMemoryServiceRegistryDaoImpl();
   final List<RegisteredService> list=new ArrayList<>();
-  final RegisteredServiceImpl r=new RegisteredServiceImpl();
+  final RegexRegisteredService r=new RegexRegisteredService();
   r.setId(2500);
   r.setServiceId("serviceId");
   r.setName("serviceName");

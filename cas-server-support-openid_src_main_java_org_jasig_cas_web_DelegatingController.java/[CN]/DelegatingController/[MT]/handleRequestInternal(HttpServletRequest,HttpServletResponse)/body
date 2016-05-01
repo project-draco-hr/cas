@@ -1,8 +1,8 @@
 {
-  for (  final AbstractDelegateController delegate : delegates) {
+  for (  final AbstractDelegateController delegate : this.delegates) {
     if (delegate.canHandle(request,response)) {
       return delegate.handleRequestInternal(request,response);
     }
   }
-  return generateErrorView("INVALID_REQUEST","INVALID_REQUEST",null);
+  return generateErrorView(INVALID_REQUEST,INVALID_REQUEST,null);
 }

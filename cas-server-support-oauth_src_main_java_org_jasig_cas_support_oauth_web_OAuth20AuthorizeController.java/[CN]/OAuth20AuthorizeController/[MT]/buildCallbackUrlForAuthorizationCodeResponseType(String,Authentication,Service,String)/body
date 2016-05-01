@@ -1,7 +1,7 @@
 {
-  final OAuthCode code=oAuthCodeFactory.create(service,authentication);
+  final OAuthCode code=this.oAuthCodeFactory.create(service,authentication);
   logger.debug("Generated OAuth code: {}",code);
-  ticketRegistry.addTicket(code);
+  this.ticketRegistry.addTicket(code);
   String callbackUrl=redirectUri;
   callbackUrl=CommonHelper.addParameter(callbackUrl,OAuthConstants.CODE,code.getId());
   if (state != null) {

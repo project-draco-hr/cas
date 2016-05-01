@@ -1,6 +1,6 @@
 {
   if (this.cipherExecutor == null) {
-    logger.trace("Ticket encryption is not enabled. Falling back to default behavior");
+    logger.trace(MESSAGE);
     return ticket;
   }
   if (ticket == null) {

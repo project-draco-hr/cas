@@ -1,5 +1,11 @@
 {
-  final OctetSequenceJsonWebKey octetKey=OctJwkGenerator.generateJwk(size);
-  final Map<String,Object> params=octetKey.toParams(JsonWebKey.OutputControlLevel.INCLUDE_SYMMETRIC);
-  return params.get("k").toString();
+  try {
+    final OctetSequenceJsonWebKey octetKey=OctJwkGenerator.generateJwk(size);
+    final Map<String,Object> params=octetKey.toParams(JsonWebKey.OutputControlLevel.INCLUDE_SYMMETRIC);
+    return params.get("k").toString();
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+    throw new RuntimeException(e);
+  }
 }

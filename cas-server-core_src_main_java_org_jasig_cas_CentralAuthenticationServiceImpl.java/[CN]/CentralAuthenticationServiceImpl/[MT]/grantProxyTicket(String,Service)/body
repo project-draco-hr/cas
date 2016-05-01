@@ -2,8 +2,8 @@
   final ProxyGrantingTicket proxyGrantingTicketObject=getTicket(proxyGrantingTicket,ProxyGrantingTicket.class);
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
   try {
-    RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(service,registeredService,proxyGrantingTicketObject);
-    RegisteredServiceAccessStrategySupport.ensureServiceSsoAccessIsAllowed(registeredService,service,proxyGrantingTicketObject);
+    RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(service,registeredService,proxyGrantingTicketObject);
+    RegisteredServiceAccessStrategyUtils.ensureServiceSsoAccessIsAllowed(registeredService,service,proxyGrantingTicketObject);
   }
  catch (  final PrincipalException e) {
     throw new UnauthorizedSsoServiceException();

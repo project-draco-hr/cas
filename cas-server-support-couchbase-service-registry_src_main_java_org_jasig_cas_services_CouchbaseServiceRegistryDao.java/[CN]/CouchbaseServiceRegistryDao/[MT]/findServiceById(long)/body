@@ -1,11 +1,11 @@
 {
   try {
     logger.debug("Lookup for service {}",id);
-    final RawJsonDocument document=couchbase.bucket().get(String.valueOf(id),RawJsonDocument.class);
+    final RawJsonDocument document=this.couchbase.bucket().get(String.valueOf(id),RawJsonDocument.class);
     if (document != null) {
       final String json=document.content();
       final StringReader stringReader=new StringReader(json);
-      return registeredServiceJsonSerializer.fromJson(stringReader);
+      return this.registeredServiceJsonSerializer.fromJson(stringReader);
     }
   }
  catch (  final Exception e) {

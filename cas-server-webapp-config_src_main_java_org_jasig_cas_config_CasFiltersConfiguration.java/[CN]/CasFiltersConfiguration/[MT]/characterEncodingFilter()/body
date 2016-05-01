@@ -1,3 +1,7 @@
 {
-  return new CharacterEncodingFilter(this.encoding,this.forceEncoding);
+  final FilterRegistrationBean bean=new FilterRegistrationBean();
+  bean.setFilter(new CharacterEncodingFilter(this.encoding,this.forceEncoding));
+  bean.setUrlPatterns(Collections.singleton("/*"));
+  bean.setName("characterEncodingFilter");
+  return bean;
 }

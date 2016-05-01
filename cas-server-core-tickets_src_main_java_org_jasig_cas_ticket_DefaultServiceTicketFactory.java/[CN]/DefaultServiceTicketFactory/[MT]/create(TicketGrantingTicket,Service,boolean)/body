@@ -1,7 +1,7 @@
 {
   final String uniqueTicketIdGenKey=service.getClass().getName();
   UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=null;
-  if (this.uniqueTicketIdGeneratorsForService != null && !uniqueTicketIdGeneratorsForService.isEmpty()) {
+  if (this.uniqueTicketIdGeneratorsForService != null && !this.uniqueTicketIdGeneratorsForService.isEmpty()) {
     logger.debug("Looking up service ticket id generator for [{}]",uniqueTicketIdGenKey);
     serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(uniqueTicketIdGenKey);
   }

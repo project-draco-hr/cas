@@ -1,7 +1,7 @@
 {
   final FlowHandlerMapping handler=new FlowHandlerMapping();
   handler.setOrder(LOGOUT_FLOW_HANDLER_ORDER - 1);
-  handler.setFlowRegistry(loginFlowRegistry);
+  handler.setFlowRegistry(loginFlowRegistry());
   final Object[] interceptors=new Object[]{localeChangeInterceptor(),this.authenticationThrottle};
   handler.setInterceptors(interceptors);
   return handler;

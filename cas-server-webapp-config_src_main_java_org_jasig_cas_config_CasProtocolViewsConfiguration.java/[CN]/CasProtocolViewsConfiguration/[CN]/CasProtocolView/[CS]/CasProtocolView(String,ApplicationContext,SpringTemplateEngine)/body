@@ -1,0 +1,6 @@
+{
+  super(templateName);
+  setApplicationContext(applicationContext);
+  setTemplateEngine(templateEngine);
+  setLocale(Locale.getDefault());
+}

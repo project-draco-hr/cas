@@ -1,7 +1,7 @@
 {
   final File metadataFile=this.metadataAndCertificatesGenerationService.performGenerationSteps();
   final String contents=FileUtils.readFileToString(metadataFile);
-  response.setContentType("text/xml;charset=UTF-8");
+  response.setContentType(CONTENT_TYPE);
   response.setStatus(HttpServletResponse.SC_OK);
   final PrintWriter writer=response.getWriter();
   logger.debug("Producing metadata for the response");

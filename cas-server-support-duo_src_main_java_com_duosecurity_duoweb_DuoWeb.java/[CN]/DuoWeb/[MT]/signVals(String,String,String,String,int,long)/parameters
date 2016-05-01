@@ -1,0 +1,6 @@
+String key
+String username
+String ikey
+String prefix
+int expire
+long time

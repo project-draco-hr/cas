@@ -1,3 +1,4 @@
 {
-  this.thresholdRate=(double)failureThreshold / (double)failureRangeInSeconds;
+  this.thresholdRate=(double)this.failureThreshold / (double)this.failureRangeInSeconds;
+  logger.debug("Calculated threshold rate as {}",this.thresholdRate);
 }

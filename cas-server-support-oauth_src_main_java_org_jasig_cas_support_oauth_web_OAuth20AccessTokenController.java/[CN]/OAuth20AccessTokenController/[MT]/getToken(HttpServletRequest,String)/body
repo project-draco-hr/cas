@@ -1,15 +1,15 @@
 {
   final String codeParameter=request.getParameter(parameterName);
-  final OAuthToken token=ticketRegistry.getTicket(codeParameter,OAuthToken.class);
+  final OAuthToken token=this.ticketRegistry.getTicket(codeParameter,OAuthToken.class);
   if (token == null || token.isExpired()) {
     logger.error("Code or refresh token expired: {}",token);
     if (token != null) {
-      ticketRegistry.deleteTicket(token.getId());
+      this.ticketRegistry.deleteTicket(token.getId());
     }
     return null;
   }
   if (token instanceof OAuthCode) {
-    ticketRegistry.deleteTicket(token.getId());
+    this.ticketRegistry.deleteTicket(token.getId());
   }
   return token;
 }

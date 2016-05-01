@@ -1,3 +1,0 @@
-{
-  logger.info("Setting up Hazelcast Ticket Registry instance {} with name {}",this.hz,this.registry.getName());
-}

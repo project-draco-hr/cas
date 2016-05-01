@@ -4,7 +4,7 @@
   final AbstractResource metadataResource=ResourceUtils.getResourceFrom(metadataLocation);
   try (final InputStream in=metadataResource.getInputStream()){
     logger.debug("Parsing metadata from [{}]",metadataLocation);
-    final Document document=configBean.getParserPool().parse(in);
+    final Document document=this.configBean.getParserPool().parse(in);
     final Element metadataRoot=document.getDocumentElement();
     final DOMMetadataResolver metadataProvider=new DOMMetadataResolver(metadataRoot);
     buildSingleMetadataResolver(metadataProvider,service);

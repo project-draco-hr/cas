@@ -1,0 +1,16 @@
+{
+  if (this.applicationContext != null) {
+    if (this.attributeFilterMapper == null) {
+      this.attributeFilterMapper=this.applicationContext.getBean(DefaultAttributeFilterMapper.BEAN_NAME,AttributeFilterMapper.class);
+    }
+    if (this.principalAttributesRepositoryMapper == null) {
+      this.principalAttributesRepositoryMapper=this.applicationContext.getBean(DefaultPrincipalAttributesRepositoryMapper.BEAN_NAME,PrincipalAttributesRepositoryMapper.class);
+    }
+  }
+  if (this.attributeFilterMapper == null) {
+    this.attributeFilterMapper=new DefaultAttributeFilterMapper();
+  }
+  if (this.principalAttributesRepositoryMapper == null) {
+    this.principalAttributesRepositoryMapper=new DefaultPrincipalAttributesRepositoryMapper();
+  }
+}

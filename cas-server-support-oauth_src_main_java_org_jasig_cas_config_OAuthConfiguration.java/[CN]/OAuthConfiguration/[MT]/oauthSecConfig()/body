@@ -1,6 +1,6 @@
 {
   final CasClient oauthCasClient=new CasClient(this.casLoginUrl);
-  oauthCasClient.setName("CasOAuthClient");
+  oauthCasClient.setName(CAS_OAUTH_CLIENT);
   final DirectBasicAuthClient basicAuthClient=new DirectBasicAuthClient(this.oAuthClientAuthenticator);
   basicAuthClient.setName("clientBasicAuth");
   final DirectFormClient directFormClient=new DirectFormClient(this.oAuthClientAuthenticator);

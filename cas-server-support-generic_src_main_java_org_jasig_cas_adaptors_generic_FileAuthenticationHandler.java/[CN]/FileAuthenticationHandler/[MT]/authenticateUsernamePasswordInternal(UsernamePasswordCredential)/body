@@ -1,6 +1,6 @@
 {
   try {
-    if (this.fileName == null || !this.fileName.exists()) {
+    if (this.fileName == null) {
       throw new FileNotFoundException("Filename does not exist");
     }
     final String username=credential.getUsername();

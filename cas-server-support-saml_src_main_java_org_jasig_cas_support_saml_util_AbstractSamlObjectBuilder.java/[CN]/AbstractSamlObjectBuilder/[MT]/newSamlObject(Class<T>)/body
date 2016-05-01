@@ -2,7 +2,7 @@
   final QName qName=getSamlObjectQName(objectType);
   final SAMLObjectBuilder<T> builder=(SAMLObjectBuilder<T>)XMLObjectProviderRegistrySupport.getBuilderFactory().getBuilder(qName);
   if (builder == null) {
-    throw new IllegalStateException("No SAMLObjectBuilder registered for class " + objectType.getName());
+    throw new IllegalStateException("No SAML object builder is registered for class " + objectType.getName());
   }
   return objectType.cast(builder.buildObject(qName));
 }

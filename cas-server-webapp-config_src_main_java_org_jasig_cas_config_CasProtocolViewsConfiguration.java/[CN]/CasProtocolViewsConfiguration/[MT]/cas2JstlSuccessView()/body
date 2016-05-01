@@ -1,3 +1,0 @@
-{
-  return new JstlView(this.cas2SuccessView);
-}

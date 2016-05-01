@@ -3,15 +3,15 @@
   Assert.hasText(this.entityId,"IdP entityID cannot be empty and must be defined");
   Assert.hasText(this.hostName,"IdP hostName cannot be empty and must be defined");
   Assert.hasText(this.scope,"IdP scope cannot be empty and must be defined");
-  if (!metadataLocation.exists()) {
-    if (!metadataLocation.mkdir()) {
+  if (!this.metadataLocation.exists()) {
+    if (!this.metadataLocation.mkdir()) {
       throw new IllegalArgumentException("Metadata directory location " + this.metadataLocation + " cannot be located/created");
     }
   }
   logger.info("Metadata directory location is at [{}] with entityID [{}]",this.metadataLocation,this.entityId);
-  this.metadataFile=new File(metadataLocation,"idp-metadata.xml");
-  this.signingCertFile=new File(metadataLocation,"idp-signing.crt");
-  this.signingKeyFile=new File(metadataLocation,"idp-signing.key");
-  this.encryptionCertFile=new File(metadataLocation,"idp-encryption.crt");
-  this.encryptionCertKeyFile=new File(metadataLocation,"idp-encryption.key");
+  this.metadataFile=new File(this.metadataLocation,"idp-metadata.xml");
+  this.signingCertFile=new File(this.metadataLocation,"idp-signing.crt");
+  this.signingKeyFile=new File(this.metadataLocation,"idp-signing.key");
+  this.encryptionCertFile=new File(this.metadataLocation,"idp-encryption.crt");
+  this.encryptionCertKeyFile=new File(this.metadataLocation,"idp-encryption.key");
 }

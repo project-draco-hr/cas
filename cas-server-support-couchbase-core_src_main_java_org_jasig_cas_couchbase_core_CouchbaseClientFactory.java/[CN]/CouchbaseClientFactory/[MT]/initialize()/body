@@ -1,11 +1,11 @@
 {
   try {
-    logger.debug("Trying to connect to couchbase bucket {}",bucketName);
-    cluster=CouchbaseCluster.create(new ArrayList<>(nodes));
-    bucket=cluster.openBucket(bucketName,password,timeout,TimeUnit.SECONDS);
-    logger.info("Connected to Couchbase bucket {}.",bucketName);
-    if (views != null) {
-      doEnsureIndexes(designDocument,views);
+    logger.debug("Trying to connect to couchbase bucket {}",this.bucketName);
+    this.cluster=CouchbaseCluster.create(new ArrayList<>(this.nodes));
+    this.bucket=this.cluster.openBucket(this.bucketName,this.password,this.timeout,TimeUnit.SECONDS);
+    logger.info("Connected to Couchbase bucket {}.",this.bucketName);
+    if (this.views != null) {
+      doEnsureIndexes(this.designDocument,this.views);
     }
   }
  catch (  final Exception e) {

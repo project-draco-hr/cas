@@ -1,0 +1,26 @@
+{
+  for (  final RadiusServer radiusServer : servers) {
+    LOGGER.debug("Attempting to authenticate {} at {}",username,radiusServer);
+    try {
+      final RadiusResponse response=radiusServer.authenticate(username,password);
+      if (response != null) {
+        final Map<String,Object> attributes=new HashMap<>();
+        for (        final RadiusAttribute attribute : response.getAttributes()) {
+          attributes.put(attribute.getAttributeName(),attribute.getValue().toString());
+        }
+        return new Pair<>(Boolean.TRUE,Optional.of(attributes));
+      }
+      if (!failoverOnAuthenticationFailure) {
+        throw new FailedLoginException("Radius authentication failed for user " + username);
+      }
+      LOGGER.debug("failoverOnAuthenticationFailure enabled -- trying next server");
+    }
+ catch (    final Exception e) {
+      if (!failoverOnException) {
+        throw e;
+      }
+      LOGGER.warn("failoverOnException enabled -- trying next server.",e);
+    }
+  }
+  return new Pair<>(Boolean.TRUE,Optional.empty());
+}

@@ -1,0 +1,4 @@
+{
+  addAuthenticationHandler(this.clientAuthenticationHandler);
+  addAuthenticationMetadataPopulator(this.clientAuthenticationMetaDataPopulator);
+}

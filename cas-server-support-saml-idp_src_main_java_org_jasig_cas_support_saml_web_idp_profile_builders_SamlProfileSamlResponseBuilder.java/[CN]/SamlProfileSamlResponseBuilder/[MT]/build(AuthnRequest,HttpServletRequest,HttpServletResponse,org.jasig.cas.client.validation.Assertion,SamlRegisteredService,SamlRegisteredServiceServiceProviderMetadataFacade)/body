@@ -1,5 +1,5 @@
 {
-  final Assertion assertion=samlProfileSamlAssertionBuilder.build(authnRequest,request,response,casAssertion,service,adaptor);
+  final Assertion assertion=this.samlProfileSamlAssertionBuilder.build(authnRequest,request,response,casAssertion,service,adaptor);
   final Response finalResponse=buildResponse(assertion,authnRequest,service,adaptor,request,response);
   return encode(service,finalResponse,response,adaptor);
 }

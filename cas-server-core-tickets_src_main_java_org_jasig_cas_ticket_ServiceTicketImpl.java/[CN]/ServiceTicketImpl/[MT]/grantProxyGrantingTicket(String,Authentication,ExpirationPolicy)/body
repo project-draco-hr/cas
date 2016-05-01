@@ -1,11 +1,11 @@
 {
 synchronized (this.lock) {
     if (this.grantedTicketAlready) {
-      throw new InvalidProxyGrantingTicketForServiceTicket(service);
+      throw new InvalidProxyGrantingTicketForServiceTicket(this.service);
     }
     this.grantedTicketAlready=Boolean.TRUE;
   }
-  final ProxyGrantingTicket pgt=new ProxyGrantingTicketImpl(id,service,this.getGrantingTicket(),authentication,expirationPolicy);
+  final ProxyGrantingTicket pgt=new ProxyGrantingTicketImpl(id,this.service,this.getGrantingTicket(),authentication,expirationPolicy);
   getGrantingTicket().getProxyGrantingTickets().add(pgt);
   return pgt;
 }

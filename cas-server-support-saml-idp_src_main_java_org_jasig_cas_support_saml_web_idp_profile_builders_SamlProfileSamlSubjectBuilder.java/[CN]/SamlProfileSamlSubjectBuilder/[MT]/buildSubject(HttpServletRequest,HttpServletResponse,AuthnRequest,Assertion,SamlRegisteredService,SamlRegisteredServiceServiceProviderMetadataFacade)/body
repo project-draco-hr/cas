@@ -1,5 +1,5 @@
 {
-  final NameID nameID=ssoPostProfileSamlNameIdBuilder.build(authnRequest,request,response,assertion,service,adaptor);
+  final NameID nameID=this.ssoPostProfileSamlNameIdBuilder.build(authnRequest,request,response,assertion,service,adaptor);
   final Subject subject=newSubject(nameID.getFormat(),nameID.getValue(),authnRequest.getAssertionConsumerServiceURL(),DateTimeUtils.zonedDateTimeOf(assertion.getValidFromDate()),authnRequest.getID());
   subject.setNameID(nameID);
   return subject;

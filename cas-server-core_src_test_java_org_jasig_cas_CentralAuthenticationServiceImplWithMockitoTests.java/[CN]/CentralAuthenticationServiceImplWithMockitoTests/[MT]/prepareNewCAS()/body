@@ -29,5 +29,6 @@
   factory.setProxyTicketFactory(new DefaultProxyTicketFactory());
   factory.initialize();
   this.cas=new CentralAuthenticationServiceImpl(ticketRegMock,factory,smMock,mock(LogoutManager.class));
+  this.cas.setValidationServiceSelectionStrategies(Collections.singletonList(new DefaultValidationServiceSelectionStrategy()));
   this.cas.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
 }

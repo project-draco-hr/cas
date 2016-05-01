@@ -1,5 +1,5 @@
 {
-  final ModelAndView modelAndView=getModelAndView(false,service);
+  final ModelAndView modelAndView=getModelAndView(request,false,service);
   final String convertedDescription=this.context.getMessage(description,args,description,request.getLocale());
   modelAndView.addObject(CasViewConstants.MODEL_ATTRIBUTE_NAME_ERROR_CODE,code);
   modelAndView.addObject(CasViewConstants.MODEL_ATTRIBUTE_NAME_ERROR_DESCRIPTION,convertedDescription);

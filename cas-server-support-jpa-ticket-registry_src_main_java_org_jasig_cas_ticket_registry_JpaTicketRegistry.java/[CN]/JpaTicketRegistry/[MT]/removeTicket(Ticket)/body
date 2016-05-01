@@ -2,7 +2,7 @@
   try {
     final ZonedDateTime creationDate=ticket.getCreationTime();
     logger.debug("Removing Ticket [{}] created: {}",ticket,creationDate.toString());
-    entityManager.remove(ticket);
+    this.entityManager.remove(ticket);
     return true;
   }
  catch (  final Exception e) {

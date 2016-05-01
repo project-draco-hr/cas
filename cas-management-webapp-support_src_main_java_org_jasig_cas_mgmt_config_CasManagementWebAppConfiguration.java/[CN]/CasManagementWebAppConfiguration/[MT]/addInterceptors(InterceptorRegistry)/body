@@ -1,0 +1,3 @@
+{
+  registry.addInterceptor(casManagementSecurityInterceptor()).addPathPatterns("/**").excludePathPatterns("/callback*","/logout*","/authorizationFailure");
+}

@@ -11,7 +11,7 @@
     name=m.group(1);
     if (!attrMap.containsKey(name)) {
       values=getAttributeValues(rdnSequence,StandardAttributeType.fromName(name));
-      attrMap.put(name,new AttributeContext(name,values));
+      attrMap.put(name,new AttributeContext(values));
     }
     context=attrMap.get(name);
     m.appendReplacement(sb,context.nextValue());

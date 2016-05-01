@@ -22,10 +22,10 @@
   if (!assertion.isValid()) {
     throw new SamlException("CAS assertion received is invalid. This normally indicates that the assertion received has expired " + " and is not valid within the time constraints of the authentication event");
   }
-  final AssertionConsumerService acs=SamlIdPUtils.getAssertionConsumerServiceFor(authnRequest,this.servicesManager,samlRegisteredServiceCachingMetadataResolver);
-  final SamlRegisteredService registeredService=verifySamlRegisteredService(acs.getLocation());
+  final String issuer=SamlIdPUtils.getIssuerFromSamlRequest(authnRequest);
+  final SamlRegisteredService registeredService=verifySamlRegisteredService(issuer);
   final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=getSamlMetadataFacadeFor(registeredService,authnRequest);
   logger.debug("Preparing SAML response for [{}]",adaptor.getEntityId());
-  responseBuilder.build(authnRequest,request,response,assertion,registeredService,adaptor);
+  this.responseBuilder.build(authnRequest,request,response,assertion,registeredService,adaptor);
   logger.info("Built the SAML response for [{}]",adaptor.getEntityId());
 }

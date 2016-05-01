@@ -1,0 +1,6 @@
+{
+  final GoogleAuthenticatorAccount account=requestContext.getFlowScope().get("key",GoogleAuthenticatorAccount.class);
+  final String uid=WebUtils.getAuthentication(requestContext).getPrincipal().getId();
+  this.accountRegistry.save(uid,account);
+  return success();
+}

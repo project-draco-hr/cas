@@ -1,4 +1,7 @@
 {
+  Assert.notNull(privateKey);
+  Assert.notNull(publicKey);
+  Assert.notNull(samlObjectBuilder);
   this.privateKey=privateKey;
   this.publicKey=publicKey;
   this.samlObjectBuilder=samlObjectBuilder;

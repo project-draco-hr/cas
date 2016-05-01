@@ -11,7 +11,7 @@
       continue;
     }
     logger.debug("Selecting a multifactor authentication provider out of {} for {} and service {}",providers,principal.getId(),service);
-    final MultifactorAuthenticationProvider provider=multifactorAuthenticationProviderSelector.resolve(providers,service,principal);
+    final MultifactorAuthenticationProvider provider=this.multifactorAuthenticationProviderSelector.resolve(providers,service,principal);
     Set<Event> results=resolveEventViaSinglePrincipalAttribute(principal,attributeValue,service,context,provider,predicate);
     if (results == null || results.isEmpty()) {
       results=resolveEventViaMultivaluedPrincipalAttribute(principal,attributeValue,service,context,provider,predicate);

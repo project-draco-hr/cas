@@ -1,11 +1,11 @@
 {
-  final RegisteredServiceImpl r=new RegisteredServiceImpl();
+  final RegexRegisteredService r=new RegexRegisteredService();
   r.setId(1000);
   r.setName("Test Service");
   r.setServiceId("test");
   r.setDescription("description");
   this.manager.save(r);
-  final RegisteredServiceImpl svc=new RegisteredServiceImpl();
+  final RegexRegisteredService svc=new RegexRegisteredService();
   svc.setDescription("description");
   svc.setServiceId("serviceId1");
   svc.setName("name");

@@ -1,5 +1,5 @@
 {
   assertTrue(r.equals(r.clone()));
-  assertFalse(new RegisteredServiceImpl().equals(null));
-  assertFalse(new RegisteredServiceImpl().equals(new Object()));
+  assertFalse(new RegexRegisteredService().equals(null));
+  assertFalse(new RegexRegisteredService().equals(new Object()));
 }

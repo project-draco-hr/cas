@@ -1,6 +1,6 @@
 {
   this.request.addParameter("service","TestService");
-  final RegisteredServiceImpl impl=new RegisteredServiceImpl();
+  final RegexRegisteredService impl=new RegexRegisteredService();
   impl.setServiceId("http://FooBar");
   impl.setName("FooBar");
   this.serviceManager.save(impl);

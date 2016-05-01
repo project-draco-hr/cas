@@ -1,5 +1,5 @@
 {
   final Map<String,Object> attributes=new HashMap<>(assertion.getAttributes());
   attributes.putAll(assertion.getPrincipal().getAttributes());
-  return newAttributeStatement(attributes);
+  return newAttributeStatement(attributes,this.samlAttributeFriendlyName);
 }

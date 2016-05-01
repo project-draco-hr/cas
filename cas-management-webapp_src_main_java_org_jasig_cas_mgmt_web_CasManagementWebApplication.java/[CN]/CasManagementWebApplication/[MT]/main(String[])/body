@@ -1,0 +1,3 @@
+{
+  new SpringApplicationBuilder(CasManagementWebApplication.class).run(args);
+}

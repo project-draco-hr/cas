@@ -1,7 +1,7 @@
 {
-  lock.setUniqueId(uniqueId);
-  if (lockTimeout > 0) {
-    lock.setExpirationDate(ZonedDateTime.now(ZoneOffset.UTC).plusSeconds(lockTimeout));
+  lock.setUniqueId(this.uniqueId);
+  if (this.lockTimeout > 0) {
+    lock.setExpirationDate(ZonedDateTime.now(ZoneOffset.UTC).plusSeconds(this.lockTimeout));
   }
  else {
     lock.setExpirationDate(null);
@@ -12,7 +12,7 @@
       em.merge(lock);
     }
  else {
-      lock.setApplicationId(applicationId);
+      lock.setApplicationId(this.applicationId);
       em.persist(lock);
     }
     success=true;
@@ -20,10 +20,10 @@
  catch (  final PersistenceException e) {
     success=false;
     if (logger.isDebugEnabled()) {
-      logger.debug("{} could not obtain {} lock.",uniqueId,applicationId,e);
+      logger.debug("{} could not obtain {} lock.",this.uniqueId,this.applicationId,e);
     }
  else {
-      logger.info("{} could not obtain {} lock.",uniqueId,applicationId);
+      logger.info("{} could not obtain {} lock.",this.uniqueId,this.applicationId);
     }
   }
   return success;

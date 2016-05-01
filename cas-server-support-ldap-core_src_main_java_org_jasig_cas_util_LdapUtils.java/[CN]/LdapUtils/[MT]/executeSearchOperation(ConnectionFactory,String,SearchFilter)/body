@@ -1,0 +1,7 @@
+{
+  try (final Connection connection=createConnection(connectionFactory)){
+    final SearchOperation searchOperation=new SearchOperation(connection);
+    final SearchRequest request=createSearchRequest(baseDn,filter);
+    return searchOperation.execute(request);
+  }
+ }

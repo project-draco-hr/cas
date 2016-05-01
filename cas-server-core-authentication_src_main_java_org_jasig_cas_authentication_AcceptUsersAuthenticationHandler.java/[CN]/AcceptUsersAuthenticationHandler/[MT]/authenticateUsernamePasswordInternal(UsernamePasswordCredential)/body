@@ -1,5 +1,5 @@
 {
-  if (users == null || users.isEmpty()) {
+  if (this.users == null || this.users.isEmpty()) {
     throw new FailedLoginException("No user can be accepted because none is defined");
   }
   final String username=credential.getUsername();
@@ -11,5 +11,6 @@
   if (!this.getPasswordEncoder().matches(credential.getPassword(),cachedPassword)) {
     throw new FailedLoginException();
   }
-  return createHandlerResult(credential,this.principalFactory.createPrincipal(username),null);
+  final List<MessageDescriptor> list=new ArrayList<>();
+  return createHandlerResult(credential,this.principalFactory.createPrincipal(username),list);
 }

@@ -1,0 +1,12 @@
+{
+  try (final Connection connection=createConnection(connectionFactory)){
+    final DeleteOperation delete=new DeleteOperation(connection);
+    final DeleteRequest request=new DeleteRequest(entry.getDn());
+    final Response<Void> res=delete.execute(request);
+    return res.getResultCode() == ResultCode.SUCCESS;
+  }
+ catch (  final LdapException e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+  return false;
+}

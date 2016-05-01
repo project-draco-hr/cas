@@ -1,9 +1,0 @@
-{
-  final RegisteredServiceViewBean bean=new RegisteredServiceViewBean();
-  registeredServiceMapper.mapRegisteredService(svc,bean);
-  accessStrategyMapper.mapAccessStrategy(svc.getAccessStrategy(),bean);
-  usernameAttributeProviderMapper.mapUsernameAttributeProvider(svc.getUsernameAttributeProvider(),bean);
-  proxyPolicyMapper.mapProxyPolicy(svc.getProxyPolicy(),bean);
-  attributeReleasePolicyMapper.mapAttributeReleasePolicy(svc.getAttributeReleasePolicy(),bean);
-  return bean;
-}

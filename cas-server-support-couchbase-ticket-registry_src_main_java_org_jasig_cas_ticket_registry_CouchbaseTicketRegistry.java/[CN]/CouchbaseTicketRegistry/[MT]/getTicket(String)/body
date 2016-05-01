@@ -4,7 +4,7 @@
     if (ticketId == null) {
       return null;
     }
-    final SerializableDocument document=couchbase.bucket().get(encTicketId,SerializableDocument.class);
+    final SerializableDocument document=this.couchbase.bucket().get(encTicketId,SerializableDocument.class);
     if (document != null) {
       final Ticket t=(Ticket)document.content();
       logger.debug("Got ticket {} from registry.",t);

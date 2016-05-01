@@ -1,5 +1,0 @@
-{
-  final List<String> possibleAttributeNames=new ArrayList<>(personAttributeDao.getPossibleUserAttributeNames());
-  Collections.sort(possibleAttributeNames);
-  formData.setAvailableAttributes(possibleAttributeNames);
-}

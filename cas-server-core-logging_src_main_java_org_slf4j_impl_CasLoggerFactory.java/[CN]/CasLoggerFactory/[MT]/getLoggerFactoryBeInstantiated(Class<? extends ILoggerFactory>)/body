@@ -1,9 +1,0 @@
-{
-  try {
-    return loggerFactory.newInstance();
-  }
- catch (  final Exception e) {
-    Util.report(e.getMessage(),e);
-  }
-  return null;
-}

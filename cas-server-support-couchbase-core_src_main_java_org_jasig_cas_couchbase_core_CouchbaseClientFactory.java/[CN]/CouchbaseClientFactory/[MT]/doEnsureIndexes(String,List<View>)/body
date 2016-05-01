@@ -1,8 +1,8 @@
 {
-  logger.debug("Ensure that indexes exist in bucket {}.",bucket.name());
+  logger.debug("Ensure that indexes exist in bucket {}.",this.bucket.name());
   final DesignDocument newDocument=DesignDocument.create(documentName,views);
-  if (!newDocument.equals(bucket.bucketManager().getDesignDocument(documentName))) {
-    logger.warn("Missing indexes in bucket {} for document {}, creating new.",bucket.name(),documentName);
-    bucket.bucketManager().upsertDesignDocument(newDocument);
+  if (!newDocument.equals(this.bucket.bucketManager().getDesignDocument(documentName))) {
+    logger.warn("Missing indexes in bucket {} for document {}, creating new.",this.bucket.name(),documentName);
+    this.bucket.bucketManager().upsertDesignDocument(newDocument);
   }
 }

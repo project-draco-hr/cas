@@ -8,6 +8,7 @@
   context.setCurrentEvent(new Event("","error"));
   request.setAttribute("flowRequestContext",context);
   ClientInfoHolder.setClientInfo(new ClientInfo(request));
+  response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
   getThrottle().preHandle(request,response,null);
   try {
     authenticationManager.authenticate(AuthenticationTransaction.wrap(TestUtils.getService(),badCredentials(username)));

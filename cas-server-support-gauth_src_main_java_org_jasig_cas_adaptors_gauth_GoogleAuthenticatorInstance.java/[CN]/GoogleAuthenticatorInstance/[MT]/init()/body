@@ -1,0 +1,8 @@
+{
+  final GoogleAuthenticatorConfig.GoogleAuthenticatorConfigBuilder bldr=new GoogleAuthenticatorConfig.GoogleAuthenticatorConfigBuilder();
+  bldr.setCodeDigits(this.codeDigits);
+  bldr.setTimeStepSizeInMillis(this.timeStepSizeInMillis);
+  bldr.setWindowSize(this.windowSize);
+  bldr.setKeyRepresentation(KeyRepresentation.BASE32);
+  this.googleAuthenticator=new GoogleAuthenticator(bldr.build());
+}

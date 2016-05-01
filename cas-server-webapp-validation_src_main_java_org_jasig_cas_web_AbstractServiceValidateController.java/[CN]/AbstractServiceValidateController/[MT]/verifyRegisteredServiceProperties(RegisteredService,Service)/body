@@ -1,6 +1,6 @@
 {
   if (registeredService == null) {
-    final String msg=String.format("ServiceManagement: Unauthorized Service Access. " + "Service [%s] is not found in service registry.",service.getId());
+    final String msg=String.format("Service [%s] is not found in service registry.",service.getId());
     logger.warn(msg);
     throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE,msg);
   }

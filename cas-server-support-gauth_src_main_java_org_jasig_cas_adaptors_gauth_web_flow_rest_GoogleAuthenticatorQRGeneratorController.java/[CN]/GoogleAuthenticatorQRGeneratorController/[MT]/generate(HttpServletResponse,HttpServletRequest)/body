@@ -1,0 +1,5 @@
+{
+  response.setContentType("image/png");
+  final String key=request.getParameter("key");
+  generateQRCode(response.getOutputStream(),key);
+}

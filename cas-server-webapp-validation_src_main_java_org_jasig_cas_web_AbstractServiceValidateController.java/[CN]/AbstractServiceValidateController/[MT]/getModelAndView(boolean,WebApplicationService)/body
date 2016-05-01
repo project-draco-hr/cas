@@ -1,8 +1,0 @@
-{
-  if (service != null) {
-    if (service.getFormat() == ValidationResponseType.JSON) {
-      return new ModelAndView(DEFAULT_SERVICE_VIEW_NAME_JSON);
-    }
-  }
-  return new ModelAndView(isSuccess ? this.successView : this.failureView);
-}

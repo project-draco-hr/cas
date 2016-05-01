@@ -1,3 +1,0 @@
-{
-  return (ConfigurableEnvironment)this.applicationContext.getEnvironment();
-}

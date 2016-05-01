@@ -1,0 +1,7 @@
+{
+  final EhCacheManagerFactoryBean bean=new EhCacheManagerFactoryBean();
+  bean.setConfigLocation(ResourceUtils.prepareClasspathResourceIfNeeded(this.configLocation));
+  bean.setShared(this.shared);
+  bean.setCacheManagerName(this.cacheManagerName);
+  return bean;
+}

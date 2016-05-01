@@ -1,7 +1,0 @@
-{
-  final ServletRegistration registration=sce.getServletContext().getServletRegistration(WebUtils.CAS_SERVLET_NAME);
-  if (registration == null) {
-    logger.debug("Servlet [{}] is not registered with this context",WebUtils.CAS_SERVLET_NAME);
-  }
-  return registration;
-}

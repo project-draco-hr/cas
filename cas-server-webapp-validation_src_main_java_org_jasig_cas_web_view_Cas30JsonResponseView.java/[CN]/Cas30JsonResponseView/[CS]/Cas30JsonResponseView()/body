@@ -1,4 +1,5 @@
 {
-  super(createDelegatedView());
+  super();
+  setView(createDelegatedView());
   logger.debug("Initializing {}",this.getClass().getSimpleName());
 }

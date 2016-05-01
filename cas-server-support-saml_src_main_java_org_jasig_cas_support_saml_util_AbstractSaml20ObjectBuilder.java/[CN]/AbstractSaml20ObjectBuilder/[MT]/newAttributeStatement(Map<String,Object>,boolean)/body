@@ -1,0 +1,25 @@
+{
+  final AttributeStatement attrStatement=newSamlObject(AttributeStatement.class);
+  for (  final Map.Entry<String,Object> e : attributes.entrySet()) {
+    if (e.getValue() instanceof Collection<?> && ((Collection<?>)e.getValue()).isEmpty()) {
+      logger.info("Skipping attribute {} because it does not have any values.",e.getKey());
+      continue;
+    }
+    final Attribute attribute=newSamlObject(Attribute.class);
+    attribute.setName(e.getKey());
+    if (setFriendlyName) {
+      attribute.setFriendlyName(e.getKey());
+    }
+    if (e.getValue() instanceof Collection<?>) {
+      final Collection<?> c=(Collection<?>)e.getValue();
+      for (      final Object value : c) {
+        attribute.getAttributeValues().add(newAttributeValue(value,AttributeValue.DEFAULT_ELEMENT_NAME));
+      }
+    }
+ else {
+      attribute.getAttributeValues().add(newAttributeValue(e.getValue(),AttributeValue.DEFAULT_ELEMENT_NAME));
+    }
+    attrStatement.getAttributes().add(attribute);
+  }
+  return attrStatement;
+}

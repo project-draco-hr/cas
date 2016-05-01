@@ -2,7 +2,7 @@
   try {
     final Map<String,Object> keys=new HashMap<>(2);
     keys.put("kty","oct");
-    keys.put("k",secret);
+    keys.put(JSON_WEB_KEY,secret);
     final JsonWebKey jwk=JsonWebKey.Factory.newJwk(keys);
     return jwk.getKey();
   }

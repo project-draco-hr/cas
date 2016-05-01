@@ -2,7 +2,7 @@
   logger.debug("Updating ticket {}",ticket);
   try {
     final SerializableDocument document=SerializableDocument.create(ticket.getId(),ticket.getExpirationPolicy().getTimeToLive().intValue(),ticket);
-    couchbase.bucket().upsert(document);
+    this.couchbase.bucket().upsert(document);
   }
  catch (  final Exception e) {
     logger.error("Failed updating {}: {}",ticket,e);

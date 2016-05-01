@@ -1,7 +1,0 @@
-{
-  populateRegistryWithExpiredTickets();
-  final TicketGrantingTicket ticket=new TicketGrantingTicketImpl("testNoExpire",org.jasig.cas.authentication.TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
-  this.ticketRegistry.addTicket(ticket);
-  clean();
-  assertEquals(this.ticketRegistry.getTickets().size(),1);
-}

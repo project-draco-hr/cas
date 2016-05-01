@@ -1,5 +1,5 @@
 {
-  final RegisteredServiceImpl r=new RegisteredServiceImpl();
+  final RegexRegisteredService r=new RegexRegisteredService();
   r.setName("testSaveMethodWithDefaultUsernameAttribute");
   r.setServiceId("testId");
   r.setTheme("theme");

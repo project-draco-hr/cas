@@ -1,5 +1,0 @@
-{
-  logger.debug("Adding [{}] application context",factory);
-  final List<ServiceFactory<? extends Service>> list=applicationContext.getBean("serviceFactoryList",List.class);
-  list.add(index,factory);
-}

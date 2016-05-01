@@ -25,8 +25,8 @@
       successFullAuthentication=false;
     }
   }
- catch (  final AbstractTicketException te) {
-    logger.error("Could not validate ticket : {}",te.getMessage(),te);
+ catch (  final AbstractTicketException e) {
+    logger.error("Could not validate ticket : {}",e.getMessage(),e);
     successFullAuthentication=false;
   }
   final String id=determineIdentity(service,assertion);

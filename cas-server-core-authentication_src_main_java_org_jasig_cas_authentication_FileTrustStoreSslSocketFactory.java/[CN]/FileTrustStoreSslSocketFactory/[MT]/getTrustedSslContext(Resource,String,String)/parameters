@@ -1,0 +1,3 @@
+Resource trustStoreFile
+String trustStorePassword
+String trustStoreType

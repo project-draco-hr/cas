@@ -1,3 +1,0 @@
-{
-  this(decoratedMap,DEFAULT_HASH_ALGORITHM,salt,DEFAULT_ENCRYPTION_ALGORITHM,secretKey);
-}

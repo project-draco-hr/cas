@@ -1,24 +1,24 @@
 {
   final Binding binding=new Binding();
-  final String[] beanNames=context.getBeanDefinitionNames();
-  logger.debug("Found [{}] beans in the application context",context.getBeanDefinitionCount());
+  final String[] beanNames=this.context.getBeanDefinitionNames();
+  logger.debug("Found [{}] beans in the application context",this.context.getBeanDefinitionCount());
   for (  final String name : beanNames) {
     try {
-      binding.setVariable(name,context.getBean(name));
+      binding.setVariable(name,this.context.getBean(name));
       logger.debug("Added context bean [{}] to groovy bindings",name);
     }
  catch (    final Exception e) {
       logger.warn("Could not add bean id [{}] to the binding. Reason: [{}]",name,e.getMessage());
     }
   }
-  if (bindings != null) {
-    for (    final Map.Entry<String,Object> nextBinding : bindings.entrySet()) {
+  if (this.bindings != null) {
+    for (    final Map.Entry<String,Object> nextBinding : this.bindings.entrySet()) {
       logger.debug("Added variable [{}] to groovy bindings",nextBinding.getKey());
       binding.setVariable(nextBinding.getKey(),nextBinding.getValue());
     }
   }
   logger.debug("Added application context [{}] to groovy bindings",CONTEXT_KEY);
-  binding.setVariable(CONTEXT_KEY,context);
+  binding.setVariable(CONTEXT_KEY,this.context);
   loadCustomGroovyScriptsIntoClasspath(binding);
   return binding;
 }

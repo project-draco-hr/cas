@@ -1,0 +1,17 @@
+{
+  String currentDn=null;
+  try (final Connection searchConnection=LdapUtils.createConnection(this.connectionFactory)){
+    final Response<SearchResult> response=searchForId(searchConnection,credential.getId());
+    if (LdapUtils.containsResultEntry(response)) {
+      currentDn=response.getResult().getEntry().getDn();
+    }
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+  if (StringUtils.isNotBlank(currentDn)) {
+    logger.debug("Updating {}",currentDn);
+    return LdapUtils.executeModifyOperation(currentDn,this.connectionFactory,Collections.singletonMap(this.aupAttributeName,Collections.singleton(Boolean.TRUE.toString())));
+  }
+  return false;
+}

@@ -1,0 +1,3 @@
+{
+  addServiceFactory(this.googleAccountsServiceFactory);
+}

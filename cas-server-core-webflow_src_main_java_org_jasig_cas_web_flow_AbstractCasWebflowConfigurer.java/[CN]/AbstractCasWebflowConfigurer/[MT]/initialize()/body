@@ -1,7 +1,12 @@
 {
   try {
     logger.debug("Initializing CAS webflow configuration...");
-    doInitialize();
+    if (this.autoconfigureWebflow) {
+      doInitialize();
+    }
+ else {
+      logger.warn("Webflow auto-configuration is disabled. CAS will not modify the webflow via {}",getClass().getName());
+    }
   }
  catch (  final Exception e) {
     logger.error(e.getMessage(),e);

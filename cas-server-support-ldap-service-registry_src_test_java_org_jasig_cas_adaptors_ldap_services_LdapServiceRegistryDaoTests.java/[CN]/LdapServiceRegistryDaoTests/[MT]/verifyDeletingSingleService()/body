@@ -1,6 +1,6 @@
 {
   final RegisteredService rs=getRegexRegisteredService();
-  final RegisteredService rs2=getRegisteredService();
+  final RegisteredService rs2=getRegexRegisteredService();
   this.dao.save(rs2);
   this.dao.save(rs);
   this.dao.load();

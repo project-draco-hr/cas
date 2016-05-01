@@ -1,3 +1,3 @@
 {
-  return Arrays.asList(loginFlowDefinitionRegistry.getFlowDefinitionIds());
+  return Arrays.asList(this.loginFlowDefinitionRegistry.getFlowDefinitionIds());
 }

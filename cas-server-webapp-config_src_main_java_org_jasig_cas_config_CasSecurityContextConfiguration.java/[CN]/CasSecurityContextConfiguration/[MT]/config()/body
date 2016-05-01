@@ -1,0 +1,17 @@
+{
+  try {
+    if (StringUtils.isNotBlank(this.loginUrl) && StringUtils.isNotBlank(this.callbackUrl) && StringUtils.isNotBlank(this.roles)) {
+      final IndirectClient client=new CasClient(this.loginUrl);
+      final Properties properties=new Properties();
+      properties.load(this.userPropertiesFile.getInputStream());
+      client.setAuthorizationGenerator(new SpringSecurityPropertiesAuthorizationGenerator(properties));
+      final Config cfg=new Config(this.callbackUrl,client);
+      cfg.setAuthorizer(new RequireAnyRoleAuthorizer(org.springframework.util.StringUtils.commaDelimitedListToSet(this.roles)));
+      return cfg;
+    }
+  }
+ catch (  final Exception e) {
+    LOGGER.warn(e.getMessage(),e);
+  }
+  return new Config();
+}

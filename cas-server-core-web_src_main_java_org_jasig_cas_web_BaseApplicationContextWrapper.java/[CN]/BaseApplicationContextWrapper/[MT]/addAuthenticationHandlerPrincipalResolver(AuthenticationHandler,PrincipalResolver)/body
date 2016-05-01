@@ -1,0 +1,5 @@
+{
+  logger.debug("Adding {} and {} to application context",handler,resolver);
+  final Map<AuthenticationHandler,PrincipalResolver> authenticationHandlersResolvers=this.applicationContext.getBean("authenticationHandlersResolvers",Map.class);
+  authenticationHandlersResolvers.put(handler,resolver);
+}

@@ -1,16 +1,16 @@
 {
-  if (running.compareAndSet(false,true)) {
-    while (running.get()) {
+  if (this.running.compareAndSet(false,true)) {
+    while (this.running.get()) {
       WatchKey key=null;
       try {
-        key=watcher.take();
+        key=this.watcher.take();
         handleEvent(key);
       }
  catch (      final InterruptedException e) {
         return;
       }
  finally {
-        final boolean valid=(key != null && key.reset());
+        final boolean valid=key != null && key.reset();
         if (!valid) {
           LOGGER.warn("Directory key is no longer valid. Quitting watcher service");
           break;

@@ -1,3 +1,3 @@
 {
-  context.getFlowScope().put("unauthorizedRedirectUrl",url);
+  context.getFlowScope().put(PARAMETER_UNAUTHORIZED_REDIRECT_URL,url);
 }

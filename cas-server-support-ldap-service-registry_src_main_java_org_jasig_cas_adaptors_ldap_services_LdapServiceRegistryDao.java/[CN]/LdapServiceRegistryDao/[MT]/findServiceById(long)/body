@@ -1,11 +1,10 @@
 {
-  if (ldapServiceMapper == null) {
-    return null;
-  }
-  try (final Connection connection=getConnection()){
-    final Response<SearchResult> response=searchForServiceById(connection,id);
-    if (hasResults(response)) {
-      return this.ldapServiceMapper.mapToRegisteredService(response.getResult().getEntry());
+  try {
+    if (this.ldapServiceMapper != null) {
+      final Response<SearchResult> response=searchForServiceById(id);
+      if (LdapUtils.containsResultEntry(response)) {
+        return this.ldapServiceMapper.mapToRegisteredService(response.getResult().getEntry());
+      }
     }
   }
  catch (  final LdapException e) {

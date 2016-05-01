@@ -1,0 +1,3 @@
+{
+  registry.addInterceptor(this.authenticationThrottle).addPathPatterns("/v1/**");
+}

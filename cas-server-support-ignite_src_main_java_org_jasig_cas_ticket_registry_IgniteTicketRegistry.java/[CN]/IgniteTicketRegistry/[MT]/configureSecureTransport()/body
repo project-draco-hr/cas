@@ -1,0 +1,28 @@
+{
+  final String nullKey="NULL";
+  if (StringUtils.isNotBlank(this.keyStoreFilePath) && StringUtils.isNotBlank(this.keyStorePassword) && StringUtils.isNotBlank(this.trustStoreFilePath)&& StringUtils.isNotBlank(this.trustStorePassword)) {
+    final SslContextFactory sslContextFactory=new SslContextFactory();
+    sslContextFactory.setKeyStoreFilePath(this.keyStoreFilePath);
+    sslContextFactory.setKeyStorePassword(this.keyStorePassword.toCharArray());
+    if (nullKey.equals(this.trustStoreFilePath) && nullKey.equals(this.trustStorePassword)) {
+      sslContextFactory.setTrustManagers(SslContextFactory.getDisabledTrustManager());
+    }
+ else {
+      sslContextFactory.setTrustStoreFilePath(this.trustStoreFilePath);
+      sslContextFactory.setTrustStorePassword(this.trustStorePassword.toCharArray());
+    }
+    if (StringUtils.isNotBlank(this.keyAlgorithm)) {
+      sslContextFactory.setKeyAlgorithm(this.keyAlgorithm);
+    }
+    if (StringUtils.isNotBlank(this.protocol)) {
+      sslContextFactory.setProtocol(this.protocol);
+    }
+    if (StringUtils.isNotBlank(this.trustStoreType)) {
+      sslContextFactory.setTrustStoreType(this.trustStoreType);
+    }
+    if (StringUtils.isNotBlank(this.keyStoreType)) {
+      sslContextFactory.setKeyStoreType(this.keyStoreType);
+    }
+    this.igniteConfiguration.setSslContextFactory(sslContextFactory);
+  }
+}

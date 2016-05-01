@@ -1,0 +1,19 @@
+{
+  final List<JRadiusServerImpl> list=new ArrayList<>();
+  final RadiusClientFactory factory=new RadiusClientFactory();
+  factory.setAccountingPort(this.accountingPort);
+  factory.setAuthenticationPort(this.authenticationPort);
+  factory.setInetAddress(this.inetAddress);
+  factory.setSharedSecret(this.sharedSecret);
+  factory.setSocketTimeout(this.socketTimeout);
+  final JRadiusServerImpl impl=new JRadiusServerImpl(this.protocol,factory);
+  impl.setRetries(this.retries);
+  impl.setNasIdentifier(this.nasIdentifier);
+  impl.setNasPort(this.nasPort);
+  impl.setNasPortId(this.nasPortId);
+  impl.setNasRealPort(this.nasRealPort);
+  impl.setNasIpAddress(this.nasIp);
+  impl.setNasIpv6Address(this.nasIpv6);
+  list.add(impl);
+  return list;
+}

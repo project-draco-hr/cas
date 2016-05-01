@@ -1,4 +1,0 @@
-{
-  addAuthenticationHandler(clientAuthenticationHandler);
-  addAuthenticationMetadataPopulator(clientAuthenticationMetaDataPopulator);
-}

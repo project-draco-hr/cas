@@ -10,7 +10,7 @@
   final Subject subject=this.samlObjectBuilder.newSubject(getPrincipal(model).getId());
   final Map<String,Object> attributesToSend=prepareSamlAttributes(model,service);
   if (!attributesToSend.isEmpty()) {
-    assertion.getAttributeStatements().add(this.samlObjectBuilder.newAttributeStatement(subject,attributesToSend,VALIDATION_SAML_ATTRIBUTE_NAMESPACE));
+    assertion.getAttributeStatements().add(this.samlObjectBuilder.newAttributeStatement(subject,attributesToSend,this.defaultAttributeNamespace));
   }
   response.setStatus(this.samlObjectBuilder.newStatus(StatusCode.SUCCESS,null));
   response.getAssertions().add(assertion);

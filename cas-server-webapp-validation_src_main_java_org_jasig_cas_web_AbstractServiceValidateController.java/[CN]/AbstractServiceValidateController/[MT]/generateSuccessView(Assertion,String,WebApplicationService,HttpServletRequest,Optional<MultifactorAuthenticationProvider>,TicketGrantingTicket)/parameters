@@ -1,0 +1,6 @@
+Assertion assertion
+String proxyIou
+WebApplicationService service
+HttpServletRequest request
+Optional<MultifactorAuthenticationProvider> contextProvider
+TicketGrantingTicket proxyGrantingTicket

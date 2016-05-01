@@ -1,3 +1,3 @@
 {
-  return duoAuthenticationService.canPing();
+  return this.duoAuthenticationService.canPing();
 }

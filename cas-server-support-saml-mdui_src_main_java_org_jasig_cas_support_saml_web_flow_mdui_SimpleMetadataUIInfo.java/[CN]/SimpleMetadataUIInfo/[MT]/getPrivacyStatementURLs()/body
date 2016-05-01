@@ -1,6 +1,6 @@
 {
-  if (uiInfo != null) {
-    return getStringValues(uiInfo.getPrivacyStatementURLs());
+  if (this.uiInfo != null) {
+    return getStringValues(this.uiInfo.getPrivacyStatementURLs());
   }
   return new ArrayList<>();
 }

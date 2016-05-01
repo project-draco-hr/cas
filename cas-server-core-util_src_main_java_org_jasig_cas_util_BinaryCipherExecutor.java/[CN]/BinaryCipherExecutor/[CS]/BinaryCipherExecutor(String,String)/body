@@ -1,3 +1,0 @@
-{
-  verifyAndSetKeys(encryptionSecretKey,signingSecretKey);
-}

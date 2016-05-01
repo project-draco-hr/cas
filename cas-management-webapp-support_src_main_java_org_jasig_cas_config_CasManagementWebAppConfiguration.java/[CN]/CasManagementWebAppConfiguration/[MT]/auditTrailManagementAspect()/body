@@ -1,3 +1,0 @@
-{
-  return new AuditTrailManagementAspect("CAS_Management",this.principalResolver,ImmutableList.of(auditTrailManager()),auditActionResolverMap,auditResourceResolverMap);
-}

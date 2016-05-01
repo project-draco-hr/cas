@@ -43,7 +43,7 @@
     service=createService(registeredService);
     authentication=createAuthentication(profile,registeredService);
     try {
-      RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
+      RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
     }
  catch (    final UnauthorizedServiceException|PrincipalException e) {
       logger.error(e.getMessage(),e);
@@ -54,17 +54,17 @@
   final String accessTokenId=accessToken.getId();
   String refreshTokenId=null;
   if (generateRefreshToken) {
-    final RefreshToken refreshToken=refreshTokenFactory.create(service,authentication);
-    ticketRegistry.addTicket(refreshToken);
+    final RefreshToken refreshToken=this.refreshTokenFactory.create(service,authentication);
+    this.ticketRegistry.addTicket(refreshToken);
     refreshTokenId=refreshToken.getId();
   }
-  logger.debug("access token: {} / timeout: {} / refresh token: {}",accessTokenId,timeout,refreshTokenId);
+  logger.debug("access token: {} / timeout: {} / refresh token: {}",accessTokenId,this.timeout,refreshTokenId);
   if (jsonFormat) {
     response.setContentType("application/json");
     try (final JsonGenerator jsonGenerator=this.jsonFactory.createGenerator(response.getWriter())){
       jsonGenerator.writeStartObject();
       jsonGenerator.writeStringField(OAuthConstants.ACCESS_TOKEN,accessTokenId);
-      jsonGenerator.writeNumberField(OAuthConstants.EXPIRES,timeout);
+      jsonGenerator.writeNumberField(OAuthConstants.EXPIRES,this.timeout);
       if (CommonHelper.isNotBlank(refreshTokenId)) {
         jsonGenerator.writeStringField(OAuthConstants.REFRESH_TOKEN,refreshTokenId);
       }
@@ -73,9 +73,9 @@
      return null;
   }
  else {
-    String text=String.format("%s=%s&%s=%s",OAuthConstants.ACCESS_TOKEN,accessTokenId,OAuthConstants.EXPIRES,timeout);
+    String text=String.format("%s=%s&%s=%s",OAuthConstants.ACCESS_TOKEN,accessTokenId,OAuthConstants.EXPIRES,this.timeout);
     if (CommonHelper.isNotBlank(refreshTokenId)) {
-      text+="&" + OAuthConstants.REFRESH_TOKEN + "="+ refreshTokenId;
+      text+='&' + OAuthConstants.REFRESH_TOKEN + '='+ refreshTokenId;
     }
     return OAuthUtils.writeText(response,text,HttpStatus.SC_OK);
   }

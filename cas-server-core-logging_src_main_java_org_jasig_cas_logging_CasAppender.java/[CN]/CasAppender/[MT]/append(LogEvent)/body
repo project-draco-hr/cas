@@ -1,0 +1,7 @@
+{
+  final String messageModified=manipulateLogMessage(logEvent.getMessage().getFormattedMessage());
+  final Message message=new SimpleMessage(messageModified);
+  final LogEvent newLogEvent=Log4jLogEvent.newBuilder().setLevel(logEvent.getLevel()).setLoggerName(logEvent.getLoggerName()).setLoggerFqcn(logEvent.getLoggerFqcn()).setContextMap(logEvent.getContextMap()).setContextStack(logEvent.getContextStack()).setEndOfBatch(logEvent.isEndOfBatch()).setIncludeLocation(logEvent.isIncludeLocation()).setMarker(logEvent.getMarker()).setMessage(message).setNanoTime(logEvent.getNanoTime()).setSource(logEvent.getSource()).setThreadName(logEvent.getThreadName()).setThrownProxy(logEvent.getThrownProxy()).setThrown(logEvent.getThrown()).setTimeMillis(logEvent.getTimeMillis()).build();
+  final Appender appender=this.config.getAppender(this.appenderRef.getRef());
+  appender.append(newLogEvent);
+}

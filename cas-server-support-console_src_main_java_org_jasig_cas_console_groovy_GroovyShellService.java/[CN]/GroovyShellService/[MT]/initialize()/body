@@ -1,5 +1,5 @@
 {
-  this.serverThread=new Thread(){
+  final Thread serverThread=new Thread(){
     @Override public void run(){
       try {
         logger.info("Launching groovy service background thread...");

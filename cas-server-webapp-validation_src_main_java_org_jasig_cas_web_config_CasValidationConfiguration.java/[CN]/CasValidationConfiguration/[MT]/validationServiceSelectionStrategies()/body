@@ -1,0 +1,5 @@
+{
+  final List<ValidationServiceSelectionStrategy> list=new ArrayList<>();
+  list.add(this.defaultStrategy);
+  return list;
+}

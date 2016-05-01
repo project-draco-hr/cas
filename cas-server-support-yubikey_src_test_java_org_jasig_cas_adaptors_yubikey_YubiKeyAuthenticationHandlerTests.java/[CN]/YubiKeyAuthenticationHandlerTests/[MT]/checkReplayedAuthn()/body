@@ -1,4 +1,4 @@
 {
   final YubiKeyAuthenticationHandler handler=new YubiKeyAuthenticationHandler(CLIENT_ID,SECRET_KEY);
-  handler.authenticate(new UsernamePasswordCredential("casuser",OTP));
+  handler.authenticate(new YubiKeyCredential(OTP));
 }

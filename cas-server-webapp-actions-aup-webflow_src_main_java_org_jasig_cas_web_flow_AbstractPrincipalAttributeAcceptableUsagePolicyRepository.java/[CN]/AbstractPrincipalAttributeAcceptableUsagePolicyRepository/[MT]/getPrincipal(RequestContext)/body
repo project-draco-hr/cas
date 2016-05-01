@@ -1,0 +1,7 @@
+{
+  final String tgt=WebUtils.getTicketGrantingTicketId(requestContext);
+  if (StringUtils.isBlank(tgt)) {
+    throw new IllegalArgumentException("No ticket-granting ticket could be found in the context");
+  }
+  return this.ticketRegistrySupport.getAuthenticatedPrincipalFrom(tgt);
+}

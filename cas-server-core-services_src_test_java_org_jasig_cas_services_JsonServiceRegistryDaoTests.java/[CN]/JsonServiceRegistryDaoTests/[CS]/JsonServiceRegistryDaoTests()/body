@@ -1,3 +1,3 @@
 {
-  this.dao=new JsonServiceRegistryDao(RESOURCE.getFile());
+  this.dao=new JsonServiceRegistryDao(RESOURCE);
 }

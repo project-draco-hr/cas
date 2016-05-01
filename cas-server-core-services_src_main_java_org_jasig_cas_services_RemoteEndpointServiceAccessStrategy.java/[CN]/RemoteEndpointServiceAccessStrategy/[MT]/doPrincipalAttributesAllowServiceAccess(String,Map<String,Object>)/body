@@ -1,0 +1,17 @@
+{
+  try {
+    if (super.doPrincipalAttributesAllowServiceAccess(principal,principalAttributes)) {
+      final HttpClient client=ApplicationContextProvider.getApplicationContext().getBean("noRedirectHttpClient",HttpClient.class);
+      final URIBuilder builder=new URIBuilder(this.endpointUrl);
+      builder.addParameter("username",principal);
+      final URL url=builder.build().toURL();
+      final HttpMessage message=client.sendMessageToEndPoint(url);
+      LOGGER.debug("Message received from {} is {}",url,message);
+      return message != null && StringUtils.commaDelimitedListToSet(this.acceptableResponseCodes).contains(message.getResponseCode());
+    }
+  }
+ catch (  final Exception e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+  return false;
+}

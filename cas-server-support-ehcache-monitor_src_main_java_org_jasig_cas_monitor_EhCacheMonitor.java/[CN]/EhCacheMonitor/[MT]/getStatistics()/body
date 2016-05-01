@@ -1,0 +1,7 @@
+{
+  final List<CacheStatistics> list=new ArrayList<>();
+  if (this.ehcacheTicketsCache != null) {
+    list.add(new EhCacheStatistics(this.ehcacheTicketsCache));
+  }
+  return list.toArray(new CacheStatistics[]{});
+}

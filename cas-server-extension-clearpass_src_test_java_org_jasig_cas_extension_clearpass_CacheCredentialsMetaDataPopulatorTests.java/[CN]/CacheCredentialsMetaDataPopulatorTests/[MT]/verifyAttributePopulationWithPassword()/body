@@ -1,9 +1,0 @@
-{
-  final Authentication auth=TestUtils.getAuthentication();
-  final Map<String,String> map=new HashMap<>();
-  final CacheCredentialsMetaDataPopulator populator=new CacheCredentialsMetaDataPopulator(map);
-  final UsernamePasswordCredential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  populator.populateAttributes(DefaultAuthenticationBuilder.newInstance(auth),c);
-  assertTrue(map.containsKey(auth.getPrincipal().getId()));
-  assertEquals(map.get(auth.getPrincipal().getId()),c.getPassword());
-}

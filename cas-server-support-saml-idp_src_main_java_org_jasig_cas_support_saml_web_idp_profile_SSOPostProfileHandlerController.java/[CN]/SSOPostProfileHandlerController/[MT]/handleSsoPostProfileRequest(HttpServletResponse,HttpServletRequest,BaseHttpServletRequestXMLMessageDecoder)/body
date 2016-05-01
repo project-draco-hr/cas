@@ -1,7 +1,7 @@
 {
   final AuthnRequest authnRequest=decodeRequest(request,decoder,AuthnRequest.class);
-  final AssertionConsumerService acs=SamlIdPUtils.getAssertionConsumerServiceFor(authnRequest,this.servicesManager,samlRegisteredServiceCachingMetadataResolver);
-  final SamlRegisteredService registeredService=verifySamlRegisteredService(acs.getLocation());
+  final String issuer=SamlIdPUtils.getIssuerFromSamlRequest(authnRequest);
+  final SamlRegisteredService registeredService=verifySamlRegisteredService(issuer);
   final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=SamlRegisteredServiceServiceProviderMetadataFacade.get(this.samlRegisteredServiceCachingMetadataResolver,registeredService,authnRequest);
   if (!authnRequest.isSigned()) {
     if (adaptor.isAuthnRequestsSigned()) {
@@ -13,6 +13,6 @@
  else {
     this.samlObjectSigner.verifySamlProfileRequestIfNeeded(authnRequest,adaptor.getMetadataResolver());
   }
-  SamlIdPUtils.logSamlObject(this.configBean,authnRequest);
+  SamlUtils.logSamlObject(this.configBean,authnRequest);
   issueAuthenticationRequestRedirect(authnRequest,request,response);
 }

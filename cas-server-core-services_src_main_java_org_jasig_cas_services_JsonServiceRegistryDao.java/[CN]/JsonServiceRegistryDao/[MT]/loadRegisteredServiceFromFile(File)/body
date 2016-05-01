@@ -15,7 +15,7 @@
     return this.registeredServiceJsonSerializer.fromJson(in);
   }
  catch (  final Exception e) {
-    LOGGER.error("Error reading configuration file " + file.getName(),e);
+    LOGGER.error("Error reading configuration file {}",file.getName(),e);
   }
   return null;
 }

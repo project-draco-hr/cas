@@ -1,6 +1,6 @@
 {
-  if (uiInfo != null) {
-    return getStringValues(uiInfo.getDisplayNames());
+  if (this.uiInfo != null) {
+    return getStringValues(this.uiInfo.getDisplayNames());
   }
   return new ArrayList<>();
 }

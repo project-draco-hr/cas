@@ -1,5 +1,0 @@
-{
-  final LocalValidatorFactoryBean bean=new LocalValidatorFactoryBean();
-  bean.setMessageInterpolator(this.messageInterpolator);
-  return bean;
-}

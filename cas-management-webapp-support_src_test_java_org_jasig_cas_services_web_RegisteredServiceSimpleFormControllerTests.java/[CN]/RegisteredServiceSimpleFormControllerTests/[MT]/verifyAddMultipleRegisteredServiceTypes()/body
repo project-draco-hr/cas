@@ -7,7 +7,7 @@
   svc.setEvaluationOrder(1000);
   final RegisteredServiceEditBean.ServiceData data=registeredServiceFactory.createServiceData(svc);
   this.controller.saveService(new MockHttpServletRequest(),new MockHttpServletResponse(),data,mock(BindingResult.class));
-  svc=new RegisteredServiceImpl();
+  svc=new RegexRegisteredService();
   svc.setDescription("description");
   svc.setServiceId("^serviceId");
   svc.setName("name");

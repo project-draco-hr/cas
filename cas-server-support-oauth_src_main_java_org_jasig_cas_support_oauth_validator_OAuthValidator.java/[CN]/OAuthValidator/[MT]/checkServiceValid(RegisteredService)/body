@@ -2,7 +2,7 @@
   final OAuthWebApplicationService service=new OAuthWebApplicationService(registeredService);
   logger.debug("Check registered service: {}",registeredService);
   try {
-    RegisteredServiceAccessStrategySupport.ensureServiceAccessIsAllowed(service,registeredService);
+    RegisteredServiceAccessStrategyUtils.ensureServiceAccessIsAllowed(service,registeredService);
     return true;
   }
  catch (  final UnauthorizedServiceException e) {

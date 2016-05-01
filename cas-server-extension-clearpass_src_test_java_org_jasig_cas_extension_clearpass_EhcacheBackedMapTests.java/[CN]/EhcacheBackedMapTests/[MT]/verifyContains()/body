@@ -1,7 +1,0 @@
-{
-  final String[][] arrayItems={{"key0","Item0"},{"key1","Item1"},{"key2","Item2"}};
-  final Map mapItems=ArrayUtils.toMap(arrayItems);
-  this.map.putAll(mapItems);
-  assertTrue(map.containsKey("key2"));
-  assertTrue(map.containsValue("Item1"));
-}

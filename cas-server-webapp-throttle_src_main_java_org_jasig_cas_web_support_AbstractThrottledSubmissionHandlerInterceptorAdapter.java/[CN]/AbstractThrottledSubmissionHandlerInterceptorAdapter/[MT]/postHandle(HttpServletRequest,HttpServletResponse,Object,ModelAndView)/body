@@ -1,13 +1,10 @@
 {
-  if (!"POST".equals(request.getMethod())) {
+  if (!HttpMethod.POST.name().equals(request.getMethod())) {
     return;
   }
-  final RequestContext context=(RequestContext)request.getAttribute("flowRequestContext");
-  if (context == null || context.getCurrentEvent() == null) {
-    return;
+  final boolean recordEvent=response.getStatus() != HttpStatus.SC_CREATED && response.getStatus() != HttpStatus.SC_OK;
+  if (recordEvent) {
+    logger.debug("Recording submission failure for {}",request.getRequestURI());
+    recordSubmissionFailure(request);
   }
-  if (SUCCESSFUL_AUTHENTICATION_EVENT.equals(context.getCurrentEvent().getId())) {
-    return;
-  }
-  recordSubmissionFailure(request);
 }

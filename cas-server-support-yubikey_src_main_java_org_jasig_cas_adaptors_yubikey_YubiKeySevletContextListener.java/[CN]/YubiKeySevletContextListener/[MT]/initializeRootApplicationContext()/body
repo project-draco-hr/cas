@@ -1,4 +1,0 @@
-{
-  addAuthenticationHandler(this.authenticationHandler);
-  addAuthenticationMetadataPopulator(populator);
-}

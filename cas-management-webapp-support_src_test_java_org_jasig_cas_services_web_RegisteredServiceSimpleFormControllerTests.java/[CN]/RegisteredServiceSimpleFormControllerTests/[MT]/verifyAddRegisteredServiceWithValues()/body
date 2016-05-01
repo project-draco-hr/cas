@@ -1,5 +1,5 @@
 {
-  final RegisteredServiceImpl svc=new RegisteredServiceImpl();
+  final RegexRegisteredService svc=new RegexRegisteredService();
   svc.setDescription("description");
   svc.setServiceId("serviceId");
   svc.setName("name");

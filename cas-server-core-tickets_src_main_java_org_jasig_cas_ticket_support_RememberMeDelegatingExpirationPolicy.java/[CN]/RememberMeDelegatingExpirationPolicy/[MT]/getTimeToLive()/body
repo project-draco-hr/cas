@@ -1,6 +1,6 @@
 {
   if (this.rememberMeExpirationPolicy != null) {
-    return rememberMeExpirationPolicy.getTimeToLive();
+    return this.rememberMeExpirationPolicy.getTimeToLive();
   }
   return 0L;
 }

@@ -1,0 +1,13 @@
+{
+  final StatisticsGateway statistics=this.cache.getStatistics();
+  if (this.useBytes) {
+    this.diskSize=statistics.getLocalDiskSizeInBytes();
+    this.heapSize=statistics.getLocalHeapSizeInBytes();
+  }
+ else {
+    this.diskSize=this.cache.getDiskStoreSize();
+    this.heapSize=this.cache.getMemoryStoreSize();
+  }
+  this.offHeapSize=statistics.getLocalOffHeapSizeInBytes();
+  return this.heapSize;
+}

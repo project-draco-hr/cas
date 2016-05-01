@@ -1,22 +1,35 @@
 {
+  final View view=super.loadView(viewName,locale);
   final RequestContext requestContext=RequestContextHolder.getRequestContext();
-  final WebApplicationService service=WebUtils.getService(requestContext);
+  final WebApplicationService service;
+  if (requestContext != null) {
+    service=WebUtils.getService(this.argumentExtractors,requestContext);
+  }
+ else {
+    final HttpServletRequest request=WebUtils.getHttpServletRequestFromRequestAttributes();
+    service=WebUtils.getService(this.argumentExtractors,request);
+  }
+  if (service == null) {
+    return view;
+  }
   final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-  if (service != null && registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed() && StringUtils.isNotBlank(registeredService.getTheme())) {
-    final InternalResourceView view=BeanUtils.instantiateClass(InternalResourceView.class);
-    LOGGER.debug("Attempting to locate views for service [{}] with theme [{}]",registeredService.getServiceId(),registeredService.getTheme());
-    final String themePrefix=String.format(THEME_LOCATION_PATTERN,getPrefix(),registeredService.getTheme());
-    LOGGER.debug("Prefix [{}] set for service [{}] with theme [{}]",themePrefix,service,registeredService.getTheme());
-    final String viewUrl=StringUtils.replace(themePrefix + viewName + getSuffix(),"//","/");
-    final Resource resource=this.resourceLoader.getResource(viewUrl);
-    if (resource.exists()) {
-      view.setUrl(viewUrl);
-      view.setAlwaysInclude(false);
-      view.setExposeContextBeansAsAttributes(false);
-      view.setPreventDispatchLoop(true);
-      LOGGER.debug("View resolved: {}",view.getUrl());
-      return view;
+  if (registeredService != null) {
+    RegisteredServiceAccessStrategyUtils.ensureServiceAccessIsAllowed(service,registeredService);
+    if (StringUtils.hasText(registeredService.getTheme()) && view instanceof AbstractThymeleafView) {
+      LOGGER.debug("Attempting to locate views for service [{}] with theme [{}]",registeredService.getServiceId(),registeredService.getTheme());
+      final AbstractThymeleafView thymeleafView=(AbstractThymeleafView)view;
+      final String viewUrl=registeredService.getTheme() + '/' + thymeleafView.getTemplateName();
+      final String viewLocationUrl=this.properties.getPrefix().concat(viewUrl).concat(this.properties.getSuffix());
+      LOGGER.debug("Attempting to locate view at {}",viewLocationUrl);
+      final TemplateLocation location=new TemplateLocation(viewLocationUrl);
+      if (location.exists(getApplicationContext())) {
+        LOGGER.debug("Found view {}",viewUrl);
+        thymeleafView.setTemplateName(viewUrl);
+      }
+ else {
+        LOGGER.debug("View {} does not exist. Fallling back to default view at {}",viewLocationUrl,thymeleafView.getTemplateName());
+      }
     }
   }
-  return null;
+  return view;
 }

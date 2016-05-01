@@ -1,0 +1,7 @@
+{
+  final long capacity=getCapacity();
+  if (capacity == 0) {
+    return 0;
+  }
+  return (int)((capacity - getSize()) * PERCENTAGE_VALUE / capacity);
+}

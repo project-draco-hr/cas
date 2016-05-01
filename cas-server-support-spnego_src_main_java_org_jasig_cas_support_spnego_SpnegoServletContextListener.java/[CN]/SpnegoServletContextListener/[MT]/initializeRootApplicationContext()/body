@@ -1,4 +1,0 @@
-{
-  addAuthenticationHandlerPrincipalResolver(spnegoHandler,spnegoPrincipalResolver);
-  addAuthenticationMetadataPopulator(successfulHandlerMetaDataPopulator);
-}

@@ -9,7 +9,7 @@
         putLogoutIndex(context,i + 1);
         final String logoutUrl=logoutRequest.getLogoutUrl().toExternalForm();
         LOGGER.debug("Using logout url [{}] for front-channel logout requests",logoutUrl);
-        final String logoutMessage=logoutManager.createFrontChannelLogoutMessage(logoutRequest);
+        final String logoutMessage=this.logoutManager.createFrontChannelLogoutMessage(logoutRequest);
         LOGGER.debug("Front-channel logout message to send under [{}] is [{}]",this.logoutRequestParameter,logoutMessage);
         final UriComponentsBuilder builder=UriComponentsBuilder.fromHttpUrl(logoutUrl);
         builder.queryParam(this.logoutRequestParameter,EncodingUtils.urlEncode(logoutMessage));

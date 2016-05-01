@@ -9,13 +9,13 @@
   saveRequestParameter(request,session,ThemeChangeInterceptor.DEFAULT_PARAM_NAME);
   saveRequestParameter(request,session,LocaleChangeInterceptor.DEFAULT_PARAM_NAME);
   saveRequestParameter(request,session,CasProtocolConstants.PARAMETER_METHOD);
-  final LinkedHashMap<String,String> urls=new LinkedHashMap<>();
+  final Set<ProviderLoginPageConfiguration> urls=new LinkedHashSet<>();
   for (  final Client client : this.clients.findAllClients()) {
     final IndirectClient indirectClient=(IndirectClient)client;
     final String name=client.getName().replace("Client","");
     final String redirectionUrl=indirectClient.getRedirectionUrl(webContext);
     logger.debug("{} -> {}",name,redirectionUrl);
-    urls.put(name,redirectionUrl);
+    urls.add(new ProviderLoginPageConfiguration(name,redirectionUrl,name.toLowerCase()));
   }
   context.getFlowScope().put(PAC4J_URLS,urls);
 }

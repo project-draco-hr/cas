@@ -3,7 +3,7 @@
   final Service service=authenticationResult.getService();
   if (service != null) {
     final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
-    RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
+    RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
   }
   final TicketGrantingTicketFactory factory=this.ticketFactory.get(TicketGrantingTicket.class);
   final TicketGrantingTicket ticketGrantingTicket=factory.create(authentication);

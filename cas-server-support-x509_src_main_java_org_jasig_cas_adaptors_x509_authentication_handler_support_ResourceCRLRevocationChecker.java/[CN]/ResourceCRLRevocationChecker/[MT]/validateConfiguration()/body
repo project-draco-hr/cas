@@ -1,5 +1,5 @@
 {
-  if (resources == null || resources.isEmpty()) {
+  if (this.resources == null || this.resources.isEmpty()) {
     logger.debug("{} is not configured with resources. Skipping configuration...",this.getClass().getSimpleName());
     return false;
   }

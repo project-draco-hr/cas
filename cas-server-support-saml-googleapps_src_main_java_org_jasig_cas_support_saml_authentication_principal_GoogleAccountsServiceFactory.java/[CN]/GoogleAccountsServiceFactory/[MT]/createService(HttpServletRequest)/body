@@ -4,19 +4,19 @@
     return null;
   }
   final String relayState=request.getParameter(SamlProtocolConstants.PARAMETER_SAML_RELAY_STATE);
-  final String xmlRequest=BUILDER.decodeSamlAuthnRequest(request.getParameter(SamlProtocolConstants.PARAMETER_SAML_REQUEST));
+  final String xmlRequest=this.builder.decodeSamlAuthnRequest(request.getParameter(SamlProtocolConstants.PARAMETER_SAML_REQUEST));
   if (StringUtils.isBlank(xmlRequest)) {
     logger.trace("SAML AuthN request not found in the request");
     return null;
   }
-  final Document document=BUILDER.constructDocumentFromXml(xmlRequest);
+  final Document document=this.builder.constructDocumentFromXml(xmlRequest);
   if (document == null) {
     return null;
   }
   final Element root=document.getRootElement();
   final String assertionConsumerServiceUrl=root.getAttributeValue("AssertionConsumerServiceURL");
   final String requestId=root.getAttributeValue("ID");
-  final GoogleAccountsServiceResponseBuilder builder=new GoogleAccountsServiceResponseBuilder(this.privateKey,this.publicKey,BUILDER);
-  builder.setSkewAllowance(this.skewAllowance);
-  return new GoogleAccountsService(assertionConsumerServiceUrl,relayState,requestId,builder);
+  final GoogleAccountsServiceResponseBuilder responseBuilder=new GoogleAccountsServiceResponseBuilder(this.privateKey,this.publicKey,this.builder);
+  responseBuilder.setSkewAllowance(this.skewAllowance);
+  return new GoogleAccountsService(assertionConsumerServiceUrl,relayState,requestId,responseBuilder);
 }

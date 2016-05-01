@@ -1,9 +1,0 @@
-{
-  final AuthenticationManager mgmr=mock(AuthenticationManager.class);
-  when(mgmr.authenticate(any(AuthenticationTransaction.class))).thenReturn(TestUtils.getAuthentication());
-  this.ticketsResourceUnderTest.getAuthenticationSystemSupport().getAuthenticationTransactionManager().setAuthenticationManager(mgmr);
-  this.ticketsResourceUnderTest.setWebApplicationServiceFactory(new WebApplicationServiceFactory());
-  when(this.ticketSupport.getAuthenticationFrom(anyString())).thenReturn(TestUtils.getAuthentication());
-  this.ticketsResourceUnderTest.setTicketRegistrySupport(ticketSupport);
-  this.mockMvc=MockMvcBuilders.standaloneSetup(this.ticketsResourceUnderTest).defaultRequest(get("/").contextPath("/cas").servletPath("/v1").contentType(MediaType.APPLICATION_FORM_URLENCODED)).build();
-}

@@ -1,6 +1,6 @@
 {
   this.registeredServiceFactory.setRegisteredServiceMapper(new CustomRegisteredServiceMapper());
-  final RegisteredServiceImpl r=new RegisteredServiceImpl();
+  final RegexRegisteredService r=new RegexRegisteredService();
   r.setId(1200);
   r.setName("name");
   r.setDescription("uniqueDescription");

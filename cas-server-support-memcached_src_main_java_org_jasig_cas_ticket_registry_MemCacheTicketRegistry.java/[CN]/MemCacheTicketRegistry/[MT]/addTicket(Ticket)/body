@@ -1,0 +1,19 @@
+{
+  if (this.client == null) {
+    logger.debug("No memcached client is found in the configuration.");
+    return;
+  }
+  final Ticket ticket=encodeTicket(ticketToAdd);
+  logger.debug("Adding ticket {}",ticket);
+  try {
+    if (!this.client.add(ticket.getId(),getTimeout(ticket),ticket).get()) {
+      logger.error("Failed to add {}",ticket);
+    }
+  }
+ catch (  final InterruptedException e) {
+    logger.warn("Interrupted while waiting for response to async add operation for ticket {}." + "Cannot determine whether add was successful.",ticket);
+  }
+catch (  final Exception e) {
+    logger.error("Failed adding {}",ticket,e);
+  }
+}

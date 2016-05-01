@@ -1,7 +1,0 @@
-{
-  final Connection c=this.connectionFactory.getConnection();
-  if (!c.isOpen()) {
-    c.open();
-  }
-  return c;
-}

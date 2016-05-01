@@ -37,6 +37,7 @@
       }
     }
   }
+  attributeMap.put(LDAP_ATTRIBUTE_ENTRY_DN,ldapEntry.getDn());
   logger.debug("Created LDAP principal for id {} and {} attributes",id,attributeMap.size());
   return this.principalFactory.createPrincipal(id,attributeMap);
 }

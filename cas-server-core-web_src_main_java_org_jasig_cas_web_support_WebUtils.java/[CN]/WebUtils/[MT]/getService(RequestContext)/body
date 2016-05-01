@@ -1,3 +1,3 @@
 {
-  return context != null ? (WebApplicationService)context.getFlowScope().get("service") : null;
+  return context != null ? (WebApplicationService)context.getFlowScope().get(PARAMETER_SERVICE) : null;
 }

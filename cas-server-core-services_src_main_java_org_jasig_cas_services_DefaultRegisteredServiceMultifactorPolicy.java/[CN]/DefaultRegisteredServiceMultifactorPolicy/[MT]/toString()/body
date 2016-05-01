@@ -1,3 +1,3 @@
 {
-  return new ToStringBuilder(this).append("multifactorAuthenticationProviders",multifactorAuthenticationProviders).append("failureMode",failureMode).append("principalAttributeNameTrigger",principalAttributeNameTrigger).append("principalAttributeValueToMatch",principalAttributeValueToMatch).toString();
+  return new ToStringBuilder(this).append("multifactorAuthenticationProviders",this.multifactorAuthenticationProviders).append("failureMode",this.failureMode).append("principalAttributeNameTrigger",this.principalAttributeNameTrigger).append("principalAttributeValueToMatch",this.principalAttributeValueToMatch).toString();
 }

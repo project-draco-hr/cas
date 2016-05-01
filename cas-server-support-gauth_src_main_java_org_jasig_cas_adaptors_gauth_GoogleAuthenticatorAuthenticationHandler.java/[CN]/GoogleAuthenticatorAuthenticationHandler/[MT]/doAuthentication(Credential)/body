@@ -1,0 +1,15 @@
+{
+  final GoogleAuthenticatorTokenCredential tokenCredential=(GoogleAuthenticatorTokenCredential)credential;
+  final int otp=tokenCredential.getToken();
+  final RequestContext context=RequestContextHolder.getRequestContext();
+  final String uid=WebUtils.getAuthentication(context).getPrincipal().getId();
+  if (!this.accountRegistry.contains(uid)) {
+    throw new AccountNotFoundException(uid + " cannot be found in the registry");
+  }
+  final GoogleAuthenticatorAccount account=this.accountRegistry.get(uid);
+  final boolean isCodeValid=this.googleAuthenticatorInstance.authorize(account.getSecretKey(),otp);
+  if (isCodeValid) {
+    return createHandlerResult(tokenCredential,this.principalFactory.createPrincipal(uid),null);
+  }
+  throw new FailedLoginException("Failed to authenticate code " + otp);
+}

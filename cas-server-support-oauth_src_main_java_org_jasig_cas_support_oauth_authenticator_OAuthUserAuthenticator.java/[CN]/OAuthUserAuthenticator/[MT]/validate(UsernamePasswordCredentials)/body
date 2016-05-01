@@ -1,7 +1,7 @@
 {
   final UsernamePasswordCredential casCredential=new UsernamePasswordCredential(credentials.getUsername(),credentials.getPassword());
   try {
-    final AuthenticationResult authenticationResult=authenticationSystemSupport.handleAndFinalizeSingleAuthenticationTransaction(null,casCredential);
+    final AuthenticationResult authenticationResult=this.authenticationSystemSupport.handleAndFinalizeSingleAuthenticationTransaction(null,casCredential);
     final Authentication authentication=authenticationResult.getAuthentication();
     final Principal principal=authentication.getPrincipal();
     final OAuthUserProfile profile=new OAuthUserProfile();

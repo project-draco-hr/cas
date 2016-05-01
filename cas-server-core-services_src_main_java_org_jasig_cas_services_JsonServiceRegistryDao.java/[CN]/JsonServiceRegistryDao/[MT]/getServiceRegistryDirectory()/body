@@ -1,3 +1,3 @@
 {
-  return serviceRegistryDirectory;
+  return this.serviceRegistryDirectory;
 }

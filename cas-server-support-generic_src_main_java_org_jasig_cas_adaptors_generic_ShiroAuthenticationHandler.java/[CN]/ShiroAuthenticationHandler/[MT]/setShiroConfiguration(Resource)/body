@@ -1,7 +1,8 @@
 {
   try {
-    if (resource.exists()) {
-      final String location=resource.getURI().toString();
+    final Resource shiroResource=ResourceUtils.prepareClasspathResourceIfNeeded(resource);
+    if (shiroResource.exists()) {
+      final String location=shiroResource.getURI().toString();
       logger.debug("Loading Shiro configuration from {}",location);
       final Factory<SecurityManager> factory=new IniSecurityManagerFactory(location);
       final SecurityManager securityManager=factory.getInstance();

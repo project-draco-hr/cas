@@ -10,7 +10,7 @@
   logger.debug("bypassApprovalParameter: {}",bypassApprovalParameter);
   final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
   try {
-    RegisteredServiceAccessStrategySupport.ensureServiceAccessIsAllowed(clientId,registeredService);
+    RegisteredServiceAccessStrategyUtils.ensureServiceAccessIsAllowed(clientId,registeredService);
   }
  catch (  final UnauthorizedServiceException e) {
     logger.error(e.getMessage(),e);
@@ -29,7 +29,7 @@
     final Service service=createService(registeredService);
     final Authentication authentication=createAuthentication(profile,registeredService);
     try {
-      RegisteredServiceAccessStrategySupport.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
+      RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
     }
  catch (    final UnauthorizedServiceException|PrincipalException e) {
       logger.error(e.getMessage(),e);

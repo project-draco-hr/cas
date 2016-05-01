@@ -8,7 +8,7 @@
     return false;
   }
   if (principalAttributes.size() < this.requiredAttributes.size()) {
-    LOGGER.debug("The size of the principal attributes that are [{}] does not match defined required attributes, " + "which means the principal is not carrying enough data to grant authorization",principalAttributes);
+    LOGGER.debug("The size of the principal attributes that are [{}] does not match defined required attributes, " + "which indicates the principal is not carrying enough data to grant authorization",principalAttributes);
     return false;
   }
   return true;

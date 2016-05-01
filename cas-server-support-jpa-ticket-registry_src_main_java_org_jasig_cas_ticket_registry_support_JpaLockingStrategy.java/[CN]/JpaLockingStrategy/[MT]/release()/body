@@ -1,14 +1,14 @@
 {
-  final Lock lock=entityManager.find(Lock.class,applicationId,LockModeType.PESSIMISTIC_WRITE);
+  final Lock lock=this.entityManager.find(Lock.class,this.applicationId,LockModeType.PESSIMISTIC_WRITE);
   if (lock == null) {
     return;
   }
   final String owner=lock.getUniqueId();
-  if (uniqueId.equals(owner)) {
+  if (this.uniqueId.equals(owner)) {
     lock.setUniqueId(null);
     lock.setExpirationDate(null);
-    logger.debug("Releasing {} lock held by {}.",applicationId,uniqueId);
-    entityManager.persist(lock);
+    logger.debug("Releasing {} lock held by {}.",this.applicationId,this.uniqueId);
+    this.entityManager.persist(lock);
   }
  else {
     throw new IllegalStateException("Cannot release lock owned by " + owner);

@@ -1,10 +1,10 @@
 {
-  RegisteredServiceImpl r=new RegisteredServiceImpl();
+  RegexRegisteredService r=new RegexRegisteredService();
   r.setId(666);
   r.setName("testServiceName");
   r.setServiceId("testServiceA");
   this.defaultServicesManagerImpl.save(r);
-  r=new RegisteredServiceImpl();
+  r=new RegexRegisteredService();
   r.setId(999);
   r.setName("testServiceName");
   r.setServiceId("testServiceA");

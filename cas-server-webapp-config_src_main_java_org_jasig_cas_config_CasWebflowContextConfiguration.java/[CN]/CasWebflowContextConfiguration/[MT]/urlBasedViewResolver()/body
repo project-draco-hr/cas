@@ -1,9 +1,0 @@
-{
-  final UrlBasedViewResolver bean=new UrlBasedViewResolver();
-  bean.setViewClass(InternalResourceView.class);
-  bean.setPrefix(this.pathPrefix);
-  bean.setSuffix(".jsp");
-  bean.setOrder(VIEW_RESOLVER_URL_ORDER);
-  bean.setCache(false);
-  return bean;
-}

@@ -2,13 +2,13 @@
   final Map<String,Object> sessionsMap=new HashMap<>(1);
   try {
     this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicket);
-    sessionsMap.put("status",HttpServletResponse.SC_OK);
-    sessionsMap.put("ticketGrantingTicket",ticketGrantingTicket);
+    sessionsMap.put(STATUS,HttpServletResponse.SC_OK);
+    sessionsMap.put(TICKET_GRANTING_TICKET,ticketGrantingTicket);
   }
  catch (  final Exception e) {
     LOGGER.error(e.getMessage(),e);
-    sessionsMap.put("status",HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-    sessionsMap.put("ticketGrantingTicket",ticketGrantingTicket);
+    sessionsMap.put(STATUS,HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    sessionsMap.put(TICKET_GRANTING_TICKET,ticketGrantingTicket);
     sessionsMap.put("message",e.getMessage());
   }
   return sessionsMap;

@@ -2,5 +2,5 @@
   if (this.values == null) {
     this.values=new HashSet<>();
   }
-  return values;
+  return this.values;
 }

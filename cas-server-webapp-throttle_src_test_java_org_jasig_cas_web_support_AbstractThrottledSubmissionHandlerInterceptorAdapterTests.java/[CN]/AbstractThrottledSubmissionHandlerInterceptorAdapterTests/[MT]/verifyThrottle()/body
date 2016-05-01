@@ -4,10 +4,10 @@
   getThrottle().setFailureThreshold(FAILURE_THRESHOLD);
   getThrottle().afterPropertiesSet();
   int wait=(int)(1000.0 * 1.07 / rate);
-  failLoop(3,wait,200);
+  failLoop(3,wait,HttpStatus.SC_UNAUTHORIZED);
   wait=(int)(1000.0 * 0.93 / rate);
-  failLoop(3,wait,403);
+  failLoop(3,wait,HttpStatus.SC_FORBIDDEN);
   wait=(int)(1000.0 * 1.07 / rate);
   Thread.sleep(wait);
-  failLoop(3,wait,200);
+  failLoop(3,wait,HttpStatus.SC_UNAUTHORIZED);
 }

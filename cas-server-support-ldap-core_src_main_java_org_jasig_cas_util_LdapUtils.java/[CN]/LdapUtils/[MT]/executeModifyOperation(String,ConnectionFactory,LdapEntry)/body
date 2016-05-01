@@ -1,0 +1,7 @@
+{
+  final Map<String,Set<String>> attributes=new HashMap<>(entry.getAttribute().size());
+  for (  final LdapAttribute ldapAttribute : entry.getAttributes()) {
+    attributes.put(ldapAttribute.getName(),ImmutableSet.copyOf(ldapAttribute.getStringValues()));
+  }
+  return executeModifyOperation(currentDn,connectionFactory,attributes);
+}

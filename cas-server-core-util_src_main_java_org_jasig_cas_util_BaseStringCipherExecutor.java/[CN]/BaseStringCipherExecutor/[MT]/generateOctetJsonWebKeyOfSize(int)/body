@@ -1,5 +1,5 @@
 {
   final OctetSequenceJsonWebKey octetKey=OctJwkGenerator.generateJwk(size);
   final Map<String,Object> params=octetKey.toParams(JsonWebKey.OutputControlLevel.INCLUDE_SYMMETRIC);
-  return params.get("k").toString();
+  return params.get(JSON_WEB_KEY).toString();
 }

@@ -1,0 +1,3 @@
+{
+  this.validationServiceSelectionStrategies.add(0,this.samlIdPEntityIdValidationServiceSelectionStrategy);
+}

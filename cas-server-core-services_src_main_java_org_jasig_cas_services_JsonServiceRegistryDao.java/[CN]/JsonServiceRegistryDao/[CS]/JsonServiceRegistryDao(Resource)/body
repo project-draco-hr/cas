@@ -1,0 +1,4 @@
+{
+  final Resource servicesDirectory=ResourceUtils.prepareClasspathResourceIfNeeded(configDirectory,true,FILE_EXTENSION);
+  initializeRegistry(Paths.get(servicesDirectory.getFile().getCanonicalPath()),new RegisteredServiceJsonSerializer());
+}

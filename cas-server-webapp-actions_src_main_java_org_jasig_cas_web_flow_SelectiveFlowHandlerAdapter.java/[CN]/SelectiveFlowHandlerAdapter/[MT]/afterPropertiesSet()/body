@@ -1,4 +1,4 @@
 {
   super.afterPropertiesSet();
-  Assert.isTrue(!supportedFlowIds.isEmpty(),"Must specify at least one supported flow ID");
+  Assert.isTrue(!this.supportedFlowIds.isEmpty(),"Must specify at least one supported flow ID");
 }

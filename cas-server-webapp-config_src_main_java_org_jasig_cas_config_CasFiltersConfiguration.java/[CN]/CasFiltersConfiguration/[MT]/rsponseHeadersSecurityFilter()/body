@@ -1,9 +1,0 @@
-{
-  final ResponseHeadersEnforcementFilter filter=new ResponseHeadersEnforcementFilter();
-  filter.setEnableCacheControl(this.headerCache);
-  filter.setEnableStrictTransportSecurity(this.headerHsts);
-  filter.setEnableXFrameOptions(this.headerXframe);
-  filter.setEnableXContentTypeOptions(this.headerXcontent);
-  filter.setEnableXSSProtection(this.headerXss);
-  return filter;
-}

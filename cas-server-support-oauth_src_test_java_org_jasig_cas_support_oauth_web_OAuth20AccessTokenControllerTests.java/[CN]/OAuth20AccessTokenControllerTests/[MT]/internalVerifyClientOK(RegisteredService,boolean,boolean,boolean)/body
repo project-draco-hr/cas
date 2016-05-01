@@ -17,7 +17,7 @@
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   requiresAuthenticationInterceptor.preHandle(mockRequest,mockResponse,null);
   oAuth20AccessTokenController.handleRequest(mockRequest,mockResponse);
-  assertNull(oAuth20AccessTokenController.getTicketRegistry().getTicket((code.getId())));
+  assertNull(oAuth20AccessTokenController.getTicketRegistry().getTicket(code.getId()));
   assertEquals(200,mockResponse.getStatus());
   final String body=mockResponse.getContentAsString();
   final String accessTokenId;

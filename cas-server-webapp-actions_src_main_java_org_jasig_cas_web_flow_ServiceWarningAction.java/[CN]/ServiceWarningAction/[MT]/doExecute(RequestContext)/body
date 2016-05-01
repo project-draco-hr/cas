@@ -1,0 +1,7 @@
+{
+  final Service svc=WebUtils.getService(requestContext);
+  final URIBuilder builder=new URIBuilder(svc.getId());
+  final URI uri=builder.setParameter("service",svc.getId()).setParameter("ticket",WebUtils.getServiceTicketFromRequestScope(requestContext)).build();
+  requestContext.getFlowScope().put("serviceWarningUrl",uri.toURL().toExternalForm());
+  return null;
+}

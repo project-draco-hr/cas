@@ -1,5 +1,5 @@
 {
-  metadataProvider.setParserPool(configBean.getParserPool());
+  metadataProvider.setParserPool(this.configBean.getParserPool());
   metadataProvider.setFailFastInitialization(this.failFastInitialization);
   metadataProvider.setRequireValidMetadata(this.requireValidMetadata);
   metadataProvider.setId(metadataProvider.getClass().getCanonicalName());

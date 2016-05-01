@@ -1,7 +1,7 @@
 {
   logger.info("Loading metadata dynamically for [{}]",service.getName());
-  final FunctionDrivenDynamicHTTPMetadataResolver resolver=new FunctionDrivenDynamicHTTPMetadataResolver(httpClient.getWrappedHttpClient());
-  resolver.setMinCacheDuration(TimeUnit.MILLISECONDS.convert(metadataCacheExpirationMinutes,TimeUnit.MINUTES));
+  final FunctionDrivenDynamicHTTPMetadataResolver resolver=new FunctionDrivenDynamicHTTPMetadataResolver(this.httpClient.getWrappedHttpClient());
+  resolver.setMinCacheDuration(TimeUnit.MILLISECONDS.convert(this.metadataCacheExpirationMinutes,TimeUnit.MINUTES));
   resolver.setRequestURLBuilder(new Function<String,String>(){
     @Nullable @Override public String apply(    @Nullable final String input){
       try {

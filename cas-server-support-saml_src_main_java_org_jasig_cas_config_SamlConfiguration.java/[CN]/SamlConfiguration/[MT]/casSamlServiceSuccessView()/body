@@ -4,5 +4,6 @@
   view.setCasAttributeEncoder(this.casAttributeEncoder);
   view.setIssuer(this.issuer);
   view.setSkewAllowance(this.skewAllowance);
+  view.setDefaultAttributeNamespace(this.defaultAttributeNamespace);
   return view;
 }

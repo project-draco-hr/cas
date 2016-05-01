@@ -1,7 +1,7 @@
 {
   try {
     logger.debug("Loading services");
-    final Bucket bucket=couchbase.bucket();
+    final Bucket bucket=this.couchbase.bucket();
     final ViewResult allKeys=bucket.query(ViewQuery.from(UTIL_DOCUMENT,ALL_SERVICES_VIEW.name()));
     final List<RegisteredService> services=new LinkedList<>();
     for (    final ViewRow row : allKeys) {
@@ -10,7 +10,7 @@
         final String json=document.content();
         logger.debug("Found service: {}",json);
         final StringReader stringReader=new StringReader(json);
-        services.add(registeredServiceJsonSerializer.fromJson(stringReader));
+        services.add(this.registeredServiceJsonSerializer.fromJson(stringReader));
       }
     }
     return services;

@@ -1,3 +1,0 @@
-String encryptionSecretKey
-String signingSecretKey
-String secretKeyAlg

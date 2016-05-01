@@ -9,8 +9,8 @@
       }
     }
   }
- catch (  final MessageException me) {
-    logger.error("Message exception : {}",me.getMessage(),me);
+ catch (  final MessageException e) {
+    logger.error("Message exception : {}",e.getMessage(),e);
   }
   return null;
 }

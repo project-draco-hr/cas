@@ -1,6 +1,0 @@
-{
-  final SecureRandom srand=new SecureRandom();
-  final byte[] ivValue=new byte[size];
-  srand.nextBytes(ivValue);
-  return ivValue;
-}

@@ -1,5 +1,0 @@
-{
-  super.write(kryo,output,service);
-  kryo.writeObject(output,fieldHelper.getFieldValue(service,"requestId"));
-  kryo.writeObject(output,fieldHelper.getFieldValue(service,"relayState"));
-}

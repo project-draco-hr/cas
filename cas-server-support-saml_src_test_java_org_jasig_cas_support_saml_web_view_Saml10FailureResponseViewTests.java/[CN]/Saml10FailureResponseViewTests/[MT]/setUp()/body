@@ -1,0 +1,6 @@
+{
+  view=new Saml10FailureResponseView();
+  final Saml10ObjectBuilder builder=new Saml10ObjectBuilder();
+  builder.setConfigBean(this.configBean);
+  this.view.setSamlObjectBuilder(builder);
+}

@@ -1,5 +1,5 @@
 {
   final MvcViewFactoryCreator resolver=new MvcViewFactoryCreator();
-  resolver.setViewResolvers(ImmutableList.of(resourceBundleViewResolver(),beanNameViewResolver(),registeredServiceThemeBasedViewResolver(),internalViewResolver()));
+  resolver.setViewResolvers(ImmutableList.of(this.registeredServiceViewResolver));
   return resolver;
 }

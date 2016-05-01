@@ -1,3 +1,2 @@
 {
-  super.putIntoModel(model,CasProtocolConstants.VALIDATION_CAS_MODEL_ATTRIBUTE_NAME_ATTRIBUTES,this.casAttributeEncoder.encodeAttributes(attributes,getServiceFrom(model)));
 }

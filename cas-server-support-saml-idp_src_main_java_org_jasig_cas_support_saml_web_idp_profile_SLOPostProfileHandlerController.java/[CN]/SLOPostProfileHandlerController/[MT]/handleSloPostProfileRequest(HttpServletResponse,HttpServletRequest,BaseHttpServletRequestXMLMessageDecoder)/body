@@ -1,5 +1,5 @@
 {
-  if (singleLogoutCallbacksDisabled) {
+  if (this.singleLogoutCallbacksDisabled) {
     logger.info("Processing SAML IdP SLO requests is disabled");
     return;
   }
@@ -8,9 +8,9 @@
     throw new SAMLException("Logout request is not signed but should be.");
   }
  else   if (logoutRequest.isSigned()) {
-    final MetadataResolver resolver=SamlIdPUtils.getMetadataResolverForAllSamlServices(this.servicesManager,logoutRequest.getIssuer().getValue(),this.samlRegisteredServiceCachingMetadataResolver);
+    final MetadataResolver resolver=SamlIdPUtils.getMetadataResolverForAllSamlServices(this.servicesManager,SamlIdPUtils.getIssuerFromSamlRequest(logoutRequest),this.samlRegisteredServiceCachingMetadataResolver);
     this.samlObjectSigner.verifySamlProfileRequestIfNeeded(logoutRequest,resolver);
   }
-  SamlIdPUtils.logSamlObject(this.configBean,logoutRequest);
+  SamlUtils.logSamlObject(this.configBean,logoutRequest);
   response.sendRedirect(this.casServerPrefix.concat("/logout"));
 }

@@ -1,12 +1,13 @@
 {
   logger.info("Launching groovy shell service...");
   try {
-    this.serverSocket=new ServerSocket(port);
-    logger.info("Opened server port {} on port {}",serverSocket,this.port);
+    this.serverSocket=new ServerSocket(this.port);
+    logger.info("Opened server port {} on port {}",this.serverSocket,this.port);
+    this.scriptsLocationResource=ResourceUtils.prepareClasspathResourceIfNeeded(this.scriptsLocationResource,true,FILE_EXTENSION);
     while (true) {
       final Socket clientSocket;
       try {
-        clientSocket=serverSocket.accept();
+        clientSocket=this.serverSocket.accept();
         logger.info("Received client port request {} ",clientSocket);
       }
  catch (      final IOException e) {
@@ -14,7 +15,7 @@
         return;
       }
       final GroovyShellThread clientThread=new GroovyShellThread(clientSocket,createBinding());
-      threads.add(clientThread);
+      this.threads.add(clientThread);
       logger.debug("Created groovy shell thread based on client port request {}. Starting...",clientSocket);
       clientThread.start();
     }

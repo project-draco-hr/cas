@@ -1,0 +1,5 @@
+{
+  logger.debug("Adding [{}] for {} application context",serviceName,gen);
+  final Map<String,UniqueTicketIdGenerator> map=this.applicationContext.getBean("uniqueIdGeneratorsMap",Map.class);
+  map.put(serviceName,gen);
+}

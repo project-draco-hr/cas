@@ -1,7 +1,7 @@
 {
   try {
-    if (cluster != null) {
-      cluster.disconnect();
+    if (this.cluster != null) {
+      this.cluster.disconnect();
     }
   }
  catch (  final Exception e) {

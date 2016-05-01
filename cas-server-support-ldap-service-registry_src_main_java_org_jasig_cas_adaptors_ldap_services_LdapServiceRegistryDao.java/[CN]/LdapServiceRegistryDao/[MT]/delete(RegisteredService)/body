@@ -1,12 +1,9 @@
 {
-  try (final Connection connection=getConnection()){
-    final Response<SearchResult> response=searchForServiceById(connection,registeredService.getId());
-    if (hasResults(response)) {
+  try {
+    final Response<SearchResult> response=searchForServiceById(registeredService.getId());
+    if (LdapUtils.containsResultEntry(response)) {
       final LdapEntry entry=response.getResult().getEntry();
-      final DeleteOperation delete=new DeleteOperation(connection);
-      final DeleteRequest request=new DeleteRequest(entry.getDn());
-      final Response<Void> res=delete.execute(request);
-      return res.getResultCode() == ResultCode.SUCCESS;
+      return LdapUtils.executeDeleteOperation(this.connectionFactory,entry);
     }
   }
  catch (  final LdapException e) {

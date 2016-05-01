@@ -1,0 +1,24 @@
+{
+  if (policy instanceof AbstractRegisteredServiceAttributeReleasePolicy) {
+    final AbstractRegisteredServiceAttributeReleasePolicy attrPolicy=(AbstractRegisteredServiceAttributeReleasePolicy)policy;
+    final RegisteredServiceAttributeReleasePolicyEditBean attrPolicyBean=bean.getAttrRelease();
+    attrPolicyBean.setReleasePassword(attrPolicy.isAuthorizedToReleaseCredentialPassword());
+    attrPolicyBean.setReleaseTicket(attrPolicy.isAuthorizedToReleaseProxyGrantingTicket());
+    this.attributeFilterMapper.mapAttributeFilter(attrPolicy.getAttributeFilter(),bean);
+    this.principalAttributesRepositoryMapper.mapPrincipalRepository(attrPolicy.getPrincipalAttributesRepository(),bean);
+    final RegisteredServiceAttributeReleasePolicyStrategyEditBean sBean=attrPolicyBean.getAttrPolicy();
+    if (attrPolicy instanceof ReturnAllAttributeReleasePolicy) {
+      sBean.setType(AbstractRegisteredServiceAttributeReleasePolicyStrategyBean.Types.ALL.toString());
+    }
+ else     if (attrPolicy instanceof ReturnAllowedAttributeReleasePolicy) {
+      final ReturnAllowedAttributeReleasePolicy attrPolicyAllowed=(ReturnAllowedAttributeReleasePolicy)attrPolicy;
+      sBean.setType(AbstractRegisteredServiceAttributeReleasePolicyStrategyBean.Types.ALLOWED.toString());
+      sBean.setAttributes(attrPolicyAllowed.getAllowedAttributes());
+    }
+ else     if (attrPolicy instanceof ReturnMappedAttributeReleasePolicy) {
+      final ReturnMappedAttributeReleasePolicy attrPolicyAllowed=(ReturnMappedAttributeReleasePolicy)attrPolicy;
+      sBean.setType(AbstractRegisteredServiceAttributeReleasePolicyStrategyBean.Types.MAPPED.toString());
+      sBean.setAttributes(attrPolicyAllowed.getAllowedAttributes());
+    }
+  }
+}

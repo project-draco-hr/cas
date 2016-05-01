@@ -1,9 +1,0 @@
-{
-  final InternalResourceViewResolver resolver=new InternalResourceViewResolver();
-  resolver.setViewClass(JstlView.class);
-  resolver.setPrefix(this.resolverPathPrefix);
-  resolver.setSuffix(".jsp");
-  resolver.setOrder(VIEW_RESOLVER_INTERNAL_ORDER);
-  resolver.setCache(false);
-  return resolver;
-}

@@ -1,5 +1,0 @@
-{
-  final BeanNameViewResolver bean=new BeanNameViewResolver();
-  bean.setOrder(VIEW_RESOLVER_BEAN_ORDER);
-  return bean;
-}

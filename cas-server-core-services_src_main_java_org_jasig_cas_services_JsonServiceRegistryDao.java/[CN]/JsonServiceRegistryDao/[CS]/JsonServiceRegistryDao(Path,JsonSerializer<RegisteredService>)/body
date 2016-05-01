@@ -1,11 +1,3 @@
 {
-  this.serviceRegistryDirectory=configDirectory;
-  Assert.isTrue(this.serviceRegistryDirectory.toFile().exists(),serviceRegistryDirectory + " does not exist");
-  Assert.isTrue(this.serviceRegistryDirectory.toFile().isDirectory(),serviceRegistryDirectory + " is not a directory");
-  this.registeredServiceJsonSerializer=registeredServiceJsonSerializer;
-  this.jsonServiceRegistryConfigWatcher=new JsonServiceRegistryConfigWatcher(this);
-  this.jsonServiceRegistryWatcherThread=new Thread(this.jsonServiceRegistryConfigWatcher);
-  this.jsonServiceRegistryWatcherThread.setName(this.getClass().getName());
-  this.jsonServiceRegistryWatcherThread.start();
-  LOGGER.debug("Started service registry watcher thread");
+  initializeRegistry(configDirectory,registeredServiceJsonSerializer);
 }

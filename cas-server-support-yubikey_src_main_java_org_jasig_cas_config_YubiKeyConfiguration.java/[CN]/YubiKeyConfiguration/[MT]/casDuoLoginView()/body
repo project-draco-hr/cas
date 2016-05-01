@@ -1,3 +1,0 @@
-{
-  return new JstlView("/WEB-INF/view/jsp/default/ui/casDuoLoginView.jsp");
-}

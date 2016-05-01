@@ -1,0 +1,17 @@
+{
+  final ModelAndView modelAndView=getModelAndView(request,true,service);
+  modelAndView.addObject(CasViewConstants.MODEL_ATTRIBUTE_NAME_ASSERTION,assertion);
+  modelAndView.addObject(CasViewConstants.MODEL_ATTRIBUTE_NAME_SERVICE,service);
+  modelAndView.addObject(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET_IOU,proxyIou);
+  if (proxyGrantingTicket != null) {
+    modelAndView.addObject(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET,proxyGrantingTicket.getId());
+  }
+  if (contextProvider.isPresent()) {
+    modelAndView.addObject(this.authenticationContextAttribute,contextProvider);
+  }
+  final Map<String,?> augmentedModelObjects=augmentSuccessViewModelObjects(assertion);
+  if (augmentedModelObjects != null) {
+    modelAndView.addAllObjects(augmentedModelObjects);
+  }
+  return modelAndView;
+}

@@ -1,0 +1,7 @@
+{
+  final List<CacheStatistics> statsList=new ArrayList<>();
+  final HazelcastInstance instance=Hazelcast.getHazelcastInstanceByName(this.hazelcastProperties.getInstanceName());
+  final IMap map=instance.getMap(this.hazelcastProperties.getMapName());
+  statsList.add(new HazelcastStatistics(map));
+  return statsList.toArray(new CacheStatistics[statsList.size()]);
+}

@@ -6,7 +6,7 @@
       LOGGER.warn("Failed to delete service definition file [{}]",f.getCanonicalPath());
     }
  else {
-      serviceMap.remove(service.getId());
+      this.serviceMap.remove(service.getId());
       LOGGER.debug("Successfully deleted service definition file [{}]",f.getCanonicalPath());
     }
     return result;

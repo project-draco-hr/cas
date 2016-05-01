@@ -1,3 +1,3 @@
 {
-  return radiusAuthenticationWebflowEventResolver.resolveSingle(requestContext);
+  return this.radiusAuthenticationWebflowEventResolver.resolveSingle(requestContext);
 }

@@ -1,4 +1,0 @@
-{
-  this.policyMap.put(credential.getId(),Boolean.TRUE);
-  return success();
-}

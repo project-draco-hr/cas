@@ -1,4 +1,0 @@
-{
-  this.ticketGrantingTicketsCache=ticketGrantingTicketsCache;
-  this.serviceTicketsCache=serviceTicketsCache;
-}

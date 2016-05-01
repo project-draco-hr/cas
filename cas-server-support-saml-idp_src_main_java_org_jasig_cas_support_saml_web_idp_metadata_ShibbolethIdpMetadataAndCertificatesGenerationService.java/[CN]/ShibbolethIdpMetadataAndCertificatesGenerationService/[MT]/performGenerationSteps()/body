@@ -10,8 +10,8 @@
       logger.info("Creating metadata...");
       buildMetadataGeneratorParameters();
     }
-    logger.info("Metadata is available at [{}]",metadataFile);
-    return metadataFile;
+    logger.info("Metadata is available at [{}]",this.metadataFile);
+    return this.metadataFile;
   }
  catch (  final Exception e) {
     logger.error(e.getMessage(),e);

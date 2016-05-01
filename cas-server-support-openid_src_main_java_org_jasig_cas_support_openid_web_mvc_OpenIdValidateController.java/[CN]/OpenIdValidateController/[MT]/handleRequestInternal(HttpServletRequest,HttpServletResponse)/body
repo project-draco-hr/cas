@@ -1,16 +1,16 @@
 {
   final String openIdMode=request.getParameter(OpenIdProtocolConstants.OPENID_MODE);
   if (StringUtils.equals(openIdMode,OpenIdProtocolConstants.CHECK_AUTHENTICATION)) {
-    final VerifyResponse message=(VerifyResponse)serverManager.verify(new ParameterList(request.getParameterMap()));
+    final VerifyResponse message=(VerifyResponse)this.serverManager.verify(new ParameterList(request.getParameterMap()));
     final Map<String,String> parameters=new HashMap<>();
     parameters.putAll(message.getParameterMap());
     if (message.isSignatureVerified()) {
       logger.debug("Signature verification request successful.");
-      return new ModelAndView(getSuccessView(),"parameters",parameters);
+      return new ModelAndView(getSuccessView(),VIEW_MODEL_KEY_PARAMETERS,parameters);
     }
  else {
       logger.debug("Signature verification request unsuccessful.");
-      return new ModelAndView(getFailureView(),"parameters",parameters);
+      return new ModelAndView(getFailureView(),VIEW_MODEL_KEY_PARAMETERS,parameters);
     }
   }
  else {

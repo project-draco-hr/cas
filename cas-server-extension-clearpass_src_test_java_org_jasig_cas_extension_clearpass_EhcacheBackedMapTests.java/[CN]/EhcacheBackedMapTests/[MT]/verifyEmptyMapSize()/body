@@ -1,4 +1,0 @@
-{
-  assertEquals(map.size(),0);
-  assertTrue(map.isEmpty());
-}
