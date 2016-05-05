@@ -5,7 +5,7 @@
   final Authentication currentAuthentication=evaluatePossibilityOfMixedPrincipals(authenticationResult,ticketGrantingTicket);
   RegisteredServiceAccessStrategyUtils.ensureServiceSsoAccessIsAllowed(registeredService,service,ticketGrantingTicket);
   evaluateProxiedServiceIfNeeded(service,ticketGrantingTicket,registeredService);
-  getAuthenticationSatisfiedByPolicy(ticketGrantingTicket.getRoot(),new ServiceContext(service,registeredService));
+  getAuthenticationSatisfiedByPolicy(currentAuthentication,new ServiceContext(service,registeredService));
   final List<Authentication> authentications=ticketGrantingTicket.getChainedAuthentications();
   final Principal principal=authentications.get(authentications.size() - 1).getPrincipal();
   final ServiceTicketFactory factory=this.ticketFactory.get(ServiceTicket.class);

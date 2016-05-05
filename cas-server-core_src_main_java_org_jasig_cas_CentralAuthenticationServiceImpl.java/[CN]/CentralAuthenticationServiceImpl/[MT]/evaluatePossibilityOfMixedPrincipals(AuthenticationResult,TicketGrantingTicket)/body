@@ -7,8 +7,6 @@
       if (!currentAuthentication.getPrincipal().equals(original.getPrincipal())) {
         throw new MixedPrincipalException(currentAuthentication,currentAuthentication.getPrincipal(),original.getPrincipal());
       }
-      ticketGrantingTicket.getSupplementalAuthentications().add(currentAuthentication);
-      updateTicket(ticketGrantingTicket);
     }
   }
   return currentAuthentication;

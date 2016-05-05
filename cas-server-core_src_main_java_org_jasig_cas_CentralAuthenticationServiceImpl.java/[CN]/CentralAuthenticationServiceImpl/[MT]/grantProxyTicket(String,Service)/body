@@ -9,7 +9,7 @@
     throw new UnauthorizedSsoServiceException();
   }
   evaluateProxiedServiceIfNeeded(service,proxyGrantingTicketObject,registeredService);
-  getAuthenticationSatisfiedByPolicy(proxyGrantingTicketObject.getRoot(),new ServiceContext(service,registeredService));
+  getAuthenticationSatisfiedByPolicy(proxyGrantingTicketObject.getRoot().getAuthentication(),new ServiceContext(service,registeredService));
   final List<Authentication> authentications=proxyGrantingTicketObject.getChainedAuthentications();
   final Principal principal=authentications.get(authentications.size() - 1).getPrincipal();
   final ProxyTicketFactory factory=this.ticketFactory.get(ProxyTicket.class);

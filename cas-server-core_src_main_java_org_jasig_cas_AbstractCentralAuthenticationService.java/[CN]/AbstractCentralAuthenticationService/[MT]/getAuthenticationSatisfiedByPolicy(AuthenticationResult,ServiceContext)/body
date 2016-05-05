@@ -1,0 +1,3 @@
+{
+  return getAuthenticationSatisfiedByPolicy(authenticationResult.getAuthentication(),context);
+}
