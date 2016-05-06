@@ -1,6 +1,8 @@
 {
   super(templateName);
+  applicationContext.getAutowireCapableBeanFactory().autowireBean(this);
   setApplicationContext(applicationContext);
   setTemplateEngine(templateEngine);
+  setCharacterEncoding(properties.getEncoding().displayName());
   setLocale(Locale.getDefault());
 }
