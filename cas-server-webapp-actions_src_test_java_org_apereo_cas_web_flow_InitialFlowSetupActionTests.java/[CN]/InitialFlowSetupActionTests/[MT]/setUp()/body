@@ -1,0 +1,14 @@
+{
+  this.warnCookieGenerator=new CookieRetrievingCookieGenerator();
+  this.warnCookieGenerator.setCookiePath("");
+  this.tgtCookieGenerator=new CookieRetrievingCookieGenerator();
+  this.tgtCookieGenerator.setCookiePath("");
+  this.action.setTicketGrantingTicketCookieGenerator(this.tgtCookieGenerator);
+  this.action.setWarnCookieGenerator(this.warnCookieGenerator);
+  final ArgumentExtractor[] argExtractors=new ArgumentExtractor[]{new DefaultArgumentExtractor(new WebApplicationServiceFactory())};
+  this.action.setArgumentExtractors(Arrays.asList(argExtractors));
+  this.servicesManager=mock(ServicesManager.class);
+  when(this.servicesManager.findServiceBy(any(Service.class))).thenReturn(TestUtils.getRegisteredService("test"));
+  this.action.setServicesManager(this.servicesManager);
+  this.action.afterPropertiesSet();
+}

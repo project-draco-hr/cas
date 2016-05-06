@@ -1,0 +1,4 @@
+{
+  final HttpBasedServiceCredential c=new HttpBasedServiceCredential(new URL("http://www.cnn.com"),org.apereo.cas.services.TestUtils.getRegisteredService("https://some.app.edu"));
+  assertNotEquals(c,null);
+}

@@ -1,0 +1,4 @@
+{
+  this.googleAccountsService=getGoogleAccountsService();
+  this.googleAccountsService.setPrincipal(TestUtils.getPrincipal());
+}

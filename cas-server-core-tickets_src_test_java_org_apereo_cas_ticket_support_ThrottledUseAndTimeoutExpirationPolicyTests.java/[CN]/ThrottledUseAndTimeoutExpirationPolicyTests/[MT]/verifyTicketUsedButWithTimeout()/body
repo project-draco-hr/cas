@@ -1,0 +1,6 @@
+{
+  this.ticket.grantServiceTicket("test",org.apereo.cas.services.TestUtils.getService(),this.expirationPolicy,false,true);
+  expirationPolicy.setTimeToKillInMilliSeconds(TIMEOUT);
+  expirationPolicy.setTimeInBetweenUsesInMilliSeconds(-10);
+  assertFalse(this.ticket.isExpired());
+}

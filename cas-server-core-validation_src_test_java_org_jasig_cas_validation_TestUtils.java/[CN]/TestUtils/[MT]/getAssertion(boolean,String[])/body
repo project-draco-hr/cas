@@ -1,8 +1,0 @@
-{
-  final List<Authentication> list=new ArrayList<>();
-  list.add(org.jasig.cas.authentication.TestUtils.getAuthentication());
-  for (  final String extraPrincipal : extraPrincipals) {
-    list.add(org.jasig.cas.authentication.TestUtils.getAuthentication(extraPrincipal));
-  }
-  return new ImmutableAssertion(org.jasig.cas.authentication.TestUtils.getAuthentication(),list,org.jasig.cas.services.TestUtils.getService(),fromNewLogin);
-}

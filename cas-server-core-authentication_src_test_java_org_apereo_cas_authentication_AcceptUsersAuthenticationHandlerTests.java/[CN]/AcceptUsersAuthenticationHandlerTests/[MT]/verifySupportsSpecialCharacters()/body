@@ -1,0 +1,6 @@
+{
+  final UsernamePasswordCredential c=new UsernamePasswordCredential();
+  c.setUsername("brian");
+  c.setPassword("t???st");
+  Assert.assertEquals("brian",this.authenticationHandler.authenticate(c).getPrincipal().getId());
+}

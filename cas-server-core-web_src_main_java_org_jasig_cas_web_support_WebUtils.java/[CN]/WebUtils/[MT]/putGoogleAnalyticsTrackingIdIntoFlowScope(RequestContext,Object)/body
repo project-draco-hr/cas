@@ -1,3 +1,0 @@
-{
-  context.getFlowScope().put("googleAnalyticsTrackingId",value);
-}

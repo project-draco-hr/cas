@@ -1,0 +1,13 @@
+{
+  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+  this.ticketRegistry.addTicket(t);
+  final TicketGrantingTicket returned=(TicketGrantingTicket)this.ticketRegistry.getTicket("test");
+  final ServiceTicket s=returned.grantServiceTicket("test2",org.apereo.cas.services.TestUtils.getService(),new NeverExpiresExpirationPolicy(),true,true);
+  this.ticketRegistry.addTicket(s);
+  final ServiceTicket s2=(ServiceTicket)this.ticketRegistry.getTicket("test2");
+  assertNotNull(s2.grantProxyGrantingTicket("ff",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
+  assertTrue(s2.isValidFor(org.apereo.cas.services.TestUtils.getService()));
+  assertTrue(this.wasTicketUpdated);
+  returned.markTicketExpired();
+  assertTrue(t.isExpired());
+}

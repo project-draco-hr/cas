@@ -1,0 +1,3 @@
+{
+  this.cas.grantServiceTicket(TGT_ID,org.apereo.cas.services.TestUtils.getService(SVC1_ID),getAuthenticationContext());
+}

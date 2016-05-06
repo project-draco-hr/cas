@@ -1,0 +1,4 @@
+{
+  this.authenticationHandler=new FileAuthenticationHandler();
+  this.authenticationHandler.setFileName(new ClassPathResource("org/apereo/cas/adaptors/generic/authentication.txt"));
+}

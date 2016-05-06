@@ -1,0 +1,16 @@
+{
+  final Credential c=org.apereo.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword();
+  final Service service=TestUtils.getService(TestUtils.CONST_TEST_URL);
+  final AuthenticationResult ctx=org.apereo.cas.authentication.TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),service,c);
+  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  final MockRequestContext context=new MockRequestContext();
+  WebUtils.putTicketGrantingTicketInScopes(context,ticketGrantingTicket);
+  request.addParameter("renew","true");
+  request.addParameter("service",TestUtils.getService(TestUtils.CONST_TEST_URL).getId());
+  request.addParameter("username","test");
+  request.addParameter("password","test");
+  context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
+  context.getFlowScope().put("service",TestUtils.getService());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_WARN,this.action.doExecute(context).getId());
+}

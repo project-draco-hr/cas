@@ -1,4 +1,0 @@
-{
-  final HttpBasedServiceCredential c=new HttpBasedServiceCredential(new URL("http://www.cnn.com"),org.jasig.cas.services.TestUtils.getRegisteredService("https://some.app.edu"));
-  assertNotEquals(c,null);
-}

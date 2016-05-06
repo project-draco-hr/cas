@@ -1,9 +1,0 @@
-{
-  try {
-    this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",org.jasig.cas.authentication.TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
-    assertTrue("Ticket was not deleted.",this.ticketRegistry.deleteTicket("TEST"));
-  }
- catch (  final Exception e) {
-    fail("Caught an exception. But no exception should have been thrown.");
-  }
-}

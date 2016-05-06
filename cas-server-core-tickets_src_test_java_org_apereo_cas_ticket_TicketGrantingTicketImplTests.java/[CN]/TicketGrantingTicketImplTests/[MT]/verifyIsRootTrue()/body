@@ -1,0 +1,4 @@
+{
+  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+  assertTrue(t.isRoot());
+}

@@ -1,7 +1,0 @@
-{
-  final InMemoryServiceRegistryDaoImpl reg=new InMemoryServiceRegistryDaoImpl();
-  final RegisteredService svc=org.jasig.cas.services.TestUtils.getRegisteredService("service");
-  assertEquals(reg.save(svc),svc);
-  assertTrue(reg.delete(svc));
-  assertEquals(reg.load().size(),0);
-}

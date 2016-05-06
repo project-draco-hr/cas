@@ -1,0 +1,11 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  final MockRequestContext context=new MockRequestContext();
+  request.addParameter("username","test");
+  request.addParameter("password","test2");
+  context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
+  final Credential c=org.apereo.cas.authentication.TestUtils.getCredentialsWithDifferentUsernameAndPassword();
+  putCredentialInRequestScope(context,c);
+  context.getRequestScope().put("org.springframework.validation.BindException.credentials",new BindException(c,"credential"));
+  assertEquals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,this.action.doExecute(context).getId());
+}

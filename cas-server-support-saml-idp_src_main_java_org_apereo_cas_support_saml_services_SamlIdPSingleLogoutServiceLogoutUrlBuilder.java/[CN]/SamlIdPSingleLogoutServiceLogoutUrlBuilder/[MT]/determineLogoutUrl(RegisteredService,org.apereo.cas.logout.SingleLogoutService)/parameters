@@ -1,0 +1,2 @@
+RegisteredService registeredService
+org.apereo.cas.logout.SingleLogoutService singleLogoutService

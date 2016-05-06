@@ -1,8 +1,0 @@
-{
-  try {
-    this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",org.jasig.cas.authentication.TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
-  }
- catch (  final Exception e) {
-    fail("Caught an exception. But no exception should have been thrown.");
-  }
-}

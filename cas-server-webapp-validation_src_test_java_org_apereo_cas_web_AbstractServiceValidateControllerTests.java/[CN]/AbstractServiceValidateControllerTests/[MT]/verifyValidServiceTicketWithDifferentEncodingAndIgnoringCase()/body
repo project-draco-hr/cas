@@ -1,0 +1,13 @@
+{
+  final String origSvc="http://www.jasig.org?param=hello+world";
+  final Service svc=TestUtils.getService(origSvc);
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),svc);
+  this.serviceValidateController.setProxyHandler(new Cas10ProxyHandler());
+  final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),svc,ctx);
+  final String reqSvc="http://WWW.JASIG.ORG?PARAM=hello%20world";
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter("service",TestUtils.getService(reqSvc).getId());
+  request.addParameter("ticket",sId.getId());
+  assertEquals(AbstractServiceValidateController.DEFAULT_SERVICE_SUCCESS_VIEW_NAME,this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse()).getViewName());
+}

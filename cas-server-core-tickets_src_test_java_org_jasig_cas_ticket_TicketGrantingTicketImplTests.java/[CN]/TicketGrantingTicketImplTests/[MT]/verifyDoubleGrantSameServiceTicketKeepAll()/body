@@ -1,6 +1,0 @@
-{
-  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,null,org.jasig.cas.authentication.TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
-  t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),org.jasig.cas.services.TestUtils.getService(),new NeverExpiresExpirationPolicy(),false,true);
-  t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),org.jasig.cas.services.TestUtils.getService(),new NeverExpiresExpirationPolicy(),false,false);
-  assertEquals(2,t.getServices().size());
-}

@@ -1,0 +1,14 @@
+{
+  final List<RegisteredService> list=new ArrayList<>();
+  list.add(org.apereo.cas.services.TestUtils.getRegisteredService("https://.+"));
+  final InMemoryServiceRegistryDaoImpl dao=new InMemoryServiceRegistryDaoImpl();
+  dao.setRegisteredServices(list);
+  this.response=new Saml10SuccessResponseView();
+  this.response.setServicesManager(new DefaultServicesManagerImpl(dao));
+  this.response.setCasAttributeEncoder(new DefaultCasAttributeEncoder(this.response.getServicesManager()));
+  final Saml10ObjectBuilder builder=new Saml10ObjectBuilder();
+  builder.setConfigBean(this.configBean);
+  this.response.setSamlObjectBuilder(builder);
+  this.response.setIssuer("testIssuer");
+  this.response.setIssueLength(1000);
+}

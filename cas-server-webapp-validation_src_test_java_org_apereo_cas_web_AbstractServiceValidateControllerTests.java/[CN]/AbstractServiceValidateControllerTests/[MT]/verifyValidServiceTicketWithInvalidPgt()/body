@@ -1,0 +1,13 @@
+{
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),SERVICE);
+  this.serviceValidateController.setProxyHandler(new Cas10ProxyHandler());
+  final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),SERVICE,ctx);
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter("service",SERVICE.getId());
+  request.addParameter("ticket",sId.getId());
+  request.addParameter("pgtUrl","duh");
+  final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
+  assertEquals(AbstractServiceValidateController.DEFAULT_SERVICE_SUCCESS_VIEW_NAME,modelAndView.getViewName());
+  assertNull(modelAndView.getModel().get("pgtIou"));
+}

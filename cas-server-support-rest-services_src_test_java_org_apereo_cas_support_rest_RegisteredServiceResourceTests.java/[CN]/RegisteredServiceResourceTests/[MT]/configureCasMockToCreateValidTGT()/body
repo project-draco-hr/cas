@@ -1,0 +1,8 @@
+{
+  final TicketGrantingTicket tgt=mock(TicketGrantingTicket.class);
+  when(tgt.getId()).thenReturn("TGT-1");
+  when(tgt.getAuthentication()).thenReturn(org.apereo.cas.authentication.TestUtils.getAuthentication(org.apereo.cas.authentication.TestUtils.getPrincipal("casuser",new HashMap(TestUtils.getTestAttributes()))));
+  final Class<TicketGrantingTicket> clazz=TicketGrantingTicket.class;
+  when(this.casMock.getTicket(anyString(),any(clazz.getClass()))).thenReturn(tgt);
+  when(this.servicesManager.save(any(RegisteredService.class))).thenReturn(TestUtils.getRegisteredService("TEST"));
+}

@@ -1,3 +1,0 @@
-{
-  assertEquals("test",this.resolver.resolve(new PrincipalBearingCredential(new DefaultPrincipalFactory().createPrincipal("test"))).getId());
-}

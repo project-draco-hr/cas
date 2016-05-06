@@ -1,9 +1,0 @@
-{
-  final ProxyGrantingTicket ticket=new ProxyGrantingTicketImpl("ticketGrantingTicketId",org.jasig.cas.authentication.TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
-  getTicketRegistry().addTicket(ticket);
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.addParameter("pgt",ticket.getId());
-  request.addParameter("targetService","service");
-  final Map<String,Object> map=this.proxyController.handleRequestInternal(request,new MockHttpServletResponse()).getModel();
-  assertTrue(!map.containsKey("ticket"));
-}

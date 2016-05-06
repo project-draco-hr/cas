@@ -1,0 +1,7 @@
+{
+  final Authentication authentication=TestUtils.getAuthentication(this.principalFactory.createPrincipal("test"),Collections.<String,Object>singletonMap(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME,true));
+  final TicketGrantingTicketImpl t=new TicketGrantingTicketImpl("111",authentication,this.p);
+  assertFalse(t.isExpired());
+  t.grantServiceTicket("55",org.apereo.cas.services.TestUtils.getService(),this.p,false,true);
+  assertTrue(t.isExpired());
+}

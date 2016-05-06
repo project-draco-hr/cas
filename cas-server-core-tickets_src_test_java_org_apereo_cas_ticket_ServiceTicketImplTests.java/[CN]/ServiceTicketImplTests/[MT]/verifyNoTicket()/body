@@ -1,0 +1,3 @@
+{
+  new ServiceTicketImpl("stest1",null,org.apereo.cas.services.TestUtils.getService(),true,new NeverExpiresExpirationPolicy());
+}

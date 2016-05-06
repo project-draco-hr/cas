@@ -1,0 +1,8 @@
+{
+  final List<Authentication> list=new ArrayList<>();
+  list.add(org.apereo.cas.authentication.TestUtils.getAuthentication());
+  for (  final String extraPrincipal : extraPrincipals) {
+    list.add(org.apereo.cas.authentication.TestUtils.getAuthentication(extraPrincipal));
+  }
+  return new ImmutableAssertion(org.apereo.cas.authentication.TestUtils.getAuthentication(),list,org.apereo.cas.services.TestUtils.getService(),fromNewLogin);
+}

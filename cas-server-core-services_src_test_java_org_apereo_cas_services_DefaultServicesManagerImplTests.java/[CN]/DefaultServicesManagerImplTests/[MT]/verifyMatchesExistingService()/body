@@ -1,0 +1,12 @@
+{
+  final RegexRegisteredService r=new RegexRegisteredService();
+  r.setId(1000);
+  r.setName("test");
+  r.setServiceId("test");
+  final Service service=new SimpleService("test");
+  final Service service2=new SimpleService("fdfa");
+  this.defaultServicesManagerImpl.save(r);
+  assertTrue(this.defaultServicesManagerImpl.matchesExistingService(service));
+  Assert.assertEquals(r,this.defaultServicesManagerImpl.findServiceBy(service));
+  assertNull(this.defaultServicesManagerImpl.findServiceBy(service2));
+}

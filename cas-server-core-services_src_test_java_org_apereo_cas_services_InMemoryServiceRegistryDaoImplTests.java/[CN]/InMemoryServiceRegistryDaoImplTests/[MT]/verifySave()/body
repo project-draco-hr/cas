@@ -1,0 +1,5 @@
+{
+  final InMemoryServiceRegistryDaoImpl reg=new InMemoryServiceRegistryDaoImpl();
+  final RegisteredService svc=TestUtils.getRegisteredService("service");
+  assertEquals(reg.save(svc),svc);
+}

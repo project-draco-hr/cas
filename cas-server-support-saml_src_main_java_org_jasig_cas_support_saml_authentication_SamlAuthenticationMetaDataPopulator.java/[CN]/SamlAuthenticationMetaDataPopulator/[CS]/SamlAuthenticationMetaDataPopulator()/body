@@ -1,6 +1,0 @@
-{
-  this.authenticationMethods.put(HttpBasedServiceCredential.class.getName(),AUTHN_METHOD_SSL_TLS_CLIENT);
-  this.authenticationMethods.put(UsernamePasswordCredential.class.getName(),AUTHN_METHOD_PASSWORD);
-  this.authenticationMethods.put("org.jasig.cas.adaptors.trusted.authentication.principal.PrincipalBearingCredentials",AUTHN_METHOD_UNSPECIFIED);
-  this.authenticationMethods.put("org.jasig.cas.adaptors.x509.authentication.principal.X509CertificateCredentials",AUTHN_METHOD_X509_PUBLICKEY);
-}

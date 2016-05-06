@@ -1,3 +1,0 @@
-{
-  this.cas.grantServiceTicket(TGT_ID,org.jasig.cas.services.TestUtils.getService(SVC1_ID),getAuthenticationContext());
-}

@@ -1,0 +1,3 @@
+{
+  return new MockServiceTicket("ST-TEST",org.apereo.cas.services.TestUtils.getService(),tgt);
+}

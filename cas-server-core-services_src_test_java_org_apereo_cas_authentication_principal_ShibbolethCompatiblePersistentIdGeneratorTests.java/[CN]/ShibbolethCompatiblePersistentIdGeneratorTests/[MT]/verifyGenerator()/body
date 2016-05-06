@@ -1,0 +1,7 @@
+{
+  final ShibbolethCompatiblePersistentIdGenerator generator=new ShibbolethCompatiblePersistentIdGenerator("scottssalt");
+  final Principal p=mock(Principal.class);
+  when(p.getId()).thenReturn("testuser");
+  final String value=generator.generate(p,TestUtils.getService());
+  assertNotNull(value);
+}
