@@ -17,6 +17,7 @@
     logger.debug("TGC cookie path is set to {} and path {}",this.ticketGrantingTicketCookieGenerator.getCookieDomain(),this.ticketGrantingTicketCookieGenerator.getCookiePath());
   }
   WebUtils.putTicketGrantingTicketInScopes(context,this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request));
+  WebUtils.putGoogleAnalyticsTrackingIdIntoFlowScope(context,this.googleAnalyticsTrackingId);
   WebUtils.putWarningCookie(context,Boolean.valueOf(this.warnCookieGenerator.retrieveCookieValue(request)));
   WebUtils.putGeoLocationTrackingIntoFlowScope(context,this.trackGeoLocation);
   final Service service=WebUtils.getService(this.argumentExtractors,context);
