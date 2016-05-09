@@ -5,7 +5,7 @@
       return context.getBean("attributeRepository",IPersonAttributeDao.class);
     }
  else {
-      logger.warn("No application context could be retrieved, so no attribute repository instance can be determined.");
+      LOGGER.warn("No application context could be retrieved, so no attribute repository instance can be determined.");
     }
   }
   return this.attributeRepository;
