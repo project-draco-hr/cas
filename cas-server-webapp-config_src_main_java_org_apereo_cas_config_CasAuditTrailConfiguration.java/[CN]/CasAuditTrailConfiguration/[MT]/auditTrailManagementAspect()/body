@@ -1,3 +1,5 @@
 {
-  return new AuditTrailManagementAspect(this.appCode,this.principalResolver,ImmutableList.of(auditTrailManager()),auditActionResolverMap(),auditResourceResolverMap());
+  final AuditTrailManagementAspect aspect=new AuditTrailManagementAspect(this.appCode,this.principalResolver,ImmutableList.of(auditTrailManager()),auditActionResolverMap(),auditResourceResolverMap());
+  aspect.setFailOnAuditFailures(!this.ignoreAuditFailures);
+  return aspect;
 }

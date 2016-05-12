@@ -12,7 +12,7 @@
     final JobDetail job=JobBuilder.newJob(getClass()).withIdentity(getClass().getSimpleName().concat(UUID.randomUUID().toString())).build();
     final Trigger trigger=TriggerBuilder.newTrigger().withIdentity(getClass().getSimpleName().concat(UUID.randomUUID().toString())).startAt(DateTimeUtils.dateOf(ZonedDateTime.now(ZoneOffset.UTC).plusSeconds(this.startDelay))).withSchedule(SimpleScheduleBuilder.simpleSchedule().withIntervalInSeconds(this.refreshInterval).repeatForever()).build();
     logger.debug("Scheduling {} job",getClass().getSimpleName());
-    scheduler.getContext().put(getClass().getSimpleName(),this);
+    this.scheduler.getContext().put(getClass().getSimpleName(),this);
     this.scheduler.scheduleJob(job,trigger);
     logger.info("{} will clean tickets every {} minutes",getClass().getSimpleName(),TimeUnit.SECONDS.toMinutes(this.refreshInterval));
   }

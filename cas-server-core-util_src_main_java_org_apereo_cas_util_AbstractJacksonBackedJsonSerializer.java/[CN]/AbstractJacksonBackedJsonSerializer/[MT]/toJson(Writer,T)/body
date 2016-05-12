@@ -1,8 +1,9 @@
 {
-  try {
-    this.objectMapper.writer(this.prettyPrinter).writeValue(out,object);
+  try (final StringWriter writer=new StringWriter()){
+    this.objectMapper.writer(this.prettyPrinter).writeValue(writer,object);
+    JsonValue.readHjson(writer.toString()).writeTo(out,Stringify.FORMATTED);
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw new IllegalArgumentException(e);
   }
 }

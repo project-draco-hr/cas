@@ -1,8 +1,9 @@
 {
   try {
-    return this.objectMapper.readValue(json,getTypeToSerialize());
+    final String jsonString=JsonValue.readHjson(FileUtils.readFileToString(json)).toString();
+    return this.objectMapper.readValue(jsonString,getTypeToSerialize());
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw new IllegalArgumentException(e);
   }
 }
