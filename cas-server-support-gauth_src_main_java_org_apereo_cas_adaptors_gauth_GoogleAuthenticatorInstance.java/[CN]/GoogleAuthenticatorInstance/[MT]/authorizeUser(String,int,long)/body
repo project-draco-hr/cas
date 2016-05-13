@@ -1,0 +1,3 @@
+{
+  return this.googleAuthenticator.authorize(userName,verificationCode,time);
+}
