@@ -13,6 +13,6 @@
   oAuth20AuthorizeController.getServicesManager().save(service);
   final MockHttpSession session=new MockHttpSession();
   mockRequest.setSession(session);
-  final ModelAndView modelAndView=oAuth20AuthorizeController.handleRequest(mockRequest,mockResponse);
+  final ModelAndView modelAndView=oAuth20AuthorizeController.handleRequestInternal(mockRequest,mockResponse);
   assertEquals(OAuthConstants.ERROR_VIEW,modelAndView.getViewName());
 }

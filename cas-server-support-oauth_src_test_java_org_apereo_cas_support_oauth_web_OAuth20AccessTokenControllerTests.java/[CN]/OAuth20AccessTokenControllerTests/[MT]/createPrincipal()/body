@@ -3,5 +3,5 @@
   map.put(NAME,VALUE);
   final List<String> list=Arrays.asList(VALUE,VALUE);
   map.put(NAME2,list);
-  return TestUtils.getPrincipal(ID,map);
+  return org.apereo.cas.authentication.TestUtils.getPrincipal(ID,map);
 }

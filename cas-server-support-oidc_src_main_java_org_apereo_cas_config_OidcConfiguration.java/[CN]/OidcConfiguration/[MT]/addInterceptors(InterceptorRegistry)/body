@@ -1,0 +1,3 @@
+{
+  registry.addInterceptor(oidcInterceptor()).addPathPatterns('/' + OidcConstants.BASE_OIDC_URL.concat("/").concat("*"));
+}

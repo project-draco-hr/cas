@@ -1,4 +1,5 @@
 {
+  response.setContentType(MediaType.APPLICATION_JSON_VALUE);
   String accessToken=request.getParameter(OAuthConstants.ACCESS_TOKEN);
   if (StringUtils.isBlank(accessToken)) {
     final String authHeader=request.getHeader(HttpConstants.AUTHORIZATION_HEADER);
@@ -7,35 +8,22 @@
     }
   }
   logger.debug("{}: {}",OAuthConstants.ACCESS_TOKEN,accessToken);
-  try (final JsonGenerator jsonGenerator=this.jsonFactory.createGenerator(response.getWriter())){
-    response.setContentType("application/json");
-    if (StringUtils.isBlank(accessToken)) {
-      logger.error("Missing {}",OAuthConstants.ACCESS_TOKEN);
-      jsonGenerator.writeStartObject();
-      jsonGenerator.writeStringField(OAuthConstants.ERROR,OAuthConstants.MISSING_ACCESS_TOKEN);
-      jsonGenerator.writeEndObject();
-      return null;
-    }
-    try {
-      final AccessToken accessTokenTicket=this.ticketRegistry.getTicket(accessToken,AccessToken.class);
-      if (accessTokenTicket == null || accessTokenTicket.isExpired()) {
-        logger.error("Expired access token: {}",OAuthConstants.ACCESS_TOKEN);
-        jsonGenerator.writeStartObject();
-        jsonGenerator.writeStringField(OAuthConstants.ERROR,OAuthConstants.EXPIRED_ACCESS_TOKEN);
-        jsonGenerator.writeEndObject();
-        return null;
-      }
-      writeOutProfileResponse(jsonGenerator,accessTokenTicket.getAuthentication().getPrincipal());
-    }
- catch (    final Exception e) {
-      logger.error("Cannot JSONify profile",e);
-      jsonGenerator.writeStartObject();
-      jsonGenerator.writeStringField("error",OAuthConstants.INVALID_REQUEST + ". " + e.getMessage());
-      jsonGenerator.writeEndObject();
-    }
-    return null;
+  if (StringUtils.isBlank(accessToken)) {
+    logger.error("Missing {}",OAuthConstants.ACCESS_TOKEN);
+    final LinkedMultiValueMap<String,String> map=new LinkedMultiValueMap<>(1);
+    map.add(OAuthConstants.ERROR,OAuthConstants.MISSING_ACCESS_TOKEN);
+    final String value=OAuthUtils.jsonify(map);
+    return new ResponseEntity<>(value,HttpStatus.UNAUTHORIZED);
   }
-  finally {
-    response.flushBuffer();
+  final AccessToken accessTokenTicket=this.ticketRegistry.getTicket(accessToken,AccessToken.class);
+  if (accessTokenTicket == null || accessTokenTicket.isExpired()) {
+    logger.error("Expired access token: {}",OAuthConstants.ACCESS_TOKEN);
+    final LinkedMultiValueMap<String,String> map=new LinkedMultiValueMap<>(1);
+    map.add(OAuthConstants.ERROR,OAuthConstants.EXPIRED_ACCESS_TOKEN);
+    final String value=OAuthUtils.jsonify(map);
+    return new ResponseEntity<>(value,HttpStatus.UNAUTHORIZED);
   }
+  final Map<String,Object> map=writeOutProfileResponse(accessTokenTicket.getAuthentication().getPrincipal());
+  final String value=OAuthUtils.jsonify(map);
+  return new ResponseEntity<>(value,HttpStatus.OK);
 }

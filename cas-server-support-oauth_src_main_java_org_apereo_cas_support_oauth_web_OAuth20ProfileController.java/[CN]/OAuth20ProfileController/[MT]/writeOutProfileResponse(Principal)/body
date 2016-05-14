@@ -1,0 +1,6 @@
+{
+  final Map<String,Object> map=new HashMap<>();
+  map.put(ID,principal.getId());
+  map.put(ATTRIBUTES,principal.getAttributes());
+  return map;
+}

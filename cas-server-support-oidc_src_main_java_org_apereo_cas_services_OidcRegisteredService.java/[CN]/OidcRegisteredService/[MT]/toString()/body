@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this).appendSuper(super.toString()).append("jwks",jwks).append("signIdToken",signIdToken).toString();
+}

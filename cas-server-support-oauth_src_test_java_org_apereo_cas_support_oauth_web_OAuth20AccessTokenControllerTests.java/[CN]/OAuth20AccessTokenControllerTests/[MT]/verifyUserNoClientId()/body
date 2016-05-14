@@ -6,7 +6,7 @@
   mockRequest.setParameter(PASSWORD,GOOD_PASSWORD);
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   requiresAuthenticationInterceptor.preHandle(mockRequest,mockResponse,null);
-  oAuth20AccessTokenController.handleRequest(mockRequest,mockResponse);
-  assertEquals(400,mockResponse.getStatus());
+  oAuth20AccessTokenController.handleRequestInternal(mockRequest,mockResponse);
+  assertEquals(HttpStatus.SC_BAD_REQUEST,mockResponse.getStatus());
   assertEquals("error=" + OAuthConstants.INVALID_REQUEST,mockResponse.getContentAsString());
 }

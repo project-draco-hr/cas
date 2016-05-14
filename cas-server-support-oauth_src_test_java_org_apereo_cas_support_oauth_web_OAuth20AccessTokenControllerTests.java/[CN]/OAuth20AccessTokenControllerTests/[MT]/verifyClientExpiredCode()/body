@@ -5,7 +5,7 @@
   map.put(NAME,VALUE);
   final List<String> list=Arrays.asList(VALUE,VALUE);
   map.put(NAME2,list);
-  final Principal principal=TestUtils.getPrincipal(ID,map);
+  final Principal principal=org.apereo.cas.authentication.TestUtils.getPrincipal(ID,map);
   final Authentication authentication=getAuthentication(principal);
   final DefaultOAuthCodeFactory expiringOAuthCodeFactory=new DefaultOAuthCodeFactory();
   expiringOAuthCodeFactory.setExpirationPolicy(new AlwaysExpiresExpirationPolicy());
@@ -21,7 +21,7 @@
   servicesManager.save(getRegisteredService(REDIRECT_URI,CLIENT_SECRET));
   final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
   requiresAuthenticationInterceptor.preHandle(mockRequest,mockResponse,null);
-  oAuth20AccessTokenController.handleRequest(mockRequest,mockResponse);
-  assertEquals(400,mockResponse.getStatus());
+  oAuth20AccessTokenController.handleRequestInternal(mockRequest,mockResponse);
+  assertEquals(HttpStatus.SC_BAD_REQUEST,mockResponse.getStatus());
   assertEquals("error=" + OAuthConstants.INVALID_GRANT,mockResponse.getContentAsString());
 }
