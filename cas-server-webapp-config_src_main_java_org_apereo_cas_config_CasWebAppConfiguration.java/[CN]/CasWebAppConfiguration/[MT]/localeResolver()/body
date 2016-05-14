@@ -1,5 +1,13 @@
 {
-  final CookieLocaleResolver bean=new CookieLocaleResolver();
-  bean.setDefaultLocale(this.defaultLocale);
+  final CookieLocaleResolver bean=new CookieLocaleResolver(){
+    @Override protected Locale determineDefaultLocale(    final HttpServletRequest request){
+      final Locale locale=request.getLocale();
+      if (StringUtils.isBlank(defaultLocale) || locale.getLanguage().equals(defaultLocale)) {
+        return locale;
+      }
+      return new Locale(defaultLocale);
+    }
+  }
+;
   return bean;
 }

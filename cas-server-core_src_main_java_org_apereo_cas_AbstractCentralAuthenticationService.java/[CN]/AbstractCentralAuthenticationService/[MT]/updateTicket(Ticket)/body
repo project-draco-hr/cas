@@ -1,4 +1,4 @@
 {
-  this.ticketRegistry.addTicket(ticket);
+  this.ticketRegistry.updateTicket(ticket);
   return ticket;
 }
