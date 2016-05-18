@@ -4,7 +4,7 @@
     return list;
   }
   try {
-    final Response<SearchResult> response=LdapUtils.executeSearchOperation(this.connectionFactory,this.baseDn,new SearchFilter(this.loadFilter));
+    final Response<SearchResult> response=getSearchResultResponse();
     if (LdapUtils.containsResultEntry(response)) {
       for (      final LdapEntry entry : response.getResult().getEntries()) {
         final RegisteredService svc=this.ldapServiceMapper.mapToRegisteredService(entry);
@@ -13,7 +13,7 @@
     }
   }
  catch (  final LdapException e) {
-    logger.error(e.getMessage(),e);
+    LOGGER.error(e.getMessage(),e);
   }
   return list;
 }

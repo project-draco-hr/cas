@@ -10,10 +10,10 @@
     }
   }
  catch (  final Exception e) {
-    logger.error(e.getMessage(),e);
+    LOGGER.error(e.getMessage(),e);
   }
   if (StringUtils.isNotBlank(currentDn)) {
-    logger.debug("Updating registered service at {}",currentDn);
+    LOGGER.debug("Updating registered service at {}",currentDn);
     final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.baseDn,rs);
     LdapUtils.executeModifyOperation(currentDn,this.connectionFactory,entry);
   }

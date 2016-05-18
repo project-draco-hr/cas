@@ -1,0 +1,12 @@
+{
+  try {
+    final Response<SearchResult> response=getSearchResultResponse();
+    if (LdapUtils.containsResultEntry(response)) {
+      return response.getResult().size();
+    }
+  }
+ catch (  final LdapException e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+  return 0;
+}

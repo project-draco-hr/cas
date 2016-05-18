@@ -1,0 +1,3 @@
+{
+  return this.entityManager.createQuery("select count(r) from AbstractRegisteredService r",Long.class).getSingleResult();
+}

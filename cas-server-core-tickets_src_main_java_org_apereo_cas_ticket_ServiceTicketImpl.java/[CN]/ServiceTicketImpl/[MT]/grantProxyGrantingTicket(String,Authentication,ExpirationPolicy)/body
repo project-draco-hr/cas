@@ -1,5 +1,5 @@
 {
-synchronized (this.lock) {
+synchronized (this) {
     if (this.grantedTicketAlready) {
       throw new InvalidProxyGrantingTicketForServiceTicket(this.service);
     }

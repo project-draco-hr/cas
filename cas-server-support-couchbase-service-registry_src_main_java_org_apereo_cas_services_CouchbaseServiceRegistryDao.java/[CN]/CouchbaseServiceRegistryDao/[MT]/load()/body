@@ -1,14 +1,13 @@
 {
   try {
-    logger.debug("Loading services");
-    final Bucket bucket=this.couchbase.bucket();
-    final ViewResult allKeys=bucket.query(ViewQuery.from(UTIL_DOCUMENT,ALL_SERVICES_VIEW.name()));
+    LOGGER.debug("Loading services");
+    final ViewResult allKeys=executeViewQueryForAllServices();
     final List<RegisteredService> services=new LinkedList<>();
     for (    final ViewRow row : allKeys) {
       final RawJsonDocument document=row.document(RawJsonDocument.class);
       if (document != null) {
         final String json=document.content();
-        logger.debug("Found service: {}",json);
+        LOGGER.debug("Found service: {}",json);
         final StringReader stringReader=new StringReader(json);
         services.add(this.registeredServiceJsonSerializer.fromJson(stringReader));
       }
@@ -16,7 +15,7 @@
     return services;
   }
  catch (  final RuntimeException e) {
-    logger.error(e.getMessage(),e);
+    LOGGER.error(e.getMessage(),e);
     return new LinkedList<>();
   }
 }

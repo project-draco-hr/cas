@@ -1,3 +1,0 @@
-{
-  return new MongoTemplate(new SimpleMongoDbFactory(mongo,this.databaseName,new UserCredentials(this.username,this.password)),this.mappingConverter);
-}

@@ -1,6 +1,6 @@
 {
   try {
-    logger.debug("Lookup for service {}",id);
+    LOGGER.debug("Lookup for service {}",id);
     final RawJsonDocument document=this.couchbase.bucket().get(String.valueOf(id),RawJsonDocument.class);
     if (document != null) {
       final String json=document.content();
@@ -9,7 +9,7 @@
     }
   }
  catch (  final Exception e) {
-    logger.error(e.getMessage(),e);
+    LOGGER.error(e.getMessage(),e);
   }
   return null;
 }

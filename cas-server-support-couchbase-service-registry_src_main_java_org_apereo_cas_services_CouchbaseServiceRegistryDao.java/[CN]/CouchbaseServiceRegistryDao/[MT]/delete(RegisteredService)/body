@@ -1,5 +1,5 @@
 {
-  logger.debug("Deleting service {}",service);
+  LOGGER.debug("Deleting service {}",service);
   this.couchbase.bucket().remove(String.valueOf(service.getId()));
   return true;
 }

@@ -1,8 +1,8 @@
 {
   if (this.ldapServiceMapper != null) {
     this.searchFilter='(' + this.ldapServiceMapper.getIdAttribute() + "={0})";
-    logger.debug("Configured search filter to {}",this.searchFilter);
+    LOGGER.debug("Configured search filter to {}",this.searchFilter);
     this.loadFilter="(objectClass=" + this.ldapServiceMapper.getObjectClass() + ')';
-    logger.debug("Configured load filter to {}",this.loadFilter);
+    LOGGER.debug("Configured load filter to {}",this.loadFilter);
   }
 }

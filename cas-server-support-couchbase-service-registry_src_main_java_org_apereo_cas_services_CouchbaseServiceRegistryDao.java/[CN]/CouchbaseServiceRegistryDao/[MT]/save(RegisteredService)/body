@@ -1,5 +1,5 @@
 {
-  logger.debug("Saving service {}",service);
+  LOGGER.debug("Saving service {}",service);
   if (service.getId() == AbstractRegisteredService.INITIAL_IDENTIFIER_VALUE) {
     ((AbstractRegisteredService)service).setId(service.hashCode());
   }

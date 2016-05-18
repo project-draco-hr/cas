@@ -8,7 +8,7 @@
       LdapUtils.executeAddOperation(this.connectionFactory,entry);
     }
  catch (    final LdapException e) {
-      logger.error(e.getMessage(),e);
+      LOGGER.error(e.getMessage(),e);
     }
     return rs;
   }
