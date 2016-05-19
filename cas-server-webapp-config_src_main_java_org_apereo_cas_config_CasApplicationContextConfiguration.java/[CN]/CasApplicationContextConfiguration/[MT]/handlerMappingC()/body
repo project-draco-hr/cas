@@ -1,9 +1,0 @@
-{
-  final SimpleUrlHandlerMapping bean=new SimpleUrlHandlerMapping();
-  bean.setOrder(URL_HANDLER_MAPPING_ORDER);
-  bean.setAlwaysUseFullPath(true);
-  final Properties properties=new Properties();
-  bean.setMappings(properties);
-  bean.setRootHandler(rootController());
-  return bean;
-}
