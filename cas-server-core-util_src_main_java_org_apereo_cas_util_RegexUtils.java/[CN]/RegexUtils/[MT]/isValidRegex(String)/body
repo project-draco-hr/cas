@@ -1,10 +1,13 @@
 {
   try {
+    if (pattern == null) {
+      throw new IllegalArgumentException("Pattern cannot be null");
+    }
     LOGGER.debug("Pattern {} is a valid regex.",Pattern.compile(pattern).pattern());
     return true;
   }
- catch (  final PatternSyntaxException exception) {
+ catch (  final Exception exception) {
     LOGGER.debug("Pattern {} is not a valid regex.",pattern);
-    return false;
   }
+  return false;
 }
