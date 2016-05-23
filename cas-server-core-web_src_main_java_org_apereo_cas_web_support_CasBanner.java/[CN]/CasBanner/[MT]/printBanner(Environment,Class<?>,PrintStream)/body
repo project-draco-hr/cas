@@ -1,4 +1,5 @@
 {
+  out.println();
   for (  final String line : BANNER) {
     out.println(line);
   }
