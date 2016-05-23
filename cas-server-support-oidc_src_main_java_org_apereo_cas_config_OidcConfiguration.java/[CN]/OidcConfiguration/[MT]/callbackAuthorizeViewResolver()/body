@@ -1,0 +1,17 @@
+{
+  return new OAuth20CallbackAuthorizeViewResolver(){
+    @Override public ModelAndView resolve(    final J2EContext ctx,    final ProfileManager manager,    final String url){
+      final Set<String> prompts=oidcAuthzRequestSupport.getOidcPromptFromAuthorizationRequest(url);
+      if (prompts.contains(OidcConstants.PROMPT_NONE)) {
+        if (manager.get(true) != null) {
+          return new ModelAndView(url);
+        }
+        final Map<String,String> model=new HashMap<>();
+        model.put(OAuthConstants.ERROR,OidcConstants.LOGIN_REQUIRED);
+        return new ModelAndView(new MappingJackson2JsonView(),model);
+      }
+      return new ModelAndView(new RedirectView(url));
+    }
+  }
+;
+}

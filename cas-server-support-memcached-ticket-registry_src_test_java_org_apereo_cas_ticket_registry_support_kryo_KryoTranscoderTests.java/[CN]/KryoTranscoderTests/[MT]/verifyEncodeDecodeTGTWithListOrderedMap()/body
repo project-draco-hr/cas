@@ -1,6 +1,6 @@
 {
   final Credential userPassCredential=new UsernamePasswordCredential(USERNAME,PASSWORD);
   @SuppressWarnings("unchecked") final TicketGrantingTicket expectedTGT=new MockTicketGrantingTicket(TGT_ID,userPassCredential,this.principalAttributes);
-  expectedTGT.grantServiceTicket(ST_ID,null,null,false,true);
+  expectedTGT.grantServiceTicket(ST_ID,null,null,null,true);
   assertEquals(expectedTGT,transcoder.decode(transcoder.encode(expectedTGT)));
 }

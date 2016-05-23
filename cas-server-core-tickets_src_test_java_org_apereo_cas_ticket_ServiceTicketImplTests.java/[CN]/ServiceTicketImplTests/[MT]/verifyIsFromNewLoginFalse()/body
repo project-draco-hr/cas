@@ -1,4 +1,6 @@
 {
-  final ServiceTicket s=new ServiceTicketImpl("stest1",this.ticketGrantingTicket,org.apereo.cas.services.TestUtils.getService(),false,new NeverExpiresExpirationPolicy());
+  ServiceTicket s=this.ticketGrantingTicket.grantServiceTicket("stest1",org.apereo.cas.services.TestUtils.getService(),new NeverExpiresExpirationPolicy(),null,false);
+  assertTrue(s.isFromNewLogin());
+  s=this.ticketGrantingTicket.grantServiceTicket("stest1",org.apereo.cas.services.TestUtils.getService(),new NeverExpiresExpirationPolicy(),null,false);
   assertFalse(s.isFromNewLogin());
 }

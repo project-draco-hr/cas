@@ -1,3 +1,3 @@
 {
-  new ServiceTicketImpl("stest1",this.ticketGrantingTicket,null,true,new NeverExpiresExpirationPolicy());
+  new ServiceTicketImpl("stest1",this.ticketGrantingTicket,null,null,new NeverExpiresExpirationPolicy());
 }

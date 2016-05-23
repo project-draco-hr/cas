@@ -1,0 +1,13 @@
+{
+  final J2EContext j2EContext=(J2EContext)context;
+  if (j2EContext != null) {
+    final String tgtId=ticketGrantingTicketCookieGenerator.retrieveCookieValue(j2EContext.getRequest());
+    if (StringUtils.isNotBlank(tgtId)) {
+      final Authentication authentication=ticketRegistrySupport.getAuthenticationFrom(tgtId);
+      if (authentication != null) {
+        return Optional.of(authentication);
+      }
+    }
+  }
+  return Optional.empty();
+}

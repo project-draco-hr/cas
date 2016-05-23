@@ -1,7 +1,0 @@
-{
-  final Map<String,Object> map=super.writeOutProfileResponse(principal);
-  if (!map.containsKey(OidcConstants.CLAIM_SUB)) {
-    map.put(OidcConstants.CLAIM_SUB,principal.getId());
-  }
-  return map;
-}

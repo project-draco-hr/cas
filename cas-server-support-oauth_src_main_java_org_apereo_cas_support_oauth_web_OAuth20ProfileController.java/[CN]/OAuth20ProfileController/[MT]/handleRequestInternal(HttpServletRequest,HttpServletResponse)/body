@@ -23,7 +23,7 @@
     final String value=OAuthUtils.jsonify(map);
     return new ResponseEntity<>(value,HttpStatus.UNAUTHORIZED);
   }
-  final Map<String,Object> map=writeOutProfileResponse(accessTokenTicket.getAuthentication().getPrincipal());
+  final Map<String,Object> map=writeOutProfileResponse(accessTokenTicket.getAuthentication(),accessTokenTicket.getAuthentication().getPrincipal());
   final String value=OAuthUtils.jsonify(map);
   return new ResponseEntity<>(value,HttpStatus.OK);
 }

@@ -2,6 +2,6 @@
   final Map<String,Object> newAttributes=Collections.singletonMap(NICKNAME_KEY,(Object)NICKNAME_VALUE);
   final Credential userPassCredential=new UsernamePasswordCredential(USERNAME,PASSWORD);
   final TicketGrantingTicket expectedTGT=new MockTicketGrantingTicket(TGT_ID,userPassCredential,newAttributes);
-  expectedTGT.grantServiceTicket(ST_ID,null,null,false,true);
+  expectedTGT.grantServiceTicket(ST_ID,null,null,null,true);
   assertEquals(expectedTGT,transcoder.decode(transcoder.encode(expectedTGT)));
 }

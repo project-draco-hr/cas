@@ -1,5 +1,5 @@
 {
-  final ProxyTicket serviceTicket=new ProxyTicketImpl(id,this,service,this.getCountOfUses() == 0,expirationPolicy);
-  updateStateAndTrackServiceSession(serviceTicket.getId(),service,onlyTrackMostRecentSession);
+  final ProxyTicket serviceTicket=new ProxyTicketImpl(id,this,service,null,expirationPolicy);
+  trackServiceSession(serviceTicket.getId(),service,onlyTrackMostRecentSession);
   return serviceTicket;
 }

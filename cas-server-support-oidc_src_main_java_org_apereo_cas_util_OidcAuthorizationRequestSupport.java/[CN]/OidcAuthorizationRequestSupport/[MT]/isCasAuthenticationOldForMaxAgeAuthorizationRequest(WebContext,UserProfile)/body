@@ -1,0 +1,8 @@
+{
+  final Object authTime=profile.getAttribute(CasProtocolConstants.VALIDATION_CAS_MODEL_ATTRIBUTE_NAME_AUTHENTICATION_DATE);
+  if (authTime == null) {
+    return false;
+  }
+  final ZonedDateTime dt=ZonedDateTime.parse(authTime.toString());
+  return isCasAuthenticationOldForMaxAgeAuthorizationRequest(context,dt);
+}

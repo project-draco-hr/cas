@@ -1,0 +1,6 @@
+{
+  final Set<String> prompts=getOidcPromptFromAuthorizationRequest(context);
+  if (prompts.contains(OidcConstants.PROMPT_LOGIN)) {
+    casClient.setRenew(true);
+  }
+}

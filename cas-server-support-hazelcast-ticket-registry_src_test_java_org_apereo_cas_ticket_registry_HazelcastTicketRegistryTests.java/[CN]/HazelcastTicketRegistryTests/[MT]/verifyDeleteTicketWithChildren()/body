@@ -2,9 +2,9 @@
   this.hzTicketRegistry1.addTicket(new TicketGrantingTicketImpl("TGT",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
   final TicketGrantingTicket tgt=this.hzTicketRegistry1.getTicket("TGT",TicketGrantingTicket.class);
   final Service service=org.apereo.cas.services.TestUtils.getService("TGT_DELETE_TEST");
-  final ServiceTicket st1=tgt.grantServiceTicket("ST1",service,new NeverExpiresExpirationPolicy(),true,false);
-  final ServiceTicket st2=tgt.grantServiceTicket("ST2",service,new NeverExpiresExpirationPolicy(),true,false);
-  final ServiceTicket st3=tgt.grantServiceTicket("ST3",service,new NeverExpiresExpirationPolicy(),true,false);
+  final ServiceTicket st1=tgt.grantServiceTicket("ST1",service,new NeverExpiresExpirationPolicy(),null,false);
+  final ServiceTicket st2=tgt.grantServiceTicket("ST2",service,new NeverExpiresExpirationPolicy(),null,false);
+  final ServiceTicket st3=tgt.grantServiceTicket("ST3",service,new NeverExpiresExpirationPolicy(),null,false);
   this.hzTicketRegistry1.addTicket(st1);
   this.hzTicketRegistry1.addTicket(st2);
   this.hzTicketRegistry1.addTicket(st3);

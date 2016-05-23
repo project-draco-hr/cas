@@ -1,0 +1,13 @@
+{
+  final Optional<Long> maxAge=getOidcMaxAgeFromAuthorizationRequest(context);
+  if (maxAge.isPresent() && maxAge.get() > 0) {
+    final long now=ZonedDateTime.now().toEpochSecond();
+    final long authTime=authenticationDate.toEpochSecond();
+    final long diffInSeconds=now - authTime;
+    if (diffInSeconds > maxAge.get()) {
+      LOGGER.info("Authentication is too old: {} and was created {} seconds ago.",authTime,diffInSeconds);
+      return true;
+    }
+  }
+  return false;
+}

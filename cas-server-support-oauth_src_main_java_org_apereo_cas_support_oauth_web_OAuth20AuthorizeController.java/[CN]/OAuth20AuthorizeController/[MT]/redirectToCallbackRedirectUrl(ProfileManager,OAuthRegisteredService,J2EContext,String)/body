@@ -1,0 +1,28 @@
+{
+  final UserProfile profile=manager.get(true);
+  if (profile == null) {
+    logger.error("Unexpected null profile");
+    return new ModelAndView(OAuthConstants.ERROR_VIEW);
+  }
+  final Service service=createService(registeredService);
+  final Authentication authentication=createAuthentication(profile,registeredService,context);
+  try {
+    RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
+  }
+ catch (  final UnauthorizedServiceException|PrincipalException e) {
+    logger.error(e.getMessage(),e);
+    return new ModelAndView(OAuthConstants.ERROR_VIEW);
+  }
+  final String redirectUri=context.getRequestParameter(OAuthConstants.REDIRECT_URI);
+  logger.debug("Authorize request verification successful for client {} with redirect uri {}",clientId,redirectUri);
+  final String responseType=context.getRequestParameter(OAuthConstants.RESPONSE_TYPE);
+  final String callbackUrl;
+  if (isResponseType(responseType,OAuthResponseType.CODE)) {
+    callbackUrl=buildCallbackUrlForAuthorizationCodeResponseType(authentication,service,redirectUri);
+  }
+ else {
+    callbackUrl=buildCallbackUrlForImplicitResponseType(context,authentication,service,redirectUri);
+  }
+  logger.debug("callbackUrl: {}",callbackUrl);
+  return OAuthUtils.redirectTo(callbackUrl);
+}

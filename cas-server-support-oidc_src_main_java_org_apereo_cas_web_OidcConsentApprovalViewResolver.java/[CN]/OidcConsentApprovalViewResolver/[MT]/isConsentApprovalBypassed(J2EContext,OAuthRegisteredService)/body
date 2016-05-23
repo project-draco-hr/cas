@@ -1,0 +1,8 @@
+{
+  final String url=context.getFullRequestURL();
+  final Set<String> prompts=oidcAuthzRequestSupport.getOidcPromptFromAuthorizationRequest(url);
+  if (prompts.contains(OidcConstants.PROMPT_CONSENT)) {
+    return false;
+  }
+  return super.isConsentApprovalBypassed(context,service);
+}

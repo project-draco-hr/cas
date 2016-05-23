@@ -3,7 +3,7 @@
   when(tgtMock.isExpired()).thenReturn(isExpired);
   when(tgtMock.getId()).thenReturn(id);
   final String svcId=svcTicket.getService().getId();
-  when(tgtMock.grantServiceTicket(anyString(),argThat(new VerifyServiceByIdMatcher(svcId)),any(ExpirationPolicy.class),anyBoolean(),anyBoolean())).thenReturn(svcTicket);
+  when(tgtMock.grantServiceTicket(anyString(),argThat(new VerifyServiceByIdMatcher(svcId)),any(ExpirationPolicy.class),anyObject(),anyBoolean())).thenReturn(svcTicket);
   when(tgtMock.getRoot()).thenReturn(root);
   when(tgtMock.getChainedAuthentications()).thenReturn(chainedAuthnList);
   when(tgtMock.getAuthentication()).thenReturn(this.authentication);

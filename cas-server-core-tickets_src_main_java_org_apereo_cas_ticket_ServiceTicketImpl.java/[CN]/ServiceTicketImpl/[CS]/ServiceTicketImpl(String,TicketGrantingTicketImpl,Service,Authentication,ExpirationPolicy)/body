@@ -1,0 +1,8 @@
+{
+  super(id,policy);
+  Assert.notNull(service,"service cannot be null");
+  Assert.notNull(ticket,"ticket cannot be null");
+  this.ticketGrantingTicket=ticket;
+  this.service=service;
+  this.fromNewLogin=currentAuthentication != null || ticket.getCountOfUses() == 0;
+}

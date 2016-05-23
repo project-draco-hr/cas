@@ -1,0 +1,8 @@
+{
+  final String bypassApprovalParameter=context.getRequestParameter(OAuthConstants.BYPASS_APPROVAL_PROMPT);
+  LOGGER.debug("bypassApprovalParameter: {}",bypassApprovalParameter);
+  if (StringUtils.isNotBlank(bypassApprovalParameter) || isConsentApprovalBypassed(context,service)) {
+    return new ModelAndView();
+  }
+  return redirectToApproveView(context,service);
+}
