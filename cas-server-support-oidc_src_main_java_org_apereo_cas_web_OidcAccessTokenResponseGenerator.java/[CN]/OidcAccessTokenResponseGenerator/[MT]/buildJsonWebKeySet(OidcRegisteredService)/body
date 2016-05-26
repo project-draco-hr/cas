@@ -13,9 +13,11 @@
  finally {
     if (jsonWebKeySet == null) {
       logger.debug("Loading default JWKS from {}",this.jwksFile);
-      final String jsonJwks=IOUtils.toString(this.jwksFile.getInputStream(),"UTF-8");
-      jsonWebKeySet=new JsonWebKeySet(jsonJwks);
+      if (this.jwksFile != null) {
+        final String jsonJwks=IOUtils.toString(this.jwksFile.getInputStream(),"UTF-8");
+        jsonWebKeySet=new JsonWebKeySet(jsonJwks);
+      }
     }
   }
-  return jsonWebKeySet;
+  return jsonWebKeySet != null ? Optional.of(jsonWebKeySet) : Optional.empty();
 }

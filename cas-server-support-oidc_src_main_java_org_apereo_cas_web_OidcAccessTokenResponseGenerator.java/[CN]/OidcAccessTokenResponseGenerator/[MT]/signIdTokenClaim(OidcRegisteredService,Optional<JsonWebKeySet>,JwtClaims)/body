@@ -5,8 +5,8 @@
   logger.debug("Generated claims are {}",jsonClaims);
   jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.NONE);
   jws.setAlgorithmConstraints(AlgorithmConstraints.NO_CONSTRAINTS);
-  if (svc.isSignIdToken() && !jwks.getJsonWebKeys().isEmpty()) {
-    final RsaJsonWebKey jsonWebKey=(RsaJsonWebKey)jwks.getJsonWebKeys().get(0);
+  if (svc.isSignIdToken() && jwks.isPresent() && !jwks.get().getJsonWebKeys().isEmpty()) {
+    final RsaJsonWebKey jsonWebKey=(RsaJsonWebKey)jwks.get().getJsonWebKeys().get(0);
     jws.setKey(jsonWebKey.getPrivateKey());
     jws.setAlgorithmConstraints(AlgorithmConstraints.DISALLOW_NONE);
     if (StringUtils.isBlank(jsonWebKey.getKeyId())) {

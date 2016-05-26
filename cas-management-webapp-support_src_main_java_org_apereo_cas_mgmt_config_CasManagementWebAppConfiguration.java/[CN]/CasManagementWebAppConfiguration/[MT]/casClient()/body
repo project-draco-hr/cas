@@ -1,5 +1,5 @@
 {
   final CasClient client=new CasClient(this.loginUrl);
-  client.setAuthorizationGenerator(this.authorizationGenerator);
+  client.setAuthorizationGenerator(authorizationGenerator());
   return client;
 }
