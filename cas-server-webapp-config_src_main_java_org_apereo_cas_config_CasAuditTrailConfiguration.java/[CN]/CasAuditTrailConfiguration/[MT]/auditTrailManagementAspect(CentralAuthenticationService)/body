@@ -1,0 +1,5 @@
+{
+  final AuditTrailManagementAspect aspect=new AuditTrailManagementAspect(this.appCode,auditablePrincipalResolver(centralAuthenticationService),ImmutableList.of(auditTrailManager()),auditActionResolverMap(),auditResourceResolverMap());
+  aspect.setFailOnAuditFailures(!this.ignoreAuditFailures);
+  return aspect;
+}
