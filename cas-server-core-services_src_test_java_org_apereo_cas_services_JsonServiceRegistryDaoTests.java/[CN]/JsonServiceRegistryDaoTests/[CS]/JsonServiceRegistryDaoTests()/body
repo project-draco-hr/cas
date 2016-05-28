@@ -1,3 +1,0 @@
-{
-  this.dao=new JsonServiceRegistryDao(RESOURCE);
-}

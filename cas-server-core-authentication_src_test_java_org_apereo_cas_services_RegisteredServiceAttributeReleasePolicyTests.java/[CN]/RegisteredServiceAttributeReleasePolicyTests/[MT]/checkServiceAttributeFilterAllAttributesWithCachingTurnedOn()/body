@@ -8,7 +8,7 @@
   final IPersonAttributes person=mock(IPersonAttributes.class);
   when(person.getName()).thenReturn("uid");
   when(person.getAttributes()).thenReturn(attributes);
-  final CachingPrincipalAttributesRepository repository=new CachingPrincipalAttributesRepository(TimeUnit.MILLISECONDS,100);
+  final CachingPrincipalAttributesRepository repository=new CachingPrincipalAttributesRepository(TimeUnit.MILLISECONDS.name(),100);
   repository.setAttributeRepository(dao);
   final Principal p=new DefaultPrincipalFactory().createPrincipal("uid",Collections.<String,Object>singletonMap("mail","final@example.com"));
   policy.setPrincipalAttributesRepository(repository);

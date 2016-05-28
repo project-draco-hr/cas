@@ -1,0 +1,3 @@
+Path configDirectory
+StringSerializer<RegisteredService> registeredServiceJsonSerializer
+boolean enableWatcher

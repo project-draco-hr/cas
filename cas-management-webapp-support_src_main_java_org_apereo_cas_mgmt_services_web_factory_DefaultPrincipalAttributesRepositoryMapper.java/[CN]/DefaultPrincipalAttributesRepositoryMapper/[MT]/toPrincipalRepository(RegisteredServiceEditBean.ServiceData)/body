@@ -2,7 +2,7 @@
   final RegisteredServiceAttributeReleasePolicyEditBean attrRelease=data.getAttrRelease();
   final String attrType=attrRelease.getAttrOption();
   if (StringUtils.equalsIgnoreCase(attrType,RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED.toString())) {
-    return new CachingPrincipalAttributesRepository(TimeUnit.valueOf(attrRelease.getCachedTimeUnit().toUpperCase()),attrRelease.getCachedExpiration());
+    return new CachingPrincipalAttributesRepository(attrRelease.getCachedTimeUnit().toUpperCase(),attrRelease.getCachedExpiration());
   }
  else   if (StringUtils.equalsIgnoreCase(attrType,RegisteredServiceAttributeReleasePolicyEditBean.Types.DEFAULT.toString())) {
     return new DefaultPrincipalAttributesRepository();

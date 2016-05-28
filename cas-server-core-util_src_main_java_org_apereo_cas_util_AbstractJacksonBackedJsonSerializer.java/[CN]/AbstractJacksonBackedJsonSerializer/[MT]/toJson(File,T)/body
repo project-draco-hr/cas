@@ -1,9 +1,0 @@
-{
-  try (final StringWriter writer=new StringWriter()){
-    this.objectMapper.writer(this.prettyPrinter).writeValue(writer,object);
-    JsonValue.readHjson(writer.toString()).writeTo(new BufferedWriter(new FileWriter(out)));
-  }
- catch (  final Exception e) {
-    throw new IllegalArgumentException(e);
-  }
-}

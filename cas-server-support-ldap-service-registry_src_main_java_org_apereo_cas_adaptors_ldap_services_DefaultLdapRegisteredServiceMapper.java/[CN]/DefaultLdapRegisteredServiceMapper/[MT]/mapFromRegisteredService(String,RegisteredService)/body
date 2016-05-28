@@ -8,7 +8,7 @@
     final Collection<LdapAttribute> attrs=new ArrayList<>();
     attrs.add(new LdapAttribute(this.idAttribute,String.valueOf(svc.getId())));
     final StringWriter writer=new StringWriter();
-    this.jsonSerializer.toJson(writer,svc);
+    this.jsonSerializer.to(writer,svc);
     attrs.add(new LdapAttribute(this.serviceDefinitionAttribute,writer.toString()));
     attrs.add(new LdapAttribute(LdapUtils.OBJECTCLASS_ATTRIBUTE,"top",this.objectClass));
     return new LdapEntry(newDn,attrs);

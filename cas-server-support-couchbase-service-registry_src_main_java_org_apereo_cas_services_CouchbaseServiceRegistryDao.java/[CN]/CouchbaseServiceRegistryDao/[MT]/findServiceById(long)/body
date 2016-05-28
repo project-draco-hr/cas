@@ -5,7 +5,7 @@
     if (document != null) {
       final String json=document.content();
       final StringReader stringReader=new StringReader(json);
-      return this.registeredServiceJsonSerializer.fromJson(stringReader);
+      return this.registeredServiceJsonSerializer.from(stringReader);
     }
   }
  catch (  final Exception e) {

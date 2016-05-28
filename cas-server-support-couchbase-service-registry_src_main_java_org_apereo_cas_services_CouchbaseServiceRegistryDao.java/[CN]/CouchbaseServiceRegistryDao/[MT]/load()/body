@@ -9,7 +9,7 @@
         final String json=document.content();
         LOGGER.debug("Found service: {}",json);
         final StringReader stringReader=new StringReader(json);
-        services.add(this.registeredServiceJsonSerializer.fromJson(stringReader));
+        services.add(this.registeredServiceJsonSerializer.from(stringReader));
       }
     }
     return services;

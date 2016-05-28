@@ -1,1 +1,1 @@
-AbstractJacksonBackedJsonSerializer<RegisteredService>
+AbstractJacksonBackedStringSerializer<RegisteredService>

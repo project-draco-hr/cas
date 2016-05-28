@@ -2,7 +2,7 @@
   try {
     final String value=LdapUtils.getString(entry,this.serviceDefinitionAttribute);
     if (StringUtils.hasText(value)) {
-      final RegisteredService service=this.jsonSerializer.fromJson(value);
+      final RegisteredService service=this.jsonSerializer.from(value);
       return service;
     }
     return null;

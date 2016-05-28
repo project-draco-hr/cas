@@ -1,9 +1,0 @@
-{
-  try {
-    final String jsonString=JsonValue.readHjson(IOUtils.toString(json)).toString();
-    return this.objectMapper.readValue(jsonString,getTypeToSerialize());
-  }
- catch (  final Exception e) {
-    throw new IllegalArgumentException(e);
-  }
-}

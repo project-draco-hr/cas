@@ -4,7 +4,7 @@
     ((AbstractRegisteredService)service).setId(service.hashCode());
   }
   final StringWriter stringWriter=new StringWriter();
-  this.registeredServiceJsonSerializer.toJson(stringWriter,service);
+  this.registeredServiceJsonSerializer.to(stringWriter,service);
   this.couchbase.bucket().upsert(RawJsonDocument.create(String.valueOf(service.getId()),0,stringWriter.toString()));
   return service;
 }
