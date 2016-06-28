@@ -1,0 +1,6 @@
+{
+  final Map<String,Object> model=new HashMap<>();
+  final Duration diff=Duration.between(this.upTimeStartDate,ZonedDateTime.now(ZoneOffset.UTC));
+  model.put("upTime",diff.getSeconds());
+  return model;
+}

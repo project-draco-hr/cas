@@ -1,0 +1,31 @@
+{
+  final Map<String,Object> model=new HashMap<>();
+  int unexpiredTgts=0;
+  int unexpiredSts=0;
+  int expiredTgts=0;
+  int expiredSts=0;
+  final Collection<Ticket> tickets=this.centralAuthenticationService.getTickets(Predicates.<Ticket>alwaysTrue());
+  for (  final Ticket ticket : tickets) {
+    if (ticket instanceof ServiceTicket) {
+      if (ticket.isExpired()) {
+        expiredSts++;
+      }
+ else {
+        unexpiredSts++;
+      }
+    }
+ else {
+      if (ticket.isExpired()) {
+        expiredTgts++;
+      }
+ else {
+        unexpiredTgts++;
+      }
+    }
+  }
+  model.put("unexpiredTgts",unexpiredTgts);
+  model.put("unexpiredSts",unexpiredSts);
+  model.put("expiredTgts",expiredTgts);
+  model.put("expiredSts",expiredSts);
+  return model;
+}
