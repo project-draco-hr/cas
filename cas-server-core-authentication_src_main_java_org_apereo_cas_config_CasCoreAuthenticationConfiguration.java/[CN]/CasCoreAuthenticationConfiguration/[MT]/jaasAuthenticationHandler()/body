@@ -1,0 +1,18 @@
+{
+  final JaasAuthenticationHandler h=new JaasAuthenticationHandler();
+  h.setKerberosKdcSystemProperty(casProperties.getAuthn().getJaas().getKerberosKdcSystemProperty());
+  h.setKerberosRealmSystemProperty(casProperties.getAuthn().getJaas().getKerberosRealmSystemProperty());
+  h.setRealm(casProperties.getAuthn().getJaas().getRealm());
+  if (passwordEncoder != null) {
+    h.setPasswordEncoder(passwordEncoder);
+  }
+  if (passwordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(passwordPolicyConfiguration);
+  }
+  if (principalNameTransformer != null) {
+    h.setPrincipalNameTransformer(principalNameTransformer);
+  }
+  h.setPrincipalFactory(jaasPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

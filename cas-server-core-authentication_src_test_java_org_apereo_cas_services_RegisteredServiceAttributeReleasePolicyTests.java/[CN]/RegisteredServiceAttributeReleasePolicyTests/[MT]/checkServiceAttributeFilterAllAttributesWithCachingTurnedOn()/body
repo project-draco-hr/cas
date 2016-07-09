@@ -1,9 +1,9 @@
 {
   final ReturnAllAttributeReleasePolicy policy=new ReturnAllAttributeReleasePolicy();
   final Map<String,List<Object>> attributes=new HashMap<>();
-  attributes.put("values",Arrays.asList(new Object[]{"v1","v2","v3"}));
-  attributes.put("cn",Arrays.asList(new Object[]{"commonName"}));
-  attributes.put("username",Arrays.asList(new Object[]{"uid"}));
+  attributes.put("values",Lists.newArrayList(new Object[]{"v1","v2","v3"}));
+  attributes.put("cn",Lists.newArrayList(new Object[]{"commonName"}));
+  attributes.put("username",Lists.newArrayList(new Object[]{"uid"}));
   final IPersonAttributeDao dao=new StubPersonAttributeDao(attributes);
   final IPersonAttributes person=mock(IPersonAttributes.class);
   when(person.getName()).thenReturn("uid");

@@ -1,0 +1,5 @@
+{
+  final PrincipalAttributeAuthenticationPolicyWebflowEventResolver r=new PrincipalAttributeAuthenticationPolicyWebflowEventResolver();
+  configureResolver(r);
+  return r;
+}

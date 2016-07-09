@@ -1,0 +1,5 @@
+{
+  this.apiKey=apiKey;
+  this.applicationId=applicationId;
+  this.secretkey=secretkey;
+}

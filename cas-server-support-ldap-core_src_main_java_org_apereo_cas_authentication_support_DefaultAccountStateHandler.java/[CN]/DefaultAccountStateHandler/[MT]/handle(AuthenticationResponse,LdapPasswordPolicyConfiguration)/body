@@ -1,4 +1,8 @@
 {
+  if (!this.attributesToErrorMap.isEmpty() && response.getResult()) {
+    logger.debug("Handling policy based on pre-defined attributes");
+    handlePolicyAttributes(response);
+  }
   final AccountState state=response.getAccountState();
   if (state == null) {
     logger.debug("Account state not defined. Returning empty list of messages.");

@@ -5,6 +5,8 @@
   q.setSql(buildSql());
   q.setNumberOfIterationsFieldName("numIterations");
   q.setStaticSalt(STATIC_SALT);
+  q.setSaltFieldName("salt");
+  q.setPasswordFieldName("password");
   q.setPasswordEncoder(new PasswordEncoder(){
     @Override public String encode(    final String password){
       return password.concat("1");

@@ -3,6 +3,6 @@
   generator.setHostName(this.hostName);
   generator.setCertificateFile(this.signingCertFile);
   generator.setPrivateKeyFile(this.signingKeyFile);
-  generator.setURISubjectAltNames(Arrays.asList(this.hostName.concat(URI_SUBJECT_ALTNAME_POSTFIX)));
+  generator.setURISubjectAltNames(Lists.newArrayList(this.hostName.concat(URI_SUBJECT_ALTNAME_POSTFIX)));
   generator.generate();
 }

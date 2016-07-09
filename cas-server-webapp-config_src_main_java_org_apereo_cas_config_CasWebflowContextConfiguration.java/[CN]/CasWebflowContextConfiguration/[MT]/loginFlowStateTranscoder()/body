@@ -3,6 +3,6 @@
     return new EncryptedTranscoder(loginFlowCipherBean());
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw new BeanCreationException(e.getMessage(),e);
   }
 }

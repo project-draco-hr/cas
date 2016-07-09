@@ -1,4 +1,3 @@
 {
-  final TransitionableState currentStartState=TransitionableState.class.cast(flow.getStartState());
-  return currentStartState;
+  return TransitionableState.class.cast(flow.getStartState());
 }

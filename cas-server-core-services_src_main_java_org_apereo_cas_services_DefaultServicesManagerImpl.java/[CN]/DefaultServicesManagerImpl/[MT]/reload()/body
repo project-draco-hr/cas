@@ -1,4 +1,0 @@
-{
-  LOGGER.debug("Reloading registered services.");
-  load();
-}

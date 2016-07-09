@@ -1,9 +1,12 @@
 {
   logger.debug("Attempting to resolve a principal...");
-  final String principalId=extractPrincipalId(credential);
+  String principalId=extractPrincipalId(credential);
   if (StringUtils.isBlank(principalId)) {
     logger.debug("Principal id [{}] could not be found",principalId);
     return null;
+  }
+  if (principalNameTransformer != null) {
+    principalId=principalNameTransformer.transform(principalId);
   }
   logger.debug("Creating SimplePrincipal for [{}]",principalId);
   final Map<String,List<Object>> attributes=retrievePersonAttributes(principalId,credential);

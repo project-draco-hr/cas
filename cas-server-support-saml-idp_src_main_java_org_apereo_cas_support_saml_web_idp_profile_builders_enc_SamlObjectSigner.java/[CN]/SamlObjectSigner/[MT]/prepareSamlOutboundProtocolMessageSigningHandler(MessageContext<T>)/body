@@ -1,7 +1,7 @@
 {
   logger.debug("Attempting to sign the outbound SAML message...");
   final SAMLOutboundProtocolMessageSigningHandler handler=new SAMLOutboundProtocolMessageSigningHandler();
-  handler.setSignErrorResponses(this.signErrorResponse);
+  handler.setSignErrorResponses(casProperties.getAuthn().getSamlIdp().getResponse().isSignError());
   handler.invoke(outboundContext);
   logger.debug("Signed SAML message successfully");
 }

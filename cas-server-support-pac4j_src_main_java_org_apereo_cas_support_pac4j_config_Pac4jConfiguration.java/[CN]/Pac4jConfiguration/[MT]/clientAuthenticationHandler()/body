@@ -1,0 +1,8 @@
+{
+  final ClientAuthenticationHandler h=new ClientAuthenticationHandler();
+  h.setClients(builtClients());
+  h.setPrincipalFactory(clientPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  h.setTypedIdUsed(casProperties.getAuthn().getPac4j().isTypedIdUsed());
+  return h;
+}

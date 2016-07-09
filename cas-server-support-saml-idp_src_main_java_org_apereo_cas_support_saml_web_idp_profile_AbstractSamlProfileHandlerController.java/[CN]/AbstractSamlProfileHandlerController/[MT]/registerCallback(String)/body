@@ -1,5 +1,5 @@
 {
-  final Service callbackService=this.webApplicationServiceFactory.createService(this.casServerPrefix.concat(callbackUrl));
+  final Service callbackService=this.webApplicationServiceFactory.createService(this.serverPrefix.concat(callbackUrl));
   logger.debug("Initialized callback service [{}]",callbackService);
   if (!this.servicesManager.matchesExistingService(callbackService)) {
     final RegexRegisteredService service=new RegexRegisteredService();
@@ -10,7 +10,7 @@
     service.setServiceId(callbackService.getId());
     logger.debug("Saving callback service [{}] into the registry",service);
     this.servicesManager.save(service);
-    this.servicesManager.reload();
+    this.servicesManager.load();
   }
   return callbackService;
 }

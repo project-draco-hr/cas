@@ -1,0 +1,9 @@
+{
+  final JcifsSpnegoAuthenticationHandler h=new JcifsSpnegoAuthenticationHandler();
+  h.setPrincipalFactory(spnegoPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  h.setAuthentication(spnegoAuthentication());
+  h.setPrincipalWithDomainName(casProperties.getAuthn().getSpnego().isPrincipalWithDomainName());
+  h.setNTLMallowed(casProperties.getAuthn().getSpnego().isNtlmAllowed());
+  return h;
+}

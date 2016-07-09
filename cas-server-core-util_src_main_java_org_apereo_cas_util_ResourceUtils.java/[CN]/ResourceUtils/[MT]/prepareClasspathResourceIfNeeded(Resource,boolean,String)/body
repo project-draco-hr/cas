@@ -37,6 +37,6 @@
     return new FileSystemResource(destination);
   }
  catch (  final IOException e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
 }

@@ -1,0 +1,4 @@
+{
+  final GoogleAuthenticatorInstance i=new GoogleAuthenticatorInstance();
+  return i;
+}

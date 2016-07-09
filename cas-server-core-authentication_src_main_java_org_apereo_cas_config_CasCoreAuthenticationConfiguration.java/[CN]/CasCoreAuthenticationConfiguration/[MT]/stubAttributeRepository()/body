@@ -1,0 +1,3 @@
+{
+  return Beans.newAttributeRepository(casProperties.getAuthn().getAttributes());
+}

@@ -1,0 +1,19 @@
+{
+  final SLOPostProfileHandlerController c=new SLOPostProfileHandlerController();
+  c.setConfigBean(openSamlConfigBean);
+  c.setParserPool(parserPool);
+  c.setResponseBuilder(samlProfileSamlResponseBuilder());
+  c.setSamlObjectSigner(samlObjectSigner());
+  c.setSamlRegisteredServiceCachingMetadataResolver(defaultSamlRegisteredServiceCachingMetadataResolver());
+  c.setServicesManager(servicesManager);
+  c.setWebApplicationServiceFactory(webApplicationServiceFactory);
+  c.setLoginUrl(casProperties.getServer().getLoginUrl());
+  c.setServerName(casProperties.getServer().getName());
+  c.setServerPrefix(casProperties.getServer().getPrefix());
+  c.setAuthenticationContextRequestParameter(casProperties.getAuthn().getMfa().getRequestParameter());
+  c.setAuthenticationContextClassMappings(this.authenticationContextClassMappings);
+  c.setLogoutUrl(casProperties.getServer().getLogoutUrl());
+  c.setForceSignedLogoutRequests(casProperties.getAuthn().getSamlIdp().getLogout().isForceSignedLogoutRequests());
+  c.setSingleLogoutCallbacksDisabled(casProperties.getAuthn().getSamlIdp().getLogout().isSingleLogoutCallbacksDisabled());
+  return c;
+}

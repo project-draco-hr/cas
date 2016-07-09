@@ -1,0 +1,5 @@
+{
+  final RegisteredServiceAuthenticationPolicyWebflowEventResolver r=new RegisteredServiceAuthenticationPolicyWebflowEventResolver();
+  configureResolver(r);
+  return r;
+}

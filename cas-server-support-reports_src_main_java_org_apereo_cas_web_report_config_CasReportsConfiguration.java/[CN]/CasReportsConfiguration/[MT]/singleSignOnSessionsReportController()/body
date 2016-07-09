@@ -1,0 +1,6 @@
+{
+  final SingleSignOnSessionsReportController c=new SingleSignOnSessionsReportController();
+  c.setCentralAuthenticationService(centralAuthenticationService);
+  c.setAuthenticationSystemSupport(authenticationSystemSupport);
+  return c;
+}

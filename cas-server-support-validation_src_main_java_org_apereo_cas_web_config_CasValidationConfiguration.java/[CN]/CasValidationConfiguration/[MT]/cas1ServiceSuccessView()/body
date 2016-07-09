@@ -1,0 +1,6 @@
+{
+  final Cas10ResponseView v=new Cas10ResponseView();
+  v.setSuccessResponse(true);
+  v.setCasAttributeEncoder(casAttributeEncoder);
+  return v;
+}

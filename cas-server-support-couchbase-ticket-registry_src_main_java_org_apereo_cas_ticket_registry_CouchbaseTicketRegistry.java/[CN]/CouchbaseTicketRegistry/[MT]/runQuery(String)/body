@@ -5,7 +5,5 @@
     final ViewRow res=iterator.next();
     return (Integer)res.value();
   }
- else {
-    return 0;
-  }
+  return 0;
 }

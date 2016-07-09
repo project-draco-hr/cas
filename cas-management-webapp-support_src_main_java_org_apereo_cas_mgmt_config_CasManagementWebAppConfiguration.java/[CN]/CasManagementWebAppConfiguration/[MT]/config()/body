@@ -1,5 +1,5 @@
 {
-  final Config cfg=new Config(this.callbackUrl,casClient());
+  final Config cfg=new Config(getDefaultServiceUrl(),casClient());
   cfg.setAuthorizer(requireAnyRoleAuthorizer());
   return cfg;
 }

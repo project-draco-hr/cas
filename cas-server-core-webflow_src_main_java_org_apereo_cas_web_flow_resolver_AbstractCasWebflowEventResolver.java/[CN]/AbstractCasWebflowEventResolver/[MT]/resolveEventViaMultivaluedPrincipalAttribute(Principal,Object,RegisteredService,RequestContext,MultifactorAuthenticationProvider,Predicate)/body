@@ -7,11 +7,16 @@
       try {
         if (predicate.apply(value)) {
           logger.debug("Attribute value predicate {} has successfully matched the [{}]",predicate,value);
+          logger.debug("Attempting to verify mutlifactor authentication provider {} for {}",provider,service);
           if (provider.verify(service)) {
+            logger.debug("Provider {} is successfully verified",provider);
             final String id=provider.getId();
             final Event event=validateEventIdForMatchingTransitionInContext(id,context,buildEventAttributeMap(principal,service,provider));
             builder.add(event);
           }
+        }
+ else {
+          logger.debug("Attribute value predicate {} could not match the [{}]",predicate,value);
         }
       }
  catch (      final Exception e) {
@@ -20,5 +25,6 @@
     }
     return builder.build();
   }
+  logger.debug("Attribute value {} is not a multi-valued attribute",attributeValue);
   return null;
 }

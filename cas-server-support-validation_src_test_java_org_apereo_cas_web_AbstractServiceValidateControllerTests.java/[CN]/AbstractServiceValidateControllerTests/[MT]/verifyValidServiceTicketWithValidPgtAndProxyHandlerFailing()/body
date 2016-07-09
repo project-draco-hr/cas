@@ -16,6 +16,6 @@
   }
 );
   final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
-  assertEquals(AbstractServiceValidateController.DEFAULT_SERVICE_FAILURE_VIEW_NAME,modelAndView.getViewName());
+  assertFalse(modelAndView.getView().toString().contains("Success"));
   assertNull(modelAndView.getModel().get("pgtIou"));
 }

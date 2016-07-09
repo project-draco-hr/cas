@@ -1,0 +1,13 @@
+{
+  return new LockingStrategy(){
+    @Override public boolean acquire(){
+      return true;
+    }
+    /** 
+ * Does nothing.
+ */
+    @Override public void release(){
+    }
+  }
+;
+}

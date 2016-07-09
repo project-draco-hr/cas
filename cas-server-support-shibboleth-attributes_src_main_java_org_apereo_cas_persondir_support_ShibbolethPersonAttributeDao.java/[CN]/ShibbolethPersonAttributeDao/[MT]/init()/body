@@ -4,7 +4,7 @@
       ((InitializableComponent)this.attributeResolver).initialize();
     }
  catch (    final ComponentInitializationException e) {
-      throw new RuntimeException(e);
+      throw Throwables.propagate(e);
     }
   }
 }

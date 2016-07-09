@@ -1,0 +1,7 @@
+{
+  final RemoteAddressAuthenticationHandler bean=new RemoteAddressAuthenticationHandler();
+  bean.setIpNetworkRange(casProperties.getAuthn().getRemoteAddress().getIpAddressRange());
+  bean.setPrincipalFactory(remoteAddressPrincipalFactory());
+  bean.setServicesManager(servicesManager);
+  return bean;
+}

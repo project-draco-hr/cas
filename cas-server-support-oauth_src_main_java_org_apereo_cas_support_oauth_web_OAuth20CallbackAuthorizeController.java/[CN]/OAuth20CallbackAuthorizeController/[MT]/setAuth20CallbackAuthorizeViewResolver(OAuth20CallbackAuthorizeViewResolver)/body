@@ -1,0 +1,3 @@
+{
+  this.oAuth20CallbackAuthorizeViewResolver=oAuth20CallbackAuthorizeViewResolver;
+}

@@ -1,0 +1,5 @@
+{
+  final SamlProfileSamlNameIdBuilder b=new SamlProfileSamlNameIdBuilder();
+  b.setConfigBean(openSamlConfigBean);
+  return b;
+}

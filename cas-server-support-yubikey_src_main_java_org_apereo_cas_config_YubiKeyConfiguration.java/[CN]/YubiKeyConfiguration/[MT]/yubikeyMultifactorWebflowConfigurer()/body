@@ -1,0 +1,7 @@
+{
+  final YubiKeyMultifactorWebflowConfigurer r=new YubiKeyMultifactorWebflowConfigurer();
+  r.setYubikeyFlowRegistry(yubikeyFlowRegistry());
+  r.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  r.setFlowBuilderServices(flowBuilderServices);
+  return r;
+}

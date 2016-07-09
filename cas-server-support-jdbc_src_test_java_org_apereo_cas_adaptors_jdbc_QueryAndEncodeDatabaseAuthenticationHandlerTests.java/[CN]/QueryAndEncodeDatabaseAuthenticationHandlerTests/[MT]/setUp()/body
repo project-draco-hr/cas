@@ -1,6 +1,4 @@
 {
-  final ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:/jpaTestApplicationContext.xml");
-  this.dataSource=ctx.getBean("dataSource",DataSource.class);
   final Connection c=this.dataSource.getConnection();
   final Statement s=c.createStatement();
   c.setAutoCommit(true);

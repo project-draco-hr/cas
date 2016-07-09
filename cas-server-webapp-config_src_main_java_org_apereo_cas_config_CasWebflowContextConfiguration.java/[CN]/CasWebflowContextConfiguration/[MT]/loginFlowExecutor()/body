@@ -1,11 +1,11 @@
 {
-  if (this.webflowSessionStorage) {
+  if (casProperties.getWebflow().getSession().isStorage()) {
     final SessionBindingConversationManager conversationManager=new SessionBindingConversationManager();
-    conversationManager.setLockTimeoutSeconds(this.webflowSessionLockTimeout);
-    conversationManager.setMaxConversations(this.webflowSessionMaxConversations);
+    conversationManager.setLockTimeoutSeconds(casProperties.getWebflow().getSession().getLockTimeout());
+    conversationManager.setMaxConversations(casProperties.getWebflow().getSession().getMaxConversations());
     final FlowExecutionImplFactory executionFactory=new FlowExecutionImplFactory();
     final SerializedFlowExecutionSnapshotFactory flowExecutionSnapshotFactory=new SerializedFlowExecutionSnapshotFactory(executionFactory,loginFlowRegistry());
-    flowExecutionSnapshotFactory.setCompress(this.webflowSessionCompress);
+    flowExecutionSnapshotFactory.setCompress(casProperties.getWebflow().getSession().isCompress());
     final DefaultFlowExecutionRepository repository=new DefaultFlowExecutionRepository(conversationManager,flowExecutionSnapshotFactory);
     executionFactory.setExecutionKeyFactory(repository);
     return new FlowExecutorImpl(loginFlowRegistry(),executionFactory,repository);

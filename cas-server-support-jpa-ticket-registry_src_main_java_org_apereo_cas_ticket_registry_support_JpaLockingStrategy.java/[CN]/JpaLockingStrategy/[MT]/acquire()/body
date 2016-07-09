@@ -1,27 +1,27 @@
 {
   final Lock lock;
   try {
-    lock=this.entityManager.find(Lock.class,this.applicationId,LockModeType.PESSIMISTIC_WRITE);
+    lock=this.entityManager.find(Lock.class,this.applicationId,LockModeType.OPTIMISTIC);
   }
- catch (  final PersistenceException e) {
-    logger.debug("{} failed querying for {} lock.",this.uniqueId,this.applicationId,e);
+ catch (  final Exception e) {
+    LOGGER.debug("{} failed querying for {} lock.",this.uniqueId,this.applicationId,e);
     return false;
   }
   boolean result=false;
   if (lock != null) {
     final ZonedDateTime expDate=lock.getExpirationDate();
     if (lock.getUniqueId() == null) {
-      logger.debug("{} trying to acquire {} lock.",this.uniqueId,this.applicationId);
-      result=acquire(this.entityManager,lock);
+      LOGGER.debug("{} trying to acquire {} lock.",this.uniqueId,this.applicationId);
+      result=acquire(lock);
     }
  else     if (expDate == null || ZonedDateTime.now(ZoneOffset.UTC).isAfter(expDate)) {
-      logger.debug("{} trying to acquire expired {} lock.",this.uniqueId,this.applicationId);
-      result=acquire(this.entityManager,lock);
+      LOGGER.debug("{} trying to acquire expired {} lock.",this.uniqueId,this.applicationId);
+      result=acquire(lock);
     }
   }
  else {
-    logger.debug("Creating {} lock initially held by {}.",this.applicationId,this.uniqueId);
-    result=acquire(this.entityManager,new Lock());
+    LOGGER.debug("Creating {} lock initially held by {}.",applicationId,uniqueId);
+    result=acquire(new Lock());
   }
   return result;
 }

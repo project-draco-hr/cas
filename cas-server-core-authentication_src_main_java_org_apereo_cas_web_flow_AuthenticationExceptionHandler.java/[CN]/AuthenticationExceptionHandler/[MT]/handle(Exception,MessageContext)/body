@@ -2,7 +2,7 @@
   if (e instanceof AuthenticationException) {
     return handleAuthenticationException((AuthenticationException)e,messageContext);
   }
- else   if (e instanceof AbstractTicketException) {
+  if (e instanceof AbstractTicketException) {
     return handleAbstractTicketException((AbstractTicketException)e,messageContext);
   }
   logger.trace("Unable to translate errors of the authentication exception {}. " + "Returning {} by default...",e,UNKNOWN);

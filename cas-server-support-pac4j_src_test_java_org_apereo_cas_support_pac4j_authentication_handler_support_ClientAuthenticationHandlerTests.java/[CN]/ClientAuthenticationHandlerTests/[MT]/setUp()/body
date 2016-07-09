@@ -3,6 +3,8 @@
   final Clients clients=new Clients(CALLBACK_URL,fbClient);
   this.handler=new ClientAuthenticationHandler();
   this.handler.setClients(clients);
+  this.handler.setServicesManager(mock(ServicesManager.class));
+  this.handler.setTypedIdUsed(true);
   final Credentials credentials=new OAuthCredentials(null,MockFacebookClient.CLIENT_NAME);
   this.clientCredential=new ClientCredential(credentials);
   ExternalContextHolder.setExternalContext(mock(ServletExternalContext.class));

@@ -1,3 +1,6 @@
 {
-  return new SamlIdPSingleLogoutServiceLogoutUrlBuilder();
+  final SamlIdPSingleLogoutServiceLogoutUrlBuilder b=new SamlIdPSingleLogoutServiceLogoutUrlBuilder();
+  b.setSamlRegisteredServiceCachingMetadataResolver(defaultSamlRegisteredServiceCachingMetadataResolver());
+  b.setServicesManager(servicesManager);
+  return b;
 }

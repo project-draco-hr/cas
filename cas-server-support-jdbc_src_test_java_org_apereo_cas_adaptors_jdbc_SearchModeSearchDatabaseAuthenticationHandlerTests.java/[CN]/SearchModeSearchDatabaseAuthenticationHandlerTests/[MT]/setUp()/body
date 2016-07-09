@@ -1,6 +1,4 @@
 {
-  final ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:/jpaTestApplicationContext.xml");
-  this.dataSource=ctx.getBean("dataSource",DataSource.class);
   this.handler=new SearchModeSearchDatabaseAuthenticationHandler();
   handler.setDataSource(this.dataSource);
   handler.setTableUsers("cassearchusers");

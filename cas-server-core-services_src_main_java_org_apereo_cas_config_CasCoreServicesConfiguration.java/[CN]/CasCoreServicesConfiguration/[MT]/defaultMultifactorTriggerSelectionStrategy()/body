@@ -1,0 +1,6 @@
+{
+  final DefaultMultifactorTriggerSelectionStrategy s=new DefaultMultifactorTriggerSelectionStrategy();
+  s.setGlobalPrincipalAttributeNameTriggers(casProperties.getAuthn().getMfa().getGlobalPrincipalAttributeNameTriggers());
+  s.setRequestParameter(casProperties.getAuthn().getMfa().getRequestParameter());
+  return s;
+}

@@ -10,5 +10,9 @@
     logger.debug("Authentication policy does not contain any multifactor authentication providers");
     return null;
   }
+  if (StringUtils.isNotBlank(policy.getPrincipalAttributeNameTrigger()) || StringUtils.isNotBlank(policy.getPrincipalAttributeValueToMatch())) {
+    logger.debug("Authentication policy for {} has defined principal attribute triggers. Skipping...");
+    return null;
+  }
   return resolveEventPerAuthenticationProvider(authentication.getPrincipal(),context,service);
 }

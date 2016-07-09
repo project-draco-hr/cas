@@ -1,0 +1,25 @@
+{
+  final Config config;
+  if (casProperties.getTicket().getRegistry().getHazelcast().getConfigLocation() != null && casProperties.getTicket().getRegistry().getHazelcast().getConfigLocation().exists()) {
+    try {
+      final URL configUrl=casProperties.getTicket().getRegistry().getHazelcast().getConfigLocation().getURL();
+      config=new XmlConfigBuilder(casProperties.getTicket().getRegistry().getHazelcast().getConfigLocation().getInputStream()).build();
+      config.setConfigurationUrl(configUrl);
+    }
+ catch (    final Exception e) {
+      throw Throwables.propagate(e);
+    }
+  }
+ else {
+    config=new Config();
+    final TcpIpConfig tcpIpConfig=new TcpIpConfig().setEnabled(casProperties.getTicket().getRegistry().getHazelcast().getCluster().isTcpipEnabled()).setMembers(casProperties.getTicket().getRegistry().getHazelcast().getCluster().getMembers());
+    final MulticastConfig multicastConfig=new MulticastConfig().setEnabled(casProperties.getTicket().getRegistry().getHazelcast().getCluster().isMulticastEnabled());
+    final JoinConfig joinConfig=new JoinConfig().setMulticastConfig(multicastConfig).setTcpIpConfig(tcpIpConfig);
+    final NetworkConfig networkConfig=new NetworkConfig().setPort(casProperties.getTicket().getRegistry().getHazelcast().getCluster().getPort()).setPortAutoIncrement(casProperties.getTicket().getRegistry().getHazelcast().getCluster().isPortAutoIncrement()).setJoin(joinConfig);
+    final MapConfig mapConfig=new MapConfig().setName(casProperties.getTicket().getRegistry().getHazelcast().getMapName()).setMaxIdleSeconds(casProperties.getTicket().getTgt().getMaxTimeToLiveInSeconds()).setEvictionPolicy(EvictionPolicy.valueOf(casProperties.getTicket().getRegistry().getHazelcast().getCluster().getEvictionPolicy())).setEvictionPercentage(casProperties.getTicket().getRegistry().getHazelcast().getCluster().getEvictionPercentage()).setMaxSizeConfig(new MaxSizeConfig().setMaxSizePolicy(MaxSizeConfig.MaxSizePolicy.valueOf(casProperties.getTicket().getRegistry().getHazelcast().getCluster().getMaxSizePolicy())).setSize(casProperties.getTicket().getRegistry().getHazelcast().getCluster().getMaxHeapSizePercentage()));
+    final Map<String,MapConfig> mapConfigs=new HashMap<>();
+    mapConfigs.put(casProperties.getTicket().getRegistry().getHazelcast().getMapName(),mapConfig);
+    config.setMapConfigs(mapConfigs).setNetworkConfig(networkConfig);
+  }
+  return config.setInstanceName(casProperties.getTicket().getRegistry().getHazelcast().getCluster().getInstanceName()).setProperty(HazelcastProperties.LOGGING_TYPE_PROP,casProperties.getTicket().getRegistry().getHazelcast().getCluster().getLoggingType()).setProperty(HazelcastProperties.MAX_HEARTBEAT_SECONDS_PROP,String.valueOf(casProperties.getTicket().getRegistry().getHazelcast().getCluster().getMaxNoHeartbeatSeconds()));
+}

@@ -1,9 +1,10 @@
 {
   final RegisteredServiceSupportAccessEditBean supportAccess=bean.getSupportAccess();
-  final TimeBasedRegisteredServiceAccessStrategy accessStrategy=new TimeBasedRegisteredServiceAccessStrategy();
+  final DefaultRegisteredServiceAccessStrategy accessStrategy=new DefaultRegisteredServiceAccessStrategy();
   accessStrategy.setEnabled(supportAccess.isCasEnabled());
   accessStrategy.setSsoEnabled(supportAccess.isSsoEnabled());
   accessStrategy.setRequireAllAttributes(supportAccess.isRequireAll());
+  accessStrategy.setCaseInsensitive(supportAccess.isCaseSensitive());
   final Map<String,Set<String>> requiredAttrs=supportAccess.getRequiredAttr();
   final Set<Map.Entry<String,Set<String>>> entries=requiredAttrs.entrySet();
   final Iterator<Map.Entry<String,Set<String>>> it=entries.iterator();
@@ -14,7 +15,34 @@
     }
   }
   accessStrategy.setRequiredAttributes(requiredAttrs);
-  accessStrategy.setEndingDateTime(supportAccess.getEndingTime());
-  accessStrategy.setStartingDateTime(supportAccess.getStartingTime());
+  final Map<String,Set<String>> rejectedAttrs=supportAccess.getRejectedAttr();
+  final Set<Map.Entry<String,Set<String>>> rejectedEntries=rejectedAttrs.entrySet();
+  final Iterator<Map.Entry<String,Set<String>>> it2=rejectedEntries.iterator();
+  while (it2.hasNext()) {
+    final Map.Entry<String,Set<String>> entry=it2.next();
+    if (entry.getValue().isEmpty()) {
+      it2.remove();
+    }
+  }
+  accessStrategy.setRejectedAttributes(rejectedAttrs);
+  if (supportAccess.getUnauthzUrl() != null && !supportAccess.getUnauthzUrl().trim().isEmpty()) {
+    try {
+      accessStrategy.setUnauthorizedRedirectUrl(new URI(supportAccess.getUnauthzUrl()));
+    }
+ catch (    final Exception e) {
+      throw Throwables.propagate(e);
+    }
+  }
+  if (supportAccess.getType() == RegisteredServiceSupportAccessEditBean.Types.TIME) {
+    ((TimeBasedRegisteredServiceAccessStrategy)accessStrategy).setEndingDateTime(supportAccess.getEndingTime());
+    ((TimeBasedRegisteredServiceAccessStrategy)accessStrategy).setStartingDateTime(supportAccess.getStartingTime());
+  }
+  if (supportAccess.getType() == RegisteredServiceSupportAccessEditBean.Types.GROUPER) {
+    ((GrouperRegisteredServiceAccessStrategy)accessStrategy).setGroupField(GrouperRegisteredServiceAccessStrategy.GrouperGroupField.valueOf(supportAccess.getGroupField()));
+  }
+  if (supportAccess.getType() == RegisteredServiceSupportAccessEditBean.Types.REMOTE) {
+    ((RemoteEndpointServiceAccessStrategy)accessStrategy).setAcceptableResponseCodes(supportAccess.getCodes());
+    ((RemoteEndpointServiceAccessStrategy)accessStrategy).setEndpointUrl(supportAccess.getUrl());
+  }
   return accessStrategy;
 }

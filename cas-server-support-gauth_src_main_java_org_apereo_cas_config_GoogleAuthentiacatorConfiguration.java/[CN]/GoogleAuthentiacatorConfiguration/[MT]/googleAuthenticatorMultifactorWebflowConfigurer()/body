@@ -1,0 +1,7 @@
+{
+  final GoogleAuthenticatorMultifactorWebflowConfigurer c=new GoogleAuthenticatorMultifactorWebflowConfigurer();
+  c.setFlowDefinitionRegistry(googleAuthenticatorFlowRegistry());
+  c.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  c.setFlowBuilderServices(flowBuilderServices);
+  return c;
+}

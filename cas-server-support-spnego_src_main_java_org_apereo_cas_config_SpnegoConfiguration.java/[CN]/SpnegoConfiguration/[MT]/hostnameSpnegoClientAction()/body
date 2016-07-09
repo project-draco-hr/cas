@@ -1,0 +1,7 @@
+{
+  final HostNameSpnegoKnownClientSystemsFilterAction a=new HostNameSpnegoKnownClientSystemsFilterAction(casProperties.getAuthn().getSpnego().getHostNamePatternString());
+  a.setIpsToCheckPattern(casProperties.getAuthn().getSpnego().getIpsToCheckPattern());
+  a.setAlternativeRemoteHostAttribute(casProperties.getAuthn().getSpnego().getAlternativeRemoteHostAttribute());
+  a.setTimeout(casProperties.getAuthn().getSpnego().getDnsTimeout());
+  return a;
+}

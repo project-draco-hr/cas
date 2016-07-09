@@ -2,7 +2,7 @@
   final MockHttpServletRequest request=new MockHttpServletRequest();
   final String samlRequest="<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + "<samlp:AuthnRequest xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" " + "ID=\"5545454455\" Version=\"2.0\" IssueInstant=\"Value\" "+ "ProtocolBinding=\"urn:oasis:names.tc:SAML:2.0:bindings:HTTP-Redirect\" "+ "ProviderName=\"https://localhost:8443/myRutgers\" AssertionConsumerServiceURL=\"https://localhost:8443/myRutgers\"/>";
   request.setParameter(SamlProtocolConstants.PARAMETER_SAML_REQUEST,encodeMessage(samlRequest));
-  final GoogleAccountsService service=this.factory.createService(request);
+  final GoogleAccountsService service=(GoogleAccountsService)this.factory.createService(request);
   service.setPrincipal(TestUtils.getPrincipal());
   assertNotNull(service);
   final Response response=service.getResponse("SAMPLE_TICKET");

@@ -1,3 +1,0 @@
-{
-  setAccessTokenResponseGenerator(this.accessTokenResponseGenerator);
-}

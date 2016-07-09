@@ -1,5 +1,0 @@
-{
-  addAuthenticationHandlerPrincipalResolver(this.openIdCredentialsAuthenticationHandler,this.openIdPrincipalResolver);
-  addServiceTicketUniqueIdGenerator(OpenIdService.class.getCanonicalName(),this.serviceTicketUniqueIdGenerator);
-  addServiceFactory(this.openIdServiceFactory);
-}

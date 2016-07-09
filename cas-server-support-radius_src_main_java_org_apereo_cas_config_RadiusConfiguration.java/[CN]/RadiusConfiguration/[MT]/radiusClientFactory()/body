@@ -1,9 +1,0 @@
-{
-  final RadiusClientFactory factory=new RadiusClientFactory();
-  factory.setAccountingPort(this.accountingPort);
-  factory.setAuthenticationPort(this.authenticationPort);
-  factory.setInetAddress(this.inetAddress);
-  factory.setSharedSecret(this.sharedSecret);
-  factory.setSocketTimeout(this.socketTimeout);
-  return factory;
-}

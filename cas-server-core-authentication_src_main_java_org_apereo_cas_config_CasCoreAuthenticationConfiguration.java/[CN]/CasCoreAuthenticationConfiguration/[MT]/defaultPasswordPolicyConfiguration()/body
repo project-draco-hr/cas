@@ -1,0 +1,3 @@
+{
+  return new PasswordPolicyConfiguration(casProperties.getAuthn().getPasswordPolicy());
+}

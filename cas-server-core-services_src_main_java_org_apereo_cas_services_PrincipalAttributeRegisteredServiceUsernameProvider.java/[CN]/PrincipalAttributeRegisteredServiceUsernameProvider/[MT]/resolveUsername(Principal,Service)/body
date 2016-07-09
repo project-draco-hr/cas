@@ -2,17 +2,17 @@
   String principalId=principal.getId();
   final Map<String,Object> originalPrincipalAttributes=principal.getAttributes();
   final Map<String,Object> attributes=getPrincipalAttributes(principal,service);
-  logger.debug("Principal attributes available for selection of username attribute [{}] are [{}].",this.usernameAttribute,attributes);
+  LOGGER.debug("Principal attributes available for selection of username attribute [{}] are [{}].",this.usernameAttribute,attributes);
   if (attributes.containsKey(this.usernameAttribute)) {
     principalId=attributes.get(this.usernameAttribute).toString();
   }
  else   if (originalPrincipalAttributes.containsKey(this.usernameAttribute)) {
-    logger.warn("The selected username attribute [{}] was retrieved as a direct " + "principal attributes and not through the attribute release policy for service [{}]. " + "CAS is unable to detect new attribute values for [{}] after authentication unless the attribute "+ "is explicitly authorized for release via the service attribute release policy.",this.usernameAttribute,service,this.usernameAttribute);
+    LOGGER.warn("The selected username attribute [{}] was retrieved as a direct " + "principal attributes and not through the attribute release policy for service [{}]. " + "CAS is unable to detect new attribute values for [{}] after authentication unless the attribute "+ "is explicitly authorized for release via the service attribute release policy.",this.usernameAttribute,service,this.usernameAttribute);
     principalId=originalPrincipalAttributes.get(this.usernameAttribute).toString();
   }
  else {
-    logger.warn("Principal [{}] does not have an attribute [{}] among attributes [{}] so CAS cannot " + "provide the user attribute the service expects. " + "CAS will instead return the default principal id [{}]. Ensure the attribute selected as the username "+ "is allowed to be released by the service attribute release policy.",principalId,this.usernameAttribute,attributes,principalId);
+    LOGGER.warn("Principal [{}] does not have an attribute [{}] among attributes [{}] so CAS cannot " + "provide the user attribute the service expects. " + "CAS will instead return the default principal id [{}]. Ensure the attribute selected as the username "+ "is allowed to be released by the service attribute release policy.",principalId,this.usernameAttribute,attributes,principalId);
   }
-  logger.debug("Principal id to return for [{}] is [{}]. The default principal id is [{}].",service.getId(),principalId,principal.getId());
+  LOGGER.debug("Principal id to return for [{}] is [{}]. The default principal id is [{}].",service.getId(),principalId,principal.getId());
   return principalId;
 }

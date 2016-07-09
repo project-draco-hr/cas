@@ -6,7 +6,7 @@
   final DefaultRegisteredServiceAccessStrategy authz=new DefaultRegisteredServiceAccessStrategy(false,false);
   final Map<String,Set<String>> attrs=new HashMap<>();
   attrs.put("cn",Sets.newHashSet("v1, v2, v3"));
-  attrs.put("memberOf",Sets.newHashSet(Arrays.asList("v4, v5, v6")));
+  attrs.put("memberOf",Sets.newHashSet(Lists.newArrayList("v4, v5, v6")));
   authz.setRequiredAttributes(attrs);
   r.setAccessStrategy(authz);
   final RegisteredService r2=this.dao.save(r);

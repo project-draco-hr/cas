@@ -1,0 +1,4 @@
+{
+  final FormatDnResolver resolver=new FormatDnResolver(l.getBaseDn());
+  return new Authenticator(resolver,getPooledBindAuthenticationHandler(l));
+}

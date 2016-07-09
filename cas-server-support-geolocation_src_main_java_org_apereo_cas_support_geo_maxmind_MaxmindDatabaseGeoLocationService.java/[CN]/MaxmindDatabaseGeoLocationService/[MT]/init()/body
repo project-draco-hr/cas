@@ -1,13 +1,13 @@
 {
   try {
-    if (this.cityDatabase.exists()) {
-      this.cityDatabaseReader=new DatabaseReader.Builder(this.cityDatabase.getFile()).withCache(new CHMCache()).build();
+    if (casProperties.getMaxmind().getCityDatabase().exists()) {
+      this.cityDatabaseReader=new DatabaseReader.Builder(casProperties.getMaxmind().getCityDatabase().getFile()).withCache(new CHMCache()).build();
     }
-    if (this.countryDatabase.exists()) {
-      this.countryDatabaseReader=new DatabaseReader.Builder(this.countryDatabase.getFile()).withCache(new CHMCache()).build();
+    if (casProperties.getMaxmind().getCountryDatabase().exists()) {
+      this.countryDatabaseReader=new DatabaseReader.Builder(casProperties.getMaxmind().getCountryDatabase().getFile()).withCache(new CHMCache()).build();
     }
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
 }

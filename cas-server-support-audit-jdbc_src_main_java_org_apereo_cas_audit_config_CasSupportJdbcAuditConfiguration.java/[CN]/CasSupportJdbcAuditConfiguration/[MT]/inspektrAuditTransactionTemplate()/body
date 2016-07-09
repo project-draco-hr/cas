@@ -1,0 +1,6 @@
+{
+  final TransactionTemplate t=new TransactionTemplate(inspektrAuditTransactionManager());
+  t.setIsolationLevelName(casProperties.getAudit().getJdbc().getIsolationLevelName());
+  t.setPropagationBehaviorName(casProperties.getAudit().getJdbc().getPropagationBehaviorName());
+  return t;
+}

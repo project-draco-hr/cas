@@ -1,3 +1,0 @@
-{
-  return new CasProtocolView(this.cas2FailureView,this.applicationContext,this.springTemplateEngine,this.properties);
-}

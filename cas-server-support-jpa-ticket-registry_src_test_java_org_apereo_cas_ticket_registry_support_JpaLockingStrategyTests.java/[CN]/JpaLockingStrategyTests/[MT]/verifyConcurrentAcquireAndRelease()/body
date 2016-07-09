@@ -1,7 +1,7 @@
 {
   final ExecutorService executor=Executors.newFixedThreadPool(CONCURRENT_SIZE);
   try {
-    testConcurrency(executor,Arrays.asList(getConcurrentLocks("concurrent-new")));
+    testConcurrency(executor,Lists.newArrayList(getConcurrentLocks("concurrent-new")));
   }
  catch (  final Exception e) {
     logger.debug("testConcurrentAcquireAndRelease produced an error",e);

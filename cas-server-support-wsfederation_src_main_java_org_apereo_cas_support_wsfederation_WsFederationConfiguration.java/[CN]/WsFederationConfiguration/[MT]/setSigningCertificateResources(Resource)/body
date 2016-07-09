@@ -1,4 +1,4 @@
 {
-  this.signingCertificateResources=Arrays.asList(signingCertificateResources);
+  this.signingCertificateResources=Lists.newArrayList(signingCertificateResources);
   createSigningWallet(this.signingCertificateResources);
 }

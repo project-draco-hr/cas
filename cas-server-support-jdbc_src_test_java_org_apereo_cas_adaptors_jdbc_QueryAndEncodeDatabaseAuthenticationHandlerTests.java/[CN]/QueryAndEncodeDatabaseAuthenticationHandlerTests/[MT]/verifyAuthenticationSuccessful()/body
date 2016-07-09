@@ -5,6 +5,7 @@
   q.setSql(buildSql());
   q.setNumberOfIterationsFieldName("numIterations");
   q.setStaticSalt(STATIC_SALT);
+  q.setSaltFieldName("salt");
   final UsernamePasswordCredential c=TestUtils.getCredentialsWithSameUsernameAndPassword("user1");
   final HandlerResult r=q.authenticateUsernamePasswordInternal(c);
   assertNotNull(r);

@@ -1,0 +1,3 @@
+{
+  return configureCookieGenerator(new WarningCookieRetrievingCookieGenerator(),casProperties.getWarningCookie());
+}

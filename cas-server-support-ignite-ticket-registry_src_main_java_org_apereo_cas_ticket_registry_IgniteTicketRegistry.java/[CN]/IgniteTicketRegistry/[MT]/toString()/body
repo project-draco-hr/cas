@@ -1,3 +1,3 @@
 {
-  return new ToStringBuilder(this).appendSuper(super.toString()).append("cacheName",this.cacheName).append("keyStoreType",this.keyStoreType).append("keyStoreFilePath",this.keyStoreFilePath).append("keyStorePassword",this.keyStorePassword).append("trustStoreType",this.trustStoreType).append("protocol",this.protocol).append("keyAlgorithm",this.keyAlgorithm).append("trustStoreFilePath",this.trustStoreFilePath).append("trustStorePassword",this.trustStorePassword).append("supportRegistryState",this.supportRegistryState).toString();
+  return new ToStringBuilder(this).appendSuper(super.toString()).append("igniteConfiguration",casProperties.getTicket().getRegistry().getIgnite()).append("supportRegistryState",this.supportRegistryState).toString();
 }

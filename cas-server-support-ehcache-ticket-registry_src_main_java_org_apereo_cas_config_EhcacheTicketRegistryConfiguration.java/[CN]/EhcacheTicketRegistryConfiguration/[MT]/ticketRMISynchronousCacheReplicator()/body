@@ -1,3 +1,3 @@
 {
-  return new RMISynchronousCacheReplicator(this.replicatePuts,this.replicatePutsViaCopy,this.replicateUpdates,this.replicateUpdatesViaCopy,this.replicateRemovals);
+  return new RMISynchronousCacheReplicator(casProperties.getTicket().getRegistry().getEhcache().isReplicatePuts(),casProperties.getTicket().getRegistry().getEhcache().isReplicatePutsViaCopy(),casProperties.getTicket().getRegistry().getEhcache().isReplicateUpdates(),casProperties.getTicket().getRegistry().getEhcache().isReplicateUpdatesViaCopy(),casProperties.getTicket().getRegistry().getEhcache().isReplicateRemovals());
 }

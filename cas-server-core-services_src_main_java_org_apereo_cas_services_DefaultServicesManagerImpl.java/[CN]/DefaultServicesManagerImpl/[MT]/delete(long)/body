@@ -5,6 +5,6 @@
   }
   this.serviceRegistryDao.delete(r);
   this.services.remove(id);
-  this.eventPublisher.publishEvent(new CasRegisteredServiceDeletedEvent(this,r));
+  publishEvent(new CasRegisteredServiceDeletedEvent(this,r));
   return r;
 }

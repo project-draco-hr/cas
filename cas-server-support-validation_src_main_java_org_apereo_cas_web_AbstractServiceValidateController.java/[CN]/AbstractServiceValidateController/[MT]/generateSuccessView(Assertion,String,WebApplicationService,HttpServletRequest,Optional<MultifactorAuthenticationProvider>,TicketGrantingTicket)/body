@@ -7,7 +7,7 @@
     modelAndView.addObject(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET,proxyGrantingTicket.getId());
   }
   if (contextProvider.isPresent()) {
-    modelAndView.addObject(this.authenticationContextAttribute,contextProvider);
+    modelAndView.addObject(this.authnContextAttribute,contextProvider);
   }
   final Map<String,?> augmentedModelObjects=augmentSuccessViewModelObjects(assertion);
   if (augmentedModelObjects != null) {

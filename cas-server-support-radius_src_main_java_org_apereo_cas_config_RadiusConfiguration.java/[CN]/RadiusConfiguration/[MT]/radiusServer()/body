@@ -1,11 +1,18 @@
 {
-  final JRadiusServerImpl impl=new JRadiusServerImpl(this.protocol,radiusClientFactory());
-  impl.setRetries(this.retries);
-  impl.setNasIdentifier(this.nasIdentifier);
-  impl.setNasPort(this.nasPort);
-  impl.setNasPortId(this.nasPortId);
-  impl.setNasRealPort(this.nasRealPort);
-  impl.setNasIpAddress(this.nasIp);
-  impl.setNasIpv6Address(this.nasIpv6);
+  final RadiusClientFactory factory=new RadiusClientFactory();
+  factory.setAccountingPort(casProperties.getAuthn().getRadius().getClient().getAccountingPort());
+  factory.setAuthenticationPort(casProperties.getAuthn().getRadius().getClient().getAuthenticationPort());
+  factory.setInetAddress(casProperties.getAuthn().getRadius().getClient().getInetAddress());
+  factory.setSharedSecret(casProperties.getAuthn().getRadius().getClient().getSharedSecret());
+  factory.setSocketTimeout(casProperties.getAuthn().getRadius().getClient().getSocketTimeout());
+  final RadiusProtocol protocol=RadiusProtocol.valueOf(casProperties.getAuthn().getRadius().getServer().getProtocol());
+  final JRadiusServerImpl impl=new JRadiusServerImpl(protocol,factory);
+  impl.setRetries(casProperties.getAuthn().getRadius().getServer().getRetries());
+  impl.setNasIdentifier(casProperties.getAuthn().getRadius().getServer().getNasIdentifier());
+  impl.setNasPort(casProperties.getAuthn().getRadius().getServer().getNasPort());
+  impl.setNasPortId(casProperties.getAuthn().getRadius().getServer().getNasPortId());
+  impl.setNasRealPort(casProperties.getAuthn().getRadius().getServer().getNasRealPort());
+  impl.setNasIpAddress(casProperties.getAuthn().getRadius().getServer().getNasIpAddress());
+  impl.setNasIpv6Address(casProperties.getAuthn().getRadius().getServer().getNasIpv6Address());
   return impl;
 }

@@ -1,0 +1,5 @@
+{
+  final RegisteredServiceAuthenticationHandlerResolver r=new RegisteredServiceAuthenticationHandlerResolver();
+  r.setServicesManager(servicesManager);
+  return r;
+}

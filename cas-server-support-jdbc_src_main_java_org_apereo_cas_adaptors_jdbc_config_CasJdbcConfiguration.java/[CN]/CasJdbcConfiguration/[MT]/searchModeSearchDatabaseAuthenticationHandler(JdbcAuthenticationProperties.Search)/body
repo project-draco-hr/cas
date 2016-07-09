@@ -1,0 +1,19 @@
+{
+  final SearchModeSearchDatabaseAuthenticationHandler h=new SearchModeSearchDatabaseAuthenticationHandler();
+  h.setDataSource(Beans.newHickariDataSource(b));
+  h.setFieldPassword(b.getFieldPassword());
+  h.setFieldUser(b.getFieldUser());
+  h.setTableUsers(b.getTableUsers());
+  if (searchModePasswordEncoder != null) {
+    h.setPasswordEncoder(searchModePasswordEncoder);
+  }
+  if (searchModePasswordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(searchModePasswordPolicyConfiguration);
+  }
+  if (searchModePrincipalNameTransformer != null) {
+    h.setPrincipalNameTransformer(searchModePrincipalNameTransformer);
+  }
+  h.setPrincipalFactory(jdbcPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

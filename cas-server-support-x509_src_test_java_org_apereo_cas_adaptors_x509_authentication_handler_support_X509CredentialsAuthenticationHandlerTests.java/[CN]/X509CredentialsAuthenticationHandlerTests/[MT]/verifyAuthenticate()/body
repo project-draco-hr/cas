@@ -15,7 +15,7 @@
       assertEquals(this.expectedResult.getClass(),e.getClass());
     }
  else {
-      fail("Authentication failed when it should have succeeded.");
+      fail("Authentication failed when it should have succeeded: " + e.getMessage());
     }
   }
 }

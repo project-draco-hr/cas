@@ -1,0 +1,5 @@
+{
+  final EhCacheTicketRegistry r=new EhCacheTicketRegistry(ehcacheTicketsCache);
+  r.setCipherExecutor(cipherExecutor);
+  return r;
+}

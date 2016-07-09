@@ -1,0 +1,4 @@
+{
+  this.authenticationHandlersResolvers.put(yubikeyAuthenticationHandler(),null);
+  authenticationMetadataPopulators.add(0,yubikeyAuthenticationMetaDataPopulator());
+}

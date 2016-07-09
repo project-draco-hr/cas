@@ -1,0 +1,18 @@
+{
+  final ShiroAuthenticationHandler h=new ShiroAuthenticationHandler();
+  h.setPrincipalFactory(shiroPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  h.setRequiredRoles(casProperties.getAuthn().getShiro().getRequiredRoles());
+  h.setRequiredPermissions(casProperties.getAuthn().getShiro().getRequiredPermissions());
+  h.loadShiroConfiguration(casProperties.getAuthn().getShiro().getConfig().getLocation());
+  if (shiroPasswordEncoder != null) {
+    h.setPasswordEncoder(shiroPasswordEncoder);
+  }
+  if (shiroPasswordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(shiroPasswordPolicyConfiguration);
+  }
+  if (shiroPrincipalNameTransformer != null) {
+    h.setPrincipalNameTransformer(shiroPrincipalNameTransformer);
+  }
+  return h;
+}

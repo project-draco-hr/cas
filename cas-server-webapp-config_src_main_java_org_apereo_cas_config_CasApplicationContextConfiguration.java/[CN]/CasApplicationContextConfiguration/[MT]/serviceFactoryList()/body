@@ -1,5 +1,0 @@
-{
-  final List<ServiceFactory> list=new ArrayList<>();
-  list.add(this.webApplicationServiceFactory);
-  return list;
-}

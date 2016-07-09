@@ -1,0 +1,5 @@
+{
+  final DefaultPrincipalElectionStrategy s=new DefaultPrincipalElectionStrategy();
+  s.setPrincipalFactory(defaultPrincipalFactory());
+  return s;
+}

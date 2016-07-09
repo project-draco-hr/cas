@@ -1,0 +1,9 @@
+{
+  final WsFederationAction a=new WsFederationAction();
+  a.setAuthenticationSystemSupport(authenticationSystemSupport);
+  a.setCentralAuthenticationService(centralAuthenticationService);
+  a.setConfiguration(wsFedConfig());
+  a.setWsFederationHelper(wsFederationHelper());
+  a.setServicesManager(this.servicesManager);
+  return a;
+}

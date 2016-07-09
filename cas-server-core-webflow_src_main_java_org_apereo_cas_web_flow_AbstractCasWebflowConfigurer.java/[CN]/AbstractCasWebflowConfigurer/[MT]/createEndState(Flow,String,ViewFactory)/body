@@ -1,5 +1,9 @@
 {
   try {
+    if (containsFlowState(flow,id)) {
+      logger.debug("Flow {} already contains a definition for state id {}",flow.getId(),id);
+      return;
+    }
     final EndState endState=new EndState(flow,id);
     final Action finalResponseAction=new ViewFactoryActionAdapter(viewFactory);
     endState.setFinalResponseAction(finalResponseAction);

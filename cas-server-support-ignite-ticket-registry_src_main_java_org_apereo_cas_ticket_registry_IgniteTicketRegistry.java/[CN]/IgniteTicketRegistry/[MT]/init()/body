@@ -12,5 +12,5 @@
  else   if (Ignition.state() == IgniteState.STARTED) {
     this.ignite=Ignition.ignite();
   }
-  this.ticketIgniteCache=this.ignite.getOrCreateCache(this.cacheName);
+  this.ticketIgniteCache=this.ignite.getOrCreateCache(casProperties.getTicket().getRegistry().getIgnite().getTicketsCache().getCacheName());
 }

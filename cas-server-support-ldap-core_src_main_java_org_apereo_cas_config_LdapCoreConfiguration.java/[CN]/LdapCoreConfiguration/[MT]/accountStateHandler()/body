@@ -1,0 +1,5 @@
+{
+  final DefaultAccountStateHandler handler=new DefaultAccountStateHandler();
+  configureHandler(handler);
+  return handler;
+}

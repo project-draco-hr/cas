@@ -1,0 +1,6 @@
+{
+  final DefaultTicketGrantingTicketFactory f=new DefaultTicketGrantingTicketFactory();
+  f.setTicketGrantingTicketExpirationPolicy(grantingTicketExpirationPolicy());
+  f.setTicketGrantingTicketUniqueTicketIdGenerator(ticketGrantingTicketUniqueIdGenerator());
+  return f;
+}

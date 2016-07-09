@@ -1,0 +1,9 @@
+{
+  for (  final MetadataResolverAdapter adapter : adapters) {
+    final EntityDescriptor e=adapter.getEntityDescriptorForEntityId(entityId);
+    if (e != null) {
+      return e;
+    }
+  }
+  return null;
+}

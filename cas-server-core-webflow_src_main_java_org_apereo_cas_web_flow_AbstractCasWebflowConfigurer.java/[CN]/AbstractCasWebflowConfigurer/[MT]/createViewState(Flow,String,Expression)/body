@@ -1,5 +1,9 @@
 {
   try {
+    if (containsFlowState(flow,id)) {
+      logger.debug("Flow {} already contains a definition for state id {}",flow.getId(),id);
+      return (ViewState)flow.getTransitionableState(id);
+    }
     final ViewFactory viewFactory=this.flowBuilderServices.getViewFactoryCreator().createViewFactory(expression,this.flowBuilderServices.getExpressionParser(),this.flowBuilderServices.getConversionService(),null,this.flowBuilderServices.getValidator(),this.flowBuilderServices.getValidationHintResolver());
     final ViewState viewState=new ViewState(flow,id,viewFactory);
     logger.debug("Added view state {}",viewState.getId());

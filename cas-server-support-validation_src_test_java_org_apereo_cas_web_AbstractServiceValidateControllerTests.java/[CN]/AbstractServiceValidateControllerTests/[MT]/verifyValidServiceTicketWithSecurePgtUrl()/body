@@ -1,5 +1,5 @@
 {
   this.serviceValidateController.setProxyHandler(new Cas10ProxyHandler());
   final ModelAndView modelAndView=getModelAndViewUponServiceValidationWithSecurePgtUrl();
-  assertEquals(AbstractServiceValidateController.DEFAULT_SERVICE_SUCCESS_VIEW_NAME,modelAndView.getViewName());
+  assertTrue(modelAndView.getView().toString().contains("Success"));
 }

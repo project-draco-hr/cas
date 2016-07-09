@@ -1,13 +1,3 @@
 {
-  final LocalContainerEntityManagerFactoryBean bean=new LocalContainerEntityManagerFactoryBean();
-  bean.setJpaVendorAdapter(ticketJpaVendorAdapter());
-  bean.setPersistenceUnitName("jpaTicketRegistryContext");
-  bean.setPackagesToScan(ticketPackagesToScan());
-  bean.setDataSource(dataSourceTicket());
-  final Properties properties=new Properties();
-  properties.put("hibernate.dialect",this.hibernateDialect);
-  properties.put("hibernate.hbm2ddl.auto",this.hibernateHbm2DdlAuto);
-  properties.put("hibernate.jdbc.batch_size",this.hibernateBatchSize);
-  bean.setJpaProperties(properties);
-  return bean;
+  return newEntityManagerFactoryBean(new JpaConfigDataHolder(newHibernateJpaVendorAdapter(casProperties.getJdbc()),"jpaTicketRegistryContext",ticketPackagesToScan(),dataSourceTicket()),casProperties.getTicket().getRegistry().getJpa());
 }

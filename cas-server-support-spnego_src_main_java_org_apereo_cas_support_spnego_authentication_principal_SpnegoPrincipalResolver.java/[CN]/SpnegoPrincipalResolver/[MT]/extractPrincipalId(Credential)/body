@@ -1,12 +1,5 @@
 {
   final SpnegoCredential c=(SpnegoCredential)credential;
   final String id=c.getPrincipal().getId();
-switch (this.transformPrincipalId) {
-case UPPERCASE:
-    return id.toUpperCase(Locale.ENGLISH);
-case LOWERCASE:
-  return id.toLowerCase(Locale.ENGLISH);
-default :
-return id;
-}
+  return id;
 }

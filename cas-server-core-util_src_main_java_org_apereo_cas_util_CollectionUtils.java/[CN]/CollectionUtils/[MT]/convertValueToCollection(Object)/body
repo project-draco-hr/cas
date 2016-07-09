@@ -11,7 +11,7 @@
     throw new UnsupportedOperationException(Map.class.getCanonicalName() + " is not supported");
   }
  else   if (obj.getClass().isArray()) {
-    c.addAll(Arrays.asList((Object[])obj));
+    c.addAll(Lists.newArrayList((Object[])obj));
     LOGGER.debug("Converting array attribute [{}]",obj);
   }
  else {

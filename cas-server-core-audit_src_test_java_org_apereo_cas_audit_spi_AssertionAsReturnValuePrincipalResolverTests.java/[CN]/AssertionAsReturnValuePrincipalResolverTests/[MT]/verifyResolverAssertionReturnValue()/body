@@ -5,7 +5,7 @@
   final TicketOrCredentialPrincipalResolver delegate=new TicketOrCredentialPrincipalResolver(getCentralAuthenticationService());
   final AssertionAsReturnValuePrincipalResolver res=new AssertionAsReturnValuePrincipalResolver(delegate);
   final JoinPoint jp=mock(JoinPoint.class);
-  final Assertion returnedAssertion=new ImmutableAssertion(authnResult.getAuthentication(),Arrays.asList(authn),authnResult.getService(),true);
+  final Assertion returnedAssertion=new ImmutableAssertion(authnResult.getAuthentication(),Lists.newArrayList(authn),authnResult.getService(),true);
   final String result=res.resolveFrom(jp,returnedAssertion);
   assertNotNull(result);
   assertEquals(result,c.getId());

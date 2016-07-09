@@ -1,0 +1,5 @@
+{
+  final HazelcastTicketRegistry r=new HazelcastTicketRegistry(hazelcast(),casProperties.getTicket().getRegistry().getHazelcast().getMapName(),casProperties.getTicket().getRegistry().getHazelcast().getPageSize());
+  r.setCipherExecutor(cipherExecutor);
+  return r;
+}

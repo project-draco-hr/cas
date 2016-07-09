@@ -1,0 +1,20 @@
+{
+  final MongoAuthenticationHandler mongo=new MongoAuthenticationHandler();
+  mongo.setAttributes(casProperties.getAuthn().getMongo().getAttributes());
+  mongo.setCollectionName(casProperties.getAuthn().getMongo().getCollectionName());
+  mongo.setMongoHostUri(casProperties.getAuthn().getMongo().getMongoHostUri());
+  mongo.setPasswordAttribute(casProperties.getAuthn().getMongo().getPasswordAttribute());
+  mongo.setUsernameAttribute(casProperties.getAuthn().getMongo().getUsernameAttribute());
+  if (principalNameTransformer != null) {
+    mongo.setPrincipalNameTransformer(principalNameTransformer);
+  }
+  if (passwordEncoder != null) {
+    mongo.setPasswordEncoder(passwordEncoder);
+  }
+  if (mongoPasswordEncoder != null) {
+    mongo.setMongoPasswordEncoder(mongoPasswordEncoder);
+  }
+  mongo.setPrincipalFactory(mongoPrincipalFactory());
+  mongo.setServicesManager(servicesManager);
+  return mongo;
+}

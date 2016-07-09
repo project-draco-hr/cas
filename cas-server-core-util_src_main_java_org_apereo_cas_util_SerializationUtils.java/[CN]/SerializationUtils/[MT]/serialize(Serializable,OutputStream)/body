@@ -1,20 +1,8 @@
 {
-  ObjectOutputStream out=null;
-  try {
-    out=new ObjectOutputStream(outputStream);
+  try (final ObjectOutputStream out=new ObjectOutputStream(outputStream)){
     out.writeObject(object);
   }
  catch (  final IOException e) {
-    throw new RuntimeException(e);
-  }
- finally {
-    if (out != null) {
-      try {
-        out.close();
-      }
- catch (      final IOException e) {
-        throw new RuntimeException(e);
-      }
-    }
+    throw Throwables.propagate(e);
   }
 }

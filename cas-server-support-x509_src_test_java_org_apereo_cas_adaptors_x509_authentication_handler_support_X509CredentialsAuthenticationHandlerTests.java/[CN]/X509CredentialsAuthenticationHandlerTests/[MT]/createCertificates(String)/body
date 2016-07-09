@@ -3,7 +3,7 @@
   int i=0;
   for (  final String file : files) {
     try {
-      certs[i++]=(X509Certificate)CertUtil.readCertificate(new ClassPathResource(file).getInputStream());
+      certs[i++]=CertUtil.readCertificate(new ClassPathResource(file).getInputStream());
     }
  catch (    final Exception e) {
       throw new RuntimeException("Error creating certificate at " + file,e);

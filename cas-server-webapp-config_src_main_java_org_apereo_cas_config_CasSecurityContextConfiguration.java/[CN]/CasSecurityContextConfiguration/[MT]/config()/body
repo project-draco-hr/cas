@@ -1,12 +1,12 @@
 {
   try {
-    if (StringUtils.isNotBlank(this.loginUrl) && StringUtils.isNotBlank(this.callbackUrl) && StringUtils.isNotBlank(this.roles)) {
-      final IndirectClient client=new CasClient(this.loginUrl);
+    if (StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getLoginUrl()) && StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getService()) && StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getAdminRoles())) {
+      final IndirectClient client=new CasClient(casProperties.getAdminPagesSecurity().getLoginUrl());
       final Properties properties=new Properties();
-      properties.load(this.userPropertiesFile.getInputStream());
+      properties.load(this.casProperties.getAdminPagesSecurity().getUsers().getInputStream());
       client.setAuthorizationGenerator(new SpringSecurityPropertiesAuthorizationGenerator(properties));
-      final Config cfg=new Config(this.callbackUrl,client);
-      cfg.setAuthorizer(new RequireAnyRoleAuthorizer(org.springframework.util.StringUtils.commaDelimitedListToSet(this.roles)));
+      final Config cfg=new Config(casProperties.getAdminPagesSecurity().getService(),client);
+      cfg.setAuthorizer(new RequireAnyRoleAuthorizer(org.springframework.util.StringUtils.commaDelimitedListToSet(casProperties.getAdminPagesSecurity().getAdminRoles())));
       return cfg;
     }
   }

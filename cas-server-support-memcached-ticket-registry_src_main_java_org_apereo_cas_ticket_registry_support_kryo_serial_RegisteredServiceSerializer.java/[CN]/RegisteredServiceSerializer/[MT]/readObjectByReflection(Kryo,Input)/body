@@ -1,0 +1,10 @@
+{
+  try {
+    final String className=kryo.readObject(input,String.class);
+    final Class<T> clazz=(Class<T>)Class.forName(className);
+    return kryo.readObject(input,clazz);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

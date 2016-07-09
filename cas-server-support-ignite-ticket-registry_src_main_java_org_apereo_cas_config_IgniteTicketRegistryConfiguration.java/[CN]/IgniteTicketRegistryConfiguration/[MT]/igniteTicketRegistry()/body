@@ -1,0 +1,6 @@
+{
+  final IgniteTicketRegistry r=new IgniteTicketRegistry();
+  r.setIgniteConfiguration(igniteConfiguration());
+  r.setCipherExecutor(cipherExecutor);
+  return r;
+}

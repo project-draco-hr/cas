@@ -8,6 +8,6 @@
   request.addParameter("ticket",sId.getId());
   request.addParameter("pgtUrl","duh");
   final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
-  assertEquals(AbstractServiceValidateController.DEFAULT_SERVICE_SUCCESS_VIEW_NAME,modelAndView.getViewName());
+  assertTrue(modelAndView.getView().toString().contains("Success"));
   assertNull(modelAndView.getModel().get("pgtIou"));
 }

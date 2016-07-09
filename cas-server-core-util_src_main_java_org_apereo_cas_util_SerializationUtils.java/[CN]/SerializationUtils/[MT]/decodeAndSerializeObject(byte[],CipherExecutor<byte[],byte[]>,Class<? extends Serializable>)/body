@@ -1,4 +1,0 @@
-{
-  final byte[] decoded=cipher.decode(object);
-  return deserializeAndCheckObject(decoded,type);
-}

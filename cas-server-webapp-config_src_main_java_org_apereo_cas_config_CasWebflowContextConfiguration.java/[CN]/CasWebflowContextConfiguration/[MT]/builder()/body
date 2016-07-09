@@ -2,6 +2,6 @@
   final FlowBuilderServicesBuilder builder=new FlowBuilderServicesBuilder(this.applicationContext);
   builder.setViewFactoryCreator(viewFactoryCreator());
   builder.setExpressionParser(expressionParser());
-  builder.setDevelopmentMode(this.webflowDevelopment);
+  builder.setDevelopmentMode(casProperties.getWebflow().isRefresh());
   return builder.build();
 }

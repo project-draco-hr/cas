@@ -1,4 +1,0 @@
-{
-  this.jsonServiceRegistryDao=jsonServiceRegistryDao;
-  this.serviceRegistryDao=serviceRegistryDao;
-}

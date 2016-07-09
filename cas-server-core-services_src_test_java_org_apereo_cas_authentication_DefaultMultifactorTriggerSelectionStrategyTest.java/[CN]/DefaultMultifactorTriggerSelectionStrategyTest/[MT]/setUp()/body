@@ -1,7 +1,7 @@
 {
   strategy=new DefaultMultifactorTriggerSelectionStrategy();
+  strategy.setGlobalPrincipalAttributeNameTriggers(P_ATTRS_12);
   strategy.setRequestParameter(REQUEST_PARAM);
-  strategy.setPrincipalAttribute(P_ATTRS_12);
   when(MFA_PROVIDER_1.getId()).thenReturn(MFA_PROVIDER_ID_1);
   when(MFA_PROVIDER_2.getId()).thenReturn(MFA_PROVIDER_ID_2);
 }

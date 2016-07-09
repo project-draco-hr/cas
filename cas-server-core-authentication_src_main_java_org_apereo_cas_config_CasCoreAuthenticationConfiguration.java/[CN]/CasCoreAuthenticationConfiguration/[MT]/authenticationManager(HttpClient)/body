@@ -1,0 +1,8 @@
+{
+  final PolicyBasedAuthenticationManager p=new PolicyBasedAuthenticationManager();
+  p.setAuthenticationMetaDataPopulators(authenticationMetadataPopulators());
+  p.setHandlerResolverMap(authenticationHandlersResolvers(httpClient));
+  p.setAuthenticationHandlerResolver(registeredServiceAuthenticationHandlerResolver());
+  p.setAuthenticationPolicy(defaultAuthenticationPolicy());
+  return p;
+}

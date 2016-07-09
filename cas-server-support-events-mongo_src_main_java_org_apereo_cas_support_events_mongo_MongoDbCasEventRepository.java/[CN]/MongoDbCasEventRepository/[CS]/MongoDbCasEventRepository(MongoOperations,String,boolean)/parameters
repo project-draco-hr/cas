@@ -1,0 +1,3 @@
+MongoOperations mongoTemplate
+String collectionName
+boolean dropCollection

@@ -1,6 +1,6 @@
 {
   final FlowExecutorBuilder builder=new FlowExecutorBuilder(logoutFlowRegistry(),this.applicationContext);
-  builder.setAlwaysRedirectOnPause(this.alwaysPauseOnRedirect);
-  builder.setRedirectInSameState(this.redirectSameState);
+  builder.setAlwaysRedirectOnPause(casProperties.getWebflow().isAlwaysPauseRedirect());
+  builder.setRedirectInSameState(casProperties.getWebflow().isRedirectSameState());
   return builder.build();
 }

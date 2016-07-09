@@ -1,19 +1,20 @@
 {
   final List<JRadiusServerImpl> list=new ArrayList<>();
   final RadiusClientFactory factory=new RadiusClientFactory();
-  factory.setAccountingPort(this.accountingPort);
-  factory.setAuthenticationPort(this.authenticationPort);
-  factory.setInetAddress(this.inetAddress);
-  factory.setSharedSecret(this.sharedSecret);
-  factory.setSocketTimeout(this.socketTimeout);
-  final JRadiusServerImpl impl=new JRadiusServerImpl(this.protocol,factory);
-  impl.setRetries(this.retries);
-  impl.setNasIdentifier(this.nasIdentifier);
-  impl.setNasPort(this.nasPort);
-  impl.setNasPortId(this.nasPortId);
-  impl.setNasRealPort(this.nasRealPort);
-  impl.setNasIpAddress(this.nasIp);
-  impl.setNasIpv6Address(this.nasIpv6);
+  factory.setAccountingPort(casProperties.getAuthn().getMfa().getRadius().getClient().getAccountingPort());
+  factory.setAuthenticationPort(casProperties.getAuthn().getMfa().getRadius().getClient().getAuthenticationPort());
+  factory.setInetAddress(casProperties.getAuthn().getMfa().getRadius().getClient().getInetAddress());
+  factory.setSharedSecret(casProperties.getAuthn().getMfa().getRadius().getClient().getSharedSecret());
+  factory.setSocketTimeout(casProperties.getAuthn().getMfa().getRadius().getClient().getSocketTimeout());
+  final RadiusProtocol protocol=RadiusProtocol.valueOf(casProperties.getAuthn().getMfa().getRadius().getServer().getProtocol());
+  final JRadiusServerImpl impl=new JRadiusServerImpl(protocol,factory);
+  impl.setRetries(casProperties.getAuthn().getMfa().getRadius().getServer().getRetries());
+  impl.setNasIdentifier(casProperties.getAuthn().getMfa().getRadius().getServer().getNasIdentifier());
+  impl.setNasPort(casProperties.getAuthn().getMfa().getRadius().getServer().getNasPort());
+  impl.setNasPortId(casProperties.getAuthn().getMfa().getRadius().getServer().getNasPortId());
+  impl.setNasRealPort(casProperties.getAuthn().getMfa().getRadius().getServer().getNasRealPort());
+  impl.setNasIpAddress(casProperties.getAuthn().getMfa().getRadius().getServer().getNasIpAddress());
+  impl.setNasIpv6Address(casProperties.getAuthn().getMfa().getRadius().getServer().getNasIpv6Address());
   list.add(impl);
   return list;
 }

@@ -1,0 +1,6 @@
+{
+  final BasicAuthenticationWebflowConfigurer w=new BasicAuthenticationWebflowConfigurer();
+  w.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  w.setFlowBuilderServices(flowBuilderServices);
+  return w;
+}

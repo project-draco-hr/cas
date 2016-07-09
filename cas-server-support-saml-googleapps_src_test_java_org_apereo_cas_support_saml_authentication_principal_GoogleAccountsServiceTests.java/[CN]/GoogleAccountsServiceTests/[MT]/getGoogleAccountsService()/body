@@ -7,5 +7,5 @@
   when(regSvc.getUsernameAttributeProvider()).thenReturn(new DefaultRegisteredServiceUsernameProvider());
   final ServicesManager servicesManager=mock(ServicesManager.class);
   when(servicesManager.findServiceBy(any(Service.class))).thenReturn(regSvc);
-  return factory.createService(request);
+  return (GoogleAccountsService)factory.createService(request);
 }

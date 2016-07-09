@@ -1,0 +1,7 @@
+{
+  final DefaultServiceTicketFactory f=new DefaultServiceTicketFactory();
+  f.setServiceTicketExpirationPolicy(serviceTicketExpirationPolicy());
+  f.setUniqueTicketIdGeneratorsForService(uniqueIdGeneratorsMap());
+  f.setTrackMostRecentSession(casProperties.getTicket().getTgt().isOnlyTrackMostRecentSession());
+  return f;
+}

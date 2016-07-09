@@ -1,0 +1,3 @@
+{
+  return new MongoDbCasEventRepository(mongoEventsTemplate(),casProperties.getEvents().getMongodb().getCollection(),casProperties.getEvents().getMongodb().isDropCollection());
+}

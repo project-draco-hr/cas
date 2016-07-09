@@ -1,0 +1,5 @@
+{
+  final DynamicMetadataResolverAdapter adapter=new DynamicMetadataResolverAdapter();
+  configureAdapter(adapter);
+  return adapter;
+}

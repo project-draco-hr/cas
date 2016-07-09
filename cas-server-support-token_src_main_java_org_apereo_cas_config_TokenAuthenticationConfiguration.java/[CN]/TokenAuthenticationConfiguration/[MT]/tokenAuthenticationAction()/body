@@ -1,0 +1,6 @@
+{
+  final TokenAuthenticationAction a=new TokenAuthenticationAction();
+  a.setAuthenticationSystemSupport(this.authenticationSystemSupport);
+  a.setCentralAuthenticationService(this.centralAuthenticationService);
+  return a;
+}

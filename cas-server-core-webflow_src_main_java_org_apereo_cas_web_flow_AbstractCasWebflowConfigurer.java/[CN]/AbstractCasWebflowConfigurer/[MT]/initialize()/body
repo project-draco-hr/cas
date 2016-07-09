@@ -1,7 +1,7 @@
 {
   try {
     logger.debug("Initializing CAS webflow configuration...");
-    if (this.autoconfigureWebflow) {
+    if (casProperties.getWebflow().isAutoconfigure()) {
       doInitialize();
     }
  else {

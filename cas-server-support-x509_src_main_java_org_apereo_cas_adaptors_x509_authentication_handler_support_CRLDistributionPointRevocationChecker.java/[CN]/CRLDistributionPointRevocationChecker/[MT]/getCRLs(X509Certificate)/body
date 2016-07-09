@@ -12,7 +12,7 @@
     throw new IllegalArgumentException("Unavailable CRL policy is not defined");
   }
   final URI[] urls=getDistributionPoints(cert);
-  logger.debug("Distribution points for {}: {}.",CertUtils.toString(cert),Arrays.asList(urls));
+  logger.debug("Distribution points for {}: {}.",CertUtils.toString(cert),Lists.newArrayList(urls));
   final List<X509CRL> listOfLocations=new ArrayList<>(urls.length);
   boolean stopFetching=false;
   try {
@@ -43,7 +43,7 @@
  catch (        final Exception e) {
           logger.error("Error fetching CRL at {}",url,e);
           if (this.throwOnFetchFailure) {
-            throw new RuntimeException(e);
+            throw Throwables.propagate(e);
           }
         }
       }
@@ -54,7 +54,7 @@
     }
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
   logger.debug("Found {} CRLs",listOfLocations.size());
   return listOfLocations;

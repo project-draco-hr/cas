@@ -1,6 +1,5 @@
 {
   super.init();
-  initializeResourcesFromContext();
   if (!validateConfiguration()) {
     return;
   }
@@ -9,7 +8,7 @@
     ResourceCRLRevocationChecker.this.addCrls(results);
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
   final Runnable scheduledFetcher=new Runnable(){
     private transient Logger logger=LoggerFactory.getLogger(this.getClass());
@@ -25,5 +24,10 @@
     }
   }
 ;
-  this.scheduler.scheduleAtFixedRate(scheduledFetcher,this.refreshInterval,this.refreshInterval,TimeUnit.SECONDS);
+  try {
+    this.scheduler.scheduleAtFixedRate(scheduledFetcher,this.refreshInterval,this.refreshInterval,TimeUnit.SECONDS);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
 }

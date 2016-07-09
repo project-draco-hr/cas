@@ -1,0 +1,9 @@
+{
+  final WsFederationCredentialsToPrincipalResolver r=new WsFederationCredentialsToPrincipalResolver();
+  r.setConfiguration(wsFedConfig());
+  r.setAttributeRepository(attributeRepository);
+  r.setPrincipalAttributeName(casProperties.getAuthn().getWsfed().getPrincipal().getPrincipalAttribute());
+  r.setReturnNullIfNoAttributes(casProperties.getAuthn().getWsfed().getPrincipal().isReturnNull());
+  r.setPrincipalFactory(adfsPrincipalFactory());
+  return r;
+}

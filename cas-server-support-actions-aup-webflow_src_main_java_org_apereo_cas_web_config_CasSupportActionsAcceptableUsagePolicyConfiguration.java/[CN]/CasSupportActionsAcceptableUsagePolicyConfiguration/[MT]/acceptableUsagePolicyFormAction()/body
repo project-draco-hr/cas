@@ -1,0 +1,5 @@
+{
+  final AcceptableUsagePolicyFormAction a=new AcceptableUsagePolicyFormAction();
+  a.setRepository(defaultAcceptableUsagePolicyRepository());
+  return a;
+}

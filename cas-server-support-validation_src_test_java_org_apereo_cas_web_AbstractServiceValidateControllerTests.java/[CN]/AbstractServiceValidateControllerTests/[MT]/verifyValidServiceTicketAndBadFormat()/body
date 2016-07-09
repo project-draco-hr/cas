@@ -8,5 +8,5 @@
   request.addParameter("ticket",sId.getId());
   request.addParameter("format","NOTHING");
   final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
-  assertEquals(modelAndView.getViewName(),AbstractServiceValidateController.DEFAULT_SERVICE_FAILURE_VIEW_NAME);
+  assertFalse(modelAndView.getView().toString().contains("Success"));
 }

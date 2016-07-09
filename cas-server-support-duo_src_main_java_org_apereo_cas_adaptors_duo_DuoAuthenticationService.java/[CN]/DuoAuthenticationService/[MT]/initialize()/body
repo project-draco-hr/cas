@@ -1,6 +1,6 @@
 {
-  Assert.hasLength(this.duoApiHost,"Duo API host cannot be blank");
-  Assert.hasLength(this.duoIntegrationKey,"Duo integration key cannot be blank");
-  Assert.hasLength(this.duoSecretKey,"Duo secret key cannot be blank");
-  Assert.hasLength(this.duoApplicationKey,"Duo application key cannot be blank");
+  Assert.hasLength(casProperties.getAuthn().getMfa().getDuo().getDuoApiHost(),"Duo API host cannot be blank");
+  Assert.hasLength(casProperties.getAuthn().getMfa().getDuo().getDuoIntegrationKey(),"Duo integration key cannot be blank");
+  Assert.hasLength(casProperties.getAuthn().getMfa().getDuo().getDuoSecretKey(),"Duo secret key cannot be blank");
+  Assert.hasLength(casProperties.getAuthn().getMfa().getDuo().getDuoApplicationKey(),"Duo application key cannot be blank");
 }

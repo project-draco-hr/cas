@@ -1,0 +1,23 @@
+{
+  final QueryAndEncodeDatabaseAuthenticationHandler h=new QueryAndEncodeDatabaseAuthenticationHandler();
+  h.setAlgorithmName(b.getAlgorithmName());
+  h.setNumberOfIterationsFieldName(b.getNumberOfIterationsFieldName());
+  h.setNumberOfIterations(b.getNumberOfIterations());
+  h.setPasswordFieldName(b.getPasswordFieldName());
+  h.setSaltFieldName(b.getSaltFieldName());
+  h.setSql(b.getSql());
+  h.setStaticSalt(b.getStaticSalt());
+  h.setDataSource(Beans.newHickariDataSource(b));
+  if (queryAndEncodePasswordEncoder != null) {
+    h.setPasswordEncoder(queryAndEncodePasswordEncoder);
+  }
+  if (queryAndEncodePasswordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(queryAndEncodePasswordPolicyConfiguration);
+  }
+  if (queryAndEncodePrincipalNameTransformer != null) {
+    h.setPrincipalNameTransformer(queryAndEncodePrincipalNameTransformer);
+  }
+  h.setPrincipalFactory(jdbcPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

@@ -6,5 +6,5 @@
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.addParameter("service",SERVICE.getId());
   request.addParameter("ticket",sId.getId());
-  assertEquals(AbstractServiceValidateController.DEFAULT_SERVICE_FAILURE_VIEW_NAME,this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse()).getViewName());
+  assertFalse(this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse()).getView().toString().contains("Success"));
 }

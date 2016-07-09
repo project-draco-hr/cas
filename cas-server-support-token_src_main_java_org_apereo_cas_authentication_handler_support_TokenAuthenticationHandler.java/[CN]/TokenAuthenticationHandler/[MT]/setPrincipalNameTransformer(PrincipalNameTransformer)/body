@@ -1,5 +1,0 @@
-{
-  if (principalNameTransformer != null) {
-    super.setPrincipalNameTransformer(principalNameTransformer);
-  }
-}

@@ -17,6 +17,6 @@
     JsonViewUtils.render(bean,response);
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
 }

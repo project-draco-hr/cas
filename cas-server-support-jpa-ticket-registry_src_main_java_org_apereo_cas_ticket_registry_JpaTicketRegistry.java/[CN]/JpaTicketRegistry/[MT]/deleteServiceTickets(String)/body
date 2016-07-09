@@ -1,4 +1,4 @@
 {
-  final List<ServiceTicketImpl> serviceTicketImpls=getTicketQueryResultList(ticketId,"select s from ServiceTicketImpl s where s.id = :id",ServiceTicketImpl.class);
+  final List<ServiceTicketImpl> serviceTicketImpls=getTicketQueryResultList(ticketId,"select s from " + TABLE_SERVICE_TICKETS + " s where s.id = :id",ServiceTicketImpl.class);
   return deleteTicketsFromResultList(serviceTicketImpls);
 }

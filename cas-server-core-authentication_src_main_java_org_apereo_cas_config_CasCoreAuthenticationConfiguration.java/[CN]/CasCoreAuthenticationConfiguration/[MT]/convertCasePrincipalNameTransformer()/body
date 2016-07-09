@@ -1,0 +1,5 @@
+{
+  final ConvertCasePrincipalNameTransformer t=new ConvertCasePrincipalNameTransformer(this.delegateTransformer);
+  t.setToUpperCase(casProperties.getPrincipalTransformation().isUppercase());
+  return t;
+}

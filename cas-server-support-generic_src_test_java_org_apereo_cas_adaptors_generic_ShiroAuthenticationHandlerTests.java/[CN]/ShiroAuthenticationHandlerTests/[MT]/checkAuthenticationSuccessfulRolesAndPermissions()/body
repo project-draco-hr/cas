@@ -1,6 +1,6 @@
 {
   final ShiroAuthenticationHandler shiro=new ShiroAuthenticationHandler();
-  shiro.setShiroConfiguration(new ClassPathResource("shiro.ini"));
+  shiro.loadShiroConfiguration(new ClassPathResource("shiro.ini"));
   shiro.setRequiredRoles(Collections.singleton("admin"));
   shiro.setRequiredPermissions(Collections.singleton("superuser:deleteAll"));
   final RememberMeUsernamePasswordCredential creds=new RememberMeUsernamePasswordCredential();

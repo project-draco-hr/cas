@@ -1,7 +1,6 @@
 {
   final Properties properties=System.getProperties();
   try (final Formatter formatter=new Formatter()){
-    formatter.format("\n******************** Welcome to CAS *******************\n");
     formatter.format("CAS Version: %s\n",CasVersion.getVersion());
     formatter.format("Build Date/Time: %s\n",CasVersion.getDateTime());
     formatter.format("Java Home: %s\n",properties.get("java.home"));
@@ -10,7 +9,6 @@
     formatter.format("OS Architecture: %s\n",properties.get("os.arch"));
     formatter.format("OS Name: %s\n",properties.get("os.name"));
     formatter.format("OS Version: %s\n",properties.get("os.version"));
-    formatter.format("*******************************************************\n");
     return formatter.toString();
   }
  }

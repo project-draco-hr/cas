@@ -1,0 +1,5 @@
+{
+  this.mongoTemplate=mongoTemplate;
+  this.collectionName=collectionName;
+  this.dropCollection=dropCollection;
+}

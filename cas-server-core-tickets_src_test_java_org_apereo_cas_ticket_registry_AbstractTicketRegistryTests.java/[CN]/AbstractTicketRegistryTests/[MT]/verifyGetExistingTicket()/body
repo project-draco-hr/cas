@@ -4,7 +4,6 @@
     this.ticketRegistry.getTicket("TEST");
   }
  catch (  final Exception e) {
-    e.printStackTrace();
-    fail("Caught an exception. But no exception should have been thrown.");
+    fail("Caught an exception. But no exception should have been thrown: " + e.getMessage());
   }
 }

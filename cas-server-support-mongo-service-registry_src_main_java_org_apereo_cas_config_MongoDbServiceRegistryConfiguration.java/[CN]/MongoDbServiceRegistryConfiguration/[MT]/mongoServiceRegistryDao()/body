@@ -1,0 +1,3 @@
+{
+  return new MongoServiceRegistryDao(mongoTemplate(),casProperties.getServiceRegistry().getMongo().getServiceRegistryCollection(),casProperties.getServiceRegistry().getMongo().isDropCollection());
+}

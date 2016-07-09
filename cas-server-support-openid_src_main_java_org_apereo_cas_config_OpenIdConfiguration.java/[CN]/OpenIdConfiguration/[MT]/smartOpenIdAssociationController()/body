@@ -1,3 +1,6 @@
 {
-  return new SmartOpenIdController();
+  final SmartOpenIdController b=new SmartOpenIdController();
+  b.setServerManager(serverManager());
+  b.setSuccessView(this.casOpenIdAssociationSuccessView);
+  return b;
 }

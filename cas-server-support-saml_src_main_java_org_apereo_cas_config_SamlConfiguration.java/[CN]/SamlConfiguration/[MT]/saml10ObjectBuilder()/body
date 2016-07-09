@@ -1,0 +1,5 @@
+{
+  final Saml10ObjectBuilder w=new Saml10ObjectBuilder();
+  w.setConfigBean(this.configBean);
+  return w;
+}

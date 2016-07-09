@@ -2,14 +2,32 @@
   final RegisteredServiceSupportAccessEditBean accessBean=bean.getSupportAccess();
   accessBean.setCasEnabled(accessStrategy.isServiceAccessAllowed());
   accessBean.setSsoEnabled(accessStrategy.isServiceAccessAllowedForSso());
+  if (accessStrategy.getUnauthorizedRedirectUrl() != null) {
+    accessBean.setUnauthzUrl(accessStrategy.getUnauthorizedRedirectUrl().toString());
+  }
   if (accessStrategy instanceof DefaultRegisteredServiceAccessStrategy) {
     final DefaultRegisteredServiceAccessStrategy def=(DefaultRegisteredServiceAccessStrategy)accessStrategy;
     accessBean.setRequireAll(def.isRequireAllAttributes());
     accessBean.setRequiredAttr(def.getRequiredAttributes());
+    accessBean.setRejectedAttr(def.getRejectedAttributes());
+    accessBean.setCaseSensitive(def.isCaseInsensitive());
+    accessBean.setType(RegisteredServiceSupportAccessEditBean.Types.DEFAULT);
   }
   if (accessStrategy instanceof TimeBasedRegisteredServiceAccessStrategy) {
     final TimeBasedRegisteredServiceAccessStrategy def=(TimeBasedRegisteredServiceAccessStrategy)accessStrategy;
     accessBean.setStartingTime(def.getStartingDateTime());
     accessBean.setEndingTime(def.getEndingDateTime());
+    accessBean.setType(RegisteredServiceSupportAccessEditBean.Types.TIME);
+  }
+  if (accessStrategy instanceof GrouperRegisteredServiceAccessStrategy) {
+    final GrouperRegisteredServiceAccessStrategy def=(GrouperRegisteredServiceAccessStrategy)accessStrategy;
+    accessBean.setGroupField(def.getGroupField().toString());
+    accessBean.setType(RegisteredServiceSupportAccessEditBean.Types.GROUPER);
+  }
+  if (accessStrategy instanceof RemoteEndpointServiceAccessStrategy) {
+    final RemoteEndpointServiceAccessStrategy def=(RemoteEndpointServiceAccessStrategy)accessStrategy;
+    accessBean.setCodes(def.getAcceptableResponseCodes());
+    accessBean.setUrl(def.getEndpointUrl());
+    accessBean.setType(RegisteredServiceSupportAccessEditBean.Types.REMOTE);
   }
 }

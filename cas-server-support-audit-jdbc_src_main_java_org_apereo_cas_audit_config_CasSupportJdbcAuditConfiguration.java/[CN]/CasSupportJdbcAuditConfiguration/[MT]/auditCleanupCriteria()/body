@@ -1,0 +1,3 @@
+{
+  return new MaxAgeWhereClauseMatchCriteria(casProperties.getAudit().getJdbc().getMaxAgeDays());
+}

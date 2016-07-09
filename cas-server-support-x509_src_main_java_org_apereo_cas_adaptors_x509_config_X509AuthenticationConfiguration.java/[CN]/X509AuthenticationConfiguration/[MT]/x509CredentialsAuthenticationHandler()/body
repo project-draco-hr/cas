@@ -1,0 +1,13 @@
+{
+  final X509CredentialsAuthenticationHandler h=new X509CredentialsAuthenticationHandler();
+  h.setCheckKeyUsage(casProperties.getAuthn().getX509().isCheckKeyUsage());
+  h.setMaxPathLength(casProperties.getAuthn().getX509().getMaxPathLength());
+  h.setMaxPathLengthAllowUnspecified(casProperties.getAuthn().getX509().isMaxPathLengthAllowUnspecified());
+  h.setRequireKeyUsage(casProperties.getAuthn().getX509().isRequireKeyUsage());
+  h.setRevocationChecker(this.revocationChecker);
+  h.setSubjectDnPattern(casProperties.getAuthn().getX509().getRegExSubjectDnPattern());
+  h.setTrustedIssuerDnPattern(casProperties.getAuthn().getX509().getRegExTrustedIssuerDnPattern());
+  h.setPrincipalFactory(x509PrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

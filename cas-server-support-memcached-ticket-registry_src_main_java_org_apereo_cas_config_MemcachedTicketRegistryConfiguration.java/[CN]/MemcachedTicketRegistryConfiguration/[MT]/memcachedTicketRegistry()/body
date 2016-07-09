@@ -1,0 +1,5 @@
+{
+  final MemCacheTicketRegistry registry=new MemCacheTicketRegistry((MemcachedClientIF)memcachedClient().getObject());
+  registry.setCipherExecutor(cipherExecutor);
+  return registry;
+}

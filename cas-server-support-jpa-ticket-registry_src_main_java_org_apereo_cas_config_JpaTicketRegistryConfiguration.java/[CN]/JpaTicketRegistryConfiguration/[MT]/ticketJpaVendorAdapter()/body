@@ -1,6 +1,0 @@
-{
-  final HibernateJpaVendorAdapter jpaEventVendorAdapter=new HibernateJpaVendorAdapter();
-  jpaEventVendorAdapter.setGenerateDdl(this.generateDdl);
-  jpaEventVendorAdapter.setShowSql(this.showSql);
-  return jpaEventVendorAdapter;
-}

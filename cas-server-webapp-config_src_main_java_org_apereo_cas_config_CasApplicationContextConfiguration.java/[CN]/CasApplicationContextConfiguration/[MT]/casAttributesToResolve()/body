@@ -1,5 +1,0 @@
-{
-  final PrefixedEnvironmentPropertiesFactoryBean bean=new PrefixedEnvironmentPropertiesFactoryBean();
-  bean.setPrefix("cas.attrs.resolve.");
-  return bean;
-}

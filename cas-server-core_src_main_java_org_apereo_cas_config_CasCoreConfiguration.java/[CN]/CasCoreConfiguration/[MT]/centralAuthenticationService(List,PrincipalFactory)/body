@@ -1,0 +1,11 @@
+{
+  final CentralAuthenticationServiceImpl impl=new CentralAuthenticationServiceImpl();
+  impl.setTicketRegistry(this.ticketRegistry);
+  impl.setServicesManager(this.servicesManager);
+  impl.setLogoutManager(this.logoutManager);
+  impl.setTicketFactory(this.ticketFactory);
+  impl.setValidationServiceSelectionStrategies(validationServiceSelectionStrategies);
+  impl.setServiceContextAuthenticationPolicyFactory(authenticationPolicyFactory());
+  impl.setPrincipalFactory(principalFactory);
+  return impl;
+}

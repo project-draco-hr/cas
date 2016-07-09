@@ -1,0 +1,8 @@
+{
+  if (!casProperties.getAuthn().getWsfed().isAttributeResolverEnabled()) {
+    authenticationHandlersResolvers.put(adfsAuthNHandler(),null);
+  }
+ else {
+    authenticationHandlersResolvers.put(adfsAuthNHandler(),adfsPrincipalResolver());
+  }
+}

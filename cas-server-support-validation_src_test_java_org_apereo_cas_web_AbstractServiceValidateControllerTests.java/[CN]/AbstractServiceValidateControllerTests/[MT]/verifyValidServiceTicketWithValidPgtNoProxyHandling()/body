@@ -7,5 +7,5 @@
   request.addParameter("service",SERVICE.getId());
   request.addParameter("ticket",sId.getId());
   request.addParameter("pgtUrl","https://www.github.com");
-  assertEquals(AbstractServiceValidateController.DEFAULT_SERVICE_SUCCESS_VIEW_NAME,this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse()).getViewName());
+  assertTrue(this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse()).getView().toString().contains("Success"));
 }

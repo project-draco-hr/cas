@@ -1,0 +1,6 @@
+{
+  final CouchbaseTicketRegistry c=new CouchbaseTicketRegistry();
+  c.setCouchbaseClientFactory(ticketRegistryCouchbaseClientFactory());
+  c.setCipherExecutor(cipherExecutor);
+  return c;
+}

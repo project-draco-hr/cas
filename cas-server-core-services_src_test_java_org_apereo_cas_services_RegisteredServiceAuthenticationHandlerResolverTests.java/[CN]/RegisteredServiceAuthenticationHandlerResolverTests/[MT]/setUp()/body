@@ -9,7 +9,7 @@
   list.add(svc);
   dao.setRegisteredServices(list);
   this.defaultServicesManagerImpl=new DefaultServicesManagerImpl(dao);
-  this.defaultServicesManagerImpl.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
+  this.defaultServicesManagerImpl.load();
   final AcceptUsersAuthenticationHandler handler1=new AcceptUsersAuthenticationHandler();
   handler1.setName("handler1");
   final AcceptUsersAuthenticationHandler handler2=new AcceptUsersAuthenticationHandler();

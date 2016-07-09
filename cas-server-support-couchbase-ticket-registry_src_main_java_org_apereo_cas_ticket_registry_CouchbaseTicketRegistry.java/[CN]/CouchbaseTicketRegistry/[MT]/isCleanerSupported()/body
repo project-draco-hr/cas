@@ -1,4 +1,0 @@
-{
-  logger.info("{} does not support automatic ticket clean up processes",this.getClass().getName());
-  return false;
-}

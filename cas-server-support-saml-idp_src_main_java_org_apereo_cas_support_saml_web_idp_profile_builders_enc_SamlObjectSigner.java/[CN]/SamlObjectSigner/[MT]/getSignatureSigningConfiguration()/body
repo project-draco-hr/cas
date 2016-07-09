@@ -1,6 +1,6 @@
 {
   final BasicSignatureSigningConfiguration config=DefaultSecurityConfigurationBootstrap.buildDefaultSignatureSigningConfiguration();
-  if (this.overrideBlackListedSignatureSigningAlgorithms != null && !this.overrideSignatureCanonicalizationAlgorithm.isEmpty()) {
+  if (this.overrideBlackListedSignatureSigningAlgorithms != null && !casProperties.getAuthn().getSamlIdp().getResponse().getOverrideSignatureCanonicalizationAlgorithm().isEmpty()) {
     config.setBlacklistedAlgorithms(this.overrideBlackListedSignatureSigningAlgorithms);
   }
   if (this.overrideSignatureAlgorithms != null && !this.overrideSignatureAlgorithms.isEmpty()) {
@@ -12,8 +12,8 @@
   if (this.overrideWhiteListedAlgorithms != null && !this.overrideWhiteListedAlgorithms.isEmpty()) {
     config.setWhitelistedAlgorithms(this.overrideWhiteListedAlgorithms);
   }
-  if (StringUtils.isNotBlank(this.overrideSignatureCanonicalizationAlgorithm)) {
-    config.setSignatureCanonicalizationAlgorithm(this.overrideSignatureCanonicalizationAlgorithm);
+  if (StringUtils.isNotBlank(casProperties.getAuthn().getSamlIdp().getResponse().getOverrideSignatureCanonicalizationAlgorithm())) {
+    config.setSignatureCanonicalizationAlgorithm(casProperties.getAuthn().getSamlIdp().getResponse().getOverrideSignatureCanonicalizationAlgorithm());
   }
   logger.debug("Signature signing blacklisted algorithms: [{}]",config.getBlacklistedAlgorithms());
   logger.debug("Signature signing signature algorithms: [{}]",config.getSignatureAlgorithms());

@@ -10,10 +10,10 @@
   svc.setLogoutUrl(kryo.readObject(input,URL.class));
   svc.setRequiredHandlers(kryo.readObject(input,ImmutableSet.class));
   svc.setTheme(kryo.readObject(input,String.class));
-  svc.setPublicKey(readObjectByReflection(kryo,input,RegisteredServicePublicKey.class));
-  svc.setProxyPolicy(readObjectByReflection(kryo,input,RegisteredServiceProxyPolicy.class));
-  svc.setAttributeReleasePolicy(readObjectByReflection(kryo,input,RegisteredServiceAttributeReleasePolicy.class));
-  svc.setUsernameAttributeProvider(readObjectByReflection(kryo,input,RegisteredServiceUsernameAttributeProvider.class));
-  svc.setAccessStrategy(readObjectByReflection(kryo,input,RegisteredServiceAccessStrategy.class));
+  svc.setPublicKey(readObjectByReflection(kryo,input));
+  svc.setProxyPolicy(readObjectByReflection(kryo,input));
+  svc.setAttributeReleasePolicy(readObjectByReflection(kryo,input));
+  svc.setUsernameAttributeProvider(readObjectByReflection(kryo,input));
+  svc.setAccessStrategy(readObjectByReflection(kryo,input));
   return svc;
 }

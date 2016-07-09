@@ -10,6 +10,6 @@
     logger.debug("Service ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
   }
   final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX);
-  final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication,this.onlyTrackMostRecentSession);
+  final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication,trackMostRecentSession);
   return (T)serviceTicket;
 }

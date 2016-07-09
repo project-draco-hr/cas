@@ -1,5 +1,5 @@
 {
-  if (StringUtils.isBlank(this.warningAttributeName)) {
+  if (StringUtils.isBlank(this.warnAttributeName)) {
     logger.debug("No warning attribute name is defined");
     return;
   }
@@ -7,7 +7,7 @@
     logger.debug("No warning attribute value to match is defined");
     return;
   }
-  final LdapAttribute attribute=response.getLdapEntry().getAttribute(this.warningAttributeName);
+  final LdapAttribute attribute=response.getLdapEntry().getAttribute(this.warnAttributeName);
   boolean matches=false;
   if (attribute != null) {
     logger.debug("Found warning attribute {} with value {}",attribute.getName(),attribute.getStringValue());

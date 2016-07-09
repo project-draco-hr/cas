@@ -1,0 +1,5 @@
+{
+  final PooledBindAuthenticationHandler handler=new PooledBindAuthenticationHandler(getPooledConnectionFactory(l));
+  handler.setAuthenticationControls(new PasswordPolicyControl());
+  return handler;
+}

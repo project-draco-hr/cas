@@ -1,0 +1,3 @@
+{
+  printAsciiArt(out,asciiArt,null);
+}

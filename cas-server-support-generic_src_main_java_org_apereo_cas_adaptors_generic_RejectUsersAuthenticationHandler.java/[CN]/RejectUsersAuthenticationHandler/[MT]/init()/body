@@ -1,5 +1,0 @@
-{
-  if (StringUtils.isNotBlank(this.rejectedUsersConfig) && this.users == null) {
-    setUsers(org.springframework.util.StringUtils.commaDelimitedListToSet(this.rejectedUsersConfig));
-  }
-}

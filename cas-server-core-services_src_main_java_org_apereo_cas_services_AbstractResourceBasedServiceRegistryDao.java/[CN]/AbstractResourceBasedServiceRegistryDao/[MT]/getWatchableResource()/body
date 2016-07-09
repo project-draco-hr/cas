@@ -1,0 +1,4 @@
+{
+  final Watchable watchable=this.serviceRegistryDirectory;
+  return (T)watchable;
+}

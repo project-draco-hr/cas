@@ -1,4 +1,5 @@
 {
+  setAfterInitialization(true);
   final Configuration<?> configuration=Validation.byDefaultProvider().configure();
   configuration.traversableResolver(new TraversableResolver(){
     @Override public boolean isReachable(    final Object traversableObject,    final Node traversableProperty,    final Class<?> rootBeanType,    final Path pathToTraversableObject,    final ElementType elementType){

@@ -1,0 +1,6 @@
+{
+  if (policy > 0) {
+    logger.debug("jcifsNetbiosCachePolicy is set to {}",policy);
+    Config.setProperty(JCIFS_PROP_NETBIOS_CACHE_POLICY,String.valueOf(policy));
+  }
+}

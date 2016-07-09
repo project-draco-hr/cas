@@ -1,6 +1,0 @@
-{
-  if (this.cacheCredential) {
-    logger.info("Credential caching is enabled");
-    addAuthenticationMetadataPopulator(new CacheCredentialsMetaDataPopulator());
-  }
-}

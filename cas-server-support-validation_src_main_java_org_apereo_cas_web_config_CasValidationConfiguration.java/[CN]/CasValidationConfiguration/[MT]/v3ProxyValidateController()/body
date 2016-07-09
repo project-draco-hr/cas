@@ -1,0 +1,16 @@
+{
+  final V3ProxyValidateController c=new V3ProxyValidateController();
+  c.setValidationSpecification(cas20ProtocolValidationSpecification);
+  c.setSuccessView(cas3ServiceSuccessView());
+  c.setFailureView(cas3ServiceFailureView);
+  c.setProxyHandler(proxy20Handler);
+  c.setAuthenticationSystemSupport(authenticationSystemSupport);
+  c.setServicesManager(servicesManager);
+  c.setCentralAuthenticationService(centralAuthenticationService);
+  c.setArgumentExtractor(argumentExtractor);
+  c.setMultifactorTriggerSelectionStrategy(multifactorTriggerSelectionStrategy);
+  c.setAuthenticationContextValidator(authenticationContextValidator);
+  c.setJsonView(cas3ServiceJsonView());
+  c.setAuthnContextAttribute(casProperties.getAuthn().getMfa().getAuthenticationContextAttribute());
+  return c;
+}

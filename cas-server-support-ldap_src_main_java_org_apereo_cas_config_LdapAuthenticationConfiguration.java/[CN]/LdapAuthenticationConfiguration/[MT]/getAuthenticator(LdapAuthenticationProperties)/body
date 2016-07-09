@@ -1,0 +1,9 @@
+{
+  if (l.getType() == LdapAuthenticationProperties.AuthenticationTypes.AD) {
+    return getActiveDirectoryAuthenticator(l);
+  }
+  if (l.getType() == LdapAuthenticationProperties.AuthenticationTypes.DIRECT) {
+    return getDirectBindAuthenticator(l);
+  }
+  return getAuthenticatedOrAnonSearchAuthenticator(l);
+}

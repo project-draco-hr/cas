@@ -1,0 +1,16 @@
+{
+  final BindModeSearchDatabaseAuthenticationHandler h=new BindModeSearchDatabaseAuthenticationHandler();
+  h.setDataSource(Beans.newHickariDataSource(b));
+  if (bindSearchPasswordEncoder != null) {
+    h.setPasswordEncoder(bindSearchPasswordEncoder);
+  }
+  if (bindSearchPasswordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(bindSearchPasswordPolicyConfiguration);
+  }
+  if (bindSearchPrincipalNameTransformer != null) {
+    h.setPrincipalNameTransformer(bindSearchPrincipalNameTransformer);
+  }
+  h.setPrincipalFactory(jdbcPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

@@ -1,0 +1,8 @@
+{
+  final BasicAuthenticationAction a=new BasicAuthenticationAction();
+  a.setAuthenticationSystemSupport(authenticationSystemSupport);
+  a.setCentralAuthenticationService(centralAuthenticationService);
+  a.setPrincipalFactory(basicPrincipalFactory());
+  a.setWarnCookieGenerator(warnCookieGenerator);
+  return a;
+}

@@ -1,0 +1,8 @@
+{
+  final CRLDistributionPointRevocationChecker c=new CRLDistributionPointRevocationChecker(this.x509CrlCache,this.x509CrlFetcher);
+  c.setCheckAll(casProperties.getAuthn().getX509().isCheckAll());
+  c.setThrowOnFetchFailure(casProperties.getAuthn().getX509().isThrowOnFetchFailure());
+  c.setUnavailableCRLPolicy(x509CrlUnavailableRevocationPolicy);
+  c.setExpiredCRLPolicy(x509CrlExpiredRevocationPolicy);
+  return c;
+}

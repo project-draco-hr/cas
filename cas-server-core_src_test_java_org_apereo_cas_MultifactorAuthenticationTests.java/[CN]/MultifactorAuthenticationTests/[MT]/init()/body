@@ -1,0 +1,4 @@
+{
+  authenticationHandlersResolvers.put(new AcceptUsersAuthenticationHandler(ImmutableMap.of("alice","alice","bob","bob","mallory","mallory")),null);
+  authenticationHandlersResolvers.put(new TestOneTimePasswordAuthenticationHandler(ImmutableMap.of("alice","31415","bob","62831","mallory","14142")),null);
+}

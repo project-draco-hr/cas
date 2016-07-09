@@ -1,6 +1,5 @@
 {
   this.servicesManager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
-  this.servicesManager.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
   this.serviceThemeResolver=new ServiceThemeResolver();
   this.serviceThemeResolver.setDefaultThemeName("test");
   this.serviceThemeResolver.setServicesManager(this.servicesManager);

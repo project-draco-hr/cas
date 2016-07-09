@@ -3,7 +3,7 @@
   r.setName("testSaveAttributeReleasePolicyAllowedAttrRules");
   r.setServiceId("testId");
   final ReturnAllowedAttributeReleasePolicy policy=new ReturnAllowedAttributeReleasePolicy();
-  policy.setAllowedAttributes(Arrays.asList("1","2","3"));
+  policy.setAllowedAttributes(Lists.newArrayList("1","2","3"));
   r.setAttributeReleasePolicy(policy);
   final RegisteredService r2=this.dao.save(r);
   final RegisteredService r3=this.dao.findServiceById(r2.getId());

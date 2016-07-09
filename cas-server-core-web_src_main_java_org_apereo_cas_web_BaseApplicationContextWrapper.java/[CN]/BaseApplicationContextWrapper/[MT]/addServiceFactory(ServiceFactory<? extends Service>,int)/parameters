@@ -1,2 +1,0 @@
-ServiceFactory<? extends Service> factory
-int index

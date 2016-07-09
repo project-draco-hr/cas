@@ -1,0 +1,7 @@
+{
+  final YubiKeyAuthenticationMetaDataPopulator pop=new YubiKeyAuthenticationMetaDataPopulator();
+  pop.setAuthenticationContextAttribute(casProperties.getAuthn().getMfa().getAuthenticationContextAttribute());
+  pop.setAuthenticationHandler(yubikeyAuthenticationHandler());
+  pop.setProvider(yubikeyAuthenticationProvider());
+  return pop;
+}

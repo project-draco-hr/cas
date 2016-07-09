@@ -1,10 +1,10 @@
 {
   try {
-    final Properties properties=new Properties();
-    properties.load(this.userPropertiesFile.getInputStream());
-    return properties;
+    final Properties p=new Properties();
+    p.load(casProperties.getMgmt().getUserPropertiesFile().getInputStream());
+    return p;
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
 }

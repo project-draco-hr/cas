@@ -9,6 +9,6 @@
   }
  catch (  final Exception e) {
     logger.warn("Failed to add the crl entry [{}] to the cache",crl);
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
 }

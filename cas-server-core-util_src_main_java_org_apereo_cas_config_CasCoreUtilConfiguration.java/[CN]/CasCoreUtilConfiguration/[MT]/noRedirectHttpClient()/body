@@ -1,0 +1,9 @@
+{
+  final SimpleHttpClientFactoryBean.DefaultHttpClient c=new SimpleHttpClientFactoryBean.DefaultHttpClient();
+  c.setConnectionTimeout(casProperties.getHttpClient().getConnectionTimeout());
+  c.setReadTimeout(casProperties.getHttpClient().getReadTimeout());
+  c.setRedirectsEnabled(false);
+  c.setCircularRedirectsAllowed(false);
+  c.setSslSocketFactory(this.trustStoreSslSocketFactory);
+  return c.getObject();
+}

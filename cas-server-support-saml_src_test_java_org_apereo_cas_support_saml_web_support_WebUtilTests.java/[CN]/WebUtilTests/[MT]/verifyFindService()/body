@@ -3,7 +3,7 @@
   final ArgumentExtractor[] argumentExtractors=new ArgumentExtractor[]{casArgumentExtractor};
   final MockHttpServletRequest request=new MockHttpServletRequest();
   request.setParameter("service","test");
-  final Service service=WebUtils.getService(Arrays.asList(argumentExtractors),request);
+  final Service service=WebUtils.getService(Lists.newArrayList(argumentExtractors),request);
   assertNotNull(service);
   assertEquals("test",service.getId());
 }

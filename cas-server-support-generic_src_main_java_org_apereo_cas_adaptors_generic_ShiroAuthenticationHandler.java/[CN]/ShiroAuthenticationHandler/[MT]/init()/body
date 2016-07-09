@@ -1,8 +1,0 @@
-{
-  if (StringUtils.isNotBlank(this.requiredPermissionsConfig)) {
-    setRequiredPermissions(org.springframework.util.StringUtils.commaDelimitedListToSet(this.requiredPermissionsConfig));
-  }
-  if (StringUtils.isNotBlank(this.requiredRolesConfig)) {
-    setRequiredRoles(org.springframework.util.StringUtils.commaDelimitedListToSet(this.requiredRolesConfig));
-  }
-}

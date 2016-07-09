@@ -5,6 +5,6 @@
     render(map,response);
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
 }

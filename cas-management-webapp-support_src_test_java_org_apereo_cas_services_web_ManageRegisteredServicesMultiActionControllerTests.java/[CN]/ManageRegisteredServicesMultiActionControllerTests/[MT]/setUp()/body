@@ -1,7 +1,6 @@
 {
   this.servicesManager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
-  this.servicesManager.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
   this.registeredServiceFactory=new DefaultRegisteredServiceFactory();
   this.registeredServiceFactory.initializeDefaults();
-  this.controller=new ManageRegisteredServicesMultiActionController(this.servicesManager,this.registeredServiceFactory,"foo");
+  this.controller=new ManageRegisteredServicesMultiActionController(this.servicesManager,this.registeredServiceFactory,"https://cas.example.org");
 }

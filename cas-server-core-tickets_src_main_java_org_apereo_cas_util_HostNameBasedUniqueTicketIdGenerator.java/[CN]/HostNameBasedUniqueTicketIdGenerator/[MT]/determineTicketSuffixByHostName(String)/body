@@ -1,16 +1,6 @@
 {
-  try {
-    if (StringUtils.isNotBlank(suffix)) {
-      return suffix;
-    }
-    final String hostName=InetAddress.getLocalHost().getCanonicalHostName();
-    final int index=hostName.indexOf('.');
-    if (index > 0) {
-      return hostName.substring(0,index);
-    }
-    return hostName;
+  if (StringUtils.isNotBlank(suffix)) {
+    return suffix;
   }
- catch (  final UnknownHostException e) {
-    throw new RuntimeException("Host name could not be determined automatically for the ticket suffix.",e);
-  }
+  return InetAddressUtils.getCasServerHostName();
 }

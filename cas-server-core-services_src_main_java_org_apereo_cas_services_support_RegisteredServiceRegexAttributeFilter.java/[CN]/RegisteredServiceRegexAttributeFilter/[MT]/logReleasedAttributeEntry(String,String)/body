@@ -1,3 +1,3 @@
 {
-  logger.debug("The attribute value [{}] for attribute name {} matches the pattern {}. Releasing attribute...",attributeValue,attributeName,this.pattern.pattern());
+  LOGGER.debug("The attribute value [{}] for attribute name {} matches the pattern {}. Releasing attribute...",attributeValue,attributeName,this.pattern.pattern());
 }

@@ -1,0 +1,4 @@
+{
+  this.authenticationHandlersResolvers.put(duoAuthenticationHandler(),null);
+  authenticationMetadataPopulators.add(0,duoAuthenticationMetaDataPopulator());
+}

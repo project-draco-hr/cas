@@ -1,6 +1,6 @@
 {
   try {
-    final String value=LdapUtils.getString(entry,this.serviceDefinitionAttribute);
+    final String value=LdapUtils.getString(entry,casProperties.getServiceRegistry().getLdap().getServiceDefinitionAttribute());
     if (StringUtils.hasText(value)) {
       final RegisteredService service=this.jsonSerializer.from(value);
       return service;
@@ -8,6 +8,6 @@
     return null;
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
 }

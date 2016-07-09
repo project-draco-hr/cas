@@ -1,0 +1,7 @@
+{
+  final ServiceThemeResolver resolver=new ServiceThemeResolver();
+  resolver.setDefaultThemeName(casProperties.getTheme().getDefaultThemeName());
+  resolver.setServicesManager(this.servicesManager);
+  resolver.setMobileBrowsers(serviceThemeResolverSupportedBrowsers);
+  return resolver;
+}

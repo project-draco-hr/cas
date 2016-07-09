@@ -1,0 +1,8 @@
+{
+  final SamlProfileSamlResponseBuilder b=new SamlProfileSamlResponseBuilder();
+  b.setConfigBean(openSamlConfigBean);
+  b.setSamlObjectEncrypter(samlObjectEncrypter());
+  b.setSamlProfileSamlAssertionBuilder(samlProfileSamlAssertionBuilder());
+  b.setVelocityEngineFactory(velocityEngineFactory);
+  return b;
+}

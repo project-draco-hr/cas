@@ -1,3 +1,3 @@
 {
-  return new RMIBootstrapCacheLoader(this.loaderAsync,this.maxChunkSize);
+  return new RMIBootstrapCacheLoader(casProperties.getTicket().getRegistry().getEhcache().isLoaderAsync(),casProperties.getTicket().getRegistry().getEhcache().getMaxChunkSize());
 }

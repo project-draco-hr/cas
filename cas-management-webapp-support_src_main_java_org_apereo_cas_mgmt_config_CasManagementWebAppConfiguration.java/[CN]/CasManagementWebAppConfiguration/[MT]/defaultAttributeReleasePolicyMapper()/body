@@ -1,0 +1,6 @@
+{
+  final DefaultAttributeReleasePolicyMapper m=new DefaultAttributeReleasePolicyMapper();
+  m.setAttributeFilterMapper(defaultAttributeFilterMapper());
+  m.setPrincipalAttributesRepositoryMapper(defaultPrincipalAttributesRepositoryMapper());
+  return m;
+}

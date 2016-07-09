@@ -1,3 +1,3 @@
 {
-  return countToLong(this.entityManager.createQuery("select count(t) from ServiceTicketImpl t").getSingleResult());
+  return countToLong(this.entityManager.createQuery("select count(t) from " + TABLE_SERVICE_TICKETS + " t").getSingleResult());
 }

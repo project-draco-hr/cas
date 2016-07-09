@@ -1,3 +1,0 @@
-Flow flow
-String targetStateId
-Class<? extends Throwable> clazz

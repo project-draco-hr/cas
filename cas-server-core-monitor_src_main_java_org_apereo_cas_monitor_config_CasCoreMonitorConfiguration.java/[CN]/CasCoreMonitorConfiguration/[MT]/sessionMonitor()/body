@@ -1,0 +1,7 @@
+{
+  final SessionMonitor bean=new SessionMonitor();
+  bean.setTicketRegistry(ticketRegistry);
+  bean.setServiceTicketCountWarnThreshold(casProperties.getMonitor().getSt().getWarn().getThreshold());
+  bean.setSessionCountWarnThreshold(casProperties.getMonitor().getTgt().getWarn().getThreshold());
+  return bean;
+}

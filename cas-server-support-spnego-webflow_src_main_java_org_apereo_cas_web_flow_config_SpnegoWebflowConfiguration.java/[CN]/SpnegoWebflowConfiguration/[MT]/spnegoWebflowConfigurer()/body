@@ -1,0 +1,6 @@
+{
+  final SpengoWebflowConfigurer w=new SpengoWebflowConfigurer();
+  w.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  w.setFlowBuilderServices(flowBuilderServices);
+  return w;
+}

@@ -1,27 +1,27 @@
 {
   final String nullKey="NULL";
-  if (StringUtils.isNotBlank(this.keyStoreFilePath) && StringUtils.isNotBlank(this.keyStorePassword) && StringUtils.isNotBlank(this.trustStoreFilePath)&& StringUtils.isNotBlank(this.trustStorePassword)) {
+  if (StringUtils.isNotBlank(casProperties.getTicket().getRegistry().getIgnite().getKeyStoreFilePath()) && StringUtils.isNotBlank(casProperties.getTicket().getRegistry().getIgnite().getKeyStorePassword()) && StringUtils.isNotBlank(casProperties.getTicket().getRegistry().getIgnite().getTrustStoreFilePath())&& StringUtils.isNotBlank(casProperties.getTicket().getRegistry().getIgnite().getTrustStorePassword())) {
     final SslContextFactory sslContextFactory=new SslContextFactory();
-    sslContextFactory.setKeyStoreFilePath(this.keyStoreFilePath);
-    sslContextFactory.setKeyStorePassword(this.keyStorePassword.toCharArray());
-    if (nullKey.equals(this.trustStoreFilePath) && nullKey.equals(this.trustStorePassword)) {
+    sslContextFactory.setKeyStoreFilePath(casProperties.getTicket().getRegistry().getIgnite().getKeyStoreFilePath());
+    sslContextFactory.setKeyStorePassword(casProperties.getTicket().getRegistry().getIgnite().getKeyStorePassword().toCharArray());
+    if (nullKey.equals(casProperties.getTicket().getRegistry().getIgnite().getTrustStoreFilePath()) && nullKey.equals(casProperties.getTicket().getRegistry().getIgnite().getTrustStorePassword())) {
       sslContextFactory.setTrustManagers(SslContextFactory.getDisabledTrustManager());
     }
  else {
-      sslContextFactory.setTrustStoreFilePath(this.trustStoreFilePath);
-      sslContextFactory.setTrustStorePassword(this.trustStorePassword.toCharArray());
+      sslContextFactory.setTrustStoreFilePath(casProperties.getTicket().getRegistry().getIgnite().getTrustStoreFilePath());
+      sslContextFactory.setTrustStorePassword(casProperties.getTicket().getRegistry().getIgnite().getKeyStorePassword().toCharArray());
     }
-    if (StringUtils.isNotBlank(this.keyAlgorithm)) {
-      sslContextFactory.setKeyAlgorithm(this.keyAlgorithm);
+    if (StringUtils.isNotBlank(casProperties.getTicket().getRegistry().getIgnite().getKeyAlgorithm())) {
+      sslContextFactory.setKeyAlgorithm(casProperties.getTicket().getRegistry().getIgnite().getKeyAlgorithm());
     }
-    if (StringUtils.isNotBlank(this.protocol)) {
-      sslContextFactory.setProtocol(this.protocol);
+    if (StringUtils.isNotBlank(casProperties.getTicket().getRegistry().getIgnite().getProtocol())) {
+      sslContextFactory.setProtocol(casProperties.getTicket().getRegistry().getIgnite().getProtocol());
     }
-    if (StringUtils.isNotBlank(this.trustStoreType)) {
-      sslContextFactory.setTrustStoreType(this.trustStoreType);
+    if (StringUtils.isNotBlank(casProperties.getTicket().getRegistry().getIgnite().getTrustStoreType())) {
+      sslContextFactory.setTrustStoreType(casProperties.getTicket().getRegistry().getIgnite().getTrustStoreType());
     }
-    if (StringUtils.isNotBlank(this.keyStoreType)) {
-      sslContextFactory.setKeyStoreType(this.keyStoreType);
+    if (StringUtils.isNotBlank(casProperties.getTicket().getRegistry().getIgnite().getKeyStoreType())) {
+      sslContextFactory.setKeyStoreType(casProperties.getTicket().getRegistry().getIgnite().getKeyStoreType());
     }
     this.igniteConfiguration.setSslContextFactory(sslContextFactory);
   }

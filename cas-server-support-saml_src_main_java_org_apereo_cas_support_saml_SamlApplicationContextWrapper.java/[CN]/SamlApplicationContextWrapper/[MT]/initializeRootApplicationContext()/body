@@ -1,5 +1,0 @@
-{
-  addServiceFactory(this.samlServiceFactory);
-  addServiceTicketUniqueIdGenerator(SamlService.class.getCanonicalName(),this.samlServiceTicketUniqueIdGenerator);
-  addAuthenticationMetadataPopulator(this.samlAuthenticationMetaDataPopulator);
-}

@@ -1,4 +1,9 @@
 {
   logger.info("Shutting down Hazelcast instance {}",this.hazelcastInstance.getConfig().getInstanceName());
-  this.hazelcastInstance.shutdown();
+  try {
+    this.hazelcastInstance.shutdown();
+  }
+ catch (  final Throwable e) {
+    logger.debug(e.getMessage());
+  }
 }

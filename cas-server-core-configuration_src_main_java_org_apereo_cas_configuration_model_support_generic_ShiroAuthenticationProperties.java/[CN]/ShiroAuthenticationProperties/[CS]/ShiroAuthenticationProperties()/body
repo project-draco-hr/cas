@@ -1,0 +1,3 @@
+{
+  super.getConfig().setLocation(new ClassPathResource("shiro.ini"));
+}

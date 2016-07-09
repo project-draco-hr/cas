@@ -20,6 +20,18 @@
     oauthBean.setRefreshToken(oauth.isGenerateRefreshToken());
     oauthBean.setJsonFormat(oauth.isJsonFormat());
   }
+  if (svc instanceof SamlRegisteredService) {
+    bean.setType(RegisteredServiceTypeEditBean.SAML.toString());
+    final SamlRegisteredService saml=(SamlRegisteredService)svc;
+    final RegisteredServiceSamlTypeEditBean samlbean=bean.getSaml();
+    samlbean.setMdLoc(saml.getMetadataLocation());
+    samlbean.setMdMaxVal(saml.getMetadataMaxValidity());
+    samlbean.setMdSigLoc(saml.getMetadataSignatureLocation());
+    samlbean.setAuthCtxCls(saml.getRequiredAuthenticationContextClass());
+    samlbean.setEncAssert(saml.isEncryptAssertions());
+    samlbean.setSignResp(saml.isSignResponses());
+    samlbean.setSignAssert(saml.isSignAssertions());
+  }
   bean.setTheme(svc.getTheme());
   bean.setEvalOrder(svc.getEvaluationOrder());
   final LogoutType logoutType=svc.getLogoutType();
@@ -43,5 +55,11 @@ final RegisteredServicePublicKeyEditBean pBean=bean.getPublicKey();
 if (key != null) {
 pBean.setAlgorithm(key.getAlgorithm());
 pBean.setLocation(key.getLocation());
+}
+final Map<String,RegisteredServiceProperty> props=svc.getProperties();
+final Map<String,Set<String>> beanProps=bean.getProps();
+for (final Map.Entry<String,RegisteredServiceProperty> stringRegisteredServicePropertyEntry : props.entrySet()) {
+final Set<String> set=stringRegisteredServicePropertyEntry.getValue().getValues();
+beanProps.put(stringRegisteredServicePropertyEntry.getKey(),set);
 }
 }

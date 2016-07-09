@@ -12,7 +12,7 @@
     return factory.getObject();
   }
  catch (  final Exception e) {
-    logger.warn(e.getMessage(),e);
-    throw new RuntimeException(e);
+    LOGGER.warn(e.getMessage(),e);
+    throw Throwables.propagate(e);
   }
 }

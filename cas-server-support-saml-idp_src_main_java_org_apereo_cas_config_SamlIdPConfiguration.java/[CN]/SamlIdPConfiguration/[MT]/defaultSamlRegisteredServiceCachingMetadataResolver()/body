@@ -1,0 +1,7 @@
+{
+  final DefaultSamlRegisteredServiceCachingMetadataResolver r=new DefaultSamlRegisteredServiceCachingMetadataResolver();
+  r.setChainingMetadataResolverCacheLoader(chainingMetadataResolverCacheLoader());
+  r.setMetadataCacheExpirationMinutes(casProperties.getAuthn().getSamlIdp().getMetadata().getCacheExpirationMinutes());
+  r.setChainingMetadataResolverCacheLoader(chainingMetadataResolverCacheLoader());
+  return r;
+}

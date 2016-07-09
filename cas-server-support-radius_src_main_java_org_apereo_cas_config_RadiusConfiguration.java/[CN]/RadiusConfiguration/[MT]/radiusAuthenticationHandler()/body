@@ -1,0 +1,18 @@
+{
+  final RadiusAuthenticationHandler h=new RadiusAuthenticationHandler();
+  h.setFailoverOnAuthenticationFailure(casProperties.getAuthn().getRadius().isFailoverOnAuthenticationFailure());
+  h.setFailoverOnException(casProperties.getAuthn().getRadius().isFailoverOnException());
+  h.setServers(radiusServers());
+  if (passwordEncoder != null) {
+    h.setPasswordEncoder(passwordEncoder);
+  }
+  if (passwordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(passwordPolicyConfiguration);
+  }
+  if (principalNameTransformer != null) {
+    h.setPrincipalNameTransformer(principalNameTransformer);
+  }
+  h.setPrincipalFactory(radiusPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

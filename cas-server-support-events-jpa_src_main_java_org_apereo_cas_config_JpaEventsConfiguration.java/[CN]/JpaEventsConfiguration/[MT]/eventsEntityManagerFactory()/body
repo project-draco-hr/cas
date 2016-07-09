@@ -1,14 +1,5 @@
 {
-  final LocalContainerEntityManagerFactoryBean bean=new LocalContainerEntityManagerFactoryBean();
-  bean.setJpaVendorAdapter(jpaEventVendorAdapter());
-  bean.setPersistenceUnitName("jpaEventRegistryContext");
-  bean.setPackagesToScan(jpaEventPackagesToScan());
-  bean.setDataSource(dataSourceEvent());
-  final Properties properties=new Properties();
-  properties.put("hibernate.dialect",this.hibernateDialect);
-  properties.put("hibernate.hbm2ddl.auto",this.hibernateHbm2DdlAuto);
-  properties.put("hibernate.jdbc.batch_size",this.hibernateBatchSize);
-  properties.put("hibernate.enable_lazy_load_no_trans",Boolean.TRUE);
-  bean.setJpaProperties(properties);
+  final LocalContainerEntityManagerFactoryBean bean=Beans.newEntityManagerFactoryBean(new JpaConfigDataHolder(jpaEventVendorAdapter(),"jpaEventRegistryContext",jpaEventPackagesToScan(),dataSourceEvent()),casProperties.getEvents().getJpa().getDatabase());
+  bean.getJpaPropertyMap().put("hibernate.enable_lazy_load_no_trans",Boolean.TRUE);
   return bean;
 }

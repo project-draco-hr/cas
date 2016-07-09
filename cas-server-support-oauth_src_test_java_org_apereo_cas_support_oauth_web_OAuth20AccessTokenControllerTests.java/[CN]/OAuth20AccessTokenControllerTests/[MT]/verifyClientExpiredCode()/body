@@ -3,7 +3,7 @@
   servicesManager.save(registeredService);
   final Map<String,Object> map=new HashMap<>();
   map.put(NAME,VALUE);
-  final List<String> list=Arrays.asList(VALUE,VALUE);
+  final List<String> list=Lists.newArrayList(VALUE,VALUE);
   map.put(NAME2,list);
   final Principal principal=org.apereo.cas.authentication.TestUtils.getPrincipal(ID,map);
   final Authentication authentication=getAuthentication(principal);

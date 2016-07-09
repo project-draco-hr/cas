@@ -1,6 +1,0 @@
-{
-  final SingleLogoutService acs=new SingleLogoutServiceBuilder().buildObject();
-  acs.setBinding(SAMLConstants.SAML2_POST_BINDING_URI);
-  acs.setLocation(endpoint);
-  return acs;
-}

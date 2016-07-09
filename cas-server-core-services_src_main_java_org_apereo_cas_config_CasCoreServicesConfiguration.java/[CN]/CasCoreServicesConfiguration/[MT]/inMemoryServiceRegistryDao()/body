@@ -1,0 +1,8 @@
+{
+  final InMemoryServiceRegistryDaoImpl impl=new InMemoryServiceRegistryDaoImpl();
+  if (context.containsBean("inMemoryRegisteredServices")) {
+    final List list=context.getBean("inMemoryRegisteredServices",List.class);
+    impl.setRegisteredServices(list);
+  }
+  return impl;
+}

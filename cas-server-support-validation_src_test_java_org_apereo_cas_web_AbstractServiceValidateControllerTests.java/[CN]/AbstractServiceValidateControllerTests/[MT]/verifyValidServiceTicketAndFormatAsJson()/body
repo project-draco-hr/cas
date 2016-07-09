@@ -8,5 +8,5 @@
   request.addParameter("ticket",sId.getId());
   request.addParameter("format",ValidationResponseType.JSON.name());
   final ModelAndView modelAndView=this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse());
-  assertEquals(modelAndView.getViewName(),AbstractServiceValidateController.DEFAULT_SERVICE_VIEW_NAME_JSON);
+  assertTrue(modelAndView.getView().toString().contains("Json"));
 }

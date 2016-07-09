@@ -1,6 +1,6 @@
 {
   final String username=request.getParameter(getUsernameParameter());
-  if (username == null) {
+  if (StringUtils.isBlank(username)) {
     return request.getRemoteAddr();
   }
   return ClientInfoHolder.getClientInfo().getClientIpAddress() + ';' + username.toLowerCase();

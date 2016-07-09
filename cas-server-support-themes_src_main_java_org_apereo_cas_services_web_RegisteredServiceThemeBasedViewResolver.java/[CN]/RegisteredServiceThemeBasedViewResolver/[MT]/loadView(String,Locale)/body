@@ -19,7 +19,7 @@
       LOGGER.debug("Attempting to locate views for service [{}] with theme [{}]",registeredService.getServiceId(),registeredService.getTheme());
       final AbstractThymeleafView thymeleafView=(AbstractThymeleafView)view;
       final String viewUrl=registeredService.getTheme() + '/' + thymeleafView.getTemplateName();
-      final String viewLocationUrl=this.properties.getPrefix().concat(viewUrl).concat(this.properties.getSuffix());
+      final String viewLocationUrl=getPrefix().concat(viewUrl).concat(getSuffix());
       LOGGER.debug("Attempting to locate view at {}",viewLocationUrl);
       final TemplateLocation location=new TemplateLocation(viewLocationUrl);
       if (location.exists(getApplicationContext())) {

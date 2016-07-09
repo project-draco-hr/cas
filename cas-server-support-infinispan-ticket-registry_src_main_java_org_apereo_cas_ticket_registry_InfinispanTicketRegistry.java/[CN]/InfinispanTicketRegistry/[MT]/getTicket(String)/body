@@ -3,6 +3,6 @@
   if (ticketId == null) {
     return null;
   }
-  final Ticket ticket=this.cache.get(encTicketId);
+  final Ticket ticket=Ticket.class.cast(cache.get(encTicketId));
   return ticket;
 }

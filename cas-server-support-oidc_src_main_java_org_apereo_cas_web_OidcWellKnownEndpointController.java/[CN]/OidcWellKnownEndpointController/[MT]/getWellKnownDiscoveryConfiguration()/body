@@ -1,5 +1,5 @@
 {
-  final OidcServerDiscoveryProperties discoveryProperties=new OidcServerDiscoveryProperties(this.serverPrefix,this.issuer);
+  final OidcServerDiscoverySettings discoveryProperties=new OidcServerDiscoverySettings(this.serverProperties.getPrefix(),properties.getIssuer());
   discoveryProperties.setSupportedClaims(ImmutableList.of(OidcConstants.CLAIM_SUB,"name",OidcConstants.CLAIM_PREFERRED_USERNAME,"family_name","given_name","middle_name","given_name","profile","picture","nickname","website","zoneinfo","locale","updated_at","birthdate","email","email_verified","phone_number","phone_number_verified","address"));
   discoveryProperties.setSupportedScopes(OidcConstants.SCOPES);
   discoveryProperties.setSupportedResponseTypes(ImmutableList.of("code","token"));

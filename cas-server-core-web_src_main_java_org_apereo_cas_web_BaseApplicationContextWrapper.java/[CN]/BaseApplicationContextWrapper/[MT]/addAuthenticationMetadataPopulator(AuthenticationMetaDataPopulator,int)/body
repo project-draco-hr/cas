@@ -1,5 +1,0 @@
-{
-  logger.debug("Adding {} to application context",populator);
-  final List<AuthenticationMetaDataPopulator> authenticationMetadataPopulators=this.applicationContext.getBean("authenticationMetadataPopulators",List.class);
-  authenticationMetadataPopulators.add(index,populator);
-}

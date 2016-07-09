@@ -6,9 +6,9 @@
   r.setEvaluationOrder(1000);
   r.setAccessStrategy(new DefaultRegisteredServiceAccessStrategy(true,false));
   r.setProxyPolicy(new RegexMatchingRegisteredServiceProxyPolicy("https://.+"));
-  r.setRequiredHandlers(new HashSet<>(Arrays.asList("h1","h2")));
+  r.setRequiredHandlers(new HashSet<>(Lists.newArrayList("h1","h2")));
   final ReturnAllowedAttributeReleasePolicy policy=new ReturnAllowedAttributeReleasePolicy();
-  policy.setAllowedAttributes(Arrays.asList("1","2","3"));
+  policy.setAllowedAttributes(Lists.newArrayList("1","2","3"));
   r.setAttributeReleasePolicy(policy);
   r.getAttributeReleasePolicy().setAttributeFilter(new RegisteredServiceRegexAttributeFilter("\\w+"));
   final RegisteredService r2=this.dao.save(r);

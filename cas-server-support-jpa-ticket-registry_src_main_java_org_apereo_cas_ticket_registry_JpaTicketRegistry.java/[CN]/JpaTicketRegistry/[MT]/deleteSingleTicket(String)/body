@@ -1,5 +1,8 @@
 {
   final Ticket ticket=getTicket(ticketId);
+  if (ticket == null) {
+    return true;
+  }
   final int failureCount;
   if (ticket instanceof OAuthToken) {
     failureCount=deleteOAuthTokens(ticketId);

@@ -3,5 +3,5 @@
     throw new IllegalArgumentException("No signed request token was passed to verify");
   }
   logger.debug("Calling DuoWeb.verifyResponse with signed request token '{}'",signedRequestToken);
-  return DuoWeb.verifyResponse(this.duoIntegrationKey,this.duoSecretKey,this.duoApplicationKey,signedRequestToken);
+  return DuoWeb.verifyResponse(casProperties.getAuthn().getMfa().getDuo().getDuoIntegrationKey(),casProperties.getAuthn().getMfa().getDuo().getDuoSecretKey(),casProperties.getAuthn().getMfa().getDuo().getDuoApplicationKey(),signedRequestToken);
 }

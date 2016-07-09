@@ -1,0 +1,6 @@
+{
+  if (timeout > 0) {
+    logger.debug("jcifsSocketTimeout is set to {}",timeout);
+    Config.setProperty(JCIFS_PROP_CLIENT_SOTIMEOUT,String.valueOf(timeout));
+  }
+}

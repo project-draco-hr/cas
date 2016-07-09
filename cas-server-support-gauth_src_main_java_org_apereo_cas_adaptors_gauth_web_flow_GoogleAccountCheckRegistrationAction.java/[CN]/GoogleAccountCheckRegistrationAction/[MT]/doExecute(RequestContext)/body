@@ -4,7 +4,7 @@
   if (!this.accountRegistry.contains(uid)) {
     final GoogleAuthenticatorKey key=this.googleAuthenticatorInstance.createCredentials();
     final GoogleAuthenticatorAccount keyAccount=new GoogleAuthenticatorAccount(key.getKey(),key.getVerificationCode(),key.getScratchCodes());
-    final String keyUri="otpauth://totp/" + this.label + ':'+ uid+ "?secret="+ keyAccount.getSecretKey()+ "&issuer="+ this.issuer;
+    final String keyUri="otpauth://totp/" + casProperties.getAuthn().getMfa().getGauth().getLabel() + ':'+ uid+ "?secret="+ keyAccount.getSecretKey()+ "&issuer="+ casProperties.getAuthn().getMfa().getGauth().getIssuer();
     requestContext.getFlowScope().put("key",keyAccount);
     requestContext.getFlowScope().put("keyUri",keyUri);
     return new EventFactorySupport().event(this,"register");

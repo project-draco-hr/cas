@@ -8,7 +8,13 @@
   pool.setIgnoreComments(true);
   pool.setNamespaceAware(true);
   final Map<String,Object> attributes=new HashMap<>();
-  attributes.put("http://apache.org/xml/properties/security-manager",new SecurityManager());
+  try {
+    final Class clazz=ClassUtils.getClass(casProperties.getSamlCore().getSecurityManager());
+    attributes.put("http://apache.org/xml/properties/security-manager",clazz.newInstance());
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
   pool.setBuilderAttributes(attributes);
   final Map<String,Boolean> features=new HashMap<>();
   features.put("http://apache.org/xml/features/disallow-doctype-decl",Boolean.TRUE);

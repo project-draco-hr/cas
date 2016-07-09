@@ -4,6 +4,6 @@
     this.encodedTicket=encodedTicket.read();
   }
  catch (  final IOException e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
 }

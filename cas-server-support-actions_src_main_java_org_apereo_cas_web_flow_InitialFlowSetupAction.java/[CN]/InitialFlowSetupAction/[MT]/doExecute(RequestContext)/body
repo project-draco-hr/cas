@@ -20,6 +20,7 @@
   WebUtils.putGoogleAnalyticsTrackingIdIntoFlowScope(context,this.googleAnalyticsTrackingId);
   WebUtils.putWarningCookie(context,Boolean.valueOf(this.warnCookieGenerator.retrieveCookieValue(request)));
   WebUtils.putGeoLocationTrackingIntoFlowScope(context,this.trackGeoLocation);
+  WebUtils.putStaticAuthenticationIntoFlowScope(context,this.staticAuthentication);
   final Service service=WebUtils.getService(this.argumentExtractors,context);
   if (service != null) {
     logger.debug("Placing service in context scope: [{}]",service.getId());

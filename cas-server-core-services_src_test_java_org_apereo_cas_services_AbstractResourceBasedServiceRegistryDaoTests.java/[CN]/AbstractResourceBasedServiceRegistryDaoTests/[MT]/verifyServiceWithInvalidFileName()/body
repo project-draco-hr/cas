@@ -3,5 +3,5 @@
   r.setServiceId("^https://.+");
   r.setName("hell/o@world:*");
   r.setEvaluationOrder(1000);
-  final RegisteredService r2=this.dao.save(r);
+  this.dao.save(r);
 }

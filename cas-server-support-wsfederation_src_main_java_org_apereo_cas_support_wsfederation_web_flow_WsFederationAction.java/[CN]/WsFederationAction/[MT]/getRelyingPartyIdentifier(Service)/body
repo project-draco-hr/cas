@@ -1,0 +1,12 @@
+{
+  String relyingPartyIdentifier=this.configuration.getRelyingPartyIdentifier();
+  if (service != null) {
+    final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+    RegisteredServiceAccessStrategyUtils.ensureServiceAccessIsAllowed(service,registeredService);
+    if (registeredService.getProperties().containsKey("wsfed.relyingPartyIdentifier")) {
+      relyingPartyIdentifier=registeredService.getProperties().get("wsfed.relyingPartyIdentifier").getValue();
+    }
+  }
+  LOGGER.debug("Determined relying party identifier for {} to be {}",service,relyingPartyIdentifier);
+  return relyingPartyIdentifier;
+}

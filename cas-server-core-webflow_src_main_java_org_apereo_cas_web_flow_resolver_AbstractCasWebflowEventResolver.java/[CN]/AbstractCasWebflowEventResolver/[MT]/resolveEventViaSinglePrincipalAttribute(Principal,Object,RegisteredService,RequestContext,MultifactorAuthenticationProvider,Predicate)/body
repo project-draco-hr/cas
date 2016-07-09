@@ -4,16 +4,25 @@
       logger.debug("Attribute value {} is a single-valued attribute",attributeValue);
       if (predicate.apply(attributeValue)) {
         logger.debug("Attribute value predicate {} has matched the [{}]",predicate,attributeValue);
+        logger.debug("Attempting to verify mutlifactor authentication provider {} for {}",provider,service);
         if (provider.verify(service)) {
+          logger.debug("Provider {} is successfully verified",provider);
           final String id=provider.getId();
           final Event event=validateEventIdForMatchingTransitionInContext(id,context,buildEventAttributeMap(principal,service,provider));
           return ImmutableSet.of(event);
         }
+ else {
+          logger.debug("Provider {} could not be verified",provider);
+        }
+      }
+ else {
+        logger.debug("Attribute value predicate {} could not match the [{}]",predicate,attributeValue);
       }
     }
   }
  catch (  final Exception e) {
-    throw new RuntimeException(e);
+    throw Throwables.propagate(e);
   }
+  logger.debug("Attribute value {} is not a single-valued attribute",attributeValue);
   return null;
 }

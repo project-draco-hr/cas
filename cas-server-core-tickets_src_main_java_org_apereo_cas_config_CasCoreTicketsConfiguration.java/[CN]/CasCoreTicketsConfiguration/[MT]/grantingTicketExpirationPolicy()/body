@@ -1,0 +1,9 @@
+{
+  if (casProperties.getTicket().getTgt().getRememberMe().isEnabled()) {
+    final RememberMeDelegatingExpirationPolicy p=new RememberMeDelegatingExpirationPolicy();
+    p.setRememberMeExpirationPolicy(new HardTimeoutExpirationPolicy(casProperties.getTicket().getTgt().getRememberMe().getTimeToKillInSeconds(),TimeUnit.SECONDS));
+    p.setSessionExpirationPolicy(buildTicketGrantingTicketExpirationPolicy());
+    return p;
+  }
+  return buildTicketGrantingTicketExpirationPolicy();
+}

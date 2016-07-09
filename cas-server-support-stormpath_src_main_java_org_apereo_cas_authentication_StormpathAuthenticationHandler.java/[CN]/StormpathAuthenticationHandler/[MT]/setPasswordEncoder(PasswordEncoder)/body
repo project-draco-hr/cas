@@ -1,5 +1,0 @@
-{
-  if (passwordEncoder != null) {
-    super.setPasswordEncoder(passwordEncoder);
-  }
-}

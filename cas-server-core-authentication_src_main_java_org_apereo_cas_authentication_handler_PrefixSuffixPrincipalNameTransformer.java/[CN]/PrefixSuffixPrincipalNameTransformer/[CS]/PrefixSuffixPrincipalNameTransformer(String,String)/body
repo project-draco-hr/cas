@@ -1,4 +1,4 @@
 {
-  setPrefix(prefix);
-  setSuffix(suffix);
+  this.prefix=prefix;
+  this.suffix=suffix;
 }

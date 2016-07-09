@@ -1,0 +1,4 @@
+{
+  Assert.notNull(this.applicationContext);
+  assertTrue(this.applicationContext.getBeanDefinitionCount() > 0);
+}

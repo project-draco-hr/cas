@@ -1,0 +1,14 @@
+{
+  try {
+    out.println();
+    out.println(ANSI_CYAN);
+    out.println(FigletFont.convertOneLine(asciiArt));
+    if (StringUtils.isNotBlank(additional)) {
+      out.println(additional);
+    }
+    out.println(ANSI_RESET);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

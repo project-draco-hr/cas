@@ -6,7 +6,7 @@
   assertNotNull(st);
   final Assertion assertion=cas.validateServiceTicket(st.getId(),HIGH_SERVICE);
   assertEquals(2,assertion.getPrimaryAuthentication().getSuccesses().size());
-  assertTrue(assertion.getPrimaryAuthentication().getSuccesses().containsKey("passwordHandler"));
-  assertTrue(assertion.getPrimaryAuthentication().getSuccesses().containsKey("oneTimePasswordHandler"));
+  assertTrue(assertion.getPrimaryAuthentication().getSuccesses().containsKey(AcceptUsersAuthenticationHandler.class.getSimpleName()));
+  assertTrue(assertion.getPrimaryAuthentication().getSuccesses().containsKey(TestOneTimePasswordAuthenticationHandler.class.getSimpleName()));
   assertTrue(assertion.getPrimaryAuthentication().getAttributes().containsKey(AuthenticationHandler.SUCCESSFUL_AUTHENTICATION_HANDLERS));
 }

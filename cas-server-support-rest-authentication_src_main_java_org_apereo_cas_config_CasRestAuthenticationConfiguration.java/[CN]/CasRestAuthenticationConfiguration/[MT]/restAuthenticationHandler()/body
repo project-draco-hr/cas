@@ -1,0 +1,5 @@
+{
+  final RestAuthenticationHandler r=new RestAuthenticationHandler();
+  r.setApi(restAuthenticationApi());
+  return r;
+}

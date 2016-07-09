@@ -8,7 +8,7 @@
   rs.setTheme("the theme name");
   rs.setEvaluationOrder(123);
   rs.setDescription("Here is another description");
-  rs.setRequiredHandlers(new HashSet<>(Arrays.asList("handler1","handler2")));
+  rs.setRequiredHandlers(new HashSet<>(Lists.newArrayList("handler1","handler2")));
   final Map<String,RegisteredServiceProperty> propertyMap=new HashMap();
   final DefaultRegisteredServiceProperty property=new DefaultRegisteredServiceProperty();
   final Set<String> values=new HashSet<>();

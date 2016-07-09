@@ -1,0 +1,6 @@
+{
+  final X509SerialNumberAndIssuerDNPrincipalResolver r=new X509SerialNumberAndIssuerDNPrincipalResolver();
+  r.setSerialNumberPrefix(casProperties.getAuthn().getX509().getSerialNumberPrefix());
+  r.setValueDelimiter(casProperties.getAuthn().getX509().getValueDelimiter());
+  return r;
+}

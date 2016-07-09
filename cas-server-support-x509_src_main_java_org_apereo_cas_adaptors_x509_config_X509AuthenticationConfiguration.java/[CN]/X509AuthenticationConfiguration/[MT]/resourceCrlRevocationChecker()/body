@@ -1,0 +1,10 @@
+{
+  final ResourceCRLRevocationChecker c=new ResourceCRLRevocationChecker();
+  c.setRefreshInterval(casProperties.getAuthn().getX509().getRefreshIntervalSeconds());
+  c.setCheckAll(casProperties.getAuthn().getX509().isCheckAll());
+  c.setExpiredCRLPolicy(this.x509ResourceExpiredRevocationPolicy);
+  c.setUnavailableCRLPolicy(this.x509ResourceUnavailableRevocationPolicy);
+  c.setResources(x509CrlResources);
+  c.setFetcher(this.x509CrlFetcher);
+  return c;
+}

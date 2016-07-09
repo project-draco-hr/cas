@@ -16,7 +16,7 @@
       final Set<Event> resolvedEvents=resolveCandidateAuthenticationEvents(context,service,registeredService);
       if (!resolvedEvents.isEmpty()) {
         putResolvedEventsAsAttribute(context,resolvedEvents);
-        final Event finalResolvedEvent=this.selectiveAuthenticationProviderWebflowEventResolver.resolveSingle(context);
+        final Event finalResolvedEvent=this.selectiveResolver.resolveSingle(context);
         if (finalResolvedEvent != null) {
           return ImmutableSet.of(finalResolvedEvent);
         }

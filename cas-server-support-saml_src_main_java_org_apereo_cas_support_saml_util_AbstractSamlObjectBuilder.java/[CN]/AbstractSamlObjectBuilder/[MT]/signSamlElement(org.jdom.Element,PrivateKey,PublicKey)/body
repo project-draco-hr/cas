@@ -21,9 +21,9 @@ final SignedInfo signedInfo=sigFactory.newSignedInfo(canonicalizationMethod,sign
 final KeyInfoFactory keyInfoFactory=sigFactory.getKeyInfoFactory();
 final KeyValue keyValuePair=keyInfoFactory.newKeyValue(pubKey);
 final KeyInfo keyInfo=keyInfoFactory.newKeyInfo(Collections.singletonList(keyValuePair));
-final org.w3c.dom.Element w3cElement=toDom(element);
+final Element w3cElement=toDom(element);
 final DOMSignContext dsc=new DOMSignContext(privKey,w3cElement);
-final org.w3c.dom.Node xmlSigInsertionPoint=getXmlSignatureInsertLocation(w3cElement);
+final Node xmlSigInsertionPoint=getXmlSignatureInsertLocation(w3cElement);
 dsc.setNextSibling(xmlSigInsertionPoint);
 final XMLSignature signature=sigFactory.newXMLSignature(signedInfo,keyInfo);
 signature.sign(dsc);

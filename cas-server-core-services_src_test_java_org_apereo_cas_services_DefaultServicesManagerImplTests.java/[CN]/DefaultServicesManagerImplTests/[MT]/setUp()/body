@@ -9,5 +9,5 @@
   list.add(r);
   dao.setRegisteredServices(list);
   this.defaultServicesManagerImpl=new DefaultServicesManagerImpl(dao);
-  this.defaultServicesManagerImpl.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
+  this.defaultServicesManagerImpl.load();
 }

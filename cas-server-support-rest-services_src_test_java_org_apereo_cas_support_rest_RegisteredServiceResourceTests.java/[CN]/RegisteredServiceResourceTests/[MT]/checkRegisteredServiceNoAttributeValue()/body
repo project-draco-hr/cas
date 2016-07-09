@@ -1,5 +1,5 @@
 {
-  this.registeredServiceResource.setAttributeName("Test");
-  this.registeredServiceResource.setAttributeValue("");
+  registeredServiceResource.setAttributeName("Test");
+  registeredServiceResource.setAttributeValue("");
   this.mockMvc.perform(post("/cas/v1/services/add/TGT-12345")).andExpect(status().isBadRequest());
 }

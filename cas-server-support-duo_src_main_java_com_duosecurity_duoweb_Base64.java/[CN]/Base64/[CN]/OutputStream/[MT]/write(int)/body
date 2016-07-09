@@ -19,7 +19,7 @@
     if (this.decodabet[theByte & 0x7f] > WHITE_SPACE_ENC) {
       this.buffer[this.position++]=(byte)theByte;
       if (this.position >= this.bufferLength) {
-        int len=Base64.decode4to3(this.buffer,0,this.b4,0,this.options);
+        final int len=Base64.decode4to3(this.buffer,0,this.b4,0,this.options);
         this.out.write(this.b4,0,len);
         this.position=0;
       }

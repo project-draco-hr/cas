@@ -18,8 +18,14 @@
   final CentralAuthenticationService casImpl=mock(CentralAuthenticationService.class);
   when(casImpl.createTicketGrantingTicket(any(AuthenticationResult.class))).thenReturn(tgt);
   final ClientAction action=new ClientAction();
+  final AuthenticationTransactionManager transManager=mock(AuthenticationTransactionManager.class);
   final AuthenticationManager authNManager=mock(AuthenticationManager.class);
   when(authNManager.authenticate(any(AuthenticationTransaction.class))).thenReturn(TestUtils.getAuthentication());
+  transManager.setAuthenticationManager(authNManager);
+  when(transManager.handle(any(AuthenticationTransaction.class),any(AuthenticationResultBuilder.class))).thenReturn(transManager);
+  final AuthenticationSystemSupport support=mock(AuthenticationSystemSupport.class);
+  when(support.getAuthenticationTransactionManager()).thenReturn(transManager);
+  action.setAuthenticationSystemSupport(support);
   action.getAuthenticationSystemSupport().getAuthenticationTransactionManager().setAuthenticationManager(authNManager);
   action.setCentralAuthenticationService(casImpl);
   action.setClients(clients);

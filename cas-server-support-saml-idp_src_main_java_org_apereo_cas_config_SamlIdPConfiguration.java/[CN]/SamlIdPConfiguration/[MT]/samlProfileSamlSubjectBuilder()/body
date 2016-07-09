@@ -1,0 +1,7 @@
+{
+  final SamlProfileSamlSubjectBuilder b=new SamlProfileSamlSubjectBuilder();
+  b.setConfigBean(openSamlConfigBean);
+  b.setSkewAllowance(casProperties.getAuthn().getSamlIdp().getResponse().getSkewAllowance());
+  b.setSsoPostProfileSamlNameIdBuilder(samlProfileSamlNameIdBuilder());
+  return b;
+}

@@ -1,0 +1,6 @@
+{
+  final ChainingMetadataResolverAdapter adapter=new ChainingMetadataResolverAdapter();
+  adapter.getAdapters().add(getStaticMetadataResolverAdapter());
+  adapter.getAdapters().add(getDynamicMetadataResolverAdapter());
+  return adapter;
+}

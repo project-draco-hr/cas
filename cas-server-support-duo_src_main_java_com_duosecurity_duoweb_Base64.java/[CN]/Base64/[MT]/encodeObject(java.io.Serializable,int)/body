@@ -18,35 +18,35 @@
     }
     oos.writeObject(serializableObject);
   }
- catch (  java.io.IOException e) {
+ catch (  final java.io.IOException e) {
     throw e;
   }
  finally {
     try {
       oos.close();
     }
- catch (    Exception e) {
+ catch (    final Exception e) {
     }
     try {
       gzos.close();
     }
- catch (    Exception e) {
+ catch (    final Exception e) {
     }
     try {
       b64os.close();
     }
- catch (    Exception e) {
+ catch (    final Exception e) {
     }
     try {
       baos.close();
     }
- catch (    Exception e) {
+ catch (    final Exception e) {
     }
   }
   try {
     return new String(baos.toByteArray(),PREFERRED_ENCODING);
   }
- catch (  java.io.UnsupportedEncodingException uue) {
+ catch (  final java.io.UnsupportedEncodingException uue) {
     return new String(baos.toByteArray());
   }
 }

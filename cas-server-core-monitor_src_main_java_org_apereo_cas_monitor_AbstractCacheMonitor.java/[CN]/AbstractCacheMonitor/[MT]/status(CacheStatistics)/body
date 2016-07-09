@@ -1,9 +1,9 @@
 {
   final StatusCode code;
-  if (statistics.getEvictions() > this.evictionThreshold) {
+  if (statistics.getEvictions() > casProperties.getMonitor().getWarn().getEvictionThreshold()) {
     code=StatusCode.WARN;
   }
- else   if (statistics.getPercentFree() < this.warnFreeThreshold) {
+ else   if (statistics.getPercentFree() < casProperties.getMonitor().getWarn().getThreshold()) {
     code=StatusCode.WARN;
   }
  else {

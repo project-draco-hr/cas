@@ -1,0 +1,11 @@
+{
+  final OAuth20AuthorizeController c=new OAuth20AuthorizeController();
+  c.setAccessTokenFactory(defaultAccessTokenFactory());
+  c.setPrincipalFactory(oauthPrincipalFactory());
+  c.setServicesManager(servicesManager);
+  c.setTicketRegistry(ticketRegistry);
+  c.setValidator(oAuthValidator());
+  c.setConsentApprovalViewResolver(consentApprovalViewResolver());
+  c.setoAuthCodeFactory(defaultOAuthCodeFactory());
+  return c;
+}

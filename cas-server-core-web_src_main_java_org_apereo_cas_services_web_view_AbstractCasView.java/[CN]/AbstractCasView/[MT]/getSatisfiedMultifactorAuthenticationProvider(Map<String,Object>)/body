@@ -1,5 +1,5 @@
 {
-  if (model.containsKey(this.authenticationContextAttribute)) {
+  if (StringUtils.isNotBlank(authenticationContextAttribute) && model.containsKey(this.authenticationContextAttribute)) {
     final Optional<MultifactorAuthenticationProvider> result=(Optional<MultifactorAuthenticationProvider>)model.get(this.authenticationContextAttribute);
     return result;
   }

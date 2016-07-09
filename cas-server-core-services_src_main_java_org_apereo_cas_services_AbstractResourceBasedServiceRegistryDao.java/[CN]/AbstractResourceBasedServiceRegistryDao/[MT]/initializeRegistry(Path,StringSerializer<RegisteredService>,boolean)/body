@@ -4,7 +4,8 @@
   Assert.isTrue(this.serviceRegistryDirectory.toFile().isDirectory(),this.serviceRegistryDirectory + " is not a directory");
   this.registeredServiceSerializer=registeredServiceJsonSerializer;
   if (enableWatcher) {
-    this.serviceRegistryConfigWatcher=new ServiceRegistryConfigWatcher(this);
+    LOGGER.info("Watching service registry directory at {}",configDirectory);
+    this.serviceRegistryConfigWatcher=new ServiceRegistryConfigWatcher(this,this.eventPublisher);
     this.serviceRegistryWatcherThread=new Thread(this.serviceRegistryConfigWatcher);
     this.serviceRegistryWatcherThread.setName(this.getClass().getName());
     this.serviceRegistryWatcherThread.start();

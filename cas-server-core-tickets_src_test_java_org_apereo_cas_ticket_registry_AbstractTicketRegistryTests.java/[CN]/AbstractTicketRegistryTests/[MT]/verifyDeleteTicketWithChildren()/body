@@ -20,6 +20,6 @@
     assertNull(this.ticketRegistry.getTicket("ST3",ServiceTicket.class));
   }
  catch (  final Exception e) {
-    fail("Caught an exception. But no exception should have been thrown.");
+    fail("Caught an exception. But no exception should have been thrown: " + e.getMessage());
   }
 }

@@ -22,38 +22,38 @@
       gzos.write(source,off,len);
       gzos.close();
     }
- catch (    java.io.IOException e) {
+ catch (    final java.io.IOException e) {
       throw e;
     }
  finally {
       try {
         gzos.close();
       }
- catch (      Exception e) {
+ catch (      final Exception e) {
       }
       try {
         b64os.close();
       }
- catch (      Exception e) {
+ catch (      final Exception e) {
       }
       try {
         baos.close();
       }
- catch (      Exception e) {
+ catch (      final Exception e) {
       }
     }
     return baos.toByteArray();
   }
  else {
-    boolean breakLines=(options & DO_BREAK_LINES) != 0;
+    final boolean breakLines=(options & DO_BREAK_LINES) != 0;
     int encLen=(len / 3) * 4 + (len % 3 > 0 ? 4 : 0);
     if (breakLines) {
       encLen+=encLen / MAX_LINE_LENGTH;
     }
-    byte[] outBuff=new byte[encLen];
+    final byte[] outBuff=new byte[encLen];
     int d=0;
     int e=0;
-    int len2=len - 2;
+    final int len2=len - 2;
     int lineLength=0;
     for (; d < len2; d+=3, e+=4) {
       encode3to4(source,d + off,3,outBuff,e,options);
@@ -69,7 +69,7 @@
       e+=4;
     }
     if (e <= outBuff.length - 1) {
-      byte[] finalOut=new byte[e];
+      final byte[] finalOut=new byte[e];
       System.arraycopy(outBuff,0,finalOut,0,e);
       return finalOut;
     }

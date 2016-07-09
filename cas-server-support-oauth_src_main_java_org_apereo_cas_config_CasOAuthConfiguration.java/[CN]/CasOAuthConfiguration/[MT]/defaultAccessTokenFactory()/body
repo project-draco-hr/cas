@@ -1,0 +1,6 @@
+{
+  final DefaultAccessTokenFactory f=new DefaultAccessTokenFactory();
+  f.setAccessTokenIdGenerator(accessTokenIdGenerator());
+  f.setExpirationPolicy(accessTokenExpirationPolicy());
+  return f;
+}

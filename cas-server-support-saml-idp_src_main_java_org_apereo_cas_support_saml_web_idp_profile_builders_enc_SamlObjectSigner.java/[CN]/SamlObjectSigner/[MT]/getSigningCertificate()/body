@@ -1,4 +1,4 @@
 {
-  logger.debug("Locating signature signing certificate file from [{}]",this.signingCertFile);
-  return SamlUtils.readCertificate(new FileSystemResource(this.signingCertFile));
+  logger.debug("Locating signature signing certificate file from [{}]",casProperties.getAuthn().getSamlIdp().getMetadata().getSigningCertFile());
+  return SamlUtils.readCertificate(new FileSystemResource(casProperties.getAuthn().getSamlIdp().getMetadata().getSigningCertFile()));
 }

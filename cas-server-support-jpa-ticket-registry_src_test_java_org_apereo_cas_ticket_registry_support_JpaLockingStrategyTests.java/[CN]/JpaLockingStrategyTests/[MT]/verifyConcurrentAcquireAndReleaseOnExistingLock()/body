@@ -4,7 +4,7 @@
   locks[0].release();
   final ExecutorService executor=Executors.newFixedThreadPool(CONCURRENT_SIZE);
   try {
-    testConcurrency(executor,Arrays.asList(locks));
+    testConcurrency(executor,Lists.newArrayList(locks));
   }
  catch (  final Exception e) {
     logger.debug("testConcurrentAcquireAndReleaseOnExistingLock produced an error",e);

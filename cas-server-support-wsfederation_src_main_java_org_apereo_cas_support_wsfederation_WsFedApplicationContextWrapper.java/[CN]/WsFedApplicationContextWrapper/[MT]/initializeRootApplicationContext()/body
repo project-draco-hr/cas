@@ -1,8 +1,0 @@
-{
-  if (!this.useResolver) {
-    addAuthenticationHandler(this.adfsAuthNHandler);
-  }
- else {
-    addAuthenticationHandlerPrincipalResolver(this.adfsAuthNHandler,this.adfsPrincipalResolver);
-  }
-}

@@ -1,4 +1,4 @@
 {
-  final List<OAuthCodeImpl> oAuthCodeImpls=getTicketQueryResultList(ticketId,"select o from OAuthCodeImpl o where o.id = :id",OAuthCodeImpl.class);
+  final List<OAuthCodeImpl> oAuthCodeImpls=getTicketQueryResultList(ticketId,"select o from " + TABLE_OAUTH_TICKETS + " o where o.id = :id",OAuthCodeImpl.class);
   return deleteTicketsFromResultList(oAuthCodeImpls);
 }

@@ -1,0 +1,9 @@
+{
+  final List list=new ArrayList<>();
+  list.add(successfulHandlerMetaDataPopulator());
+  list.add(rememberMeAuthenticationMetaDataPopulator());
+  if (casProperties.getClearpass().isCacheCredential()) {
+    list.add(new CacheCredentialsMetaDataPopulator());
+  }
+  return list;
+}

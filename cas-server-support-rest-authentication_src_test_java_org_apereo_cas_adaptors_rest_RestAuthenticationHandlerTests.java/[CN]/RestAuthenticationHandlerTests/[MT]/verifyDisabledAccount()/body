@@ -1,0 +1,5 @@
+{
+  final MockRestServiceServer server=MockRestServiceServer.bindTo(restAuthenticationTemplate).build();
+  server.expect(manyTimes(),requestTo("http://localhost:8081/authn")).andExpect(method(HttpMethod.POST)).andRespond(withStatus(HttpStatus.FORBIDDEN));
+  authenticationHandler.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
+}

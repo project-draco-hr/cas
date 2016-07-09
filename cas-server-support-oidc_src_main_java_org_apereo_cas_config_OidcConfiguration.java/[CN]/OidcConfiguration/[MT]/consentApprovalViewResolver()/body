@@ -1,3 +1,5 @@
 {
-  return new OidcConsentApprovalViewResolver();
+  final OidcConsentApprovalViewResolver c=new OidcConsentApprovalViewResolver();
+  c.setOidcAuthzRequestSupport(oidcAuthorizationRequestSupport());
+  return c;
 }

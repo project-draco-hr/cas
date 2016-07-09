@@ -1,0 +1,4 @@
+{
+  authenticationHandlersResolvers.put(googleAuthenticatorAuthenticationHandler(),null);
+  authenticationMetadataPopulators.add(0,googleAuthenticatorAuthenticationMetaDataPopulator());
+}

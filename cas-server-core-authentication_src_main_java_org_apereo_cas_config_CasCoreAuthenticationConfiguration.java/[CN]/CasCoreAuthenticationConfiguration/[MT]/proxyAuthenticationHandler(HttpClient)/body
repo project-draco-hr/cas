@@ -1,0 +1,7 @@
+{
+  final HttpBasedServiceCredentialsAuthenticationHandler h=new HttpBasedServiceCredentialsAuthenticationHandler();
+  h.setHttpClient(supportsTrustStoreSslSocketFactoryHttpClient);
+  h.setPrincipalFactory(proxyPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

@@ -1,4 +1,0 @@
-{
-  addAuthenticationHandlerPrincipalResolver(this.spnegoHandler,this.spnegoPrincipalResolver);
-  addAuthenticationMetadataPopulator(this.successfulHandlerMetaDataPopulator);
-}

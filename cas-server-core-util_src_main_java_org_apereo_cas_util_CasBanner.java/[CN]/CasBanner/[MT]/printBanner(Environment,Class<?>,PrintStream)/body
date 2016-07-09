@@ -1,7 +1,3 @@
 {
-  out.println();
-  for (  final String line : BANNER) {
-    out.println(line);
-  }
-  out.println(collectEnvironmentInfo());
+  AsciiArtUtils.printAsciiArt(out,"(CAS)",collectEnvironmentInfo());
 }

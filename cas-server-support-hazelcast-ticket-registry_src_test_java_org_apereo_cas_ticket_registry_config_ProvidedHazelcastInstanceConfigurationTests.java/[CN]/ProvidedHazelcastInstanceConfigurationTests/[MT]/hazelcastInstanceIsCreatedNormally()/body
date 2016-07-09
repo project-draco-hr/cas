@@ -2,7 +2,7 @@
   assertNotNull(this.hzInstance);
   final Config config=this.hzInstance.getConfig();
   assertTrue(config.getNetworkConfig().getJoin().getMulticastConfig().isEnabled());
-  assertEquals(Arrays.asList("127.0.0.1"),config.getNetworkConfig().getJoin().getTcpIpConfig().getMembers());
+  assertEquals(Lists.newArrayList("127.0.0.1"),config.getNetworkConfig().getJoin().getTcpIpConfig().getMembers());
   assertFalse(config.getNetworkConfig().isPortAutoIncrement());
   assertEquals(5801,config.getNetworkConfig().getPort());
   final MapConfig mapConfig=config.getMapConfig("tickets-from-external-config");

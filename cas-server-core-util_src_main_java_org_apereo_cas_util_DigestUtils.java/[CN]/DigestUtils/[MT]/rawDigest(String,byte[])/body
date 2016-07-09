@@ -2,7 +2,7 @@
   try {
     return MessageDigest.getInstance(alg).digest(data);
   }
- catch (  final NoSuchAlgorithmException cause) {
+ catch (  final Exception cause) {
     throw new SecurityException(cause);
   }
 }
