@@ -5,9 +5,7 @@
   if (StringUtils.isNotBlank(casProperties.getAuthn().getReject().getUsers())) {
     h.setUsers(org.springframework.util.StringUtils.commaDelimitedListToSet(casProperties.getAuthn().getReject().getUsers()));
   }
-  if (rejectPasswordEncoder != null) {
-    h.setPasswordEncoder(rejectPasswordEncoder);
-  }
+  h.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getReject().getPasswordEncoder()));
   if (rejectPasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(rejectPasswordPolicyConfiguration);
   }

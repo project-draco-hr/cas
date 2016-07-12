@@ -2,9 +2,7 @@
   final QueryDatabaseAuthenticationHandler h=new QueryDatabaseAuthenticationHandler();
   h.setDataSource(Beans.newHickariDataSource(b));
   h.setSql(b.getSql());
-  if (queryPasswordEncoder != null) {
-    h.setPasswordEncoder(queryPasswordEncoder);
-  }
+  h.setPasswordEncoder(Beans.newPasswordEncoder(b.getPasswordEncoder()));
   if (queryPasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(queryPasswordPolicyConfiguration);
   }

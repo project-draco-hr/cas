@@ -8,9 +8,7 @@
   if (principalNameTransformer != null) {
     mongo.setPrincipalNameTransformer(principalNameTransformer);
   }
-  if (passwordEncoder != null) {
-    mongo.setPasswordEncoder(passwordEncoder);
-  }
+  mongo.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getMongo().getPasswordEncoder()));
   if (mongoPasswordEncoder != null) {
     mongo.setMongoPasswordEncoder(mongoPasswordEncoder);
   }

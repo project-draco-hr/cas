@@ -3,9 +3,7 @@
   h.setFailoverOnAuthenticationFailure(casProperties.getAuthn().getRadius().isFailoverOnAuthenticationFailure());
   h.setFailoverOnException(casProperties.getAuthn().getRadius().isFailoverOnException());
   h.setServers(radiusServers());
-  if (passwordEncoder != null) {
-    h.setPasswordEncoder(passwordEncoder);
-  }
+  h.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getRadius().getPasswordEncoder()));
   if (passwordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(passwordPolicyConfiguration);
   }

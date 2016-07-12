@@ -7,7 +7,7 @@
   q.setStaticSalt(STATIC_SALT);
   q.setSaltFieldName("salt");
   final UsernamePasswordCredential c=TestUtils.getCredentialsWithSameUsernameAndPassword("user1");
-  final HandlerResult r=q.authenticateUsernamePasswordInternal(c);
+  final HandlerResult r=q.authenticate(c);
   assertNotNull(r);
   assertEquals(r.getPrincipal().getId(),"user1");
 }

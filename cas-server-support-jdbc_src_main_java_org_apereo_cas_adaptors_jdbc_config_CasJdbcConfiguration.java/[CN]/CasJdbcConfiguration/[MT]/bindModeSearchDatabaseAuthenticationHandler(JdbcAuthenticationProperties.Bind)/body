@@ -1,9 +1,7 @@
 {
   final BindModeSearchDatabaseAuthenticationHandler h=new BindModeSearchDatabaseAuthenticationHandler();
   h.setDataSource(Beans.newHickariDataSource(b));
-  if (bindSearchPasswordEncoder != null) {
-    h.setPasswordEncoder(bindSearchPasswordEncoder);
-  }
+  h.setPasswordEncoder(Beans.newPasswordEncoder(b.getPasswordEncoder()));
   if (bindSearchPasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(bindSearchPasswordPolicyConfiguration);
   }

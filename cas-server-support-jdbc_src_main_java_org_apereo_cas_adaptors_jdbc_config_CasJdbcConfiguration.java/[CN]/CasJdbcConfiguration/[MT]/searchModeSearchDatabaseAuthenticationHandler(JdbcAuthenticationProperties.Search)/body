@@ -4,9 +4,7 @@
   h.setFieldPassword(b.getFieldPassword());
   h.setFieldUser(b.getFieldUser());
   h.setTableUsers(b.getTableUsers());
-  if (searchModePasswordEncoder != null) {
-    h.setPasswordEncoder(searchModePasswordEncoder);
-  }
+  h.setPasswordEncoder(Beans.newPasswordEncoder(b.getPasswordEncoder()));
   if (searchModePasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(searchModePasswordPolicyConfiguration);
   }

@@ -1,4 +1,0 @@
-{
-  ++encodeCalledCount;
-  return expectedEncodedPassword;
-}

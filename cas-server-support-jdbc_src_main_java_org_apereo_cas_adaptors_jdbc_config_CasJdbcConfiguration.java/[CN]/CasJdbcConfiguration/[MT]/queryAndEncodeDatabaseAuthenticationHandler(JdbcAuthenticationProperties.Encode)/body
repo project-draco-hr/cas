@@ -8,9 +8,7 @@
   h.setSql(b.getSql());
   h.setStaticSalt(b.getStaticSalt());
   h.setDataSource(Beans.newHickariDataSource(b));
-  if (queryAndEncodePasswordEncoder != null) {
-    h.setPasswordEncoder(queryAndEncodePasswordEncoder);
-  }
+  h.setPasswordEncoder(Beans.newPasswordEncoder(b.getPasswordEncoder()));
   if (queryAndEncodePasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(queryAndEncodePasswordPolicyConfiguration);
   }

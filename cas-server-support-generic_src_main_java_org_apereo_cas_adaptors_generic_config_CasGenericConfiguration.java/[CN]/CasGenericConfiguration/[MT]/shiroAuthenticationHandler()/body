@@ -5,9 +5,7 @@
   h.setRequiredRoles(casProperties.getAuthn().getShiro().getRequiredRoles());
   h.setRequiredPermissions(casProperties.getAuthn().getShiro().getRequiredPermissions());
   h.loadShiroConfiguration(casProperties.getAuthn().getShiro().getConfig().getLocation());
-  if (shiroPasswordEncoder != null) {
-    h.setPasswordEncoder(shiroPasswordEncoder);
-  }
+  h.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getShiro().getPasswordEncoder()));
   if (shiroPasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(shiroPasswordPolicyConfiguration);
   }

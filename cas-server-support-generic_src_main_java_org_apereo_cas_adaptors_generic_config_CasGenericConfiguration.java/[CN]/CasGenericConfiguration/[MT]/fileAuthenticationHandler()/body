@@ -4,9 +4,7 @@
   h.setSeparator(casProperties.getAuthn().getFile().getSeparator());
   h.setPrincipalFactory(filePrincipalFactory());
   h.setServicesManager(servicesManager);
-  if (filePasswordEncoder != null) {
-    h.setPasswordEncoder(filePasswordEncoder);
-  }
+  h.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getFile().getPasswordEncoder()));
   if (filePasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(filePasswordPolicyConfiguration);
   }

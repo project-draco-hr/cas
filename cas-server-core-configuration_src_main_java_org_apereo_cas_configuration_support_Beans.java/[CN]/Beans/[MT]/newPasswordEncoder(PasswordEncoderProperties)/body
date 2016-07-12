@@ -1,0 +1,12 @@
+{
+switch (properties.getType()) {
+case NONE:
+    return NoOpPasswordEncoder.getInstance();
+case DEFAULT:
+  return new DefaultPasswordEncoder(properties.getEncodingAlgorithm(),properties.getCharacterEncoding());
+case STANDARD:
+return new StandardPasswordEncoder(properties.getSecret());
+default :
+return new BCryptPasswordEncoder(properties.getStrength(),new SecureRandom(properties.getSecret().getBytes()));
+}
+}

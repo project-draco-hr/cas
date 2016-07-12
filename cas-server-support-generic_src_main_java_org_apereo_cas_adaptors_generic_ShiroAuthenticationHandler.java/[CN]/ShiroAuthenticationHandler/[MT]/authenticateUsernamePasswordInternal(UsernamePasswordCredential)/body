@@ -1,7 +1,7 @@
 {
   try {
     final RememberMeUsernamePasswordCredential credential=(RememberMeUsernamePasswordCredential)transformedCredential;
-    final UsernamePasswordToken token=new UsernamePasswordToken(credential.getUsername(),this.getPasswordEncoder().encode(credential.getPassword()));
+    final UsernamePasswordToken token=new UsernamePasswordToken(credential.getUsername(),credential.getPassword());
     token.setRememberMe(credential.isRememberMe());
     final Subject currentUser=getCurrentExecutingSubject();
     currentUser.login(token);

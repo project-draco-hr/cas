@@ -3,9 +3,7 @@
   h.setKerberosKdcSystemProperty(casProperties.getAuthn().getJaas().getKerberosKdcSystemProperty());
   h.setKerberosRealmSystemProperty(casProperties.getAuthn().getJaas().getKerberosRealmSystemProperty());
   h.setRealm(casProperties.getAuthn().getJaas().getRealm());
-  if (passwordEncoder != null) {
-    h.setPasswordEncoder(passwordEncoder);
-  }
+  h.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getJaas().getPasswordEncoder()));
   if (passwordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(passwordPolicyConfiguration);
   }

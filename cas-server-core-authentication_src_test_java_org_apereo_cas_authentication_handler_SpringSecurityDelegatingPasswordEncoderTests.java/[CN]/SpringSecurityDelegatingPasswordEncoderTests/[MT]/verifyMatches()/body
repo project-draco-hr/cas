@@ -1,8 +1,0 @@
-{
-  final Boolean expectedMatches=true;
-  final MockPasswordEncoder mockPasswordEncoder=new MockPasswordEncoder();
-  mockPasswordEncoder.setExpectedMatches(expectedMatches);
-  passwordEncoder.setDelegate(mockPasswordEncoder);
-  assertEquals("password matches as expected",expectedMatches,passwordEncoder.matches("",""));
-  assertEquals("collaborator has been called",1,mockPasswordEncoder.getMatchesCalledCount());
-}

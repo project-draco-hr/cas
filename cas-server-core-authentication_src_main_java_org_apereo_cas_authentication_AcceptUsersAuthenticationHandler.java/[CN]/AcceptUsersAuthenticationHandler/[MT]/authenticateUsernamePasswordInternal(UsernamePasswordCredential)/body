@@ -8,7 +8,7 @@
     logger.debug("{} was not found in the map.",username);
     throw new AccountNotFoundException(username + " not found in backing map.");
   }
-  if (!this.getPasswordEncoder().matches(credential.getPassword(),cachedPassword)) {
+  if (!StringUtils.equals(credential.getPassword(),cachedPassword)) {
     throw new FailedLoginException();
   }
   final List<MessageDescriptor> list=new ArrayList<>();

@@ -3,5 +3,5 @@
   q.setDataSource(dataSource);
   q.setAlgorithmName(ALG_NAME);
   q.setSql(buildSql());
-  q.authenticateUsernamePasswordInternal(TestUtils.getCredentialsWithDifferentUsernameAndPassword("user0","password0"));
+  q.authenticate(TestUtils.getCredentialsWithDifferentUsernameAndPassword("user0","password0"));
 }

@@ -1,4 +1,0 @@
-{
-  ++matchesCalledCount;
-  return expectedMatches;
-}

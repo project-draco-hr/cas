@@ -1,6 +1,0 @@
-{
-  final DefaultPasswordEncoder e=new DefaultPasswordEncoder();
-  e.setCharacterEncoding(casProperties.getAuthn().getPasswordEncoder().getCharacterEncoding());
-  e.setEncodingAlgorithm(casProperties.getAuthn().getPasswordEncoder().getEncodingAlgorithm());
-  return e;
-}
