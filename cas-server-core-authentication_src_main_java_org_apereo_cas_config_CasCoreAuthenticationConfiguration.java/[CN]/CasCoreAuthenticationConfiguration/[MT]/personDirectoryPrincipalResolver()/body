@@ -1,6 +1,6 @@
 {
   final PersonDirectoryPrincipalResolver bean=new PersonDirectoryPrincipalResolver();
-  bean.setAttributeRepository(stubAttributeRepository());
+  bean.setAttributeRepository(this.attributeRepository);
   bean.setPrincipalAttributeName(casProperties.getPersonDirectory().getPrincipalAttribute());
   bean.setReturnNullIfNoAttributes(casProperties.getPersonDirectory().isReturnNull());
   bean.setPrincipalFactory(defaultPrincipalFactory());

@@ -1,5 +1,5 @@
 {
-  final PooledBindAuthenticationHandler handler=new PooledBindAuthenticationHandler(getPooledConnectionFactory(l));
+  final PooledBindAuthenticationHandler handler=new PooledBindAuthenticationHandler(Beans.newPooledConnectionFactory(l));
   handler.setAuthenticationControls(new PasswordPolicyControl());
   return handler;
 }
