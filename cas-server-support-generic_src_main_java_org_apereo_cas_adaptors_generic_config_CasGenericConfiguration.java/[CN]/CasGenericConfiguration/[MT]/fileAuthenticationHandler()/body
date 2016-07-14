@@ -8,8 +8,6 @@
   if (filePasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(filePasswordPolicyConfiguration);
   }
-  if (filePrincipalNameTransformer != null) {
-    h.setPrincipalNameTransformer(filePrincipalNameTransformer);
-  }
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getFile().getPrincipalTransformation()));
   return h;
 }

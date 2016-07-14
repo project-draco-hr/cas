@@ -9,12 +9,11 @@
   h.setStaticSalt(b.getStaticSalt());
   h.setDataSource(Beans.newHickariDataSource(b));
   h.setPasswordEncoder(Beans.newPasswordEncoder(b.getPasswordEncoder()));
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(b.getPrincipalTransformation()));
   if (queryAndEncodePasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(queryAndEncodePasswordPolicyConfiguration);
   }
-  if (queryAndEncodePrincipalNameTransformer != null) {
-    h.setPrincipalNameTransformer(queryAndEncodePrincipalNameTransformer);
-  }
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(b.getPrincipalTransformation()));
   h.setPrincipalFactory(jdbcPrincipalFactory());
   h.setServicesManager(servicesManager);
   return h;

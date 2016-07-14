@@ -9,8 +9,6 @@
   if (rejectPasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(rejectPasswordPolicyConfiguration);
   }
-  if (rejectPrincipalNameTransformer != null) {
-    h.setPrincipalNameTransformer(rejectPrincipalNameTransformer);
-  }
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getReject().getPrincipalTransformation()));
   return h;
 }

@@ -1,6 +1,0 @@
-{
-  final PrefixSuffixPrincipalNameTransformer p=new PrefixSuffixPrincipalNameTransformer();
-  p.setPrefix(casProperties.getPrincipalTransformation().getPrefix());
-  p.setSuffix(casProperties.getPrincipalTransformation().getSuffix());
-  return p;
-}

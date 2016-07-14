@@ -5,11 +5,10 @@
   h.setFieldUser(b.getFieldUser());
   h.setTableUsers(b.getTableUsers());
   h.setPasswordEncoder(Beans.newPasswordEncoder(b.getPasswordEncoder()));
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(b.getPrincipalTransformation()));
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(b.getPrincipalTransformation()));
   if (searchModePasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(searchModePasswordPolicyConfiguration);
-  }
-  if (searchModePrincipalNameTransformer != null) {
-    h.setPrincipalNameTransformer(searchModePrincipalNameTransformer);
   }
   h.setPrincipalFactory(jdbcPrincipalFactory());
   h.setServicesManager(servicesManager);

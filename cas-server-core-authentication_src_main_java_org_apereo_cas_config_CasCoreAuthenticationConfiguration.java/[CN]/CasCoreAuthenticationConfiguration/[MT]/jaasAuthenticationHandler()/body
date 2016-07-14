@@ -7,9 +7,7 @@
   if (passwordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(passwordPolicyConfiguration);
   }
-  if (principalNameTransformer != null) {
-    h.setPrincipalNameTransformer(principalNameTransformer);
-  }
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getJaas().getPrincipalTransformation()));
   h.setPrincipalFactory(jaasPrincipalFactory());
   h.setServicesManager(servicesManager);
   return h;

@@ -1,9 +1,7 @@
 {
   final StormpathAuthenticationHandler handler=new StormpathAuthenticationHandler(casProperties.getAuthn().getStormpath().getApiKey(),casProperties.getAuthn().getStormpath().getApplicationId(),casProperties.getAuthn().getStormpath().getSecretkey());
   handler.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getStormpath().getPasswordEncoder()));
-  if (this.principalNameTransformer != null) {
-    handler.setPrincipalNameTransformer(this.principalNameTransformer);
-  }
+  handler.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getStormpath().getPrincipalTransformation()));
   handler.setStormpathPasswordEncoder(this.stormpathPasswordEncoder);
   handler.setPrincipalFactory(stormpathPrincipalFactory());
   handler.setServicesManager(servicesManager);

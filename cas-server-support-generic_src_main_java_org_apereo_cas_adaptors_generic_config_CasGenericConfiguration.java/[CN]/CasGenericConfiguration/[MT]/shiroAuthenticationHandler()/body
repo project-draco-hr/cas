@@ -9,8 +9,6 @@
   if (shiroPasswordPolicyConfiguration != null) {
     h.setPasswordPolicyConfiguration(shiroPasswordPolicyConfiguration);
   }
-  if (shiroPrincipalNameTransformer != null) {
-    h.setPrincipalNameTransformer(shiroPrincipalNameTransformer);
-  }
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getShiro().getPrincipalTransformation()));
   return h;
 }

@@ -5,9 +5,7 @@
   mongo.setMongoHostUri(casProperties.getAuthn().getMongo().getMongoHostUri());
   mongo.setPasswordAttribute(casProperties.getAuthn().getMongo().getPasswordAttribute());
   mongo.setUsernameAttribute(casProperties.getAuthn().getMongo().getUsernameAttribute());
-  if (principalNameTransformer != null) {
-    mongo.setPrincipalNameTransformer(principalNameTransformer);
-  }
+  mongo.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getMongo().getPrincipalTransformation()));
   mongo.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getMongo().getPasswordEncoder()));
   if (mongoPasswordEncoder != null) {
     mongo.setMongoPasswordEncoder(mongoPasswordEncoder);

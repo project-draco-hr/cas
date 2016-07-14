@@ -1,8 +1,6 @@
 {
   final TokenAuthenticationHandler h=new TokenAuthenticationHandler();
-  if (principalNameTransformer != null) {
-    h.setPrincipalNameTransformer(principalNameTransformer);
-  }
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getToken().getPrincipalTransformation()));
   h.setPrincipalFactory(tokenPrincipalFactory());
   h.setServicesManager(servicesManager);
   return h;
