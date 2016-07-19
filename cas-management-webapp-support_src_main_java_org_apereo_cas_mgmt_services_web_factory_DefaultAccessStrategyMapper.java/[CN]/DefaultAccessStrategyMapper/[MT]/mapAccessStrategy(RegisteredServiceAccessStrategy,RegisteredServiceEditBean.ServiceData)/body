@@ -3,7 +3,7 @@
   accessBean.setCasEnabled(accessStrategy.isServiceAccessAllowed());
   accessBean.setSsoEnabled(accessStrategy.isServiceAccessAllowedForSso());
   if (accessStrategy.getUnauthorizedRedirectUrl() != null) {
-    accessBean.setUnauthzUrl(accessStrategy.getUnauthorizedRedirectUrl().toString());
+    accessBean.setUnauthorizedRedirectUrl(accessStrategy.getUnauthorizedRedirectUrl().toString());
   }
   if (accessStrategy instanceof DefaultRegisteredServiceAccessStrategy) {
     final DefaultRegisteredServiceAccessStrategy def=(DefaultRegisteredServiceAccessStrategy)accessStrategy;

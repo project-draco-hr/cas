@@ -5,14 +5,23 @@
     if (StringUtils.equalsIgnoreCase(type,RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ.toString())) {
       regSvc=new OAuthCallbackAuthorizeService();
     }
- else     if (StringUtils.equalsIgnoreCase(type,RegisteredServiceTypeEditBean.OAUTH.toString())) {
-      regSvc=new OAuthRegisteredService();
+ else     if (StringUtils.equalsIgnoreCase(type,RegisteredServiceTypeEditBean.OAUTH.toString()) || StringUtils.equalsIgnoreCase(type,RegisteredServiceTypeEditBean.OIDC.toString())) {
+      if (StringUtils.equalsIgnoreCase(type,RegisteredServiceTypeEditBean.OAUTH.toString())) {
+        regSvc=new OAuthRegisteredService();
+      }
+ else {
+        regSvc=new OidcRegisteredService();
+      }
       final RegisteredServiceOAuthTypeEditBean oauthBean=data.getOauth();
       ((OAuthRegisteredService)regSvc).setClientId(oauthBean.getClientId());
       ((OAuthRegisteredService)regSvc).setClientSecret(oauthBean.getClientSecret());
       ((OAuthRegisteredService)regSvc).setBypassApprovalPrompt(oauthBean.isBypass());
       ((OAuthRegisteredService)regSvc).setGenerateRefreshToken(oauthBean.isRefreshToken());
       ((OAuthRegisteredService)regSvc).setJsonFormat(oauthBean.isJsonFormat());
+      if (StringUtils.equalsIgnoreCase(type,RegisteredServiceTypeEditBean.OIDC.toString())) {
+        ((OidcRegisteredService)regSvc).setJwks(data.getOidc().getJwks());
+        ((OidcRegisteredService)regSvc).setSignIdToken(data.getOidc().isSignToken());
+      }
     }
  else     if (StringUtils.equalsIgnoreCase(type,RegisteredServiceTypeEditBean.SAML.toString())) {
       regSvc=new SamlRegisteredService();
@@ -49,7 +58,7 @@
     regSvc.setTheme(data.getTheme());
     regSvc.setEvaluationOrder(data.getEvalOrder());
     regSvc.setRequiredHandlers(data.getRequiredHandlers());
-    parseLogoutType(data.getLogoutType());
+    regSvc.setLogoutType(parseLogoutType(data.getLogoutType()));
     if (StringUtils.isNotBlank(data.getLogoutUrl())) {
       regSvc.setLogoutUrl(new URL(data.getLogoutUrl()));
     }

@@ -1,0 +1,6 @@
+{
+  bean.getMultiAuth().setFailureMode(multifactorPolicy.getFailureMode().name());
+  bean.getMultiAuth().setProviders(StringUtils.join(multifactorPolicy.getMultifactorAuthenticationProviders(),','));
+  bean.getMultiAuth().getPrincipalAttr().setNameTrigger(multifactorPolicy.getPrincipalAttributeNameTrigger());
+  bean.getMultiAuth().getPrincipalAttr().setValueMatch(multifactorPolicy.getPrincipalAttributeValueToMatch());
+}

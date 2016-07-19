@@ -18,6 +18,10 @@
     if (attrPolicy != null) {
       absSvc.setAttributeReleasePolicy(attrPolicy);
     }
+    final RegisteredServiceMultifactorPolicy mfaPolicy=this.multifactorAuthenticationMapper.toMultifactorPolicy(data);
+    if (mfaPolicy != null) {
+      absSvc.setMultifactorPolicy(mfaPolicy);
+    }
   }
   return svc;
 }

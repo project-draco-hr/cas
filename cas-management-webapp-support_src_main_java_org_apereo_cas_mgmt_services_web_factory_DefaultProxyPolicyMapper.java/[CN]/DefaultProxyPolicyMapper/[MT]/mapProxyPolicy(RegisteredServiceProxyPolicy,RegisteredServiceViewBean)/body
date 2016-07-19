@@ -1,11 +1,11 @@
 {
   final RegisteredServiceProxyPolicyBean proxyPolicyBean=bean.getProxyPolicy();
   if (policy instanceof RefuseRegisteredServiceProxyPolicy) {
-    proxyPolicyBean.setType(RegisteredServiceProxyPolicyBean.Types.REFUSE.toString());
+    proxyPolicyBean.setType(RegisteredServiceProxyPolicyBean.Types.REFUSE);
   }
  else   if (policy instanceof RegexMatchingRegisteredServiceProxyPolicy) {
     final RegexMatchingRegisteredServiceProxyPolicy option=(RegexMatchingRegisteredServiceProxyPolicy)policy;
-    proxyPolicyBean.setType(RegisteredServiceProxyPolicyBean.Types.REGEX.toString());
+    proxyPolicyBean.setType(RegisteredServiceProxyPolicyBean.Types.REGEX);
     proxyPolicyBean.setValue(option.getPattern().toString());
   }
 }

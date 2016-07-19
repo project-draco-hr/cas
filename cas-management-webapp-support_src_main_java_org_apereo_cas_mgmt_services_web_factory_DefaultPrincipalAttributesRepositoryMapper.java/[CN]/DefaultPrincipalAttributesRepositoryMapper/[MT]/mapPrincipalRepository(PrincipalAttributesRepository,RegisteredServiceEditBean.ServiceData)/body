@@ -1,23 +1,23 @@
 {
   final RegisteredServiceAttributeReleasePolicyEditBean attrPolicyBean=bean.getAttrRelease();
   if (pr instanceof DefaultPrincipalAttributesRepository) {
-    attrPolicyBean.setAttrOption(RegisteredServiceAttributeReleasePolicyEditBean.Types.DEFAULT.toString());
+    attrPolicyBean.setAttrOption(RegisteredServiceAttributeReleasePolicyEditBean.Types.DEFAULT);
   }
  else   if (pr instanceof AbstractPrincipalAttributesRepository) {
-    attrPolicyBean.setAttrOption(RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED.toString());
+    attrPolicyBean.setAttrOption(RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED);
     final AbstractPrincipalAttributesRepository cc=(AbstractPrincipalAttributesRepository)pr;
     attrPolicyBean.setCachedExpiration(cc.getExpiration());
     attrPolicyBean.setCachedTimeUnit(cc.getTimeUnit());
-    final IAttributeMerger merger=cc.getMergingStrategy().getAttributeMerger();
+    final IAttributeMerger merger=cc.getMergingStrategy() != null ? cc.getMergingStrategy().getAttributeMerger() : null;
     if (merger != null) {
       if (merger instanceof NoncollidingAttributeAdder) {
-        attrPolicyBean.setMergingStrategy(RegisteredServiceAttributeReleasePolicyEditBean.AttributeMergerTypes.ADD.toString());
+        attrPolicyBean.setMergingStrategy(RegisteredServiceAttributeReleasePolicyEditBean.AttributeMergerTypes.ADD);
       }
  else       if (merger instanceof MultivaluedAttributeMerger) {
-        attrPolicyBean.setMergingStrategy(RegisteredServiceAttributeReleasePolicyEditBean.AttributeMergerTypes.MULTIVALUED.toString());
+        attrPolicyBean.setMergingStrategy(RegisteredServiceAttributeReleasePolicyEditBean.AttributeMergerTypes.MULTIVALUED);
       }
  else       if (merger instanceof ReplacingAttributeAdder) {
-        attrPolicyBean.setMergingStrategy(RegisteredServiceAttributeReleasePolicyEditBean.AttributeMergerTypes.REPLACE.toString());
+        attrPolicyBean.setMergingStrategy(RegisteredServiceAttributeReleasePolicyEditBean.AttributeMergerTypes.REPLACE);
       }
     }
   }

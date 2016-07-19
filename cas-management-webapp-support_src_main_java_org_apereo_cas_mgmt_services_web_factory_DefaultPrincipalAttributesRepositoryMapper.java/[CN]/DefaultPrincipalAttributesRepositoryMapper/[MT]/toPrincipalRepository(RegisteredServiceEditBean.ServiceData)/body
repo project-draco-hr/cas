@@ -1,11 +1,26 @@
 {
   final RegisteredServiceAttributeReleasePolicyEditBean attrRelease=data.getAttrRelease();
-  final String attrType=attrRelease.getAttrOption();
-  if (StringUtils.equalsIgnoreCase(attrType,RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED.toString())) {
-    return new CachingPrincipalAttributesRepository(attrRelease.getCachedTimeUnit().toUpperCase(),attrRelease.getCachedExpiration());
-  }
- else   if (StringUtils.equalsIgnoreCase(attrType,RegisteredServiceAttributeReleasePolicyEditBean.Types.DEFAULT.toString())) {
-    return new DefaultPrincipalAttributesRepository();
-  }
-  return null;
+  final RegisteredServiceAttributeReleasePolicyEditBean.Types attrType=attrRelease.getAttrOption();
+  if (attrType == RegisteredServiceAttributeReleasePolicyEditBean.Types.CACHED) {
+    final CachingPrincipalAttributesRepository r=new CachingPrincipalAttributesRepository(attrRelease.getCachedTimeUnit().toUpperCase(),attrRelease.getCachedExpiration());
+switch (attrRelease.getMergingStrategy()) {
+case ADD:
+      r.setMergingStrategy(AbstractPrincipalAttributesRepository.MergingStrategy.ADD);
+    break;
+case MULTIVALUED:
+  r.setMergingStrategy(AbstractPrincipalAttributesRepository.MergingStrategy.MULTIVALUED);
+break;
+case REPLACE:
+r.setMergingStrategy(AbstractPrincipalAttributesRepository.MergingStrategy.REPLACE);
+break;
+default :
+r.setMergingStrategy(AbstractPrincipalAttributesRepository.MergingStrategy.NONE);
+break;
+}
+return r;
+}
+if (attrType == RegisteredServiceAttributeReleasePolicyEditBean.Types.DEFAULT) {
+return new DefaultPrincipalAttributesRepository();
+}
+return null;
 }

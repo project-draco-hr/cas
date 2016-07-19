@@ -19,6 +19,13 @@
     oauthBean.setClientSecret(oauth.getClientSecret());
     oauthBean.setRefreshToken(oauth.isGenerateRefreshToken());
     oauthBean.setJsonFormat(oauth.isJsonFormat());
+    if (svc instanceof OidcRegisteredService) {
+      bean.setType(RegisteredServiceTypeEditBean.OIDC.toString());
+      final OidcRegisteredService oidc=(OidcRegisteredService)svc;
+      final RegisteredServiceOidcTypeEditBean oidcBean=bean.getOidc();
+      oidcBean.setJwks(oidc.getJwks());
+      oidcBean.setSignToken(oidc.isSignIdToken());
+    }
   }
   if (svc instanceof SamlRegisteredService) {
     bean.setType(RegisteredServiceTypeEditBean.SAML.toString());
