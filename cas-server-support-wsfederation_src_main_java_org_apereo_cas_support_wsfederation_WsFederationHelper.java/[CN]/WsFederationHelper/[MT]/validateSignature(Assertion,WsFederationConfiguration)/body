@@ -30,5 +30,6 @@
       LOGGER.warn("Failed to validate assertion signature",e);
     }
   }
+  SamlUtils.logSamlObject(this.configBean,assertion);
   return valid;
 }

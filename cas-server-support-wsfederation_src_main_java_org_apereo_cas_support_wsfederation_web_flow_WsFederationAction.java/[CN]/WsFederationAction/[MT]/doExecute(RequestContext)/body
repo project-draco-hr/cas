@@ -56,10 +56,9 @@
       saveRequestParameter(request,session,LOCALE);
       saveRequestParameter(request,session,METHOD);
       final String relyingPartyIdentifier=getRelyingPartyIdentifier(service);
-      final String key=PROVIDERURL;
       final String authorizationUrl=this.configuration.getIdentityProviderUrl() + QUERYSTRING + relyingPartyIdentifier;
       LOGGER.info("Preparing to redirect to the IdP {}",authorizationUrl);
-      context.getFlowScope().put(key,authorizationUrl);
+      context.getFlowScope().put(PROVIDERURL,authorizationUrl);
     }
     LOGGER.debug("Redirecting to the IdP");
     return error();
