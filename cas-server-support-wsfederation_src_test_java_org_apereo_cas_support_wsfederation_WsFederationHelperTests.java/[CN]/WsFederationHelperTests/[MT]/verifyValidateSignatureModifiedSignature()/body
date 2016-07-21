@@ -1,6 +1,6 @@
 {
   final String wresult=testTokens.get("badTokenModifiedSignature");
-  final Assertion assertion=wsFederationHelper.parseTokenFromString(wresult);
+  final Assertion assertion=wsFederationHelper.parseTokenFromString(wresult,wsFedConfig);
   final boolean result=wsFederationHelper.validateSignature(assertion,wsFedConfig);
   assertFalse("testValidateSignatureModifiedSignature() - False",result);
 }

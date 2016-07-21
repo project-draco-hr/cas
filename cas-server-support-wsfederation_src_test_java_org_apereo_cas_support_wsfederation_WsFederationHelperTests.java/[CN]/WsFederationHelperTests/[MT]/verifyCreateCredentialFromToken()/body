@@ -1,6 +1,6 @@
 {
   final String wresult=testTokens.get("goodToken");
-  final Assertion assertion=wsFederationHelper.parseTokenFromString(wresult);
+  final Assertion assertion=wsFederationHelper.parseTokenFromString(wresult,wsFedConfig);
   final WsFederationCredential expResult=new WsFederationCredential();
   expResult.setIssuedOn(ZonedDateTime.parse("2014-02-26T22:51:16.504Z"));
   expResult.setNotBefore(ZonedDateTime.parse("2014-02-26T22:51:16.474Z"));

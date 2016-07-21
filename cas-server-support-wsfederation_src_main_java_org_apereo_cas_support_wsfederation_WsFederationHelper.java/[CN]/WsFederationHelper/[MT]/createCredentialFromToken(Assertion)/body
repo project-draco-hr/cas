@@ -1,29 +1,33 @@
 {
-  final ZonedDateTime retrievedOn=ZonedDateTime.now(ZoneOffset.UTC);
+  final ZonedDateTime retrievedOn=ZonedDateTime.now();
   LOGGER.debug("Retrieved on {}",retrievedOn);
   final WsFederationCredential credential=new WsFederationCredential();
   credential.setRetrievedOn(retrievedOn);
   credential.setId(assertion.getID());
   credential.setIssuer(assertion.getIssuer());
-  credential.setIssuedOn(DateTimeUtils.zonedDateTimeOf(assertion.getIssueInstant()));
+  credential.setIssuedOn(ZonedDateTime.parse(assertion.getIssueInstant().toDateTimeISO().toString()));
   final Conditions conditions=assertion.getConditions();
   if (conditions != null) {
-    credential.setNotBefore(DateTimeUtils.zonedDateTimeOf(conditions.getNotBefore()));
-    credential.setNotOnOrAfter(DateTimeUtils.zonedDateTimeOf(conditions.getNotOnOrAfter()));
-    credential.setAudience(conditions.getAudienceRestrictionConditions().get(0).getAudiences().get(0).getUri());
+    credential.setNotBefore(ZonedDateTime.parse(conditions.getNotBefore().toDateTimeISO().toString()));
+    credential.setNotOnOrAfter(ZonedDateTime.parse(conditions.getNotOnOrAfter().toDateTimeISO().toString()));
+    if (!conditions.getAudienceRestrictionConditions().isEmpty()) {
+      credential.setAudience(conditions.getAudienceRestrictionConditions().get(0).getAudiences().get(0).getUri());
+    }
   }
   if (!assertion.getAuthenticationStatements().isEmpty()) {
     credential.setAuthenticationMethod(assertion.getAuthenticationStatements().get(0).getAuthenticationMethod());
   }
   final HashMap<String,List<Object>> attributes=new HashMap<>();
-  for (  final Attribute item : assertion.getAttributeStatements().get(0).getAttributes()) {
-    LOGGER.debug("Processed attribute: {}",item.getAttributeName());
-    final List<Object> itemList=new ArrayList<>();
-    for (int i=0; i < item.getAttributeValues().size(); i++) {
-      itemList.add(((XSAny)item.getAttributeValues().get(i)).getTextContent());
-    }
-    if (!itemList.isEmpty()) {
-      attributes.put(item.getAttributeName(),itemList);
+  for (  final AttributeStatement attributeStatement : assertion.getAttributeStatements()) {
+    for (    final Attribute item : attributeStatement.getAttributes()) {
+      LOGGER.debug("Processed attribute: {}",item.getAttributeName());
+      final List<Object> itemList=new ArrayList<>();
+      for (int i=0; i < item.getAttributeValues().size(); i++) {
+        itemList.add(((XSAny)item.getAttributeValues().get(i)).getTextContent());
+      }
+      if (!itemList.isEmpty()) {
+        attributes.put(item.getAttributeName(),itemList);
+      }
     }
   }
   credential.setAttributes(attributes);
