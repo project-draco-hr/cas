@@ -1,0 +1,4 @@
+{
+  properties.put(PropertiesConfigFactory.YAHOO_ID,casProperties.getAuthn().getPac4j().getYahoo().getId());
+  properties.put(PropertiesConfigFactory.YAHOO_SECRET,casProperties.getAuthn().getPac4j().getYahoo().getSecret());
+}

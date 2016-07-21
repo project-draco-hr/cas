@@ -1,0 +1,6 @@
+{
+  final DigestAuthenticationHandler r=new DigestAuthenticationHandler();
+  r.setPrincipalFactory(digestAuthenticationPrincipalFactory());
+  r.setServicesManager(servicesManager);
+  return r;
+}

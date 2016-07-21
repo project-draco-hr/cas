@@ -18,8 +18,8 @@
   attributes.put(LAST_NAME_ATTRIBUTE,LAST_NAME);
   profile.addAttributes(attributes);
   final MockHttpSession session=new MockHttpSession();
+  session.putValue(Pac4jConstants.USER_PROFILES,profile);
   mockRequest.setSession(session);
-  session.putValue(Pac4jConstants.USER_PROFILE,profile);
   final ModelAndView modelAndView=oAuth20AuthorizeController.handleRequestInternal(mockRequest,mockResponse);
   final View view=modelAndView.getView();
   assertTrue(view instanceof RedirectView);

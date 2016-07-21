@@ -1,0 +1,6 @@
+{
+  properties.put(PropertiesConfigFactory.FACEBOOK_ID,casProperties.getAuthn().getPac4j().getFacebook().getId());
+  properties.put(PropertiesConfigFactory.FACEBOOK_SECRET,casProperties.getAuthn().getPac4j().getFacebook().getSecret());
+  properties.put(PropertiesConfigFactory.FACEBOOK_SCOPE,casProperties.getAuthn().getPac4j().getFacebook().getScope());
+  properties.put(PropertiesConfigFactory.FACEBOOK_FIELDS,casProperties.getAuthn().getPac4j().getFacebook().getFields());
+}

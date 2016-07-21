@@ -1,0 +1,4 @@
+{
+  properties.put(PropertiesConfigFactory.WINDOWSLIVE_ID,casProperties.getAuthn().getPac4j().getWindowsLive().getId());
+  properties.put(PropertiesConfigFactory.WINDOWSLIVE_SECRET,casProperties.getAuthn().getPac4j().getWindowsLive().getSecret());
+}

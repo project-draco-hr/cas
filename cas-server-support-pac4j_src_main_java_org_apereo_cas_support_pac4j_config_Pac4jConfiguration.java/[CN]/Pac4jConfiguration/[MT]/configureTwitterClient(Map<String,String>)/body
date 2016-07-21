@@ -1,0 +1,4 @@
+{
+  properties.put(PropertiesConfigFactory.TWITTER_ID,casProperties.getAuthn().getPac4j().getTwitter().getId());
+  properties.put(PropertiesConfigFactory.TWITTER_SECRET,casProperties.getAuthn().getPac4j().getTwitter().getSecret());
+}

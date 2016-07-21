@@ -1,0 +1,4 @@
+{
+  properties.put(PropertiesConfigFactory.FOURSQUARE_ID,casProperties.getAuthn().getPac4j().getFoursquare().getId());
+  properties.put(PropertiesConfigFactory.FOURSQUARE_SECRET,casProperties.getAuthn().getPac4j().getFoursquare().getSecret());
+}

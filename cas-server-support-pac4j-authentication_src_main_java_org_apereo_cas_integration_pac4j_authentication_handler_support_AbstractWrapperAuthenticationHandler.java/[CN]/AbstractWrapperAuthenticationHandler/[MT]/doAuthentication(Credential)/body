@@ -4,14 +4,20 @@
   logger.debug("credentials: {}",credentials);
   try {
     final Authenticator authenticator=getAuthenticator(credential);
+    if (authenticator instanceof InitializableObject) {
+      ((InitializableObject)authenticator).init();
+    }
+    if (authenticator instanceof InitializableWebObject) {
+      ((InitializableWebObject)authenticator).init(getWebContext());
+    }
     CommonHelper.assertNotNull("authenticator",authenticator);
-    authenticator.validate(credentials);
+    authenticator.validate(credentials,getWebContext());
+    final UserProfile profile=this.profileCreator.create(credentials,getWebContext());
+    logger.debug("profile: {}",profile);
+    return createResult(new ClientCredential(credentials),profile);
   }
- catch (  final CredentialsException e) {
+ catch (  final Exception e) {
     logger.error("Failed to validate credentials",e);
     throw new FailedLoginException("Failed to validate credentials: " + e.getMessage());
   }
-  final UserProfile profile=this.profileCreator.create(credentials);
-  logger.debug("profile: {}",profile);
-  return createResult(new ClientCredential(credentials),profile);
 }

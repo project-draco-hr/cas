@@ -1,0 +1,9 @@
+{
+  properties.put(PropertiesConfigFactory.SAML_IDENTITY_PROVIDER_METADATA_PATH,casProperties.getAuthn().getPac4j().getSaml().getIdentityProviderMetadataPath());
+  properties.put(PropertiesConfigFactory.SAML_KEYSTORE_PASSWORD,casProperties.getAuthn().getPac4j().getSaml().getKeystorePassword());
+  properties.put(PropertiesConfigFactory.SAML_KEYSTORE_PATH,casProperties.getAuthn().getPac4j().getSaml().getKeystorePath());
+  properties.put(PropertiesConfigFactory.SAML_MAXIMUM_AUTHENTICATION_LIFETIME,casProperties.getAuthn().getPac4j().getSaml().getMaximumAuthenticationLifetime());
+  properties.put(PropertiesConfigFactory.SAML_PRIVATE_KEY_PASSWORD,casProperties.getAuthn().getPac4j().getSaml().getPrivateKeyPassword());
+  properties.put(PropertiesConfigFactory.SAML_SERVICE_PROVIDER_ENTITY_ID,casProperties.getAuthn().getPac4j().getSaml().getServiceProviderEntityId());
+  properties.put(PropertiesConfigFactory.SAML_SERVICE_PROVIDER_METADATA_PATH,casProperties.getAuthn().getPac4j().getSaml().getServiceProviderEntityId());
+}

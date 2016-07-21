@@ -1,0 +1,4 @@
+{
+  properties.put(PropertiesConfigFactory.DROPBOX_ID,casProperties.getAuthn().getPac4j().getDropbox().getId());
+  properties.put(PropertiesConfigFactory.DROPBOX_SECRET,casProperties.getAuthn().getPac4j().getDropbox().getSecret());
+}

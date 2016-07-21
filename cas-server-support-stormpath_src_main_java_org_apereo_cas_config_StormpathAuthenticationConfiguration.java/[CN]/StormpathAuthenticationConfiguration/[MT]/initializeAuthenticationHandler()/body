@@ -1,3 +1,5 @@
 {
-  this.authenticationHandlersResolvers.put(stormpathAuthenticationHandler(),personDirectoryPrincipalResolver);
+  if (StringUtils.isNotBlank(casProperties.getAuthn().getStormpath().getApiKey()) && StringUtils.isNotBlank(casProperties.getAuthn().getStormpath().getSecretkey())) {
+    this.authenticationHandlersResolvers.put(stormpathAuthenticationHandler(),personDirectoryPrincipalResolver);
+  }
 }

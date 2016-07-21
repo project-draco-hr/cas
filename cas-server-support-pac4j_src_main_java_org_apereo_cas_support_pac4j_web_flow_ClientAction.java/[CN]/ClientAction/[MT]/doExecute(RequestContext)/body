@@ -7,17 +7,13 @@
   logger.debug("clientName: {}",clientName);
   if (StringUtils.isNotBlank(clientName)) {
     final BaseClient<Credentials,CommonProfile> client=(BaseClient<Credentials,CommonProfile>)this.clients.findClient(clientName);
-    logger.debug("client: {}",client);
-    final ClientType clientType=client.getClientType();
-    if (!SUPPORTED_PROTOCOLS.contains(clientType)) {
-      throw new TechnicalException("Only CAS, OAuth, OpenID and SAML protocols are supported: " + client);
-    }
+    logger.debug("Client: {}",client);
     final Credentials credentials;
     try {
       credentials=client.getCredentials(webContext);
       logger.debug("credentials: {}",credentials);
     }
- catch (    final RequiresHttpAction e) {
+ catch (    final Exception e) {
       logger.debug("requires http action",e);
       response.flushBuffer();
       final ExternalContext externalContext=ExternalContextHolder.getExternalContext();

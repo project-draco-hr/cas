@@ -1,10 +1,10 @@
 {
-  final RequiresAuthenticationInterceptor interceptor=new RequiresAuthenticationInterceptor(config(),"CasClient","securityHeaders,csrfToken,RequireAnyRoleAuthorizer"){
-    @Override protected void forbidden(    final WebContext context,    final List<Client> currentClients,    final UserProfile profile){
-      context.setResponseStatus(HttpStatus.SC_MOVED_TEMPORARILY);
-      context.setResponseHeader("location","authorizationFailure");
+  final SecurityInterceptor interceptor=new SecurityInterceptor(config(),"CasClient","securityHeaders,csrfToken,RequireAnyRoleAuthorizer");
+  interceptor.setSecurityLogic(new DefaultSecurityLogic(){
+    @Override protected HttpAction unauthorized(    final WebContext context,    final List currentClients){
+      return HttpAction.redirect("Authorization failed",context,"authorizationFailure");
     }
   }
-;
+);
   return interceptor;
 }

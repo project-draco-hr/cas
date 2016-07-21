@@ -1,11 +1,11 @@
 {
-  final UserProfile profile=manager.get(true);
-  if (profile == null) {
-    logger.error("Unexpected null profile");
+  final Optional<UserProfile> profile=manager.get(true);
+  if (profile == null || !profile.isPresent()) {
+    logger.error("Unexpected null profile from profile manager");
     return new ModelAndView(OAuthConstants.ERROR_VIEW);
   }
   final Service service=createService(registeredService);
-  final Authentication authentication=createAuthentication(profile,registeredService,context);
+  final Authentication authentication=createAuthentication(profile.get(),registeredService,context);
   try {
     RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
   }
