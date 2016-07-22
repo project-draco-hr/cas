@@ -1,13 +1,16 @@
 {
   final GoogleAuthenticatorTokenCredential tokenCredential=(GoogleAuthenticatorTokenCredential)credential;
-  final int otp=tokenCredential.getToken();
+  if (!NumberUtils.isNumber(tokenCredential.getToken())) {
+    throw new PreventedException("Invalid non-numeric OTP format specified.",new IllegalArgumentException());
+  }
+  final int otp=Integer.parseInt(tokenCredential.getToken());
   final RequestContext context=RequestContextHolder.getRequestContext();
   final String uid=WebUtils.getAuthentication(context).getPrincipal().getId();
-  if (!this.accountRegistry.contains(uid)) {
+  final String secKey=this.googleAuthenticatorInstance.getCredentialRepository().getSecretKey(uid);
+  if (StringUtils.isBlank(secKey)) {
     throw new AccountNotFoundException(uid + " cannot be found in the registry");
   }
-  final GoogleAuthenticatorAccount account=this.accountRegistry.get(uid);
-  final boolean isCodeValid=this.googleAuthenticatorInstance.authorize(account.getSecretKey(),otp);
+  final boolean isCodeValid=this.googleAuthenticatorInstance.authorize(secKey,otp);
   if (isCodeValid) {
     return createHandlerResult(tokenCredential,this.principalFactory.createPrincipal(uid),null);
   }

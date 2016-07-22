@@ -1,6 +1,5 @@
 {
   final GoogleAuthenticatorAuthenticationHandler h=new GoogleAuthenticatorAuthenticationHandler();
-  h.setAccountRegistry(defaultGoogleAuthenticatorAccountRegistry());
   h.setGoogleAuthenticatorInstance(googleAuthenticatorInstance());
   h.setPrincipalFactory(googlePrincipalFactory());
   h.setServicesManager(servicesManager);

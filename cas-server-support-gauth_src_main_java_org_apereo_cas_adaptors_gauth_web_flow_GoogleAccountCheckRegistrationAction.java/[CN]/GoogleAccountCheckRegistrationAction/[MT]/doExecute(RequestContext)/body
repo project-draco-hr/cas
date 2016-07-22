@@ -1,7 +1,7 @@
 {
   final RequestContext context=RequestContextHolder.getRequestContext();
   final String uid=WebUtils.getAuthentication(context).getPrincipal().getId();
-  if (!this.accountRegistry.contains(uid)) {
+  if (StringUtils.isNotBlank(googleAuthenticatorInstance.getCredentialRepository().getSecretKey(uid))) {
     final GoogleAuthenticatorKey key=this.googleAuthenticatorInstance.createCredentials();
     final GoogleAuthenticatorAccount keyAccount=new GoogleAuthenticatorAccount(key.getKey(),key.getVerificationCode(),key.getScratchCodes());
     final String keyUri="otpauth://totp/" + casProperties.getAuthn().getMfa().getGauth().getLabel() + ':'+ uid+ "?secret="+ keyAccount.getSecretKey()+ "&issuer="+ casProperties.getAuthn().getMfa().getGauth().getIssuer();

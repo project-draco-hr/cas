@@ -1,3 +1,0 @@
-{
-  return this.googleAuthenticator.authorize(secret,verificationCode);
-}

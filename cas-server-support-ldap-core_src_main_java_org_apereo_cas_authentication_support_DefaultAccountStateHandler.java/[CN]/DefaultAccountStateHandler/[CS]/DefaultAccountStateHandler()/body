@@ -14,4 +14,13 @@
   this.errorMap.put(PasswordPolicyControl.Error.ACCOUNT_LOCKED,new AccountLockedException());
   this.errorMap.put(PasswordPolicyControl.Error.PASSWORD_EXPIRED,new CredentialExpiredException());
   this.errorMap.put(PasswordPolicyControl.Error.CHANGE_AFTER_RESET,new AccountPasswordMustChangeException());
+  this.errorMap.put(FreeIPAAccountState.Error.FAILED_AUTHENTICATION,new FailedLoginException());
+  this.errorMap.put(FreeIPAAccountState.Error.PASSWORD_EXPIRED,new CredentialExpiredException());
+  this.errorMap.put(FreeIPAAccountState.Error.ACCOUNT_EXPIRED,new AccountExpiredException());
+  this.errorMap.put(FreeIPAAccountState.Error.MAXIMUM_LOGINS_EXCEEDED,new AccountLockedException());
+  this.errorMap.put(FreeIPAAccountState.Error.LOGIN_TIME_LIMITED,new InvalidLoginTimeException());
+  this.errorMap.put(FreeIPAAccountState.Error.LOGIN_LOCKOUT,new AccountLockedException());
+  this.errorMap.put(FreeIPAAccountState.Error.ACCOUNT_NOT_FOUND,new AccountNotFoundException());
+  this.errorMap.put(FreeIPAAccountState.Error.CREDENTIAL_NOT_FOUND,new FailedLoginException());
+  this.errorMap.put(FreeIPAAccountState.Error.ACCOUNT_DISABLED,new AccountDisabledException());
 }
