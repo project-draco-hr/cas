@@ -1,0 +1,5 @@
+{
+  final ThresholdExpiredCRLRevocationPolicy p=new ThresholdExpiredCRLRevocationPolicy();
+  p.setThreshold(casProperties.getAuthn().getX509().getRevocationPolicyThreshold());
+  return p;
+}

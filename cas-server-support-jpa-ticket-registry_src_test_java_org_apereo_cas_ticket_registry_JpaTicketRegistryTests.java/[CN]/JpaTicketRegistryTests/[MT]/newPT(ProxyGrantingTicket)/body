@@ -1,0 +1,3 @@
+{
+  return parent.grantProxyTicket(ID_GENERATOR.getNewTicketId(ProxyTicket.PROXY_TICKET_PREFIX),new MockService("https://proxy-service.example.com"),EXP_POLICY_PT,false);
+}

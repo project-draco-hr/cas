@@ -1,0 +1,17 @@
+{
+  try {
+    if (StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getLoginUrl()) && StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getService()) && StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getAdminRoles())) {
+      final IndirectClient client=new CasClient(casProperties.getAdminPagesSecurity().getLoginUrl());
+      final Properties properties=new Properties();
+      properties.load(this.casProperties.getAdminPagesSecurity().getUsers().getInputStream());
+      client.setAuthorizationGenerator(new SpringSecurityPropertiesAuthorizationGenerator(properties));
+      final Config cfg=new Config(casProperties.getAdminPagesSecurity().getService(),client);
+      cfg.setAuthorizer(new RequireAnyRoleAuthorizer(org.springframework.util.StringUtils.commaDelimitedListToSet(casProperties.getAdminPagesSecurity().getAdminRoles())));
+      return cfg;
+    }
+  }
+ catch (  final Exception e) {
+    LOGGER.warn(e.getMessage(),e);
+  }
+  return new Config();
+}

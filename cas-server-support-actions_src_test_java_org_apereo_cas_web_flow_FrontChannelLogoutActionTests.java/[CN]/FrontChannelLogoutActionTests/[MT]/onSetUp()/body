@@ -1,0 +1,22 @@
+{
+  this.logoutManager=new LogoutManagerImpl(new SamlCompliantLogoutMessageCreator());
+  final DefaultSingleLogoutServiceMessageHandler handler=new DefaultSingleLogoutServiceMessageHandler();
+  handler.setLogoutMessageBuilder(new SamlCompliantLogoutMessageCreator());
+  handler.setServicesManager(servicesManager);
+  handler.setSingleLogoutServiceLogoutUrlBuilder(new DefaultSingleLogoutServiceLogoutUrlBuilder());
+  this.logoutManager.setSingleLogoutServiceMessageHandler(handler);
+  this.frontChannelLogoutAction=new FrontChannelLogoutAction(this.logoutManager);
+  this.request=new MockHttpServletRequest();
+  this.response=new MockHttpServletResponse();
+  this.requestContext=mock(RequestContext.class);
+  final ServletExternalContext servletExternalContext=mock(ServletExternalContext.class);
+  when(this.requestContext.getExternalContext()).thenReturn(servletExternalContext);
+  when(servletExternalContext.getNativeRequest()).thenReturn(request);
+  when(servletExternalContext.getNativeResponse()).thenReturn(response);
+  final LocalAttributeMap flowScope=new LocalAttributeMap();
+  when(this.requestContext.getFlowScope()).thenReturn(flowScope);
+  final MockFlowExecutionKey mockFlowExecutionKey=new MockFlowExecutionKey(FLOW_EXECUTION_KEY);
+  final MockFlowExecutionContext mockFlowExecutionContext=new MockFlowExecutionContext();
+  mockFlowExecutionContext.setKey(mockFlowExecutionKey);
+  when(this.requestContext.getFlowExecutionContext()).thenReturn(mockFlowExecutionContext);
+}

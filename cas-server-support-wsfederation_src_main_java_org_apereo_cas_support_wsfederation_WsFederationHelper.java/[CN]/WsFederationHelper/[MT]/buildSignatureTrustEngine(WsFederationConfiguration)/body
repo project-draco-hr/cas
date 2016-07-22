@@ -1,0 +1,10 @@
+{
+  try {
+    final CredentialResolver resolver=new StaticCredentialResolver(wsFederationConfiguration.getSigningCertificates());
+    final KeyInfoCredentialResolver keyResolver=new StaticKeyInfoCredentialResolver(wsFederationConfiguration.getSigningCertificates());
+    return new ExplicitKeySignatureTrustEngine(resolver,keyResolver);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

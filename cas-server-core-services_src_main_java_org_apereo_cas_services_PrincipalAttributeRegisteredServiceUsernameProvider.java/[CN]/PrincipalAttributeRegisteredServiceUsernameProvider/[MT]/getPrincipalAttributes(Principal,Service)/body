@@ -1,0 +1,22 @@
+{
+  final ApplicationContext context=ApplicationContextProvider.getApplicationContext();
+  if (context != null) {
+    LOGGER.debug("Located application context to locate the service registry entry");
+    final ServicesManager servicesManager=context.getBean(ServicesManager.class);
+    if (servicesManager != null) {
+      final RegisteredService registeredService=servicesManager.findServiceBy(service);
+      if (registeredService != null && registeredService.getAccessStrategy().isServiceAccessAllowed()) {
+        LOGGER.debug("Located service {} in the registry. Attempting to resolve attributes for {}",registeredService,p.getId());
+        if (registeredService.getAttributeReleasePolicy() == null) {
+          LOGGER.debug("No attribute release policy is defined for {}. Returning default principal attributes",service.getId());
+          return p.getAttributes();
+        }
+        return registeredService.getAttributeReleasePolicy().getAttributes(p);
+      }
+    }
+    LOGGER.debug("Could not locate service {} in the registry.",service.getId());
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
+  }
+  LOGGER.warn("No application context could be detected. Returning default principal attributes");
+  return p.getAttributes();
+}

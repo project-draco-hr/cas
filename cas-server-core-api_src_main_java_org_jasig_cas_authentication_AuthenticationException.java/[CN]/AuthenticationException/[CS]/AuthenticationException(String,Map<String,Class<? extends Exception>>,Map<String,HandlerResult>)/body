@@ -1,5 +1,0 @@
-{
-  super(message);
-  this.handlerErrors=Collections.unmodifiableMap(handlerErrors);
-  this.handlerSuccesses=Collections.unmodifiableMap(handlerSuccesses);
-}

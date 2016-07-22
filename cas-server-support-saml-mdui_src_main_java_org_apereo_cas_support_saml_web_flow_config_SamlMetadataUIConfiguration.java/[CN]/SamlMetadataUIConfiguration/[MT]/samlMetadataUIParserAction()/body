@@ -1,0 +1,7 @@
+{
+  final String parameter=StringUtils.defaultIfEmpty(casProperties.getSamlMetadataUi().getParameter(),SamlProtocolConstants.PARAMETER_ENTITY_ID);
+  final SamlMetadataUIParserAction a=new SamlMetadataUIParserAction(parameter,metadataAdapter());
+  a.setServiceFactory(this.serviceFactory);
+  a.setServicesManager(this.servicesManager);
+  return a;
+}

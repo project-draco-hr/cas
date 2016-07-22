@@ -1,0 +1,19 @@
+{
+  final AbstractRegisteredService svc=new RegexRegisteredService();
+  svc.setServiceId(kryo.readObject(input,String.class));
+  svc.setName(kryo.readObject(input,String.class));
+  svc.setDescription(kryo.readObject(input,String.class));
+  svc.setId(kryo.readObject(input,Long.class));
+  svc.setEvaluationOrder(kryo.readObject(input,Integer.class));
+  svc.setLogo(kryo.readObject(input,URL.class));
+  svc.setLogoutType(kryo.readObject(input,LogoutType.class));
+  svc.setLogoutUrl(kryo.readObject(input,URL.class));
+  svc.setRequiredHandlers(kryo.readObject(input,ImmutableSet.class));
+  svc.setTheme(kryo.readObject(input,String.class));
+  svc.setPublicKey(readObjectByReflection(kryo,input));
+  svc.setProxyPolicy(readObjectByReflection(kryo,input));
+  svc.setAttributeReleasePolicy(readObjectByReflection(kryo,input));
+  svc.setUsernameAttributeProvider(readObjectByReflection(kryo,input));
+  svc.setAccessStrategy(readObjectByReflection(kryo,input));
+  return svc;
+}

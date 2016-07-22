@@ -1,0 +1,15 @@
+{
+  try {
+    if (ticketId.startsWith(TicketGrantingTicket.PREFIX) || ticketId.startsWith(ProxyGrantingTicket.PROXY_GRANTING_TICKET_PREFIX)) {
+      return this.entityManager.find(TicketGrantingTicketImpl.class,ticketId,this.lockTgt ? LockModeType.PESSIMISTIC_WRITE : null);
+    }
+ else     if (ticketId.startsWith(OAuthCode.PREFIX) || ticketId.startsWith(AccessToken.PREFIX)) {
+      return this.entityManager.find(OAuthCodeImpl.class,ticketId);
+    }
+    return this.entityManager.find(ServiceTicketImpl.class,ticketId);
+  }
+ catch (  final Exception e) {
+    logger.error("Error getting ticket {} from registry.",ticketId,e);
+  }
+  return null;
+}

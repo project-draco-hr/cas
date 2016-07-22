@@ -1,0 +1,7 @@
+{
+  final UsernamePasswordCredential credentials=new UsernamePasswordCredential();
+  final AuthenticationBuilder builder=newAuthenticationBuilder(TestUtils.getPrincipal());
+  this.populator.populateAttributes(builder,credentials);
+  final Authentication auth=builder.build();
+  assertEquals(auth.getAttributes().get(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD),SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_PASSWORD);
+}

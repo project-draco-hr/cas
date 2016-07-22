@@ -1,0 +1,10 @@
+{
+  final RegexRegisteredService r=new RegexRegisteredService();
+  r.setName("testSaveMethodWithDefaultPrincipalAttribute");
+  r.setServiceId("testId");
+  r.setTheme("theme");
+  r.setDescription("description");
+  r.setUsernameAttributeProvider(new PrincipalAttributeRegisteredServiceUsernameProvider("cn"));
+  final RegisteredService r2=this.dao.save(r);
+  assertEquals(r2,r);
+}

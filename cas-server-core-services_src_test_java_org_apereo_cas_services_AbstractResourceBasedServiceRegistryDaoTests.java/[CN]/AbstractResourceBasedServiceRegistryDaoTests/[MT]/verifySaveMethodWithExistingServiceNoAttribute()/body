@@ -1,0 +1,12 @@
+{
+  final RegexRegisteredService r=new RegexRegisteredService();
+  r.setName("testSaveMethodWithExistingServiceNoAttribute");
+  r.setServiceId("testId");
+  r.setTheme("theme");
+  r.setDescription("description");
+  this.dao.save(r);
+  r.setTheme("mytheme");
+  this.dao.save(r);
+  final RegisteredService r3=this.dao.findServiceById(r.getId());
+  assertEquals(r,r3);
+}

@@ -1,6 +1,0 @@
-{
-  this.duoIntegrationKey=duoIntegrationKey;
-  this.duoSecretKey=duoSecretKey;
-  this.duoApplicationKey=duoApplicationKey;
-  this.duoApiHost=duoApiHost;
-}

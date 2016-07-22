@@ -1,0 +1,7 @@
+{
+  super(templateName);
+  setApplicationContext(applicationContext);
+  setTemplateEngine(templateEngine);
+  setCharacterEncoding(properties.getEncoding().displayName());
+  setLocale(Locale.getDefault());
+}

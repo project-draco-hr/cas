@@ -1,0 +1,14 @@
+{
+  final RejectUsersAuthenticationHandler h=new RejectUsersAuthenticationHandler();
+  h.setPrincipalFactory(rejectUsersPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  if (StringUtils.isNotBlank(casProperties.getAuthn().getReject().getUsers())) {
+    h.setUsers(org.springframework.util.StringUtils.commaDelimitedListToSet(casProperties.getAuthn().getReject().getUsers()));
+  }
+  h.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getReject().getPasswordEncoder()));
+  if (rejectPasswordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(rejectPasswordPolicyConfiguration);
+  }
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getReject().getPrincipalTransformation()));
+  return h;
+}

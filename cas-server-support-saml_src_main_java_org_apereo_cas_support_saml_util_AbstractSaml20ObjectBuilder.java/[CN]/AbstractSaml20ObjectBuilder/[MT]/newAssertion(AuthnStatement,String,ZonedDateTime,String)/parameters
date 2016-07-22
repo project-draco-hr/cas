@@ -1,0 +1,4 @@
+AuthnStatement authnStatement
+String issuer
+ZonedDateTime issuedAt
+String id

@@ -1,3 +1,0 @@
-{
-  this(decoratedMap,hashAlgorithm,salt.getBytes(Charset.defaultCharset()),secretKeyAlgorithm,getSecretKey(secretKeyAlgorithm,secretKey,salt));
-}

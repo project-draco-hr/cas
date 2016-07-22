@@ -1,0 +1,6 @@
+HttpServletRequest request
+HttpServletResponse response
+AuthnRequest authnRequest
+Assertion assertion
+SamlRegisteredService service
+SamlRegisteredServiceServiceProviderMetadataFacade adaptor

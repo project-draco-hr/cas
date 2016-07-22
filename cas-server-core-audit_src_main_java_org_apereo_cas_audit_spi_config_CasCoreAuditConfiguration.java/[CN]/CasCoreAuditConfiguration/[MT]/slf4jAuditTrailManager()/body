@@ -1,0 +1,7 @@
+{
+  final Slf4jLoggingAuditTrailManager mgmr=new Slf4jLoggingAuditTrailManager();
+  mgmr.setUseSingleLine(casProperties.getAudit().isUseSingleLine());
+  mgmr.setEntrySeparator(casProperties.getAudit().getSinglelineSeparator());
+  mgmr.setAuditFormat(casProperties.getAudit().getAuditFormat());
+  return mgmr;
+}

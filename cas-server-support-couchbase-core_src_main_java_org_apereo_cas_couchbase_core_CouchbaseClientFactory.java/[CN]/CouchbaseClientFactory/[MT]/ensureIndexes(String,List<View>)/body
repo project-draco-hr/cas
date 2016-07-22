@@ -1,0 +1,4 @@
+{
+  this.designDocument=documentName;
+  this.views=views;
+}

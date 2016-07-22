@@ -1,0 +1,6 @@
+{
+  configureCasMockToCreateValidTGT();
+  registeredServiceResource.setAttributeName("memberOf");
+  registeredServiceResource.setAttributeValue("cas");
+  this.mockMvc.perform(post("/cas/v1/services/add/TGT-1").param("serviceId","serviceId").param("name","name").param("description","description").param("evaluationOrder","1000").param("enabled","false").param("ssoEnabled","true")).andExpect(status().isOk());
+}

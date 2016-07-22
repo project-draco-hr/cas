@@ -1,3 +1,0 @@
-{
-  return DuoWeb.signRequest(this.duoIntegrationKey,this.duoSecretKey,this.duoApplicationKey,username);
-}

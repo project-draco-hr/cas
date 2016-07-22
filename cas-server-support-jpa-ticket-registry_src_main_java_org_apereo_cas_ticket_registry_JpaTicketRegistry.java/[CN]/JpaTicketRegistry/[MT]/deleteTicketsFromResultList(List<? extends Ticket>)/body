@@ -1,0 +1,9 @@
+{
+  int failureCount=0;
+  for (  final Ticket serviceTicketImpl : serviceTicketImpls) {
+    if (!removeTicket(serviceTicketImpl)) {
+      failureCount++;
+    }
+  }
+  return failureCount;
+}

@@ -1,0 +1,15 @@
+{
+  final String appId="basic";
+  final String uniqueId=appId + "-1";
+  final LockingStrategy lock=newLockTxProxy(appId,uniqueId,JpaTicketRegistryProperties.DEFAULT_LOCK_TIMEOUT);
+  try {
+    assertTrue(lock.acquire());
+    assertEquals(uniqueId,getOwner(appId));
+    lock.release();
+    assertNull(getOwner(appId));
+  }
+ catch (  final Exception e) {
+    logger.debug("testAcquireAndRelease produced an error",e);
+    fail("testAcquireAndRelease failed");
+  }
+}

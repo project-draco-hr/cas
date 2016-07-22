@@ -1,0 +1,8 @@
+{
+  final Object object=args[0];
+  if (object instanceof AuthenticationTransaction) {
+    final AuthenticationTransaction transaction=AuthenticationTransaction.class.cast(object);
+    return new String[]{SUPPLIED_CREDENTIALS + transaction.getCredentials()};
+  }
+  return new String[]{SUPPLIED_CREDENTIALS + Lists.newArrayList((Object[])object)};
+}

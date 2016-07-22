@@ -1,0 +1,3 @@
+{
+  return context != null ? (RegisteredService)context.getFlowScope().get(PARAMETER_REGISTERED_SERVICE) : null;
+}

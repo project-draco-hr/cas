@@ -1,0 +1,3 @@
+{
+  return context.getAttributes().get(RESOLVED_AUTHENTICATION_EVENTS,Set.class);
+}

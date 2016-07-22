@@ -1,0 +1,4 @@
+{
+  this.serviceRegistryDao.load();
+  this.applicationEventPublisher.publishEvent(new CasRegisteredServicesRefreshEvent(this));
+}

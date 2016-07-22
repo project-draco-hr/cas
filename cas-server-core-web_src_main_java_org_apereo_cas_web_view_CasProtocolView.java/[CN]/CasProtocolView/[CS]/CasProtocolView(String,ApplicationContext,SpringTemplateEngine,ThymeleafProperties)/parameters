@@ -1,0 +1,4 @@
+String templateName
+ApplicationContext applicationContext
+SpringTemplateEngine templateEngine
+ThymeleafProperties properties

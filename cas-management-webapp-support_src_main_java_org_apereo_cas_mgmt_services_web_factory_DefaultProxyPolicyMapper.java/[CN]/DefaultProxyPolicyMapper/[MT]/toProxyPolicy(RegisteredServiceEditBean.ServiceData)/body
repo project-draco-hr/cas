@@ -1,0 +1,17 @@
+{
+  final RegisteredServiceProxyPolicyBean proxyPolicy=data.getProxyPolicy();
+  final RegisteredServiceProxyPolicyBean.Types type=proxyPolicy.getType();
+  if (type == RegisteredServiceProxyPolicyBean.Types.REGEX) {
+    final String value=proxyPolicy.getValue();
+    if (StringUtils.isNotBlank(value) && RegexUtils.isValidRegex(value)) {
+      return new RegexMatchingRegisteredServiceProxyPolicy(value);
+    }
+ else {
+      throw new IllegalArgumentException("Invalid regex pattern specified for proxy policy: " + value);
+    }
+  }
+ else   if (type == RegisteredServiceProxyPolicyBean.Types.REFUSE) {
+    return new RefuseRegisteredServiceProxyPolicy();
+  }
+  return null;
+}

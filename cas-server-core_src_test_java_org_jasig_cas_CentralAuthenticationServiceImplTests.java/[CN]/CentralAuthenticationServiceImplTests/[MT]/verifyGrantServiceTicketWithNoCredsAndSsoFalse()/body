@@ -1,6 +1,0 @@
-{
-  final UsernamePasswordCredential cred=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(cred);
-  final Service svc=getService("TestSsoFalse");
-  getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),svc,new Credential[]{null});
-}

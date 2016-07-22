@@ -1,0 +1,7 @@
+{
+  final Service svc=getService("TestSsoFalse");
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),svc);
+  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),svc,ctx);
+  assertNotNull(serviceTicket);
+}

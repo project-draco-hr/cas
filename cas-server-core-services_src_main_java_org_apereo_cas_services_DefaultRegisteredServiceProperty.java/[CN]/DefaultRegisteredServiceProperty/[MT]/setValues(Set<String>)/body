@@ -1,0 +1,7 @@
+{
+  getValues().clear();
+  if (values == null) {
+    return;
+  }
+  getValues().addAll(values);
+}

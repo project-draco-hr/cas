@@ -1,0 +1,9 @@
+{
+  final MockRequestContext ctx=new MockRequestContext();
+  final AuthenticationResult ctxAuthN=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport());
+  final TicketGrantingTicket tgt=this.getCentralAuthenticationService().createTicketGrantingTicket(ctxAuthN);
+  WebUtils.putTicketGrantingTicketInScopes(ctx,tgt);
+  final TicketGrantingTicketCheckAction action=new TicketGrantingTicketCheckAction(this.getCentralAuthenticationService());
+  final Event event=action.doExecute(ctx);
+  assertEquals(event.getId(),TicketGrantingTicketCheckAction.VALID);
+}

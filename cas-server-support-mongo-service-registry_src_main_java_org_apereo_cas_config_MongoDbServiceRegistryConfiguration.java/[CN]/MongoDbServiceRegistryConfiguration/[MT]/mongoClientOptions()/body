@@ -1,0 +1,19 @@
+{
+  try {
+    final MongoClientOptionsFactoryBean bean=new MongoClientOptionsFactoryBean();
+    bean.setWriteConcern(WriteConcern.valueOf(casProperties.getServiceRegistry().getMongo().getWriteConcern()));
+    bean.setHeartbeatConnectTimeout(casProperties.getServiceRegistry().getMongo().getTimeout());
+    bean.setHeartbeatSocketTimeout(casProperties.getServiceRegistry().getMongo().getTimeout());
+    bean.setMaxConnectionLifeTime(casProperties.getServiceRegistry().getMongo().getConns().getLifetime());
+    bean.setSocketKeepAlive(casProperties.getServiceRegistry().getMongo().isSocketKeepAlive());
+    bean.setMaxConnectionIdleTime(casProperties.getServiceRegistry().getMongo().getIdleTimeout());
+    bean.setConnectionsPerHost(casProperties.getServiceRegistry().getMongo().getConns().getPerHost());
+    bean.setSocketTimeout(casProperties.getServiceRegistry().getMongo().getTimeout());
+    bean.setConnectTimeout(casProperties.getServiceRegistry().getMongo().getTimeout());
+    bean.afterPropertiesSet();
+    return bean.getObject();
+  }
+ catch (  final Exception e) {
+    throw new BeanCreationException(e.getMessage(),e);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return rawDigest(MessageDigestAlgorithms.SHA_1,data);
+}

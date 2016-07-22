@@ -1,0 +1,7 @@
+{
+  final OpenIdCredentialsAuthenticationHandler h=new OpenIdCredentialsAuthenticationHandler();
+  h.setTicketRegistry(this.ticketRegistry);
+  h.setPrincipalFactory(openidPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

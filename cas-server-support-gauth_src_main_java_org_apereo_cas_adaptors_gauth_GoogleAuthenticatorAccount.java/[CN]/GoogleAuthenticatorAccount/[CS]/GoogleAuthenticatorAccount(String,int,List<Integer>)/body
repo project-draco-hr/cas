@@ -1,0 +1,5 @@
+{
+  this.secretKey=secretKey;
+  this.validationCode=validationCode;
+  this.scratchCodes=scratchCodes;
+}

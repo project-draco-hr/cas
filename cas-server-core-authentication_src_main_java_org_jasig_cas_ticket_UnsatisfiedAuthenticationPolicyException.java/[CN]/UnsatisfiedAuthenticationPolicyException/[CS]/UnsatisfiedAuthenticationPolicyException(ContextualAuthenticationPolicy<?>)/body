@@ -1,5 +1,0 @@
-{
-  super(CODE);
-  Assert.notNull(policy,"ContextualAuthenticationPolicy cannot be null");
-  this.policy=policy;
-}

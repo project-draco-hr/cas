@@ -1,0 +1,5 @@
+{
+  final HttpServletRequest request=mockRequest();
+  when(request.getParameter(REQUEST_PARAM)).thenReturn(provider);
+  return request;
+}

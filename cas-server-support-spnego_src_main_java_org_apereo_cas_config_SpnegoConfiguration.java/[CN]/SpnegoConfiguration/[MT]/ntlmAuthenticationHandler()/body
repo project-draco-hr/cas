@@ -1,0 +1,9 @@
+{
+  final NtlmAuthenticationHandler ntlm=new NtlmAuthenticationHandler();
+  ntlm.setDomainController(casProperties.getAuthn().getNtlm().getDomainController());
+  ntlm.setIncludePattern(casProperties.getAuthn().getNtlm().getIncludePattern());
+  ntlm.setLoadBalance(casProperties.getAuthn().getNtlm().isLoadBalance());
+  ntlm.setPrincipalFactory(ntlmPrincipalFactory());
+  ntlm.setServicesManager(servicesManager);
+  return ntlm;
+}

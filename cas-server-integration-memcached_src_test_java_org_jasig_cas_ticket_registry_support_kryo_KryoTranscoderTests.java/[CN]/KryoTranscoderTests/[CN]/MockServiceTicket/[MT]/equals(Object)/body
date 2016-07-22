@@ -1,3 +1,0 @@
-{
-  return other instanceof MockServiceTicket && ((MockServiceTicket)other).getId().equals(id);
-}

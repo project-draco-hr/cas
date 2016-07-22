@@ -1,0 +1,4 @@
+{
+  final Ticket ticket=encodeTicket(ticketToAdd);
+  this.cache.put(ticket.getId(),ticket,ticket.getExpirationPolicy().getTimeToLive(),TimeUnit.SECONDS,ticket.getExpirationPolicy().getTimeToIdle(),TimeUnit.SECONDS);
+}

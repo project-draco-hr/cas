@@ -1,0 +1,21 @@
+{
+  if (this.startingDateTime != null) {
+    final ZonedDateTime st=DateTimeUtils.zonedDateTimeOf(this.startingDateTime);
+    if (st != null) {
+      if (ZonedDateTime.now().isBefore(st)) {
+        LOGGER.warn("Service access not allowed because it starts at {}. Zoned now is {}",this.startingDateTime,ZonedDateTime.now());
+        return false;
+      }
+    }
+ else {
+      final LocalDateTime stLocal=DateTimeUtils.localDateTimeOf(this.startingDateTime);
+      if (stLocal != null) {
+        if (LocalDateTime.now().isBefore(stLocal)) {
+          LOGGER.warn("Service access not allowed because it starts at {}. Local now is {}",this.startingDateTime,ZonedDateTime.now());
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}

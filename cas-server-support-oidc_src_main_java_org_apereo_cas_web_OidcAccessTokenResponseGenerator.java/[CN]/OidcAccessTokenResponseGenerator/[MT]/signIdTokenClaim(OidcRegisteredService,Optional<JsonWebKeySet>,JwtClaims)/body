@@ -1,0 +1,23 @@
+{
+  final JsonWebSignature jws=new JsonWebSignature();
+  final String jsonClaims=claims.toJson();
+  jws.setPayload(jsonClaims);
+  logger.debug("Generated claims are {}",jsonClaims);
+  jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.NONE);
+  jws.setAlgorithmConstraints(AlgorithmConstraints.NO_CONSTRAINTS);
+  if (svc.isSignIdToken() && jwks.isPresent() && !jwks.get().getJsonWebKeys().isEmpty()) {
+    final RsaJsonWebKey jsonWebKey=(RsaJsonWebKey)jwks.get().getJsonWebKeys().get(0);
+    jws.setKey(jsonWebKey.getPrivateKey());
+    jws.setAlgorithmConstraints(AlgorithmConstraints.DISALLOW_NONE);
+    if (StringUtils.isBlank(jsonWebKey.getKeyId())) {
+      jws.setKeyIdHeaderValue(UUID.randomUUID().toString());
+    }
+ else {
+      jws.setKeyIdHeaderValue(jsonWebKey.getKeyId());
+    }
+    logger.debug("Signing id token with key id header value {}",jws.getKeyIdHeaderValue());
+    jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_USING_SHA256);
+  }
+  logger.debug("Signing id token with algorithm {}",jws.getAlgorithmHeaderValue());
+  return jws.getCompactSerialization();
+}

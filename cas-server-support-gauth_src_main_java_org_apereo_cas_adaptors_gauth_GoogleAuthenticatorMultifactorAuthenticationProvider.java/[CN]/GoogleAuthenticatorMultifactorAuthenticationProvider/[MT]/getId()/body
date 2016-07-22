@@ -1,0 +1,3 @@
+{
+  return GoogleAuthenticatorMultifactorWebflowConfigurer.MFA_GAUTH_EVENT_ID;
+}

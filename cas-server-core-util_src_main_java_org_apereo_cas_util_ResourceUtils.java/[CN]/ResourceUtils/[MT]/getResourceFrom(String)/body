@@ -1,0 +1,7 @@
+{
+  final AbstractResource metadataLocationResource=getRawResourceFrom(metadataLocation);
+  if (!metadataLocationResource.exists() || !metadataLocationResource.isReadable()) {
+    throw new FileNotFoundException("Resource " + metadataLocation + " does not exist or is unreadable");
+  }
+  return metadataLocationResource;
+}

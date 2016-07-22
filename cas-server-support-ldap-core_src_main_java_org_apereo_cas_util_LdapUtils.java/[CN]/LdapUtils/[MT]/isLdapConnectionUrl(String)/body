@@ -1,0 +1,3 @@
+{
+  return r.toLowerCase().startsWith(LDAP_PREFIX);
+}

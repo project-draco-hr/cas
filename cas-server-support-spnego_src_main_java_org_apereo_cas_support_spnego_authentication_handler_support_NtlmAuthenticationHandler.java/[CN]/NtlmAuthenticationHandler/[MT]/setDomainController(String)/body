@@ -1,0 +1,8 @@
+{
+  if (StringUtils.isBlank(domainController)) {
+    this.domainController=DEFAULT_DOMAIN_CONTROLLER;
+  }
+ else {
+    this.domainController=domainController;
+  }
+}

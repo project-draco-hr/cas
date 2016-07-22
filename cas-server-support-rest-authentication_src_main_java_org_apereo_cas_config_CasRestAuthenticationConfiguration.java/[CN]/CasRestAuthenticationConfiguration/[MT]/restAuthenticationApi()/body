@@ -1,0 +1,6 @@
+{
+  final RestAuthenticationApi api=new RestAuthenticationApi();
+  api.setAuthenticationUri(casProperties.getAuthn().getRest().getUri());
+  api.setRestTemplate(restAuthenticationTemplate());
+  return api;
+}

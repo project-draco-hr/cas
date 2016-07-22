@@ -1,0 +1,28 @@
+{
+  clearAllServices();
+  final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.AUTHORIZE_URL);
+  mockRequest.setParameter(OAuthConstants.CLIENT_ID,CLIENT_ID);
+  mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
+  mockRequest.setParameter(OAuthConstants.RESPONSE_TYPE,OAuthResponseType.CODE.name().toLowerCase());
+  mockRequest.setServerName(CAS_SERVER);
+  mockRequest.setServerPort(CAS_PORT);
+  mockRequest.setScheme(CAS_SCHEME);
+  final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
+  final OAuthRegisteredService service=getRegisteredService(REDIRECT_URI,SERVICE_NAME);
+  service.setBypassApprovalPrompt(false);
+  oAuth20AuthorizeController.getServicesManager().save(service);
+  final CasProfile profile=new CasProfile();
+  profile.setId(ID);
+  final Map<String,Object> attributes=new HashMap<>();
+  attributes.put(FIRST_NAME_ATTRIBUTE,FIRST_NAME);
+  attributes.put(LAST_NAME_ATTRIBUTE,LAST_NAME);
+  profile.addAttributes(attributes);
+  final MockHttpSession session=new MockHttpSession();
+  mockRequest.setSession(session);
+  session.putValue(Pac4jConstants.USER_PROFILES,profile);
+  final ModelAndView modelAndView=oAuth20AuthorizeController.handleRequestInternal(mockRequest,mockResponse);
+  assertEquals(OAuthConstants.CONFIRM_VIEW,modelAndView.getViewName());
+  final Map<String,Object> model=modelAndView.getModel();
+  assertEquals(CommonHelper.addParameter(AUTHORIZE_URL,OAuthConstants.BYPASS_APPROVAL_PROMPT,"true"),model.get("callbackUrl"));
+  assertEquals(SERVICE_NAME,model.get("serviceName"));
+}

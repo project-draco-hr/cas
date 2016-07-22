@@ -1,0 +1,6 @@
+{
+  final Collection<Authentication> chainedAuthenticationsToReturn=new ArrayList<>();
+  final Assertion assertion=getAssertionFrom(model);
+  final List<Authentication> chainedAuthentications=assertion.getChainedAuthentications();
+  return chainedAuthentications.stream().limit(chainedAuthentications.size() - 1).collect(Collectors.toList());
+}

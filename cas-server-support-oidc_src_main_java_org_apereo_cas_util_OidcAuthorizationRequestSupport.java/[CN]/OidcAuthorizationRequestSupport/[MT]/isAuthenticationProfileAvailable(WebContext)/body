@@ -1,0 +1,4 @@
+{
+  final ProfileManager manager=new ProfileManager(context);
+  return manager.get(true);
+}

@@ -1,0 +1,5 @@
+{
+  final AuthenticationExceptionHandler h=new AuthenticationExceptionHandler();
+  h.setErrors(casProperties.getAuthn().getExceptions().getExceptions());
+  return h;
+}

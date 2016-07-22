@@ -1,0 +1,15 @@
+{
+  final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.ACCESS_TOKEN_URL);
+  mockRequest.setParameter(OAuthConstants.CLIENT_ID,CLIENT_ID);
+  mockRequest.setParameter(OAuthConstants.REDIRECT_URI,REDIRECT_URI);
+  mockRequest.setParameter(OAuthConstants.CLIENT_SECRET,CLIENT_SECRET);
+  mockRequest.setParameter(OAuthConstants.GRANT_TYPE,OAuthGrantType.AUTHORIZATION_CODE.name().toLowerCase());
+  final Principal principal=createPrincipal();
+  final RegisteredService service=addRegisteredService();
+  addCode(principal,service);
+  final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
+  requiresAuthenticationInterceptor.preHandle(mockRequest,mockResponse,null);
+  oAuth20AccessTokenController.handleRequestInternal(mockRequest,mockResponse);
+  assertEquals(HttpStatus.SC_BAD_REQUEST,mockResponse.getStatus());
+  assertEquals("error=" + OAuthConstants.INVALID_REQUEST,mockResponse.getContentAsString());
+}

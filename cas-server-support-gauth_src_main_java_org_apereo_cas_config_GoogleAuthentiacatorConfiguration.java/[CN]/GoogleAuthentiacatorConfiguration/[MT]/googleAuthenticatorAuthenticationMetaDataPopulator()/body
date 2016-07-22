@@ -1,0 +1,4 @@
+{
+  final GoogleAuthenticatorAuthenticationMetaDataPopulator g=new GoogleAuthenticatorAuthenticationMetaDataPopulator(casProperties.getAuthn().getMfa().getAuthenticationContextAttribute(),googleAuthenticatorAuthenticationHandler(),googleAuthenticatorAuthenticationProvider());
+  return g;
+}

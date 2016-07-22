@@ -1,0 +1,11 @@
+{
+  final LdapPasswordPolicyConfiguration pp=new LdapPasswordPolicyConfiguration(this.casProperties.getAuthn().getPasswordPolicy());
+  final OptionalWarningAccountStateHandler opt=optionalWarningAccountStateHandler();
+  if (StringUtils.isNotBlank(opt.getWarnAttributeName()) && StringUtils.isNotBlank(opt.getWarningAttributeValue())) {
+    pp.setAccountStateHandler(opt);
+  }
+ else {
+    pp.setAccountStateHandler(accountStateHandler());
+  }
+  return pp;
+}

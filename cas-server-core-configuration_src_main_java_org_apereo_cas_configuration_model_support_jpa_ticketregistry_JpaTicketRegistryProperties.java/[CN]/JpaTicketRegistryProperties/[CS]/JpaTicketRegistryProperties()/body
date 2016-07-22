@@ -1,0 +1,3 @@
+{
+  super.setUrl("jdbc:hsqldb:mem:cas-ticket-registry");
+}

@@ -1,0 +1,20 @@
+{
+  try {
+    final ClientCredential clientCredentials=(ClientCredential)credential;
+    logger.debug("clientCredentials  {}",clientCredentials);
+    final Credentials credentials=clientCredentials.getCredentials();
+    final String clientName=credentials.getClientName();
+    logger.debug("clientName:  {}",clientName);
+    final Client client=this.clients.findClient(clientName);
+    logger.debug("client: {}",client);
+    final HttpServletRequest request=WebUtils.getHttpServletRequest();
+    final HttpServletResponse response=WebUtils.getHttpServletResponse();
+    final WebContext webContext=new J2EContext(request,response);
+    final UserProfile userProfile=client.getUserProfile(credentials,webContext);
+    logger.debug("userProfile: {}",userProfile);
+    return createResult(clientCredentials,userProfile);
+  }
+ catch (  final HttpAction e) {
+    throw new PreventedException(e);
+  }
+}

@@ -1,5 +1,0 @@
-{
-  final TicketGrantingTicket proxyGrantingTicket=mock(TicketGrantingTicket.class);
-  when(proxyGrantingTicket.getId()).thenReturn("proxyGrantingTicket");
-  assertNull(this.proxyHandler.handle(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword(),proxyGrantingTicket));
-}

@@ -1,0 +1,4 @@
+{
+  logger.trace("serviceTicketCount() operation is not implemented by the ticket registry instance {}. Returning unknown as {}",this.getClass().getName(),Long.MIN_VALUE);
+  return Long.MIN_VALUE;
+}

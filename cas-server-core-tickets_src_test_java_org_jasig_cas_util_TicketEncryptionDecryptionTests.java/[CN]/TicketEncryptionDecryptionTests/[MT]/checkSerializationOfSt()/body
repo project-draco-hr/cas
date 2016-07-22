@@ -1,6 +1,0 @@
-{
-  final MockServiceTicket st=new MockServiceTicket("serviceid",org.jasig.cas.services.TestUtils.getService(),tgt);
-  final byte[] bytes=CompressionUtils.serializeAndEncodeObject(cipher,st);
-  final Ticket obj=CompressionUtils.decodeAndSerializeObject(bytes,cipher,Ticket.class);
-  assertNotNull(obj);
-}

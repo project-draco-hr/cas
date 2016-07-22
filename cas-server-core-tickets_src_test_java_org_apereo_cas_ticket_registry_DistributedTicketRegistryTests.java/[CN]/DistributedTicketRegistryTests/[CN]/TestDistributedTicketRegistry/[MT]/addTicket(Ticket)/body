@@ -1,0 +1,4 @@
+{
+  this.tickets.put(ticket.getId(),ticket);
+  updateTicket(ticket);
+}

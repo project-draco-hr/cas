@@ -1,0 +1,5 @@
+{
+  final DefaultTicketRegistrySupport s=new DefaultTicketRegistrySupport();
+  s.setTicketRegistry(this.ticketRegistry);
+  return s;
+}

@@ -1,0 +1,5 @@
+{
+  final YubiKeyAuthenticationWebflowAction a=new YubiKeyAuthenticationWebflowAction();
+  a.setYubikeyAuthenticationWebflowEventResolver(yubikeyAuthenticationWebflowEventResolver());
+  return a;
+}

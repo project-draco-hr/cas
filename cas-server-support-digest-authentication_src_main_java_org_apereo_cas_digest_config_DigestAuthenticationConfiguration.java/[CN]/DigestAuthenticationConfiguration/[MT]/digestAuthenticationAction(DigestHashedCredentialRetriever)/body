@@ -1,0 +1,11 @@
+{
+  final DigestAuthenticationAction w=new DigestAuthenticationAction();
+  w.setWarnCookieGenerator(warnCookieGenerator);
+  w.setAuthenticationSystemSupport(authenticationSystemSupport);
+  w.setCentralAuthenticationService(centralAuthenticationService);
+  w.setPrincipalFactory(digestAuthenticationPrincipalFactory());
+  w.setRealm(casProperties.getAuthn().getDigest().getRealm());
+  w.setAuthenticationMethod(casProperties.getAuthn().getDigest().getAuthenticationMethod());
+  w.setCredentialRetriever(defaultDigestCredentialRetriever);
+  return w;
+}

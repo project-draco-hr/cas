@@ -1,0 +1,6 @@
+Principal principal
+Collection<String> attributeNames
+RegisteredService service
+RequestContext context
+Collection<MultifactorAuthenticationProvider> providers
+Predicate predicate

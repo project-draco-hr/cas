@@ -1,0 +1,8 @@
+{
+  final TerminateSessionAction a=new TerminateSessionAction();
+  a.setAuthenticationSystemSupport(authenticationSystemSupport);
+  a.setCentralAuthenticationService(centralAuthenticationService);
+  a.setTicketGrantingTicketCookieGenerator(ticketGrantingTicketCookieGenerator);
+  a.setWarnCookieGenerator(warnCookieGenerator);
+  return a;
+}

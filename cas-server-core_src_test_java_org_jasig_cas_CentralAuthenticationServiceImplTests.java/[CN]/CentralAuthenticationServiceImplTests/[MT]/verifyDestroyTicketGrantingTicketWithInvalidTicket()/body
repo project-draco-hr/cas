@@ -1,5 +1,0 @@
-{
-  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithSameUsernameAndPassword());
-  final ServiceTicket serviceTicketId=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),getService());
-  getCentralAuthenticationService().destroyTicketGrantingTicket(serviceTicketId.getId());
-}

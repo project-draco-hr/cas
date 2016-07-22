@@ -1,0 +1,8 @@
+{
+  final FlowHandlerMapping handler=new FlowHandlerMapping();
+  handler.setOrder(LOGOUT_FLOW_HANDLER_ORDER);
+  handler.setFlowRegistry(logoutFlowRegistry());
+  final Object[] interceptors=new Object[]{localeChangeInterceptor()};
+  handler.setInterceptors(interceptors);
+  return handler;
+}

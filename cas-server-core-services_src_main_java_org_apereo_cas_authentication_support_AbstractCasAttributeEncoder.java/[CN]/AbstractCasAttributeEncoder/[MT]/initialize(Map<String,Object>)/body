@@ -1,0 +1,15 @@
+{
+  final Map<String,String> cachedAttributesToEncode=new HashMap<>(attributes.size());
+  final String messageFormat="Removed [{}] as an authentication attribute and cached it locally.";
+  Collection<?> collection=(Collection<?>)attributes.remove(CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL);
+  if (collection != null && collection.size() == 1) {
+    cachedAttributesToEncode.put(CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL,collection.iterator().next().toString());
+    logger.debug(messageFormat,CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL);
+  }
+  collection=(Collection<?>)attributes.remove(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET);
+  if (collection != null && collection.size() == 1) {
+    cachedAttributesToEncode.put(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET,collection.iterator().next().toString());
+    logger.debug(messageFormat,CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET);
+  }
+  return cachedAttributesToEncode;
+}

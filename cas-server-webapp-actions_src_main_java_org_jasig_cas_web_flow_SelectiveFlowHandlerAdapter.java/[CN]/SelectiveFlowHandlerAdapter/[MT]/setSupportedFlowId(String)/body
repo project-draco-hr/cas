@@ -1,3 +1,0 @@
-{
-  this.supportedFlowIds=Collections.singleton(flowId);
-}

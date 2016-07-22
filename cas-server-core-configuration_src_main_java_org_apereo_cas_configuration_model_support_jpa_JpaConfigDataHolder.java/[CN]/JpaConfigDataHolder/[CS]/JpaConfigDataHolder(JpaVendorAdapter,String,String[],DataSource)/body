@@ -1,0 +1,6 @@
+{
+  this.jpaVendorAdapter=jpaVendorAdapter;
+  this.persistenceUnitName=persistenceUnitName;
+  this.packagesToScan=packagesToScan;
+  this.dataSource=dataSource;
+}

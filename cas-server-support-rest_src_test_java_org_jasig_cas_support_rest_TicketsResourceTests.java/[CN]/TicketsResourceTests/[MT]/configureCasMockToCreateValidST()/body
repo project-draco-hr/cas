@@ -1,5 +1,0 @@
-{
-  final ServiceTicket st=mock(ServiceTicket.class);
-  when(st.getId()).thenReturn("ST-1");
-  when(this.casMock.grantServiceTicket(anyString(),any(Service.class))).thenReturn(st);
-}

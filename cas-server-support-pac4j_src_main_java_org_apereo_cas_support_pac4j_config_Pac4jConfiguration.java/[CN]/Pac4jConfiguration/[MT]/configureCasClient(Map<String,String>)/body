@@ -1,0 +1,4 @@
+{
+  properties.put(PropertiesConfigFactory.CAS_LOGIN_URL,casProperties.getAuthn().getPac4j().getCas().getLoginUrl());
+  properties.put(PropertiesConfigFactory.CAS_PROTOCOL,casProperties.getAuthn().getPac4j().getCas().getProtocol());
+}

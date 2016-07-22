@@ -1,0 +1,24 @@
+{
+  final Service service=WebUtils.getService(context);
+  final String ticketGrantingTicket=WebUtils.getTicketGrantingTicketId(context);
+  try {
+    final Authentication authentication=this.ticketRegistrySupport.getAuthenticationFrom(ticketGrantingTicket);
+    if (authentication == null) {
+      throw new InvalidTicketException(new AuthenticationException("No authentication found for ticket " + ticketGrantingTicket),ticketGrantingTicket);
+    }
+    final AuthenticationResultBuilder authenticationResultBuilder=this.authenticationSystemSupport.establishAuthenticationContextFromInitial(authentication);
+    final AuthenticationResult authenticationResult=authenticationResultBuilder.build(service);
+    final ServiceTicket serviceTicketId=this.centralAuthenticationService.grantServiceTicket(ticketGrantingTicket,service,authenticationResult);
+    WebUtils.putServiceTicketInRequestScope(context,serviceTicketId);
+    return success();
+  }
+ catch (  final AbstractTicketException e) {
+    if (e instanceof InvalidTicketException) {
+      this.centralAuthenticationService.destroyTicketGrantingTicket(ticketGrantingTicket);
+    }
+    if (isGatewayPresent(context)) {
+      return result("gateway");
+    }
+    return newEvent(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,e);
+  }
+}

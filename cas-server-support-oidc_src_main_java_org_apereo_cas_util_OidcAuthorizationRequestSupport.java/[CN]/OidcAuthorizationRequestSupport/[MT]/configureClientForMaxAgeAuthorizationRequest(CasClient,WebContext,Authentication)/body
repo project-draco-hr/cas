@@ -1,0 +1,5 @@
+{
+  if (isCasAuthenticationOldForMaxAgeAuthorizationRequest(context,authentication)) {
+    casClient.setRenew(true);
+  }
+}

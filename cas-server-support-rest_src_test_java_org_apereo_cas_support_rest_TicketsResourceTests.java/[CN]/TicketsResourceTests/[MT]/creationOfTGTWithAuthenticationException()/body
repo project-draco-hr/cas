@@ -1,0 +1,4 @@
+{
+  configureCasMockTGTCreationToThrowAuthenticationException();
+  this.mockMvc.perform(post("/cas/v1/tickets").param("username","test").param("password","test")).andExpect(status().isUnauthorized()).andExpect(content().json("{\"authentication_exceptions\" : [ \"LoginException\" ]}"));
+}

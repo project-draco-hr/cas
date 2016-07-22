@@ -1,0 +1,22 @@
+{
+  this.dao.save(getRegexRegisteredService());
+  final List<RegisteredService> services=this.dao.load();
+  final AbstractRegisteredService rs=(AbstractRegisteredService)this.dao.findServiceById(services.get(0).getId());
+  assertNotNull(rs);
+  rs.setEvaluationOrder(9999);
+  rs.setUsernameAttributeProvider(new DefaultRegisteredServiceUsernameProvider());
+  rs.setName("Another Test Service");
+  rs.setDescription("The new description");
+  rs.setServiceId("https://hello.world");
+  rs.setProxyPolicy(new RegexMatchingRegisteredServiceProxyPolicy("https"));
+  rs.setAttributeReleasePolicy(new ReturnAllowedAttributeReleasePolicy());
+  assertNotNull(this.dao.save(rs));
+  final RegisteredService rs3=this.dao.findServiceById(rs.getId());
+  assertEquals(rs3.getName(),rs.getName());
+  assertEquals(rs3.getDescription(),rs.getDescription());
+  assertEquals(rs3.getEvaluationOrder(),rs.getEvaluationOrder());
+  assertEquals(rs3.getUsernameAttributeProvider(),rs.getUsernameAttributeProvider());
+  assertEquals(rs3.getProxyPolicy(),rs.getProxyPolicy());
+  assertEquals(rs3.getUsernameAttributeProvider(),rs.getUsernameAttributeProvider());
+  assertEquals(rs3.getServiceId(),rs.getServiceId());
+}

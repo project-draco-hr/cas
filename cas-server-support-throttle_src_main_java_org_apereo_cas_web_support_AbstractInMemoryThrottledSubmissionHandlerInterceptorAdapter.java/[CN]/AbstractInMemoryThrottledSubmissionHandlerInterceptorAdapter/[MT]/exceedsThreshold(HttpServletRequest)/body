@@ -1,0 +1,4 @@
+{
+  final ZonedDateTime last=this.ipMap.get(constructKey(request));
+  return last != null && submissionRate(ZonedDateTime.now(ZoneOffset.UTC),last) > getThresholdRate();
+}

@@ -1,7 +1,0 @@
-{
-  final ToStringBuilder builder=new ToStringBuilder(this);
-  builder.appendSuper(super.toString());
-  builder.append("clientId",getClientId());
-  builder.append("approvalPrompt",isBypassApprovalPrompt());
-  return builder.toString();
-}

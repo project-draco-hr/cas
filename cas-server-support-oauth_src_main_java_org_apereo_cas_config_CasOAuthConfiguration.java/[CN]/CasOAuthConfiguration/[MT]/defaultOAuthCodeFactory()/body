@@ -1,0 +1,6 @@
+{
+  final DefaultOAuthCodeFactory f=new DefaultOAuthCodeFactory();
+  f.setExpirationPolicy(oAuthCodeExpirationPolicy());
+  f.setoAuthCodeIdGenerator(oAuthCodeIdGenerator());
+  return f;
+}

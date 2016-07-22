@@ -1,0 +1,20 @@
+{
+  AbstractRegisteredService svc=new RegexRegisteredService();
+  svc.setDescription("description");
+  svc.setServiceId("^serviceId");
+  svc.setName("name");
+  svc.setId(1000);
+  svc.setEvaluationOrder(1000);
+  final RegisteredServiceEditBean.ServiceData data=registeredServiceFactory.createServiceData(svc);
+  this.controller.saveService(new MockHttpServletRequest(),new MockHttpServletResponse(),data,mock(BindingResult.class));
+  svc=new RegexRegisteredService();
+  svc.setDescription("description");
+  svc.setServiceId("^serviceId");
+  svc.setName("name");
+  svc.setId(100);
+  svc.setEvaluationOrder(100);
+  final RegisteredServiceEditBean.ServiceData data2=registeredServiceFactory.createServiceData(svc);
+  this.controller.saveService(new MockHttpServletRequest(),new MockHttpServletResponse(),data2,mock(BindingResult.class));
+  final Collection<RegisteredService> services=this.manager.getAllServices();
+  assertEquals(2,services.size());
+}

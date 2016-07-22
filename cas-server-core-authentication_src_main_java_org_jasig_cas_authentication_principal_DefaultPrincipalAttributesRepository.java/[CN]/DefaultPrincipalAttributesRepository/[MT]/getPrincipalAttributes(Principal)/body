@@ -1,4 +1,0 @@
-{
-  logger.debug("{} will return the collection of attributes directly associated with the principal object",this.getClass().getSimpleName());
-  return p.getAttributes();
-}

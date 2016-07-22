@@ -1,0 +1,3 @@
+{
+  return Beans.newHickariDataSource(casProperties.getEvents().getJpa().getDatabase());
+}

@@ -1,0 +1,3 @@
+{
+  return (Map<String,Object>)model.get(CasProtocolConstants.VALIDATION_CAS_MODEL_ATTRIBUTE_NAME_ATTRIBUTES);
+}

@@ -1,8 +1,0 @@
-{
-  if (data == null)   return;
-  OutputStream os=connection.getOutputStream();
-  BufferedWriter output=new BufferedWriter(new OutputStreamWriter(os));
-  output.write(data.toXML());
-  output.flush();
-  output.close();
-}

@@ -1,0 +1,10 @@
+{
+  if (!isCipherExecutorEnabled()) {
+    logger.trace(MESSAGE);
+    return ticketId;
+  }
+  if (StringUtils.isBlank(ticketId)) {
+    return ticketId;
+  }
+  return DigestUtils.sha512(ticketId);
+}

@@ -1,0 +1,3 @@
+{
+  initializeRegistry(configDirectory,serializer,enableWatcher);
+}

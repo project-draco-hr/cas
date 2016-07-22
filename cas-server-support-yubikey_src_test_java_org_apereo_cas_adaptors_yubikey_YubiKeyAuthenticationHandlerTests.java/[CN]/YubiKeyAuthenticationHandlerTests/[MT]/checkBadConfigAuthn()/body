@@ -1,0 +1,4 @@
+{
+  final YubiKeyAuthenticationHandler handler=new YubiKeyAuthenticationHandler(123456,"123456");
+  handler.authenticate(new YubiKeyCredential("casuser"));
+}

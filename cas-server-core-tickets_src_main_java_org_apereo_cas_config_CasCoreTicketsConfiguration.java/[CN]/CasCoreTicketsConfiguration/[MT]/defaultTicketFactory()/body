@@ -1,0 +1,8 @@
+{
+  final DefaultTicketFactory f=new DefaultTicketFactory();
+  f.setProxyGrantingTicketFactory(defaultProxyGrantingTicketFactory());
+  f.setTicketGrantingTicketFactory(defaultTicketGrantingTicketFactory());
+  f.setServiceTicketFactory(defaultServiceTicketFactory());
+  f.setProxyTicketFactory(defaultProxyTicketFactory());
+  return f;
+}

@@ -1,0 +1,5 @@
+{
+  final List<ArgumentExtractor> list=new ArrayList<>();
+  list.add(defaultArgumentExtractor());
+  return list;
+}

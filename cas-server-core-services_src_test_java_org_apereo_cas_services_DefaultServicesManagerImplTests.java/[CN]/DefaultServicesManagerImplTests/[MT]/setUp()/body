@@ -1,0 +1,13 @@
+{
+  final InMemoryServiceRegistryDaoImpl dao=new InMemoryServiceRegistryDaoImpl();
+  final List<RegisteredService> list=new ArrayList<>();
+  final RegexRegisteredService r=new RegexRegisteredService();
+  r.setId(2500);
+  r.setServiceId("serviceId");
+  r.setName("serviceName");
+  r.setEvaluationOrder(1000);
+  list.add(r);
+  dao.setRegisteredServices(list);
+  this.defaultServicesManagerImpl=new DefaultServicesManagerImpl(dao);
+  this.defaultServicesManagerImpl.load();
+}

@@ -1,0 +1,11 @@
+{
+  final TransitionCriteria criteria;
+  if (criteriaOutcomeExpression.toString().equals(WildcardTransitionCriteria.WILDCARD_EVENT_ID)) {
+    criteria=WildcardTransitionCriteria.INSTANCE;
+  }
+ else {
+    criteria=new DefaultTransitionCriteria(criteriaOutcomeExpression);
+  }
+  final DefaultTargetStateResolver resolver=new DefaultTargetStateResolver(targetState);
+  return new Transition(criteria,resolver);
+}

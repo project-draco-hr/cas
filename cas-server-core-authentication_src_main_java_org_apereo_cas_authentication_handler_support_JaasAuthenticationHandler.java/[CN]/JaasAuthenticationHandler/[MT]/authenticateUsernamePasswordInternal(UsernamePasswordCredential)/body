@@ -1,0 +1,27 @@
+{
+  if (this.kerberosKdcSystemProperty != null) {
+    logger.debug("Configured kerberos system property {} to {}",SYS_PROP_KERB5_KDC,this.kerberosKdcSystemProperty);
+    System.setProperty(SYS_PROP_KERB5_KDC,this.kerberosKdcSystemProperty);
+  }
+  if (this.kerberosRealmSystemProperty != null) {
+    logger.debug("Setting kerberos system property {} to {}",SYS_PROP_KRB5_REALM,this.kerberosRealmSystemProperty);
+    System.setProperty(SYS_PROP_KRB5_REALM,this.kerberosRealmSystemProperty);
+  }
+  final String username=credential.getUsername();
+  final String password=credential.getPassword();
+  final LoginContext lc=new LoginContext(this.realm,new UsernamePasswordCallbackHandler(username,password));
+  try {
+    logger.debug("Attempting authentication for: {}",username);
+    lc.login();
+  }
+  finally {
+    lc.logout();
+  }
+  Principal principal=null;
+  final Set<java.security.Principal> principals=lc.getSubject().getPrincipals();
+  if (principals != null && !principals.isEmpty()) {
+    final java.security.Principal secPrincipal=principals.iterator().next();
+    principal=this.principalFactory.createPrincipal(secPrincipal.getName());
+  }
+  return createHandlerResult(credential,principal,null);
+}

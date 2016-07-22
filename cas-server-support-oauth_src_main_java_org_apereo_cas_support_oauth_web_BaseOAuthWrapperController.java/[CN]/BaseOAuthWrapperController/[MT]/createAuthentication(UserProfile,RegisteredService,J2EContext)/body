@@ -1,0 +1,11 @@
+{
+  final Principal principal=this.principalFactory.createPrincipal(profile.getId(),profile.getAttributes());
+  final Map<String,Object> newAttributes=service.getAttributeReleasePolicy().getAttributes(principal);
+  final Principal newPrincipal=principalFactory.createPrincipal(profile.getId(),newAttributes);
+  final String authenticator=profile.getClass().getCanonicalName();
+  final CredentialMetaData metadata=new BasicCredentialMetaData(new BasicIdentifiableCredential(profile.getId()));
+  final HandlerResult handlerResult=new DefaultHandlerResult(authenticator,metadata,newPrincipal,new ArrayList<>());
+  final String state=StringUtils.defaultIfBlank(context.getRequestParameter(OAuthConstants.STATE),"");
+  final String nonce=StringUtils.defaultIfBlank(context.getRequestParameter(OAuthConstants.NONCE),"");
+  return DefaultAuthenticationBuilder.newInstance().addAttribute("permissions",profile.getPermissions()).addAttribute("roles",profile.getRoles()).addAttribute(OAuthConstants.STATE,state).addAttribute(OAuthConstants.NONCE,nonce).addCredential(metadata).setPrincipal(newPrincipal).setAuthenticationDate(ZonedDateTime.now()).addSuccess(profile.getClass().getCanonicalName(),handlerResult).build();
+}

@@ -1,0 +1,12 @@
+{
+  final Collection<LdapAttribute> attrs=response.getLdapEntry().getAttributes();
+  for (  final LdapAttribute attr : attrs) {
+    if (this.attributesToErrorMap.containsKey(attr.getName()) && Boolean.parseBoolean(attr.getStringValue())) {
+      final Class<LoginException> clazz=this.attributesToErrorMap.get(attr.getName());
+      final LoginException ex=(LoginException)ClassUtils.newInstance(clazz);
+      if (ex != null) {
+        throw Throwables.propagate(ex);
+      }
+    }
+  }
+}

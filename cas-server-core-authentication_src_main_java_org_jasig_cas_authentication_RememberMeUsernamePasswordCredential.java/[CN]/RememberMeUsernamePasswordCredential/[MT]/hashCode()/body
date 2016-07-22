@@ -1,3 +1,0 @@
-{
-  return new HashCodeBuilder().appendSuper(super.hashCode()).append(rememberMe).toHashCode();
-}

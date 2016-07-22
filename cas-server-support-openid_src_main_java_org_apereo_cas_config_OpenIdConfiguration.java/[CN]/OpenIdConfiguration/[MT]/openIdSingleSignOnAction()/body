@@ -1,0 +1,9 @@
+{
+  final OpenIdSingleSignOnAction a=new OpenIdSingleSignOnAction();
+  a.setExtractor(defaultOpenIdUserNameExtractor());
+  a.setAuthenticationSystemSupport(authenticationSystemSupport);
+  a.setCentralAuthenticationService(centralAuthenticationService);
+  a.setPrincipalFactory(openidPrincipalFactory());
+  a.setWarnCookieGenerator(warnCookieGenerator);
+  return a;
+}

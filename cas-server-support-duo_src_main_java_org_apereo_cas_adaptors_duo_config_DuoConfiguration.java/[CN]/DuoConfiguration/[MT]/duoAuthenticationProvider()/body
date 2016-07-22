@@ -1,0 +1,5 @@
+{
+  final DuoMultifactorAuthenticationProvider p=new DuoMultifactorAuthenticationProvider();
+  p.setDuoAuthenticationService(duoAuthenticationService());
+  return p;
+}

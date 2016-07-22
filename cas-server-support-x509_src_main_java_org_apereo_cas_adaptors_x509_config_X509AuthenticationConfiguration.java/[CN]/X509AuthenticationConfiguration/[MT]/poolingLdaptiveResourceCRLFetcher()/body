@@ -1,0 +1,7 @@
+{
+  final PoolingLdaptiveResourceCRLFetcher f=new PoolingLdaptiveResourceCRLFetcher();
+  f.setSearchExecutor(this.poolingLdaptiveResourceCRLSearchExecutor);
+  f.setConnectionPool(this.poolingLdaptiveConnectionPool);
+  f.setConnectionConfig(this.poolingLdaptiveResourceCRLConnectionConfig);
+  return f;
+}

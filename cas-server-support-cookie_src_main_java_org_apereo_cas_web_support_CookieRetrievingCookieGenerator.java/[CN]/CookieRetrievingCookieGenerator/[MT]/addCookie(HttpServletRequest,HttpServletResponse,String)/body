@@ -1,0 +1,23 @@
+{
+  final String theCookieValue=this.casCookieValueManager.buildCookieValue(cookieValue,request);
+  if (StringUtils.isNotBlank(request.getParameter(RememberMeCredential.REQUEST_PARAMETER_REMEMBER_ME))) {
+    super.addCookie(response,theCookieValue);
+  }
+ else {
+    final Cookie cookie=createCookie(theCookieValue);
+    cookie.setMaxAge(this.rememberMeMaxAge);
+    if (isCookieSecure()) {
+      cookie.setSecure(true);
+    }
+    if (isCookieHttpOnly()) {
+      final Method setHttpOnlyMethod=ReflectionUtils.findMethod(Cookie.class,"setHttpOnly",boolean.class);
+      if (setHttpOnlyMethod != null) {
+        cookie.setHttpOnly(true);
+      }
+ else {
+        logger.debug("Cookie cannot be marked as HttpOnly; container is not using servlet 3.0.");
+      }
+    }
+    response.addCookie(cookie);
+  }
+}

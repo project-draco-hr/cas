@@ -1,7 +1,0 @@
-{
-  this.connectionFactory=factory;
-  this.userSearchExecutor=userSearchExecutor;
-  this.roleSearchExecutor=roleSearchExecutor;
-  this.userAttributeName=userAttributeName;
-  this.roleAttributeName=roleAttributeName;
-}

@@ -1,0 +1,20 @@
+{
+  if (StringUtils.isBlank(this.warnAttributeName)) {
+    logger.debug("No warning attribute name is defined");
+    return;
+  }
+  if (StringUtils.isBlank(this.warningAttributeValue)) {
+    logger.debug("No warning attribute value to match is defined");
+    return;
+  }
+  final LdapAttribute attribute=response.getLdapEntry().getAttribute(this.warnAttributeName);
+  boolean matches=false;
+  if (attribute != null) {
+    logger.debug("Found warning attribute {} with value {}",attribute.getName(),attribute.getStringValue());
+    matches=this.warningAttributeValue.equals(attribute.getStringValue());
+  }
+  logger.debug("matches={}, displayWarningOnMatch={}",matches,this.displayWarningOnMatch);
+  if (this.displayWarningOnMatch == matches) {
+    super.handleWarning(warning,response,configuration,messages);
+  }
+}

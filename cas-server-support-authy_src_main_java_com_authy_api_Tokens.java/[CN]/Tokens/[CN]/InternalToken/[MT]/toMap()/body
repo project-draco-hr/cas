@@ -1,4 +1,0 @@
-{
-  if (!options.containsKey("force"))   options.put("force","true");
-  return options;
-}

@@ -1,6 +1,0 @@
-{
-  this.cache=cache;
-  if (cache.getCacheConfiguration().getMaxBytesLocalDisk() > 0) {
-    useBytes=true;
-  }
-}

@@ -1,0 +1,9 @@
+{
+  final LdapAcceptableUsagePolicyRepository r=new LdapAcceptableUsagePolicyRepository();
+  r.setBaseDn(casProperties.getAcceptableUsagePolicy().getLdap().getBaseDn());
+  r.setConnectionFactory(this.connectionFactory);
+  r.setSearchFilter(casProperties.getAcceptableUsagePolicy().getLdap().getSearchFilter());
+  r.setAupAttributeName(casProperties.getAcceptableUsagePolicy().getAupAttributeName());
+  r.setTicketRegistrySupport(ticketRegistrySupport);
+  return r;
+}

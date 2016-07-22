@@ -1,0 +1,3 @@
+{
+  this.callbackController.setConfig(this.config);
+}

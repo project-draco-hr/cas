@@ -1,0 +1,3 @@
+{
+  return DuoWeb.signRequest(casProperties.getAuthn().getMfa().getDuo().getDuoIntegrationKey(),casProperties.getAuthn().getMfa().getDuo().getDuoSecretKey(),casProperties.getAuthn().getMfa().getDuo().getDuoApplicationKey(),username);
+}

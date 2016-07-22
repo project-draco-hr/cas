@@ -1,2 +1,0 @@
-Path configDirectory
-JsonSerializer<RegisteredService> registeredServiceJsonSerializer

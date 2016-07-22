@@ -1,0 +1,9 @@
+{
+  final OAuth20ProfileController c=new OAuth20ProfileController();
+  c.setAccessTokenFactory(defaultAccessTokenFactory());
+  c.setPrincipalFactory(oauthPrincipalFactory());
+  c.setServicesManager(servicesManager);
+  c.setTicketRegistry(ticketRegistry);
+  c.setValidator(oAuthValidator());
+  return c;
+}

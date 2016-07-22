@@ -1,3 +1,0 @@
-{
-  this.mvc=MockMvcBuilders.webAppContextSetup(this.context).build();
-}

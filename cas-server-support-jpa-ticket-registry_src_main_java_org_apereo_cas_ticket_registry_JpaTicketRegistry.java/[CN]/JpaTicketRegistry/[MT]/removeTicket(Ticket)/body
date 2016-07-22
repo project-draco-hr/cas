@@ -1,0 +1,12 @@
+{
+  try {
+    final ZonedDateTime creationDate=ticket.getCreationTime();
+    logger.debug("Removing Ticket [{}] created: {}",ticket,creationDate.toString());
+    this.entityManager.remove(ticket);
+    return true;
+  }
+ catch (  final Exception e) {
+    logger.error("Error removing {} from registry.",ticket.getId(),e);
+  }
+  return false;
+}

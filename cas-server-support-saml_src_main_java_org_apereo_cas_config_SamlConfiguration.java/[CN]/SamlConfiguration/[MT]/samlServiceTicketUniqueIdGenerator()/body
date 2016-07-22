@@ -1,0 +1,5 @@
+{
+  final SamlCompliantUniqueTicketIdGenerator gen=new SamlCompliantUniqueTicketIdGenerator(casProperties.getServer().getName());
+  gen.setSaml2compliant(casProperties.getSamlCore().isTicketidSaml2());
+  return gen;
+}

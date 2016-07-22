@@ -1,0 +1,19 @@
+{
+  if (ticketState == null) {
+    LOGGER.debug("Ticket state is null for {}",this.getClass().getSimpleName());
+    return true;
+  }
+  final long countUses=ticketState.getCountOfUses();
+  if (countUses >= this.numberOfUses) {
+    LOGGER.debug("Ticket usage count {} is greater than or equal to {}",countUses,this.numberOfUses);
+    return true;
+  }
+  final ZonedDateTime systemTime=ZonedDateTime.now(ZoneOffset.UTC);
+  final ZonedDateTime lastTimeUsed=ticketState.getLastTimeUsed();
+  final ZonedDateTime expirationTime=lastTimeUsed.plus(this.timeToKillInMilliSeconds,ChronoUnit.MILLIS);
+  if (systemTime.isAfter(expirationTime)) {
+    LOGGER.debug("Ticket has expired because the difference between current time [{}] " + "and ticket time [{}] is greater than or equal to [{}]",systemTime,lastTimeUsed,this.timeToKillInMilliSeconds);
+    return true;
+  }
+  return false;
+}

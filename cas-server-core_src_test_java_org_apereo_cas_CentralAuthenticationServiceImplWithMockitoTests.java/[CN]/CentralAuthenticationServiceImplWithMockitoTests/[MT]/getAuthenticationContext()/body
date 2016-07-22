@@ -1,0 +1,5 @@
+{
+  final AuthenticationResult ctx=mock(AuthenticationResult.class);
+  when(ctx.getAuthentication()).thenReturn(this.authentication);
+  return ctx;
+}

@@ -1,0 +1,3 @@
+{
+  this.googleAuthenticatorInstance=googleAuthenticatorInstance;
+}

@@ -1,0 +1,12 @@
+{
+  final String id="ST-1234567890ABCDEFGHIJKL-crud";
+  final ServiceTicket ticket=mock(ServiceTicket.class,withSettings().serializable());
+  when(ticket.getExpirationPolicy()).thenReturn(new NeverExpiresExpirationPolicy());
+  when(ticket.getId()).thenReturn(id);
+  registry.addTicket(ticket);
+  final ServiceTicket ticketFromRegistry=(ServiceTicket)registry.getTicket(id);
+  Assert.assertNotNull(ticketFromRegistry);
+  Assert.assertEquals(id,ticketFromRegistry.getId());
+  registry.deleteTicket(id);
+  Assert.assertNull(registry.getTicket(id));
+}

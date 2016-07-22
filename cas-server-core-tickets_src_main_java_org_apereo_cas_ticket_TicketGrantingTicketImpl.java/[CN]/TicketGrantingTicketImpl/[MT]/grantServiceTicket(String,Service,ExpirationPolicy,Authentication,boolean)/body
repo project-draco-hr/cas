@@ -1,0 +1,5 @@
+{
+  final ServiceTicket serviceTicket=new ServiceTicketImpl(id,this,service,currentAuthentication,expirationPolicy);
+  trackServiceSession(serviceTicket.getId(),service,onlyTrackMostRecentSession);
+  return serviceTicket;
+}

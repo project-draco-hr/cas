@@ -1,6 +1,0 @@
-{
-  this.dao.save(getRegisteredService());
-  this.dao.save(getRegexRegisteredService());
-  final List<RegisteredService> services=this.dao.load();
-  assertEquals(2,services.size());
-}

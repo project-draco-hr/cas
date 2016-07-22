@@ -1,0 +1,18 @@
+{
+  final TicketGrantingTicket ticketGrantingTicket=getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(service,registeredService,ticketGrantingTicket);
+  final Authentication currentAuthentication=evaluatePossibilityOfMixedPrincipals(authenticationResult,ticketGrantingTicket);
+  RegisteredServiceAccessStrategyUtils.ensureServiceSsoAccessIsAllowed(registeredService,service,ticketGrantingTicket);
+  evaluateProxiedServiceIfNeeded(service,ticketGrantingTicket,registeredService);
+  getAuthenticationSatisfiedByPolicy(currentAuthentication,new ServiceContext(service,registeredService));
+  final List<Authentication> authentications=ticketGrantingTicket.getChainedAuthentications();
+  final Principal principal=authentications.get(authentications.size() - 1).getPrincipal();
+  final ServiceTicketFactory factory=this.ticketFactory.get(ServiceTicket.class);
+  final ServiceTicket serviceTicket=factory.create(ticketGrantingTicket,service,currentAuthentication);
+  this.ticketRegistry.updateTicket(ticketGrantingTicket);
+  this.ticketRegistry.addTicket(serviceTicket);
+  logger.info("Granted ticket [{}] for service [{}] and principal [{}]",serviceTicket.getId(),service.getId(),principal.getId());
+  doPublishEvent(new CasServiceTicketGrantedEvent(this,ticketGrantingTicket,serviceTicket));
+  return serviceTicket;
+}

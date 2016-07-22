@@ -1,0 +1,16 @@
+{
+  logger.debug("Handling warning {}",warning);
+  if (warning == null) {
+    logger.debug("Account state warning not defined");
+    return;
+  }
+  final ZonedDateTime expDate=DateTimeUtils.zonedDateTimeOf(warning.getExpiration());
+  final long ttl=ZonedDateTime.now(ZoneOffset.UTC).until(expDate,ChronoUnit.DAYS);
+  logger.debug("Password expires in {} days. Expiration warning threshold is {} days.",ttl,configuration.getPasswordWarningNumberOfDays());
+  if (configuration.isAlwaysDisplayPasswordExpirationWarning() || ttl < configuration.getPasswordWarningNumberOfDays()) {
+    messages.add(new PasswordExpiringWarningMessageDescriptor("Password expires in {0} days. Please change your password at <href=\"{1}\">{1}</a>",ttl,configuration.getPasswordPolicyUrl()));
+  }
+  if (warning.getLoginsRemaining() > 0) {
+    messages.add(new DefaultMessageDescriptor("password.expiration.loginsRemaining","You have {0} logins remaining before you MUST change your password.",warning.getLoginsRemaining()));
+  }
+}

@@ -1,3 +1,0 @@
-{
-  new ServiceTicketImpl("stest1",null,org.jasig.cas.services.TestUtils.getService(),true,new NeverExpiresExpirationPolicy());
-}

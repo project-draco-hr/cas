@@ -1,0 +1,23 @@
+{
+  PrincipalResolver resolver=personDirectoryPrincipalResolver;
+  if (casProperties.getAuthn().getX509().getPrincipalType() != null) {
+switch (casProperties.getAuthn().getX509().getPrincipalType()) {
+case SERIAL_NO:
+      resolver=x509SerialNumberPrincipalResolver();
+    break;
+case SERIAL_NO_DN:
+  resolver=x509SerialNumberAndIssuerDNPrincipalResolver();
+break;
+case SUBJECT:
+resolver=x509SubjectPrincipalResolver();
+break;
+case SUBJECT_ALT_NAME:
+resolver=x509SubjectAlternativeNameUPNPrincipalResolver();
+break;
+default :
+resolver=x509SubjectDNPrincipalResolver();
+break;
+}
+}
+this.authenticationHandlersResolvers.put(x509CredentialsAuthenticationHandler(),resolver);
+}

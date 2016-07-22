@@ -1,0 +1,5 @@
+String secretKeyEncryption
+String secretKeySigning
+String secretKeyAlg
+int signingKeySize
+int encryptionKeySize

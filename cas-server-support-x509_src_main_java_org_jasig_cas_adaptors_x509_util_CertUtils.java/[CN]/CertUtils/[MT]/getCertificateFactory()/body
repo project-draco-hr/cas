@@ -1,8 +1,0 @@
-{
-  try {
-    return CertificateFactory.getInstance(X509_CERTIFICATE_TYPE);
-  }
- catch (  final CertificateException e) {
-    throw new IllegalStateException("X509 certificate type not supported by default provider.");
-  }
-}

@@ -1,0 +1,6 @@
+{
+  final MockRestServiceServer server=MockRestServiceServer.bindTo(restAuthenticationTemplate).build();
+  server.expect(manyTimes(),requestTo("http://localhost:8081/authn")).andExpect(method(HttpMethod.POST)).andRespond(withSuccess("{ \"id\" : \"casuser\", \"attributes\" : {} }",MediaType.APPLICATION_JSON));
+  final HandlerResult res=authenticationHandler.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
+  assertEquals(res.getPrincipal().getId(),"casuser");
+}

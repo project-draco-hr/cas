@@ -1,0 +1,9 @@
+{
+  final MockServiceTicket st=new MockServiceTicket("serviceid",TestUtils.getService(),tgt);
+  final byte[] bytes=SerializationUtils.serializeAndEncodeObject(cipher,st);
+  final String string=EncodingUtils.encodeBase64(bytes);
+  assertNotNull(string);
+  final byte[] result=EncodingUtils.decodeBase64(string);
+  final Ticket obj=SerializationUtils.decodeAndSerializeObject(result,cipher,Ticket.class);
+  assertNotNull(obj);
+}

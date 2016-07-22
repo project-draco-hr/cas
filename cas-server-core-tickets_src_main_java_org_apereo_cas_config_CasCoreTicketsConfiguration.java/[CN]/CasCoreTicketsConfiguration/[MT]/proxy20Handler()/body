@@ -1,0 +1,6 @@
+{
+  final Cas20ProxyHandler h=new Cas20ProxyHandler();
+  h.setHttpClient(httpClient);
+  h.setUniqueTicketIdGenerator(proxy20TicketUniqueIdGenerator());
+  return h;
+}

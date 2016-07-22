@@ -1,0 +1,7 @@
+{
+  final DigestCredential c=(DigestCredential)credential;
+  if (StringUtils.isNotBlank(c.getId()) && StringUtils.isNotBlank(c.getHash())) {
+    return new DefaultHandlerResult(this,c,this.principalFactory.createPrincipal(c.getId()));
+  }
+  throw new FailedLoginException("Could not authenticate " + c.getId());
+}

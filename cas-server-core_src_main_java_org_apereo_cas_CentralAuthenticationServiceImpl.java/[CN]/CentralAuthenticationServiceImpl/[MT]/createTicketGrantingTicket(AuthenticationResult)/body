@@ -1,0 +1,13 @@
+{
+  final Authentication authentication=authenticationResult.getAuthentication();
+  final Service service=authenticationResult.getService();
+  if (service != null) {
+    final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+    RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
+  }
+  final TicketGrantingTicketFactory factory=this.ticketFactory.get(TicketGrantingTicket.class);
+  final TicketGrantingTicket ticketGrantingTicket=factory.create(authentication);
+  this.ticketRegistry.addTicket(ticketGrantingTicket);
+  doPublishEvent(new CasTicketGrantingTicketCreatedEvent(this,ticketGrantingTicket));
+  return ticketGrantingTicket;
+}

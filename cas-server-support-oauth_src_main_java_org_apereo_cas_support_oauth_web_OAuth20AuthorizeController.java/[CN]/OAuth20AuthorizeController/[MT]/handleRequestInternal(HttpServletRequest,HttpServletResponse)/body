@@ -1,0 +1,22 @@
+{
+  if (!verifyAuthorizeRequest(request)) {
+    logger.error("Authorize request verification fails");
+    return new ModelAndView(OAuthConstants.ERROR_VIEW);
+  }
+  final J2EContext context=new J2EContext(request,response);
+  final String clientId=context.getRequestParameter(OAuthConstants.CLIENT_ID);
+  final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
+  try {
+    RegisteredServiceAccessStrategyUtils.ensureServiceAccessIsAllowed(clientId,registeredService);
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+    return new ModelAndView(OAuthConstants.ERROR_VIEW);
+  }
+  final ModelAndView mv=this.consentApprovalViewResolver.resolve(context,registeredService);
+  if (!mv.isEmpty() && mv.hasView()) {
+    return mv;
+  }
+  final ProfileManager manager=new ProfileManager(context);
+  return redirectToCallbackRedirectUrl(manager,registeredService,context,clientId);
+}

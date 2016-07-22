@@ -1,0 +1,6 @@
+{
+  final FlowDefinitionRegistryBuilder builder=new FlowDefinitionRegistryBuilder(this.applicationContext,builder());
+  builder.setBasePath(BASE_CLASSPATH_WEBFLOW);
+  builder.addFlowLocationPattern("/logout/*-webflow.xml");
+  return builder.build();
+}

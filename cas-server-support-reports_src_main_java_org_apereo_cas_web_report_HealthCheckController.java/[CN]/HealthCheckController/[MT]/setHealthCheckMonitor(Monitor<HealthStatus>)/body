@@ -1,0 +1,3 @@
+{
+  this.healthCheckMonitor=healthCheckMonitor;
+}

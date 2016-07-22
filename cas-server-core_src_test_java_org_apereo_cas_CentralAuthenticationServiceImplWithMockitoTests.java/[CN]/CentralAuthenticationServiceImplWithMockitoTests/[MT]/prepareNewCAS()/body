@@ -1,0 +1,34 @@
+{
+  this.authentication=mock(Authentication.class);
+  when(this.authentication.getAuthenticationDate()).thenReturn(ZonedDateTime.now(ZoneOffset.UTC));
+  final CredentialMetaData metadata=new BasicCredentialMetaData(TestUtils.getCredentialsWithSameUsernameAndPassword("principal"));
+  final Map<String,HandlerResult> successes=new HashMap<>();
+  successes.put("handler1",new DefaultHandlerResult(mock(AuthenticationHandler.class),metadata));
+  when(this.authentication.getCredentials()).thenReturn(Lists.newArrayList(metadata));
+  when(this.authentication.getSuccesses()).thenReturn(successes);
+  when(this.authentication.getPrincipal()).thenReturn(new DefaultPrincipalFactory().createPrincipal(PRINCIPAL));
+  final Service service1=getService(SVC1_ID);
+  final ServiceTicket stMock=createMockServiceTicket(ST_ID,service1);
+  final TicketGrantingTicket tgtRootMock=createRootTicketGrantingTicket();
+  final TicketGrantingTicket tgtMock=createMockTicketGrantingTicket(TGT_ID,stMock,false,tgtRootMock,new ArrayList<>());
+  when(tgtMock.getProxiedBy()).thenReturn(getService("proxiedBy"));
+  final List<Authentication> authnListMock=mock(List.class);
+  when(authnListMock.size()).thenReturn(2);
+  when(authnListMock.get(anyInt())).thenReturn(this.authentication);
+  when(tgtMock.getChainedAuthentications()).thenReturn(authnListMock);
+  when(stMock.getGrantingTicket()).thenReturn(tgtMock);
+  final Service service2=getService(SVC2_ID);
+  final ServiceTicket stMock2=createMockServiceTicket(ST2_ID,service2);
+  final TicketGrantingTicket tgtMock2=createMockTicketGrantingTicket(TGT2_ID,stMock2,false,tgtRootMock,authnListMock);
+  mockTicketRegistry(stMock,tgtMock,stMock2,tgtMock2);
+  final ServicesManager smMock=getServicesManager(service1,service2);
+  final DefaultTicketFactory factory=new DefaultTicketFactory();
+  factory.setTicketGrantingTicketFactory(new DefaultTicketGrantingTicketFactory());
+  factory.setProxyGrantingTicketFactory(new DefaultProxyGrantingTicketFactory());
+  factory.setServiceTicketFactory(new DefaultServiceTicketFactory());
+  factory.setProxyTicketFactory(new DefaultProxyTicketFactory());
+  factory.initialize();
+  this.cas=new CentralAuthenticationServiceImpl(ticketRegMock,factory,smMock,mock(LogoutManager.class));
+  this.cas.setValidationServiceSelectionStrategies(Collections.singletonList(new DefaultValidationServiceSelectionStrategy()));
+  this.cas.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
+}

@@ -1,0 +1,4 @@
+{
+  this.encodingAlgorithm=encodingAlgorithm;
+  this.characterEncoding=characterEncoding;
+}

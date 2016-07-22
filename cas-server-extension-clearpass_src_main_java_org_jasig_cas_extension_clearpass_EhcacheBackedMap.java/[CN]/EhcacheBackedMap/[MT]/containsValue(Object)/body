@@ -1,4 +1,0 @@
-{
-  final Collection<String> col=values();
-  return col.contains(value);
-}

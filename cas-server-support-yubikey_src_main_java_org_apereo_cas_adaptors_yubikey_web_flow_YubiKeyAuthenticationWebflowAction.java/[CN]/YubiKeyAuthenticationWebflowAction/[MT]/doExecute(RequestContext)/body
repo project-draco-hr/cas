@@ -1,0 +1,3 @@
+{
+  return this.yubikeyAuthenticationWebflowEventResolver.resolveSingle(requestContext);
+}

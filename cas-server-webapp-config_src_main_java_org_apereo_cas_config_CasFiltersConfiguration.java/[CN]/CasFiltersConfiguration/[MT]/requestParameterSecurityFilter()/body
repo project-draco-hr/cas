@@ -1,0 +1,13 @@
+{
+  final Map<String,String> initParams=new HashMap<>();
+  initParams.put(RequestParameterPolicyEnforcementFilter.PARAMETERS_TO_CHECK,casProperties.getHttpWebRequest().getParamsToCheck());
+  initParams.put(RequestParameterPolicyEnforcementFilter.CHARACTERS_TO_FORBID,"none");
+  initParams.put(RequestParameterPolicyEnforcementFilter.ALLOW_MULTI_VALUED_PARAMETERS,BooleanUtils.toStringTrueFalse(casProperties.getHttpWebRequest().isAllowMultiValueParameters()));
+  initParams.put(RequestParameterPolicyEnforcementFilter.ONLY_POST_PARAMETERS,casProperties.getHttpWebRequest().getOnlyPostParams());
+  final FilterRegistrationBean bean=new FilterRegistrationBean();
+  bean.setFilter(new RequestParameterPolicyEnforcementFilter());
+  bean.setUrlPatterns(Collections.singleton("/*"));
+  bean.setName("requestParameterSecurityFilter");
+  bean.setInitParameters(initParams);
+  return bean;
+}

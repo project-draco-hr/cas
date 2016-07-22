@@ -1,0 +1,7 @@
+{
+  final OidcAccessTokenResponseGenerator gen=new OidcAccessTokenResponseGenerator();
+  gen.setIssuer(properties.getIssuer());
+  gen.setJwksFile(properties.getJwksFile());
+  gen.setSkew(properties.getSkew());
+  return gen;
+}

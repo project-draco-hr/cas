@@ -1,0 +1,7 @@
+{
+  final LdapServiceRegistryDao r=new LdapServiceRegistryDao();
+  r.setConnectionFactory(connectionFactory);
+  r.setLdapServiceMapper(ldapServiceRegistryMapper());
+  r.setBaseDn(casProperties.getServiceRegistry().getLdap().getBaseDn());
+  return r;
+}

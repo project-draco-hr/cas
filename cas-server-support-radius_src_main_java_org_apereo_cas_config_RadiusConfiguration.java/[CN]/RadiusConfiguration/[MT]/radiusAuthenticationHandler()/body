@@ -1,0 +1,14 @@
+{
+  final RadiusAuthenticationHandler h=new RadiusAuthenticationHandler();
+  h.setFailoverOnAuthenticationFailure(casProperties.getAuthn().getRadius().isFailoverOnAuthenticationFailure());
+  h.setFailoverOnException(casProperties.getAuthn().getRadius().isFailoverOnException());
+  h.setServers(radiusServers());
+  h.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getRadius().getPasswordEncoder()));
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getRadius().getPrincipalTransformation()));
+  if (passwordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(passwordPolicyConfiguration);
+  }
+  h.setPrincipalFactory(radiusPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

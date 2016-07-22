@@ -1,0 +1,6 @@
+{
+  if (casProperties.getTgc().isCipherEnabled()) {
+    return new DefaultCasCookieValueManager(tgcCipherExecutor());
+  }
+  return new NoOpCookieValueManager();
+}

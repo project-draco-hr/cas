@@ -1,0 +1,17 @@
+{
+  final TicketGrantingTicket tgt=newTestTgt();
+  this.hzTicketRegistry1.addTicket(tgt);
+  assertNotNull(this.hzTicketRegistry1.getTicket(tgt.getId()));
+  assertNotNull(this.hzTicketRegistry2.getTicket(tgt.getId()));
+  assertTrue(this.hzTicketRegistry2.deleteTicket(tgt.getId()));
+  assertFalse(this.hzTicketRegistry1.deleteTicket(tgt.getId()));
+  assertNull(this.hzTicketRegistry1.getTicket(tgt.getId()));
+  assertNull(this.hzTicketRegistry2.getTicket(tgt.getId()));
+  final ServiceTicket st=newTestSt(tgt);
+  this.hzTicketRegistry2.addTicket(st);
+  assertNotNull(this.hzTicketRegistry1.getTicket("ST-TEST"));
+  assertNotNull(this.hzTicketRegistry2.getTicket("ST-TEST"));
+  this.hzTicketRegistry1.deleteTicket("ST-TEST");
+  assertNull(this.hzTicketRegistry1.getTicket("ST-TEST"));
+  assertNull(this.hzTicketRegistry2.getTicket("ST-TEST"));
+}

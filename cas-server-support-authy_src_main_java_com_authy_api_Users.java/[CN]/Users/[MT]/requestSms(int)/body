@@ -1,3 +1,0 @@
-{
-  return requestSms(userId,Collections.EMPTY_MAP);
-}

@@ -1,0 +1,8 @@
+{
+  final Service svc=getService("eduPersonTest");
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),svc);
+  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),svc,ctx);
+  final Assertion assertion=getCentralAuthenticationService().validateServiceTicket(serviceTicket.getId(),svc);
+  assertEquals("developer",assertion.getPrimaryAuthentication().getPrincipal().getId());
+}

@@ -1,0 +1,33 @@
+{
+  super.init();
+  if (!validateConfiguration()) {
+    return;
+  }
+  try {
+    final Set<X509CRL> results=this.fetcher.fetch(getResources());
+    ResourceCRLRevocationChecker.this.addCrls(results);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+  final Runnable scheduledFetcher=new Runnable(){
+    private transient Logger logger=LoggerFactory.getLogger(this.getClass());
+    @Override public void run(){
+      try {
+        final Set<Resource> resources=getResources();
+        final Set<X509CRL> results=getFetcher().fetch(resources);
+        ResourceCRLRevocationChecker.this.addCrls(results);
+      }
+ catch (      final Exception e) {
+        logger.debug(e.getMessage(),e);
+      }
+    }
+  }
+;
+  try {
+    this.scheduler.scheduleAtFixedRate(scheduledFetcher,this.refreshInterval,this.refreshInterval,TimeUnit.SECONDS);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

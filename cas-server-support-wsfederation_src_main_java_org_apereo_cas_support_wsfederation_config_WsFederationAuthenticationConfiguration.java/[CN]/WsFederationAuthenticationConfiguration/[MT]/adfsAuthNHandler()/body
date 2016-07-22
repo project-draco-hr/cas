@@ -1,0 +1,6 @@
+{
+  final WsFederationAuthenticationHandler h=new WsFederationAuthenticationHandler();
+  h.setPrincipalFactory(adfsPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

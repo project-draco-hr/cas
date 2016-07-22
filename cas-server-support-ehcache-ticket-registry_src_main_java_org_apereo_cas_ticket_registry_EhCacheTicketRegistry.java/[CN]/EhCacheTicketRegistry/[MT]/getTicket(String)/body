@@ -1,0 +1,22 @@
+{
+  final String ticketId=encodeTicketId(ticketIdToGet);
+  if (ticketId == null) {
+    return null;
+  }
+  final Element element=this.ehcacheTicketsCache.get(ticketId);
+  if (element == null) {
+    logger.debug("No ticket by id [{}] is found in the registry",ticketId);
+    return null;
+  }
+  final Ticket ticket=decodeTicket((Ticket)element.getObjectValue());
+  final CacheConfiguration config=new CacheConfiguration();
+  config.setTimeToIdleSeconds(ticket.getExpirationPolicy().getTimeToIdle());
+  config.setTimeToLiveSeconds(ticket.getExpirationPolicy().getTimeToIdle());
+  if (element.isExpired(config) || ticket.isExpired()) {
+    logger.debug("Ticket {} has expired",ticket.getId());
+    this.ehcacheTicketsCache.evictExpiredElements();
+    this.ehcacheTicketsCache.flush();
+    return null;
+  }
+  return ticket;
+}

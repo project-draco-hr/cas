@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this).append("city",this.city).append("country",this.country).toString();
+}

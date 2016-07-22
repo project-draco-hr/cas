@@ -1,0 +1,9 @@
+{
+  try {
+    return EncodingUtils.urlEncode(message);
+  }
+ catch (  final RuntimeException e) {
+    LOGGER.warn(e.getMessage(),e);
+  }
+  return message;
+}

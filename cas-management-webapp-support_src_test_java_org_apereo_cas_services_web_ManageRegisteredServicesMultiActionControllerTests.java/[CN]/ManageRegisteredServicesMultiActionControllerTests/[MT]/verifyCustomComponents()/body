@@ -1,0 +1,20 @@
+{
+  this.registeredServiceFactory.setRegisteredServiceMapper(new CustomRegisteredServiceMapper());
+  final RegexRegisteredService r=new RegexRegisteredService();
+  r.setId(1200);
+  r.setName("name");
+  r.setDescription("uniqueDescription");
+  r.setServiceId("test");
+  r.setEvaluationOrder(2);
+  this.servicesManager.save(r);
+  final MockHttpServletResponse response=new MockHttpServletResponse();
+  final ModelAndView mv=this.controller.manage(response);
+  assertTrue(mv.getModel().containsKey("defaultServiceUrl"));
+  assertTrue(mv.getModel().containsKey("status"));
+  this.controller.getServices(response);
+  final String content=response.getContentAsString();
+  assertTrue(content.contains("services"));
+  assertTrue(content.contains("uniqueDescription"));
+  assertTrue(content.contains("customComponent1"));
+  assertTrue(content.contains("key2"));
+}

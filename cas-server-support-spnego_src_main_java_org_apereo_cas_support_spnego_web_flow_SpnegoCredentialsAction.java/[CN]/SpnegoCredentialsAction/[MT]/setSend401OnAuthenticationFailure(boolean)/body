@@ -1,0 +1,3 @@
+{
+  this.send401OnAuthenticationFailure=send401OnAuthenticationFailure;
+}

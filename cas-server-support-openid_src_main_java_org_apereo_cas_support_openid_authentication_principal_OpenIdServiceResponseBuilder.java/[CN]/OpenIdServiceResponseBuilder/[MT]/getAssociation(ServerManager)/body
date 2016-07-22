@@ -1,0 +1,16 @@
+{
+  try {
+    final AuthRequest authReq=AuthRequest.createAuthRequest(this.parameterList,serverManager.getRealmVerifier());
+    final Map parameterMap=authReq.getParameterMap();
+    if (parameterMap != null && !parameterMap.isEmpty()) {
+      final String assocHandle=(String)parameterMap.get(OpenIdProtocolConstants.OPENID_ASSOCHANDLE);
+      if (assocHandle != null) {
+        return serverManager.getSharedAssociations().load(assocHandle);
+      }
+    }
+  }
+ catch (  final MessageException e) {
+    logger.error("Message exception : {}",e.getMessage(),e);
+  }
+  return null;
+}

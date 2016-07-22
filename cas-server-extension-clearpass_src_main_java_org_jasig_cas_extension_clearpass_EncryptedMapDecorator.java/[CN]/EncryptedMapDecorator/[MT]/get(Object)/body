@@ -1,4 +1,0 @@
-{
-  final String hashedKey=constructHashedKey(key == null ? null : key.toString());
-  return decrypt(this.decoratedMap.get(hashedKey),hashedKey);
-}

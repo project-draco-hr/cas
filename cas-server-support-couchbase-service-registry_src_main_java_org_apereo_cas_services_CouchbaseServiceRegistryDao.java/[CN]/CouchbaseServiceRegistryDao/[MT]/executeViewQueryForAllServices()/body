@@ -1,0 +1,3 @@
+{
+  return this.couchbase.bucket().query(ViewQuery.from(UTIL_DOCUMENT,ALL_SERVICES_VIEW.name()));
+}

@@ -1,0 +1,3 @@
+{
+  this.samlProfileSamlAssertionBuilder=samlProfileSamlAssertionBuilder;
+}

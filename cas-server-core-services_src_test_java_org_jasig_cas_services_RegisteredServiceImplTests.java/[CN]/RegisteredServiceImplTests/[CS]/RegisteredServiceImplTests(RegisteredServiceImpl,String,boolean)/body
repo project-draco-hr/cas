@@ -1,5 +1,0 @@
-{
-  this.service=service;
-  this.serviceToMatch=serviceToMatch;
-  this.expected=expectedResult;
-}

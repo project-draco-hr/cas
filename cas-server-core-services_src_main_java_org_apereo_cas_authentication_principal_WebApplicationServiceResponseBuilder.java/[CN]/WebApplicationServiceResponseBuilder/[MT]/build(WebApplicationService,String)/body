@@ -1,0 +1,13 @@
+{
+  final Map<String,String> parameters=new HashMap<>();
+  if (StringUtils.hasText(ticketId)) {
+    parameters.put(CasProtocolConstants.PARAMETER_TICKET,ticketId);
+  }
+  if (this.responseType.equals(Response.ResponseType.POST)) {
+    return buildPost(service,parameters);
+  }
+  if (this.responseType.equals(Response.ResponseType.REDIRECT)) {
+    return buildRedirect(service,parameters);
+  }
+  throw new IllegalArgumentException("Response type is valid. Only POST/REDIRECT are supported");
+}

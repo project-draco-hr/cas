@@ -1,7 +1,0 @@
-{
-  final Authentication authentication=org.jasig.cas.authentication.TestUtils.getAuthentication();
-  final TicketGrantingTicketImpl t=new TicketGrantingTicketImpl("111",authentication,this.p);
-  assertFalse(t.isExpired());
-  t.grantServiceTicket("55",org.jasig.cas.services.TestUtils.getService(),this.p,false,true);
-  assertFalse(t.isExpired());
-}

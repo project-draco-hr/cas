@@ -1,0 +1,5 @@
+{
+  serviceFactoryList.add(0,samlServiceFactory());
+  uniqueIdGeneratorsMap.put(SamlService.class.getCanonicalName(),samlServiceTicketUniqueIdGenerator());
+  authenticationMetadataPopulators.add(0,samlAuthenticationMetaDataPopulator());
+}

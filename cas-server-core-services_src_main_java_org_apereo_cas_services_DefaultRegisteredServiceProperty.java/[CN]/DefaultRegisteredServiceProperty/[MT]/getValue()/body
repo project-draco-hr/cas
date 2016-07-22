@@ -1,0 +1,6 @@
+{
+  if (this.values.isEmpty()) {
+    return null;
+  }
+  return this.values.iterator().next();
+}

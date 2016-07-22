@@ -1,0 +1,5 @@
+{
+  final OidcCasClientRedirectActionBuilder builder=new OidcCasClientRedirectActionBuilder();
+  builder.setOidcAuthorizationRequestSupport(oidcAuthorizationRequestSupport());
+  return builder;
+}

@@ -1,0 +1,7 @@
+{
+  final QueryAndEncodeDatabaseAuthenticationHandler q=new QueryAndEncodeDatabaseAuthenticationHandler();
+  q.setDataSource(dataSource);
+  q.setAlgorithmName(ALG_NAME);
+  q.setSql(buildSql());
+  q.authenticate(TestUtils.getCredentialsWithSameUsernameAndPassword());
+}

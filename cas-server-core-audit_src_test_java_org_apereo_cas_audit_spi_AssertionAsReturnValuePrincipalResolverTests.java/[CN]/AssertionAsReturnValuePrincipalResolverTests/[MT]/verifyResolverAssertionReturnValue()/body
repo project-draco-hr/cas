@@ -1,0 +1,12 @@
+{
+  final Credential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
+  final AuthenticationResult authnResult=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),c);
+  final Authentication authn=authnResult.getAuthentication();
+  final TicketOrCredentialPrincipalResolver delegate=new TicketOrCredentialPrincipalResolver(getCentralAuthenticationService());
+  final AssertionAsReturnValuePrincipalResolver res=new AssertionAsReturnValuePrincipalResolver(delegate);
+  final JoinPoint jp=mock(JoinPoint.class);
+  final Assertion returnedAssertion=new ImmutableAssertion(authnResult.getAuthentication(),Lists.newArrayList(authn),authnResult.getService(),true);
+  final String result=res.resolveFrom(jp,returnedAssertion);
+  assertNotNull(result);
+  assertEquals(result,c.getId());
+}

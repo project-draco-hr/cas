@@ -1,0 +1,3 @@
+{
+  return new OAuthCodeExpirationPolicy(casProperties.getAuthn().getOauth().getCode().getNumberOfUses(),TimeUnit.SECONDS.toMillis(casProperties.getAuthn().getOauth().getCode().getTimeToKillInSeconds()));
+}

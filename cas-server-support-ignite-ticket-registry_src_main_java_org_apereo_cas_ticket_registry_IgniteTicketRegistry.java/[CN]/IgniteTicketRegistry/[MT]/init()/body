@@ -1,0 +1,16 @@
+{
+  logger.info("Setting up Ignite Ticket Registry...");
+  configureSecureTransport();
+  if (logger.isDebugEnabled()) {
+    logger.debug("igniteConfiguration.cacheConfiguration={}",this.igniteConfiguration.getCacheConfiguration());
+    logger.debug("igniteConfiguration.getDiscoverySpi={}",this.igniteConfiguration.getDiscoverySpi());
+    logger.debug("igniteConfiguration.getSslContextFactory={}",this.igniteConfiguration.getSslContextFactory());
+  }
+  if (Ignition.state() == IgniteState.STOPPED) {
+    this.ignite=Ignition.start(this.igniteConfiguration);
+  }
+ else   if (Ignition.state() == IgniteState.STARTED) {
+    this.ignite=Ignition.ignite();
+  }
+  this.ticketIgniteCache=this.ignite.getOrCreateCache(casProperties.getTicket().getRegistry().getIgnite().getTicketsCache().getCacheName());
+}

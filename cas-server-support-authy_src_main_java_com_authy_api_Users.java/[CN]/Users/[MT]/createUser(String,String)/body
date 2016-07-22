@@ -1,3 +1,0 @@
-{
-  return createUser(email,phone,DEFAULT_COUNTRY_CODE);
-}

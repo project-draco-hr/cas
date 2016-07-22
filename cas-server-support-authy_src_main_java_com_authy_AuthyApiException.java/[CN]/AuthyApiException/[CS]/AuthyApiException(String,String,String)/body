@@ -1,6 +1,0 @@
-{
-  super(String.format("HTTP ERROR %s: %s \n %s",status,message,uri));
-  this.uri=uri;
-  this.status=status;
-  this.message=message;
-}

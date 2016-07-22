@@ -1,0 +1,6 @@
+{
+  if (this.rememberMeExpirationPolicy != null) {
+    return this.rememberMeExpirationPolicy.getTimeToIdle();
+  }
+  return 0L;
+}

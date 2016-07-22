@@ -1,6 +1,0 @@
-{
-  Map<String,String> map=new HashMap<String,String>();
-  map.put("status",Integer.toString(status));
-  map.put("content",content);
-  return map;
-}

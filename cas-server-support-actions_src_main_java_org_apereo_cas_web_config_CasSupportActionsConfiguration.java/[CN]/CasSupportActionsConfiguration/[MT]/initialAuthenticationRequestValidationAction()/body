@@ -1,0 +1,5 @@
+{
+  final InitialAuthenticationRequestValidationAction a=new InitialAuthenticationRequestValidationAction();
+  a.setRankedAuthenticationProviderWebflowEventResolver(rankedAuthenticationProviderWebflowEventResolver);
+  return a;
+}

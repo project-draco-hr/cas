@@ -1,0 +1,4 @@
+{
+  final ManageRegisteredServicesMultiActionController c=new ManageRegisteredServicesMultiActionController(servicesManager,registeredServiceFactory(),getDefaultServiceUrl());
+  return c;
+}

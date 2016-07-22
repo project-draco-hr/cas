@@ -1,0 +1,3 @@
+{
+  this.cache=CacheBuilder.newBuilder().maximumSize(1).expireAfterWrite(this.metadataCacheExpirationMinutes,TimeUnit.MINUTES).build(this.chainingMetadataResolverCacheLoader);
+}

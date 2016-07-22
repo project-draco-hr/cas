@@ -1,0 +1,4 @@
+{
+  final String tgt=WebUtils.getTicketGrantingTicketId(requestContext);
+  return success(getAuthenticationPrincipal(tgt));
+}

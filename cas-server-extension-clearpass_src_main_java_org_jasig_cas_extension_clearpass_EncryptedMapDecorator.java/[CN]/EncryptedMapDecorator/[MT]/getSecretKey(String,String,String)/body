@@ -1,6 +1,0 @@
-{
-  final SecretKeyFactory factory=SecretKeyFactory.getInstance(SECRET_KEY_FACTORY_ALGORITHM);
-  final KeySpec spec=new PBEKeySpec(secretKey.toCharArray(),char2byte(salt),65536,128);
-  final SecretKey tmp=factory.generateSecret(spec);
-  return new SecretKeySpec(tmp.getEncoded(),secretKeyAlgorithm);
-}

@@ -1,0 +1,8 @@
+{
+  final Map<String,Object> map=new HashMap<>(principal.getAttributes());
+  if (!map.containsKey(OidcConstants.CLAIM_SUB)) {
+    map.put(OidcConstants.CLAIM_SUB,principal.getId());
+  }
+  map.put(OidcConstants.CLAIM_AUTH_TIME,authentication.getAuthenticationDate().toEpochSecond());
+  return map;
+}

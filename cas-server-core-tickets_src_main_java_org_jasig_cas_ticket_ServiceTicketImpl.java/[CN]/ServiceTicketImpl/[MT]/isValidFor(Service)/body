@@ -1,4 +1,0 @@
-{
-  updateState();
-  return serviceToValidate.matches(this.service);
-}

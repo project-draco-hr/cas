@@ -1,3 +1,0 @@
-{
-  kryo.writeObject(output,service.getServiceId());
-}

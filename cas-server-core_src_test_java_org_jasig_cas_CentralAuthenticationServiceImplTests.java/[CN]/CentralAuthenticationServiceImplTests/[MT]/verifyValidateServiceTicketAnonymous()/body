@@ -1,9 +1,0 @@
-{
-  final Service service=getService("testAnonymous");
-  final UsernamePasswordCredential cred=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(cred);
-  final ServiceTicket serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),service);
-  final Assertion assertion=getCentralAuthenticationService().validateServiceTicket(serviceTicket.getId(),service);
-  final Authentication auth=assertion.getPrimaryAuthentication();
-  assertNotEquals(cred.getUsername(),auth.getPrincipal().getId());
-}

@@ -1,0 +1,16 @@
+{
+  super.copyFrom(source);
+  try {
+    final SamlRegisteredService samlRegisteredService=(SamlRegisteredService)source;
+    setMetadataLocation(samlRegisteredService.getMetadataLocation());
+    setSignAssertions(samlRegisteredService.isSignAssertions());
+    setSignResponses(samlRegisteredService.isSignResponses());
+    setRequiredAuthenticationContextClass(samlRegisteredService.getRequiredAuthenticationContextClass());
+    setMetadataMaxValidity(samlRegisteredService.getMetadataMaxValidity());
+    setMetadataSignatureLocation(samlRegisteredService.getMetadataSignatureLocation());
+    setEncryptAssertions(samlRegisteredService.isEncryptAssertions());
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

@@ -1,7 +1,0 @@
-{
-  final OAuthRegisteredService registeredServiceImpl=new OAuthRegisteredService();
-  registeredServiceImpl.setName(name);
-  registeredServiceImpl.setServiceId(serviceId);
-  registeredServiceImpl.setClientId(CLIENT_ID);
-  return registeredServiceImpl;
-}

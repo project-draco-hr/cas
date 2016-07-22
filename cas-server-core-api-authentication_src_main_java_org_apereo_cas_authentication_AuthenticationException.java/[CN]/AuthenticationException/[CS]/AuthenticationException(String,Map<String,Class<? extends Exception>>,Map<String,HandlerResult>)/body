@@ -1,0 +1,5 @@
+{
+  super(message);
+  this.handlerErrors=new HashMap<>(handlerErrors);
+  this.handlerSuccesses=new HashMap<>(handlerSuccesses);
+}

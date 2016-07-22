@@ -1,0 +1,15 @@
+{
+  final StaticApplicationContext context=new StaticApplicationContext();
+  context.refresh();
+  this.serviceValidateController=new ServiceValidateController();
+  this.serviceValidateController.setCentralAuthenticationService(getCentralAuthenticationService());
+  this.serviceValidateController.setAuthenticationSystemSupport(getAuthenticationSystemSupport());
+  final Cas20ProxyHandler proxyHandler=new Cas20ProxyHandler();
+  proxyHandler.setHttpClient(new SimpleHttpClientFactoryBean().getObject());
+  this.serviceValidateController.setProxyHandler(proxyHandler);
+  this.serviceValidateController.setApplicationContext(context);
+  this.serviceValidateController.setArgumentExtractor(getArgumentExtractor());
+  this.serviceValidateController.setServicesManager(getServicesManager());
+  this.serviceValidateController.setValidationSpecification(new Cas20WithoutProxyingValidationSpecification());
+  this.serviceValidateController.setMultifactorTriggerSelectionStrategy(new DefaultMultifactorTriggerSelectionStrategy());
+}

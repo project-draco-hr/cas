@@ -1,0 +1,14 @@
+{
+  try (final StringWriter writer=new StringWriter()){
+    this.objectMapper.writer(this.prettyPrinter).writeValue(writer,object);
+    if (isJsonFormat()) {
+      JsonValue.readHjson(writer.toString()).writeTo(out,Stringify.FORMATTED);
+    }
+ else {
+      IOUtils.write(writer.toString(),out);
+    }
+  }
+ catch (  final Exception e) {
+    throw new IllegalArgumentException(e);
+  }
+}

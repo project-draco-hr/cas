@@ -1,0 +1,12 @@
+{
+  final CentralAuthenticationService cas=mock(CentralAuthenticationService.class);
+  final Authentication authn=mock(Authentication.class);
+  when(authn.getPrincipal()).thenReturn(TestUtils.getPrincipal("cas"));
+  final TicketGrantingTicket tgt=mock(TicketGrantingTicket.class);
+  when(tgt.getAuthentication()).thenReturn(authn);
+  when(cas.getTicket(any(String.class),any(Ticket.class.getClass()))).thenReturn(tgt);
+  final GenericSuccessViewAction action=new GenericSuccessViewAction(cas);
+  final Principal p=action.getAuthenticationPrincipal("TGT-1");
+  assertNotNull(p);
+  assertEquals(p.getId(),"cas");
+}

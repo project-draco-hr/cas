@@ -1,0 +1,19 @@
+{
+  try {
+    final String ldapURL=r.toString();
+    logger.debug("Fetching CRL from ldap {}",ldapURL);
+    final Response<SearchResult> result=performLdapSearch(ldapURL);
+    if (result.getResultCode() == ResultCode.SUCCESS) {
+      final LdapEntry entry=result.getResult().getEntry();
+      final LdapAttribute attribute=entry.getAttribute();
+      logger.debug("Located entry [{}]. Retrieving first attribute [{}]",entry,attribute);
+      return fetchX509CRLFromAttribute(attribute);
+    }
+    logger.debug("Failed to execute the search [{}]",result);
+    throw new CertificateException("Failed to establish a connection ldap and search.");
+  }
+ catch (  final LdapException e) {
+    logger.error(e.getMessage(),e);
+    throw new CertificateException(e.getMessage());
+  }
+}

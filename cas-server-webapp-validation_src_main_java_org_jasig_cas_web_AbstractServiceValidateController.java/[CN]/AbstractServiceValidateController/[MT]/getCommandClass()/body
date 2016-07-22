@@ -1,8 +1,0 @@
-{
-  try {
-    return (ValidationSpecification)this.validationSpecificationClass.newInstance();
-  }
- catch (  final Exception e) {
-    throw new RuntimeException(e);
-  }
-}

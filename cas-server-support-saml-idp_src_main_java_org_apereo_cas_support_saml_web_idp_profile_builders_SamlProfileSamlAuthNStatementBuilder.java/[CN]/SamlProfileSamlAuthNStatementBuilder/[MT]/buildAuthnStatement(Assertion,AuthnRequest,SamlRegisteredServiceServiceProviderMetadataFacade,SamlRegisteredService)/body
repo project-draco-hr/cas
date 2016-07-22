@@ -1,0 +1,10 @@
+{
+  final String authenticationMethod=this.authnContextClassRefBuilder.build(assertion,authnRequest,adaptor,service);
+  final AuthnStatement statement=newAuthnStatement(authenticationMethod,DateTimeUtils.zonedDateTimeOf(assertion.getAuthenticationDate()));
+  if (assertion.getValidUntilDate() != null) {
+    final ZonedDateTime dt=DateTimeUtils.zonedDateTimeOf(assertion.getValidUntilDate());
+    statement.setSessionNotOnOrAfter(DateTimeUtils.dateTimeOf(dt.plusSeconds(casProperties.getAuthn().getSamlIdp().getResponse().getSkewAllowance())));
+  }
+  statement.setSubjectLocality(buildSubjectLocality(assertion,authnRequest,adaptor));
+  return statement;
+}

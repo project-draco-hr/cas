@@ -1,0 +1,4 @@
+{
+  this.connectionFactory=factory;
+  this.userSearchExecutor=userSearchExecutor;
+}

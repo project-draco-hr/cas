@@ -1,0 +1,5 @@
+{
+  super(policy.getCode().orElse(CODE));
+  Assert.notNull(policy,"ContextualAuthenticationPolicy cannot be null");
+  this.policy=policy;
+}

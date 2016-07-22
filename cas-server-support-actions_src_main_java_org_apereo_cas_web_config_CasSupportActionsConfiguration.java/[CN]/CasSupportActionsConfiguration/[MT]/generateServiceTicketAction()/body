@@ -1,0 +1,7 @@
+{
+  final GenerateServiceTicketAction a=new GenerateServiceTicketAction();
+  a.setCentralAuthenticationService(this.centralAuthenticationService);
+  a.setAuthenticationSystemSupport(authenticationSystemSupport);
+  a.setTicketRegistrySupport(ticketRegistrySupport);
+  return a;
+}

@@ -1,0 +1,15 @@
+{
+  if (aval != null) {
+    final byte[] val=aval.getBinaryValue();
+    if (val == null || val.length == 0) {
+      throw new CertificateException("Empty attribute. Can not download CRL from ldap");
+    }
+    final byte[] decoded64=EncodingUtils.decodeBase64(val);
+    if (decoded64 == null) {
+      throw new CertificateException("Could not decode the attribute value to base64");
+    }
+    logger.debug("Retrieved CRL from ldap as byte array decoded in base64. Fetching...");
+    return super.fetch(new ByteArrayResource(decoded64));
+  }
+  throw new CertificateException("Attribute not found. Can not retrieve CRL");
+}

@@ -1,0 +1,6 @@
+{
+  final OAuth20ValidationServiceSelectionStrategy s=new OAuth20ValidationServiceSelectionStrategy();
+  s.setServicesManager(servicesManager);
+  s.setWebApplicationServiceFactory(webApplicationServiceFactory);
+  return s;
+}

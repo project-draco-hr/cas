@@ -1,0 +1,9 @@
+{
+  final SpnegoPrincipalResolver r=new SpnegoPrincipalResolver();
+  r.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getSpnego().getPrincipalTransformation()));
+  r.setAttributeRepository(attributeRepository);
+  r.setPrincipalAttributeName(casProperties.getAuthn().getSpnego().getPrincipal().getPrincipalAttribute());
+  r.setReturnNullIfNoAttributes(casProperties.getAuthn().getSpnego().getPrincipal().isReturnNull());
+  r.setPrincipalFactory(spnegoPrincipalFactory());
+  return r;
+}

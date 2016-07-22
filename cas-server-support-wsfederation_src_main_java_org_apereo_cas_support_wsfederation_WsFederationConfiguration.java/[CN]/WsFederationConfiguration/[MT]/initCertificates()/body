@@ -1,0 +1,3 @@
+{
+  createSigningWallet(this.signingCertificateResources);
+}

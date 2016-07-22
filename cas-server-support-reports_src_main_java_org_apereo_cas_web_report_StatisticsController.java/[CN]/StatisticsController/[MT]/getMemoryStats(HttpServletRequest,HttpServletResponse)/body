@@ -1,0 +1,7 @@
+{
+  final Map<String,Object> model=new HashMap<>();
+  model.put("totalMemory",convertToMegaBytes(Runtime.getRuntime().totalMemory()));
+  model.put("maxMemory",convertToMegaBytes(Runtime.getRuntime().maxMemory()));
+  model.put("freeMemory",convertToMegaBytes(Runtime.getRuntime().freeMemory()));
+  return model;
+}

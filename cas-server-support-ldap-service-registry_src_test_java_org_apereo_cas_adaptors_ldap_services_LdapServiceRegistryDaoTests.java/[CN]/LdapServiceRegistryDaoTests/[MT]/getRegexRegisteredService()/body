@@ -1,0 +1,21 @@
+{
+  final AbstractRegisteredService rs=new RegexRegisteredService();
+  rs.setName("Service Name Regex");
+  rs.setProxyPolicy(new RefuseRegisteredServiceProxyPolicy());
+  rs.setUsernameAttributeProvider(new AnonymousRegisteredServiceUsernameAttributeProvider(new ShibbolethCompatiblePersistentIdGenerator("hello")));
+  rs.setDescription("Service description");
+  rs.setServiceId("^http?://.+");
+  rs.setTheme("the theme name");
+  rs.setEvaluationOrder(123);
+  rs.setDescription("Here is another description");
+  rs.setRequiredHandlers(new HashSet<>(Lists.newArrayList("handler1","handler2")));
+  final Map<String,RegisteredServiceProperty> propertyMap=new HashMap();
+  final DefaultRegisteredServiceProperty property=new DefaultRegisteredServiceProperty();
+  final Set<String> values=new HashSet<>();
+  values.add("value1");
+  values.add("value2");
+  property.setValues(values);
+  propertyMap.put("field1",property);
+  rs.setProperties(propertyMap);
+  return rs;
+}

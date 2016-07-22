@@ -1,0 +1,3 @@
+{
+  return new HashCodeBuilder().appendSuper(super.hashCode()).append(this.clientSecret).append(this.clientId).append(this.bypassApprovalPrompt).append(this.generateRefreshToken).append(this.jsonFormat).toHashCode();
+}

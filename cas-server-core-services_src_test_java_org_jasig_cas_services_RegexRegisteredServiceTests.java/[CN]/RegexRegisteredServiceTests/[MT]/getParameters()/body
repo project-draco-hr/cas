@@ -1,6 +1,0 @@
-{
-  final String domainCatchallHttp="https*://([A-Za-z0-9_-]+\\.)+vt\\.edu/.*";
-  final String domainCatchallHttpImap="(https*|imaps*)://([A-Za-z0-9_-]+\\.)+vt\\.edu/.*";
-  final String globalCatchallHttpImap="(https*|imaps*)://.*";
-  return Arrays.asList(new Object[][]{{newService(domainCatchallHttp),"https://service.vt.edu/webapp?a=1",true},{newService(domainCatchallHttp),"http://test-01.service.vt.edu/webapp?a=1",true},{newService(domainCatchallHttp),"https://thepiratebay.se?service.vt.edu/webapp?a=1",false},{newService(domainCatchallHttpImap),"http://test_service.vt.edu/login",true},{newService(domainCatchallHttpImap),"imaps://imap-server-01.vt.edu/",true},{newService(globalCatchallHttpImap),"https://host-01.example.com/",true},{newService(globalCatchallHttpImap),"imap://host-02.example.edu/",true},{newService(globalCatchallHttpImap),null,false}});
-}

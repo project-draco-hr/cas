@@ -1,0 +1,16 @@
+{
+  final String appId="reentrant";
+  final String uniqueId=appId + "-1";
+  final LockingStrategy lock=newLockTxProxy(appId,uniqueId,JpaTicketRegistryProperties.DEFAULT_LOCK_TIMEOUT);
+  try {
+    assertTrue(lock.acquire());
+    assertEquals(uniqueId,getOwner(appId));
+    assertFalse(lock.acquire());
+    lock.release();
+    assertNull(getOwner(appId));
+  }
+ catch (  final Exception e) {
+    logger.debug("testNonReentrantBehavior produced an error",e);
+    fail("testNonReentrantBehavior failed.");
+  }
+}

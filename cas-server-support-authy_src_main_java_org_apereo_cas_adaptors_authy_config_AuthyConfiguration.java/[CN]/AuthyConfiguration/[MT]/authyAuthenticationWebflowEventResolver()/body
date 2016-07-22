@@ -1,0 +1,10 @@
+{
+  final AuthyAuthenticationWebflowEventResolver r=new AuthyAuthenticationWebflowEventResolver();
+  r.setAuthenticationSystemSupport(this.authenticationSystemSupport);
+  r.setCentralAuthenticationService(this.centralAuthenticationService);
+  r.setMultifactorAuthenticationProviderSelector(this.multifactorAuthenticationProviderSelector);
+  r.setServicesManager(this.servicesManager);
+  r.setTicketRegistrySupport(this.ticketRegistrySupport);
+  r.setWarnCookieGenerator(this.warnCookieGenerator);
+  return r;
+}

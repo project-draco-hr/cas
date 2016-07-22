@@ -1,0 +1,3 @@
+{
+  return new FileTrustStoreSslSocketFactory(casProperties.getHttpClient().getTruststore().getFile(),casProperties.getHttpClient().getTruststore().getPsw());
+}

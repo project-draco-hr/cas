@@ -1,0 +1,15 @@
+{
+  final ZonedDateTime currentSystemTime=ZonedDateTime.now(ZoneOffset.UTC);
+  final ZonedDateTime creationTime=ticketState.getCreationTime();
+  ZonedDateTime expirationTime=creationTime.plus(this.maxTimeToLiveInMilliSeconds,ChronoUnit.MILLIS);
+  if (currentSystemTime.isAfter(expirationTime)) {
+    LOGGER.debug("Ticket is expired because the time since creation is greater than maxTimeToLiveInMilliSeconds");
+    return true;
+  }
+  expirationTime=creationTime.plus(this.timeToKillInMilliSeconds,ChronoUnit.MILLIS);
+  if (ticketState.getLastTimeUsed().isAfter(expirationTime)) {
+    LOGGER.debug("Ticket is expired because the time since last use is greater than timeToKillInMilliseconds");
+    return true;
+  }
+  return false;
+}

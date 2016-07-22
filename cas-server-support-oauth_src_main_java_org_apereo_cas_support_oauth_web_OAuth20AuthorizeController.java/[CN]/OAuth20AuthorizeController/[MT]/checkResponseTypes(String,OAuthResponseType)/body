@@ -1,0 +1,10 @@
+{
+  logger.debug("Response type: {}",type);
+  for (  final OAuthResponseType expectedType : expectedTypes) {
+    if (isResponseType(type,expectedType)) {
+      return true;
+    }
+  }
+  logger.error("Unsupported response type: {}",type);
+  return false;
+}

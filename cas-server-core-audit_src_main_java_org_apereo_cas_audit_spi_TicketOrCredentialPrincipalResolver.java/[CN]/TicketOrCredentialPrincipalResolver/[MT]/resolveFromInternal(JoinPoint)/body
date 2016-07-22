@@ -1,0 +1,12 @@
+{
+  final StringBuilder builder=new StringBuilder();
+  final Object arg1=joinPoint.getArgs()[0];
+  if (arg1.getClass().isArray()) {
+    final Object[] args1AsArray=(Object[])arg1;
+    resolveArguments(builder,args1AsArray);
+  }
+ else {
+    builder.append(resolveArgument(arg1));
+  }
+  return builder.toString();
+}

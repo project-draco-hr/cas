@@ -1,0 +1,4 @@
+{
+  logger.debug("Locating encryption certificate file from [{}]",casProperties.getAuthn().getSamlIdp().getMetadata().getEncryptionCertFile());
+  return SamlUtils.readCertificate(new FileSystemResource(casProperties.getAuthn().getSamlIdp().getMetadata().getEncryptionCertFile()));
+}

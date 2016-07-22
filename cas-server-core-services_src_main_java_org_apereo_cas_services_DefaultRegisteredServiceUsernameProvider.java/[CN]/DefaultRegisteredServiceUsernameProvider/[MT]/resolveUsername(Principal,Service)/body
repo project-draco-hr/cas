@@ -1,0 +1,4 @@
+{
+  LOGGER.debug("Returning the default principal id [{}] for username.",principal.getId());
+  return principal.getId();
+}

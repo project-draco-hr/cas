@@ -1,0 +1,19 @@
+{
+  try {
+    if (registeredService instanceof SamlRegisteredService) {
+      final URIBuilder builder=new URIBuilder(singleLogoutService.getOriginalUrl());
+      for (      final URIBuilder.BasicNameValuePair basicNameValuePair : builder.getQueryParams()) {
+        if (basicNameValuePair.getName().equalsIgnoreCase(SamlProtocolConstants.PARAMETER_ENTITY_ID)) {
+          final String entityID=basicNameValuePair.getValue();
+          final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=SamlRegisteredServiceServiceProviderMetadataFacade.get(this.samlRegisteredServiceCachingMetadataResolver,SamlRegisteredService.class.cast(registeredService),entityID);
+          final String location=adaptor.getSingleLogoutService().getLocation();
+          return new URL(location);
+        }
+      }
+    }
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+  return super.determineLogoutUrl(registeredService,singleLogoutService);
+}

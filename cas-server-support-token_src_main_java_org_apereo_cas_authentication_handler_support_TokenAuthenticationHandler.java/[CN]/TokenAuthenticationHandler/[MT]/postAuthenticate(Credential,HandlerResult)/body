@@ -1,0 +1,5 @@
+{
+  final TokenCredential tokenCredential=(TokenCredential)credential;
+  tokenCredential.setId(result.getPrincipal().getId());
+  return super.postAuthenticate(credential,result);
+}

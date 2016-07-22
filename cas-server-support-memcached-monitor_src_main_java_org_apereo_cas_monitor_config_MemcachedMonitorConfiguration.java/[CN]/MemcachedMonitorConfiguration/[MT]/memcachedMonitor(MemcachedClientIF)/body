@@ -1,0 +1,5 @@
+{
+  final MemcachedMonitor m=new MemcachedMonitor();
+  m.setMemcachedClient(memcachedClient);
+  return m;
+}

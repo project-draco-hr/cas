@@ -1,0 +1,10 @@
+{
+  final Credential userPassCredential=new UsernamePasswordCredential(USERNAME,PASSWORD);
+  final List<String> values=new ArrayList<>();
+  values.add(NICKNAME_VALUE);
+  final Map<String,Object> newAttributes=new HashMap<>();
+  newAttributes.put(NICKNAME_KEY,Collections.unmodifiableList(values));
+  final TicketGrantingTicket expectedTGT=new MockTicketGrantingTicket(TGT_ID,userPassCredential,newAttributes);
+  expectedTGT.grantServiceTicket(ST_ID,null,null,null,true);
+  assertEquals(expectedTGT,transcoder.decode(transcoder.encode(expectedTGT)));
+}

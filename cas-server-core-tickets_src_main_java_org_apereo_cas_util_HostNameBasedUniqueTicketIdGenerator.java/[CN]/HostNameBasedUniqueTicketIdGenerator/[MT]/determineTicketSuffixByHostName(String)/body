@@ -1,0 +1,6 @@
+{
+  if (StringUtils.isNotBlank(suffix)) {
+    return suffix;
+  }
+  return InetAddressUtils.getCasServerHostName();
+}

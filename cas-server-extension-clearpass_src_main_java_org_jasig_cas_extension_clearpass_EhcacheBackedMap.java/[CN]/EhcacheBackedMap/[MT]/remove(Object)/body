@@ -1,5 +1,0 @@
-{
-  final String keyValue=get(key);
-  this.cache.remove(key);
-  return keyValue;
-}

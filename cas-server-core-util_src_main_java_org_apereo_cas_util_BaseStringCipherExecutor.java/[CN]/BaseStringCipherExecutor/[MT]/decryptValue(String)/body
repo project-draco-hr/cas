@@ -1,0 +1,12 @@
+{
+  try {
+    final JsonWebEncryption jwe=new JsonWebEncryption();
+    jwe.setKey(this.secretKeyEncryptionKey);
+    jwe.setCompactSerialization(value);
+    logger.debug("Decrypting value...");
+    return jwe.getPayload();
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

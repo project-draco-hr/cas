@@ -1,0 +1,14 @@
+{
+  try {
+    logger.debug("Trying to connect to couchbase bucket {}",this.bucketName);
+    this.cluster=CouchbaseCluster.create(new ArrayList<>(this.nodes));
+    this.bucket=this.cluster.openBucket(this.bucketName,this.password,this.timeout,TimeUnit.SECONDS);
+    logger.info("Connected to Couchbase bucket {}.",this.bucketName);
+    if (this.views != null) {
+      doEnsureIndexes(this.designDocument,this.views);
+    }
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException("Failed to connect to Couchbase bucket",e);
+  }
+}

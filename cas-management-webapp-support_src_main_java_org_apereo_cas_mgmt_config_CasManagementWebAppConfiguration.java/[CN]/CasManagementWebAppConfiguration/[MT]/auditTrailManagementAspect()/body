@@ -1,0 +1,3 @@
+{
+  return new AuditTrailManagementAspect("CAS_Management",auditablePrincipalResolver(),ImmutableList.of(slf4jAuditTrailManager()),auditActionResolverMap(),auditResourceResolverMap());
+}

@@ -1,0 +1,3 @@
+{
+  return new HashCodeBuilder().appendSuper(super.hashCode()).append(realm).append(hash).append(id).toHashCode();
+}

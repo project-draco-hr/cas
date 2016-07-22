@@ -1,0 +1,3 @@
+{
+  return newEntityManagerFactoryBean(new JpaConfigDataHolder(newHibernateJpaVendorAdapter(casProperties.getJdbc()),"jpaTicketRegistryContext",ticketPackagesToScan(),dataSourceTicket()),casProperties.getTicket().getRegistry().getJpa());
+}

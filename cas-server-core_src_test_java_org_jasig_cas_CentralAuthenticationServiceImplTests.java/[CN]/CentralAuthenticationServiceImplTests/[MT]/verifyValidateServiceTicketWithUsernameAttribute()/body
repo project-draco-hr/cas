@@ -1,8 +1,0 @@
-{
-  final UsernamePasswordCredential cred=TestUtils.getCredentialsWithSameUsernameAndPassword();
-  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(cred);
-  final Service svc=getService("eduPersonTest");
-  final ServiceTicket serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),svc);
-  final Assertion assertion=getCentralAuthenticationService().validateServiceTicket(serviceTicket.getId(),svc);
-  assertEquals("developer",assertion.getPrimaryAuthentication().getPrincipal().getId());
-}

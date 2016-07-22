@@ -1,0 +1,13 @@
+{
+  final StatusCode code;
+  if (statistics.getEvictions() > casProperties.getMonitor().getWarn().getEvictionThreshold()) {
+    code=StatusCode.WARN;
+  }
+ else   if (statistics.getPercentFree() < casProperties.getMonitor().getWarn().getThreshold()) {
+    code=StatusCode.WARN;
+  }
+ else {
+    code=StatusCode.OK;
+  }
+  return code;
+}

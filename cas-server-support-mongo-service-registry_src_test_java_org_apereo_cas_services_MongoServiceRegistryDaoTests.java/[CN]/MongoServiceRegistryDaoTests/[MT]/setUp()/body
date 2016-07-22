@@ -1,0 +1,6 @@
+{
+  final List<RegisteredService> services=this.serviceRegistryDao.load();
+  for (  final RegisteredService service : services) {
+    this.serviceRegistryDao.delete(service);
+  }
+}

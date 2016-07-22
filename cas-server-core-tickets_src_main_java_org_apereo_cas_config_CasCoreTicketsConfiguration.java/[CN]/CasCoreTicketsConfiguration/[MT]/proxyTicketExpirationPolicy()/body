@@ -1,0 +1,3 @@
+{
+  return new MultiTimeUseOrTimeoutExpirationPolicy.ProxyTicketExpirationPolicy(casProperties.getTicket().getPt().getNumberOfUses(),TimeUnit.SECONDS.toMillis(casProperties.getTicket().getPt().getTimeToKillInSeconds()));
+}

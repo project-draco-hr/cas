@@ -1,0 +1,9 @@
+{
+  final Ticket ticket=getTicket();
+  infinispanTicketRegistry.addTicket(ticket);
+  assertFalse(infinispanTicketRegistry.getTicket(ticket.getId()).isExpired());
+  final TicketGrantingTicket ticket2=(TicketGrantingTicket)ticket;
+  ticket2.markTicketExpired();
+  infinispanTicketRegistry.addTicket(ticket);
+  assertTrue(infinispanTicketRegistry.getTicket(ticket.getId()).isExpired());
+}

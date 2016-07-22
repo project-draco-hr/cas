@@ -1,0 +1,3 @@
+{
+  return this.accounts.containsKey(username);
+}

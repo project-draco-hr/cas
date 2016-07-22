@@ -1,0 +1,3 @@
+{
+  return new CustomConversions(Lists.newArrayList(new BaseConverters.LoggerConverter(),new BaseConverters.ClassConverter(),new BaseConverters.CommonsLogConverter(),new BaseConverters.PersonAttributesConverter(),new BaseConverters.CacheLoaderConverter(),new BaseConverters.RunnableConverter(),new BaseConverters.ReferenceQueueConverter(),new BaseConverters.ThreadLocalConverter(),new BaseConverters.CertPathConverter(),new BaseConverters.CacheConverter()));
+}

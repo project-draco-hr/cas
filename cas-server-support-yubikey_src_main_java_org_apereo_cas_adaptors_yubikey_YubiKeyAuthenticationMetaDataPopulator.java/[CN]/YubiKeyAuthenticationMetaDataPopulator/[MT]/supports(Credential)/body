@@ -1,0 +1,3 @@
+{
+  return this.authenticationHandler.supports(credential);
+}

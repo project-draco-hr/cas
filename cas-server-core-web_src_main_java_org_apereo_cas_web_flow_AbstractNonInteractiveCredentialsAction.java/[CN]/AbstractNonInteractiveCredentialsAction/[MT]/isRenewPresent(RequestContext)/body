@@ -1,0 +1,3 @@
+{
+  return StringUtils.hasText(context.getRequestParameters().get(CasProtocolConstants.PARAMETER_RENEW));
+}

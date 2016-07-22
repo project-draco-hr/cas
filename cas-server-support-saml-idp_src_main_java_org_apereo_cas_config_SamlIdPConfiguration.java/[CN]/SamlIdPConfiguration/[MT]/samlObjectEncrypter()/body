@@ -1,0 +1,8 @@
+{
+  final SamlObjectEncrypter e=new SamlObjectEncrypter();
+  e.setOverrideBlackListedEncryptionAlgorithms(overrideBlackListedEncryptionAlgorithms);
+  e.setOverrideDataEncryptionAlgorithms(overrideDataEncryptionAlgorithms);
+  e.setOverrideKeyEncryptionAlgorithms(overrideKeyEncryptionAlgorithms);
+  e.setOverrideWhiteListedAlgorithms(overrideWhiteListedAlgorithms);
+  return e;
+}

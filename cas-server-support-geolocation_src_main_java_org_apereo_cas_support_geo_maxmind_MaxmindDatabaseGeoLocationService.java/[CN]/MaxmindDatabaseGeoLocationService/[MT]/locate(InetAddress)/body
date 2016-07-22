@@ -1,0 +1,18 @@
+{
+  final GeoLocation location=new GeoLocation();
+  try {
+    if (this.cityDatabaseReader != null) {
+      final CityResponse response=this.cityDatabaseReader.city(address);
+      location.setCity(response.getCity().getName());
+    }
+    if (this.countryDatabaseReader != null) {
+      final CountryResponse response=this.countryDatabaseReader.country(address);
+      location.setCountry(response.getCountry().getName());
+    }
+    logger.debug("Geo location for {} is calculated as {}",address,location);
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+  return location;
+}

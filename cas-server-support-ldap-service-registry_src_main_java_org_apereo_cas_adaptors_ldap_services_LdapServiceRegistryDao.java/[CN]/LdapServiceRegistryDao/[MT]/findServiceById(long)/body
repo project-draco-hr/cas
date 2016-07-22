@@ -1,0 +1,14 @@
+{
+  try {
+    if (this.ldapServiceMapper != null) {
+      final Response<SearchResult> response=searchForServiceById(id);
+      if (LdapUtils.containsResultEntry(response)) {
+        return this.ldapServiceMapper.mapToRegisteredService(response.getResult().getEntry());
+      }
+    }
+  }
+ catch (  final LdapException e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+  return null;
+}

@@ -1,0 +1,6 @@
+{
+  final AcceptableUsagePolicyWebflowConfigurer r=new AcceptableUsagePolicyWebflowConfigurer();
+  r.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  r.setFlowBuilderServices(flowBuilderServices);
+  return r;
+}

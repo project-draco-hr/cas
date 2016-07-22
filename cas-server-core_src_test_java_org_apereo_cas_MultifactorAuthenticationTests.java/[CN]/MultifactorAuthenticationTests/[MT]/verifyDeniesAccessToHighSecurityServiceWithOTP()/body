@@ -1,0 +1,7 @@
+{
+  final AuthenticationResult ctx=processAuthenticationAttempt(HIGH_SERVICE,new OneTimePasswordCredential("alice","31415"));
+  final TicketGrantingTicket tgt=cas.createTicketGrantingTicket(ctx);
+  assertNotNull(tgt);
+  final ServiceTicket st=cas.grantServiceTicket(tgt.getId(),HIGH_SERVICE,ctx);
+  assertNotNull(st);
+}

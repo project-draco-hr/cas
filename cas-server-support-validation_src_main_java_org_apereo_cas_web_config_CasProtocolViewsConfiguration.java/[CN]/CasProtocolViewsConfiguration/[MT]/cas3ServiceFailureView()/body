@@ -1,0 +1,3 @@
+{
+  return new CasProtocolView(casProperties.getView().getCas3().getFailure(),this.applicationContext,this.springTemplateEngine,this.properties);
+}

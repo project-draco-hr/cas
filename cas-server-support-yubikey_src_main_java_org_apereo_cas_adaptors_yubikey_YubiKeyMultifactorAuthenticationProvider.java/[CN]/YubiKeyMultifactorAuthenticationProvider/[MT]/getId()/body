@@ -1,0 +1,3 @@
+{
+  return YubiKeyMultifactorWebflowConfigurer.MFA_YUBIKEY_EVENT_ID;
+}

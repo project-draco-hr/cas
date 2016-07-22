@@ -1,0 +1,23 @@
+{
+  final Map<String,Object> model=new HashMap<>();
+  final Map<String,Object> attributes=new HashMap<>();
+  attributes.put("testAttribute","testValue");
+  final Principal principal=new DefaultPrincipalFactory().createPrincipal("testPrincipal",attributes);
+  final Map<String,Object> authnAttributes=new HashMap<>();
+  authnAttributes.put("authnAttribute1","authnAttrbuteV1");
+  authnAttributes.put("authnAttribute2","authnAttrbuteV2");
+  authnAttributes.put(RememberMeCredential.AUTHENTICATION_ATTRIBUTE_REMEMBER_ME,Boolean.TRUE);
+  final Authentication primary=TestUtils.getAuthentication(principal,authnAttributes);
+  final Assertion assertion=new ImmutableAssertion(primary,Collections.singletonList(primary),TestUtils.getService(),true);
+  model.put("assertion",assertion);
+  final MockHttpServletResponse servletResponse=new MockHttpServletResponse();
+  this.response.renderMergedOutputModel(model,new MockHttpServletRequest(),servletResponse);
+  final String written=servletResponse.getContentAsString();
+  assertTrue(written.contains("testPrincipal"));
+  assertTrue(written.contains("testAttribute"));
+  assertTrue(written.contains("testValue"));
+  assertTrue(written.contains("authnAttribute1"));
+  assertTrue(written.contains("authnAttribute2"));
+  assertTrue(written.contains(CasProtocolConstants.VALIDATION_REMEMBER_ME_ATTRIBUTE_NAME));
+  assertTrue(written.contains("urn:oasis:names:tc:SAML:1.0:am:unspecified"));
+}

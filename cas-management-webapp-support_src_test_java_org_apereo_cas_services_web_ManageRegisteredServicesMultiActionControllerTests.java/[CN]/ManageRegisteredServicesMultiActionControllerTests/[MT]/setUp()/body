@@ -1,0 +1,6 @@
+{
+  this.servicesManager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
+  this.registeredServiceFactory=new DefaultRegisteredServiceFactory();
+  this.registeredServiceFactory.initializeDefaults();
+  this.controller=new ManageRegisteredServicesMultiActionController(this.servicesManager,this.registeredServiceFactory,"https://cas.example.org");
+}

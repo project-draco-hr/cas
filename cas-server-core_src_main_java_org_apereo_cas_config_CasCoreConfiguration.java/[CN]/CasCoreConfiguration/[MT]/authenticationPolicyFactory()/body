@@ -1,0 +1,6 @@
+{
+  if (casProperties.getAuthn().getPolicy().isRequiredHandlerAuthenticationPolicyEnabled()) {
+    return new RequiredHandlerAuthenticationPolicyFactory();
+  }
+  return new AcceptAnyAuthenticationPolicyFactory();
+}

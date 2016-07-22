@@ -1,4 +1,0 @@
-{
-  super(code);
-  this.details=Collections.unmodifiableMap(detailMap);
-}

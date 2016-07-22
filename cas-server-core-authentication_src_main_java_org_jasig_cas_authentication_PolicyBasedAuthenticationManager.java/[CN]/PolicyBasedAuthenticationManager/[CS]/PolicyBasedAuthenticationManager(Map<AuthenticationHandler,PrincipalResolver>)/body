@@ -1,4 +1,0 @@
-{
-  Assert.notEmpty(map,"At least one authentication handler is required");
-  this.handlerResolverMap=map;
-}

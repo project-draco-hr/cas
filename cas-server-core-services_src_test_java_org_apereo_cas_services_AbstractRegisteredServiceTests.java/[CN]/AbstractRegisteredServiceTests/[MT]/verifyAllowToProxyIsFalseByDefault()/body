@@ -1,0 +1,6 @@
+{
+  final RegexRegisteredService regexRegisteredService=new RegexRegisteredService();
+  assertFalse(regexRegisteredService.getProxyPolicy().isAllowedToProxy());
+  final RegexRegisteredService service=new RegexRegisteredService();
+  assertFalse(service.getProxyPolicy().isAllowedToProxy());
+}

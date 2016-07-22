@@ -1,0 +1,6 @@
+{
+  final GoogleAuthenticatorAccount account=requestContext.getFlowScope().get("key",GoogleAuthenticatorAccount.class);
+  final String uid=WebUtils.getAuthentication(requestContext).getPrincipal().getId();
+  googleAuthenticator.getCredentialRepository().saveUserCredentials(uid,account.getSecretKey(),account.getValidationCode(),account.getScratchCodes());
+  return success();
+}

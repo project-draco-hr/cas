@@ -1,4 +1,0 @@
-{
-  logger.info(getMarker("info"),getMessageToLog(),new RuntimeException(ID1,new InvalidTicketException(ID2)));
-  validateLogData();
-}

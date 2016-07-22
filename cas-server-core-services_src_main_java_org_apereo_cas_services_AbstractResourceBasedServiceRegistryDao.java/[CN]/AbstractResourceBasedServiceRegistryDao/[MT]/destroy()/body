@@ -1,0 +1,4 @@
+{
+  this.serviceRegistryConfigWatcher.close();
+  this.serviceRegistryWatcherThread.interrupt();
+}

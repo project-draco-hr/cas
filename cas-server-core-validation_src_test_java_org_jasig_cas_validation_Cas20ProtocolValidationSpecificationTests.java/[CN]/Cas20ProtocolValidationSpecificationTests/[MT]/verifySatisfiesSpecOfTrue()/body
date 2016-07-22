@@ -1,3 +1,0 @@
-{
-  assertTrue(new Cas20ProtocolValidationSpecification(true).isSatisfiedBy(TestUtils.getAssertion(true)));
-}

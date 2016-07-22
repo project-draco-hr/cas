@@ -1,5 +1,0 @@
-{
-  apiUri=uri;
-  apiKey=key;
-  this.testFlag=testFlag;
-}

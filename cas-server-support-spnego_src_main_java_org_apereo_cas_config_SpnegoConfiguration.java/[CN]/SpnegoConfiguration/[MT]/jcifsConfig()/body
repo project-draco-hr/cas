@@ -1,0 +1,19 @@
+{
+  final JcifsConfig c=new JcifsConfig();
+  c.setJcifsDomain(casProperties.getAuthn().getSpnego().getJcifsDomain());
+  c.setJcifsDomainController(casProperties.getAuthn().getSpnego().getJcifsDomainController());
+  c.setJcifsNetbiosCachePolicy(casProperties.getAuthn().getSpnego().getCachePolicy());
+  c.setJcifsNetbiosWins(casProperties.getAuthn().getSpnego().getJcifsNetbiosWins());
+  c.setJcifsPassword(casProperties.getAuthn().getSpnego().getJcifsPassword());
+  c.setJcifsServicePassword(casProperties.getAuthn().getSpnego().getJcifsServicePassword());
+  c.setJcifsServicePrincipal(casProperties.getAuthn().getSpnego().getJcifsServicePrincipal());
+  c.setJcifsSocketTimeout(casProperties.getAuthn().getSpnego().getTimeout());
+  c.setJcifsUsername(casProperties.getAuthn().getSpnego().getJcifsUsername());
+  c.setKerberosConf(casProperties.getAuthn().getSpnego().getKerberosConf());
+  c.setKerberosDebug(casProperties.getAuthn().getSpnego().getKerberosDebug());
+  c.setKerberosKdc(casProperties.getAuthn().getSpnego().getKerberosKdc());
+  c.setKerberosRealm(casProperties.getAuthn().getSpnego().getKerberosRealm());
+  c.setLoginConf(casProperties.getAuthn().getSpnego().getLoginConf());
+  c.setUseSubjectCredsOnly(casProperties.getAuthn().getSpnego().isUseSubjectCredsOnly());
+  return c;
+}

@@ -1,0 +1,7 @@
+{
+  final ParserContext ctx=new FluentParserContext();
+  final Expression action=this.flowBuilderServices.getExpressionParser().parseExpression(expression,ctx);
+  final EvaluateAction newAction=new EvaluateAction(action,null);
+  logger.debug("Created evaluate action for expression {}",action.getExpressionString());
+  return newAction;
+}

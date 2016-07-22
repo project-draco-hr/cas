@@ -1,0 +1,23 @@
+{
+  if (StringUtils.isNotBlank(ipAddressRange)) {
+    final String[] splitAddress=ipAddressRange.split("/");
+    if (splitAddress.length == 2) {
+      final String network=splitAddress[0].trim();
+      final String netmask=splitAddress[1].trim();
+      try {
+        this.inetNetwork=InetAddress.getByName(network);
+        logger.debug("InetAddress network: {}",this.inetNetwork.toString());
+      }
+ catch (      final UnknownHostException e) {
+        logger.error("The network address was not valid: {}",e.getMessage());
+      }
+      try {
+        this.inetNetmask=InetAddress.getByName(netmask);
+        logger.debug("InetAddress netmask: {}",this.inetNetmask.toString());
+      }
+ catch (      final UnknownHostException e) {
+        logger.error("The network netmask was not valid: {}",e.getMessage());
+      }
+    }
+  }
+}

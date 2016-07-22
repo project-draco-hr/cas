@@ -1,0 +1,3 @@
+{
+  binder.setRequiredFields(CasProtocolConstants.PARAMETER_RENEW);
+}

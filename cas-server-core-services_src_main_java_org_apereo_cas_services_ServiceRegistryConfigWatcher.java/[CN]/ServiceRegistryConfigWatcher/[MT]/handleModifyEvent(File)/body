@@ -1,0 +1,16 @@
+{
+  final RegisteredService newService=this.serviceRegistryDao.load(file);
+  if (newService == null) {
+    LOGGER.warn("New service definition could not be loaded from [{}]",file.getAbsolutePath());
+  }
+ else {
+    final RegisteredService oldService=this.serviceRegistryDao.findServiceById(newService.getId());
+    if (!newService.equals(oldService)) {
+      this.serviceRegistryDao.update(newService);
+      this.applicationEventPublisher.publishEvent(new CasRegisteredServicesRefreshEvent(this));
+    }
+ else {
+      LOGGER.debug("Service [{}] loaded from [{}] is identical to the existing entry. Entry may have already been saved " + "in the event processing pipeline",newService.getId(),file.getName());
+    }
+  }
+}

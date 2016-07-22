@@ -1,6 +1,0 @@
-{
-  final String hashedKey=constructHashedKey(key);
-  final String hashedValue=encrypt(value,hashedKey);
-  final String oldValue=this.decoratedMap.put(hashedKey,hashedValue);
-  return decrypt(oldValue,hashedKey);
-}

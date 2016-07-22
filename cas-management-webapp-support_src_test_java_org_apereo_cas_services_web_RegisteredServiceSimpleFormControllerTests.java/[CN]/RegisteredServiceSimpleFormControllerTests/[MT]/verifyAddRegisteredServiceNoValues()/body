@@ -1,0 +1,6 @@
+{
+  final BindingResult result=mock(BindingResult.class);
+  when(result.getModel()).thenReturn(new HashMap<>());
+  when(result.hasErrors()).thenReturn(true);
+  assertTrue(result.hasErrors());
+}

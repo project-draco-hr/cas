@@ -1,0 +1,10 @@
+{
+  final ExpressionParser parser=this.flowBuilderServices.getExpressionParser();
+  final Expression source=parser.parseExpression(value,new FluentParserContext());
+  final Expression target=parser.parseExpression(name,new FluentParserContext());
+  final DefaultMapping mapping=new DefaultMapping(source,target);
+  mapping.setRequired(required);
+  final ConversionExecutor typeConverter=new RuntimeBindingConversionExecutor(type,this.flowBuilderServices.getConversionService());
+  mapping.setTypeConverter(typeConverter);
+  return mapping;
+}

@@ -1,7 +1,0 @@
-{
-  try (final AbstractPrincipalAttributesRepository repository=getPrincipalAttributesRepository(TimeUnit.SECONDS,5)){
-    repository.setMergingStrategy(AbstractPrincipalAttributesRepository.MergingStrategy.REPLACE);
-    assertTrue(repository.getAttributes(this.principal).containsKey("mail"));
-    assertEquals(repository.getAttributes(this.principal).get("mail").toString(),"final@example.com");
-  }
- }

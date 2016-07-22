@@ -1,0 +1,26 @@
+{
+  final RegisteredServiceUsernameAttributeProviderEditBean uBean=bean.getUserAttrProvider();
+  if (provider instanceof DefaultRegisteredServiceUsernameProvider) {
+    uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.DEFAULT.toString());
+  }
+ else   if (provider instanceof AnonymousRegisteredServiceUsernameAttributeProvider) {
+    final AnonymousRegisteredServiceUsernameAttributeProvider anonymous=(AnonymousRegisteredServiceUsernameAttributeProvider)provider;
+    uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.ANONYMOUS.toString());
+    final PersistentIdGenerator generator=anonymous.getPersistentIdGenerator();
+    if (generator instanceof ShibbolethCompatiblePersistentIdGenerator) {
+      final ShibbolethCompatiblePersistentIdGenerator sh=(ShibbolethCompatiblePersistentIdGenerator)generator;
+      if (sh.getSalt() != null) {
+        final String salt=new String(sh.getSalt(),Charset.defaultCharset());
+        uBean.setValue(salt);
+      }
+ else {
+        throw new IllegalArgumentException("Salt cannot be null");
+      }
+    }
+  }
+ else   if (provider instanceof PrincipalAttributeRegisteredServiceUsernameProvider) {
+    final PrincipalAttributeRegisteredServiceUsernameProvider p=(PrincipalAttributeRegisteredServiceUsernameProvider)provider;
+    uBean.setType(RegisteredServiceUsernameAttributeProviderEditBean.Types.ATTRIBUTE.toString());
+    uBean.setValue(p.getUsernameAttribute());
+  }
+}

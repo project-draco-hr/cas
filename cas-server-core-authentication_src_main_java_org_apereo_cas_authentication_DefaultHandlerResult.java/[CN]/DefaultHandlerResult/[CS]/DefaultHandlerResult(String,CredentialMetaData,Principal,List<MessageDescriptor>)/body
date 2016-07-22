@@ -1,0 +1,7 @@
+{
+  Assert.notNull(metaData,"Credential metadata cannot be null.");
+  this.handlerName=handlerName;
+  this.credentialMetaData=metaData;
+  this.principal=p;
+  this.warnings=warnings;
+}

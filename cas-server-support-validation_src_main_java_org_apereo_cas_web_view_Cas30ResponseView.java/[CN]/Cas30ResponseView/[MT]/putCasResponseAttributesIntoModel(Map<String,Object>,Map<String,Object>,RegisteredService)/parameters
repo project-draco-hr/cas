@@ -1,0 +1,3 @@
+Map<String,Object> model
+Map<String,Object> attributes
+RegisteredService registeredService

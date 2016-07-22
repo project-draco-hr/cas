@@ -1,4 +1,0 @@
-{
-  configureCasMockSTCreationToThrow(new InvalidTicketException("TGT-1"));
-  this.mockMvc.perform(post("/cas/v1/tickets/TGT-1").param("service","https://www.google.com")).andExpect(status().isNotFound()).andExpect(content().string("TicketGrantingTicket could not be found"));
-}

@@ -1,3 +1,0 @@
-{
-  addControllerToCasServletHandlerMapping(path,getController(controller));
-}

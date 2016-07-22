@@ -1,0 +1,7 @@
+{
+  final SearchExecutor executor=new SearchExecutor();
+  executor.setBaseDn(casProperties.getLdapAuthz().getBaseDn());
+  executor.setSearchFilter(new SearchFilter(casProperties.getLdapAuthz().getSearchFilter()));
+  executor.setReturnAttributes(ReturnAttributes.ALL.value());
+  return executor;
+}

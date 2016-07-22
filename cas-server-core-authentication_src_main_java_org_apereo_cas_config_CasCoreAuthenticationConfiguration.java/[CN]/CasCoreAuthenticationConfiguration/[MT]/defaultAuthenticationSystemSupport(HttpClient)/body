@@ -1,0 +1,6 @@
+{
+  final DefaultAuthenticationSystemSupport r=new DefaultAuthenticationSystemSupport();
+  r.setAuthenticationTransactionManager(defaultAuthenticationTransactionManager(httpClient));
+  r.setPrincipalElectionStrategy(defaultPrincipalElectionStrategy());
+  return r;
+}

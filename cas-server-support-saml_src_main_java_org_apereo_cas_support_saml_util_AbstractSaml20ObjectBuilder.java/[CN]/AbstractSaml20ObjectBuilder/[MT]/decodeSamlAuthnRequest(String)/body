@@ -1,0 +1,14 @@
+{
+  if (StringUtils.isEmpty(encodedRequestXmlString)) {
+    return null;
+  }
+  final byte[] decodedBytes=EncodingUtils.decodeBase64(encodedRequestXmlString);
+  if (decodedBytes == null) {
+    return null;
+  }
+  final String inflated=CompressionUtils.inflate(decodedBytes);
+  if (!StringUtils.isEmpty(inflated)) {
+    return inflated;
+  }
+  return CompressionUtils.decodeByteArrayToString(decodedBytes);
+}

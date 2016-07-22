@@ -1,0 +1,16 @@
+{
+  final Collection<Object[]> params=new ArrayList<>();
+  final ZonedDateTime now=ZonedDateTime.now(ZoneOffset.UTC);
+  final ZonedDateTime twoHoursAgo=now.minusHours(2);
+  final ZonedDateTime oneHourAgo=now.minusHours(1);
+  final ZonedDateTime halfHourAgo=now.minusMinutes(30);
+  final X500Principal issuer=new X500Principal("CN=CAS");
+  final ThresholdExpiredCRLRevocationPolicy zeroThreshold=new ThresholdExpiredCRLRevocationPolicy();
+  zeroThreshold.setThreshold(0);
+  params.add(new Object[]{zeroThreshold,new MockX509CRL(issuer,DateTimeUtils.dateOf(oneHourAgo),DateTimeUtils.dateOf(now.minusSeconds(1))),new ExpiredCRLException("CN=CAS",ZonedDateTime.now(ZoneOffset.UTC))});
+  final ThresholdExpiredCRLRevocationPolicy oneHourThreshold=new ThresholdExpiredCRLRevocationPolicy();
+  oneHourThreshold.setThreshold(3600);
+  params.add(new Object[]{oneHourThreshold,new MockX509CRL(issuer,DateTimeUtils.dateOf(twoHoursAgo),DateTimeUtils.dateOf(oneHourAgo.minusSeconds(1))),new ExpiredCRLException("CN=CAS",ZonedDateTime.now(ZoneOffset.UTC))});
+  params.add(new Object[]{oneHourThreshold,new MockX509CRL(issuer,DateTimeUtils.dateOf(twoHoursAgo),DateTimeUtils.dateOf(halfHourAgo)),null});
+  return params;
+}

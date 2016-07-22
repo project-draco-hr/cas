@@ -1,0 +1,4 @@
+{
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),TestUtils.getCredentialsWithDifferentUsernameAndPassword());
+  getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+}

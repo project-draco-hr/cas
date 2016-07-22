@@ -1,0 +1,6 @@
+{
+  if (this.uiInfo != null) {
+    return getStringValues(this.uiInfo.getDescriptions());
+  }
+  return new ArrayList<>();
+}

@@ -1,8 +1,0 @@
-{
-  final MockRequestContext ctx=new MockRequestContext();
-  final TicketGrantingTicket tgt=this.getCentralAuthenticationService().createTicketGrantingTicket(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
-  WebUtils.putTicketGrantingTicketInScopes(ctx,tgt);
-  final TicketGrantingTicketCheckAction action=new TicketGrantingTicketCheckAction(this.getCentralAuthenticationService());
-  final Event event=action.doExecute(ctx);
-  assertEquals(event.getId(),TicketGrantingTicketCheckAction.VALID);
-}

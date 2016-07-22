@@ -1,0 +1,4 @@
+{
+  final TicketGrantingTicket tgt=this.ticketRegistry.getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
+  return tgt == null ? null : tgt.getAuthentication();
+}

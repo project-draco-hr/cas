@@ -1,0 +1,3 @@
+{
+  return buildSubject(request,response,authnRequest,assertion,service,adaptor);
+}

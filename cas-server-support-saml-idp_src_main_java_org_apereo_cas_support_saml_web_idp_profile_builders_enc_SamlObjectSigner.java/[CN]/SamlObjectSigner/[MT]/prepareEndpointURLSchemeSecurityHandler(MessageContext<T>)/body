@@ -1,0 +1,5 @@
+{
+  final EndpointURLSchemeSecurityHandler handlerEnd=new EndpointURLSchemeSecurityHandler();
+  handlerEnd.initialize();
+  handlerEnd.invoke(outboundContext);
+}

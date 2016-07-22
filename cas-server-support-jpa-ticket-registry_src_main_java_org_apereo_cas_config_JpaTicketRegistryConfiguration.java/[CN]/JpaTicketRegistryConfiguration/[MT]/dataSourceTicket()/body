@@ -1,0 +1,3 @@
+{
+  return newHickariDataSource(casProperties.getTicket().getRegistry().getJpa());
+}

@@ -1,0 +1,23 @@
+{
+  final String entityID=request.getParameter(SamlProtocolConstants.PARAMETER_ENTITY_ID);
+  final String authnRequestSigned=StringUtils.defaultString(request.getParameter("authnRequestSigned"),"false");
+  final String wantAssertionsSigned=StringUtils.defaultString(request.getParameter("wantAssertionsSigned"),"false");
+  final String x509Certificate=request.getParameter("x509Certificate");
+  final String acsUrl=request.getParameter("acsUrl");
+  try (final PrintWriter writer=response.getWriter()){
+    if (StringUtils.isBlank(entityID) || StringUtils.isBlank(acsUrl) || StringUtils.isBlank(x509Certificate)) {
+      final String warning="Missing entityID, ACS url or X509 signing certificate";
+      logger.warn(warning);
+      response.setContentType(CONTENT_TYPE);
+      response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+      writer.write(warning);
+    }
+ else {
+      final String contents=IOUtils.toString(this.templateSpMetadata.getInputStream());
+      response.setContentType(CONTENT_TYPE);
+      response.setStatus(HttpServletResponse.SC_OK);
+      writer.write(contents.replace("$entityId",entityID).replace("$acsUrl",acsUrl).replace("$x509Certificate",x509Certificate).replace("$authnRequestSigned",authnRequestSigned).replace("$wantAssertionsSigned",wantAssertionsSigned));
+    }
+    writer.flush();
+  }
+ }

@@ -1,0 +1,11 @@
+{
+  if (casProperties.getAuthn().getShiro().getConfig().getLocation() != null) {
+    this.authenticationHandlersResolvers.put(shiroAuthenticationHandler(),personDirectoryPrincipalResolver);
+  }
+  if (StringUtils.isNotBlank(casProperties.getAuthn().getReject().getUsers())) {
+    this.authenticationHandlersResolvers.put(rejectUsersAuthenticationHandler(),personDirectoryPrincipalResolver);
+  }
+  if (casProperties.getAuthn().getFile().getFilename() != null) {
+    this.authenticationHandlersResolvers.put(fileAuthenticationHandler(),personDirectoryPrincipalResolver);
+  }
+}

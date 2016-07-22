@@ -1,0 +1,72 @@
+{
+  bean.setAssignedId(Long.toString(svc.getId()));
+  bean.setServiceId(svc.getServiceId());
+  bean.setName(svc.getName());
+  bean.setDescription(svc.getDescription());
+  if (svc.getLogo() != null) {
+    bean.setLogoUrl(svc.getLogo().toExternalForm());
+  }
+  bean.setRequiredHandlers(svc.getRequiredHandlers());
+  if (svc instanceof OAuthCallbackAuthorizeService) {
+    bean.setType(RegisteredServiceTypeEditBean.OAUTH_CALLBACK_AUTHZ.toString());
+  }
+  if (svc instanceof OAuthRegisteredService) {
+    bean.setType(RegisteredServiceTypeEditBean.OAUTH.toString());
+    final OAuthRegisteredService oauth=(OAuthRegisteredService)svc;
+    final RegisteredServiceOAuthTypeEditBean oauthBean=bean.getOauth();
+    oauthBean.setBypass(oauth.isBypassApprovalPrompt());
+    oauthBean.setClientId(oauth.getClientId());
+    oauthBean.setClientSecret(oauth.getClientSecret());
+    oauthBean.setRefreshToken(oauth.isGenerateRefreshToken());
+    oauthBean.setJsonFormat(oauth.isJsonFormat());
+    if (svc instanceof OidcRegisteredService) {
+      bean.setType(RegisteredServiceTypeEditBean.OIDC.toString());
+      final OidcRegisteredService oidc=(OidcRegisteredService)svc;
+      final RegisteredServiceOidcTypeEditBean oidcBean=bean.getOidc();
+      oidcBean.setJwks(oidc.getJwks());
+      oidcBean.setSignToken(oidc.isSignIdToken());
+    }
+  }
+  if (svc instanceof SamlRegisteredService) {
+    bean.setType(RegisteredServiceTypeEditBean.SAML.toString());
+    final SamlRegisteredService saml=(SamlRegisteredService)svc;
+    final RegisteredServiceSamlTypeEditBean samlbean=bean.getSaml();
+    samlbean.setMdLoc(saml.getMetadataLocation());
+    samlbean.setMdMaxVal(saml.getMetadataMaxValidity());
+    samlbean.setMdSigLoc(saml.getMetadataSignatureLocation());
+    samlbean.setAuthCtxCls(saml.getRequiredAuthenticationContextClass());
+    samlbean.setEncAssert(saml.isEncryptAssertions());
+    samlbean.setSignResp(saml.isSignResponses());
+    samlbean.setSignAssert(saml.isSignAssertions());
+  }
+  bean.setTheme(svc.getTheme());
+  bean.setEvalOrder(svc.getEvaluationOrder());
+  final LogoutType logoutType=svc.getLogoutType();
+switch (logoutType) {
+case BACK_CHANNEL:
+    bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.BACK.toString());
+  break;
+case FRONT_CHANNEL:
+bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.FRONT.toString());
+break;
+default :
+bean.setLogoutType(RegisteredServiceLogoutTypeEditBean.NONE.toString());
+break;
+}
+final URL url=svc.getLogoutUrl();
+if (url != null) {
+bean.setLogoutUrl(url.toExternalForm());
+}
+final RegisteredServicePublicKey key=svc.getPublicKey();
+final RegisteredServicePublicKeyEditBean pBean=bean.getPublicKey();
+if (key != null) {
+pBean.setAlgorithm(key.getAlgorithm());
+pBean.setLocation(key.getLocation());
+}
+final Map<String,RegisteredServiceProperty> props=svc.getProperties();
+final Map<String,Set<String>> beanProps=bean.getProps();
+for (final Map.Entry<String,RegisteredServiceProperty> stringRegisteredServicePropertyEntry : props.entrySet()) {
+final Set<String> set=stringRegisteredServicePropertyEntry.getValue().getValues();
+beanProps.put(stringRegisteredServicePropertyEntry.getKey(),set);
+}
+}

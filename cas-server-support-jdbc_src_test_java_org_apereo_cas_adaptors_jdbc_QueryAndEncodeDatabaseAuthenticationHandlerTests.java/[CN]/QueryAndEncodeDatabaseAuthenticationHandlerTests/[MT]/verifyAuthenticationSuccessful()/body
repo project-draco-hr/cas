@@ -1,0 +1,13 @@
+{
+  final QueryAndEncodeDatabaseAuthenticationHandler q=new QueryAndEncodeDatabaseAuthenticationHandler();
+  q.setDataSource(dataSource);
+  q.setAlgorithmName(ALG_NAME);
+  q.setSql(buildSql());
+  q.setNumberOfIterationsFieldName("numIterations");
+  q.setStaticSalt(STATIC_SALT);
+  q.setSaltFieldName("salt");
+  final UsernamePasswordCredential c=TestUtils.getCredentialsWithSameUsernameAndPassword("user1");
+  final HandlerResult r=q.authenticate(c);
+  assertNotNull(r);
+  assertEquals(r.getPrincipal().getId(),"user1");
+}

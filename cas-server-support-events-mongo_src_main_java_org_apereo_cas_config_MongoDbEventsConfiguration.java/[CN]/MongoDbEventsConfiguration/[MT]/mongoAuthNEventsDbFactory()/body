@@ -1,0 +1,8 @@
+{
+  try {
+    return new SimpleMongoDbFactory(new MongoClientURI(casProperties.getEvents().getMongodb().getClientUri()));
+  }
+ catch (  final Exception e) {
+    throw new BeanCreationException(e.getMessage(),e);
+  }
+}

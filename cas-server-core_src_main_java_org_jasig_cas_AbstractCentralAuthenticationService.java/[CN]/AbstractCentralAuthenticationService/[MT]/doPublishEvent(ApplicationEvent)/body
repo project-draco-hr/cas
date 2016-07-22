@@ -1,4 +1,0 @@
-{
-  logger.debug("Publishing {}",e);
-  this.eventPublisher.publishEvent(e);
-}

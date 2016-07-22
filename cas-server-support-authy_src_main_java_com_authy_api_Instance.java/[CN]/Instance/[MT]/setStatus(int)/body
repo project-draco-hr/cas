@@ -1,3 +1,0 @@
-{
-  if (this.status == null)   this.status=s;
-}

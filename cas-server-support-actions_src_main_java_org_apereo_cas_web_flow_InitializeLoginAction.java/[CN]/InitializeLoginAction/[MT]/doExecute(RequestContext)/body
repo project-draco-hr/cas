@@ -1,0 +1,4 @@
+{
+  logger.debug("Initialized login sequence");
+  return success();
+}

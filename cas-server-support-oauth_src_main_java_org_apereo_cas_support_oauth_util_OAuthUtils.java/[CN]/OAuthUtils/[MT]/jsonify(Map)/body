@@ -1,0 +1,9 @@
+{
+  try {
+    final String value=new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(map);
+    return value;
+  }
+ catch (  final Exception e) {
+    throw new IllegalArgumentException(e.getMessage(),e);
+  }
+}

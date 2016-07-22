@@ -1,0 +1,8 @@
+{
+  final Set<X509CRL> results=fetch(Collections.singleton(crl));
+  if (!results.isEmpty()) {
+    return results.iterator().next();
+  }
+  logger.warn("Unable to fetch {}",crl);
+  return null;
+}

@@ -1,0 +1,10 @@
+{
+  final Service svc=getService("eduPersonTestInvalid");
+  final UsernamePasswordCredential cred=TestUtils.getCredentialsWithSameUsernameAndPassword();
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),svc);
+  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),svc,ctx);
+  final Assertion assertion=getCentralAuthenticationService().validateServiceTicket(serviceTicket.getId(),svc);
+  final Authentication auth=assertion.getPrimaryAuthentication();
+  assertEquals(auth.getPrincipal().getId(),cred.getUsername());
+}

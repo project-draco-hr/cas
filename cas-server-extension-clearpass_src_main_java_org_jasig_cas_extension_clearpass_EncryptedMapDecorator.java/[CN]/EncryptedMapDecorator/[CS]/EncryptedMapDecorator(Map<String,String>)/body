@@ -1,3 +1,0 @@
-{
-  this(decoratedMap,getRandomSalt(DEFAULT_SALT_SIZE),getRandomSalt(DEFAULT_SECRET_KEY_SIZE));
-}

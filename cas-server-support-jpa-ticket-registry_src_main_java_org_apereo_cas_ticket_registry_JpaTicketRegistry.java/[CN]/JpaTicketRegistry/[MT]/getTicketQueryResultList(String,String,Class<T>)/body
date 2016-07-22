@@ -1,0 +1,3 @@
+{
+  return this.entityManager.createQuery(query,clazz).setParameter("id",ticketId).getResultList();
+}

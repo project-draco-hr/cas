@@ -1,0 +1,5 @@
+{
+  for (  final Ticket ticket : this.ticketRegistry.getTickets()) {
+    this.ticketRegistry.deleteTicket(ticket.getId());
+  }
+}

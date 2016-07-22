@@ -1,0 +1,3 @@
+{
+  when(this.casMock.grantServiceTicket(anyString(),any(Service.class),any(AuthenticationResult.class))).thenThrow(e);
+}

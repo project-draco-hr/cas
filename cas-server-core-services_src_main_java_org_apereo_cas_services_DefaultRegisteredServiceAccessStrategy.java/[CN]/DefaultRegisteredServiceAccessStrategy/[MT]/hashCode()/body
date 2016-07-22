@@ -1,0 +1,3 @@
+{
+  return new HashCodeBuilder().append(this.enabled).append(this.ssoEnabled).append(this.requireAllAttributes).append(this.requiredAttributes).append(this.unauthorizedRedirectUrl).append(this.caseInsensitive).append(this.rejectedAttributes).toHashCode();
+}

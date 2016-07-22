@@ -1,0 +1,10 @@
+{
+  final Collection<RegisteredService> c=convertToTreeSet();
+  final Iterator<RegisteredService> it=c.iterator();
+  while (it.hasNext()) {
+    if (!predicate.apply(it.next())) {
+      it.remove();
+    }
+  }
+  return c;
+}

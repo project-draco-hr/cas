@@ -1,0 +1,7 @@
+{
+  final List<Logo> list=new ArrayList<>();
+  if (this.uiInfo != null) {
+    list.addAll(this.uiInfo.getLogos().stream().collect(Collectors.toList()));
+  }
+  return list;
+}

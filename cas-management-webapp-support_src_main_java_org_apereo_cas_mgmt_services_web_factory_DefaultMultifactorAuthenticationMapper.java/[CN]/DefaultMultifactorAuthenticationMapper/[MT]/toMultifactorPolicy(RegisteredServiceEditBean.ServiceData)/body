@@ -1,0 +1,11 @@
+{
+  if (StringUtils.isNotBlank(data.getMultiAuth().getProviders())) {
+    final DefaultRegisteredServiceMultifactorPolicy policy=new DefaultRegisteredServiceMultifactorPolicy();
+    policy.setFailureMode(RegisteredServiceMultifactorPolicy.FailureModes.valueOf(data.getMultiAuth().getFailureMode().toUpperCase()));
+    policy.setPrincipalAttributeNameTrigger(data.getMultiAuth().getPrincipalAttr().getNameTrigger());
+    policy.setPrincipalAttributeValueToMatch(data.getMultiAuth().getPrincipalAttr().getValueMatch());
+    policy.setMultifactorAuthenticationProviders(Sets.newHashSet(data.getMultiAuth().getProviders().split(",")));
+    return policy;
+  }
+  return null;
+}

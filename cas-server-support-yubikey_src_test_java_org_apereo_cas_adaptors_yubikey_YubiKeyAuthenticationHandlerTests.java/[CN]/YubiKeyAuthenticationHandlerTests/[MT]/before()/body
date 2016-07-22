@@ -1,0 +1,6 @@
+{
+  final RequestContext ctx=mock(RequestContext.class);
+  when(ctx.getConversationScope()).thenReturn(new LocalAttributeMap<>());
+  WebUtils.putAuthentication(TestUtils.getAuthentication(),ctx);
+  RequestContextHolder.setRequestContext(ctx);
+}

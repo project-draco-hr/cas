@@ -1,0 +1,20 @@
+{
+  try {
+    logger.debug("Preparing to generate metadata for entityId [{}]",this.entityId);
+    if (isMetadataMissing()) {
+      logger.info("Metadata does not exist at [{}]. Creating...",this.metadataFile);
+      logger.info("Creating self-sign certificate for signing...");
+      buildSelfSignedSigningCert();
+      logger.info("Creating self-sign certificate for encryption...");
+      buildSelfSignedEncryptionCert();
+      logger.info("Creating metadata...");
+      buildMetadataGeneratorParameters();
+    }
+    logger.info("Metadata is available at [{}]",this.metadataFile);
+    return this.metadataFile;
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+    throw Throwables.propagate(e);
+  }
+}

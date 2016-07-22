@@ -1,0 +1,15 @@
+{
+  final ReturnAllAttributeReleasePolicy policy=new ReturnAllAttributeReleasePolicy();
+  final Principal p=mock(Principal.class);
+  final Map<String,Object> map=new HashMap<>();
+  map.put("attr1","value1");
+  map.put("attr2","value2");
+  map.put("attr3",Lists.newArrayList("v3","v4"));
+  when(p.getAttributes()).thenReturn(map);
+  when(p.getId()).thenReturn("principalId");
+  final Map<String,Object> attr=policy.getAttributes(p);
+  assertEquals(attr.size(),map.size());
+  final byte[] data=SerializationUtils.serialize(policy);
+  final ReturnAllAttributeReleasePolicy p2=SerializationUtils.deserializeAndCheckObject(data,ReturnAllAttributeReleasePolicy.class);
+  assertNotNull(p2);
+}

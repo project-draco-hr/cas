@@ -1,0 +1,7 @@
+{
+  final ClientAction a=new ClientAction();
+  a.setCentralAuthenticationService(centralAuthenticationService);
+  a.setAuthenticationSystemSupport(authenticationSystemSupport);
+  a.setClients(builtClients());
+  return a;
+}

@@ -1,5 +1,0 @@
-{
-  logger.debug("Adding [{}] application context",ext);
-  final List<ArgumentExtractor> list=applicationContext.getBean("argumentExtractors",List.class);
-  list.add(ext);
-}

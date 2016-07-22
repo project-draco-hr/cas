@@ -1,0 +1,13 @@
+{
+  Authentication currentAuthentication=null;
+  if (context != null) {
+    currentAuthentication=context.getAuthentication();
+    if (currentAuthentication != null) {
+      final Authentication original=ticketGrantingTicket.getAuthentication();
+      if (!currentAuthentication.getPrincipal().equals(original.getPrincipal())) {
+        throw new MixedPrincipalException(currentAuthentication,currentAuthentication.getPrincipal(),original.getPrincipal());
+      }
+    }
+  }
+  return currentAuthentication;
+}

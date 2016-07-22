@@ -1,0 +1,7 @@
+{
+  final SelectiveFlowHandlerAdapter handler=new SelectiveFlowHandlerAdapter();
+  handler.setSupportedFlowId("login");
+  handler.setFlowExecutor(loginFlowExecutor());
+  handler.setFlowUrlHandler(loginFlowUrlHandler());
+  return handler;
+}

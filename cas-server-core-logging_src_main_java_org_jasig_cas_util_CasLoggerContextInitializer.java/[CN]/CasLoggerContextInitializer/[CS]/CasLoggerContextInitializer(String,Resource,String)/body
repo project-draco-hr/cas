@@ -1,5 +1,0 @@
-{
-  this.loggerContextPackageName=loggerContextPackageName;
-  this.logConfigurationField=logConfigurationField;
-  this.logConfigurationFile=logConfigurationFile;
-}

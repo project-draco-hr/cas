@@ -1,6 +1,0 @@
-{
-  final Authentication authentication=org.jasig.cas.authentication.TestUtils.getAuthentication();
-  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,null,authentication,new NeverExpiresExpirationPolicy());
-  assertEquals(t.getAuthentication(),authentication);
-  assertEquals(t.getId(),t.toString());
-}

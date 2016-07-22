@@ -1,9 +1,0 @@
-{
-  final RegisteredServiceImpl r=new RegisteredServiceImpl();
-  r.setId(1200);
-  r.setName("name");
-  r.setServiceId("test");
-  r.setEvaluationOrder(2);
-  this.servicesManager.save(r);
-  this.controller.updateRegisteredServiceEvaluationOrder(new MockHttpServletResponse(),5000,1000);
-}

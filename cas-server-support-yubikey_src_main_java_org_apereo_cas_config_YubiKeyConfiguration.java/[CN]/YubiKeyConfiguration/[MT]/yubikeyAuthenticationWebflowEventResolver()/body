@@ -1,0 +1,10 @@
+{
+  final YubiKeyAuthenticationWebflowEventResolver r=new YubiKeyAuthenticationWebflowEventResolver();
+  r.setAuthenticationSystemSupport(authenticationSystemSupport);
+  r.setCentralAuthenticationService(centralAuthenticationService);
+  r.setMultifactorAuthenticationProviderSelector(multifactorAuthenticationProviderSelector);
+  r.setServicesManager(servicesManager);
+  r.setTicketRegistrySupport(ticketRegistrySupport);
+  r.setWarnCookieGenerator(warnCookieGenerator);
+  return r;
+}

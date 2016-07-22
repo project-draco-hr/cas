@@ -1,0 +1,6 @@
+{
+  response.setHeader("Pragma",NO_CACHE);
+  response.setDateHeader("Expires",1L);
+  response.setHeader(CACHE_CONTROL,NO_CACHE);
+  response.addHeader(CACHE_CONTROL,"no-store");
+}

@@ -1,0 +1,12 @@
+{
+  final String ticketId=encodeTicketId(ticketIdToGet);
+  if (ticketId == null) {
+    return null;
+  }
+  final Ticket ticket=this.ticketIgniteCache.get(ticketId);
+  if (ticket == null) {
+    logger.debug("No ticket by id [{}] is found in the registry",ticketId);
+    return null;
+  }
+  return decodeTicket(ticket);
+}

@@ -1,0 +1,3 @@
+{
+  return casProperties.getServiceRegistry().getLdap().getObjectClass();
+}

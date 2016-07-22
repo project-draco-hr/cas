@@ -1,0 +1,4 @@
+{
+  this.attributeFilterMapper=attributeFilterMapper;
+  this.principalAttributesRepositoryMapper=mapper;
+}

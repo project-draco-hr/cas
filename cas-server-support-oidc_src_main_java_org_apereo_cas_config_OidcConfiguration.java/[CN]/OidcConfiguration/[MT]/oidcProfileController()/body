@@ -1,0 +1,9 @@
+{
+  final OidcProfileController c=new OidcProfileController();
+  c.setAccessTokenFactory(defaultAccessTokenFactory);
+  c.setServicesManager(servicesManager);
+  c.setTicketRegistry(ticketRegistry);
+  c.setValidator(oAuthValidator);
+  c.setPrincipalFactory(oidcPrincipalFactory());
+  return c;
+}

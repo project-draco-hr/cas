@@ -1,0 +1,16 @@
+{
+  final OAuthCode code=this.oAuthCodeFactory.create(service,authentication);
+  logger.debug("Generated OAuth code: {}",code);
+  this.ticketRegistry.addTicket(code);
+  final String state=authentication.getAttributes().get(OAuthConstants.STATE).toString();
+  final String nonce=authentication.getAttributes().get(OAuthConstants.NONCE).toString();
+  String callbackUrl=redirectUri;
+  callbackUrl=CommonHelper.addParameter(callbackUrl,OAuthConstants.CODE,code.getId());
+  if (StringUtils.isNotBlank(state)) {
+    callbackUrl=CommonHelper.addParameter(callbackUrl,OAuthConstants.STATE,state);
+  }
+  if (StringUtils.isNotBlank(nonce)) {
+    callbackUrl=CommonHelper.addParameter(callbackUrl,OAuthConstants.NONCE,nonce);
+  }
+  return callbackUrl;
+}

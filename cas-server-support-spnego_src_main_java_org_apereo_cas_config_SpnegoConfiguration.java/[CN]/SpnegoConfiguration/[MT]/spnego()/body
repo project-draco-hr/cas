@@ -1,0 +1,6 @@
+{
+  final SpnegoCredentialsAction a=new SpnegoCredentialsAction();
+  a.setNtlm(casProperties.getAuthn().getSpnego().isNtlm());
+  a.setSend401OnAuthenticationFailure(casProperties.getAuthn().getSpnego().isSend401OnAuthenticationFailure());
+  return a;
+}

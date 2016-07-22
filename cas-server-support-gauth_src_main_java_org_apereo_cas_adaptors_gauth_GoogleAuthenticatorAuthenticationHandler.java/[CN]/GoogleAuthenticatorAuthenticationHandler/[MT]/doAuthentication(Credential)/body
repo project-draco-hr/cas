@@ -1,0 +1,18 @@
+{
+  final GoogleAuthenticatorTokenCredential tokenCredential=(GoogleAuthenticatorTokenCredential)credential;
+  if (!NumberUtils.isNumber(tokenCredential.getToken())) {
+    throw new PreventedException("Invalid non-numeric OTP format specified.",new IllegalArgumentException());
+  }
+  final int otp=Integer.parseInt(tokenCredential.getToken());
+  final RequestContext context=RequestContextHolder.getRequestContext();
+  final String uid=WebUtils.getAuthentication(context).getPrincipal().getId();
+  final String secKey=this.googleAuthenticatorInstance.getCredentialRepository().getSecretKey(uid);
+  if (StringUtils.isBlank(secKey)) {
+    throw new AccountNotFoundException(uid + " cannot be found in the registry");
+  }
+  final boolean isCodeValid=this.googleAuthenticatorInstance.authorize(secKey,otp);
+  if (isCodeValid) {
+    return createHandlerResult(tokenCredential,this.principalFactory.createPrincipal(uid),null);
+  }
+  throw new FailedLoginException("Failed to authenticate code " + otp);
+}

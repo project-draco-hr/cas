@@ -1,0 +1,4 @@
+{
+  ticket=new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),new TimeoutExpirationPolicy(-100));
+  assertTrue(ticket.isExpired());
+}

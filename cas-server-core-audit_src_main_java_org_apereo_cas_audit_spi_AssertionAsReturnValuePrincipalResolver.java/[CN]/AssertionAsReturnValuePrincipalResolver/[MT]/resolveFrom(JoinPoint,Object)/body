@@ -1,0 +1,14 @@
+{
+  LOGGER.debug("Trying to see if target's return value is instance of [Assertion]...");
+  if (returnValue instanceof Assertion) {
+    LOGGER.debug("Assertion instance is found in the return value. Resolving principal id from associated Authentication...");
+    final Authentication authentication=Assertion.class.cast(returnValue).getPrimaryAuthentication();
+    return this.delegate.getPrincipalIdProvider().getPrincipalIdFrom(authentication);
+  }
+  LOGGER.debug("Resolving principal from the delegate principal resolver: [{}]...",this.delegate);
+  final String principalIdResolvedByDelagate=this.delegate.resolveFrom(auditTarget,returnValue);
+  if (UNKNOWN_USER.equals(principalIdResolvedByDelagate)) {
+    LOGGER.debug("Meaningful principal id could not be resolved by [{}]. Returning [{}]...",this,principalIdResolvedByDelagate);
+  }
+  return principalIdResolvedByDelagate;
+}

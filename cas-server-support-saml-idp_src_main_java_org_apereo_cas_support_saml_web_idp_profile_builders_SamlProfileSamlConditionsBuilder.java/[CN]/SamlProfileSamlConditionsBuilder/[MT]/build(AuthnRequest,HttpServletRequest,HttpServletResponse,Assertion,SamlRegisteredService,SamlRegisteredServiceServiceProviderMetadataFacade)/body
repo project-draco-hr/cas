@@ -1,0 +1,3 @@
+{
+  return buildConditions(authnRequest,assertion,service,adaptor);
+}

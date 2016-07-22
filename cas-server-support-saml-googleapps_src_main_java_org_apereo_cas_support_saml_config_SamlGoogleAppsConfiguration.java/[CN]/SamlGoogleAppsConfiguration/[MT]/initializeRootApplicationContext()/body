@@ -1,0 +1,3 @@
+{
+  serviceFactoryList.add(0,googleAccountsServiceFactory());
+}

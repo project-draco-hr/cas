@@ -1,0 +1,11 @@
+{
+  super.copyFrom(source);
+  try {
+    final OidcRegisteredService oidcService=(OidcRegisteredService)source;
+    setJwks(oidcService.getJwks());
+    setSignIdToken(oidcService.isSignIdToken());
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

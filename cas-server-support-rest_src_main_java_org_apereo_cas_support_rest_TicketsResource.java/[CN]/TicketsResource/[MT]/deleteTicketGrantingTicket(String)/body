@@ -1,0 +1,4 @@
+{
+  this.centralAuthenticationService.destroyTicketGrantingTicket(tgtId);
+  return new ResponseEntity<>(tgtId,HttpStatus.OK);
+}

@@ -1,0 +1,30 @@
+{
+  final BasicSignatureSigningConfiguration config=DefaultSecurityConfigurationBootstrap.buildDefaultSignatureSigningConfiguration();
+  if (this.overrideBlackListedSignatureSigningAlgorithms != null && !casProperties.getAuthn().getSamlIdp().getResponse().getOverrideSignatureCanonicalizationAlgorithm().isEmpty()) {
+    config.setBlacklistedAlgorithms(this.overrideBlackListedSignatureSigningAlgorithms);
+  }
+  if (this.overrideSignatureAlgorithms != null && !this.overrideSignatureAlgorithms.isEmpty()) {
+    config.setSignatureAlgorithms(this.overrideSignatureAlgorithms);
+  }
+  if (this.overrideSignatureReferenceDigestMethods != null && !this.overrideSignatureReferenceDigestMethods.isEmpty()) {
+    config.setSignatureReferenceDigestMethods(this.overrideSignatureReferenceDigestMethods);
+  }
+  if (this.overrideWhiteListedAlgorithms != null && !this.overrideWhiteListedAlgorithms.isEmpty()) {
+    config.setWhitelistedAlgorithms(this.overrideWhiteListedAlgorithms);
+  }
+  if (StringUtils.isNotBlank(casProperties.getAuthn().getSamlIdp().getResponse().getOverrideSignatureCanonicalizationAlgorithm())) {
+    config.setSignatureCanonicalizationAlgorithm(casProperties.getAuthn().getSamlIdp().getResponse().getOverrideSignatureCanonicalizationAlgorithm());
+  }
+  logger.debug("Signature signing blacklisted algorithms: [{}]",config.getBlacklistedAlgorithms());
+  logger.debug("Signature signing signature algorithms: [{}]",config.getSignatureAlgorithms());
+  logger.debug("Signature signing signature canonicalization algorithm: [{}]",config.getSignatureCanonicalizationAlgorithm());
+  logger.debug("Signature signing whitelisted algorithms: {}",config.getWhitelistedAlgorithms());
+  logger.debug("Signature signing reference digest methods: [{}]",config.getSignatureReferenceDigestMethods());
+  final PrivateKey privateKey=getSigningPrivateKey();
+  final X509Certificate certificate=getSigningCertificate();
+  final List<Credential> creds=new ArrayList<>();
+  creds.add(new BasicX509Credential(certificate,privateKey));
+  config.setSigningCredentials(creds);
+  logger.debug("Signature signing credentials configured");
+  return config;
+}

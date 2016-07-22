@@ -1,0 +1,3 @@
+{
+  return assertion.getChainedAuthentications().size() == 1;
+}

@@ -1,0 +1,7 @@
+{
+  this(date,principal,attributes,successes);
+  Assert.notNull(credentials,"Credential cannot be null");
+  Assert.notEmpty(credentials,"Credential cannot be empty");
+  this.credentials=credentials;
+  this.failures=failures.isEmpty() ? null : failures;
+}

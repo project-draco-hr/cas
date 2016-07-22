@@ -1,0 +1,4 @@
+{
+  this.authentications.add(authentication);
+  return this;
+}

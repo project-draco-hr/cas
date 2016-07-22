@@ -1,0 +1,5 @@
+{
+  final List<Statement> list=new ArrayList<>();
+  list.add(authnStatement);
+  return newAssertion(list,issuer,issuedAt,id);
+}

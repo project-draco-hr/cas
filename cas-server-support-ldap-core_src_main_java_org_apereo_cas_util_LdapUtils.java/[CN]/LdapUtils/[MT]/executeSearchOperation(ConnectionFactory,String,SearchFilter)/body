@@ -1,0 +1,8 @@
+{
+  try (final Connection connection=createConnection(connectionFactory)){
+    final SearchOperation searchOperation=new SearchOperation(connection);
+    final SearchRequest request=createSearchRequest(baseDn,filter);
+    request.setReferralHandler(new SearchReferralHandler());
+    return searchOperation.execute(request);
+  }
+ }

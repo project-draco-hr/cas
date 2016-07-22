@@ -1,3 +1,0 @@
-int userId
-String token
-Map<String,String> options

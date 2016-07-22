@@ -1,0 +1,5 @@
+{
+  final Service simpleService=org.apereo.cas.services.TestUtils.getService();
+  final ServiceTicket s=new ServiceTicketImpl("stest1",this.ticketGrantingTicket,simpleService,null,new NeverExpiresExpirationPolicy());
+  Assert.assertEquals(simpleService,s.getService());
+}

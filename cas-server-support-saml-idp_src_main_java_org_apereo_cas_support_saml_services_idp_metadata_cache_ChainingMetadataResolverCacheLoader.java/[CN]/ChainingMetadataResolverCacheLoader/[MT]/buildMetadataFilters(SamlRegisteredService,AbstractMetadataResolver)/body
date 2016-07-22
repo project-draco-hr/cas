@@ -1,0 +1,11 @@
+{
+  final List<MetadataFilter> metadataFilterList=new ArrayList<>();
+  buildRequiredValidUntilFilterIfNeeded(service,metadataFilterList);
+  buildSignatureValidationFilterIfNeeded(service,metadataFilterList);
+  if (!metadataFilterList.isEmpty()) {
+    final MetadataFilterChain metadataFilterChain=new MetadataFilterChain();
+    metadataFilterChain.setFilters(metadataFilterList);
+    logger.debug("Metadata filter chain initialized with [{}] filters",metadataFilterList.size());
+    metadataProvider.setMetadataFilter(metadataFilterChain);
+  }
+}

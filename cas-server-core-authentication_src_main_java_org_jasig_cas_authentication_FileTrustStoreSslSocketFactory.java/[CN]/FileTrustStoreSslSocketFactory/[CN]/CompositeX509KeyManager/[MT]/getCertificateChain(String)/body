@@ -1,9 +1,0 @@
-{
-  for (  final X509KeyManager keyManager : keyManagers) {
-    final X509Certificate[] chain=keyManager.getCertificateChain(alias);
-    if (chain != null && chain.length > 0) {
-      return chain;
-    }
-  }
-  return null;
-}

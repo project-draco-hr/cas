@@ -1,0 +1,6 @@
+{
+  final HibernateJpaVendorAdapter bean=new HibernateJpaVendorAdapter();
+  bean.setGenerateDdl(databaseProperties.isGenDdl());
+  bean.setShowSql(databaseProperties.isShowSql());
+  return bean;
+}

@@ -1,0 +1,5 @@
+{
+  final RadiusMultifactorAuthenticationProvider p=new RadiusMultifactorAuthenticationProvider();
+  p.setRadiusAuthenticationHandler(radiusTokenAuthenticationHandler());
+  return p;
+}

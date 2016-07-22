@@ -1,0 +1,6 @@
+{
+  final OAuthRegisteredService service=addRegisteredService();
+  service.setGenerateRefreshToken(true);
+  service.setJsonFormat(true);
+  internalVerifyClientOK(service,true,true,true);
+}

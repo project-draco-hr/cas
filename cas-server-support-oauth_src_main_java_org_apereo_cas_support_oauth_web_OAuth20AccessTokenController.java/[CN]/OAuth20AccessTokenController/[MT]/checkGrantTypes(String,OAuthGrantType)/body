@@ -1,0 +1,10 @@
+{
+  logger.debug("Grant type: {}",type);
+  for (  final OAuthGrantType expectedType : expectedTypes) {
+    if (isGrantType(type,expectedType)) {
+      return true;
+    }
+  }
+  logger.error("Unsupported grant type: {}",type);
+  return false;
+}

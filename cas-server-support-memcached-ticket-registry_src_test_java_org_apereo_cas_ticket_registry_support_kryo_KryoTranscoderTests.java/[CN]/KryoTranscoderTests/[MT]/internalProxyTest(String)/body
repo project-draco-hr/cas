@@ -1,0 +1,6 @@
+{
+  final Credential proxyCredential=new HttpBasedServiceCredential(new URL(proxyUrl),TestUtils.getRegisteredService("https://.+"));
+  final TicketGrantingTicket expectedTGT=new MockTicketGrantingTicket(USERNAME);
+  expectedTGT.grantServiceTicket(ST_ID,null,null,null,true);
+  assertEquals(expectedTGT,transcoder.decode(transcoder.encode(expectedTGT)));
+}

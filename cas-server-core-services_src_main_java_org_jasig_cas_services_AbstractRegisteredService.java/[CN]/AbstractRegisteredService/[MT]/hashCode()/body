@@ -1,3 +1,0 @@
-{
-  return new HashCodeBuilder(7,31).append(this.description).append(this.serviceId).append(this.name).append(this.theme).append(this.evaluationOrder).append(this.usernameAttributeProvider).append(this.accessStrategy).append(this.logoutType).append(this.attributeReleasePolicy).append(this.accessStrategy).append(this.logo).append(this.publicKey).append(this.logoutUrl).append(this.requiredHandlers).toHashCode();
-}

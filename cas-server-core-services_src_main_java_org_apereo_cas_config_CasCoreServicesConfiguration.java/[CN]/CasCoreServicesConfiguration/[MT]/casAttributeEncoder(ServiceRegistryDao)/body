@@ -1,0 +1,5 @@
+{
+  final DefaultCasAttributeEncoder e=new DefaultCasAttributeEncoder(servicesManager(serviceRegistryDao));
+  e.setCipherExecutor(registeredServiceCipherExecutor());
+  return e;
+}

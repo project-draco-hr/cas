@@ -1,0 +1,3 @@
+{
+  this(SamlProtocolConstants.PARAMETER_ENTITY_ID,metadataAdapter);
+}

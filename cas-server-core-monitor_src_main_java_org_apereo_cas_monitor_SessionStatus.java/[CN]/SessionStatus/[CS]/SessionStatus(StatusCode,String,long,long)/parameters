@@ -1,0 +1,4 @@
+StatusCode code
+String desc
+long sessions
+long serviceTickets

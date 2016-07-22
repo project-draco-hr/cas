@@ -1,5 +1,0 @@
-{
-  super();
-  super.setCache(false);
-  this.servicesManager=servicesManager;
-}

@@ -1,0 +1,10 @@
+{
+  try {
+    final Map<String,Object> map=new HashMap<>();
+    response.setStatus(HttpServletResponse.SC_OK);
+    render(map,response);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

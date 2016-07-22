@@ -1,4 +1,0 @@
-{
-  setPrefix(prefix);
-  setSuffix(suffix);
-}

@@ -1,4 +1,0 @@
-{
-  final Element element=this.cache.get(key);
-  return element == null ? null : (String)element.getValue();
-}

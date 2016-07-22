@@ -1,0 +1,26 @@
+{
+  this.errorMap=new HashMap<>();
+  this.errorMap.put(ActiveDirectoryAccountState.Error.ACCOUNT_DISABLED,new AccountDisabledException());
+  this.errorMap.put(ActiveDirectoryAccountState.Error.ACCOUNT_LOCKED_OUT,new AccountLockedException());
+  this.errorMap.put(ActiveDirectoryAccountState.Error.INVALID_LOGON_HOURS,new InvalidLoginTimeException());
+  this.errorMap.put(ActiveDirectoryAccountState.Error.INVALID_WORKSTATION,new InvalidLoginLocationException());
+  this.errorMap.put(ActiveDirectoryAccountState.Error.PASSWORD_MUST_CHANGE,new AccountPasswordMustChangeException());
+  this.errorMap.put(ActiveDirectoryAccountState.Error.PASSWORD_EXPIRED,new CredentialExpiredException());
+  this.errorMap.put(EDirectoryAccountState.Error.ACCOUNT_EXPIRED,new AccountExpiredException());
+  this.errorMap.put(EDirectoryAccountState.Error.LOGIN_LOCKOUT,new AccountLockedException());
+  this.errorMap.put(EDirectoryAccountState.Error.LOGIN_TIME_LIMITED,new InvalidLoginTimeException());
+  this.errorMap.put(EDirectoryAccountState.Error.PASSWORD_EXPIRED,new CredentialExpiredException());
+  this.errorMap.put(PasswordExpirationAccountState.Error.PASSWORD_EXPIRED,new CredentialExpiredException());
+  this.errorMap.put(PasswordPolicyControl.Error.ACCOUNT_LOCKED,new AccountLockedException());
+  this.errorMap.put(PasswordPolicyControl.Error.PASSWORD_EXPIRED,new CredentialExpiredException());
+  this.errorMap.put(PasswordPolicyControl.Error.CHANGE_AFTER_RESET,new AccountPasswordMustChangeException());
+  this.errorMap.put(FreeIPAAccountState.Error.FAILED_AUTHENTICATION,new FailedLoginException());
+  this.errorMap.put(FreeIPAAccountState.Error.PASSWORD_EXPIRED,new CredentialExpiredException());
+  this.errorMap.put(FreeIPAAccountState.Error.ACCOUNT_EXPIRED,new AccountExpiredException());
+  this.errorMap.put(FreeIPAAccountState.Error.MAXIMUM_LOGINS_EXCEEDED,new AccountLockedException());
+  this.errorMap.put(FreeIPAAccountState.Error.LOGIN_TIME_LIMITED,new InvalidLoginTimeException());
+  this.errorMap.put(FreeIPAAccountState.Error.LOGIN_LOCKOUT,new AccountLockedException());
+  this.errorMap.put(FreeIPAAccountState.Error.ACCOUNT_NOT_FOUND,new AccountNotFoundException());
+  this.errorMap.put(FreeIPAAccountState.Error.CREDENTIAL_NOT_FOUND,new FailedLoginException());
+  this.errorMap.put(FreeIPAAccountState.Error.ACCOUNT_DISABLED,new AccountDisabledException());
+}

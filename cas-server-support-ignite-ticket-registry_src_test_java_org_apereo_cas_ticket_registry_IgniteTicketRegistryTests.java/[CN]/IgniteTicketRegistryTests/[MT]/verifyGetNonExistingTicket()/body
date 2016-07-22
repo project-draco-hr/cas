@@ -1,0 +1,9 @@
+{
+  try {
+    this.ticketRegistry.getTicket("FALALALALALAL",TicketGrantingTicket.class);
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+    fail("Exception caught.  None expected.");
+  }
+}

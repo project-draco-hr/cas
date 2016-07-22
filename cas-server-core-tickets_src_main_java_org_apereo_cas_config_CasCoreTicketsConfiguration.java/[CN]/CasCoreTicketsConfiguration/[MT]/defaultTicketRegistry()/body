@@ -1,0 +1,5 @@
+{
+  final DefaultTicketRegistry r=new DefaultTicketRegistry(casProperties.getTicket().getRegistry().getInMemory().getInitialCapacity(),casProperties.getTicket().getRegistry().getInMemory().getLoadFactor(),casProperties.getTicket().getRegistry().getInMemory().getConcurrency());
+  r.setCipherExecutor(cipherExecutor);
+  return r;
+}

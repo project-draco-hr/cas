@@ -1,5 +1,0 @@
-{
-  Users.User user=new Users.User(email,phone,countryCode);
-  String content=this.post(NEW_USER_PATH,user);
-  return userFromXml(this.getStatus(),content);
-}

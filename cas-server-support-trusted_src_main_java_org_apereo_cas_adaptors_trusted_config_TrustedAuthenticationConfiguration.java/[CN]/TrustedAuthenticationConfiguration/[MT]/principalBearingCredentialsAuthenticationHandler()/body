@@ -1,0 +1,6 @@
+{
+  final PrincipalBearingCredentialsAuthenticationHandler h=new PrincipalBearingCredentialsAuthenticationHandler();
+  h.setPrincipalFactory(trustedPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

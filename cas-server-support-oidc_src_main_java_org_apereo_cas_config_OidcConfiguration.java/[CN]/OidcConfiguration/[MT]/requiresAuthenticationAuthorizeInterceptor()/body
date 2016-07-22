@@ -1,0 +1,29 @@
+{
+  final String name=oauthSecConfig.getClients().findClient(CasClient.class).getName();
+  return new SecurityInterceptor(oauthSecConfig,name){
+    @Override public boolean preHandle(    final HttpServletRequest request,    final HttpServletResponse response,    final Object handler) throws Exception {
+      final J2EContext ctx=new J2EContext(request,response);
+      final ProfileManager manager=new ProfileManager(ctx);
+      boolean clearCreds=false;
+      final Optional<UserProfile> auth=oidcAuthorizationRequestSupport().isAuthenticationProfileAvailable(ctx);
+      if (auth.isPresent()) {
+        final Optional<Long> maxAge=oidcAuthorizationRequestSupport().getOidcMaxAgeFromAuthorizationRequest(ctx);
+        if (maxAge.isPresent()) {
+          clearCreds=oidcAuthorizationRequestSupport().isCasAuthenticationOldForMaxAgeAuthorizationRequest(ctx,auth.get());
+        }
+      }
+      final Set<String> prompts=oidcAuthorizationRequestSupport().getOidcPromptFromAuthorizationRequest(ctx);
+      if (!clearCreds) {
+        clearCreds=prompts.contains(OidcConstants.PROMPT_LOGIN);
+      }
+      if (clearCreds) {
+        clearCreds=!prompts.contains(OidcConstants.PROMPT_NONE);
+      }
+      if (clearCreds) {
+        manager.remove(true);
+      }
+      return super.preHandle(request,response,handler);
+    }
+  }
+;
+}

@@ -1,0 +1,15 @@
+{
+  Collection<Ticket> col=this.hzTicketRegistry1.getTickets();
+  for (  final Ticket ticket : col) {
+    this.hzTicketRegistry1.deleteTicket(ticket.getId());
+  }
+  col=hzTicketRegistry2.getTickets();
+  assertEquals(0,col.size());
+  final TicketGrantingTicket tgt=newTestTgt();
+  this.hzTicketRegistry1.addTicket(tgt);
+  this.hzTicketRegistry1.addTicket(newTestSt(tgt));
+  col=hzTicketRegistry2.getTickets();
+  assertEquals(2,col.size());
+  assertEquals(1,hzTicketRegistry2.serviceTicketCount());
+  assertEquals(1,hzTicketRegistry2.sessionCount());
+}

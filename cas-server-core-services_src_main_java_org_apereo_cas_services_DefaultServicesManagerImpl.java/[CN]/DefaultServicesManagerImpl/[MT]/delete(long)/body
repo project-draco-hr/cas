@@ -1,0 +1,10 @@
+{
+  final RegisteredService r=findServiceBy(id);
+  if (r == null) {
+    return null;
+  }
+  this.serviceRegistryDao.delete(r);
+  this.services.remove(id);
+  publishEvent(new CasRegisteredServiceDeletedEvent(this,r));
+  return r;
+}

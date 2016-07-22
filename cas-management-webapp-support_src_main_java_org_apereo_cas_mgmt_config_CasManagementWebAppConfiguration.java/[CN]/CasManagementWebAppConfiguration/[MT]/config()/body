@@ -1,0 +1,5 @@
+{
+  final Config cfg=new Config(getDefaultServiceUrl(),casClient());
+  cfg.setAuthorizer(requireAnyRoleAuthorizer());
+  return cfg;
+}

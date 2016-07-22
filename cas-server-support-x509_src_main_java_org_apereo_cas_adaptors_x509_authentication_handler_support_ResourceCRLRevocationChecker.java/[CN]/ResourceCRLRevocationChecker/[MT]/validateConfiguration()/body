@@ -1,0 +1,19 @@
+{
+  if (this.resources == null || this.resources.isEmpty()) {
+    logger.debug("{} is not configured with resources. Skipping configuration...",this.getClass().getSimpleName());
+    return false;
+  }
+  if (this.fetcher == null) {
+    logger.debug("{} is not configured with a CRL fetcher. Skipping configuration...",this.getClass().getSimpleName());
+    return false;
+  }
+  if (getExpiredCRLPolicy() == null) {
+    logger.debug("{} is not configured with a CRL expiration policy. Skipping configuration...",this.getClass().getSimpleName());
+    return false;
+  }
+  if (getUnavailableCRLPolicy() == null) {
+    logger.debug("{} is not configured with a CRL unavailable policy. Skipping configuration...",this.getClass().getSimpleName());
+    return false;
+  }
+  return true;
+}

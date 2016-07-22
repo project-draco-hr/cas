@@ -1,0 +1,13 @@
+{
+  final AuthenticationBuilder builder=authenticateInternal(transaction);
+  final Authentication authentication=builder.build();
+  final Principal principal=authentication.getPrincipal();
+  if (principal instanceof NullPrincipal) {
+    throw new UnresolvedPrincipalException(authentication);
+  }
+  addAuthenticationMethodAttribute(builder,authentication);
+  logger.info("Authenticated {} with credentials {}.",principal,transaction.getCredentials());
+  logger.debug("Attribute map for {}: {}",principal.getId(),principal.getAttributes());
+  populateAuthenticationMetadataAttributes(builder,transaction.getCredentials());
+  return builder.build();
+}

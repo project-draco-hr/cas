@@ -1,0 +1,17 @@
+{
+  final ZonedDateTime issuedAt=DateTimeUtils.zonedDateTimeOf(response.getIssueInstant());
+  final Service service=getAssertionFrom(model).getService();
+  final Authentication authentication=getPrimaryAuthenticationFrom(model);
+  final String authenticationMethod=(String)authentication.getAttributes().get(SamlAuthenticationMetaDataPopulator.ATTRIBUTE_AUTHENTICATION_METHOD);
+  final AuthenticationStatement authnStatement=this.samlObjectBuilder.newAuthenticationStatement(authentication.getAuthenticationDate(),authenticationMethod,getPrincipal(model).getId());
+  final Assertion assertion=this.samlObjectBuilder.newAssertion(authnStatement,this.issuer,issuedAt,this.samlObjectBuilder.generateSecureRandomId());
+  final Conditions conditions=this.samlObjectBuilder.newConditions(issuedAt,service.getId(),this.issueLength);
+  assertion.setConditions(conditions);
+  final Subject subject=this.samlObjectBuilder.newSubject(getPrincipal(model).getId());
+  final Map<String,Object> attributesToSend=prepareSamlAttributes(model,service);
+  if (!attributesToSend.isEmpty()) {
+    assertion.getAttributeStatements().add(this.samlObjectBuilder.newAttributeStatement(subject,attributesToSend,this.defaultAttributeNamespace));
+  }
+  response.setStatus(this.samlObjectBuilder.newStatus(StatusCode.SUCCESS,null));
+  response.getAssertions().add(assertion);
+}

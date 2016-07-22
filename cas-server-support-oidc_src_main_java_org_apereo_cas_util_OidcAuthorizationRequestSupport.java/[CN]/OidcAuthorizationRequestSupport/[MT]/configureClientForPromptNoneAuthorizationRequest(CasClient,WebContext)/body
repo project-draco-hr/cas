@@ -1,0 +1,7 @@
+{
+  final Set<String> prompts=getOidcPromptFromAuthorizationRequest(context);
+  if (prompts.contains(OidcConstants.PROMPT_NONE)) {
+    casClient.setRenew(false);
+    casClient.setGateway(true);
+  }
+}

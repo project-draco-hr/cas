@@ -1,0 +1,9 @@
+{
+  try {
+    final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport());
+    assertNotNull(getCentralAuthenticationService().createTicketGrantingTicket(ctx));
+  }
+ catch (  final AbstractTicketException e) {
+    fail("Exception expected");
+  }
+}

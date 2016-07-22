@@ -1,0 +1,13 @@
+{
+  final RequestContext context=RequestContextHolder.getRequestContext();
+  final String uid=WebUtils.getAuthentication(context).getPrincipal().getId();
+  if (StringUtils.isNotBlank(googleAuthenticatorInstance.getCredentialRepository().getSecretKey(uid))) {
+    final GoogleAuthenticatorKey key=this.googleAuthenticatorInstance.createCredentials();
+    final GoogleAuthenticatorAccount keyAccount=new GoogleAuthenticatorAccount(key.getKey(),key.getVerificationCode(),key.getScratchCodes());
+    final String keyUri="otpauth://totp/" + casProperties.getAuthn().getMfa().getGauth().getLabel() + ':'+ uid+ "?secret="+ keyAccount.getSecretKey()+ "&issuer="+ casProperties.getAuthn().getMfa().getGauth().getIssuer();
+    requestContext.getFlowScope().put("key",keyAccount);
+    requestContext.getFlowScope().put("keyUri",keyUri);
+    return new EventFactorySupport().event(this,"register");
+  }
+  return success();
+}

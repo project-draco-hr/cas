@@ -1,0 +1,5 @@
+{
+  logger.debug("Outbound saml object to use is [{}]",samlObject.getClass().getName());
+  outboundContext.setMessage(samlObject);
+  SamlIdPUtils.preparePeerEntitySamlEndpointContext(outboundContext,adaptor);
+}

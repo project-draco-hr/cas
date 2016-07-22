@@ -1,0 +1,6 @@
+{
+  if (RegexUtils.isValidRegex(pattern)) {
+    return Optional.of(Pattern.compile(pattern,Pattern.CASE_INSENSITIVE));
+  }
+  return Optional.empty();
+}

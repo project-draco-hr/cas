@@ -1,0 +1,6 @@
+{
+  id=ID_GENERATOR.getNewTicketId("TGT");
+  final CredentialMetaData metaData=new BasicCredentialMetaData(c);
+  authentication=new DefaultAuthenticationBuilder(new DefaultPrincipalFactory().createPrincipal(principal,attributes)).addCredential(metaData).addSuccess(SimpleTestUsernamePasswordAuthenticationHandler.class.getName(),new DefaultHandlerResult(new SimpleTestUsernamePasswordAuthenticationHandler(),metaData)).build();
+  created=ZonedDateTime.now(ZoneOffset.UTC);
+}

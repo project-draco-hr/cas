@@ -1,0 +1,11 @@
+{
+  this.request.addParameter("service","TestService");
+  final RegexRegisteredService impl=new RegexRegisteredService();
+  impl.setServiceId("http://FooBar");
+  impl.setName("FooBar");
+  this.serviceManager.save(impl);
+  this.logoutAction.setFollowServiceRedirects(true);
+  final Event event=this.logoutAction.doExecute(this.requestContext);
+  assertEquals(LogoutAction.FINISH_EVENT,event.getId());
+  assertNull(this.requestContext.getFlowScope().get("logoutRedirectUrl"));
+}

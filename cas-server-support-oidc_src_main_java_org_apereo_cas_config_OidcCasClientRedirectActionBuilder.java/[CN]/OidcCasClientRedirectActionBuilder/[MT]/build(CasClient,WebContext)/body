@@ -1,0 +1,11 @@
+{
+  final Optional<Authentication> auth=oidcAuthorizationRequestSupport.isCasAuthenticationAvailable(context);
+  if (auth.isPresent()) {
+    oidcAuthorizationRequestSupport.configureClientForMaxAgeAuthorizationRequest(casClient,context,auth.get());
+  }
+  oidcAuthorizationRequestSupport.configureClientForPromptLoginAuthorizationRequest(casClient,context);
+  oidcAuthorizationRequestSupport.configureClientForPromptNoneAuthorizationRequest(casClient,context);
+  final RedirectAction action=super.build(casClient,context);
+  LOGGER.debug("Final redirect action is [{}]",action);
+  return action;
+}

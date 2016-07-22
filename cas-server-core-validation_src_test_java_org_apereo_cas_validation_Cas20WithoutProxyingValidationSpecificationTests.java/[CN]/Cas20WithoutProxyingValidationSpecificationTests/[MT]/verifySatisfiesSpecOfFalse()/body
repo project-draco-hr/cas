@@ -1,0 +1,3 @@
+{
+  assertTrue(this.validationSpecification.isSatisfiedBy(TestUtils.getAssertion(false),new MockHttpServletRequest()));
+}

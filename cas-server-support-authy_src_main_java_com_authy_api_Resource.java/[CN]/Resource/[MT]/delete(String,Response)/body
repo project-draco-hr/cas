@@ -1,5 +1,0 @@
-{
-  Map<String,String> options=new HashMap<String,String>();
-  options.put("Content-Type",XML_CONTENT_TYPE);
-  return request("DELETE",path,data,options);
-}

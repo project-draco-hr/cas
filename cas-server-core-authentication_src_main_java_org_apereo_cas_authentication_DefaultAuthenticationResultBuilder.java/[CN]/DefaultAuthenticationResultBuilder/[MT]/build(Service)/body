@@ -1,0 +1,9 @@
+{
+  final Authentication authentication=buildAuthentication();
+  if (authentication == null) {
+    LOGGER.info("Authentication result cannot be produced because no authentication is recorded into in the chain. Returning " + "null");
+    return null;
+  }
+  LOGGER.debug("Building an authentication result for authentication {} and service {}",authentication,service);
+  return new DefaultAuthenticationResult(authentication,service);
+}

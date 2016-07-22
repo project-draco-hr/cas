@@ -1,0 +1,3 @@
+{
+  return new WebflowConversationStateCipherExecutor(casProperties.getWebflow().getEncryption().getKey(),casProperties.getWebflow().getSigning().getKey(),casProperties.getWebflow().getAlg(),casProperties.getWebflow().getSigning().getKeySize(),casProperties.getWebflow().getEncryption().getKeySize());
+}

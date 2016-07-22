@@ -1,6 +1,0 @@
-{
-  this.apiUri=apiUri;
-  this.apiKey=apiKey;
-  this.users=new Users(this.apiUri,this.apiKey);
-  this.tokens=new Tokens(this.apiUri,this.apiKey);
-}

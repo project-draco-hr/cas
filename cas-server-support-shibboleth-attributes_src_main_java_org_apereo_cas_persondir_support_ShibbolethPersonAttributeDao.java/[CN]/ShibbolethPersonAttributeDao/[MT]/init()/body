@@ -1,0 +1,10 @@
+{
+  if (this.attributeResolver instanceof InitializableComponent && !((InitializableComponent)this.attributeResolver).isInitialized()) {
+    try {
+      ((InitializableComponent)this.attributeResolver).initialize();
+    }
+ catch (    final ComponentInitializationException e) {
+      throw Throwables.propagate(e);
+    }
+  }
+}

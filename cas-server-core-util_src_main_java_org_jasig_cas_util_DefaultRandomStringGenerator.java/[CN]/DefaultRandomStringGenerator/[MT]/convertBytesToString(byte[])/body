@@ -1,8 +1,0 @@
-{
-  final char[] output=new char[random.length];
-  for (int i=0; i < random.length; i++) {
-    final int index=Math.abs(random[i] % PRINTABLE_CHARACTERS.length);
-    output[i]=PRINTABLE_CHARACTERS[index];
-  }
-  return new String(output);
-}

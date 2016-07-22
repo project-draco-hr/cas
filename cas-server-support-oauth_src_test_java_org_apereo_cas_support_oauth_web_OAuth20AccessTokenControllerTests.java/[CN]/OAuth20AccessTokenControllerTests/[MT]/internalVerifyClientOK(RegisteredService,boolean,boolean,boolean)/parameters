@@ -1,0 +1,4 @@
+RegisteredService service
+boolean basicAuth
+boolean refreshToken
+boolean json

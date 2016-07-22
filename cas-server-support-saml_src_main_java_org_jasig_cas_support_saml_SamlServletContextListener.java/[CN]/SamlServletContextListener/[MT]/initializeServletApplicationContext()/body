@@ -1,3 +1,0 @@
-{
-  addControllerToCasServletHandlerMapping(SamlProtocolConstants.ENDPOINT_SAML_VALIDATE,samlValidateController);
-}

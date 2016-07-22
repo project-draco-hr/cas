@@ -1,0 +1,5 @@
+{
+  final String entityId=getEntityIdAsParameter(service).get().getValue();
+  logger.debug("Located entity id {} from service authentication request at {}",entityId,service.getId());
+  return this.webApplicationServiceFactory.createService(entityId);
+}

@@ -1,7 +1,0 @@
-{
-  final String key="MY_KEY";
-  final String value="MY_VALUE";
-  this.decorator.put(key,value);
-  assertEquals(value,this.decorator.get(key));
-  assertNull(this.map.get(key));
-}

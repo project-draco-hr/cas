@@ -11,11 +11,11 @@
  else   if (len < 4) {
     throw new IllegalArgumentException("Base64-encoded string must have at least four characters, but length specified was " + len);
   }
-  byte[] DECODABET=getDecodabet(options);
-  int len34=len * 3 / 4;
-  byte[] outBuff=new byte[len34];
+  final byte[] DECODABET=getDecodabet(options);
+  final int len34=len * 3 / 4;
+  final byte[] outBuff=new byte[len34];
   int outBuffPosn=0;
-  byte[] b4=new byte[4];
+  final byte[] b4=new byte[4];
   int b4Posn=0;
   int i=0;
   byte sbiDecode=0;
@@ -37,7 +37,7 @@
       throw new java.io.IOException(String.format("Bad Base64 input character decimal %d in array position %d",((int)source[i]) & 0xFF,i));
     }
   }
-  byte[] out=new byte[outBuffPosn];
+  final byte[] out=new byte[outBuffPosn];
   System.arraycopy(outBuff,0,out,0,outBuffPosn);
   return out;
 }

@@ -1,0 +1,8 @@
+{
+  final RemoteAddressNonInteractiveCredentialsAction a=new RemoteAddressNonInteractiveCredentialsAction();
+  a.setAuthenticationSystemSupport(authenticationSystemSupport);
+  a.setCentralAuthenticationService(centralAuthenticationService);
+  a.setPrincipalFactory(remoteAddressPrincipalFactory());
+  a.setWarnCookieGenerator(warnCookieGenerator);
+  return a;
+}

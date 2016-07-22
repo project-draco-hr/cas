@@ -1,0 +1,3 @@
+{
+  return new HashCodeBuilder().append(this.city).append(this.country).toHashCode();
+}

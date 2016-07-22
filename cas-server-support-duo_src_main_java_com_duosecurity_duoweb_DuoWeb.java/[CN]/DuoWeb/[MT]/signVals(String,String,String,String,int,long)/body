@@ -1,8 +1,8 @@
 {
   final long expire_ts=time + expire;
   final String exp=Long.toString(expire_ts);
-  final String val=username + "|" + ikey+ "|"+ exp;
-  final String cookie=prefix + "|" + Base64.encodeBytes(val.getBytes());
+  final String val=username + '|' + ikey+ '|'+ exp;
+  final String cookie=prefix + '|' + Base64.encodeBytes(val.getBytes());
   final String sig=Util.hmacSign(key,cookie);
-  return cookie + "|" + sig;
+  return cookie + '|' + sig;
 }

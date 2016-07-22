@@ -1,0 +1,5 @@
+{
+  final List<JRadiusServerImpl> list=new ArrayList<>();
+  list.add(radiusServer());
+  return list;
+}

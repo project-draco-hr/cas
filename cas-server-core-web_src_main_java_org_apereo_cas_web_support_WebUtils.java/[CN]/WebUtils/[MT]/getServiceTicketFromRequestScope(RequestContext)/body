@@ -1,0 +1,3 @@
+{
+  return context.getRequestScope().getString(PARAMETER_SERVICE_TICKET_ID);
+}

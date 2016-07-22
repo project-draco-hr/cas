@@ -1,0 +1,8 @@
+{
+  final X509CertificateCredentialsNonInteractiveAction a=new X509CertificateCredentialsNonInteractiveAction();
+  a.setAuthenticationSystemSupport(authenticationSystemSupport);
+  a.setCentralAuthenticationService(centralAuthenticationService);
+  a.setPrincipalFactory(x509PrincipalFactory());
+  a.setWarnCookieGenerator(warnCookieGenerator);
+  return a;
+}

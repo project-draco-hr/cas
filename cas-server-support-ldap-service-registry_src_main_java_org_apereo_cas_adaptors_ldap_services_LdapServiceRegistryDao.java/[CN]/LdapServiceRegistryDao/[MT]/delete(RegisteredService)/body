@@ -1,0 +1,13 @@
+{
+  try {
+    final Response<SearchResult> response=searchForServiceById(registeredService.getId());
+    if (LdapUtils.containsResultEntry(response)) {
+      final LdapEntry entry=response.getResult().getEntry();
+      return LdapUtils.executeDeleteOperation(this.connectionFactory,entry);
+    }
+  }
+ catch (  final LdapException e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+  return false;
+}

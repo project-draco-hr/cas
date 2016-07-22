@@ -1,0 +1,3 @@
+{
+  ensureServiceAccessIsAllowed(service.getId(),registeredService);
+}

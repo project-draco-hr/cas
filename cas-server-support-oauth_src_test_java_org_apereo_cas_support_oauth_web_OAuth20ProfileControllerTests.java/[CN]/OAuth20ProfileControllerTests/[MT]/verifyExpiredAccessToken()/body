@@ -1,0 +1,15 @@
+{
+  final Principal principal=org.apereo.cas.authentication.TestUtils.getPrincipal(ID,new HashMap<>());
+  final Authentication authentication=getAuthentication(principal);
+  final DefaultAccessTokenFactory expiringAccessTokenFactory=new DefaultAccessTokenFactory();
+  expiringAccessTokenFactory.setExpirationPolicy(new AlwaysExpiresExpirationPolicy());
+  final AccessTokenImpl accessToken=(AccessTokenImpl)expiringAccessTokenFactory.create(TestUtils.getService(),authentication);
+  oAuth20ProfileController.getTicketRegistry().addTicket(accessToken);
+  final MockHttpServletRequest mockRequest=new MockHttpServletRequest("GET",CONTEXT + OAuthConstants.PROFILE_URL);
+  mockRequest.setParameter(OAuthConstants.ACCESS_TOKEN,accessToken.getId());
+  final MockHttpServletResponse mockResponse=new MockHttpServletResponse();
+  final ResponseEntity<String> entity=oAuth20ProfileController.handleRequestInternal(mockRequest,mockResponse);
+  assertEquals(HttpStatus.UNAUTHORIZED,entity.getStatusCode());
+  assertEquals(CONTENT_TYPE,mockResponse.getContentType());
+  assertTrue(entity.getBody().contains(OAuthConstants.EXPIRED_ACCESS_TOKEN));
+}

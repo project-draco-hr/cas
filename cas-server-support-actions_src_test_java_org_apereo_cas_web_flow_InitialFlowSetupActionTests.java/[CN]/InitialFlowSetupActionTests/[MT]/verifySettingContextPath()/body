@@ -1,0 +1,9 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.setContextPath(CONST_CONTEXT_PATH);
+  final MockRequestContext context=new MockRequestContext();
+  context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
+  this.action.doExecute(context);
+  assertEquals(CONST_CONTEXT_PATH + '/',this.warnCookieGenerator.getCookiePath());
+  assertEquals(CONST_CONTEXT_PATH + '/',this.tgtCookieGenerator.getCookiePath());
+}

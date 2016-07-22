@@ -1,0 +1,3 @@
+{
+  this.applicationContextProvider.setApplicationContext(this.applicationContext);
+}

@@ -1,0 +1,8 @@
+{
+  final RegisteredServiceResource r=new RegisteredServiceResource();
+  r.setCentralAuthenticationService(centralAuthenticationService);
+  r.setServicesManager(servicesManager);
+  r.setAttributeName(casProperties.getRest().getAttributeName());
+  r.setAttributeValue(casProperties.getRest().getAttributeValue());
+  return r;
+}

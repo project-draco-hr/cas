@@ -1,0 +1,8 @@
+{
+  final String encTicketId=encodeTicketId(ticketId);
+  if (ticketId == null) {
+    return null;
+  }
+  final Ticket ticket=Ticket.class.cast(cache.get(encTicketId));
+  return ticket;
+}

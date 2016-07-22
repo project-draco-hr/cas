@@ -1,0 +1,23 @@
+{
+  JsonWebKeySet jsonWebKeySet=null;
+  try {
+    if (StringUtils.isNotBlank(service.getJwks())) {
+      logger.debug("Loading JWKS from {}",service.getJwks());
+      final Resource resource=this.resourceLoader.getResource(service.getJwks());
+      jsonWebKeySet=new JsonWebKeySet(IOUtils.toString(resource.getInputStream(),"UTF-8"));
+    }
+  }
+ catch (  final Exception e) {
+    logger.debug(e.getMessage(),e);
+  }
+ finally {
+    if (jsonWebKeySet == null) {
+      logger.debug("Loading default JWKS from {}",this.jwksFile);
+      if (this.jwksFile != null) {
+        final String jsonJwks=IOUtils.toString(this.jwksFile.getInputStream(),"UTF-8");
+        jsonWebKeySet=new JsonWebKeySet(jsonJwks);
+      }
+    }
+  }
+  return jsonWebKeySet != null ? Optional.of(jsonWebKeySet) : Optional.empty();
+}

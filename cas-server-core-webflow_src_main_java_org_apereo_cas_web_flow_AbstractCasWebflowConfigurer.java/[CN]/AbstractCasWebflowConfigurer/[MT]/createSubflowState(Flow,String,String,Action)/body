@@ -1,0 +1,11 @@
+{
+  if (containsFlowState(flow,id)) {
+    logger.debug("Flow {} already contains a definition for state id {}",flow.getId(),id);
+    return (SubflowState)flow.getTransitionableState(id);
+  }
+  final SubflowState state=new SubflowState(flow,id,new BasicSubflowExpression(subflow,this.loginFlowDefinitionRegistry));
+  if (entryAction != null) {
+    state.getEntryActionList().add(entryAction);
+  }
+  return state;
+}

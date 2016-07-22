@@ -1,0 +1,7 @@
+{
+  final LogoutManagerImpl mgr=new LogoutManagerImpl();
+  mgr.setSingleLogoutCallbacksDisabled(casProperties.getSlo().isDisabled());
+  mgr.setLogoutMessageBuilder(logoutBuilder());
+  mgr.setSingleLogoutServiceMessageHandler(defaultSingleLogoutServiceMessageHandler());
+  return mgr;
+}

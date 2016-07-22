@@ -1,0 +1,4 @@
+Assertion samlObject
+SamlRegisteredService service
+SamlRegisteredServiceServiceProviderMetadataFacade adaptor
+Credential credential

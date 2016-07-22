@@ -1,0 +1,13 @@
+{
+  final ParameterList parameters=new ParameterList(request.getParameterMap());
+  final String mode=parameters.hasParameter(OpenIdProtocolConstants.OPENID_MODE) ? parameters.getParameterValue(OpenIdProtocolConstants.OPENID_MODE) : null;
+  Message response=null;
+  if (StringUtils.equals(mode,OpenIdProtocolConstants.ASSOCIATE)) {
+    response=this.serverManager.associationResponse(parameters);
+  }
+  final Map<String,String> responseParams=new HashMap<>();
+  if (response != null) {
+    responseParams.putAll(response.getParameterMap());
+  }
+  return responseParams;
+}

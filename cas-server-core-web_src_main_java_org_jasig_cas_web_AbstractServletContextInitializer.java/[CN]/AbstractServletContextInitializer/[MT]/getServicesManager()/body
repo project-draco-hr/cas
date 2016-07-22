@@ -1,3 +1,0 @@
-{
-  return this.applicationContext.getBean("servicesManager",ReloadableServicesManager.class);
-}

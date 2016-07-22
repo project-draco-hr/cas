@@ -1,0 +1,11 @@
+{
+  for (  final LdapEntry entry : this.getEntries()) {
+    final String username=getUsername(entry);
+    final String psw=entry.getAttribute("userPassword").getStringValue();
+    final PersonDirectoryPrincipalResolver resolver=new PersonDirectoryPrincipalResolver();
+    resolver.setAttributeRepository(this.attributeDao);
+    final Principal p=resolver.resolve(new UsernamePasswordCredential(username,psw));
+    assertNotNull(p);
+    assertTrue(p.getAttributes().containsKey("displayName"));
+  }
+}

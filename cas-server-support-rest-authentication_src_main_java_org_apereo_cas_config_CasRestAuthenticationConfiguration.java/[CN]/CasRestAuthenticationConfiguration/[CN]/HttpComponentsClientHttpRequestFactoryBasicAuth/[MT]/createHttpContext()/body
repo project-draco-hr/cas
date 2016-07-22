@@ -1,0 +1,8 @@
+{
+  final AuthCache authCache=new BasicAuthCache();
+  final BasicScheme basicAuth=new BasicScheme();
+  authCache.put(host,basicAuth);
+  final BasicHttpContext localcontext=new BasicHttpContext();
+  localcontext.setAttribute(HttpClientContext.AUTH_CACHE,authCache);
+  return localcontext;
+}

@@ -1,0 +1,25 @@
+{
+  final ZonedDateTime currentDateTime=ZonedDateTime.now(ZoneOffset.UTC);
+  final ZonedDateTime notBeforeIssueInstant=ZonedDateTime.parse("2003-04-17T00:46:02Z");
+  final ApplicationContext context=ApplicationContextProvider.getApplicationContext();
+  final ServicesManager servicesManager=context.getBean("servicesManager",ServicesManager.class);
+  final RegisteredService registeredService=servicesManager.findServiceBy(service);
+  if (registeredService == null || !registeredService.getAccessStrategy().isServiceAccessAllowed()) {
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
+  }
+  final String userId=registeredService.getUsernameAttributeProvider().resolveUsername(service.getPrincipal(),service);
+  final org.opensaml.saml.saml2.core.Response response=this.samlObjectBuilder.newResponse(this.samlObjectBuilder.generateSecureRandomId(),currentDateTime,service.getId(),service);
+  response.setStatus(this.samlObjectBuilder.newStatus(StatusCode.SUCCESS,null));
+  final AuthnStatement authnStatement=this.samlObjectBuilder.newAuthnStatement(AuthnContext.PASSWORD_AUTHN_CTX,currentDateTime);
+  final Assertion assertion=this.samlObjectBuilder.newAssertion(authnStatement,"https://www.opensaml.org/IDP",notBeforeIssueInstant,this.samlObjectBuilder.generateSecureRandomId());
+  final Conditions conditions=this.samlObjectBuilder.newConditions(notBeforeIssueInstant,currentDateTime.plusSeconds(this.skewAllowance),service.getId());
+  assertion.setConditions(conditions);
+  final Subject subject=this.samlObjectBuilder.newSubject(NameID.EMAIL,userId,service.getId(),currentDateTime.plusSeconds(this.skewAllowance),service.getRequestId());
+  assertion.setSubject(subject);
+  response.getAssertions().add(assertion);
+  final StringWriter writer=new StringWriter();
+  this.samlObjectBuilder.marshalSamlXmlObject(response,writer);
+  final String result=writer.toString();
+  logger.debug("Generated Google SAML response: {}",result);
+  return result;
+}

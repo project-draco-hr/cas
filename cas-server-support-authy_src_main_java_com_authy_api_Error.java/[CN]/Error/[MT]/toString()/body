@@ -1,3 +1,0 @@
-{
-  return "Error [message=" + message + ", url="+ url+ ", countryCode="+ countryCode+ "]";
-}

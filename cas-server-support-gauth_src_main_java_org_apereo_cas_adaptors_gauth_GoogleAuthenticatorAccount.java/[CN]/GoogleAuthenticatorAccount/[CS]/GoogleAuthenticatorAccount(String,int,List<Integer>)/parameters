@@ -1,0 +1,3 @@
+String secretKey
+int validationCode
+List<Integer> scratchCodes

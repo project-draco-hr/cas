@@ -1,5 +1,0 @@
-{
-  standardCred.setIssuedOn(new DateTime().withZone(DateTimeZone.UTC).minusSeconds(3));
-  final boolean result=standardCred.isValid("urn:federation:cas","http://adfs.example.com/adfs/services/trust",2000);
-  assertFalse("testIsValidOldToken() - False",result);
-}

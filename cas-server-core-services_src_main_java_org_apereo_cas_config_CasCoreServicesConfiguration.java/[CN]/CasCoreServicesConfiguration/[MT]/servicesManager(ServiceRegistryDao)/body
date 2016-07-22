@@ -1,0 +1,5 @@
+{
+  final DefaultServicesManagerImpl impl=new DefaultServicesManagerImpl();
+  impl.setServiceRegistryDao(serviceRegistryDao);
+  return impl;
+}

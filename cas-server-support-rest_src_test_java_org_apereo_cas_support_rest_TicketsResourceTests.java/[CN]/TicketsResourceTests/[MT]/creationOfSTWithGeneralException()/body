@@ -1,0 +1,4 @@
+{
+  configureCasMockSTCreationToThrow(new RuntimeException("Other exception"));
+  this.mockMvc.perform(post("/cas/v1/tickets/TGT-1").param("service",TestUtils.getService().getId())).andExpect(status().is5xxServerError()).andExpect(content().string("Other exception"));
+}

@@ -1,0 +1,26 @@
+{
+  try {
+    final HttpServletRequest request=WebUtils.getHttpServletRequest(requestContext);
+    final HttpServletResponse response=WebUtils.getHttpServletResponse(requestContext);
+    final DigestAuthExtractor extractor=new DigestAuthExtractor(this.getClass().getSimpleName());
+    final WebContext webContext=new J2EContext(request,response);
+    final DigestCredentials credentials=extractor.extract(webContext);
+    if (credentials == null) {
+      response.addHeader(HttpConstants.AUTHENTICATE_HEADER,DigestAuthenticationUtils.createAuthenticateHeader(this.realm,this.authenticationMethod,this.nonce));
+      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+      return null;
+    }
+    LOGGER.debug("Received digest authentication request from credentials {} ",credentials);
+    final String serverResponse=credentials.calculateServerDigest(true,this.credentialRetriever.findCredential(credentials.getUsername(),this.realm));
+    final String clientResponse=credentials.getToken();
+    if (!serverResponse.equals(clientResponse)) {
+      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+      return null;
+    }
+    return new DigestCredential(credentials.getUsername(),this.realm,credentials.getToken());
+  }
+ catch (  final Exception e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+  return null;
+}

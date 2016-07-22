@@ -1,0 +1,25 @@
+{
+  try {
+    final BufferedReader br=new BufferedReader(new InputStreamReader(config.getEncryptionPrivateKey().getInputStream()));
+    Security.addProvider(new BouncyCastleProvider());
+    final PEMParser pemParser=new PEMParser(br);
+    final Object privateKeyPemObject=pemParser.readObject();
+    final JcaPEMKeyConverter converter=new JcaPEMKeyConverter().setProvider(new BouncyCastleProvider());
+    final KeyPair kp;
+    if (privateKeyPemObject instanceof PEMEncryptedKeyPair) {
+      final PEMEncryptedKeyPair ckp=(PEMEncryptedKeyPair)privateKeyPemObject;
+      final PEMDecryptorProvider decProv=new JcePEMDecryptorProviderBuilder().build(config.getEncryptionPrivateKeyPassword().toCharArray());
+      kp=converter.getKeyPair(ckp.decryptKeyPair(decProv));
+    }
+ else {
+      kp=converter.getKeyPair((PEMKeyPair)privateKeyPemObject);
+    }
+    final X509CertParser certParser=new X509CertParser();
+    certParser.engineInit(config.getEncryptionCertificate().getInputStream());
+    final X509CertificateObject cert=(X509CertificateObject)certParser.engineRead();
+    return new BasicX509Credential(cert,kp.getPrivate());
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

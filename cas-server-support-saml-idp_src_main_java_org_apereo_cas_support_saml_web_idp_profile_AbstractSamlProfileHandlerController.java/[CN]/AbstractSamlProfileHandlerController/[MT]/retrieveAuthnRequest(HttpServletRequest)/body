@@ -1,0 +1,7 @@
+{
+  logger.debug("Retrieving authentication request from scope");
+  final String requestValue=request.getParameter(SamlProtocolConstants.PARAMETER_SAML_REQUEST);
+  final byte[] encodedRequest=EncodingUtils.decodeBase64(requestValue.getBytes("UTF-8"));
+  final AuthnRequest authnRequest=(AuthnRequest)XMLObjectSupport.unmarshallFromInputStream(this.configBean.getParserPool(),new ByteArrayInputStream(encodedRequest));
+  return authnRequest;
+}

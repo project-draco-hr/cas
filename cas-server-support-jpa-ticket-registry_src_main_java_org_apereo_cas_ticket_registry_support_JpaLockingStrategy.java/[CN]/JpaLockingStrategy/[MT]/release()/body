@@ -1,0 +1,14 @@
+{
+  final Lock lock=this.entityManager.find(Lock.class,this.applicationId,LockModeType.OPTIMISTIC);
+  if (lock == null) {
+    return;
+  }
+  final String owner=lock.getUniqueId();
+  if (!this.uniqueId.equals(owner)) {
+    throw new IllegalStateException("Cannot release lock owned by " + owner);
+  }
+  lock.setUniqueId(null);
+  lock.setExpirationDate(null);
+  LOGGER.debug("Releasing {} lock held by {}.",this.applicationId,this.uniqueId);
+  this.entityManager.persist(lock);
+}

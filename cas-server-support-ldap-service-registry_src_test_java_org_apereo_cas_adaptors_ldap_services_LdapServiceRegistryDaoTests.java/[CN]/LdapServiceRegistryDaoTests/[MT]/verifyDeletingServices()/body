@@ -1,0 +1,9 @@
+{
+  this.dao.save(getRegexRegisteredService());
+  this.dao.save(getRegexRegisteredService());
+  final List<RegisteredService> services=this.dao.load();
+  for (  final RegisteredService registeredService : services) {
+    this.dao.delete(registeredService);
+  }
+  assertEquals(0,this.dao.load().size());
+}

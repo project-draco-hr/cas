@@ -1,3 +1,0 @@
-{
-  return new EhCacheStatistics[]{new EhCacheStatistics(cache)};
-}

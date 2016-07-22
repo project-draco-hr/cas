@@ -1,0 +1,11 @@
+{
+  final List<String> values=new ArrayList<>();
+  for (  final RDN rdn : rdnSequence.backward()) {
+    for (    final Attribute attr : rdn.getAttributes()) {
+      if (attr.getType().equals(attribute)) {
+        values.add(attr.getValue());
+      }
+    }
+  }
+  return values.toArray(new String[values.size()]);
+}

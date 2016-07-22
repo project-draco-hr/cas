@@ -1,0 +1,5 @@
+{
+  final BasicPrincipalResolver p=new BasicPrincipalResolver();
+  p.setPrincipalFactory(proxyPrincipalFactory());
+  return p;
+}

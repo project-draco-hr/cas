@@ -1,3 +1,0 @@
-{
-  this.cas.delegateTicketGrantingTicket(ST_ID,org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
-}

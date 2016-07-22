@@ -1,6 +1,0 @@
-{
-  final SearchOperation searchOperation=new SearchOperation(connection);
-  final SearchRequest request=newRequest(filter);
-  logger.debug("Using search request {}",request.toString());
-  return searchOperation.execute(request);
-}

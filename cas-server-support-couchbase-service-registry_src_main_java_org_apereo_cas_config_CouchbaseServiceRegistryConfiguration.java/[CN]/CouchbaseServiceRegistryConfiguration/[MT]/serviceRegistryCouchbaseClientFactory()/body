@@ -1,0 +1,8 @@
+{
+  final CouchbaseClientFactory factory=new CouchbaseClientFactory();
+  factory.setNodes(StringUtils.commaDelimitedListToSet(casProperties.getServiceRegistry().getCouchbase().getNodeSet()));
+  factory.setTimeout(casProperties.getServiceRegistry().getCouchbase().getTimeout());
+  factory.setBucketName(casProperties.getServiceRegistry().getCouchbase().getBucket());
+  factory.setPassword(casProperties.getServiceRegistry().getCouchbase().getPassword());
+  return factory;
+}

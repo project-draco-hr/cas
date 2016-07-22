@@ -1,0 +1,13 @@
+{
+  if (containsFlowState(flow,id)) {
+    logger.debug("Flow {} already contains a definition for state id {}",flow.getId(),id);
+    return (DecisionState)flow.getTransitionableState(id);
+  }
+  final DecisionState decisionState=new DecisionState(flow,id);
+  final Expression expression=createExpression(flow,testExpression,Boolean.class);
+  final Transition thenTransition=createTransition(expression,thenStateId);
+  decisionState.getTransitionSet().add(thenTransition);
+  final Transition elseTransition=createTransition("*",elseStateId);
+  decisionState.getTransitionSet().add(elseTransition);
+  return decisionState;
+}

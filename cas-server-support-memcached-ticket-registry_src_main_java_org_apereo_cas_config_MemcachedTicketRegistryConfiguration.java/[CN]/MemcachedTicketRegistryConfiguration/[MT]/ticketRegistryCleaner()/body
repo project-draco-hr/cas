@@ -1,0 +1,8 @@
+{
+  return new DefaultTicketRegistryCleaner(){
+    @Override protected boolean isCleanerSupported(){
+      return false;
+    }
+  }
+;
+}

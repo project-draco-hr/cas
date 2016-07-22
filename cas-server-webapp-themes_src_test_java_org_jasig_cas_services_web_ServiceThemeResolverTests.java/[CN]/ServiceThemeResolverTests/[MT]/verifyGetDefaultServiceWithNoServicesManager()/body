@@ -1,7 +1,0 @@
-{
-  this.serviceThemeResolver.setServicesManager(null);
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  request.setParameter("service","myServiceId");
-  request.addHeader("User-Agent","Mozilla");
-  assertEquals("test",this.serviceThemeResolver.resolveThemeName(request));
-}

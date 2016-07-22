@@ -1,0 +1,3 @@
+String currentDn
+ConnectionFactory connectionFactory
+Map<String,Set<String>> attributes

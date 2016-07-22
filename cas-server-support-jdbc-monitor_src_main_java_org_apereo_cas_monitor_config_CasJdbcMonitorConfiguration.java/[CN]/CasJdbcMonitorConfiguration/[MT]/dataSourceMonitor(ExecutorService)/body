@@ -1,0 +1,7 @@
+{
+  final JdbcDataSourceMonitor m=new JdbcDataSourceMonitor(monitorDataSource());
+  m.setValidationQuery(casProperties.getMonitor().getJdbc().getValidationQuery());
+  m.setMaxWait(casProperties.getMonitor().getJdbc().getMaxWait());
+  m.setExecutor(executor);
+  return m;
+}

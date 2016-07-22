@@ -1,3 +1,0 @@
-{
-  return String.format("Here is one %s and here is another %s",ID1,ID2);
-}

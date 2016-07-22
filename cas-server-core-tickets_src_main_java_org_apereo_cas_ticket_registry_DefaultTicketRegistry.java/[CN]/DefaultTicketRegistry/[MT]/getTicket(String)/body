@@ -1,0 +1,7 @@
+{
+  final String encTicketId=encodeTicketId(ticketId);
+  if (ticketId == null) {
+    return null;
+  }
+  return decodeTicket(this.cache.get(encTicketId));
+}

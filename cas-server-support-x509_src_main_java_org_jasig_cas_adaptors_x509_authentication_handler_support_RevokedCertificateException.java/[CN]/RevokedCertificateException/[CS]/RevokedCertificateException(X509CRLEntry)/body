@@ -1,3 +1,0 @@
-{
-  this(entry.getRevocationDate(),entry.getSerialNumber(),getReasonFromX509Entry(entry));
-}

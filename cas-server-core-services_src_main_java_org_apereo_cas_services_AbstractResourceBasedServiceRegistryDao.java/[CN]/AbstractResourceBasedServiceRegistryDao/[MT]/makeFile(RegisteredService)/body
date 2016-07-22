@@ -1,0 +1,12 @@
+{
+  final String fileName=StringUtils.remove(service.getName() + '-' + service.getId()+ '.'+ getExtension()," ");
+  try {
+    final File svcFile=new File(this.serviceRegistryDirectory.toFile(),fileName);
+    LOGGER.debug("Using [{}] as the service definition file",svcFile.getCanonicalPath());
+    return svcFile;
+  }
+ catch (  final IOException e) {
+    LOGGER.warn("Service file name {} is invalid; Examine for illegal characters in the name.",fileName);
+    throw new IllegalArgumentException(e);
+  }
+}

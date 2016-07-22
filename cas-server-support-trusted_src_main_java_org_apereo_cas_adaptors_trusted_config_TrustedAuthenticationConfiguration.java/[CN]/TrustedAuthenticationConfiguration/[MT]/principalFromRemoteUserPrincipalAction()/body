@@ -1,0 +1,8 @@
+{
+  final PrincipalFromRequestUserPrincipalNonInteractiveCredentialsAction a=new PrincipalFromRequestUserPrincipalNonInteractiveCredentialsAction();
+  a.setAuthenticationSystemSupport(authenticationSystemSupport);
+  a.setCentralAuthenticationService(centralAuthenticationService);
+  a.setPrincipalFactory(trustedPrincipalFactory());
+  a.setWarnCookieGenerator(warnCookieGenerator);
+  return a;
+}

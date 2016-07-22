@@ -1,7 +1,0 @@
-{
-  final SimpleHttpClientFactoryBean clientFactory=new SimpleHttpClientFactoryBean();
-  clientFactory.setAcceptableCodes(new int[]{900});
-  final HttpClient httpClient=clientFactory.getObject();
-  this.handler.setHttpClient(httpClient);
-  assertNull(this.handler.handle(new HttpBasedServiceCredential(new URL("http://www.rutgers.edu"),org.jasig.cas.authentication.TestUtils.getRegisteredService("https://some.app.edu")),proxyGrantingTicket));
-}

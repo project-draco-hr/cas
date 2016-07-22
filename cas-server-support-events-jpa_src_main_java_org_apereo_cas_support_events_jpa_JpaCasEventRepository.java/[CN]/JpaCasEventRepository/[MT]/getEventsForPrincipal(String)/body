@@ -1,0 +1,3 @@
+{
+  return this.entityManager.createQuery("select r from CasEvent r where r.principalId = :principalId",CasEvent.class).setParameter("principalId",id).getResultList();
+}

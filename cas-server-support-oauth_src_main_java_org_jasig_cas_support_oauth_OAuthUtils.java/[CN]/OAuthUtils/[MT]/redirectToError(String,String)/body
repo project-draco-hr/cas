@@ -1,7 +1,0 @@
-{
-  String useUrl=url;
-  if (StringUtils.isBlank(useUrl)) {
-    useUrl="/";
-  }
-  return OAuthUtils.redirectTo(OAuthUtils.addParameter(useUrl,"error",error));
-}

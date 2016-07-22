@@ -1,0 +1,11 @@
+{
+  for (  final RegisteredService aService : servicesManager.getAllServices()) {
+    if (aService instanceof OAuthRegisteredService) {
+      final OAuthRegisteredService service=(OAuthRegisteredService)aService;
+      if (service.getClientId().equals(clientId)) {
+        return service;
+      }
+    }
+  }
+  return null;
+}

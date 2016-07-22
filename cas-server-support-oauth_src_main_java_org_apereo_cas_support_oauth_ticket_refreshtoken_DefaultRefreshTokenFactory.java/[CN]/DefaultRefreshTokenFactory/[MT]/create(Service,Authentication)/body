@@ -1,0 +1,4 @@
+{
+  final String codeId=this.refreshTokenIdGenerator.getNewTicketId(RefreshToken.PREFIX);
+  return new RefreshTokenImpl(codeId,service,authentication,this.expirationPolicy);
+}

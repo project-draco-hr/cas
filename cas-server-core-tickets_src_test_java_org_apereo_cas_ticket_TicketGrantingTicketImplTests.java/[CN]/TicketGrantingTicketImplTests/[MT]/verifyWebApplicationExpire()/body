@@ -1,0 +1,8 @@
+{
+  final MockService testService=new MockService("test");
+  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,null,TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+  t.grantServiceTicket(this.uniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX),testService,new NeverExpiresExpirationPolicy(),null,true);
+  assertFalse(t.isExpired());
+  t.markTicketExpired();
+  assertTrue(t.isExpired());
+}

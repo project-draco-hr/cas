@@ -1,0 +1,5 @@
+{
+  super(name,null,PatternLayout.createDefaultLayout());
+  this.config=config;
+  this.appenderRef=appenderRef;
+}

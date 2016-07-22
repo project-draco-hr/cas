@@ -1,0 +1,4 @@
+{
+  configureCasMockTGTCreationToThrow(new RuntimeException("Other exception"));
+  this.mockMvc.perform(post("/cas/v1/tickets").param("username","test").param("password","test")).andExpect(status().is5xxServerError()).andExpect(content().string("Other exception"));
+}

@@ -1,0 +1,6 @@
+{
+  final Map<String,AuditActionResolver> map=new HashMap<>();
+  map.put("DELETE_SERVICE_ACTION_RESOLVER",deleteServiceActionResolver());
+  map.put("SAVE_SERVICE_ACTION_RESOLVER",saveServiceActionResolver());
+  return map;
+}

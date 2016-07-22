@@ -1,3 +1,0 @@
-{
-  this.getTicket().removeAllServices();
-}
