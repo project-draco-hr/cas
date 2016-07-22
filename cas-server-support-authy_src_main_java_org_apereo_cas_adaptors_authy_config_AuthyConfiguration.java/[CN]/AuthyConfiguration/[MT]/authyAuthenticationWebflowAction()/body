@@ -1,0 +1,5 @@
+{
+  final AuthyAuthenticationWebflowAction a=new AuthyAuthenticationWebflowAction();
+  a.setCasWebflowEventResolver(authyAuthenticationWebflowEventResolver());
+  return a;
+}

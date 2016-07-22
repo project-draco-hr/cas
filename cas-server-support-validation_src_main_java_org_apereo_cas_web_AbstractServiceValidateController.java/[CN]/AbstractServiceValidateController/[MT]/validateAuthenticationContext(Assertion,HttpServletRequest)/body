@@ -2,7 +2,7 @@
   logger.debug("Locating the primary authentication associated with this service request {}",assertion.getService());
   final RegisteredService service=this.servicesManager.findServiceBy(assertion.getService());
   RegisteredServiceAccessStrategyUtils.ensureServiceAccessIsAllowed(assertion.getService(),service);
-  final Map<String,MultifactorAuthenticationProvider> providers=this.applicationContext.getBeansOfType(MultifactorAuthenticationProvider.class);
+  final Map<String,MultifactorAuthenticationProvider> providers=this.applicationContext.getBeansOfType(MultifactorAuthenticationProvider.class,false,true);
   final Authentication authentication=assertion.getPrimaryAuthentication();
   final Optional<String> requestedContext=this.multifactorTriggerSelectionStrategy.resolve(providers.values(),request,service,authentication.getPrincipal());
   if (!requestedContext.isPresent()) {

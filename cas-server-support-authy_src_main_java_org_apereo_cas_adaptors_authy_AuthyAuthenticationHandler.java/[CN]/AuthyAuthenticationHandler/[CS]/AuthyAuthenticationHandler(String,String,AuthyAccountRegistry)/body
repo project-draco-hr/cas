@@ -1,7 +1,8 @@
 {
-  final URL url=new URL(apiUrl);
+  final String authyUrl=StringUtils.isBlank(apiUrl) ? AuthyApiClient.DEFAULT_API_URI : apiUrl;
+  final URL url=new URL(authyUrl);
   final boolean testFlag=url.getProtocol().equals("http");
-  this.authyClient=new AuthyApiClient(apiKey,apiUrl,testFlag);
+  this.authyClient=new AuthyApiClient(apiKey,authyUrl,testFlag);
   this.authyUsers=this.authyClient.getUsers();
   this.authyTokens=this.authyClient.getTokens();
   this.registry=registry;
