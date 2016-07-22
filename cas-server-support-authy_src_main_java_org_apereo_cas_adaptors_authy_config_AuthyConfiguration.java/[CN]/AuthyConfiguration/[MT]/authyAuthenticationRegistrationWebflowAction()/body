@@ -1,0 +1,4 @@
+{
+  final AuthyAuthenticationRegistrationWebflowAction a=new AuthyAuthenticationRegistrationWebflowAction(authyClientInstance());
+  return a;
+}

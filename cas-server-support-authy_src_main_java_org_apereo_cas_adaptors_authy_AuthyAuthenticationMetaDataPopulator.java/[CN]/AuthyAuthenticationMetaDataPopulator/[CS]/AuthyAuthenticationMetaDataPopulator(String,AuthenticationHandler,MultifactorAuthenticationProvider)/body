@@ -1,0 +1,5 @@
+{
+  this.authenticationContextAttribute=authenticationContextAttribute;
+  this.authenticationHandler=authenticationHandler;
+  this.provider=provider;
+}

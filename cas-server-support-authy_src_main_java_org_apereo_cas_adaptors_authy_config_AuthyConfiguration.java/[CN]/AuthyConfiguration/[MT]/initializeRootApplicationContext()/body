@@ -1,0 +1,4 @@
+{
+  authenticationHandlersResolvers.put(authyAuthenticationHandler(),null);
+  authenticationMetadataPopulators.add(0,authyAuthenticationMetaDataPopulator());
+}

@@ -1,0 +1,16 @@
+{
+  final StringBuilder builder=new StringBuilder();
+  if (err != null) {
+    builder.append("Authy Error");
+    if (StringUtils.isNotBlank(err.getCountryCode())) {
+      builder.append(": Country Code: ").append(err.getCountryCode());
+    }
+    if (StringUtils.isNotBlank(err.getMessage())) {
+      builder.append(": Message: ").append(err.getMessage());
+    }
+  }
+ else {
+    builder.append("An unknown error has occurred. Check your API key and URL settings.");
+  }
+  return builder.toString();
+}

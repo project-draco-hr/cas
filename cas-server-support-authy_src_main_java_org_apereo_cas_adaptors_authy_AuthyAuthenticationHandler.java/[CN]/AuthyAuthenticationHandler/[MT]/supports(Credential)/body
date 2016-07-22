@@ -1,0 +1,3 @@
+{
+  return AuthyTokenCredential.class.isAssignableFrom(credential.getClass());
+}

@@ -1,0 +1,4 @@
+{
+  final AuthyAuthenticationMetaDataPopulator g=new AuthyAuthenticationMetaDataPopulator(casProperties.getAuthn().getMfa().getAuthenticationContextAttribute(),authyAuthenticationHandler(),authyAuthenticatorAuthenticationProvider());
+  return g;
+}

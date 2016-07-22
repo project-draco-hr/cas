@@ -1,0 +1,7 @@
+{
+  final AuthyMultifactorWebflowConfigurer c=new AuthyMultifactorWebflowConfigurer();
+  c.setFlowDefinitionRegistry(authyAuthenticatorFlowRegistry());
+  c.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  c.setFlowBuilderServices(flowBuilderServices);
+  return c;
+}
