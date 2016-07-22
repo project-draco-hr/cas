@@ -5,5 +5,10 @@
   resolver.setAllowMultipleDns(l.isAllowMultipleDns());
   resolver.setConnectionFactory(Beans.newPooledConnectionFactory(l));
   resolver.setUserFilter(l.getUserFilter());
-  return new Authenticator(resolver,getPooledBindAuthenticationHandler(l));
+  if (StringUtils.isBlank(l.getPrincipalAttributePassword())) {
+    return new Authenticator(resolver,getPooledBindAuthenticationHandler(l));
+  }
+ else {
+    return new Authenticator(resolver,getPooledCustomCompareAuthenticationHandler(l));
+  }
 }
