@@ -1,5 +1,0 @@
-{
-  if (this.registry == null) {
-    logger.warn("No Authy account registry is defined. All credentials are considered" + "eligible for Authy authentication. Consider providing an account registry via [{}]",AuthyAccountRegistry.class.getName());
-  }
-}

@@ -1,10 +1,8 @@
 {
   try {
-    final AuthyAuthenticationHandler h=new AuthyAuthenticationHandler(casProperties.getAuthn().getMfa().getAuthy().getApiKey(),casProperties.getAuthn().getMfa().getAuthy().getApiUrl(),authyAccountRegistry());
+    final AuthyAuthenticationHandler h=new AuthyAuthenticationHandler(authyClientInstance());
     h.setServicesManager(servicesManager);
-    h.setPhoneAttribute(casProperties.getAuthn().getMfa().getAuthy().getPhoneAttribute());
     h.setPrincipalFactory(authyPrincipalFactory());
-    h.setMailAttribute(casProperties.getAuthn().getMfa().getAuthy().getMailAttribute());
     h.setForceVerification(casProperties.getAuthn().getMfa().getAuthy().isForceVerification());
     return h;
   }

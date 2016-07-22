@@ -1,0 +1,6 @@
+{
+  final AuthyClientInstance i=new AuthyClientInstance(casProperties.getAuthn().getMfa().getAuthy().getApiKey(),casProperties.getAuthn().getMfa().getAuthy().getApiUrl());
+  i.setMailAttribute(casProperties.getAuthn().getMfa().getAuthy().getMailAttribute());
+  i.setPhoneAttribute(casProperties.getAuthn().getMfa().getAuthy().getPhoneAttribute());
+  return i;
+}
