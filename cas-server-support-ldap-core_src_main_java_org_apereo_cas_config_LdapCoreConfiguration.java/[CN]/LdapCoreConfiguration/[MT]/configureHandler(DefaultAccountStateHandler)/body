@@ -1,3 +1,0 @@
-{
-  handler.setAttributesToErrorMap(casProperties.getAuthn().getPasswordPolicy().getPolicyAttributes());
-}

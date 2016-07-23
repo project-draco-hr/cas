@@ -1,8 +1,0 @@
-{
-  final OptionalWarningAccountStateHandler h=new OptionalWarningAccountStateHandler();
-  h.setWarnAttributeName(casProperties.getAuthn().getPasswordPolicy().getWarningAttributeName());
-  h.setWarningAttributeValue(casProperties.getAuthn().getPasswordPolicy().getWarningAttributeValue());
-  h.setDisplayWarningOnMatch(casProperties.getAuthn().getPasswordPolicy().isDisplayWarningOnMatch());
-  configureHandler(h);
-  return h;
-}
