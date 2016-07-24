@@ -1,3 +1,3 @@
 {
-  return this.serverPrefix.concat(OAuthConstants.BASE_OAUTH20_URL + '/' + OidcConstants.REGISTRATION_URL);
+  return this.serverPrefix.concat('/' + OidcConstants.BASE_OIDC_URL + '/'+ OidcConstants.REGISTRATION_URL);
 }

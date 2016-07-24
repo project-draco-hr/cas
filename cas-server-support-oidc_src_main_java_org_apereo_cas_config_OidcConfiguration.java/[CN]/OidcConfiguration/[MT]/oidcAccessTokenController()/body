@@ -1,5 +1,5 @@
 {
-  final OidcAccessTokenController c=new OidcAccessTokenController();
+  final OidcAccessTokenEndpointController c=new OidcAccessTokenEndpointController();
   c.setAccessTokenResponseGenerator(oidcAccessTokenResponseGenerator());
   c.setAccessTokenFactory(defaultAccessTokenFactory);
   c.setPrincipalFactory(oidcPrincipalFactory());

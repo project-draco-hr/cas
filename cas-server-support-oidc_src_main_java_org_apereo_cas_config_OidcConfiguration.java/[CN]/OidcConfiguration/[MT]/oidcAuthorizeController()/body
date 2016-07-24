@@ -1,5 +1,5 @@
 {
-  final OidcAuthorizeController c=new OidcAuthorizeController();
+  final OidcAuthorizeEndpointController c=new OidcAuthorizeEndpointController();
   c.setAccessTokenFactory(defaultAccessTokenFactory);
   c.setServicesManager(servicesManager);
   c.setTicketRegistry(ticketRegistry);
