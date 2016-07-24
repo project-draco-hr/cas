@@ -1,0 +1,5 @@
+{
+  final IdPInitiatedProfileHandlerController c=new IdPInitiatedProfileHandlerController();
+  initControllerBean(c);
+  return c;
+}
