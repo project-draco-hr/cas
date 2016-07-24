@@ -6,5 +6,5 @@
   discoveryProperties.setSupportedSubjectTypes(ImmutableList.of("public","pairwise"));
   discoveryProperties.setSupportedClaimTypes(ImmutableList.of("normal"));
   discoveryProperties.setSupportedGrantTypes(ImmutableList.of("authorization_code","password","implicit"));
-  return discoveryProperties;
+  return new ResponseEntity(discoveryProperties,HttpStatus.OK);
 }
