@@ -1,9 +1,14 @@
 {
-  final MemcachedClientFactoryBean bean=new MemcachedClientFactoryBean();
-  bean.setServers(casProperties.getTicket().getRegistry().getMemcached().getServers());
-  bean.setLocatorType(ConnectionFactoryBuilder.Locator.valueOf(casProperties.getTicket().getRegistry().getMemcached().getLocatorType()));
-  bean.setTranscoder(kryoTranscoder());
-  bean.setFailureMode(FailureMode.valueOf(casProperties.getTicket().getRegistry().getMemcached().getFailureMode()));
-  bean.setHashAlg(DefaultHashAlgorithm.valueOf(casProperties.getTicket().getRegistry().getMemcached().getHashAlgorithm()));
-  return bean;
+  try {
+    final MemcachedClientFactoryBean bean=new MemcachedClientFactoryBean();
+    bean.setServers(casProperties.getTicket().getRegistry().getMemcached().getServers());
+    bean.setLocatorType(ConnectionFactoryBuilder.Locator.valueOf(casProperties.getTicket().getRegistry().getMemcached().getLocatorType()));
+    bean.setTranscoder(kryoTranscoder());
+    bean.setFailureMode(FailureMode.valueOf(casProperties.getTicket().getRegistry().getMemcached().getFailureMode()));
+    bean.setHashAlg(DefaultHashAlgorithm.valueOf(casProperties.getTicket().getRegistry().getMemcached().getHashAlgorithm()));
+    return bean;
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
 }
