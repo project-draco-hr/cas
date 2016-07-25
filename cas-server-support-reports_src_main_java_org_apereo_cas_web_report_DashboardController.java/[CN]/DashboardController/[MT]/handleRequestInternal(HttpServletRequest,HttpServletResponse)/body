@@ -1,3 +1,5 @@
 {
-  return new ModelAndView("monitoring/viewDashboard");
+  final Map<String,String> model=new HashMap<>();
+  model.put("refreshEndpoint",busProperties.isEnabled() ? "/cas" + configServerProperties.getPrefix() + "/cas/bus/refresh" : "/cas/status/refresh");
+  return new ModelAndView("monitoring/viewDashboard",model);
 }
