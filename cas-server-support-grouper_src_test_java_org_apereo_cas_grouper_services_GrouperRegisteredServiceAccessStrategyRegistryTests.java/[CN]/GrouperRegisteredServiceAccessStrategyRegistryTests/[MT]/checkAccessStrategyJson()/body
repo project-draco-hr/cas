@@ -7,7 +7,7 @@
   final GrouperRegisteredServiceAccessStrategy grouper=new GrouperRegisteredServiceAccessStrategy();
   grouper.setRequiredAttributes(attributes);
   service.setAccessStrategy(grouper);
-  final JsonServiceRegistryDao dao=new JsonServiceRegistryDao(RESOURCE,false);
+  final JsonServiceRegistryDao dao=new JsonServiceRegistryDao(RESOURCE,false,mock(ApplicationEventPublisher.class));
   dao.save(service);
   dao.load();
 }

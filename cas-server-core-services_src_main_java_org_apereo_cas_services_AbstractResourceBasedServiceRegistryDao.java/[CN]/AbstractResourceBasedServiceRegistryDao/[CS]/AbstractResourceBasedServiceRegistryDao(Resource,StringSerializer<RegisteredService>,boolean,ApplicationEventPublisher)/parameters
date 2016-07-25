@@ -1,0 +1,4 @@
+Resource configDirectory
+StringSerializer<RegisteredService> serializer
+boolean enableWatcher
+ApplicationEventPublisher eventPublisher

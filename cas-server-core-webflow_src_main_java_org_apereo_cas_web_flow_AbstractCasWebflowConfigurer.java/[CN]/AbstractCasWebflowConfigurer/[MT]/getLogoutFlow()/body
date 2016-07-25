@@ -1,0 +1,3 @@
+{
+  return (Flow)this.logoutFlowDefinitionRegistry.getFlowDefinition(FLOW_ID_LOGOUT);
+}

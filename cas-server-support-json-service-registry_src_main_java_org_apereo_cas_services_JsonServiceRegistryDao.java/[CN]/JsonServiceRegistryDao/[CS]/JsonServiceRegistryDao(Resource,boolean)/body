@@ -1,3 +1,0 @@
-{
-  super(configDirectory,new RegisteredServiceJsonSerializer(),enableWatcher);
-}

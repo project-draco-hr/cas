@@ -1,0 +1,7 @@
+{
+  final OAuth20LogoutWebflowConfigurer c=new OAuth20LogoutWebflowConfigurer();
+  c.setFlowBuilderServices(this.flowBuilderServices);
+  c.setLoginFlowDefinitionRegistry(this.loginFlowDefinitionRegistry);
+  c.setLogoutFlowDefinitionRegistry(this.logoutFlowDefinitionRegistry);
+  return c;
+}

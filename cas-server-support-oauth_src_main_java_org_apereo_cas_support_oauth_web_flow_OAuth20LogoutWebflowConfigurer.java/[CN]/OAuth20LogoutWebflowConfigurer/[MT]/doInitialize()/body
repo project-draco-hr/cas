@@ -1,0 +1,6 @@
+{
+  final Flow flow=getLogoutFlow();
+  final Action actionState=createEvaluateAction("oauth20LogoutAction");
+  final ActionState s=(ActionState)flow.getState("doLogout");
+  s.getEntryActionList().add(actionState);
+}

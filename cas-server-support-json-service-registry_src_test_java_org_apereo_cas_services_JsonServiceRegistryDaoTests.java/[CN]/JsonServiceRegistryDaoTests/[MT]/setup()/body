@@ -1,6 +1,6 @@
 {
   try {
-    this.dao=new JsonServiceRegistryDao(RESOURCE,false);
+    this.dao=new JsonServiceRegistryDao(RESOURCE,false,mock(ApplicationEventPublisher.class));
   }
  catch (  final Exception e) {
     throw new IllegalArgumentException(e);

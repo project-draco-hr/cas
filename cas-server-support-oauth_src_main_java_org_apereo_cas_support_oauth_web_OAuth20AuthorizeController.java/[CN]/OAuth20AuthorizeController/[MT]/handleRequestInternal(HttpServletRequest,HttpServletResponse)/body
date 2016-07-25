@@ -1,9 +1,10 @@
 {
-  if (!verifyAuthorizeRequest(request)) {
+  final J2EContext context=new J2EContext(request,response);
+  final ProfileManager manager=new ProfileManager(context);
+  if (!verifyAuthorizeRequest(request) || !isRequestAuthenticated(manager,context)) {
     logger.error("Authorize request verification fails");
     return new ModelAndView(OAuthConstants.ERROR_VIEW);
   }
-  final J2EContext context=new J2EContext(request,response);
   final String clientId=context.getRequestParameter(OAuthConstants.CLIENT_ID);
   final OAuthRegisteredService registeredService=OAuthUtils.getRegisteredOAuthService(this.servicesManager,clientId);
   try {
@@ -17,6 +18,5 @@
   if (!mv.isEmpty() && mv.hasView()) {
     return mv;
   }
-  final ProfileManager manager=new ProfileManager(context);
   return redirectToCallbackRedirectUrl(manager,registeredService,context,clientId);
 }

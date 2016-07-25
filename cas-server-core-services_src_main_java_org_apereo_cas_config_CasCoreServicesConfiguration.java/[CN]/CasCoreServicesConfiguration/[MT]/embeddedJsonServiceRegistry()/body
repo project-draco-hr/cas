@@ -1,8 +1,0 @@
-{
-  try {
-    return new EmbeddedServiceRegistryDao();
-  }
- catch (  final Exception e) {
-    throw Throwables.propagate(e);
-  }
-}

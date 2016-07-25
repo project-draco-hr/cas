@@ -1,0 +1,7 @@
+{
+  final ApplicationLogoutController controller=new ApplicationLogoutController();
+  controller.setConfig(oauthSecConfig());
+  final OAuth20LogoutAction action=new OAuth20LogoutAction();
+  action.setApplicationLogoutController(controller);
+  return action;
+}

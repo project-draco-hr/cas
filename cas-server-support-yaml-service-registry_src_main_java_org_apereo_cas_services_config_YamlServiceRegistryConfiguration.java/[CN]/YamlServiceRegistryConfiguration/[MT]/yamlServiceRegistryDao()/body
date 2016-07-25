@@ -1,6 +1,6 @@
 {
   try {
-    final YamlServiceRegistryDao dao=new YamlServiceRegistryDao(casProperties.getServiceRegistry().getConfig().getLocation(),casProperties.getServiceRegistry().isWatcherEnabled());
+    final YamlServiceRegistryDao dao=new YamlServiceRegistryDao(casProperties.getServiceRegistry().getConfig().getLocation(),casProperties.getServiceRegistry().isWatcherEnabled(),eventPublisher);
     return dao;
   }
  catch (  final Exception e) {

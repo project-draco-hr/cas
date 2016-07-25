@@ -1,6 +1,6 @@
 {
   try {
-    final JsonServiceRegistryDao dao=new JsonServiceRegistryDao(casProperties.getServiceRegistry().getConfig().getLocation(),casProperties.getServiceRegistry().isWatcherEnabled());
+    final JsonServiceRegistryDao dao=new JsonServiceRegistryDao(casProperties.getServiceRegistry().getConfig().getLocation(),casProperties.getServiceRegistry().isWatcherEnabled(),eventPublisher);
     return dao;
   }
  catch (  final Throwable e) {
