@@ -1,4 +1,5 @@
 {
+  final PooledConnectionFactory connectionFactory=Beans.newPooledConnectionFactory(casProperties.getMonitor().getLdap());
   final PooledLdapConnectionFactoryMonitor m=new PooledLdapConnectionFactoryMonitor(connectionFactory,new SearchValidator());
   m.setMaxWait(casProperties.getMonitor().getLdap().getMaxWait());
   m.setExecutor(executor);

@@ -1,6 +1,6 @@
 {
   final JpaTicketRegistry bean=new JpaTicketRegistry();
   bean.setLockTgt(casProperties.getTicket().getRegistry().getJpa().isJpaLockingTgtEnabled());
-  bean.setCipherExecutor(this.cipherExecutor);
+  bean.setCipherExecutor(Beans.newTicketRegistryCipherExecutor(casProperties.getTicket().getRegistry().getJpa().getCrypto()));
   return bean;
 }

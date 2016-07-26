@@ -1,0 +1,10 @@
+{
+  final ConnectionFactory connectionFactory=Beans.newPooledConnectionFactory(casProperties.getAcceptableUsagePolicy().getLdap());
+  final LdapAcceptableUsagePolicyRepository r=new LdapAcceptableUsagePolicyRepository();
+  r.setBaseDn(casProperties.getAcceptableUsagePolicy().getLdap().getBaseDn());
+  r.setConnectionFactory(connectionFactory);
+  r.setSearchFilter(casProperties.getAcceptableUsagePolicy().getLdap().getUserFilter());
+  r.setAupAttributeName(casProperties.getAcceptableUsagePolicy().getAupAttributeName());
+  r.setTicketRegistrySupport(ticketRegistrySupport);
+  return r;
+}

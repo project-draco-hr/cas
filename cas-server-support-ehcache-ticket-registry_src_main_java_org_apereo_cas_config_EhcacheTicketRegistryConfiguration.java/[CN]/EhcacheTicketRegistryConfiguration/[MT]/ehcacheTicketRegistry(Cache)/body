@@ -1,5 +1,5 @@
 {
   final EhCacheTicketRegistry r=new EhCacheTicketRegistry(ehcacheTicketsCache);
-  r.setCipherExecutor(cipherExecutor);
+  r.setCipherExecutor(Beans.newTicketRegistryCipherExecutor(casProperties.getTicket().getRegistry().getEhcache().getCrypto()));
   return r;
 }

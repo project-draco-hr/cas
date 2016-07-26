@@ -1,6 +1,6 @@
 {
   final CouchbaseTicketRegistry c=new CouchbaseTicketRegistry();
   c.setCouchbaseClientFactory(ticketRegistryCouchbaseClientFactory());
-  c.setCipherExecutor(cipherExecutor);
+  c.setCipherExecutor(Beans.newTicketRegistryCipherExecutor(casProperties.getTicket().getRegistry().getCouchbase().getCrypto()));
   return c;
 }

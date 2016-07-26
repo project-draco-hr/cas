@@ -1,5 +1,5 @@
 {
   final HazelcastTicketRegistry r=new HazelcastTicketRegistry(hazelcast(),casProperties.getTicket().getRegistry().getHazelcast().getMapName(),casProperties.getTicket().getRegistry().getHazelcast().getPageSize());
-  r.setCipherExecutor(cipherExecutor);
+  r.setCipherExecutor(Beans.newTicketRegistryCipherExecutor(casProperties.getTicket().getRegistry().getHazelcast().getCrypto()));
   return r;
 }

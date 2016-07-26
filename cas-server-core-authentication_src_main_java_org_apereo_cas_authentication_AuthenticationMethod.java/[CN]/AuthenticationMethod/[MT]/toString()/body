@@ -1,3 +1,0 @@
-{
-  return new ToStringBuilder(this).append("rank",this.rank).append("name",this.name).toString();
-}

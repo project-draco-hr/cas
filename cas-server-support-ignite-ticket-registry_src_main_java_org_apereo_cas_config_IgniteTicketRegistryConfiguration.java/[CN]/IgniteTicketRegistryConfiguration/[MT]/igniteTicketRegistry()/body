@@ -1,6 +1,6 @@
 {
   final IgniteTicketRegistry r=new IgniteTicketRegistry();
   r.setIgniteConfiguration(igniteConfiguration());
-  r.setCipherExecutor(cipherExecutor);
+  r.setCipherExecutor(Beans.newTicketRegistryCipherExecutor(casProperties.getTicket().getRegistry().getIgnite().getCrypto()));
   return r;
 }

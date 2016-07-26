@@ -4,7 +4,7 @@
   boolean issueTicketGrantingTicket=true;
   final Authentication authentication=authenticationResult.getAuthentication();
   final String ticketGrantingTicket=WebUtils.getTicketGrantingTicketId(context);
-  if (StringUtils.hasText(ticketGrantingTicket)) {
+  if (StringUtils.isNotBlank(ticketGrantingTicket)) {
     logger.debug("Located ticket-granting ticket in the context. Retrieving associated authentication");
     final Authentication authenticationFromTgt=this.ticketRegistrySupport.getAuthenticationFrom(ticketGrantingTicket);
     if (authentication.getPrincipal().equals(authenticationFromTgt.getPrincipal())) {
