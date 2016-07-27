@@ -3,5 +3,6 @@
   executor.setBaseDn(casProperties.getLdapAuthz().getBaseDn());
   executor.setSearchFilter(new SearchFilter(casProperties.getLdapAuthz().getSearchFilter()));
   executor.setReturnAttributes(ReturnAttributes.ALL.value());
+  executor.setSearchScope(SearchScope.SUBTREE);
   return executor;
 }
