@@ -1,0 +1,4 @@
+{
+  final SearchFilter filter=Beans.newSearchFilter(this.searchFilter,id);
+  return LdapUtils.executeSearchOperation(this.connectionFactory,this.baseDn,filter);
+}

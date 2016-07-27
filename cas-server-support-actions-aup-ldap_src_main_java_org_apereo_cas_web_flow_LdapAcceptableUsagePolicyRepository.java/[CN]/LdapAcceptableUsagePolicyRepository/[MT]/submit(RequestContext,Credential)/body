@@ -1,7 +1,7 @@
 {
   String currentDn=null;
-  try (final Connection searchConnection=LdapUtils.createConnection(this.connectionFactory)){
-    final Response<SearchResult> response=searchForId(searchConnection,credential.getId());
+  try {
+    final Response<SearchResult> response=searchForId(credential.getId());
     if (LdapUtils.containsResultEntry(response)) {
       currentDn=response.getResult().getEntry().getDn();
     }

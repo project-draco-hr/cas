@@ -1,5 +1,0 @@
-{
-  final SearchFilter filter=new SearchFilter(this.searchFilter);
-  filter.setParameter(0,id);
-  return LdapUtils.executeSearchOperation(this.connectionFactory,this.baseDn,filter);
-}

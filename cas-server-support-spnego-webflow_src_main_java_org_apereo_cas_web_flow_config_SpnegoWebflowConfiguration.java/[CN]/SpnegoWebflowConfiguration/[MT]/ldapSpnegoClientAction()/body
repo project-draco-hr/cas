@@ -1,0 +1,10 @@
+{
+  final ConnectionFactory connectionFactory=Beans.newPooledConnectionFactory(casProperties.getAuthn().getSpnego().getLdap());
+  final SearchFilter filter=Beans.newSearchFilter(casProperties.getAuthn().getSpnego().getLdap().getSearchFilter());
+  final SearchRequest searchRequest=Beans.newSearchRequest(casProperties.getAuthn().getSpnego().getLdap().getBaseDn(),filter);
+  final LdapSpnegoKnownClientSystemsFilterAction l=new LdapSpnegoKnownClientSystemsFilterAction(connectionFactory,searchRequest,casProperties.getAuthn().getSpnego().getSpnegoAttributeName());
+  l.setIpsToCheckPattern(casProperties.getAuthn().getSpnego().getIpsToCheckPattern());
+  l.setAlternativeRemoteHostAttribute(casProperties.getAuthn().getSpnego().getAlternativeRemoteHostAttribute());
+  l.setTimeout(casProperties.getAuthn().getSpnego().getDnsTimeout());
+  return l;
+}

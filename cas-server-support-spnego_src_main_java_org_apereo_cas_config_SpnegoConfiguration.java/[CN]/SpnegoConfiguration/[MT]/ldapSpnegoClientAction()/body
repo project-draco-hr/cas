@@ -1,7 +1,0 @@
-{
-  final LdapSpnegoKnownClientSystemsFilterAction l=new LdapSpnegoKnownClientSystemsFilterAction(this.connectionFactory,this.searchRequest,casProperties.getAuthn().getSpnego().getSpnegoAttributeName());
-  l.setIpsToCheckPattern(casProperties.getAuthn().getSpnego().getIpsToCheckPattern());
-  l.setAlternativeRemoteHostAttribute(casProperties.getAuthn().getSpnego().getAlternativeRemoteHostAttribute());
-  l.setTimeout(casProperties.getAuthn().getSpnego().getDnsTimeout());
-  return l;
-}

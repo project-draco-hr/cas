@@ -1,0 +1,8 @@
+{
+  final SearchExecutor executor=new SearchExecutor();
+  executor.setBaseDn(baseDn);
+  executor.setSearchFilter(newSearchFilter(filterQuery,params));
+  executor.setReturnAttributes(ReturnAttributes.ALL.value());
+  executor.setSearchScope(SearchScope.SUBTREE);
+  return executor;
+}
