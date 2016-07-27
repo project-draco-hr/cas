@@ -2,6 +2,7 @@
   final SpnegoNegociateCredentialsAction a=new SpnegoNegociateCredentialsAction();
   a.setMixedModeAuthentication(casProperties.getAuthn().getSpnego().isMixedModeAuthentication());
   a.setNtlm(casProperties.getAuthn().getSpnego().isNtlm());
-  a.setSupportedBrowsers(Lists.newArrayList(casProperties.getAuthn().getSpnego().getSupportedBrowsers()));
+  final String[] browsers=StringUtils.commaDelimitedListToStringArray(casProperties.getAuthn().getSpnego().getSupportedBrowsers());
+  a.setSupportedBrowsers(Lists.newArrayList(browsers));
   return a;
 }

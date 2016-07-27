@@ -6,11 +6,11 @@
   LOGGER.debug("Authorization header [{}], User Agent header [{}]",authorizationHeader,userAgent);
   if (!StringUtils.hasText(userAgent) || this.supportedBrowser.isEmpty()) {
     LOGGER.warn("User Agent header [{}] is empty, or no browsers are supported",userAgent);
-    return new Event(this,CasWebflowConstants.STATE_ID_VIEW_LOGIN_FORM);
+    return error();
   }
   if (!isSupportedBrowser(userAgent)) {
     LOGGER.warn("User Agent header [{}] is not supported in the list of supported browsers [{}]",userAgent,this.supportedBrowser);
-    return new Event(this,CasWebflowConstants.STATE_ID_VIEW_LOGIN_FORM);
+    return error();
   }
   if (!StringUtils.hasText(authorizationHeader) || !authorizationHeader.startsWith(this.messageBeginPrefix) || authorizationHeader.length() <= this.messageBeginPrefix.length()) {
     final String wwwHeader=this.ntlm ? SpnegoConstants.NTLM : SpnegoConstants.NEGOTIATE;
