@@ -1,0 +1,13 @@
+{
+  if (ticket == null) {
+    logger.debug("Ticket [{}] by type [{}] cannot be found in the ticket registry.",id,clazz != null ? clazz.getSimpleName() : "unspecified");
+    throw new InvalidTicketException(id);
+  }
+synchronized (ticket) {
+    if (ticket.isExpired()) {
+      this.ticketRegistry.deleteTicket(id);
+      logger.debug("Ticket [{}] has expired and is now deleted from the ticket registry.",ticket);
+      throw new InvalidTicketException(id);
+    }
+  }
+}

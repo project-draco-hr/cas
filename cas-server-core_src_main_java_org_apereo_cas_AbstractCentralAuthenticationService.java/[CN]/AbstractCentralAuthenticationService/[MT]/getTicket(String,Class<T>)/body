@@ -1,18 +1,6 @@
 {
   Assert.notNull(ticketId,"ticketId cannot be null");
   final Ticket ticket=this.ticketRegistry.getTicket(ticketId,clazz);
-  if (ticket == null) {
-    logger.debug("Ticket [{}] by type [{}] cannot be found in the ticket registry.",ticketId,clazz.getSimpleName());
-    throw new InvalidTicketException(ticketId);
-  }
-  if (ticket instanceof TicketGrantingTicket) {
-synchronized (ticket) {
-      if (ticket.isExpired()) {
-        this.ticketRegistry.deleteTicket(ticketId);
-        logger.debug("Ticket [{}] has expired and is now deleted from the ticket registry.",ticketId);
-        throw new InvalidTicketException(ticketId);
-      }
-    }
-  }
+  verifyTicketState(ticket,ticketId,clazz);
   return (T)ticket;
 }

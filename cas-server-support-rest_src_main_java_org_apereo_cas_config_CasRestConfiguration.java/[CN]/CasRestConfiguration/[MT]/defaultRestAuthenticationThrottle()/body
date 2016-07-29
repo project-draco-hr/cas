@@ -1,6 +1,7 @@
 {
-  if (StringUtils.isNotBlank(casProperties.getRest().getThrottler()) && this.applicationContext.containsBean(casProperties.getRest().getThrottler())) {
-    return this.applicationContext.getBean(casProperties.getRest().getThrottler(),HandlerInterceptorAdapter.class);
+  final String throttler=casProperties.getRest().getThrottler();
+  if (StringUtils.isNotBlank(throttler) && this.applicationContext.containsBean(throttler)) {
+    return this.applicationContext.getBean(throttler,HandlerInterceptor.class);
   }
   return new HandlerInterceptorAdapter(){
     @Override public boolean preHandle(    final HttpServletRequest request,    final HttpServletResponse response,    final Object handler) throws Exception {
