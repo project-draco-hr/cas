@@ -1,11 +1,6 @@
 {
   final FormatDnResolver resolver=new FormatDnResolver(l.getDnFormat());
   final Authenticator authn=new Authenticator(resolver,getPooledBindAuthenticationHandler(l));
-  final PooledSearchEntryResolver entryResolver=new PooledSearchEntryResolver();
-  entryResolver.setBaseDn(l.getBaseDn());
-  entryResolver.setUserFilter(l.getUserFilter());
-  entryResolver.setSubtreeSearch(l.isSubtreeSearch());
-  entryResolver.setConnectionFactory(Beans.newPooledConnectionFactory(l));
-  authn.setEntryResolver(entryResolver);
+  authn.setEntryResolver(Beans.newSearchEntryResolver(l));
   return authn;
 }

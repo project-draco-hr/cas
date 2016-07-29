@@ -5,8 +5,13 @@
   resolver.setAllowMultipleDns(l.isAllowMultipleDns());
   resolver.setConnectionFactory(Beans.newPooledConnectionFactory(l));
   resolver.setUserFilter(l.getUserFilter());
+  final Authenticator auth;
   if (StringUtils.isBlank(l.getPrincipalAttributePassword())) {
-    return new Authenticator(resolver,getPooledBindAuthenticationHandler(l));
+    auth=new Authenticator(resolver,getPooledBindAuthenticationHandler(l));
   }
-  return new Authenticator(resolver,getPooledCompareAuthenticationHandler(l));
+ else {
+    auth=new Authenticator(resolver,getPooledCompareAuthenticationHandler(l));
+  }
+  auth.setEntryResolver(Beans.newSearchEntryResolver(l));
+  return auth;
 }

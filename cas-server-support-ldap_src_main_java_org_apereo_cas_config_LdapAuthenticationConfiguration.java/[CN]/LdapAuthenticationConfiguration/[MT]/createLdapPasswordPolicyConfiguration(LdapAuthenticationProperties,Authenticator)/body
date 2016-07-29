@@ -1,0 +1,26 @@
+{
+  final LdapPasswordPolicyConfiguration cfg=new LdapPasswordPolicyConfiguration(l.getPasswordPolicy());
+  final Set<AuthenticationResponseHandler> handlers=new HashSet<>();
+  if (cfg.getPasswordWarningNumberOfDays() > 0) {
+    handlers.add(new EDirectoryAuthenticationResponseHandler(Period.ofDays(cfg.getPasswordWarningNumberOfDays())));
+    handlers.add(new ActiveDirectoryAuthenticationResponseHandler(Period.ofDays(cfg.getPasswordWarningNumberOfDays())));
+    handlers.add(new FreeIPAAuthenticationResponseHandler(Period.ofDays(cfg.getPasswordWarningNumberOfDays()),cfg.getLoginFailures()));
+  }
+  handlers.add(new PasswordPolicyAuthenticationResponseHandler());
+  handlers.add(new PasswordExpirationAuthenticationResponseHandler());
+  authenticator.setAuthenticationResponseHandlers((AuthenticationResponseHandler[])handlers.toArray());
+  if (StringUtils.isNotBlank(l.getPasswordPolicy().getWarningAttributeName()) && StringUtils.isNotBlank(l.getPasswordPolicy().getWarningAttributeValue())) {
+    final OptionalWarningAccountStateHandler accountHandler=new OptionalWarningAccountStateHandler();
+    accountHandler.setDisplayWarningOnMatch(l.getPasswordPolicy().isDisplayWarningOnMatch());
+    accountHandler.setWarnAttributeName(l.getPasswordPolicy().getWarningAttributeName());
+    accountHandler.setWarningAttributeValue(l.getPasswordPolicy().getWarningAttributeValue());
+    accountHandler.setAttributesToErrorMap(l.getPasswordPolicy().getPolicyAttributes());
+    cfg.setAccountStateHandler(accountHandler);
+  }
+ else {
+    final DefaultAccountStateHandler accountHandler=new DefaultAccountStateHandler();
+    accountHandler.setAttributesToErrorMap(l.getPasswordPolicy().getPolicyAttributes());
+    cfg.setAccountStateHandler(accountHandler);
+  }
+  return cfg;
+}
