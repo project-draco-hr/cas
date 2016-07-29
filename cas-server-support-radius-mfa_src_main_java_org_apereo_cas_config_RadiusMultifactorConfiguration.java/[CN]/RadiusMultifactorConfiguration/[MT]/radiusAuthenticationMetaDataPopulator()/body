@@ -1,0 +1,7 @@
+{
+  final RadiusAuthenticationMetaDataPopulator pop=new RadiusAuthenticationMetaDataPopulator();
+  pop.setAuthenticationContextAttribute(casProperties.getAuthn().getMfa().getAuthenticationContextAttribute());
+  pop.setAuthenticationHandler(radiusTokenAuthenticationHandler());
+  pop.setProvider(radiusAuthenticationProvider());
+  return pop;
+}
