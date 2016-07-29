@@ -20,6 +20,6 @@
   final StringWriter writer=new StringWriter();
   this.samlObjectBuilder.marshalSamlXmlObject(response,writer);
   final String result=writer.toString();
-  logger.debug("Generated Google SAML response: {}",result);
+  LOGGER.debug("Generated Google SAML response: {}",result);
   return result;
 }

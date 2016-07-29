@@ -1,6 +1,6 @@
 {
   final Message response=serverManager.authResponse(this.parameterList,id,id,successFullAuthentication,true);
   parameters.putAll(response.getParameterMap());
-  logger.debug("Parameters passed for the OpenID response are {}",parameters.keySet());
+  LOGGER.debug("Parameters passed for the OpenID response are {}",parameters.keySet());
   return buildRedirect(service,parameters);
 }

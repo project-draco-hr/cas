@@ -15,18 +15,18 @@
   try {
     if (associated && associationValid) {
       assertion=centralAuthenticationService.validateServiceTicket(ticketId,service);
-      logger.debug("Validated openid ticket {} for {}",ticketId,service);
+      LOGGER.debug("Validated openid ticket {} for {}",ticketId,service);
     }
  else     if (!associated) {
-      logger.debug("Responding to non-associated mode. Service ticket {} must be validated by the RP",ticketId);
+      LOGGER.debug("Responding to non-associated mode. Service ticket {} must be validated by the RP",ticketId);
     }
  else {
-      logger.warn("Association does not exist or is not valid");
+      LOGGER.warn("Association does not exist or is not valid");
       successFullAuthentication=false;
     }
   }
  catch (  final AbstractTicketException e) {
-    logger.error("Could not validate ticket : {}",e.getMessage(),e);
+    LOGGER.error("Could not validate ticket : {}",e.getMessage(),e);
     successFullAuthentication=false;
   }
   final String id=determineIdentity(service,assertion);

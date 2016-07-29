@@ -10,7 +10,7 @@
     }
   }
  catch (  final MessageException e) {
-    logger.error("Message exception : {}",e.getMessage(),e);
+    LOGGER.error("Message exception : {}",e.getMessage(),e);
   }
   return null;
 }
