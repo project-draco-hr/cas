@@ -3,7 +3,7 @@
     if (ticketId.startsWith(TicketGrantingTicket.PREFIX) || ticketId.startsWith(ProxyGrantingTicket.PROXY_GRANTING_TICKET_PREFIX)) {
       return this.entityManager.find(TicketGrantingTicketImpl.class,ticketId,this.lockTgt ? LockModeType.PESSIMISTIC_WRITE : null);
     }
- else     if (ticketId.startsWith(OAuthCode.PREFIX) || ticketId.startsWith(AccessToken.PREFIX)) {
+ else     if (ticketId.startsWith(OAuthCode.PREFIX) || ticketId.startsWith(AccessToken.PREFIX) || ticketId.startsWith(RefreshToken.PREFIX)) {
       return this.entityManager.find(OAuthCodeImpl.class,ticketId);
     }
     return this.entityManager.find(ServiceTicketImpl.class,ticketId);
