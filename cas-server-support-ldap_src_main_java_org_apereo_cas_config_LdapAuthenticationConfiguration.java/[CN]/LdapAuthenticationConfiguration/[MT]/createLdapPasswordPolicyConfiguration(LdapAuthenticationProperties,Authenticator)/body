@@ -8,7 +8,7 @@
   }
   handlers.add(new PasswordPolicyAuthenticationResponseHandler());
   handlers.add(new PasswordExpirationAuthenticationResponseHandler());
-  authenticator.setAuthenticationResponseHandlers((AuthenticationResponseHandler[])handlers.toArray());
+  authenticator.setAuthenticationResponseHandlers((AuthenticationResponseHandler[])handlers.toArray(new AuthenticationResponseHandler[handlers.size()]));
   if (StringUtils.isNotBlank(l.getPasswordPolicy().getWarningAttributeName()) && StringUtils.isNotBlank(l.getPasswordPolicy().getWarningAttributeValue())) {
     final OptionalWarningAccountStateHandler accountHandler=new OptionalWarningAccountStateHandler();
     accountHandler.setDisplayWarningOnMatch(l.getPasswordPolicy().isDisplayWarningOnMatch());
