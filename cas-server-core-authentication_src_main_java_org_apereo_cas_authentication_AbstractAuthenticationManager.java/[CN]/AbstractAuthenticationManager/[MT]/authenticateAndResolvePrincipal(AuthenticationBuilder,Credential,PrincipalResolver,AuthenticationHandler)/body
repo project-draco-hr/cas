@@ -1,10 +1,10 @@
 {
   Principal principal;
-  this.eventPublisher.publishEvent(new CasAuthenticationTransactionStartedEvent(this,credential));
+  publishEvent(new CasAuthenticationTransactionStartedEvent(this,credential));
   final HandlerResult result=handler.authenticate(credential);
   builder.addSuccess(handler.getName(),result);
   logger.info("{} successfully authenticated {}",handler.getName(),credential);
-  this.eventPublisher.publishEvent(new CasAuthenticationTransactionSuccessfulEvent(this,credential));
+  publishEvent(new CasAuthenticationTransactionSuccessfulEvent(this,credential));
   if (resolver == null) {
     principal=result.getPrincipal();
     logger.debug("No resolver configured for {}. Falling back to handler principal {}",handler.getName(),principal);
@@ -20,5 +20,5 @@
     builder.setPrincipal(principal);
   }
   logger.debug("Final principal resolved for this authentication event is {}",principal);
-  this.eventPublisher.publishEvent(new CasAuthenticationPrincipalResolvedEvent(this,principal));
+  publishEvent(new CasAuthenticationPrincipalResolvedEvent(this,principal));
 }

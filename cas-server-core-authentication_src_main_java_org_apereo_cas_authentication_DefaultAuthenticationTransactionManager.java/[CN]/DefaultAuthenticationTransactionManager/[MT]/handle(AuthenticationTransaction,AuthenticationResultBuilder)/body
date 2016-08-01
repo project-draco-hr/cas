@@ -2,7 +2,7 @@
   if (!authenticationTransaction.getCredentials().isEmpty()) {
     final Authentication authentication=this.authenticationManager.authenticate(authenticationTransaction);
     LOGGER.debug("Successful authentication; Collecting authentication result [{}]",authentication);
-    eventPublisher.publishEvent(new CasAuthenticationTransactionCompletedEvent(this,authentication));
+    publishEvent(new CasAuthenticationTransactionCompletedEvent(this,authentication));
     authenticationResult.collect(authentication);
   }
  else {
