@@ -1,0 +1,3 @@
+{
+  this.ipv4Enabled=ipv4Enabled;
+}
