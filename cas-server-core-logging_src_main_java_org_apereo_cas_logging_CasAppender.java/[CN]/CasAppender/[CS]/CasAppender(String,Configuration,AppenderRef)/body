@@ -1,5 +1,7 @@
 {
   super(name,null,PatternLayout.createDefaultLayout());
+  Assert.notNull(config,"Log configuration cannot be null");
+  Assert.notNull(config,"Appender reference configuration cannot be null");
   this.config=config;
   this.appenderRef=appenderRef;
 }
