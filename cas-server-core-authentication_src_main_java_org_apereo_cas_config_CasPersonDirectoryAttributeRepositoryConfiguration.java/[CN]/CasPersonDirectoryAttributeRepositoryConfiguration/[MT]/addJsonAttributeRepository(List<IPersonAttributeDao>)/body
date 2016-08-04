@@ -1,0 +1,7 @@
+{
+  final Resource r=casProperties.getAuthn().getAttributeRepository().getJson().getConfig().getLocation();
+  if (r != null) {
+    final JsonBackedComplexStubPersonAttributeDao dao=new JsonBackedComplexStubPersonAttributeDao(r);
+    list.add(dao);
+  }
+}

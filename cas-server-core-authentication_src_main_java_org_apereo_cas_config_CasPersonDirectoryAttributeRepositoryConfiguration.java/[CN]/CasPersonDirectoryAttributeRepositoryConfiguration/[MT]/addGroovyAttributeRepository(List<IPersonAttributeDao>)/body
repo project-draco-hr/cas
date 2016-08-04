@@ -1,0 +1,6 @@
+{
+  final PrincipalAttributesProperties.Groovy groovy=casProperties.getAuthn().getAttributeRepository().getGroovy();
+  final GroovyPersonAttributeDao dao=new GroovyPersonAttributeDao(new GroovyScriptDao(applicationContext,casProperties));
+  dao.setCaseInsensitiveUsername(groovy.isCaseInsensitive());
+  list.add(dao);
+}

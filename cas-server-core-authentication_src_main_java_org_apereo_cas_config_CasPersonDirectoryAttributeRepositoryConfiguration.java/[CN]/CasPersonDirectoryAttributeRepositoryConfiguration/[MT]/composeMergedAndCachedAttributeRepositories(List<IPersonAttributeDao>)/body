@@ -1,0 +1,11 @@
+{
+  final MergingPersonAttributeDaoImpl mergingDao=new MergingPersonAttributeDaoImpl();
+  mergingDao.setMerger(new ReplacingAttributeAdder());
+  mergingDao.setPersonAttributeDaos(list);
+  final CachingPersonAttributeDaoImpl impl=new CachingPersonAttributeDaoImpl();
+  impl.setCacheNullResults(false);
+  final Cache graphs=CacheBuilder.newBuilder().concurrencyLevel(2).weakKeys().maximumSize(casProperties.getAuthn().getAttributeRepository().getMaximumCacheSize()).expireAfterWrite(casProperties.getAuthn().getAttributeRepository().getExpireInMinutes(),TimeUnit.MINUTES).build();
+  impl.setUserInfoCache(graphs.asMap());
+  impl.setCachedPersonAttributesDao(mergingDao);
+  return impl;
+}
