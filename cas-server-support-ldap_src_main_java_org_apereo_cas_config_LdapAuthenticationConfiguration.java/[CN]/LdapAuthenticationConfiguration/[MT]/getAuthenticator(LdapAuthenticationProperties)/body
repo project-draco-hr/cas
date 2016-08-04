@@ -5,5 +5,8 @@
   if (l.getType() == LdapAuthenticationProperties.AuthenticationTypes.DIRECT) {
     return getDirectBindAuthenticator(l);
   }
+  if (l.getType() == LdapAuthenticationProperties.AuthenticationTypes.SASL) {
+    return getSASLAuthenticator(l);
+  }
   return getAuthenticatedOrAnonSearchAuthenticator(l);
 }

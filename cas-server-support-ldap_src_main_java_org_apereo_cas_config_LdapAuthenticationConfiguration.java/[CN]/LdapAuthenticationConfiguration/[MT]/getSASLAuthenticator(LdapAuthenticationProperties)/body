@@ -1,0 +1,9 @@
+{
+  final PooledSearchDnResolver resolver=new PooledSearchDnResolver();
+  resolver.setBaseDn(l.getBaseDn());
+  resolver.setSubtreeSearch(l.isSubtreeSearch());
+  resolver.setAllowMultipleDns(l.isAllowMultipleDns());
+  resolver.setConnectionFactory(Beans.newPooledConnectionFactory(l));
+  resolver.setUserFilter(l.getUserFilter());
+  return new Authenticator(resolver,getPooledBindAuthenticationHandler(l));
+}

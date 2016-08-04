@@ -25,31 +25,59 @@
  else {
     cc.setSslConfig(new SslConfig());
   }
-  if (StringUtils.equals(l.getBindCredential(),"*") && StringUtils.equals(l.getBindDn(),"*")) {
-    cc.setConnectionInitializer(new FastBindOperation.FastBindConnectionInitializer());
-  }
- else   if (StringUtils.isNotBlank(l.getBindDn()) && StringUtils.isNotBlank(l.getBindCredential())) {
-    cc.setConnectionInitializer(new BindConnectionInitializer(l.getBindDn(),new Credential(l.getBindCredential())));
-  }
-  final DefaultConnectionFactory bindCf=new DefaultConnectionFactory(cc);
-  if (l.getProviderClass() != null) {
-    try {
-      final Class clazz=ClassUtils.getClass(l.getProviderClass());
-      bindCf.setProvider(Provider.class.cast(clazz.newInstance()));
-    }
- catch (    final Exception e) {
-      LOGGER.error(e.getMessage(),e);
-    }
-  }
-  final BlockingConnectionPool cp=new BlockingConnectionPool(pc,bindCf);
-  cp.setBlockWaitTime(newDuration(l.getBlockWaitTime()));
-  cp.setPoolConfig(pc);
-  final IdlePruneStrategy strategy=new IdlePruneStrategy();
-  strategy.setIdleTime(newDuration(l.getIdleTime()));
-  strategy.setPrunePeriod(newDuration(l.getPrunePeriod()));
-  cp.setPruneStrategy(strategy);
-  cp.setValidator(new SearchValidator());
-  cp.setFailFastInitialize(l.isFailFast());
-  cp.initialize();
-  return new PooledConnectionFactory(cp);
+  if (l.getSaslMechanism() != null) {
+    final BindConnectionInitializer bc=new BindConnectionInitializer();
+    final SaslConfig sc;
+switch (l.getSaslMechanism()) {
+case DIGEST_MD5:
+      sc=new DigestMd5Config();
+    ((DigestMd5Config)sc).setRealm(l.getSaslRealm());
+  break;
+case CRAM_MD5:
+sc=new CramMd5Config();
+break;
+case EXTERNAL:
+sc=new ExternalConfig();
+break;
+case GSSAPI:
+sc=new GssApiConfig();
+((GssApiConfig)sc).setRealm(l.getSaslRealm());
+break;
+default :
+throw new IllegalArgumentException("Unknown SASL mechanism " + l.getSaslMechanism().name());
+}
+sc.setAuthorizationId(l.getSaslAuthorizationId());
+sc.setMutualAuthentication(l.getSaslMutualAuth());
+sc.setQualityOfProtection(l.getSaslQualityOfProtection());
+sc.setSecurityStrength(l.getSaslSecurityStrength());
+bc.setBindSaslConfig(sc);
+cc.setConnectionInitializer(bc);
+}
+ else if (StringUtils.equals(l.getBindCredential(),"*") && StringUtils.equals(l.getBindDn(),"*")) {
+cc.setConnectionInitializer(new FastBindOperation.FastBindConnectionInitializer());
+}
+ else if (StringUtils.isNotBlank(l.getBindDn()) && StringUtils.isNotBlank(l.getBindCredential())) {
+cc.setConnectionInitializer(new BindConnectionInitializer(l.getBindDn(),new Credential(l.getBindCredential())));
+}
+final DefaultConnectionFactory bindCf=new DefaultConnectionFactory(cc);
+if (l.getProviderClass() != null) {
+try {
+final Class clazz=ClassUtils.getClass(l.getProviderClass());
+bindCf.setProvider(Provider.class.cast(clazz.newInstance()));
+}
+ catch (final Exception e) {
+LOGGER.error(e.getMessage(),e);
+}
+}
+final BlockingConnectionPool cp=new BlockingConnectionPool(pc,bindCf);
+cp.setBlockWaitTime(newDuration(l.getBlockWaitTime()));
+cp.setPoolConfig(pc);
+final IdlePruneStrategy strategy=new IdlePruneStrategy();
+strategy.setIdleTime(newDuration(l.getIdleTime()));
+strategy.setPrunePeriod(newDuration(l.getPrunePeriod()));
+cp.setPruneStrategy(strategy);
+cp.setValidator(new SearchValidator());
+cp.setFailFastInitialize(l.isFailFast());
+cp.initialize();
+return new PooledConnectionFactory(cp);
 }
