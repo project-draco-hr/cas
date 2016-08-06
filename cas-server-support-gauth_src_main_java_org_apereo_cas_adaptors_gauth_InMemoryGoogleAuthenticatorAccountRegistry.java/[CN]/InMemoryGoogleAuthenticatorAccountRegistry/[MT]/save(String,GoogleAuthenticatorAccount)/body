@@ -1,3 +1,0 @@
-{
-  saveUserCredentials(username,account.getSecretKey(),account.getValidationCode(),account.getScratchCodes());
-}

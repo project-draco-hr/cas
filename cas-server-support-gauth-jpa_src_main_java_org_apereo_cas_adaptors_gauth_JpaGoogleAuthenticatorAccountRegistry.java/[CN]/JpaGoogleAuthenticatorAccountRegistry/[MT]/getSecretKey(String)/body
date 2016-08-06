@@ -1,0 +1,7 @@
+{
+  final GoogleAuthenticatorRegistrationRecord r=this.entityManager.createQuery("SELECT r FROM GoogleAuthenticatorRegistrationRecord r where r.username = :username",GoogleAuthenticatorRegistrationRecord.class).setParameter("username",username).getSingleResult();
+  if (r != null) {
+    return r.getSecretKey();
+  }
+  return null;
+}
