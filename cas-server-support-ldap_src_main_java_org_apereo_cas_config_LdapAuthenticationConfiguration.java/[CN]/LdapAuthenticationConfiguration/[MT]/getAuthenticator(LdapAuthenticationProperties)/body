@@ -6,7 +6,7 @@
     return getDirectBindAuthenticator(l);
   }
   if (l.getType() == LdapAuthenticationProperties.AuthenticationTypes.SASL) {
-    return getSASLAuthenticator(l);
+    return getSaslAuthenticator(l);
   }
   return getAuthenticatedOrAnonSearchAuthenticator(l);
 }

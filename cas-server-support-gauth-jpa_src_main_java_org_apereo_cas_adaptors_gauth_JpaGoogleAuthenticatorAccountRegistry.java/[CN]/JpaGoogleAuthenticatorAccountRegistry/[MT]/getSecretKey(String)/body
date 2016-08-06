@@ -1,7 +1,12 @@
 {
-  final GoogleAuthenticatorRegistrationRecord r=this.entityManager.createQuery("SELECT r FROM GoogleAuthenticatorRegistrationRecord r where r.username = :username",GoogleAuthenticatorRegistrationRecord.class).setParameter("username",username).getSingleResult();
-  if (r != null) {
-    return r.getSecretKey();
+  try {
+    final GoogleAuthenticatorRegistrationRecord r=this.entityManager.createQuery("SELECT r FROM GoogleAuthenticatorRegistrationRecord r where r.username = :username",GoogleAuthenticatorRegistrationRecord.class).setParameter("username",username).getSingleResult();
+    if (r != null) {
+      return r.getSecretKey();
+    }
+  }
+ catch (  final NoResultException e) {
+    LOGGER.debug("No record could be found for google authenticator id {}",username);
   }
   return null;
 }
