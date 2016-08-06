@@ -1,14 +1,2 @@
 {
-  final QueryDatabaseAuthenticationHandler h=new QueryDatabaseAuthenticationHandler();
-  h.setDataSource(Beans.newHickariDataSource(b));
-  h.setSql(b.getSql());
-  h.setPasswordEncoder(Beans.newPasswordEncoder(b.getPasswordEncoder()));
-  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(b.getPrincipalTransformation()));
-  if (queryPasswordPolicyConfiguration != null) {
-    h.setPasswordPolicyConfiguration(queryPasswordPolicyConfiguration);
-  }
-  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(b.getPrincipalTransformation()));
-  h.setPrincipalFactory(jdbcPrincipalFactory());
-  h.setServicesManager(servicesManager);
-  return h;
 }

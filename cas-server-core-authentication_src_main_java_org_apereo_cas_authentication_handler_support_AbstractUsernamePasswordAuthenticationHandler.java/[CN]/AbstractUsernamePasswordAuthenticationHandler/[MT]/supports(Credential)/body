@@ -1,3 +1,9 @@
 {
-  return credential instanceof UsernamePasswordCredential;
+  if (credential instanceof UsernamePasswordCredential) {
+    if (this.credentialSelectionPredicate != null) {
+      return this.credentialSelectionPredicate.apply(credential);
+    }
+    return true;
+  }
+  return false;
 }

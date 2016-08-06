@@ -1,12 +1,13 @@
 {
   try {
-    final RememberMeUsernamePasswordCredential credential=(RememberMeUsernamePasswordCredential)transformedCredential;
-    final UsernamePasswordToken token=new UsernamePasswordToken(credential.getUsername(),credential.getPassword());
-    token.setRememberMe(credential.isRememberMe());
+    final UsernamePasswordToken token=new UsernamePasswordToken(transformedCredential.getUsername(),transformedCredential.getPassword());
+    if (transformedCredential instanceof RememberMeUsernamePasswordCredential) {
+      token.setRememberMe(RememberMeUsernamePasswordCredential.class.cast(transformedCredential).isRememberMe());
+    }
     final Subject currentUser=getCurrentExecutingSubject();
     currentUser.login(token);
     checkSubjectRolesAndPermissions(currentUser);
-    return createAuthenticatedSubjectResult(credential,currentUser);
+    return createAuthenticatedSubjectResult(transformedCredential,currentUser);
   }
  catch (  final UnknownAccountException uae) {
     throw new AccountNotFoundException(uae.getMessage());
