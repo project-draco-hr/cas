@@ -6,7 +6,7 @@
   final Ticket ticket=encodeTicket(ticketToUpdate);
   logger.debug("Updating ticket {}",ticket);
   try {
-    if (!this.client.replace(ticket.getId(),getTimeout(ticket),ticket).get()) {
+    if (!this.client.replace(ticket.getId(),getTimeout(ticketToUpdate),ticket).get()) {
       logger.error("Failed to update {}",ticket);
     }
   }
