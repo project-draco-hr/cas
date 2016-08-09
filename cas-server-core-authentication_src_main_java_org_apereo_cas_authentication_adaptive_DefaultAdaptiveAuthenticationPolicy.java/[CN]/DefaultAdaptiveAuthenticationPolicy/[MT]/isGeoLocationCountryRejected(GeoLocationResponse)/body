@@ -1,0 +1,3 @@
+{
+  return StringUtils.isNotBlank(this.adaptiveAuthenticationProperties.getRejectCountries()) && Pattern.compile(this.adaptiveAuthenticationProperties.getRejectCountries()).matcher(finalLoc.buildAddress()).find();
+}

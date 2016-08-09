@@ -1,0 +1,3 @@
+{
+  return StringUtils.isNotBlank(this.adaptiveAuthenticationProperties.getRejectBrowsers()) && Pattern.compile(this.adaptiveAuthenticationProperties.getRejectBrowsers()).matcher(userAgent).find();
+}
