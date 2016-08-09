@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this).append("latitude",latitude).append("longitude",longitude).append("accuracy",accuracy).append("timestamp",timestamp).toString();
+}

@@ -1,0 +1,6 @@
+{
+  final DefaultAdaptiveAuthenticationPolicy p=new DefaultAdaptiveAuthenticationPolicy();
+  p.setGeoLocationService(this.geoLocationService);
+  p.setAdaptiveAuthenticationProperties(casProperties.getAuthn().getAdaptive());
+  return p;
+}

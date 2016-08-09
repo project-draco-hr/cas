@@ -1,4 +1,12 @@
 {
+  final String agent=WebUtils.getHttpServletRequestUserAgent();
+  final GeoLocationRequest geoLocation=WebUtils.getHttpServletRequestGeoLocation();
+  if (!adaptiveAuthenticationPolicy.apply(agent,geoLocation)) {
+    final String msg="Authentication policy does not allow this request for " + agent + " and "+ geoLocation;
+    final Map map=ImmutableMap.of(UnauthorizedAuthenticationException.class.getSimpleName(),UnauthorizedAuthenticationException.class);
+    final AuthenticationException error=new AuthenticationException(msg,map,Collections.emptyMap());
+    return new Event(this,CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,new LocalAttributeMap(CasWebflowConstants.TRANSITION_ID_ERROR,error));
+  }
   final Event serviceTicketEvent=this.serviceTicketRequestWebflowEventResolver.resolveSingle(requestContext);
   if (serviceTicketEvent != null) {
     return serviceTicketEvent;
