@@ -1,4 +1,7 @@
 {
   final Info info=UserInfo.getInfo(address);
-  return locate(info.getPosition().getLatitude(),info.getPosition().getLongitude());
+  if (info != null && info.getPosition() != null) {
+    return locate(info.getPosition().getLatitude(),info.getPosition().getLongitude());
+  }
+  return null;
 }

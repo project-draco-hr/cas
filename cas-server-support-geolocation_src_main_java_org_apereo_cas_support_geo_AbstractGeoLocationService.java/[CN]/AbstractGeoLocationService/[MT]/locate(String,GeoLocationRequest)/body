@@ -1,10 +1,10 @@
 {
   logger.debug("Attempting to find geolocation for {}",clientIp);
-  GeoLocationResponse loc=this.geoLocationService.locate(clientIp);
+  GeoLocationResponse loc=locate(clientIp);
   if (loc == null && location != null) {
     logger.debug("Attempting to find geolocation for {}",location);
     if (StringUtils.isNotBlank(location.getLatitude()) && StringUtils.isNotBlank(location.getLongitude())) {
-      loc=this.geoLocationService.locate(Double.valueOf(location.getLatitude()),Double.valueOf(location.getLongitude()));
+      loc=locate(Double.valueOf(location.getLatitude()),Double.valueOf(location.getLongitude()));
     }
   }
   return loc;

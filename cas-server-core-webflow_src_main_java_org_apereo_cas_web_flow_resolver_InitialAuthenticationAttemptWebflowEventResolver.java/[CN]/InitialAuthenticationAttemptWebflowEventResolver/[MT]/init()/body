@@ -1,4 +1,5 @@
 {
+  this.orderedResolvers.add(adaptiveAuthenticationResolver);
   this.orderedResolvers.add(requestParameterResolver);
   this.orderedResolvers.add(registeredServicePrincipalAttributeResolver);
   this.orderedResolvers.add(principalAttributeResolver);

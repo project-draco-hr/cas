@@ -11,8 +11,8 @@
     return false;
   }
   logger.debug("User agent {} is authorized to proceed",userAgent);
-  if (this.geoLocationService != null) {
-    final GeoLocationResponse loc=getGeoLocation(clientIp,location);
+  if (this.geoLocationService != null && location != null && StringUtils.isNotBlank(clientIp) && StringUtils.isNotBlank(this.adaptiveAuthenticationProperties.getRejectCountries())) {
+    final GeoLocationResponse loc=this.geoLocationService.locate(clientIp,location);
     if (loc != null) {
       logger.debug("Determined geolocation to be {}",loc);
       if (isGeoLocationCountryRejected(loc)) {
@@ -24,5 +24,6 @@
       logger.info("Could not determine geolocation for {}",clientIp);
     }
   }
+  logger.debug("Adaptive authentication policy has authorized client {} to proceed.",clientIp);
   return true;
 }

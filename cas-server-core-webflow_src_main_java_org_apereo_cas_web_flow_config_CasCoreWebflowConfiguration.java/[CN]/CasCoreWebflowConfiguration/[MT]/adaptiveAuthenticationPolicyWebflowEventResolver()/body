@@ -1,0 +1,6 @@
+{
+  final AdaptiveMultifactorAuthenticationWebflowEventResolver r=new AdaptiveMultifactorAuthenticationWebflowEventResolver();
+  configureResolver(r);
+  r.setGeoLocationService(this.geoLocationService);
+  return r;
+}

@@ -1,5 +1,6 @@
 {
   final InitialAuthenticationAttemptWebflowEventResolver r=new InitialAuthenticationAttemptWebflowEventResolver();
+  r.setAdaptiveAuthenticationResolver(adaptiveAuthenticationPolicyWebflowEventResolver());
   r.setPrincipalAttributeResolver(principalAttributeAuthenticationPolicyWebflowEventResolver());
   r.setRegisteredServiceResolver(registeredServiceAuthenticationPolicyWebflowEventResolver());
   r.setRegisteredServicePrincipalAttributeResolver(registeredServicePrincipalAttributeAuthenticationPolicyWebflowEventResolver());
