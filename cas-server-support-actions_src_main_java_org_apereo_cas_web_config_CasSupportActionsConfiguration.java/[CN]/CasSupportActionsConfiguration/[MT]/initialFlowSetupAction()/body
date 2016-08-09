@@ -8,5 +8,6 @@
   bean.setGoogleAnalyticsTrackingId(casProperties.getGoogleAnalytics().getGoogleAnalyticsTrackingId());
   bean.setTrackGeoLocation(casProperties.getEvents().isTrackGeolocation());
   bean.setStaticAuthentication(StringUtils.isNotBlank(casProperties.getAuthn().getAccept().getUsers()) || StringUtils.isNotBlank(casProperties.getAuthn().getReject().getUsers()));
+  bean.setGeoLocationService(this.geolocationService);
   return bean;
 }

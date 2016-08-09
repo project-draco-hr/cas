@@ -1,0 +1,4 @@
+{
+  logger.warn("Geolocating an address by latitude/longitude is not supported");
+  return new GeoLocation();
+}
