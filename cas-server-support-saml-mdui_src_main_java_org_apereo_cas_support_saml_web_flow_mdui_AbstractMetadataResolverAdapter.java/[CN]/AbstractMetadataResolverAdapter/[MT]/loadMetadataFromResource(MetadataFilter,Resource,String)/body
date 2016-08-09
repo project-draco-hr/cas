@@ -1,5 +1,5 @@
 {
-  try (final InputStream in=getResourceInputStream(resource,entityId)){
+  try (InputStream in=getResourceInputStream(resource,entityId)){
     logger.debug("Parsing [{}]",resource.getFilename());
     if (in.available() > 0) {
       final Document document=this.configBean.getParserPool().parse(in);

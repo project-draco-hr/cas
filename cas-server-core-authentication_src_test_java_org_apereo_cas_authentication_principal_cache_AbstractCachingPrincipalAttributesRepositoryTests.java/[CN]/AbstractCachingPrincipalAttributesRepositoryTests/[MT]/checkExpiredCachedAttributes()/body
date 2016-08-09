@@ -1,6 +1,6 @@
 {
   assertEquals(this.principal.getAttributes().size(),1);
-  try (final AbstractPrincipalAttributesRepository repository=getPrincipalAttributesRepository(TimeUnit.MILLISECONDS.name(),100)){
+  try (AbstractPrincipalAttributesRepository repository=getPrincipalAttributesRepository(TimeUnit.MILLISECONDS.name(),100)){
     assertEquals(repository.getAttributes(this.principal).size(),this.attributes.size());
     assertTrue(repository.getAttributes(this.principal).containsKey("mail"));
     Thread.sleep(200);

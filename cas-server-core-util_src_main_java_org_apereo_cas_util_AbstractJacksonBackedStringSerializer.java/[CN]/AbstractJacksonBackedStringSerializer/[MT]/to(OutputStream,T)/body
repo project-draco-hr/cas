@@ -1,5 +1,5 @@
 {
-  try (final StringWriter writer=new StringWriter()){
+  try (StringWriter writer=new StringWriter()){
     this.objectMapper.writer(this.prettyPrinter).writeValue(writer,object);
     final String hjsonString=isJsonFormat() ? JsonValue.readHjson(writer.toString()).toString(Stringify.HJSON) : writer.toString();
     IOUtils.write(hjsonString,out,"UTF-8");

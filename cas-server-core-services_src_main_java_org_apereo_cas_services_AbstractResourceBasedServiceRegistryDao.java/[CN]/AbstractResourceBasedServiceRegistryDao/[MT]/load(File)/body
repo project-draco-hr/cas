@@ -11,7 +11,7 @@
     LOGGER.debug("[{}] appears to be empty so no service definition will be loaded",file.getName());
     return null;
   }
-  try (final BufferedInputStream in=new BufferedInputStream(new FileInputStream(file))){
+  try (BufferedInputStream in=new BufferedInputStream(new FileInputStream(file))){
     return this.registeredServiceSerializer.from(in);
   }
  catch (  final Exception e) {

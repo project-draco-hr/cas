@@ -1,5 +1,5 @@
 {
-  try (final InputStream in=resource.getInputStream()){
+  try (InputStream in=resource.getInputStream()){
     return CertUtil.readCertificate(in);
   }
  catch (  final IOException e) {

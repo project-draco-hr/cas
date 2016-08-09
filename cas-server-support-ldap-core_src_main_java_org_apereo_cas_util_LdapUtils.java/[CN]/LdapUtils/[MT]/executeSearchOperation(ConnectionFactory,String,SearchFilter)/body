@@ -1,5 +1,5 @@
 {
-  try (final Connection connection=createConnection(connectionFactory)){
+  try (Connection connection=createConnection(connectionFactory)){
     final SearchOperation searchOperation=new SearchOperation(connection);
     final SearchRequest request=Beans.newSearchRequest(baseDn,filter);
     request.setReferralHandler(new SearchReferralHandler());

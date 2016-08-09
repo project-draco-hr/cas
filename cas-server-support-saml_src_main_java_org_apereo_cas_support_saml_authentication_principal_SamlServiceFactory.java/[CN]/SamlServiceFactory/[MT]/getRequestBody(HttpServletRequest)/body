@@ -1,6 +1,6 @@
 {
   final StringBuilder builder=new StringBuilder();
-  try (final BufferedReader reader=request.getReader()){
+  try (BufferedReader reader=request.getReader()){
     if (reader == null) {
       logger.debug("Request body could not be read because it's empty.");
       return null;

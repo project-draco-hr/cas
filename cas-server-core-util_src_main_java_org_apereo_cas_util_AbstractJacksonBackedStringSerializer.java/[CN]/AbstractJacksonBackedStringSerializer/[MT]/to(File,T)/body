@@ -1,5 +1,5 @@
 {
-  try (final StringWriter writer=new StringWriter()){
+  try (StringWriter writer=new StringWriter()){
     this.objectMapper.writer(this.prettyPrinter).writeValue(writer,object);
     if (isJsonFormat()) {
       JsonValue.readHjson(writer.toString()).writeTo(new BufferedWriter(new FileWriter(out)));

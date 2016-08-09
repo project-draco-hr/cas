@@ -1,5 +1,5 @@
 {
-  try (final Connection connection=createConnection(connectionFactory)){
+  try (Connection connection=createConnection(connectionFactory)){
     final AddOperation operation=new AddOperation(connection);
     operation.execute(new AddRequest(entry.getDn(),entry.getAttributes()));
     return true;

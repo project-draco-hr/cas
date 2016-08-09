@@ -1,5 +1,5 @@
 {
-  try (final ObjectOutputStream out=new ObjectOutputStream(outputStream)){
+  try (ObjectOutputStream out=new ObjectOutputStream(outputStream)){
     out.writeObject(object);
   }
  catch (  final IOException e) {

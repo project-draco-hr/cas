@@ -5,7 +5,7 @@
     final InMemoryDirectoryServerConfig config=new InMemoryDirectoryServerConfig(p.getProperty("ldap.rootDn"));
     config.addAdditionalBindCredentials(p.getProperty("ldap.managerDn"),p.getProperty("ldap.managerPassword"));
     final File keystoreFile=File.createTempFile("key","store");
-    try (final OutputStream outputStream=new FileOutputStream(keystoreFile)){
+    try (OutputStream outputStream=new FileOutputStream(keystoreFile)){
       IOUtils.copy(new ClassPathResource("/ldapServerTrustStore").getInputStream(),outputStream);
     }
      final String serverKeyStorePath=keystoreFile.getCanonicalPath();
@@ -16,7 +16,7 @@
     config.setEnforceAttributeSyntaxCompliance(true);
     config.setMaxConnections(-1);
     final File file=File.createTempFile("ldap","schema");
-    try (final OutputStream outputStream=new FileOutputStream(file)){
+    try (OutputStream outputStream=new FileOutputStream(file)){
       IOUtils.copy(schemaFile,outputStream);
     }
      final Schema s=Schema.mergeSchemas(Schema.getSchema(file));
@@ -24,7 +24,7 @@
     this.directoryServer=new InMemoryDirectoryServer(config);
     LOGGER.debug("Populating directory...");
     final File ldif=File.createTempFile("ldiff","file");
-    try (final OutputStream outputStream=new FileOutputStream(ldif)){
+    try (OutputStream outputStream=new FileOutputStream(ldif)){
       IOUtils.copy(ldifFile,outputStream);
     }
      this.directoryServer.importFromLDIF(true,ldif.getCanonicalPath());

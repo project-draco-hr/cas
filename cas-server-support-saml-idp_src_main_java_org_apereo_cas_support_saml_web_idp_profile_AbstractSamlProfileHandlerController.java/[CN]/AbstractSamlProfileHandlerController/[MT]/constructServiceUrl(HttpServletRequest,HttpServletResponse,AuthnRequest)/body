@@ -1,5 +1,5 @@
 {
-  try (final StringWriter writer=SamlUtils.transformSamlObject(this.configBean,authnRequest)){
+  try (StringWriter writer=SamlUtils.transformSamlObject(this.configBean,authnRequest)){
     final URLBuilder builder=new URLBuilder(this.callbackService.getId());
     builder.getQueryParams().add(new Pair<>(SamlProtocolConstants.PARAMETER_ENTITY_ID,SamlIdPUtils.getIssuerFromSamlRequest(authnRequest)));
     final String samlRequest=EncodingUtils.encodeBase64(writer.toString().getBytes("UTF-8"));

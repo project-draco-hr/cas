@@ -1,5 +1,5 @@
 {
-  try (final Connection connection=createConnection(connectionFactory)){
+  try (Connection connection=createConnection(connectionFactory)){
     final DeleteOperation delete=new DeleteOperation(connection);
     final DeleteRequest request=new DeleteRequest(entry.getDn());
     request.setReferralHandler(new DeleteReferralHandler());

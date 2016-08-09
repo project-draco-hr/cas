@@ -1,5 +1,5 @@
 {
-  try (final AbstractPrincipalAttributesRepository repository=getPrincipalAttributesRepository(TimeUnit.SECONDS.name(),5)){
+  try (AbstractPrincipalAttributesRepository repository=getPrincipalAttributesRepository(TimeUnit.SECONDS.name(),5)){
     assertEquals(repository.getAttributes(this.principal).size(),this.attributes.size());
     assertTrue(repository.getAttributes(this.principal).containsKey("mail"));
     attributes.clear();

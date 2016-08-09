@@ -4,7 +4,7 @@
     ((AbstractRegisteredService)service).setId(System.nanoTime());
   }
   final File f=makeFile(service);
-  try (final LockedOutputStream out=new LockedOutputStream(new FileOutputStream(f))){
+  try (LockedOutputStream out=new LockedOutputStream(new FileOutputStream(f))){
     this.registeredServiceSerializer.to(out,service);
     if (this.serviceMap.containsKey(service.getId())) {
       LOGGER.debug("Found existing service definition by id [{}]. Saving...",service.getId());

@@ -1,6 +1,6 @@
 {
   final ByteArrayOutputStream byteStream=new ByteArrayOutputStream();
-  try (final Output output=new Output(byteStream)){
+  try (Output output=new Output(byteStream)){
     this.kryo.writeClassAndObject(output,obj);
     output.flush();
     final byte[] bytes=byteStream.toByteArray();

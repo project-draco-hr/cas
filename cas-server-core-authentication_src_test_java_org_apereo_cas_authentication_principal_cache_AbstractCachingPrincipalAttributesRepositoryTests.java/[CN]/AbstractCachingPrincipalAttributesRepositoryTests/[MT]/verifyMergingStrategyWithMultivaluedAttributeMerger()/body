@@ -1,5 +1,5 @@
 {
-  try (final AbstractPrincipalAttributesRepository repository=getPrincipalAttributesRepository(TimeUnit.SECONDS.name(),5)){
+  try (AbstractPrincipalAttributesRepository repository=getPrincipalAttributesRepository(TimeUnit.SECONDS.name(),5)){
     repository.setMergingStrategy(AbstractPrincipalAttributesRepository.MergingStrategy.MULTIVALUED);
     assertTrue(repository.getAttributes(this.principal).get("mail") instanceof List);
     final List<?> values=(List)repository.getAttributes(this.principal).get("mail");

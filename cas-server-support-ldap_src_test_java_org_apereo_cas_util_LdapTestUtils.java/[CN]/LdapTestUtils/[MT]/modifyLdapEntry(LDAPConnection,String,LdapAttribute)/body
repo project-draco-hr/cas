@@ -1,7 +1,7 @@
 {
   try {
     final String address="ldap://" + serverCon.getConnectedAddress() + ':'+ serverCon.getConnectedPort();
-    try (final Connection conn=DefaultConnectionFactory.getConnection(address)){
+    try (Connection conn=DefaultConnectionFactory.getConnection(address)){
       try {
         conn.open();
         final ModifyOperation modify=new ModifyOperation(conn);
