@@ -2,6 +2,5 @@
   configureCookieGenerators(context);
   configureWebflowContext(context);
   configureWebflowContextForService(context);
-  validateClientRequestContext(context);
   return result("success");
 }

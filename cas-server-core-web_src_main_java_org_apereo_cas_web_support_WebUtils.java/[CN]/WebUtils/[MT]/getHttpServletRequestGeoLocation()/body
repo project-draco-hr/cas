@@ -4,7 +4,7 @@
   final int accuIndex=2;
   final int timeIndex=3;
   final HttpServletRequest request=WebUtils.getHttpServletRequest();
-  final HttpRequestGeoLocation loc=new HttpRequestGeoLocation();
+  final GeoLocationRequest loc=new GeoLocationRequest();
   if (request != null) {
     final String geoLocationParam=request.getParameter("geolocation");
     if (StringUtils.isNotBlank(geoLocationParam)) {

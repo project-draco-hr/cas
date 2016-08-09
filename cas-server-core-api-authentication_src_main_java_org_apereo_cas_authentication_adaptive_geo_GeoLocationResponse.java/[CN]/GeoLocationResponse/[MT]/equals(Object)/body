@@ -8,6 +8,6 @@
   if (obj.getClass() != getClass()) {
     return false;
   }
-  final GeoLocation rhs=(GeoLocation)obj;
+  final GeoLocationResponse rhs=(GeoLocationResponse)obj;
   return new EqualsBuilder().append(this.city,rhs.city).append(this.country,rhs.country).isEquals();
 }

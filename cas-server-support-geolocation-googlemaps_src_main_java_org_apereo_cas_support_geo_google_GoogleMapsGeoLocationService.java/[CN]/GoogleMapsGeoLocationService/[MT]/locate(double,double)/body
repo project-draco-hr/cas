@@ -4,7 +4,7 @@
     final GeocodingResult[] results=GeocodingApi.reverseGeocode(this.context,latlng).await();
     if (results != null && results.length > 0) {
       final GeocodingResult res=Arrays.stream(results).findFirst().get();
-      return new GeoLocation();
+      return new GeoLocationResponse();
     }
   }
  catch (  final Exception e) {

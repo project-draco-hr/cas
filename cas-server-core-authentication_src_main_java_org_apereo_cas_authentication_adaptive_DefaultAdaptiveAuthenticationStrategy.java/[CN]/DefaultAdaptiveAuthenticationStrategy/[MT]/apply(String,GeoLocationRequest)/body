@@ -1,0 +1,22 @@
+{
+  if (isUserAgentRejected(userAgent)) {
+    logger.warn("User agent {} is rejected for authentication",userAgent);
+    return false;
+  }
+  if (this.geoLocationService != null) {
+    final ClientInfo clientInfo=ClientInfoHolder.getClientInfo();
+    final String clientIp=clientInfo.getClientIpAddress();
+    final GeoLocationResponse loc=getGeoLocation(clientIp,location);
+    if (loc != null) {
+      logger.debug("Determined geolocation to be {}",loc);
+      if (isGeoLocationCountryRejected(loc)) {
+        logger.warn("Client {} is rejected for authentication",clientIp);
+        return false;
+      }
+    }
+ else {
+      logger.info("Could not determine geolocation for {}",clientIp);
+    }
+  }
+  return true;
+}

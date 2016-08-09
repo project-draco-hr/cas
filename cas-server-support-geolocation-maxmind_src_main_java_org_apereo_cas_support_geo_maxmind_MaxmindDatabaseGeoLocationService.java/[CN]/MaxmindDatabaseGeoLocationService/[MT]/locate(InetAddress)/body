@@ -1,6 +1,6 @@
 {
   try {
-    final GeoLocation location=new GeoLocation();
+    final GeoLocationResponse location=new GeoLocationResponse();
     if (this.cityDatabaseReader != null) {
       final CityResponse response=this.cityDatabaseReader.city(address);
       location.setCity(response.getCity().getName());
