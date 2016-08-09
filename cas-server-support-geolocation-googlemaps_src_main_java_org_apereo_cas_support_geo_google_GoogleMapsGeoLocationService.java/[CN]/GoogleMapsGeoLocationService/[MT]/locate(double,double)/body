@@ -1,0 +1,14 @@
+{
+  final LatLng latlng=new LatLng(latitude,longitude);
+  try {
+    final GeocodingResult[] results=GeocodingApi.reverseGeocode(this.context,latlng).await();
+    if (results != null && results.length > 0) {
+      final GeocodingResult res=Arrays.stream(results).findFirst().get();
+      return new GeoLocation();
+    }
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+  return null;
+}
