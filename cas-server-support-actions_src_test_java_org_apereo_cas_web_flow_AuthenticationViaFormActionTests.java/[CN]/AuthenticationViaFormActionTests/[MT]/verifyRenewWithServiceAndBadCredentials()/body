@@ -11,5 +11,5 @@
   final Credential c2=org.apereo.cas.authentication.TestUtils.getCredentialsWithDifferentUsernameAndPassword();
   context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
   putCredentialInRequestScope(context,c2);
-  assertEquals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,this.action.doExecute(context).getId());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,this.action.execute(context).getId());
 }

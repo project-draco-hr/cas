@@ -7,5 +7,5 @@
   final Credential c=org.apereo.cas.authentication.TestUtils.getCredentialsWithDifferentUsernameAndPassword();
   putCredentialInRequestScope(context,c);
   context.getRequestScope().put("org.springframework.validation.BindException.credentials",new BindException(c,"credential"));
-  assertEquals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,this.action.doExecute(context).getId());
+  assertEquals(CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,this.action.execute(context).getId());
 }
