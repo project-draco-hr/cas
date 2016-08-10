@@ -29,7 +29,7 @@
             copyDestination=new File(destination,entryFileName.getName());
           }
           try (FileWriter writer=new FileWriter(copyDestination)){
-            IOUtils.copy(stream,writer);
+            IOUtils.copy(stream,writer,"UTF-8");
           }
          }
        }

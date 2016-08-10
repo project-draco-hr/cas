@@ -7,11 +7,14 @@
   bean.setCacheManager(manager);
   bean.setBootstrapCacheLoader(ticketCacheBootstrapCacheLoader());
   bean.setDiskExpiryThreadIntervalSeconds(casProperties.getTicket().getRegistry().getEhcache().getDiskExpiryThreadIntervalSeconds());
-  bean.setDiskPersistent(casProperties.getTicket().getRegistry().getEhcache().isDiskPersistent());
   bean.setEternal(casProperties.getTicket().getRegistry().getEhcache().isEternal());
-  bean.setMaxElementsInMemory(casProperties.getTicket().getRegistry().getEhcache().getMaxElementsInMemory());
-  bean.setMaxElementsOnDisk(casProperties.getTicket().getRegistry().getEhcache().getMaxElementsOnDisk());
+  bean.setMaxEntriesLocalHeap(casProperties.getTicket().getRegistry().getEhcache().getMaxElementsInMemory());
+  bean.setMaxEntriesInCache(casProperties.getTicket().getRegistry().getEhcache().getMaxElementsInCache());
+  bean.setMaxEntriesLocalDisk(casProperties.getTicket().getRegistry().getEhcache().getMaxElementsOnDisk());
   bean.setMemoryStoreEvictionPolicy(casProperties.getTicket().getRegistry().getEhcache().getMemoryStoreEvictionPolicy());
-  bean.setOverflowToDisk(casProperties.getTicket().getRegistry().getEhcache().isOverflowToDisk());
+  PersistenceConfiguration c=new PersistenceConfiguration();
+  c.strategy(casProperties.getTicket().getRegistry().getEhcache().getPersistence());
+  c.setSynchronousWrites(casProperties.getTicket().getRegistry().getEhcache().isSynchronousWrites());
+  bean.persistence(c);
   return bean;
 }

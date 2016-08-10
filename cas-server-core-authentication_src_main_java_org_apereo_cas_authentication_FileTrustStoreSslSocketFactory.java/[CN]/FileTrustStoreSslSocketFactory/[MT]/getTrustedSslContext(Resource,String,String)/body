@@ -12,7 +12,7 @@
     final X509TrustManager jvmTrustManager=getTrustManager(defaultAlgorithm,null);
     final KeyManager[] keyManagers={new CompositeX509KeyManager(Lists.newArrayList(jvmKeyManager,customKeyManager))};
     final TrustManager[] trustManagers={new CompositeX509TrustManager(Lists.newArrayList(jvmTrustManager,customTrustManager))};
-    final SSLContext context=SSLContexts.custom().useSSL().build();
+    final SSLContext context=SSLContexts.custom().useProtocol("SSL").build();
     context.init(keyManagers,trustManagers,null);
     return context;
   }

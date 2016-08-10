@@ -13,7 +13,7 @@
       writer.write(warning);
     }
  else {
-      final String contents=IOUtils.toString(this.templateSpMetadata.getInputStream());
+      final String contents=IOUtils.toString(this.templateSpMetadata.getInputStream(),"UTF-8");
       response.setContentType(CONTENT_TYPE);
       response.setStatus(HttpServletResponse.SC_OK);
       writer.write(contents.replace("$entityId",entityID).replace("$acsUrl",acsUrl).replace("$x509Certificate",x509Certificate).replace("$authnRequestSigned",authnRequestSigned).replace("$wantAssertionsSigned",wantAssertionsSigned));
