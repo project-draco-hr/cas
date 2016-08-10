@@ -15,5 +15,6 @@
   if (ipCheck && !ipPatternMatches(remoteIp)) {
     return false;
   }
+  logger.debug("Attempting to locate attribute {} for {}",this.spnegoAttributeName,remoteIp);
   return executeSearchForSpnegoAttribute(remoteIp);
 }

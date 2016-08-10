@@ -6,5 +6,6 @@
   }
   final LdapEntry entry=result.getEntry();
   final LdapAttribute attribute=entry.getAttribute(this.spnegoAttributeName);
-  return verifySpnegyAttributeValue(attribute);
+  logger.debug("Spnego attribute {} found as {} for {}",attribute.getName(),attribute.getStringValue(),entry.getDn());
+  return verifySpnegoAttributeValue(attribute);
 }
