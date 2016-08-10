@@ -2,5 +2,9 @@
   final SpnegoCredentialsAction a=new SpnegoCredentialsAction();
   a.setNtlm(casProperties.getAuthn().getSpnego().isNtlm());
   a.setSend401OnAuthenticationFailure(casProperties.getAuthn().getSpnego().isSend401OnAuthenticationFailure());
+  a.setAuthenticationSystemSupport(this.authenticationSystemSupport);
+  a.setPrincipalFactory(this.spnegoPrincipalFactory);
+  a.setWarnCookieGenerator(this.warnCookieGenerator);
+  a.setCentralAuthenticationService(this.centralAuthenticationService);
   return a;
 }
