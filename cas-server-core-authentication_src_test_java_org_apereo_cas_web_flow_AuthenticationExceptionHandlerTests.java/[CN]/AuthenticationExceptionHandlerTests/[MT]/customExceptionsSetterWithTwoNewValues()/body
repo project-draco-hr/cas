@@ -6,5 +6,5 @@
   handler.setErrors(twoCustomErrors);
   assertTrue(handler.containsCustomErrors());
   assertTrue(handler.getErrors().containsAll(twoCustomErrors));
-  assertEquals(12,handler.getErrors().size());
+  assertEquals(13,handler.getErrors().size());
 }
