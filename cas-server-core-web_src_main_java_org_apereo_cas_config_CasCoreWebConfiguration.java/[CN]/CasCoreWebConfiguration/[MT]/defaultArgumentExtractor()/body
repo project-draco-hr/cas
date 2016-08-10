@@ -1,4 +1,3 @@
 {
-  final DefaultArgumentExtractor a=new DefaultArgumentExtractor(serviceFactoryList);
-  return a;
+  return new DefaultArgumentExtractor(serviceFactoryList);
 }

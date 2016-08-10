@@ -1,5 +1,5 @@
 {
   authenticationHandlersResolvers.put(openIdCredentialsAuthenticationHandler(),openIdPrincipalResolver());
   uniqueIdGeneratorsMap.put(OpenIdService.class.getCanonicalName(),this.serviceTicketUniqueIdGenerator);
-  serviceFactoryList.add(0,openIdServiceFactory());
+  this.argumentExtractor.getServiceFactories().add(0,openIdServiceFactory());
 }
