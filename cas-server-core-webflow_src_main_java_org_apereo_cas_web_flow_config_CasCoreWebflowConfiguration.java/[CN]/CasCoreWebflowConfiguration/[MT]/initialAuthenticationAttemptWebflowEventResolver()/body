@@ -1,10 +1,10 @@
 {
   final InitialAuthenticationAttemptWebflowEventResolver r=new InitialAuthenticationAttemptWebflowEventResolver();
-  r.getOrderedResolvers().add(adaptiveAuthenticationPolicyWebflowEventResolver());
-  r.getOrderedResolvers().add(requestParameterAuthenticationPolicyWebflowEventResolver());
-  r.getOrderedResolvers().add(registeredServicePrincipalAttributeAuthenticationPolicyWebflowEventResolver());
-  r.getOrderedResolvers().add(principalAttributeAuthenticationPolicyWebflowEventResolver());
-  r.getOrderedResolvers().add(registeredServiceAuthenticationPolicyWebflowEventResolver());
+  r.addDelegate(adaptiveAuthenticationPolicyWebflowEventResolver());
+  r.addDelegate(requestParameterAuthenticationPolicyWebflowEventResolver());
+  r.addDelegate(registeredServicePrincipalAttributeAuthenticationPolicyWebflowEventResolver());
+  r.addDelegate(principalAttributeAuthenticationPolicyWebflowEventResolver());
+  r.addDelegate(registeredServiceAuthenticationPolicyWebflowEventResolver());
   r.setSelectiveResolver(selectiveAuthenticationProviderWebflowEventResolver());
   configureResolver(r);
   return r;
