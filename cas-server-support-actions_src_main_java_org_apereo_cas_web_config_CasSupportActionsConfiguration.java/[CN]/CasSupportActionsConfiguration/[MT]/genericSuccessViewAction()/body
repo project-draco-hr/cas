@@ -1,3 +1,5 @@
 {
-  return new GenericSuccessViewAction(this.centralAuthenticationService);
+  final GenericSuccessViewAction a=new GenericSuccessViewAction(this.centralAuthenticationService,this.servicesManager,this.webApplicationServiceFactory);
+  a.setRedirectUrl(casProperties.getView().getDefaultRedirectUrl());
+  return a;
 }

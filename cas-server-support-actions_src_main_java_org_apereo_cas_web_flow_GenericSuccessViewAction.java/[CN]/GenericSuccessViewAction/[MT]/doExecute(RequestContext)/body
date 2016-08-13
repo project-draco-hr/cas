@@ -1,4 +1,13 @@
 {
-  final String tgt=WebUtils.getTicketGrantingTicketId(requestContext);
-  return success(getAuthenticationPrincipal(tgt));
+  if (StringUtils.isNotBlank(this.redirectUrl)) {
+    final Service service=this.serviceFactory.createService(this.redirectUrl);
+    final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+    RegisteredServiceAccessStrategyUtils.ensureServiceAccessIsAllowed(service,registeredService);
+    requestContext.getExternalContext().requestExternalRedirect(service.getId());
+  }
+ else {
+    final String tgt=WebUtils.getTicketGrantingTicketId(requestContext);
+    WebUtils.putPrincipal(requestContext,getAuthenticationPrincipal(tgt));
+  }
+  return success();
 }
