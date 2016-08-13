@@ -1,0 +1,5 @@
+{
+  final MessageContext messageContext=requestContext.getMessageContext();
+  messageContext.addMessage(new MessageBuilder().error().code(CODE).build());
+  return getEventFactorySupport().event(this,CODE);
+}

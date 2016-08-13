@@ -1,0 +1,3 @@
+{
+  this.googleRecaptchaSiteKey=googleRecaptchaSiteKey;
+}

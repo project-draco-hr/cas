@@ -1,0 +1,6 @@
+{
+  final CasCaptchaWebflowConfigurer w=new CasCaptchaWebflowConfigurer();
+  w.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  w.setFlowBuilderServices(flowBuilderServices);
+  return w;
+}
