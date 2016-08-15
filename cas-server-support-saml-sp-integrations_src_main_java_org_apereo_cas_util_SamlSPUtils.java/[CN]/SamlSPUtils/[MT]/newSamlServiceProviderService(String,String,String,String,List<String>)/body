@@ -1,4 +1,8 @@
 {
+  if (StringUtils.isBlank(metadataLocation)) {
+    LOGGER.debug("Skipped registration of {} since no metadata location is found",name);
+    return null;
+  }
   try {
     final SamlRegisteredService service=new SamlRegisteredService();
     service.setName(name);
@@ -8,6 +12,7 @@
     final Matcher m=Pattern.compile("entityID=\"(\\w+)",Pattern.CASE_INSENSITIVE).matcher(content);
     if (m.find()) {
       service.setServiceId(m.group(1));
+      LOGGER.debug("Located entityID {} from metadata location {}",service.getServiceId(),metadataLocation);
     }
  else {
       throw new IllegalArgumentException("Could not locate entityID from the supplied metadata file " + metadataLocation);
