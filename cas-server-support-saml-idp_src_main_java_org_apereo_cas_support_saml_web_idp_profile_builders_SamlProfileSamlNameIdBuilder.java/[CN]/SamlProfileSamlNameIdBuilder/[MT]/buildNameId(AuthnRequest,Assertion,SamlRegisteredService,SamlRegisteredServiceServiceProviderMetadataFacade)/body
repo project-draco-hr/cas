@@ -24,15 +24,22 @@
   }
   try {
     for (    final String nameFormat : supportedNameFormats) {
+      logger.debug("Evaluating NameID format {}",nameFormat);
       final SAML2StringNameIDEncoder encoder=new SAML2StringNameIDEncoder();
       encoder.setNameFormat(nameFormat);
       if (authnRequest.getNameIDPolicy() != null) {
-        encoder.setNameQualifier(authnRequest.getNameIDPolicy().getSPNameQualifier());
+        final String qualifier=authnRequest.getNameIDPolicy().getSPNameQualifier();
+        logger.debug("NameID qualifier is set to {}",qualifier);
+        encoder.setNameQualifier(qualifier);
       }
       final IdPAttribute attribute=new IdPAttribute(AttributePrincipal.class.getName());
       final IdPAttributeValue<String> value=new StringAttributeValue(assertion.getPrincipal().getName());
+      logger.debug("NameID attribute value is set to {}",assertion.getPrincipal().getName());
       attribute.setValues(Collections.singletonList(value));
-      return encoder.encode(attribute);
+      logger.debug("Encoding NameID based on {}",nameFormat);
+      final NameID nameid=encoder.encode(attribute);
+      logger.debug("Final NameID encoded is {} with value",nameid.getFormat(),nameid.getValue());
+      return nameid;
     }
   }
  catch (  final Exception e) {
