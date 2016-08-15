@@ -1,0 +1,28 @@
+{
+  try {
+    final SamlRegisteredService service=new SamlRegisteredService();
+    service.setName(name);
+    service.setDescription(description);
+    final Resource resource=ResourceUtils.prepareClasspathResourceIfNeeded(ResourceUtils.getResourceFrom(metadataLocation));
+    final String content=IOUtils.toString(resource.getInputStream(),"UTF-8");
+    final Matcher m=Pattern.compile("entityID=\"(\\w+)",Pattern.CASE_INSENSITIVE).matcher(content);
+    if (m.find()) {
+      service.setServiceId(m.group(1));
+    }
+ else {
+      throw new IllegalArgumentException("Could not locate entityID from the supplied metadata file " + metadataLocation);
+    }
+    service.setEvaluationOrder(Integer.MIN_VALUE);
+    service.setMetadataLocation(metadataLocation);
+    final List<String> attributesToRelease=new ArrayList<>(attributes);
+    if (StringUtils.isNotBlank(userIdAttribute)) {
+      attributesToRelease.add(userIdAttribute);
+      service.setUsernameAttributeProvider(new PrincipalAttributeRegisteredServiceUsernameProvider(userIdAttribute));
+    }
+    service.setAttributeReleasePolicy(new ReturnAllowedAttributeReleasePolicy(attributesToRelease));
+    return service;
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

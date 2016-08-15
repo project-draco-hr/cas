@@ -1,27 +1,8 @@
 {
-  try {
-    if (StringUtils.isNotBlank(casProperties.getSamlSP().getDropbox().getMetadata())) {
-      final SamlRegisteredService service=new SamlRegisteredService();
-      service.setName(casProperties.getSamlSP().getDropbox().getName());
-      service.setDescription(casProperties.getSamlSP().getDropbox().getDescription());
-      final Resource resource=ResourceUtils.prepareClasspathResourceIfNeeded(ResourceUtils.getResourceFrom(casProperties.getSamlSP().getDropbox().getMetadata()));
-      final String content=IOUtils.toString(resource.getInputStream(),"UTF-8");
-      final Matcher m=Pattern.compile("entityID=\"(\\w+)",Pattern.CASE_INSENSITIVE).matcher(content);
-      if (m.find()) {
-        service.setServiceId(m.group(1));
-      }
- else {
-        throw new IllegalArgumentException("Could not locate entityID from the supplied metadata file " + casProperties.getSamlSP().getDropbox().getMetadata());
-      }
-      service.setEvaluationOrder(Integer.MIN_VALUE);
-      service.setMetadataLocation(casProperties.getSamlSP().getDropbox().getMetadata());
-      service.setAttributeReleasePolicy(new ReturnAllowedAttributeReleasePolicy(Lists.newArrayList(casProperties.getSamlSP().getDropbox().getNameIdAttribute())));
-      service.setUsernameAttributeProvider(new PrincipalAttributeRegisteredServiceUsernameProvider(casProperties.getSamlSP().getDropbox().getNameIdAttribute()));
-      servicesManager.save(service);
-      servicesManager.load();
-    }
-  }
- catch (  final Exception e) {
-    throw Throwables.propagate(e);
+  final SamlRegisteredService service=SamlSPUtils.newSamlServiceProviderService(casProperties.getSamlSP().getDropbox().getName(),casProperties.getSamlSP().getDropbox().getDescription(),casProperties.getSamlSP().getDropbox().getMetadata(),casProperties.getSamlSP().getDropbox().getNameIdAttribute());
+  if (service != null) {
+    service.setSignResponses(true);
+    servicesManager.save(service);
+    servicesManager.load();
   }
 }

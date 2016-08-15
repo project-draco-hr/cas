@@ -1,0 +1,5 @@
+String name
+String description
+String metadataLocation
+String userIdAttribute
+List<String> attributes
