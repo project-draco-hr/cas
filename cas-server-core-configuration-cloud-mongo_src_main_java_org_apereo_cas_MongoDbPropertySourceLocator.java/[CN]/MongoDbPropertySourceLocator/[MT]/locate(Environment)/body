@@ -1,0 +1,10 @@
+{
+  if (environment instanceof ConfigurableEnvironment) {
+    final CompositePropertySource composite=new CompositePropertySource(MongoDbPropertySource.class.getSimpleName());
+    final MongoDbPropertySource source=new MongoDbPropertySource(MongoDbPropertySource.class.getSimpleName(),mongo);
+    source.init();
+    composite.addFirstPropertySource(source);
+    return composite;
+  }
+  return null;
+}

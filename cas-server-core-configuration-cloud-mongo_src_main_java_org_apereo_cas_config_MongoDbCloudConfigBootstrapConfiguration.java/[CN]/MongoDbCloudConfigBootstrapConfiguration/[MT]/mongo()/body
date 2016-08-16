@@ -1,0 +1,6 @@
+{
+  final MongoCredential credential=MongoCredential.createCredential(mongoClientUri().getUsername(),getDatabaseName(),mongoClientUri().getPassword());
+  final String hostUri=mongoClientUri().getHosts().get(0);
+  final String[] host=hostUri.split(":");
+  return new MongoClient(new ServerAddress(host[0],host.length > 1 ? Integer.valueOf(host[1]) : 27017),Collections.singletonList(credential),mongoClientOptions());
+}

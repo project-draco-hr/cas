@@ -1,0 +1,3 @@
+{
+  list=getSource().findAll(MongoDbProperty.class,MongoDbProperty.class.getSimpleName());
+}
