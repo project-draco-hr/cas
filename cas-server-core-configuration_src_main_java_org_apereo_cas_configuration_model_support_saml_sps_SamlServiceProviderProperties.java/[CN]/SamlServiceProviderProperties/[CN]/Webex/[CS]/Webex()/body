@@ -1,0 +1,4 @@
+{
+  setNameIdAttribute("email");
+  setAttributes(Lists.newArrayList("firstName,lastName"));
+}

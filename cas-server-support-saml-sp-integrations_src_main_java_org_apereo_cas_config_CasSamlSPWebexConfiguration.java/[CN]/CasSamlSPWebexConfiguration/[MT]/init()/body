@@ -1,0 +1,8 @@
+{
+  final SamlRegisteredService service=SamlSPUtils.newSamlServiceProviderService(casProperties.getSamlSP().getWebex());
+  if (service != null) {
+    service.setSignResponses(false);
+    service.setSignAssertions(true);
+    SamlSPUtils.saveService(service,this.servicesManager);
+  }
+}
