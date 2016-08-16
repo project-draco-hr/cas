@@ -1,0 +1,3 @@
+{
+  return matchesExistingService(this.serviceFactory.createService(service));
+}

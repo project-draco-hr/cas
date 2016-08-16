@@ -1,0 +1,33 @@
+{
+  if (StringUtils.isBlank(sp.getMetadata())) {
+    LOGGER.debug("Skipped registration of {} since no metadata location is found",sp.getName());
+    return null;
+  }
+  try {
+    final SamlRegisteredService service=new SamlRegisteredService();
+    service.setName(sp.getName());
+    service.setDescription(sp.getDescription());
+    final Resource resource=ResourceUtils.prepareClasspathResourceIfNeeded(ResourceUtils.getResourceFrom(sp.getMetadata()));
+    final String content=IOUtils.toString(resource.getInputStream(),"UTF-8");
+    final Matcher m=Pattern.compile("entityID=\"(\\w+)",Pattern.CASE_INSENSITIVE).matcher(content);
+    if (m.find()) {
+      service.setServiceId(m.group(1));
+      LOGGER.debug("Located entityID {} from metadata location {}",service.getServiceId(),sp.getMetadata());
+    }
+ else {
+      throw new IllegalArgumentException("Could not locate entityID from the supplied metadata file " + sp.getMetadata());
+    }
+    service.setEvaluationOrder(Integer.MIN_VALUE);
+    service.setMetadataLocation(sp.getMetadata());
+    final List<String> attributesToRelease=new ArrayList<>(sp.getAttributes());
+    if (StringUtils.isNotBlank(sp.getNameIdAttribute())) {
+      attributesToRelease.add(sp.getNameIdAttribute());
+      service.setUsernameAttributeProvider(new PrincipalAttributeRegisteredServiceUsernameProvider(sp.getNameIdAttribute()));
+    }
+    service.setAttributeReleasePolicy(new ReturnAllowedAttributeReleasePolicy(attributesToRelease));
+    return service;
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

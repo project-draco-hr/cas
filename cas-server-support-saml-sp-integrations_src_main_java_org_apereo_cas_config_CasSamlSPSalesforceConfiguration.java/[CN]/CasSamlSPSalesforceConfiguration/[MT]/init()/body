@@ -1,8 +1,7 @@
 {
-  final SamlRegisteredService service=SamlSPUtils.newSamlServiceProviderService(casProperties.getSamlSP().getSalesforce().getName(),casProperties.getSamlSP().getSalesforce().getDescription(),casProperties.getSamlSP().getSalesforce().getMetadata(),casProperties.getSamlSP().getSalesforce().getAttributes());
+  final SamlRegisteredService service=SamlSPUtils.newSamlServiceProviderService(casProperties.getSamlSP().getSalesforce());
   if (service != null) {
     service.setSignResponses(true);
-    servicesManager.save(service);
-    servicesManager.load();
+    SamlSPUtils.saveService(service,this.servicesManager);
   }
 }

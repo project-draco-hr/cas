@@ -1,3 +1,0 @@
-{
-  return newSamlServiceProviderService(name,description,metadataLocation,userIdAttribute,new ArrayList<>());
-}
