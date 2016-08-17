@@ -3,8 +3,10 @@
     final Transition transition=createTransition(criteriaOutcome,targetState);
     state.getTransitionSet().add(transition);
     logger.debug("Added transition {} to the state {}",transition.getId(),state.getId());
+    return transition;
   }
  catch (  final Exception e) {
     logger.error(e.getMessage(),e);
   }
+  return null;
 }

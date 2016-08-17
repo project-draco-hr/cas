@@ -1,3 +1,3 @@
 {
-  return createViewState(flow,id,new LiteralExpression(viewId));
+  return createViewState(flow,id,new LiteralExpression(viewId),null);
 }

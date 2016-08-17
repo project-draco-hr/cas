@@ -1,0 +1,4 @@
+{
+  requestContext.getFlowScope().put("passwordManagementEnabled",properties.isEnabled());
+  return null;
+}

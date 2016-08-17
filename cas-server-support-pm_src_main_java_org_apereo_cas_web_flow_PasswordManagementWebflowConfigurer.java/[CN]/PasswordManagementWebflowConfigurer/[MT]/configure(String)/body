@@ -1,0 +1,17 @@
+{
+  final Flow flow=getLoginFlow();
+  flow.addVariable(new FlowVariable("password",new BeanFactoryVariableValueFactory(PasswordChangeBean.class,applicationContext.getAutowireCapableBeanFactory())));
+  final BinderConfiguration binder=new BinderConfiguration();
+  binder.addBinding(new BinderConfiguration.Binding("password",null,true));
+  binder.addBinding(new BinderConfiguration.Binding("confirmedPassword",null,true));
+  final ViewState viewState=createViewState(flow,id,id,binder);
+  viewState.getAttributes().put("model",createExpression("password",PasswordChangeBean.class));
+  viewState.getEntryActionList().add(this.passwordChangeAction);
+  final Transition transition=createTransitionForState(viewState,CasWebflowConstants.TRANSITION_ID_SUBMIT,PASSWORD_CHANGE_ACTION);
+  transition.getAttributes().put("bind",Boolean.TRUE);
+  transition.getAttributes().put("validate",Boolean.TRUE);
+  createStateDefaultTransition(viewState,id);
+  final ActionState aupAcceptedAction=createActionState(flow,PASSWORD_CHANGE_ACTION,createEvaluateAction(PASSWORD_CHANGE_ACTION));
+  aupAcceptedAction.getTransitionSet().add(createTransition(CasWebflowConstants.TRANSITION_ID_SUCCESS,CasWebflowConstants.STATE_ID_INIT_LOGIN_FORM));
+  aupAcceptedAction.getTransitionSet().add(createTransition(CasWebflowConstants.TRANSITION_ID_ERROR,id));
+}

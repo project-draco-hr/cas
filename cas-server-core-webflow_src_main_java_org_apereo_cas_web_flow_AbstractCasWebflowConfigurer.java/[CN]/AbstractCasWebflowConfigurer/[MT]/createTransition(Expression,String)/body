@@ -7,5 +7,6 @@
     criteria=new DefaultTransitionCriteria(criteriaOutcomeExpression);
   }
   final DefaultTargetStateResolver resolver=new DefaultTargetStateResolver(targetState);
-  return new Transition(criteria,resolver);
+  final Transition t=new Transition(criteria,resolver);
+  return t;
 }

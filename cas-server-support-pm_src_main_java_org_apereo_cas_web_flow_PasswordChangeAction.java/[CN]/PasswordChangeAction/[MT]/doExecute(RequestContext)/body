@@ -1,4 +1,3 @@
 {
-  requestContext.getFlowScope().put("passwordManagementEnabled",Boolean.TRUE);
-  return null;
+  return error();
 }

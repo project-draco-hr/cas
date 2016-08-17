@@ -1,5 +1,16 @@
 {
   final Flow flow=getLoginFlow();
-  flow.getStateInstance("casMustChangePassView").getEntryActionList().add(this.passwordChangeAction);
-  flow.getStateInstance("casExpiredPassView").getEntryActionList().add(this.passwordChangeAction);
+  createViewState(flow,"casAuthenticationBlockedView","casAuthenticationBlockedView");
+  createViewState(flow,"casBadWorkstationView","casBadWorkstationView");
+  createViewState(flow,"casBadHoursView","casBadHoursView");
+  createViewState(flow,"casAccountLockedView","casAccountLockedView");
+  createViewState(flow,"casAccountDisabledView","casAccountDisabledView");
+  if (casProperties.getAuthn().getPm().isEnabled()) {
+    configure(CAS_MUST_CHANGE_PASS_VIEW);
+    configure(CAS_EXPIRED_PASS_VIEW);
+  }
+ else {
+    createViewState(flow,CAS_MUST_CHANGE_PASS_VIEW,CAS_MUST_CHANGE_PASS_VIEW);
+    createViewState(flow,CAS_EXPIRED_PASS_VIEW,CAS_EXPIRED_PASS_VIEW);
+  }
 }

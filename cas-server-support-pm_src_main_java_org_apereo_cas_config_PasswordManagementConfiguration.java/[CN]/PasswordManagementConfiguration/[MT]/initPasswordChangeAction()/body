@@ -1,0 +1,3 @@
+{
+  return new InitPasswordChangeAction(casProperties.getAuthn().getPm());
+}
