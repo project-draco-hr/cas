@@ -1,6 +1,6 @@
 {
   final Flow flow=getLoginFlow();
-  final Expression expression=createExpression(flow,"flowScope.WsFederationIdentityProviderUrl",String.class);
+  final Expression expression=createExpression("flowScope.WsFederationIdentityProviderUrl",String.class);
   final ActionExecutingViewFactory viewFactory=new ActionExecutingViewFactory(new ExternalRedirectAction(expression));
   createEndState(flow,WS_FEDERATION_REDIRECT,viewFactory);
   final ActionState actionState=createActionState(flow,WS_FEDERATION_ACTION,createEvaluateAction(WS_FEDERATION_ACTION));

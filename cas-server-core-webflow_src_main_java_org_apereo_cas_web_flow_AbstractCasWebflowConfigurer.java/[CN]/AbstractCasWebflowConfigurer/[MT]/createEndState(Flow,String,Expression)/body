@@ -1,4 +1,4 @@
 {
   final ViewFactory viewFactory=this.flowBuilderServices.getViewFactoryCreator().createViewFactory(expression,this.flowBuilderServices.getExpressionParser(),this.flowBuilderServices.getConversionService(),null,this.flowBuilderServices.getValidator(),this.flowBuilderServices.getValidationHintResolver());
-  createEndState(flow,id,viewFactory);
+  return createEndState(flow,id,viewFactory);
 }

@@ -1,4 +1,6 @@
 {
+  Assert.notNull(this.flowBuilderServices,"flowBuilderServices cannot be null.");
+  Assert.notNull(this.loginFlowDefinitionRegistry,"loginFlowDefinitionRegistry cannot be null.");
   try {
     logger.debug("Initializing CAS webflow configuration...");
     if (casProperties.getWebflow().isAutoconfigure()) {

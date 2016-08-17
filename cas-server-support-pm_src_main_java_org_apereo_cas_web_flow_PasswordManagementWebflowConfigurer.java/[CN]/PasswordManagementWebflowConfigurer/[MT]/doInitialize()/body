@@ -1,0 +1,5 @@
+{
+  final Flow flow=getLoginFlow();
+  flow.getStateInstance("casMustChangePassView").getEntryActionList().add(this.passwordChangeAction);
+  flow.getStateInstance("casExpiredPassView").getEntryActionList().add(this.passwordChangeAction);
+}
