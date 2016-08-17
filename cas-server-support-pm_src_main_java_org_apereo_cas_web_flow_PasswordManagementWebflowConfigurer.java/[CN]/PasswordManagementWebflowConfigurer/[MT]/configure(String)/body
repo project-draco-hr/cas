@@ -12,6 +12,6 @@
   transition.getAttributes().put("validate",Boolean.TRUE);
   createStateDefaultTransition(viewState,id);
   final ActionState aupAcceptedAction=createActionState(flow,PASSWORD_CHANGE_ACTION,createEvaluateAction(PASSWORD_CHANGE_ACTION));
-  aupAcceptedAction.getTransitionSet().add(createTransition(CasWebflowConstants.TRANSITION_ID_SUCCESS,CasWebflowConstants.STATE_ID_INIT_LOGIN_FORM));
+  aupAcceptedAction.getTransitionSet().add(createTransition("passwordUpdateSuccess","casPasswordUpdateSuccess"));
   aupAcceptedAction.getTransitionSet().add(createTransition(CasWebflowConstants.TRANSITION_ID_ERROR,id));
 }
