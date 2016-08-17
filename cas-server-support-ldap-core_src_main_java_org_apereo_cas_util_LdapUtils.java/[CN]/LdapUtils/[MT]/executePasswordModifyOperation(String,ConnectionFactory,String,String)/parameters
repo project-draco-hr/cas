@@ -1,0 +1,4 @@
+String currentDn
+ConnectionFactory connectionFactory
+String oldPassword
+String newPassword
