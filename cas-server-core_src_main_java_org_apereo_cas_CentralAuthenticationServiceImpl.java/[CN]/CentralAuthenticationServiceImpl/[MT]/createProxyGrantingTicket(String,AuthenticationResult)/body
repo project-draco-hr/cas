@@ -1,4 +1,5 @@
 {
+  CurrentCredentialsAndAuthentication.bindCurrent(authenticationResult.getAuthentication());
   final ServiceTicket serviceTicket=this.ticketRegistry.getTicket(serviceTicketId,ServiceTicket.class);
   if (serviceTicket == null || serviceTicket.isExpired()) {
     logger.debug("ServiceTicket [{}] has expired or cannot be found in the ticket registry",serviceTicketId);

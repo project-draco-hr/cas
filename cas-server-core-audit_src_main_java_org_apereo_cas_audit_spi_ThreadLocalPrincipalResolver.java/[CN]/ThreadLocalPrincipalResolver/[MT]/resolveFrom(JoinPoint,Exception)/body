@@ -1,0 +1,4 @@
+{
+  LOGGER.debug("Resolving principal at audit point [{}] with thrown exception [{}]",auditTarget,exception);
+  return getCurrentPrincipal();
+}

@@ -1,0 +1,4 @@
+{
+  CURRENT_CREDENTIAL_IDS.remove();
+  CURRENT_AUTHENTICATION.remove();
+}

@@ -1,0 +1,7 @@
+{
+  String principal=this.principalIdProvider.getPrincipalIdFrom(CurrentCredentialsAndAuthentication.getCurrentAuthentication());
+  if (principal == null) {
+    principal=CurrentCredentialsAndAuthentication.getCurrentCredentialIdsAsString();
+  }
+  return (principal != null) ? principal : UNKNOWN_USER;
+}

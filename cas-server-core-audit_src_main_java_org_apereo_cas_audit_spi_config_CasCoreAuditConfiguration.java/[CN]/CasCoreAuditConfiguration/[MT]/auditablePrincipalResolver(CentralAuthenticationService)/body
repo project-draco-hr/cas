@@ -1,5 +1,0 @@
-{
-  final TicketOrCredentialPrincipalResolver r=new TicketOrCredentialPrincipalResolver(centralAuthenticationService);
-  r.setPrincipalIdProvider(principalIdProvider());
-  return new AssertionAsReturnValuePrincipalResolver(r);
-}

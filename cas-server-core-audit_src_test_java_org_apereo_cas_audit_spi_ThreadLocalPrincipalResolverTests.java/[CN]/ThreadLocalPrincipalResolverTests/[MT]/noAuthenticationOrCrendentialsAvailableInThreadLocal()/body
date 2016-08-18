@@ -1,0 +1,3 @@
+{
+  assertResolvedPrincipal(PrincipalResolver.UNKNOWN_USER);
+}

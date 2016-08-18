@@ -1,6 +1,7 @@
 {
   final Authentication authentication=authenticationResult.getAuthentication();
   final Service service=authenticationResult.getService();
+  CurrentCredentialsAndAuthentication.bindCurrent(authentication);
   if (service != null) {
     final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
     RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(service,registeredService,authentication);
