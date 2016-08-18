@@ -1,0 +1,3 @@
+{
+  bindCurrent(credentials.toArray(new Credential[0]));
+}

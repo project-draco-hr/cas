@@ -1,0 +1,4 @@
+{
+  CurrentCredentialsAndAuthentication.bindCurrent(getAuthentication());
+  assertResolvedPrincipal(CONST_USERNAME);
+}

@@ -1,5 +1,0 @@
-{
-  final AuditTrailManagementAspect aspect=new AuditTrailManagementAspect(casProperties.getAudit().getAppCode(),auditablePrincipalResolver(centralAuthenticationService),ImmutableList.of(auditTrailManager),auditActionResolverMap(),auditResourceResolverMap());
-  aspect.setFailOnAuditFailures(!casProperties.getAudit().isIgnoreAuditFailures());
-  return aspect;
-}

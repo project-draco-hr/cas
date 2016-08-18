@@ -1,0 +1,3 @@
+{
+  return (getCurrentCredentialIds() != null) ? Arrays.stream(getCurrentCredentialIds()).collect(joining(", ")) : null;
+}

@@ -1,0 +1,3 @@
+{
+  assertEquals(principalId,theResolver.resolveFrom(null,(Object)null));
+}

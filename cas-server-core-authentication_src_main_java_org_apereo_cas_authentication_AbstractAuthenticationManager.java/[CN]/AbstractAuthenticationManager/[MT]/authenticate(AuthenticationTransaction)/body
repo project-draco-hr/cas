@@ -1,4 +1,5 @@
 {
+  CurrentCredentialsAndAuthentication.bindCurrent(transaction.getCredentials());
   final AuthenticationBuilder builder=authenticateInternal(transaction);
   final Authentication authentication=builder.build();
   final Principal principal=authentication.getPrincipal();
@@ -9,5 +10,7 @@
   logger.info("Authenticated {} with credentials {}.",principal,transaction.getCredentials());
   logger.debug("Attribute map for {}: {}",principal.getId(),principal.getAttributes());
   populateAuthenticationMetadataAttributes(builder,transaction.getCredentials());
-  return builder.build();
+  final Authentication a=builder.build();
+  CurrentCredentialsAndAuthentication.bindCurrent(a);
+  return a;
 }

@@ -1,2 +1,5 @@
 {
+  return new PrincipalIdProvider(){
+  }
+;
 }

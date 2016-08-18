@@ -7,7 +7,9 @@
   evaluateProxiedServiceIfNeeded(service,ticketGrantingTicket,registeredService);
   getAuthenticationSatisfiedByPolicy(currentAuthentication,new ServiceContext(service,registeredService));
   final List<Authentication> authentications=ticketGrantingTicket.getChainedAuthentications();
-  final Principal principal=authentications.get(authentications.size() - 1).getPrincipal();
+  final Authentication latestAuthentication=authentications.get(authentications.size() - 1);
+  CurrentCredentialsAndAuthentication.bindCurrent(latestAuthentication);
+  final Principal principal=latestAuthentication.getPrincipal();
   final ServiceTicketFactory factory=this.ticketFactory.get(ServiceTicket.class);
   final ServiceTicket serviceTicket=factory.create(ticketGrantingTicket,service,currentAuthentication);
   this.ticketRegistry.updateTicket(ticketGrantingTicket);
