@@ -1,0 +1,4 @@
+{
+  config.enableSimpleBroker("/logs");
+  config.setApplicationDestinationPrefixes("/cas");
+}

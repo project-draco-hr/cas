@@ -1,4 +1,7 @@
 {
-  final ILoggerFactory factory=getCasLoggerFactoryInstance();
-  return new HashSet<>();
+  final Log4jLoggerFactory factory=(Log4jLoggerFactory)getCasLoggerFactoryInstance();
+  if (factory != null) {
+    return factory.getLoggersInContext(this.loggerContext);
+  }
+  return new HashMap<>();
 }
