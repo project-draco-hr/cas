@@ -1,6 +1,0 @@
-{
-  flushBase64();
-  super.close();
-  this.buffer=null;
-  this.out=null;
-}
