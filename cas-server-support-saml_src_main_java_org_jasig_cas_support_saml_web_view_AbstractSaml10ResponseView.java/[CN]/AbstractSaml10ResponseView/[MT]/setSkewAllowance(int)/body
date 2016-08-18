@@ -1,4 +1,0 @@
-{
-  logger.debug("Using {} seconds as skew allowance.",skewAllowance);
-  this.skewAllowance=skewAllowance;
-}

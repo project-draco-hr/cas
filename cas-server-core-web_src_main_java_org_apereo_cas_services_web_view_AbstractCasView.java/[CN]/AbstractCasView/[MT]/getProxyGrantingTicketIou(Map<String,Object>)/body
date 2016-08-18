@@ -1,0 +1,3 @@
+{
+  return (String)model.get(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET_IOU);
+}

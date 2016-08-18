@@ -1,9 +1,0 @@
-{
-  if (isValidRegexPattern(id)) {
-    return new RegexRegisteredService();
-  }
-  if (new AntPathMatcher().isPattern(id)) {
-    return new RegisteredServiceImpl();
-  }
-  return null;
-}

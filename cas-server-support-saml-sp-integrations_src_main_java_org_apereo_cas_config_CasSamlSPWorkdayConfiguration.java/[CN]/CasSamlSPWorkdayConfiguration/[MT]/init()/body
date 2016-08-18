@@ -1,0 +1,8 @@
+{
+  final SamlRegisteredService service=SamlSPUtils.newSamlServiceProviderService(casProperties.getSamlSP().getWorkday());
+  if (service != null) {
+    service.setSignResponses(true);
+    service.setSignAssertions(true);
+    SamlSPUtils.saveService(service,this.servicesManager);
+  }
+}

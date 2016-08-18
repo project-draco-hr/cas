@@ -1,0 +1,16 @@
+{
+  try {
+    URI uri;
+    try {
+      final URL url=new URL(URLDecoder.decode(uriString,"UTF-8"));
+      uri=new URI(url.getProtocol(),url.getAuthority(),url.getPath(),url.getQuery(),null);
+    }
+ catch (    final MalformedURLException e) {
+      uri=new URI(uriString);
+    }
+    list.add(uri);
+  }
+ catch (  final Exception e) {
+    logger.warn("{} is not a valid distribution point URI.",uriString);
+  }
+}

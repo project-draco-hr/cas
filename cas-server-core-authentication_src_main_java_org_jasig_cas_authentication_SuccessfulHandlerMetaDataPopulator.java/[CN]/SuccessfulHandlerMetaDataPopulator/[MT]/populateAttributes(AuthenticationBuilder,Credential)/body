@@ -1,7 +1,0 @@
-{
-  Set<String> successes=builder.getSuccesses().keySet();
-  if (successes != null) {
-    successes=new HashSet(successes);
-  }
-  builder.addAttribute(SUCCESSFUL_AUTHENTICATION_HANDLERS,successes);
-}

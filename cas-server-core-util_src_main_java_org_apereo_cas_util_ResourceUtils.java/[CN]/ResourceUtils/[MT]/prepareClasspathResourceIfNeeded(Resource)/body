@@ -1,0 +1,3 @@
+{
+  return prepareClasspathResourceIfNeeded(resource,false,resource.getFilename());
+}

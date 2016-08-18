@@ -1,0 +1,4 @@
+{
+  kryo.writeObject(output,dateTime.toInstant().toEpochMilli());
+  kryo.writeObject(output,dateTime.getZone().getId());
+}

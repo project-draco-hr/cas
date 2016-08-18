@@ -1,0 +1,23 @@
+{
+  try {
+    criterions.add(new BindingCriterion(Collections.singletonList(SAMLConstants.SAML2_POST_BINDING_URI)));
+    criterions.add(new EntityIdCriterion(entityID));
+    LOGGER.info("Adapting SAML metadata for CAS service [{}] issued by [{}]",registeredService.getName(),entityID);
+    LOGGER.info("Locating metadata for entityID [{}] with binding [{}]",entityID,SAMLConstants.SAML2_POST_BINDING_URI);
+    final ChainingMetadataResolver chainingMetadataResolver=resolver.resolve(registeredService);
+    final EntityDescriptor entityDescriptor=chainingMetadataResolver.resolveSingle(criterions);
+    if (entityDescriptor == null) {
+      throw new SAMLException("Cannot find entity " + entityID + " in metadata provider.");
+    }
+    LOGGER.debug("Located EntityDescriptor in metadata for [{}]",entityID);
+    final SPSSODescriptor ssoDescriptor=entityDescriptor.getSPSSODescriptor(SAMLConstants.SAML20P_NS);
+    if (ssoDescriptor != null) {
+      LOGGER.debug("Located SPSSODescriptor in metadata for [{}]. Metadata is valid until [{}]",entityID,ssoDescriptor.getValidUntil());
+      return new SamlRegisteredServiceServiceProviderMetadataFacade(ssoDescriptor,entityDescriptor,chainingMetadataResolver);
+    }
+    throw new SamlException("Could not locate SPSSODescriptor in the metadata for " + entityID);
+  }
+ catch (  final Exception e) {
+    throw new RuntimeException(e.getMessage(),e);
+  }
+}

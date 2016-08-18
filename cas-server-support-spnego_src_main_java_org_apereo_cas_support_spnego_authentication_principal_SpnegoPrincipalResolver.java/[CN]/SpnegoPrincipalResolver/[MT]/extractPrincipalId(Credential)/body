@@ -1,0 +1,5 @@
+{
+  final SpnegoCredential c=(SpnegoCredential)credential;
+  final String id=c.getPrincipal().getId();
+  return id;
+}

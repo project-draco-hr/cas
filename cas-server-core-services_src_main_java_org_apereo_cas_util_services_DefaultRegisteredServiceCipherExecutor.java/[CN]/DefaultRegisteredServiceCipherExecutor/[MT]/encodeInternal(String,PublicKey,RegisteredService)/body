@@ -1,0 +1,12 @@
+{
+  try {
+    final Cipher cipher=initializeCipherBasedOnServicePublicKey(publicKey,registeredService);
+    if (cipher != null) {
+      return cipher.doFinal(data.getBytes(UTF8_ENCODING));
+    }
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+  return null;
+}

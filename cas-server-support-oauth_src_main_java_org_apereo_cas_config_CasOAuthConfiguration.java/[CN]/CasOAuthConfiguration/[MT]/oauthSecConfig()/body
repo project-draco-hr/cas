@@ -1,0 +1,20 @@
+{
+  final CasClient oauthCasClient=new CasClient(casProperties.getServer().getLoginUrl()){
+    @Override protected RedirectAction retrieveRedirectAction(    final WebContext context){
+      return oauthCasClientRedirectActionBuilder().build(this,context);
+    }
+  }
+;
+  oauthCasClient.setName(CAS_OAUTH_CLIENT);
+  oauthCasClient.setCallbackUrlResolver(buildOAuthCasCallbackUrlResolver());
+  final DirectBasicAuthClient basicAuthClient=new DirectBasicAuthClient(oAuthClientAuthenticator());
+  basicAuthClient.setName("clientBasicAuth");
+  final DirectFormClient directFormClient=new DirectFormClient(oAuthClientAuthenticator());
+  directFormClient.setName("clientForm");
+  directFormClient.setUsernameParameter(OAuthConstants.CLIENT_ID);
+  directFormClient.setPasswordParameter(OAuthConstants.CLIENT_SECRET);
+  final DirectFormClient userFormClient=new DirectFormClient(oAuthUserAuthenticator());
+  userFormClient.setName("userForm");
+  final String callbackUrl=casProperties.getServer().getPrefix().concat("/oauth2.0/callbackAuthorize");
+  return new Config(callbackUrl,oauthCasClient,basicAuthClient,directFormClient,userFormClient);
+}

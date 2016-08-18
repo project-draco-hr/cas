@@ -1,0 +1,5 @@
+{
+  final SSOPostProfileHandlerController c=new SSOPostProfileHandlerController();
+  initControllerBean(c);
+  return c;
+}

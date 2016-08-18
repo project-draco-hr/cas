@@ -1,8 +1,0 @@
-{
-  this.attributes=new HashMap<>();
-  for (int i=0; i < 3; i++) {
-    this.attributes.put("attr" + i,newSingleAttribute("value" + i));
-  }
-  this.attributes.put(CasViewConstants.MODEL_ATTRIBUTE_NAME_PROXY_GRANTING_TICKET,newSingleAttribute("PGT-1234567"));
-  this.attributes.put(CasViewConstants.MODEL_ATTRIBUTE_NAME_PRINCIPAL_CREDENTIAL,newSingleAttribute("PrincipalPassword"));
-}

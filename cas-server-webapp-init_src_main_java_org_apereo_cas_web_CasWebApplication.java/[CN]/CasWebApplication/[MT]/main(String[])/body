@@ -1,0 +1,3 @@
+{
+  new SpringApplicationBuilder(CasWebApplication.class).banner(new CasBanner()).run(args);
+}

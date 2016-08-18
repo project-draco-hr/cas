@@ -1,0 +1,4 @@
+Path configDirectory
+StringSerializer<RegisteredService> registeredServiceJsonSerializer
+boolean enableWatcher
+ApplicationEventPublisher eventPublisher

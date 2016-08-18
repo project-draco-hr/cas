@@ -1,0 +1,41 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
+  final HttpSession session=request.getSession();
+  final WebContext webContext=new J2EContext(request,response);
+  final String clientName=request.getParameter(this.clients.getClientNameParameter());
+  logger.debug("clientName: {}",clientName);
+  if (StringUtils.isNotBlank(clientName)) {
+    final BaseClient<Credentials,CommonProfile> client=(BaseClient<Credentials,CommonProfile>)this.clients.findClient(clientName);
+    logger.debug("Client: {}",client);
+    final Credentials credentials;
+    try {
+      credentials=client.getCredentials(webContext);
+      logger.debug("credentials: {}",credentials);
+    }
+ catch (    final Exception e) {
+      logger.debug("requires http action",e);
+      response.flushBuffer();
+      final ExternalContext externalContext=ExternalContextHolder.getExternalContext();
+      externalContext.recordResponseComplete();
+      return new Event(this,"stop");
+    }
+    final Service service=(Service)session.getAttribute(CasProtocolConstants.PARAMETER_SERVICE);
+    context.getFlowScope().put(CasProtocolConstants.PARAMETER_SERVICE,service);
+    logger.debug("retrieve service: {}",service);
+    if (service != null) {
+      request.setAttribute(CasProtocolConstants.PARAMETER_SERVICE,service.getId());
+    }
+    restoreRequestAttribute(request,session,ThemeChangeInterceptor.DEFAULT_PARAM_NAME);
+    restoreRequestAttribute(request,session,LocaleChangeInterceptor.DEFAULT_PARAM_NAME);
+    restoreRequestAttribute(request,session,CasProtocolConstants.PARAMETER_METHOD);
+    if (credentials != null) {
+      final AuthenticationResult authenticationResult=this.authenticationSystemSupport.handleAndFinalizeSingleAuthenticationTransaction(service,new ClientCredential(credentials));
+      final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationResult);
+      WebUtils.putTicketGrantingTicketInScopes(context,tgt);
+      return success();
+    }
+  }
+  prepareForLoginPage(context);
+  return error();
+}

@@ -1,3 +1,0 @@
-{
-  this.cas.delegateTicketGrantingTicket("bad-st",org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
-}

@@ -1,0 +1,6 @@
+{
+  if (contains(userName)) {
+    return this.accounts.get(userName).getSecretKey();
+  }
+  return null;
+}

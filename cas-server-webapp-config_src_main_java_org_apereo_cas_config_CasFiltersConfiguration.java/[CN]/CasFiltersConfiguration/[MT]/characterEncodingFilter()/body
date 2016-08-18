@@ -1,0 +1,7 @@
+{
+  final FilterRegistrationBean bean=new FilterRegistrationBean();
+  bean.setFilter(new CharacterEncodingFilter(casProperties.getHttpWebRequest().getWeb().getEncoding(),casProperties.getHttpWebRequest().getWeb().isForceEncoding()));
+  bean.setUrlPatterns(Collections.singleton("/*"));
+  bean.setName("characterEncodingFilter");
+  return bean;
+}

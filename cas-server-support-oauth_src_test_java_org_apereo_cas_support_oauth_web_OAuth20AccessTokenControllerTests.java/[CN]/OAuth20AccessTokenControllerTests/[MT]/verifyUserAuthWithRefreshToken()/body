@@ -1,0 +1,5 @@
+{
+  final OAuthRegisteredService registeredService=addRegisteredService();
+  registeredService.setGenerateRefreshToken(true);
+  internalVerifyUserAuth(true,false);
+}

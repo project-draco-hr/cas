@@ -1,0 +1,6 @@
+{
+  if (!this.enabled) {
+    LOGGER.trace("Service is not enabled in service registry.");
+  }
+  return this.enabled;
+}

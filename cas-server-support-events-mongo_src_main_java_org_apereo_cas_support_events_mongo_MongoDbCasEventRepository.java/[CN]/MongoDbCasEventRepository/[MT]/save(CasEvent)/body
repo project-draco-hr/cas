@@ -1,0 +1,3 @@
+{
+  this.mongoTemplate.save(event,this.collectionName);
+}

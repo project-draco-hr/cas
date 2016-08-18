@@ -1,0 +1,6 @@
+{
+  if (this.bucket != null) {
+    return this.bucket;
+  }
+  throw new RuntimeException("Connection to bucket " + this.bucketName + " not initialized yet.");
+}

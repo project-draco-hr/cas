@@ -1,0 +1,27 @@
+{
+  final RegisteredService svc=this.registeredServiceMapper.toRegisteredService(data);
+  if (svc instanceof AbstractRegisteredService) {
+    final AbstractRegisteredService absSvc=(AbstractRegisteredService)svc;
+    final RegisteredServiceAccessStrategy accessStrategy=this.accessStrategyMapper.toAccessStrategy(data);
+    if (accessStrategy != null) {
+      absSvc.setAccessStrategy(accessStrategy);
+    }
+    final RegisteredServiceUsernameAttributeProvider usernameAttributeProvider=this.usernameAttributeProviderMapper.toUsernameAttributeProvider(data);
+    if (usernameAttributeProvider != null) {
+      absSvc.setUsernameAttributeProvider(usernameAttributeProvider);
+    }
+    final RegisteredServiceProxyPolicy proxyPolicy=this.proxyPolicyMapper.toProxyPolicy(data);
+    if (proxyPolicy != null) {
+      absSvc.setProxyPolicy(proxyPolicy);
+    }
+    final RegisteredServiceAttributeReleasePolicy attrPolicy=this.attributeReleasePolicyMapper.toAttributeReleasePolicy(data);
+    if (attrPolicy != null) {
+      absSvc.setAttributeReleasePolicy(attrPolicy);
+    }
+    final RegisteredServiceMultifactorPolicy mfaPolicy=this.multifactorAuthenticationMapper.toMultifactorPolicy(data);
+    if (mfaPolicy != null) {
+      absSvc.setMultifactorPolicy(mfaPolicy);
+    }
+  }
+  return svc;
+}

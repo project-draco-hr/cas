@@ -1,0 +1,13 @@
+{
+  final FileAuthenticationHandler h=new FileAuthenticationHandler();
+  h.setFileName(casProperties.getAuthn().getFile().getFilename());
+  h.setSeparator(casProperties.getAuthn().getFile().getSeparator());
+  h.setPrincipalFactory(filePrincipalFactory());
+  h.setServicesManager(servicesManager);
+  h.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getFile().getPasswordEncoder()));
+  if (filePasswordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(filePasswordPolicyConfiguration);
+  }
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getFile().getPrincipalTransformation()));
+  return h;
+}

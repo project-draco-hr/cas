@@ -1,0 +1,8 @@
+{
+  final ClassPathResource resource=new ClassPathResource("truststore.jks");
+  final FileTrustStoreSslSocketFactory factory=new FileTrustStoreSslSocketFactory(resource,"changeit");
+  final SimpleHttpClientFactoryBean clientFactory=new SimpleHttpClientFactoryBean();
+  clientFactory.setSslSocketFactory(factory);
+  final HttpClient client=clientFactory.getObject();
+  assertTrue(client.isValidEndPoint("https://test.scaldingspoon.org/idp/shibboleth"));
+}

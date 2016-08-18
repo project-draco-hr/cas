@@ -1,0 +1,3 @@
+{
+  return newEntityManagerFactoryBean(new JpaConfigDataHolder(jpaServiceVendorAdapter(),"jpaServiceRegistryContext",jpaServicePackagesToScan(),dataSourceService()),casProperties.getServiceRegistry().getJpa());
+}

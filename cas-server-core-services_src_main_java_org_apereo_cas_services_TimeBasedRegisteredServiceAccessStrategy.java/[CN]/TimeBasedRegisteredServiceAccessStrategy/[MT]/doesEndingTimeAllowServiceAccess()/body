@@ -1,0 +1,21 @@
+{
+  if (this.endingDateTime != null) {
+    final ZonedDateTime et=DateTimeUtils.zonedDateTimeOf(this.endingDateTime);
+    if (et != null) {
+      if (ZonedDateTime.now().isAfter(et)) {
+        LOGGER.warn("Service access not allowed because it ended at {}. Now is {}",this.endingDateTime,ZonedDateTime.now());
+        return false;
+      }
+    }
+ else {
+      final LocalDateTime etLocal=DateTimeUtils.localDateTimeOf(this.endingDateTime);
+      if (etLocal != null) {
+        if (LocalDateTime.now().isAfter(etLocal)) {
+          LOGGER.warn("Service access not allowed because it ended at {}. Now is {}",this.endingDateTime,LocalDateTime.now());
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}

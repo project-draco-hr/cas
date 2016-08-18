@@ -1,0 +1,15 @@
+{
+  while (this.running) {
+    try {
+      writeResponse(this.serverSocket.accept());
+      Thread.sleep(500);
+    }
+ catch (    final SocketException e) {
+      logger.debug("Stopping on socket close.");
+      this.running=false;
+    }
+catch (    final Exception e) {
+      logger.error(e.getMessage(),e);
+    }
+  }
+}

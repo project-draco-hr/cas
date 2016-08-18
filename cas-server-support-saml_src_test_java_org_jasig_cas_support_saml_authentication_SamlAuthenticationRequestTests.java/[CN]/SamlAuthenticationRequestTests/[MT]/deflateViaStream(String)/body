@@ -1,8 +1,0 @@
-{
-  final byte[] xmlBytes=samlRequest.getBytes("UTF-8");
-  final ByteArrayOutputStream byteOutputStream=new ByteArrayOutputStream();
-  final DeflaterOutputStream deflaterOutputStream=new DeflaterOutputStream(byteOutputStream);
-  deflaterOutputStream.write(xmlBytes,0,xmlBytes.length);
-  deflaterOutputStream.close();
-  return CompressionUtils.encodeBase64(byteOutputStream.toByteArray());
-}

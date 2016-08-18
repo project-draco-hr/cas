@@ -1,0 +1,3 @@
+{
+  this.callbackService=registerCallback(SamlIdPConstants.ENDPOINT_SAML2_SSO_PROFILE_POST_CALLBACK);
+}

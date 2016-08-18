@@ -1,7 +1,0 @@
-{
-  final Map<String,Set<String>> attributes=new HashMap<>();
-  attributes.put("uid",ImmutableSet.of("uid"));
-  attributes.put("givenName",ImmutableSet.of("CASUser"));
-  attributes.put("memberOf",ImmutableSet.of("system","admin","cas"));
-  return attributes;
-}

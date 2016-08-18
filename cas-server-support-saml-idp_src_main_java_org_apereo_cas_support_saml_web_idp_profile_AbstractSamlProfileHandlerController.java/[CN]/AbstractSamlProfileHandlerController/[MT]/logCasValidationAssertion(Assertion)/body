@@ -1,0 +1,9 @@
+{
+  logger.info("CAS Assertion Valid: [{}]",assertion.isValid());
+  logger.debug("CAS Assertion Principal: [{}]",assertion.getPrincipal().getName());
+  logger.debug("CAS Assertion AuthN Date: [{}]",assertion.getAuthenticationDate());
+  logger.debug("CAS Assertion ValidFrom Date: [{}]",assertion.getValidFromDate());
+  logger.debug("CAS Assertion ValidUntil Date: [{}]",assertion.getValidUntilDate());
+  logger.debug("CAS Assertion Attributes: [{}]",assertion.getAttributes());
+  logger.debug("CAS Assertion Principal Attributes: [{}]",assertion.getPrincipal().getAttributes());
+}

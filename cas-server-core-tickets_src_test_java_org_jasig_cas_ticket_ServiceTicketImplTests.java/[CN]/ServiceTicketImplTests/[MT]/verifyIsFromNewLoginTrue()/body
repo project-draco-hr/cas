@@ -1,4 +1,0 @@
-{
-  final ServiceTicket s=new ServiceTicketImpl("stest1",this.ticketGrantingTicket,org.jasig.cas.services.TestUtils.getService(),true,new NeverExpiresExpirationPolicy());
-  assertTrue(s.isFromNewLogin());
-}

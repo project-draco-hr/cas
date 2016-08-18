@@ -1,0 +1,13 @@
+{
+  try {
+    final String username=credential.getUsername();
+    final Pair<Boolean,Optional<Map<String,Object>>> result=RadiusUtils.authenticate(username,credential.getPassword(),this.servers,this.failoverOnAuthenticationFailure,this.failoverOnException);
+    if (result.getFirst()) {
+      return createHandlerResult(credential,this.principalFactory.createPrincipal(username,result.getSecond().get()),new ArrayList<>());
+    }
+    throw new FailedLoginException("Radius authentication failed for user " + username);
+  }
+ catch (  final Exception e) {
+    throw new FailedLoginException("Radius authentication failed " + e.getMessage());
+  }
+}

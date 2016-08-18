@@ -1,0 +1,14 @@
+{
+  try {
+    final DefaultHashService hash=new DefaultHashService();
+    hash.setPrivateSalt(ByteSource.Util.bytes(STATIC_SALT));
+    hash.setHashIterations(iter);
+    hash.setGeneratePublicSalt(false);
+    hash.setHashAlgorithmName(ALG_NAME);
+    final String pswEnc=hash.computeHash(new HashRequest.Builder().setSource(psw).setSalt(salt).setIterations(iter).build()).toHex();
+    return pswEnc;
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

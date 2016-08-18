@@ -1,0 +1,3 @@
+{
+  return Beans.newThreadPoolExecutorFactoryBean(casProperties.getMonitor().getJdbc().getPool());
+}

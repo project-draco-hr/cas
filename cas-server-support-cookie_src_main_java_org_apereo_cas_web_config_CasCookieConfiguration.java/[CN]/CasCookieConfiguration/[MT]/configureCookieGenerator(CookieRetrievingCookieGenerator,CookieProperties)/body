@@ -1,0 +1,7 @@
+{
+  cookieGenerator.setCookieName(props.getName());
+  cookieGenerator.setCookiePath(props.getPath());
+  cookieGenerator.setCookieMaxAge(props.getMaxAge());
+  cookieGenerator.setCookieSecure(props.isSecure());
+  return cookieGenerator;
+}

@@ -1,0 +1,3 @@
+{
+  return (Flow)this.loginFlowDefinitionRegistry.getFlowDefinition(FLOW_ID_LOGIN);
+}

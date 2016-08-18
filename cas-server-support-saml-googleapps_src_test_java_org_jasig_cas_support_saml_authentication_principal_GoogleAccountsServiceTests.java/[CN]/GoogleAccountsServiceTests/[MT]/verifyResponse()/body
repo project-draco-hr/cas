@@ -1,6 +1,0 @@
-{
-  final Response resp=this.googleAccountsService.getResponse("ticketId");
-  assertEquals(resp.getResponseType(),DefaultResponse.ResponseType.POST);
-  assertTrue(resp.getAttributes().containsKey(SamlProtocolConstants.PARAMETER_SAML_RESPONSE));
-  assertTrue(resp.getAttributes().containsKey(SamlProtocolConstants.PARAMETER_SAML_RELAY_STATE));
-}

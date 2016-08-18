@@ -1,0 +1,26 @@
+{
+  if (casProperties.getTicket().getTgt().getMaxTimeToLiveInSeconds() < 0 && casProperties.getTicket().getTgt().getTimeToKillInSeconds() < 0) {
+    LOGGER.warn("Ticket-granting ticket expiration policy is set to NEVER expire tickets.");
+    return new NeverExpiresExpirationPolicy();
+  }
+  if (casProperties.getTicket().getTgt().getTimeout().getMaxTimeToLiveInSeconds() > 0) {
+    final TimeoutExpirationPolicy t=new TimeoutExpirationPolicy(casProperties.getTicket().getTgt().getTimeout().getMaxTimeToLiveInSeconds(),TimeUnit.SECONDS);
+    return t;
+  }
+  if (casProperties.getTicket().getTgt().getMaxTimeToLiveInSeconds() > 0 && casProperties.getTicket().getTgt().getTimeToKillInSeconds() > 0) {
+    final TicketGrantingTicketExpirationPolicy t=new TicketGrantingTicketExpirationPolicy(casProperties.getTicket().getTgt().getMaxTimeToLiveInSeconds(),casProperties.getTicket().getTgt().getTimeToKillInSeconds(),TimeUnit.SECONDS);
+    return t;
+  }
+  if (casProperties.getTicket().getTgt().getThrottledTimeout().getTimeInBetweenUsesInSeconds() > 0 && casProperties.getTicket().getTgt().getThrottledTimeout().getTimeToKillInSeconds() > 0) {
+    final ThrottledUseAndTimeoutExpirationPolicy p=new ThrottledUseAndTimeoutExpirationPolicy();
+    p.setTimeToKillInMilliSeconds(TimeUnit.SECONDS.toMillis(casProperties.getTicket().getTgt().getThrottledTimeout().getTimeToKillInSeconds()));
+    p.setTimeInBetweenUsesInMilliSeconds(TimeUnit.SECONDS.toMillis(casProperties.getTicket().getTgt().getThrottledTimeout().getTimeInBetweenUsesInSeconds()));
+    return p;
+  }
+  if (casProperties.getTicket().getTgt().getHardTimeout().getTimeToKillInSeconds() > 0) {
+    final HardTimeoutExpirationPolicy h=new HardTimeoutExpirationPolicy(casProperties.getTicket().getTgt().getHardTimeout().getTimeToKillInSeconds(),TimeUnit.SECONDS);
+    return h;
+  }
+  LOGGER.warn("Ticket-granting ticket expiration policy is set to ALWAYS expire tickets.");
+  return new AlwaysExpiresExpirationPolicy();
+}

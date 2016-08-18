@@ -1,0 +1,5 @@
+{
+  final DuoAuthenticationWebflowAction a=new DuoAuthenticationWebflowAction();
+  a.setDuoAuthenticationWebflowEventResolver(duoAuthenticationWebflowEventResolver());
+  return a;
+}

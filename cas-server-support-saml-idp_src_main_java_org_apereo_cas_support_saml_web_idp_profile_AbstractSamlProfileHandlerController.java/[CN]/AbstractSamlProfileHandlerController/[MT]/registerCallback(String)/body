@@ -1,0 +1,16 @@
+{
+  final Service callbackService=this.webApplicationServiceFactory.createService(this.serverPrefix.concat(callbackUrl.concat(".+")));
+  logger.debug("Initialized callback service [{}]",callbackService);
+  if (!this.servicesManager.matchesExistingService(callbackService)) {
+    final RegexRegisteredService service=new RegexRegisteredService();
+    service.setId(new SecureRandom().nextLong());
+    service.setEvaluationOrder(0);
+    service.setName(service.getClass().getSimpleName());
+    service.setDescription("SAML Authentication Request");
+    service.setServiceId(callbackService.getId());
+    logger.debug("Saving callback service [{}] into the registry",service);
+    this.servicesManager.save(service);
+    this.servicesManager.load();
+  }
+  return callbackService;
+}

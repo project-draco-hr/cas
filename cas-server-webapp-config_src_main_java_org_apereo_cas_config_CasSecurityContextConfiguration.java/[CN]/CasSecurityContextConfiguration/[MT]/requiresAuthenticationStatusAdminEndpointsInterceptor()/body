@@ -1,0 +1,14 @@
+{
+  final Config cfg=config();
+  if (cfg.getClients() == null) {
+    return requiresAuthenticationStatusInterceptor();
+  }
+  final SecurityInterceptor interceptor=new SecurityInterceptor(cfg,"CasClient","securityHeaders,csrfToken,RequireAnyRoleAuthorizer");
+  interceptor.setSecurityLogic(new DefaultSecurityLogic(){
+    @Override protected HttpAction unauthorized(    final WebContext context,    final List currentClients){
+      return HttpAction.forbidden("Access Denied",context);
+    }
+  }
+);
+  return interceptor;
+}

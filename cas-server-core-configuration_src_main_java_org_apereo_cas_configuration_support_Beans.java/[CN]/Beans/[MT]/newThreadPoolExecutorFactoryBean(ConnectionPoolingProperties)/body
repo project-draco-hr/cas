@@ -1,0 +1,7 @@
+{
+  final ThreadPoolExecutorFactoryBean bean=new ThreadPoolExecutorFactoryBean();
+  bean.setCorePoolSize(config.getMinSize());
+  bean.setMaxPoolSize(config.getMaxSize());
+  bean.setKeepAliveSeconds(config.getMaxWait());
+  return bean;
+}

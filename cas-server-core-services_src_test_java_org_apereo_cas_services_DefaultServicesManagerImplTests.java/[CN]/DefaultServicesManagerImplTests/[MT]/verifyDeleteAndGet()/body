@@ -1,0 +1,10 @@
+{
+  final RegexRegisteredService r=new RegexRegisteredService();
+  r.setId(1000);
+  r.setName("test");
+  r.setServiceId("test");
+  this.defaultServicesManagerImpl.save(r);
+  assertEquals(r,this.defaultServicesManagerImpl.findServiceBy(r.getId()));
+  this.defaultServicesManagerImpl.delete(r.getId());
+  assertNull(this.defaultServicesManagerImpl.findServiceBy(r.getId()));
+}

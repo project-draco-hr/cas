@@ -1,0 +1,19 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final String authTokenValue=request.getParameter(TokenConstants.PARAMETER_NAME_TOKEN);
+  final Service service=WebUtils.getService(context);
+  if (StringUtils.isNotBlank(authTokenValue) && service != null) {
+    try {
+      final Credential credential=new TokenCredential(authTokenValue,service);
+      LOGGER.debug("Received token authentication request {} ",credential);
+      final AuthenticationResult authenticationResult=this.authenticationSystemSupport.handleAndFinalizeSingleAuthenticationTransaction(service,credential);
+      final TicketGrantingTicket tgt=this.centralAuthenticationService.createTicketGrantingTicket(authenticationResult);
+      WebUtils.putTicketGrantingTicketInScopes(context,tgt);
+      return success();
+    }
+ catch (    final Exception e) {
+      LOGGER.warn(e.getMessage(),e);
+    }
+  }
+  return error();
+}

@@ -1,0 +1,23 @@
+{
+  if (getDataSource() == null) {
+    throw new GeneralSecurityException("Authentication handler is not configured correctly");
+  }
+  Connection connection=null;
+  try {
+    final String username=credential.getUsername();
+    final String password=credential.getPassword();
+    connection=this.getDataSource().getConnection(username,password);
+    return createHandlerResult(credential,this.principalFactory.createPrincipal(username),null);
+  }
+ catch (  final SQLException e) {
+    throw new FailedLoginException(e.getMessage());
+  }
+catch (  final Exception e) {
+    throw new PreventedException("Unexpected SQL connection error",e);
+  }
+ finally {
+    if (connection != null) {
+      DataSourceUtils.releaseConnection(connection,this.getDataSource());
+    }
+  }
+}

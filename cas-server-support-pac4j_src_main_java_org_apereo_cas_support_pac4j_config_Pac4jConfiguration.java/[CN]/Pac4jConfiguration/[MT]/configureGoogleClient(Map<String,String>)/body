@@ -1,0 +1,5 @@
+{
+  properties.put(PropertiesConfigFactory.GOOGLE_ID,casProperties.getAuthn().getPac4j().getGoogle().getId());
+  properties.put(PropertiesConfigFactory.GOOGLE_SECRET,casProperties.getAuthn().getPac4j().getGoogle().getSecret());
+  properties.put(PropertiesConfigFactory.GOOGLE_SCOPE,casProperties.getAuthn().getPac4j().getGoogle().getScope());
+}

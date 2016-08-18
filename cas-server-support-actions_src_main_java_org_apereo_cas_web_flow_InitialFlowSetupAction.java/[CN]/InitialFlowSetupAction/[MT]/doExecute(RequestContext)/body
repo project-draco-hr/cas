@@ -1,0 +1,6 @@
+{
+  configureCookieGenerators(context);
+  configureWebflowContext(context);
+  configureWebflowContextForService(context);
+  return result("success");
+}

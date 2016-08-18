@@ -1,0 +1,28 @@
+{
+  final MockHttpServletRequest mockRequest=new MockHttpServletRequest();
+  mockRequest.setParameter(ThemeChangeInterceptor.DEFAULT_PARAM_NAME,MY_THEME);
+  mockRequest.setParameter(LocaleChangeInterceptor.DEFAULT_PARAM_NAME,MY_LOCALE);
+  mockRequest.setParameter(CasProtocolConstants.PARAMETER_METHOD,MY_METHOD);
+  final MockHttpSession mockSession=new MockHttpSession();
+  mockRequest.setSession(mockSession);
+  final ServletExternalContext servletExternalContext=mock(ServletExternalContext.class);
+  when(servletExternalContext.getNativeRequest()).thenReturn(mockRequest);
+  final MockRequestContext mockRequestContext=new MockRequestContext();
+  mockRequestContext.setExternalContext(servletExternalContext);
+  mockRequestContext.getFlowScope().put(CasProtocolConstants.PARAMETER_SERVICE,org.apereo.cas.services.TestUtils.getService(MY_SERVICE));
+  final FacebookClient facebookClient=new FacebookClient(MY_KEY,MY_SECRET);
+  final TwitterClient twitterClient=new TwitterClient("3nJPbVTVRZWAyUgoUKQ8UA","h6LZyZJmcW46Vu8R47MYfeXTSYGI30EqnWaSwVhFkbA");
+  final Clients clients=new Clients(MY_LOGIN_URL,facebookClient,twitterClient);
+  final ClientAction action=new ClientAction();
+  action.setCentralAuthenticationService(mock(CentralAuthenticationService.class));
+  action.setClients(clients);
+  final Event event=action.execute(mockRequestContext);
+  assertEquals("error",event.getId());
+  assertEquals(MY_THEME,mockSession.getAttribute(ThemeChangeInterceptor.DEFAULT_PARAM_NAME));
+  assertEquals(MY_LOCALE,mockSession.getAttribute(LocaleChangeInterceptor.DEFAULT_PARAM_NAME));
+  assertEquals(MY_METHOD,mockSession.getAttribute(CasProtocolConstants.PARAMETER_METHOD));
+  final MutableAttributeMap flowScope=mockRequestContext.getFlowScope();
+  final Set<ClientAction.ProviderLoginPageConfiguration> urls=(Set<ClientAction.ProviderLoginPageConfiguration>)flowScope.get(ClientAction.PAC4J_URLS);
+  assertFalse(urls.isEmpty());
+  assertTrue(urls.size() == 2);
+}

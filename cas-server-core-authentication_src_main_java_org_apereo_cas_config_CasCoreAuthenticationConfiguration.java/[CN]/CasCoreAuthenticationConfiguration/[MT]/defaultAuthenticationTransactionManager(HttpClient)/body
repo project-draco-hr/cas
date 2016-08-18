@@ -1,0 +1,5 @@
+{
+  final DefaultAuthenticationTransactionManager r=new DefaultAuthenticationTransactionManager();
+  r.setAuthenticationManager(authenticationManager(httpClient));
+  return r;
+}

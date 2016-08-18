@@ -1,0 +1,8 @@
+{
+  if (this.connectionFactory != null && this.validator != null) {
+    try (Connection conn=this.connectionFactory.getConnection()){
+      return this.validator.validate(conn) ? StatusCode.OK : StatusCode.ERROR;
+    }
+   }
+  return StatusCode.UNKNOWN;
+}

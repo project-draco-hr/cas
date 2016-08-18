@@ -1,0 +1,9 @@
+{
+  return new ParameterizableViewController(){
+    @Override protected ModelAndView handleRequestInternal(    final HttpServletRequest request,    final HttpServletResponse response) throws Exception {
+      final String url=request.getContextPath() + "/manage.html";
+      return new ModelAndView(new RedirectView(response.encodeURL(url)));
+    }
+  }
+;
+}

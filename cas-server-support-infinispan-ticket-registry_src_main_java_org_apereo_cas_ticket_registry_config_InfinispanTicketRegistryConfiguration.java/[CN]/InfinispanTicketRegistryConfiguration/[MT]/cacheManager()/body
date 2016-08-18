@@ -1,0 +1,8 @@
+{
+  try {
+    return new DefaultCacheManager(casProperties.getTicket().getRegistry().getInfinispan().getConfigLocation().getFilename());
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

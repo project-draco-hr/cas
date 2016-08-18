@@ -1,0 +1,7 @@
+{
+  final GoogleAuthenticatorAuthenticationHandler h=new GoogleAuthenticatorAuthenticationHandler();
+  h.setGoogleAuthenticatorInstance(googleAuthenticatorInstance());
+  h.setPrincipalFactory(googlePrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

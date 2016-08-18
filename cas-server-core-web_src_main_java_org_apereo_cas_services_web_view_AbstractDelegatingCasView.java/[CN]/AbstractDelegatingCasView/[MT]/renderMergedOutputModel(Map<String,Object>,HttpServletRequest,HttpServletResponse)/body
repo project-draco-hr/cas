@@ -1,0 +1,11 @@
+{
+  logger.debug("Preparing the output model to render view...");
+  prepareMergedOutputModel(model,request,response);
+  logger.trace("Prepared output model with objects [{}]. Now rendering view...",model.keySet().toArray());
+  if (this.view != null) {
+    this.view.render(model,request,response);
+  }
+ else {
+    logger.warn("No view is available to render the output for {}",this.getClass().getName());
+  }
+}

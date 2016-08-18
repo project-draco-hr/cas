@@ -1,0 +1,6 @@
+{
+  putGeoAccuracy(location.getAccuracy());
+  putGeoLatitude(location.getLatitude());
+  putGeoLongitude(location.getLongitude());
+  putGeoTimestamp(location.getTimestamp());
+}

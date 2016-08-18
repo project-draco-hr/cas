@@ -1,0 +1,5 @@
+{
+  this.registry=hz.getMap(mapName);
+  this.hazelcastInstance=hz;
+  this.pageSize=pageSize;
+}

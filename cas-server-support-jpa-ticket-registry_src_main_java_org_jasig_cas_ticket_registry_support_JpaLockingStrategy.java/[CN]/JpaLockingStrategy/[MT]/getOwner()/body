@@ -1,7 +1,0 @@
-{
-  final Lock lock=entityManager.find(Lock.class,applicationId);
-  if (lock != null) {
-    return lock.getUniqueId();
-  }
-  return null;
-}

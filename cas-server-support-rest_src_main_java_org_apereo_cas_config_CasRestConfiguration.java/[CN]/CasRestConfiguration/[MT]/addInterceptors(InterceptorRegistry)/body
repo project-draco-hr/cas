@@ -1,0 +1,3 @@
+{
+  registry.addInterceptor(defaultRestAuthenticationThrottle()).addPathPatterns("/v1/**");
+}

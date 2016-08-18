@@ -1,0 +1,4 @@
+{
+  final Resource servicesDirectory=ResourceUtils.prepareClasspathResourceIfNeeded(configDirectory,true,getExtension());
+  initializeRegistry(Paths.get(servicesDirectory.getFile().getCanonicalPath()),serializer,enableWatcher,eventPublisher);
+}

@@ -1,0 +1,4 @@
+{
+  final ILoggerFactory factory=getCasLoggerFactoryInstance();
+  return new HashSet<>();
+}

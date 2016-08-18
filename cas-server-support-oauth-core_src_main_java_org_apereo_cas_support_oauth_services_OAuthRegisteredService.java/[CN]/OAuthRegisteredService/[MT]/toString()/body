@@ -1,0 +1,9 @@
+{
+  final ToStringBuilder builder=new ToStringBuilder(this);
+  builder.appendSuper(super.toString());
+  builder.append("clientId",getClientId());
+  builder.append("approvalPrompt",isBypassApprovalPrompt());
+  builder.append("generateRefreshToken",isGenerateRefreshToken());
+  builder.append("jsonFormat",isJsonFormat());
+  return builder.toString();
+}

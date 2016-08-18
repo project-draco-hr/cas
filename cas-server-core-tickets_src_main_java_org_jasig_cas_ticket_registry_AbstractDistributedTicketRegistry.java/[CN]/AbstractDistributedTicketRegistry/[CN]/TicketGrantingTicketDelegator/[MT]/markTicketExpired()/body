@@ -1,4 +1,0 @@
-{
-  this.getTicket().markTicketExpired();
-  updateTicket();
-}

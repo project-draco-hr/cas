@@ -1,0 +1,7 @@
+{
+  final CacheConfiguration config=this.cache.getCacheConfiguration();
+  if (this.useBytes) {
+    return config.getMaxBytesLocalDisk();
+  }
+  return config.getMaxElementsOnDisk();
+}

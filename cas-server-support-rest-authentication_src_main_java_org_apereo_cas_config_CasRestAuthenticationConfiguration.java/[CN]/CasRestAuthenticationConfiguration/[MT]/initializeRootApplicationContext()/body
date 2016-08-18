@@ -1,0 +1,5 @@
+{
+  if (StringUtils.isNotBlank(casProperties.getAuthn().getRest().getUri())) {
+    authenticationHandlersResolvers.put(restAuthenticationHandler(),personDirectoryPrincipalResolver);
+  }
+}

@@ -1,0 +1,11 @@
+{
+  LOGGER.info("Performing logout operations for [{}]",ticket.getId());
+  final List<LogoutRequest> logoutRequests=new ArrayList<>();
+  if (this.singleLogoutCallbacksDisabled) {
+    LOGGER.info("Single logout callbacks are disabled");
+    return logoutRequests;
+  }
+  performLogoutForTicket(ticket,logoutRequests);
+  LOGGER.info("{} logout requests were processed",logoutRequests.size());
+  return logoutRequests;
+}

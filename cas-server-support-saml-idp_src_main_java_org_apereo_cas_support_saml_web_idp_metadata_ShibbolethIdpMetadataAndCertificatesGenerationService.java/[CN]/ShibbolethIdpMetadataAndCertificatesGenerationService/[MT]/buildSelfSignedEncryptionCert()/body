@@ -1,0 +1,8 @@
+{
+  final SelfSignedCertificateGenerator generator=new SelfSignedCertificateGenerator();
+  generator.setHostName(this.hostName);
+  generator.setCertificateFile(this.encryptionCertFile);
+  generator.setPrivateKeyFile(this.encryptionCertKeyFile);
+  generator.setURISubjectAltNames(Lists.newArrayList(this.hostName.concat(URI_SUBJECT_ALTNAME_POSTFIX)));
+  generator.generate();
+}

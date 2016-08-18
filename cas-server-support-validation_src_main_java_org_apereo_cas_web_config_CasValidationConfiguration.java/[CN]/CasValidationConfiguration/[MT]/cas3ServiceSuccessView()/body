@@ -1,0 +1,9 @@
+{
+  final Cas30ResponseView s=new Cas30ResponseView();
+  s.setAuthenticationContextAttribute(casProperties.getAuthn().getMfa().getAuthenticationContextAttribute());
+  s.setReleaseProtocolAttributes(casProperties.getView().getCas3().isReleaseProtocolAttributes());
+  s.setCasAttributeEncoder(casAttributeEncoder);
+  s.setView(cas3SuccessView);
+  s.setServicesManager(servicesManager);
+  return s;
+}

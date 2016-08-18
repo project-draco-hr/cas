@@ -1,0 +1,4 @@
+{
+  final AuthnRequest authnRequest=retrieveAuthnRequest(request,decoder);
+  initiateAuthenticationRequest(authnRequest,response,request);
+}

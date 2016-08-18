@@ -1,0 +1,9 @@
+{
+  final GoogleAccountsService service=(GoogleAccountsService)webApplicationService;
+  final Map<String,String> parameters=new HashMap<>();
+  final String samlResponse=constructSamlResponse(service);
+  final String signedResponse=this.samlObjectBuilder.signSamlResponse(samlResponse,this.privateKey,this.publicKey);
+  parameters.put(SamlProtocolConstants.PARAMETER_SAML_RESPONSE,signedResponse);
+  parameters.put(SamlProtocolConstants.PARAMETER_SAML_RELAY_STATE,service.getRelayState());
+  return buildPost(service,parameters);
+}

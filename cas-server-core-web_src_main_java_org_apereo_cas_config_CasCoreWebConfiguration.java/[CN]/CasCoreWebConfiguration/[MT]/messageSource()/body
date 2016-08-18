@@ -1,0 +1,9 @@
+{
+  final CasReloadableMessageBundle bean=new CasReloadableMessageBundle();
+  bean.setDefaultEncoding(casProperties.getMessageBundle().getEncoding());
+  bean.setCacheSeconds(casProperties.getMessageBundle().getCacheSeconds());
+  bean.setFallbackToSystemLocale(casProperties.getMessageBundle().isFallbackSystemLocale());
+  bean.setUseCodeAsDefaultMessage(casProperties.getMessageBundle().isUseCodeMessage());
+  bean.setBasenames(casProperties.getMessageBundle().getBaseNames());
+  return bean;
+}

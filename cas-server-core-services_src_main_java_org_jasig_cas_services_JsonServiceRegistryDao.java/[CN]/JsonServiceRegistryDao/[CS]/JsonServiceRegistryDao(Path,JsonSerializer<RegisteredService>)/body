@@ -1,7 +1,0 @@
-{
-  this.serviceRegistryDirectory=configDirectory;
-  Assert.isTrue(this.serviceRegistryDirectory.toFile().exists(),serviceRegistryDirectory + " does not exist");
-  Assert.isTrue(this.serviceRegistryDirectory.toFile().isDirectory(),serviceRegistryDirectory + " is not a directory");
-  this.registeredServiceJsonSerializer=registeredServiceJsonSerializer;
-  initializeWatchServiceThread();
-}

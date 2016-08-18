@@ -1,0 +1,15 @@
+{
+  final Map<String,Set<String>> attributes=new HashMap<>();
+  Set<String> attributeValues=new HashSet<>();
+  attributeValues.add("uid");
+  attributes.put("uid",attributeValues);
+  attributeValues=new HashSet<>();
+  attributeValues.add("CASUser");
+  attributes.put("givenName",attributeValues);
+  attributeValues=new HashSet<>();
+  attributeValues.add("admin");
+  attributeValues.add("system");
+  attributeValues.add("cas");
+  attributes.put("memberOf",attributeValues);
+  return attributes;
+}

@@ -1,4 +1,0 @@
-{
-  this.cacheManager.removalAll();
-  this.cacheManager.shutdown();
-}

@@ -1,0 +1,3 @@
+{
+  this.customComponent.put(componentName,properties);
+}

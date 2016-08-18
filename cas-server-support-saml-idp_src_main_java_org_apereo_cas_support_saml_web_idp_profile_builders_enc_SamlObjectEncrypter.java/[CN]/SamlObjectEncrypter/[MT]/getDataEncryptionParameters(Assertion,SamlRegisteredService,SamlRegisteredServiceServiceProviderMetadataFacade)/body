@@ -1,0 +1,5 @@
+{
+  final DataEncryptionParameters dataEncParams=new DataEncryptionParameters();
+  dataEncParams.setAlgorithm(EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES128);
+  return dataEncParams;
+}

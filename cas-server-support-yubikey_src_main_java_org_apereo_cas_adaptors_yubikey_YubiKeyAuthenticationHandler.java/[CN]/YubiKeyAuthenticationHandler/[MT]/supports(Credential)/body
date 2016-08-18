@@ -1,0 +1,3 @@
+{
+  return YubiKeyCredential.class.isAssignableFrom(credential.getClass());
+}

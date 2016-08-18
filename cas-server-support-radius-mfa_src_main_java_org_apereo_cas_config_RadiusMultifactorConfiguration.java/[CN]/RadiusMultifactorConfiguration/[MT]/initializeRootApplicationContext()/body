@@ -1,0 +1,4 @@
+{
+  authenticationHandlersResolvers.put(radiusTokenAuthenticationHandler(),null);
+  authenticationMetadataPopulators.add(0,radiusAuthenticationMetaDataPopulator());
+}

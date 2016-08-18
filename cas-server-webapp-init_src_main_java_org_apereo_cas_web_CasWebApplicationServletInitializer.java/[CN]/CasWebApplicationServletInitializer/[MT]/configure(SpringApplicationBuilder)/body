@@ -1,0 +1,3 @@
+{
+  return builder.sources(CasWebApplication.class).banner(new CasBanner());
+}

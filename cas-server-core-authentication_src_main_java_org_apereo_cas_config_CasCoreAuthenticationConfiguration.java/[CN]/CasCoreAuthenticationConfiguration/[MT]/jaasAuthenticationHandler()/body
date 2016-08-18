@@ -1,0 +1,14 @@
+{
+  final JaasAuthenticationHandler h=new JaasAuthenticationHandler();
+  h.setKerberosKdcSystemProperty(casProperties.getAuthn().getJaas().getKerberosKdcSystemProperty());
+  h.setKerberosRealmSystemProperty(casProperties.getAuthn().getJaas().getKerberosRealmSystemProperty());
+  h.setRealm(casProperties.getAuthn().getJaas().getRealm());
+  h.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getJaas().getPasswordEncoder()));
+  if (passwordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(passwordPolicyConfiguration);
+  }
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getJaas().getPrincipalTransformation()));
+  h.setPrincipalFactory(jaasPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

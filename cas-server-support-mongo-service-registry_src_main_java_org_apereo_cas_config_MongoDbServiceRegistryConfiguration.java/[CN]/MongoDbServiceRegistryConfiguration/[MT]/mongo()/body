@@ -1,0 +1,3 @@
+{
+  return new MongoClient(new ServerAddress(casProperties.getServiceRegistry().getMongo().getHost(),casProperties.getServiceRegistry().getMongo().getPort()),Collections.singletonList(MongoCredential.createCredential(casProperties.getServiceRegistry().getMongo().getUserId(),getDatabaseName(),casProperties.getServiceRegistry().getMongo().getUserPassword().toCharArray())),mongoClientOptions());
+}

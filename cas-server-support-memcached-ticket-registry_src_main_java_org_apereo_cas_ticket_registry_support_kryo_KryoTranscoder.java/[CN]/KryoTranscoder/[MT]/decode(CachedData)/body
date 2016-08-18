@@ -1,0 +1,7 @@
+{
+  final byte[] bytes=d.getData();
+  try (Input input=new Input(new ByteArrayInputStream(bytes))){
+    final Object obj=this.kryo.readClassAndObject(input);
+    return obj;
+  }
+ }

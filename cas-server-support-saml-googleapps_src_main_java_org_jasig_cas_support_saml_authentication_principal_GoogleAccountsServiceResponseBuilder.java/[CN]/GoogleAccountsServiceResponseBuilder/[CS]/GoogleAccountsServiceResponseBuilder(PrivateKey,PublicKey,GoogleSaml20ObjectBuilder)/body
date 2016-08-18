@@ -1,5 +1,0 @@
-{
-  this.privateKey=privateKey;
-  this.publicKey=publicKey;
-  this.samlObjectBuilder=samlObjectBuilder;
-}

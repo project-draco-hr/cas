@@ -1,0 +1,13 @@
+{
+  final HttpHeaders acceptHeaders=new HttpHeaders(){
+    private static final long serialVersionUID=-3529759978950667758L;
+{
+      set(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON.toString());
+    }
+  }
+;
+  final String authorization=c.getUsername() + ':' + c.getPassword();
+  final String basic=EncodingUtils.encodeBase64(authorization.getBytes(Charset.forName("US-ASCII")));
+  acceptHeaders.set("Authorization","Basic " + basic);
+  return acceptHeaders;
+}

@@ -1,0 +1,12 @@
+{
+  final String uniqueTicketIdGenKey=service.getClass().getName();
+  logger.debug("Looking up ticket id generator for [{}]",uniqueTicketIdGenKey);
+  UniqueTicketIdGenerator generator=this.uniqueTicketIdGeneratorsForService.get(uniqueTicketIdGenKey);
+  if (generator == null) {
+    generator=this.defaultTicketIdGenerator;
+    logger.debug("Ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
+  }
+  final String ticketId=generator.getNewTicketId(ProxyTicket.PROXY_TICKET_PREFIX);
+  final ProxyTicket serviceTicket=proxyGrantingTicket.grantProxyTicket(ticketId,service,this.proxyTicketExpirationPolicy,casProperties.getTicket().getTgt().isOnlyTrackMostRecentSession());
+  return (T)serviceTicket;
+}

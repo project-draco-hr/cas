@@ -1,0 +1,3 @@
+{
+  Assert.isTrue(this.maxTimeToLiveInMilliSeconds >= this.timeToKillInMilliSeconds,"maxTimeToLiveInMilliSeconds must be greater than or equal to timeToKillInMilliSeconds.");
+}

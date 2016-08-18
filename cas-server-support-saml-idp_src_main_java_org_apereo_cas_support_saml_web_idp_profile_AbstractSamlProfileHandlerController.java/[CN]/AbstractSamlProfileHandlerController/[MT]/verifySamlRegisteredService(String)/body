@@ -1,0 +1,18 @@
+{
+  if (StringUtils.isBlank(serviceId)) {
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE,"Could not verify/locate SAML registered service since no serviceId is provided");
+  }
+  logger.debug("Checking service access in CAS service registry for [{}]",serviceId);
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(this.webApplicationServiceFactory.createService(serviceId));
+  if (registeredService == null || !registeredService.getAccessStrategy().isServiceAccessAllowed()) {
+    logger.warn("[{}] is not found in the registry or service access is denied. Ensure service is registered in service registry",serviceId);
+    throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
+  }
+  if (registeredService instanceof SamlRegisteredService) {
+    final SamlRegisteredService samlRegisteredService=(SamlRegisteredService)registeredService;
+    logger.debug("Located SAML service in the registry as [{}] with the metadata location of [{}]",samlRegisteredService.getServiceId(),samlRegisteredService.getMetadataLocation());
+    return samlRegisteredService;
+  }
+  logger.error("Service [{}] is found in registry but it is not defined as a SAML service",serviceId);
+  throw new UnauthorizedServiceException(UnauthorizedServiceException.CODE_UNAUTHZ_SERVICE);
+}

@@ -1,0 +1,4 @@
+SamlRegisteredServiceCachingMetadataResolver resolver
+SamlRegisteredService registeredService
+String entityID
+CriteriaSet criterions

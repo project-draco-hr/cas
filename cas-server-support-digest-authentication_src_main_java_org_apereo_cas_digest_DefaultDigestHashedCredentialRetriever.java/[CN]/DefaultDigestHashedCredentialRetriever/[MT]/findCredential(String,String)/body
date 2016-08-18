@@ -1,0 +1,6 @@
+{
+  if (store.contains(uid,realm)) {
+    return store.get(uid,realm);
+  }
+  throw new AccountNotFoundException("Could not locate user account for " + uid);
+}

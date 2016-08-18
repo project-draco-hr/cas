@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this).append("url",this.url).append("message",this.message).append("asynchronous",this.asynchronous).append("contentType",this.contentType).append("responseCode",this.responseCode).toString();
+}

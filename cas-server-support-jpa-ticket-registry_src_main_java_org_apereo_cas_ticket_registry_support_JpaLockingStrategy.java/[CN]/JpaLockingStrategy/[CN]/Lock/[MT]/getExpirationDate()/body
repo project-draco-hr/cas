@@ -1,0 +1,3 @@
+{
+  return this.expirationDate == null ? null : ZonedDateTime.from(this.expirationDate);
+}

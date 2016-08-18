@@ -1,0 +1,4 @@
+{
+  expirationPolicy.setTimeToKillInMilliSeconds(-TIMEOUT);
+  assertTrue(this.ticket.isExpired());
+}

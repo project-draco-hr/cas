@@ -1,0 +1,8 @@
+{
+  if (this.attributes.containsKey(name)) {
+    final Object value=this.attributes.get(name);
+    final Collection valueCol=CollectionUtils.convertValueToCollection(value);
+    return valueCol.stream().filter(predicate).count() > 0;
+  }
+  return false;
+}

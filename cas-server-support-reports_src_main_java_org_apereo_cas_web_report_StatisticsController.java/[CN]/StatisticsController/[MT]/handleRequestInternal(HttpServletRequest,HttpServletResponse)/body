@@ -1,0 +1,10 @@
+{
+  final ModelAndView modelAndView=new ModelAndView(MONITORING_VIEW_STATISTICS);
+  modelAndView.addObject("pageTitle",modelAndView.getViewName());
+  modelAndView.addObject("availableProcessors",Runtime.getRuntime().availableProcessors());
+  modelAndView.addObject("casTicketSuffix",casProperties.getHost().getName());
+  modelAndView.getModel().putAll(getAvailability(httpServletRequest,httpServletResponse));
+  modelAndView.addObject("startTime",this.upTimeStartDate.toLocalDateTime());
+  modelAndView.getModel().putAll(getMemoryStats(httpServletRequest,httpServletResponse));
+  return modelAndView;
+}

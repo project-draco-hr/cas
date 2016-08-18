@@ -1,0 +1,3 @@
+{
+  LOGGER.warn("Runtime memory is used as the persistence storage for retrieving and persisting service definitions. " + "Changes that are made to service definitions during runtime " + "WILL be LOST upon container restarts.");
+}

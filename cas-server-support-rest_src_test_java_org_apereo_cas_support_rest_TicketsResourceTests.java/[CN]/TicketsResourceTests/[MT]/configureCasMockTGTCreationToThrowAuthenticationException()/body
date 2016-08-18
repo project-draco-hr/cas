@@ -1,0 +1,5 @@
+{
+  final Map<String,Class<? extends Exception>> handlerErrors=new HashMap<>(1);
+  handlerErrors.put("TestCaseAuthenticationHander",LoginException.class);
+  when(this.casMock.createTicketGrantingTicket(any(AuthenticationResult.class))).thenThrow(new AuthenticationException(handlerErrors));
+}

@@ -1,0 +1,3 @@
+{
+  setAttributes(Lists.newArrayList("eduPersonPrincipalName"));
+}

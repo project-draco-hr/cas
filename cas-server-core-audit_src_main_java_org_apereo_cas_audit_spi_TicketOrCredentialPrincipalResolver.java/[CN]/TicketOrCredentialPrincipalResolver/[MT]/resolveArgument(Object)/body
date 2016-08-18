@@ -1,0 +1,28 @@
+{
+  LOGGER.debug("Resolving argument [{}] for audit",arg1.getClass().getSimpleName());
+  if (arg1 instanceof AuthenticationTransaction) {
+    final AuthenticationTransaction transaction=AuthenticationTransaction.class.cast(arg1);
+    return resolveArguments(new StringBuilder(),transaction.getCredentials());
+  }
+  if (arg1 instanceof Credential) {
+    return arg1.toString();
+  }
+  if (arg1 instanceof String) {
+    try {
+      final Ticket ticket=this.centralAuthenticationService.getTicket((String)arg1,Ticket.class);
+      Authentication authentication=null;
+      if (ticket instanceof ServiceTicket) {
+        authentication=ServiceTicket.class.cast(ticket).getGrantingTicket().getAuthentication();
+      }
+ else       if (ticket instanceof TicketGrantingTicket) {
+        authentication=TicketGrantingTicket.class.cast(ticket).getAuthentication();
+      }
+      return this.principalIdProvider.getPrincipalIdFrom(authentication);
+    }
+ catch (    final InvalidTicketException e) {
+      LOGGER.trace(e.getMessage(),e);
+    }
+    LOGGER.debug("Could not locate ticket [{}] in the registry",arg1);
+  }
+  return WebUtils.getAuthenticatedUsername();
+}

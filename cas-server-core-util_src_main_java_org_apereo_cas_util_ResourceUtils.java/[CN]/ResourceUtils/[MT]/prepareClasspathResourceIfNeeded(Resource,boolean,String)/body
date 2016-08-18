@@ -1,0 +1,42 @@
+{
+  try {
+    if (!ClassUtils.isAssignable(resource.getClass(),ClassPathResource.class)) {
+      return resource;
+    }
+    if (org.springframework.util.ResourceUtils.isFileURL(resource.getURL())) {
+      return resource;
+    }
+    final URL url=org.springframework.util.ResourceUtils.extractArchiveURL(resource.getURL());
+    final File file=org.springframework.util.ResourceUtils.getFile(url);
+    final File casDirectory=new File(FileUtils.getTempDirectory(),"cas");
+    final File destination=new File(casDirectory,resource.getFilename());
+    if (isDirectory) {
+      FileUtils.forceMkdir(destination);
+      FileUtils.cleanDirectory(destination);
+    }
+ else {
+      FileUtils.forceDelete(destination);
+    }
+    final JarFile jFile=new JarFile(file);
+    final Enumeration e=jFile.entries();
+    while (e.hasMoreElements()) {
+      final ZipEntry entry=(ZipEntry)e.nextElement();
+      if (entry.getName().contains(resource.getFilename()) && entry.getName().contains(containsName)) {
+        try (InputStream stream=jFile.getInputStream(entry)){
+          File copyDestination=destination;
+          if (isDirectory) {
+            final File entryFileName=new File(entry.getName());
+            copyDestination=new File(destination,entryFileName.getName());
+          }
+          try (FileWriter writer=new FileWriter(copyDestination)){
+            IOUtils.copy(stream,writer,"UTF-8");
+          }
+         }
+       }
+    }
+    return new FileSystemResource(destination);
+  }
+ catch (  final IOException e) {
+    throw Throwables.propagate(e);
+  }
+}

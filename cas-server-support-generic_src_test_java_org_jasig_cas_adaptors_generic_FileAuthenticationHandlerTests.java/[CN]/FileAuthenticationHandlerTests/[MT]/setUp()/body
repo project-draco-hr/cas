@@ -1,4 +1,0 @@
-{
-  this.authenticationHandler=new FileAuthenticationHandler();
-  this.authenticationHandler.setFileName(new ClassPathResource("org/jasig/cas/adaptors/generic/authentication.txt"));
-}

@@ -1,0 +1,3 @@
+String ticketId
+String query
+Class<T> clazz

@@ -1,0 +1,6 @@
+{
+  final OAuthClientAuthenticator c=new OAuthClientAuthenticator();
+  c.setValidator(oAuthValidator());
+  c.setServicesManager(this.servicesManager);
+  return c;
+}

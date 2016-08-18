@@ -1,6 +1,0 @@
-{
-  final WsFederationCredential wsFedCredentials=(WsFederationCredential)credentials;
-  final String principalId=wsFedCredentials.getAttributes().get(this.configuration.getIdentityAttribute()).toString();
-  logger.debug("principalId : {}",principalId);
-  return principalId;
-}

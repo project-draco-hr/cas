@@ -1,0 +1,6 @@
+{
+  if (repository.verify(context,credential)) {
+    return success();
+  }
+  return accept();
+}

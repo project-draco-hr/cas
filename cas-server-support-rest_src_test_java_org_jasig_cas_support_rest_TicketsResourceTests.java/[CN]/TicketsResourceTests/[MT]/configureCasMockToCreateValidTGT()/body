@@ -1,5 +1,0 @@
-{
-  final TicketGrantingTicket tgt=mock(TicketGrantingTicket.class);
-  when(tgt.getId()).thenReturn("TGT-1");
-  when(this.casMock.createTicketGrantingTicket(any(Credential.class))).thenReturn(tgt);
-}

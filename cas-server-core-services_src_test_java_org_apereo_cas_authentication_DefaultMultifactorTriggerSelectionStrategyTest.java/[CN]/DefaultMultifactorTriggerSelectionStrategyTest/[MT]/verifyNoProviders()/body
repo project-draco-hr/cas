@@ -1,0 +1,3 @@
+{
+  assertThat(strategy.resolve(NO_PROVIDERS,mockRequest(MFA_PROVIDER_ID_1),mockService(MFA_PROVIDER_ID_1),null).isPresent(),is(false));
+}

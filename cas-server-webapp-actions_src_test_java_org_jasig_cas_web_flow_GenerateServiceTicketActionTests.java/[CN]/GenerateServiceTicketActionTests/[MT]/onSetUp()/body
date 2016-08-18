@@ -1,6 +1,0 @@
-{
-  this.action=new GenerateServiceTicketAction();
-  this.action.setCentralAuthenticationService(getCentralAuthenticationService());
-  this.action.afterPropertiesSet();
-  this.ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(org.jasig.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword());
-}

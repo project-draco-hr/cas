@@ -1,9 +1,0 @@
-{
-  super(id,parentTicketGrantingTicket,policy);
-  if (parentTicketGrantingTicket != null && proxiedBy == null) {
-    throw new IllegalArgumentException("Must specify proxiedBy when providing parent TGT");
-  }
-  Assert.notNull(authentication,"authentication cannot be null");
-  this.authentication=authentication;
-  this.proxiedBy=proxiedBy;
-}

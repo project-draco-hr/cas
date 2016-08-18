@@ -1,3 +1,0 @@
-{
-  return BooleanUtils.toInteger(this.supportRegistryState,this.ticketGrantingTicketsCache.getKeysWithExpiryCheck().size(),super.sessionCount());
-}

@@ -1,0 +1,2 @@
+AuthenticationTransactionManager authenticationTransactionManager
+PrincipalElectionStrategy principalElectionStrategy

@@ -1,0 +1,9 @@
+{
+  final TicketsResource r=new TicketsResource();
+  r.setAuthenticationSystemSupport(authenticationSystemSupport);
+  r.setCredentialFactory(credentialFactory);
+  r.setTicketRegistrySupport(ticketRegistrySupport);
+  r.setWebApplicationServiceFactory(webApplicationServiceFactory);
+  r.setCentralAuthenticationService(centralAuthenticationService);
+  return r;
+}

@@ -1,0 +1,25 @@
+{
+  final List<Client> allClients=new ArrayList<>();
+  final Map<String,String> properties=new HashMap<>();
+  configureCasClient(properties);
+  configureFacebookClient(properties);
+  configureOidcClient(properties);
+  configureSamlClient(properties);
+  configureTwitterClient(properties);
+  configureDropboxClient(properties);
+  configureFoursquareClient(properties);
+  configureGithubClient(properties);
+  configureGoogleClient(properties);
+  configureWindowsLiveClient(properties);
+  configureYahooClient(properties);
+  final ConfigFactory configFactory=new PropertiesConfigFactory(properties);
+  final Config propertiesConfig=configFactory.build();
+  allClients.addAll(propertiesConfig.getClients().getClients());
+  if (this.clients != null && this.clients.length > 0) {
+    allClients.addAll(Arrays.<Client>asList(this.clients));
+  }
+  if (allClients.isEmpty()) {
+    throw new IllegalArgumentException("At least one pac4j client must be defined");
+  }
+  return new Clients(casProperties.getServer().getLoginUrl(),allClients);
+}

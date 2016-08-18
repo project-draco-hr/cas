@@ -1,5 +1,0 @@
-{
-  super();
-  setServiceTicketsCache(serviceTicketsCache);
-  setTicketGrantingTicketsCache(ticketGrantingTicketsCache);
-}

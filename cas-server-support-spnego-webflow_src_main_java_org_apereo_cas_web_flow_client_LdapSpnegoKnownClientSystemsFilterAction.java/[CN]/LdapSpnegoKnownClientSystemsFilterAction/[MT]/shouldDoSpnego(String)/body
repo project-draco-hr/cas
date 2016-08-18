@@ -1,0 +1,20 @@
+{
+  if (StringUtils.isBlank(this.spnegoAttributeName)) {
+    logger.warn("Ignoring Spnego. Attribute name is not configured");
+    return false;
+  }
+  if (this.connectionFactory == null) {
+    logger.warn("Ignoring Spnego. LDAP connection factory is not configured");
+    return false;
+  }
+  if (this.searchRequest == null) {
+    logger.warn("Ignoring Spnego. LDAP search request is not configured");
+    return false;
+  }
+  final boolean ipCheck=ipPatternCanBeChecked(remoteIp);
+  if (ipCheck && !ipPatternMatches(remoteIp)) {
+    return false;
+  }
+  logger.debug("Attempting to locate attribute {} for {}",this.spnegoAttributeName,remoteIp);
+  return executeSearchForSpnegoAttribute(remoteIp);
+}

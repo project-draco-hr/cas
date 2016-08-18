@@ -1,0 +1,6 @@
+{
+  final LdaptiveResourceCRLFetcher r=new LdaptiveResourceCRLFetcher();
+  r.setConnectionConfig(this.ldaptiveResourceCRLConnectionConfig);
+  r.setSearchExecutor(this.ldaptiveResourceCRLSearchExecutor);
+  return r;
+}

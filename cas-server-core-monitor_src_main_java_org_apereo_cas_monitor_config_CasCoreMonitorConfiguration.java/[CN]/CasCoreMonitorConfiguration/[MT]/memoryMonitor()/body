@@ -1,0 +1,5 @@
+{
+  final MemoryMonitor bean=new MemoryMonitor();
+  bean.setFreeMemoryWarnThreshold(casProperties.getMonitor().getFreeMemThreshold());
+  return bean;
+}

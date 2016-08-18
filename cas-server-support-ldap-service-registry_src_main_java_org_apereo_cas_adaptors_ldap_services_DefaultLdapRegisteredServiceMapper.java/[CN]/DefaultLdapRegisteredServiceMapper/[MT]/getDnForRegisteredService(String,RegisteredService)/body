@@ -1,0 +1,3 @@
+{
+  return String.format("%s=%s,%s",casProperties.getServiceRegistry().getLdap().getIdAttribute(),svc.getId(),parentDn);
+}

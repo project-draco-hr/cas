@@ -1,0 +1,7 @@
+{
+  final Connection c=connectionFactory.getConnection();
+  if (!c.isOpen()) {
+    c.open();
+  }
+  return c;
+}

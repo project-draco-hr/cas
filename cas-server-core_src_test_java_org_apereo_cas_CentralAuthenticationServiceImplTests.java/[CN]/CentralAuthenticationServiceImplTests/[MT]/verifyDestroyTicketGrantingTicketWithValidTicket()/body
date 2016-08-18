@@ -1,0 +1,5 @@
+{
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport());
+  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  getCentralAuthenticationService().destroyTicketGrantingTicket(ticketId.getId());
+}

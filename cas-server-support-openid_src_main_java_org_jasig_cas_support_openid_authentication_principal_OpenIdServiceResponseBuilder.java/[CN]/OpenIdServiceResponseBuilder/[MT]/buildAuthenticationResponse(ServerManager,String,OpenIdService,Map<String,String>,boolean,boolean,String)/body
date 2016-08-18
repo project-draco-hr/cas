@@ -1,8 +1,0 @@
-{
-  final Message response=serverManager.authResponse(this.parameterList,id,id,successFullAuthentication,true);
-  parameters.putAll(response.getParameterMap());
-  if (!associated) {
-    parameters.put(OpenIdProtocolConstants.OPENID_ASSOCHANDLE,ticketId);
-  }
-  return buildRedirect(service,parameters);
-}

@@ -1,0 +1,11 @@
+{
+  final OidcAuthorizeEndpointController c=new OidcAuthorizeEndpointController();
+  c.setAccessTokenFactory(defaultAccessTokenFactory);
+  c.setServicesManager(servicesManager);
+  c.setTicketRegistry(ticketRegistry);
+  c.setValidator(oAuthValidator);
+  c.setPrincipalFactory(oidcPrincipalFactory());
+  c.setConsentApprovalViewResolver(consentApprovalViewResolver());
+  c.setoAuthCodeFactory(defaultOAuthCodeFactory);
+  return c;
+}

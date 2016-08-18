@@ -1,3 +1,0 @@
-{
-  return credential != null && (WsFederationCredential.class.isAssignableFrom(credential.getClass()));
-}

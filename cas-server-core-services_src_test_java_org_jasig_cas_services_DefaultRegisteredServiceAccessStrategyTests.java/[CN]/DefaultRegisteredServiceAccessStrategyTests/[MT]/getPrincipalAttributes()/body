@@ -1,8 +1,0 @@
-{
-  final Map<String,Object> map=new HashMap<>();
-  map.put("cn","cas");
-  map.put("givenName",Arrays.asList("cas","KAZ"));
-  map.put("sn","surname");
-  map.put("phone","123-456-7890");
-  return map;
-}

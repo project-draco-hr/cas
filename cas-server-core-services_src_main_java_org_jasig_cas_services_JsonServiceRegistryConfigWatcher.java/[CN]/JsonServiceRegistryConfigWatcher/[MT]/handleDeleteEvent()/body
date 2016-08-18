@@ -1,4 +1,0 @@
-{
-  this.serviceRegistryDao.load();
-  this.serviceRegistryDao.refreshServicesManager();
-}

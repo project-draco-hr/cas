@@ -1,0 +1,7 @@
+{
+  getRequiredHandlers().clear();
+  if (handlers == null) {
+    return;
+  }
+  getRequiredHandlers().addAll(handlers);
+}

@@ -1,0 +1,3 @@
+OidcRegisteredService svc
+Optional<JsonWebKeySet> jwks
+JwtClaims claims

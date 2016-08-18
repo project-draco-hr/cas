@@ -1,9 +1,0 @@
-{
-  final ShiroAuthenticationHandler shiro=new ShiroAuthenticationHandler();
-  shiro.setShiroConfiguration(new ClassPathResource("shiro.ini"));
-  final RememberMeUsernamePasswordCredential creds=new RememberMeUsernamePasswordCredential();
-  creds.setRememberMe(true);
-  creds.setUsername("casuser");
-  creds.setPassword("Mellon");
-  assertNotNull(shiro.authenticate(creds));
-}

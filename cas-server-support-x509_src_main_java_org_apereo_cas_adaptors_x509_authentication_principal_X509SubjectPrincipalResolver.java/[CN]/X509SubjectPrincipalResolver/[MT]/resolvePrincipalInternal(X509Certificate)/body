@@ -1,0 +1,21 @@
+{
+  logger.debug("Resolving principal for {}",certificate);
+  final StringBuffer sb=new StringBuffer();
+  final Matcher m=ATTR_PATTERN.matcher(this.descriptor);
+  final Map<String,AttributeContext> attrMap=new HashMap<>();
+  final RDNSequence rdnSequence=new NameReader(certificate).readSubject();
+  String name;
+  String[] values;
+  AttributeContext context;
+  while (m.find()) {
+    name=m.group(1);
+    if (!attrMap.containsKey(name)) {
+      values=getAttributeValues(rdnSequence,StandardAttributeType.fromName(name));
+      attrMap.put(name,new AttributeContext(values));
+    }
+    context=attrMap.get(name);
+    m.appendReplacement(sb,context.nextValue());
+  }
+  m.appendTail(sb);
+  return sb.toString();
+}

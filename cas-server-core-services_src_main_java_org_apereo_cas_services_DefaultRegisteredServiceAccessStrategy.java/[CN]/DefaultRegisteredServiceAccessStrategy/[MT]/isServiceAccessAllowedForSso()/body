@@ -1,0 +1,6 @@
+{
+  if (!this.ssoEnabled) {
+    LOGGER.trace("Service is not authorized to participate in SSO.");
+  }
+  return this.ssoEnabled;
+}

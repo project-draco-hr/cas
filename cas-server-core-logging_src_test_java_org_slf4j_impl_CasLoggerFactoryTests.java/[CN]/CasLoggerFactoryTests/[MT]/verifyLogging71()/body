@@ -1,4 +1,0 @@
-{
-  logger.debug(getMessageToLogWithParams(),ID2,ID1);
-  validateLogData();
-}

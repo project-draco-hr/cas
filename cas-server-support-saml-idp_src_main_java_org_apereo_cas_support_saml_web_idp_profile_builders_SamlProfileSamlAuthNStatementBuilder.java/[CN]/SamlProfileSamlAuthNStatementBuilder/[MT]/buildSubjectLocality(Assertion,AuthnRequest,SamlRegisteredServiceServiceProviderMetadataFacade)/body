@@ -1,0 +1,5 @@
+{
+  final SubjectLocality subjectLocality=newSamlObject(SubjectLocality.class);
+  subjectLocality.setAddress(SamlIdPUtils.getIssuerFromSamlRequest(authnRequest));
+  return subjectLocality;
+}

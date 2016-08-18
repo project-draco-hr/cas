@@ -1,6 +1,0 @@
-{
-  final LocationAwareLogger delegatedLogger=(LocationAwareLogger)getDelegate();
-  final Field field=ReflectionUtils.findField(delegatedLogger.getClass(),"logger");
-  field.setAccessible(true);
-  return (org.apache.logging.log4j.core.Logger)ReflectionUtils.getField(field,delegatedLogger);
-}

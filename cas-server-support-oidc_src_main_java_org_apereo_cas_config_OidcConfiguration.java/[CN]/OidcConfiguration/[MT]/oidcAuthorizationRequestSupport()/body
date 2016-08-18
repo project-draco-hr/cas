@@ -1,0 +1,6 @@
+{
+  final OidcAuthorizationRequestSupport s=new OidcAuthorizationRequestSupport();
+  s.setTicketGrantingTicketCookieGenerator(ticketGrantingTicketCookieGenerator);
+  s.setTicketRegistrySupport(ticketRegistrySupport);
+  return s;
+}

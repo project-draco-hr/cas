@@ -1,0 +1,4 @@
+{
+  final LoggingConfigController c=new LoggingConfigController();
+  return c;
+}

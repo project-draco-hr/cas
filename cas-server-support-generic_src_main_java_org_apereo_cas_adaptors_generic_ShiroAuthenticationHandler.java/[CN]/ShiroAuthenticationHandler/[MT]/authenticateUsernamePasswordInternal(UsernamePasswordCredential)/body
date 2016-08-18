@@ -1,0 +1,33 @@
+{
+  try {
+    final UsernamePasswordToken token=new UsernamePasswordToken(transformedCredential.getUsername(),transformedCredential.getPassword());
+    if (transformedCredential instanceof RememberMeUsernamePasswordCredential) {
+      token.setRememberMe(RememberMeUsernamePasswordCredential.class.cast(transformedCredential).isRememberMe());
+    }
+    final Subject currentUser=getCurrentExecutingSubject();
+    currentUser.login(token);
+    checkSubjectRolesAndPermissions(currentUser);
+    return createAuthenticatedSubjectResult(transformedCredential,currentUser);
+  }
+ catch (  final UnknownAccountException uae) {
+    throw new AccountNotFoundException(uae.getMessage());
+  }
+catch (  final IncorrectCredentialsException ice) {
+    throw new FailedLoginException(ice.getMessage());
+  }
+catch (  final LockedAccountException lae) {
+    throw new AccountLockedException(lae.getMessage());
+  }
+catch (  final ExcessiveAttemptsException eae) {
+    throw new AccountLockedException(eae.getMessage());
+  }
+catch (  final ExpiredCredentialsException eae) {
+    throw new CredentialExpiredException(eae.getMessage());
+  }
+catch (  final DisabledAccountException eae) {
+    throw new AccountDisabledException(eae.getMessage());
+  }
+catch (  final AuthenticationException e) {
+    throw new FailedLoginException(e.getMessage());
+  }
+}

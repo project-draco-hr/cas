@@ -1,0 +1,7 @@
+{
+  final SamlRegisteredService service=SamlSPUtils.newSamlServiceProviderService(casProperties.getSamlSP().getNetPartner());
+  if (service != null) {
+    service.setSignResponses(true);
+    SamlSPUtils.saveService(service,this.servicesManager);
+  }
+}

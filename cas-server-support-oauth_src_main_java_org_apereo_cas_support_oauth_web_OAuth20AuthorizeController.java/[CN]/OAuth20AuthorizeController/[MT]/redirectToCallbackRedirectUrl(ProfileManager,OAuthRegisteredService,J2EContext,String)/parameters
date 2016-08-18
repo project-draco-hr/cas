@@ -1,0 +1,4 @@
+ProfileManager manager
+OAuthRegisteredService registeredService
+J2EContext context
+String clientId

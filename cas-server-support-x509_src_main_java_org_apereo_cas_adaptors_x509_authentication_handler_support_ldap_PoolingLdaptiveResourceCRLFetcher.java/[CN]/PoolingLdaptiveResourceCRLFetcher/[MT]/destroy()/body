@@ -1,0 +1,6 @@
+{
+  logger.debug("Shutting down connection pools...");
+  for (  final PooledConnectionFactory factory : this.connectionPoolMap.values()) {
+    factory.getConnectionPool().close();
+  }
+}

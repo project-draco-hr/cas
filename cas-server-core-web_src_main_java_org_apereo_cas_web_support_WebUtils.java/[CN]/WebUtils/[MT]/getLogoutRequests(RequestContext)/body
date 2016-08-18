@@ -1,0 +1,3 @@
+{
+  return (List<LogoutRequest>)context.getFlowScope().get(PARAMETER_LOGOUT_REQUESTS);
+}

@@ -1,3 +1,0 @@
-{
-  addAuthenticationHandlerPrincipalResolver(adfsAuthNHandler,adfsPrincipalResolver);
-}

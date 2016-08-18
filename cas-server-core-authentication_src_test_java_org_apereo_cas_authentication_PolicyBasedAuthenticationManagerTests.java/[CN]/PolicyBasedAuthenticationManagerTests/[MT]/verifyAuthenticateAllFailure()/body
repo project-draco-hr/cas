@@ -1,0 +1,6 @@
+{
+  final PolicyBasedAuthenticationManager manager=new PolicyBasedAuthenticationManager(newMockHandler(false),newMockHandler(false));
+  manager.setAuthenticationPolicy(new AllAuthenticationPolicy());
+  manager.authenticate(transaction);
+  fail("Should have thrown authentication exception");
+}

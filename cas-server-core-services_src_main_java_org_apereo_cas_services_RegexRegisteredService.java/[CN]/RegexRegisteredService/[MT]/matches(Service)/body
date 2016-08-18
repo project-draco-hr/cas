@@ -1,0 +1,9 @@
+{
+  if (this.servicePattern == null) {
+    final Optional<Pattern> parsedPattern=RegexUtils.createPattern(this.serviceId);
+    if (parsedPattern.isPresent()) {
+      this.servicePattern=parsedPattern.get();
+    }
+  }
+  return service != null && this.servicePattern != null && this.servicePattern.matcher(service.getId()).matches();
+}

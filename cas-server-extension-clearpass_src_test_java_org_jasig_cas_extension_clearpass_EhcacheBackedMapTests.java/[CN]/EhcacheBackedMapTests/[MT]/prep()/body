@@ -1,6 +1,0 @@
-{
-  this.manager=CacheManager.create();
-  this.manager.addCache("cascache");
-  this.cache=this.manager.getCache("cascache");
-  this.map=new EhcacheBackedMap(this.cache);
-}

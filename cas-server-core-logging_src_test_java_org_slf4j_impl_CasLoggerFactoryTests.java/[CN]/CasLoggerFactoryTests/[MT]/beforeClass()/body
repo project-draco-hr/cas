@@ -1,6 +1,0 @@
-{
-  if (LOG_FILE.exists()) {
-    Util.report("Initializing log file " + LOG_FILE.getCanonicalPath());
-    FileUtils.write(LOG_FILE,"",false);
-  }
-}

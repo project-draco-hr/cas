@@ -1,3 +1,0 @@
-{
-  return TestUtils.getRegisteredService("^http://www.serviceid" + i + ".org");
-}

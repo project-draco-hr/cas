@@ -1,7 +1,0 @@
-{
-  final Service service=org.jasig.cas.services.TestUtils.getService();
-  final List<Authentication> list=new ArrayList<>();
-  list.add(org.jasig.cas.authentication.TestUtils.getAuthentication());
-  final Assertion assertion=new ImmutableAssertion(org.jasig.cas.authentication.TestUtils.getAuthentication(),list,service,false);
-  assertEquals(service,assertion.getService());
-}

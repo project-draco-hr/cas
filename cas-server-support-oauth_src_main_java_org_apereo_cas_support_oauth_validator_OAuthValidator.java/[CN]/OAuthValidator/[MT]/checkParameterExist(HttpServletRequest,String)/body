@@ -1,0 +1,9 @@
+{
+  final String parameter=request.getParameter(name);
+  logger.debug("{}: {}",name,parameter);
+  if (StringUtils.isBlank(parameter)) {
+    logger.error("Missing: {}",name);
+    return false;
+  }
+  return true;
+}

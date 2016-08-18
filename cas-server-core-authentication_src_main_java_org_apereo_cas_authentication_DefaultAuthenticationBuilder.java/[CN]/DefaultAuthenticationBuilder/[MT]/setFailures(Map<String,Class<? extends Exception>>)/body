@@ -1,0 +1,5 @@
+{
+  Assert.notNull(failures,"Failures cannot be null");
+  this.failures.clear();
+  return addFailures(failures);
+}

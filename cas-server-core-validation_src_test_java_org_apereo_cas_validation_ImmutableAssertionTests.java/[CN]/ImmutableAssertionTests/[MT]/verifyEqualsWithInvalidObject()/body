@@ -1,0 +1,6 @@
+{
+  final List<Authentication> list=new ArrayList<>();
+  list.add(TestUtils.getAuthentication());
+  final ImmutableAssertion assertion=new ImmutableAssertion(TestUtils.getAuthentication(),list,org.apereo.cas.services.TestUtils.getService(),true);
+  assertFalse("test".equals(assertion));
+}

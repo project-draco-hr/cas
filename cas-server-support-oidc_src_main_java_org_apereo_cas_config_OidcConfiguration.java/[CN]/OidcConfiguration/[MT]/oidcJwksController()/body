@@ -1,0 +1,10 @@
+{
+  final OidcJwksEndpointController c=new OidcJwksEndpointController();
+  c.setJwksFile(casProperties.getAuthn().getOidc().getJwksFile());
+  c.setPrincipalFactory(oidcPrincipalFactory());
+  c.setAccessTokenFactory(defaultAccessTokenFactory);
+  c.setServicesManager(servicesManager);
+  c.setTicketRegistry(ticketRegistry);
+  c.setValidator(oAuthValidator);
+  return c;
+}

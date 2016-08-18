@@ -1,9 +1,0 @@
-{
-  if (t instanceof TicketGrantingTicket) {
-    return this.tgtTimeout;
-  }
- else   if (t instanceof ServiceTicket) {
-    return this.stTimeout;
-  }
-  throw new IllegalArgumentException("Invalid ticket type");
-}

@@ -1,0 +1,10 @@
+{
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),SERVICE);
+  final TicketGrantingTicket tId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket sId=getCentralAuthenticationService().grantServiceTicket(tId.getId(),SERVICE,ctx);
+  getCentralAuthenticationService().destroyTicketGrantingTicket(tId.getId());
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter("service",SERVICE.getId());
+  request.addParameter("ticket",sId.getId());
+  assertFalse(this.serviceValidateController.handleRequestInternal(request,new MockHttpServletResponse()).getView().toString().contains("Success"));
+}

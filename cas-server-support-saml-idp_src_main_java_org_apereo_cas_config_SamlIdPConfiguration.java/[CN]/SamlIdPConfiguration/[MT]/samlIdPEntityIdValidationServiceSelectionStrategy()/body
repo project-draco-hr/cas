@@ -1,0 +1,5 @@
+{
+  final SamlIdPEntityIdValidationServiceSelectionStrategy s=new SamlIdPEntityIdValidationServiceSelectionStrategy();
+  s.setWebApplicationServiceFactory(webApplicationServiceFactory);
+  return s;
+}

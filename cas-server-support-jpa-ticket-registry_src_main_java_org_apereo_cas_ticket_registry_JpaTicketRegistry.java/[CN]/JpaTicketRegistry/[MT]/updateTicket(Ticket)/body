@@ -1,0 +1,4 @@
+{
+  this.entityManager.merge(ticket);
+  logger.debug("Updated ticket [{}].",ticket);
+}

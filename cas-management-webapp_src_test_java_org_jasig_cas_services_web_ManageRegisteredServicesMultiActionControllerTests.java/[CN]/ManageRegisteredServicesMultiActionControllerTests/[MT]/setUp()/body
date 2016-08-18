@@ -1,5 +1,0 @@
-{
-  this.servicesManager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
-  this.servicesManager.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
-  this.controller=new ManageRegisteredServicesMultiActionController(this.servicesManager,"foo");
-}

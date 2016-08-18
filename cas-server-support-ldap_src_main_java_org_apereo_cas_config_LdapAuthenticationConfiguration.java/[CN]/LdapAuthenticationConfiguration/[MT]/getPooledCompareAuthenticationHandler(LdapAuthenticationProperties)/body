@@ -1,0 +1,5 @@
+{
+  final PooledCompareAuthenticationHandler handler=new PooledCompareAuthenticationHandler(Beans.newPooledConnectionFactory(l));
+  handler.setPasswordAttribute(l.getPrincipalAttributePassword());
+  return handler;
+}

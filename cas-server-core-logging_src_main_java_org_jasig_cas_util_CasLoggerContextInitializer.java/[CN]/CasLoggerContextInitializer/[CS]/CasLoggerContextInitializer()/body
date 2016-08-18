@@ -1,6 +1,0 @@
-{
-  this.loggerContext=null;
-  this.loggerContextPackageName=null;
-  this.logConfigurationField=null;
-  this.logConfigurationFile=null;
-}

@@ -1,0 +1,16 @@
+{
+  final LegacyValidateController c=new LegacyValidateController();
+  c.setValidationSpecification(this.cas10ProtocolValidationSpecification);
+  c.setSuccessView(cas1ServiceSuccessView());
+  c.setFailureView(cas1ServiceFailureView());
+  c.setProxyHandler(proxy10Handler);
+  c.setAuthenticationSystemSupport(authenticationSystemSupport);
+  c.setServicesManager(servicesManager);
+  c.setCentralAuthenticationService(centralAuthenticationService);
+  c.setArgumentExtractor(argumentExtractor);
+  c.setMultifactorTriggerSelectionStrategy(multifactorTriggerSelectionStrategy);
+  c.setAuthenticationContextValidator(authenticationContextValidator);
+  c.setJsonView(cas3ServiceJsonView());
+  c.setAuthnContextAttribute(casProperties.getAuthn().getMfa().getAuthenticationContextAttribute());
+  return c;
+}

@@ -1,0 +1,4 @@
+{
+  final RegisteredService svc=this.servicesManager.findServiceBy(service);
+  return svc instanceof OAuthCallbackAuthorizeService;
+}

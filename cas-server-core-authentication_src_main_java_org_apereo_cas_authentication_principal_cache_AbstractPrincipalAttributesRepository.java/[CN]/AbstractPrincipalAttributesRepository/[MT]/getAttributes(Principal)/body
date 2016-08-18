@@ -1,0 +1,21 @@
+{
+  final Map<String,Object> cachedAttributes=getPrincipalAttributes(p);
+  if (cachedAttributes != null && !cachedAttributes.isEmpty()) {
+    LOGGER.debug("Found [{}] cached attributes for principal [{}] that are {}",cachedAttributes.size(),p.getId(),cachedAttributes);
+    return cachedAttributes;
+  }
+  if (getAttributeRepository() == null) {
+    LOGGER.debug("No attribute repository is defined for [{}]. Returning default principal attributes for {}",getClass().getName(),p.getId());
+    return cachedAttributes;
+  }
+  final Map<String,List<Object>> sourceAttributes=retrievePersonAttributesToPrincipalAttributes(p.getId());
+  LOGGER.debug("Found [{}] attributes for principal [{}] from the attribute repository.",sourceAttributes.size(),p.getId());
+  if (this.mergingStrategy == null || this.mergingStrategy.getAttributeMerger() == null) {
+    LOGGER.debug("No merging strategy found, so attributes retrieved from the repository will be used instead.");
+    return convertAttributesToPrincipalAttributesAndCache(p,sourceAttributes);
+  }
+  final Map<String,List<Object>> principalAttributes=convertPrincipalAttributesToPersonAttributes(p);
+  LOGGER.debug("Merging current principal attributes with that of the repository via strategy [{}]",this.mergingStrategy.getClass().getSimpleName());
+  final Map<String,List<Object>> mergedAttributes=this.mergingStrategy.getAttributeMerger().mergeAttributes(principalAttributes,sourceAttributes);
+  return convertAttributesToPrincipalAttributesAndCache(p,mergedAttributes);
+}

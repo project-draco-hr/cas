@@ -1,4 +1,0 @@
-{
-  createGoogleAppsPrivateKey();
-  createGoogleAppsPublicKey();
-}

@@ -1,0 +1,26 @@
+{
+  try {
+    request.removeParameter(OpenIdProtocolConstants.OPENID_ASSOCHANDLE);
+    request.addParameter(OpenIdProtocolConstants.OPENID_ASSOCHANDLE,association.getHandle());
+    openIdService=openIdServiceFactory.createService(request);
+    final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),openIdService);
+    final String tgt=centralAuthenticationService.createTicketGrantingTicket(ctx).getId();
+    final String st=centralAuthenticationService.grantServiceTicket(tgt,openIdService,ctx).getId();
+    centralAuthenticationService.validateServiceTicket(st,openIdService);
+synchronized (this) {
+      try {
+        this.wait(3000);
+      }
+ catch (      final InterruptedException e) {
+        fail("Could not wait long enough to check association expiry date");
+      }
+    }
+    final Response response=this.openIdService.getResponse(st);
+    assertNotNull(response);
+    assertEquals(2,response.getAttributes().size());
+    assertEquals("cancel",response.getAttributes().get("openid.mode"));
+  }
+ catch (  final Exception e) {
+    logger.debug("Exception during verification of service ticket",e);
+  }
+}

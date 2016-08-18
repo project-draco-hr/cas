@@ -1,0 +1,3 @@
+{
+  LOGGER.debug("Logging [{}]\n{}",samlObject.getClass().getName(),transformSamlObject(configBean,samlObject));
+}

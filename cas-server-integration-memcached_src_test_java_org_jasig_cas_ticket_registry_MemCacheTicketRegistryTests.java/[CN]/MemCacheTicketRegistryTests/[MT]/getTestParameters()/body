@@ -1,3 +1,0 @@
-{
-  return Arrays.asList(new Object[]{"testCase1",false},new Object[]{"testCase2",true});
-}

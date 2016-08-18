@@ -1,0 +1,16 @@
+{
+  registeredServiceFactory.setRegisteredServiceMapper(new MockRegisteredServiceMapper());
+  final MockRegisteredService r=new MockRegisteredService();
+  r.setId(1000);
+  r.setName("Test Service");
+  r.setServiceId("test");
+  r.setDescription("description");
+  this.manager.save(r);
+  r.setServiceId("serviceId1");
+  final RegisteredServiceEditBean.ServiceData data=registeredServiceFactory.createServiceData(r);
+  this.controller.saveService(new MockHttpServletRequest(),new MockHttpServletResponse(),data,mock(BindingResult.class));
+  assertFalse(this.manager.getAllServices().isEmpty());
+  final RegisteredService r2=this.manager.findServiceBy(1000);
+  assertEquals("serviceId1",r2.getServiceId());
+  assertTrue(r2 instanceof MockRegisteredService);
+}

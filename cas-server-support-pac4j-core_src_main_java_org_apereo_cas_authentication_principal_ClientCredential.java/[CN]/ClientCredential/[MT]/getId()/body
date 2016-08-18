@@ -1,0 +1,9 @@
+{
+  if (this.userProfile != null) {
+    if (this.typedIdUsed) {
+      return this.userProfile.getTypedId();
+    }
+    return this.userProfile.getId();
+  }
+  return null;
+}

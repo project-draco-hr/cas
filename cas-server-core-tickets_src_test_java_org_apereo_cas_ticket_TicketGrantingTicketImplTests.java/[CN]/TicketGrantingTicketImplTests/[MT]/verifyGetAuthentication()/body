@@ -1,0 +1,6 @@
+{
+  final Authentication authentication=TestUtils.getAuthentication();
+  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,null,authentication,new NeverExpiresExpirationPolicy());
+  Assert.assertEquals(t.getAuthentication(),authentication);
+  assertEquals(t.getId(),t.toString());
+}

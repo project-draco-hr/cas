@@ -1,0 +1,6 @@
+{
+  final X509WebflowConfigurer w=new X509WebflowConfigurer();
+  w.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  w.setFlowBuilderServices(flowBuilderServices);
+  return w;
+}

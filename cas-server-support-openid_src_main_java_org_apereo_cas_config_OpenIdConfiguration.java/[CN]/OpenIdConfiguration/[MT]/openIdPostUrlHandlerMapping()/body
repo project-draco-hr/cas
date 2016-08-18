@@ -1,0 +1,8 @@
+{
+  final OpenIdPostUrlHandlerMapping m=new OpenIdPostUrlHandlerMapping();
+  m.setOrder(1);
+  final Properties mappings=new Properties();
+  mappings.put("/login",openidDelegatingController());
+  m.setMappings(mappings);
+  return m;
+}

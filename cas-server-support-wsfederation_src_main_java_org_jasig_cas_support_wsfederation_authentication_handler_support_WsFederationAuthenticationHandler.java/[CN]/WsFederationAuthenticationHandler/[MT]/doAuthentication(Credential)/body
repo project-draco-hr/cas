@@ -1,8 +1,0 @@
-{
-  final WsFederationCredential wsFederationCredentials=(WsFederationCredential)credential;
-  if (wsFederationCredentials != null) {
-    final Principal principal=this.principalFactory.createPrincipal(wsFederationCredentials.getId(),wsFederationCredentials.getAttributes());
-    return this.createHandlerResult(wsFederationCredentials,principal,new ArrayList<MessageDescriptor>());
-  }
-  throw new FailedLoginException();
-}

@@ -1,0 +1,2 @@
+Set<AuthenticationHandler> candidateHandlers
+AuthenticationTransaction transaction

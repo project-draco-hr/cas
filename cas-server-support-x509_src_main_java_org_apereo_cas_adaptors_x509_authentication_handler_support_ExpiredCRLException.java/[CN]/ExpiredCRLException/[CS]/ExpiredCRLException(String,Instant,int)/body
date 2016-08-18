@@ -1,0 +1,8 @@
+{
+  this.id=identifier;
+  this.expirationDate=ZonedDateTime.ofInstant(expirationDate,ZoneOffset.UTC);
+  if (leniency < 0) {
+    throw new IllegalArgumentException("Leniency cannot be negative.");
+  }
+  this.leniency=leniency;
+}

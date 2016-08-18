@@ -1,0 +1,6 @@
+{
+  final Ticket ticket=getTicket();
+  infinispanTicketRegistry.addTicket(ticket);
+  Assert.assertEquals(infinispanTicketRegistry.getTicket(ticket.getId()),ticket);
+  assertNull(infinispanTicketRegistry.getTicket(""));
+}

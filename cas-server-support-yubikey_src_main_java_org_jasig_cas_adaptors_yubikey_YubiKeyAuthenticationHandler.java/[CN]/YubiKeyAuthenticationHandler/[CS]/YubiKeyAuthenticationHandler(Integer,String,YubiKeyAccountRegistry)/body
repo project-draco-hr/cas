@@ -1,4 +1,0 @@
-{
-  this(clientId,secretKey);
-  this.registry=registry;
-}

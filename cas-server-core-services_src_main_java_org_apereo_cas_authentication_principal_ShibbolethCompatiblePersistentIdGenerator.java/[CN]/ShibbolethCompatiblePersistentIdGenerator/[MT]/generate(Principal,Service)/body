@@ -1,0 +1,6 @@
+{
+  final String data=String.join(CONST_SEPARATOR,service.getId(),principal.getId());
+  final Charset charset=Charset.defaultCharset();
+  final String result=EncodingUtils.encodeBase64(DigestUtils.sha(data.getBytes(charset)));
+  return result.replaceAll(System.getProperty("line.separator"),"");
+}

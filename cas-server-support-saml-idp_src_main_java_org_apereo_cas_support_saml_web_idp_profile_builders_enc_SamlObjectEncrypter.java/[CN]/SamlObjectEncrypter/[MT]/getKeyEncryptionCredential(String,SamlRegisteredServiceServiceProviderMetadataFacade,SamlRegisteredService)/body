@@ -1,0 +1,37 @@
+{
+  final BasicEncryptionConfiguration config=DefaultSecurityConfigurationBootstrap.buildDefaultEncryptionConfiguration();
+  if (this.overrideBlackListedEncryptionAlgorithms != null && !this.overrideBlackListedEncryptionAlgorithms.isEmpty()) {
+    config.setBlacklistedAlgorithms(this.overrideBlackListedEncryptionAlgorithms);
+  }
+  if (this.overrideWhiteListedAlgorithms != null && !this.overrideWhiteListedAlgorithms.isEmpty()) {
+    config.setWhitelistedAlgorithms(this.overrideWhiteListedAlgorithms);
+  }
+  if (this.overrideDataEncryptionAlgorithms != null && !this.overrideDataEncryptionAlgorithms.isEmpty()) {
+    config.setDataEncryptionAlgorithms(this.overrideDataEncryptionAlgorithms);
+  }
+  if (this.overrideKeyEncryptionAlgorithms != null && !this.overrideKeyEncryptionAlgorithms.isEmpty()) {
+    config.setKeyTransportEncryptionAlgorithms(this.overrideKeyEncryptionAlgorithms);
+  }
+  logger.debug("Encryption blacklisted algorithms: [{}]",config.getBlacklistedAlgorithms());
+  logger.debug("Encryption key algorithms: [{}]",config.getKeyTransportEncryptionAlgorithms());
+  logger.debug("Signature data algorithms: [{}]",config.getDataEncryptionAlgorithms());
+  logger.debug("Encryption whitelisted algorithms: {}",config.getWhitelistedAlgorithms());
+  final MetadataCredentialResolver kekCredentialResolver=new MetadataCredentialResolver();
+  final PrivateKey privateKey=getEncryptionPrivateKey();
+  final X509Certificate certificate=getEncryptionCertificate();
+  final Credential encryptionCredential=new BasicX509Credential(certificate,privateKey);
+  logger.debug("Created encryption credential");
+  final StaticKeyInfoCredentialResolver keyinfoResolver=new StaticKeyInfoCredentialResolver(encryptionCredential);
+  kekCredentialResolver.setKeyInfoCredentialResolver(keyinfoResolver);
+  final BasicRoleDescriptorResolver roleDescriptorResolver=new BasicRoleDescriptorResolver(adaptor.getMetadataResolver());
+  roleDescriptorResolver.initialize();
+  kekCredentialResolver.setRoleDescriptorResolver(roleDescriptorResolver);
+  kekCredentialResolver.initialize();
+  final CriteriaSet criteriaSet=new CriteriaSet();
+  criteriaSet.add(new EncryptionConfigurationCriterion(config));
+  criteriaSet.add(new EntityIdCriterion(peerEntityId));
+  criteriaSet.add(new EntityRoleCriterion(SPSSODescriptor.DEFAULT_ELEMENT_NAME));
+  criteriaSet.add(new UsageCriterion(UsageType.ENCRYPTION));
+  logger.debug("Attempting to resolve the encryption key for entity id [{}]",peerEntityId);
+  return kekCredentialResolver.resolveSingle(criteriaSet);
+}

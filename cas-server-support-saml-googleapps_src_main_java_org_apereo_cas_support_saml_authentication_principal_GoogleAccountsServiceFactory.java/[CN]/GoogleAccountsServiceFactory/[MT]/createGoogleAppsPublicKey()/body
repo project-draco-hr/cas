@@ -1,0 +1,21 @@
+{
+  if (!isValidConfiguration()) {
+    logger.debug("Google Apps public key bean will not be created, because it's not configured");
+    return;
+  }
+  final PublicKeyFactoryBean bean=new PublicKeyFactoryBean();
+  if (this.publicKeyLocation.startsWith(ResourceUtils.CLASSPATH_URL_PREFIX)) {
+    bean.setLocation(new ClassPathResource(StringUtils.removeStart(this.publicKeyLocation,ResourceUtils.CLASSPATH_URL_PREFIX)));
+  }
+ else   if (this.publicKeyLocation.startsWith(ResourceUtils.FILE_URL_PREFIX)) {
+    bean.setLocation(new FileSystemResource(StringUtils.removeStart(this.publicKeyLocation,ResourceUtils.FILE_URL_PREFIX)));
+  }
+ else {
+    bean.setLocation(new FileSystemResource(this.publicKeyLocation));
+  }
+  bean.setAlgorithm(this.keyAlgorithm);
+  logger.debug("Loading Google Apps public key from {} with key algorithm {}",bean.getResource(),bean.getAlgorithm());
+  bean.afterPropertiesSet();
+  logger.debug("Creating Google Apps public key instance via {}",this.publicKeyLocation);
+  this.publicKey=bean.getObject();
+}

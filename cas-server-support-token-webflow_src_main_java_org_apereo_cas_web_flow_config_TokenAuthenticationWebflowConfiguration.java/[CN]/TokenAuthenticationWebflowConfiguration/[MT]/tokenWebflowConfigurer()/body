@@ -1,0 +1,6 @@
+{
+  final TokenWebflowConfigurer w=new TokenWebflowConfigurer();
+  w.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  w.setFlowBuilderServices(flowBuilderServices);
+  return w;
+}

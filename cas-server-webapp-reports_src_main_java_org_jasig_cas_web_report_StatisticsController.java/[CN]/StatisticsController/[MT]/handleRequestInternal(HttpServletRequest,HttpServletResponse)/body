@@ -1,3 +1,0 @@
-{
-  return new ModelAndView(MONITORING_VIEW_STATISTICS);
-}

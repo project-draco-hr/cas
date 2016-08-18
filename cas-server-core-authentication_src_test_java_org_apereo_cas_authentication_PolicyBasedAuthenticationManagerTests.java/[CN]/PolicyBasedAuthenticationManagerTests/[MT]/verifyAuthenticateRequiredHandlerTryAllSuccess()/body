@@ -1,0 +1,10 @@
+{
+  final PolicyBasedAuthenticationManager manager=new PolicyBasedAuthenticationManager(newMockHandler("HandlerA",true),newMockHandler("HandlerB",false));
+  final RequiredHandlerAuthenticationPolicy policy=new RequiredHandlerAuthenticationPolicy("HandlerA");
+  policy.setTryAll(true);
+  manager.setAuthenticationPolicy(policy);
+  final Authentication auth=manager.authenticate(transaction);
+  assertEquals(1,auth.getSuccesses().size());
+  assertEquals(1,auth.getFailures().size());
+  assertEquals(2,auth.getCredentials().size());
+}

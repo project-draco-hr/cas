@@ -1,0 +1,8 @@
+{
+  final ProxyGrantingTicket ticket=new ProxyGrantingTicketImpl("ticketGrantingTicketId",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+  getTicketRegistry().addTicket(ticket);
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  request.addParameter("pgt",ticket.getId());
+  request.addParameter("targetService","testDefault");
+  assertTrue(this.proxyController.handleRequestInternal(request,new MockHttpServletResponse()).getModel().containsKey("ticket"));
+}

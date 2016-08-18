@@ -1,0 +1,12 @@
+{
+  final Credential c=TestUtils.getCredentialsWithSameUsernameAndPassword();
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),c);
+  final TicketGrantingTicket ticketId=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket st=getCentralAuthenticationService().grantServiceTicket(ticketId.getId(),TestUtils.getService(),ctx);
+  final TicketOrCredentialPrincipalResolver res=new TicketOrCredentialPrincipalResolver(getCentralAuthenticationService());
+  final JoinPoint jp=mock(JoinPoint.class);
+  when(jp.getArgs()).thenReturn(new Object[]{ticketId.getId()});
+  final String result=res.resolveFrom(jp,null);
+  assertNotNull(result);
+  assertEquals(result,c.getId());
+}

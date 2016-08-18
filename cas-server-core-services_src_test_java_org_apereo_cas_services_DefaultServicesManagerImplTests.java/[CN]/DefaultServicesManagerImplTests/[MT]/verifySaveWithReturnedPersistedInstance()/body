@@ -1,0 +1,9 @@
+{
+  final RegexRegisteredService r=new RegexRegisteredService();
+  r.setId(1000L);
+  r.setName("test");
+  r.setServiceId("test");
+  final RegisteredService persistedRs=this.defaultServicesManagerImpl.save(r);
+  assertNotNull(persistedRs);
+  assertEquals(1000L,persistedRs.getId());
+}

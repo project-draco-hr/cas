@@ -1,0 +1,7 @@
+{
+  final String filter=data.getAttrRelease().getAttrFilter();
+  if (StringUtils.isNotBlank(filter)) {
+    return new RegisteredServiceRegexAttributeFilter(filter);
+  }
+  return null;
+}

@@ -1,9 +1,0 @@
-{
-  final Map<String,List<Object>> attributes=new HashMap<>();
-  attributes.put("test",Arrays.asList(new Object[]{"test"}));
-  this.repository=new StubPersonAttributeDao();
-  this.repository.setBackingMap(attributes);
-  this.manager=new DefaultServicesManagerImpl(new InMemoryServiceRegistryDaoImpl());
-  this.manager.setApplicationEventPublisher(mock(ApplicationEventPublisher.class));
-  this.controller=new RegisteredServiceSimpleFormController(this.manager,this.repository);
-}

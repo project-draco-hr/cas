@@ -1,6 +1,0 @@
-{
-  final SecureRandom secureRandom=new SecureRandom();
-  final byte[] bytes=new byte[size];
-  secureRandom.nextBytes(bytes);
-  return getFormattedText(bytes);
-}

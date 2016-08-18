@@ -1,0 +1,3 @@
+{
+  this.registeredServices=ObjectUtils.defaultIfNull(registeredServices,new ArrayList<>());
+}

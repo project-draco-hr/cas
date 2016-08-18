@@ -1,0 +1,4 @@
+String id
+Service service
+Authentication authentication
+ExpirationPolicy expirationPolicy

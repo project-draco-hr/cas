@@ -1,0 +1,7 @@
+{
+  final String pattern=requiredValues.stream().collect(Collectors.joining("|","(",")"));
+  if (isValidRegex(pattern)) {
+    return Pattern.compile(pattern,caseInsensitive ? Pattern.CASE_INSENSITIVE : 0);
+  }
+  return null;
+}

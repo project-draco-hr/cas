@@ -1,0 +1,12 @@
+{
+  final SamlRegisteredService service=new SamlRegisteredService();
+  service.setName("SAMLService");
+  service.setServiceId("^http://.+");
+  service.setMetadataLocation("classpath:/sample-idp-metadata.xml");
+  final InMemoryServiceRegistryDaoImpl dao=new InMemoryServiceRegistryDaoImpl();
+  dao.setRegisteredServices(Collections.singletonList(service));
+  final DefaultServicesManagerImpl impl=new DefaultServicesManagerImpl(dao);
+  impl.load();
+  final RegisteredService s=impl.findServiceBy(new WebApplicationServiceFactory().createService("http://mmoayyed.unicon.net:8081/sp/saml/SSO"));
+  assertNotNull(s);
+}

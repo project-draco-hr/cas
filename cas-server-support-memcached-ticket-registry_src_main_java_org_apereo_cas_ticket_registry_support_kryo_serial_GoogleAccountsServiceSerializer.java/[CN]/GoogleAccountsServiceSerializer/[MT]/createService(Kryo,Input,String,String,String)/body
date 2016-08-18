@@ -1,0 +1,10 @@
+{
+  final String requestId=kryo.readObject(input,String.class);
+  final String relayState=kryo.readObject(input,String.class);
+  try {
+    return (GoogleAccountsService)CONSTRUCTOR.newInstance(id,originalUrl,artifactId,relayState,requestId,this.privateKey,this.publicKey,this.alternateUsername);
+  }
+ catch (  final Exception e) {
+    throw new IllegalStateException("Error creating SamlService",e);
+  }
+}

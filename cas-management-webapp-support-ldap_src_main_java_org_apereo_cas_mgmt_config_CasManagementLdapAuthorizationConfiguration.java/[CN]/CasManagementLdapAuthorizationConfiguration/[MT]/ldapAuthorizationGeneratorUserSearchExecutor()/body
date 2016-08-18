@@ -1,0 +1,3 @@
+{
+  return Beans.newSearchExecutor(casProperties.getMgmt().getLdapAuthz().getBaseDn(),casProperties.getMgmt().getLdapAuthz().getSearchFilter());
+}

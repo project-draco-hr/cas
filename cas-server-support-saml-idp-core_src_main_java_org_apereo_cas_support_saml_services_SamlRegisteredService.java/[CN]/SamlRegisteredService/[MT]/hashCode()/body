@@ -1,0 +1,3 @@
+{
+  return new HashCodeBuilder().appendSuper(super.hashCode()).append(this.metadataLocation).append(this.metadataMaxValidity).append(this.requiredAuthenticationContextClass).append(this.metadataSignatureLocation).append(this.signAssertions).append(this.signResponses).append(this.encryptAssertions).toHashCode();
+}

@@ -1,5 +1,0 @@
-{
-  this.ticket.grantServiceTicket("test",org.jasig.cas.services.TestUtils.getService(),this.expirationPolicy,false,true);
-  Thread.sleep(TIMEOUT - TIMEOUT_BUFFER);
-  assertFalse(this.ticket.isExpired());
-}

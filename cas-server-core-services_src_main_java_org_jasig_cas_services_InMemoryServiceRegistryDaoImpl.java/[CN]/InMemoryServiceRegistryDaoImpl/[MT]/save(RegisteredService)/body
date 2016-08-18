@@ -1,9 +1,0 @@
-{
-  logWarning();
-  if (registeredService.getId() == RegisteredService.INITIAL_IDENTIFIER_VALUE) {
-    ((AbstractRegisteredService)registeredService).setId(findHighestId() + 1);
-  }
-  this.registeredServices.remove(registeredService);
-  this.registeredServices.add(registeredService);
-  return registeredService;
-}

@@ -1,0 +1,5 @@
+{
+  final LocalContainerEntityManagerFactoryBean bean=Beans.newEntityManagerFactoryBean(new JpaConfigDataHolder(jpaEventVendorAdapter(),"jpaGoogleAuthenticatorContext",jpaEventPackagesToScan(),dataSourceEvent()),casProperties.getAuthn().getMfa().getGauth().getJpa().getDatabase());
+  bean.getJpaPropertyMap().put("hibernate.enable_lazy_load_no_trans",Boolean.TRUE);
+  return bean;
+}

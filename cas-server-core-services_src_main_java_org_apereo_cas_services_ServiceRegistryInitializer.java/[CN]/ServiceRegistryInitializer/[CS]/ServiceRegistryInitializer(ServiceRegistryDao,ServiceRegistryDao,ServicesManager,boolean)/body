@@ -1,0 +1,6 @@
+{
+  this.jsonServiceRegistryDao=jsonServiceRegistryDao;
+  this.serviceRegistryDao=serviceRegistryDao;
+  this.servicesManager=servicesManager;
+  this.initFromJson=initFromJson;
+}

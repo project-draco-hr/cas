@@ -1,0 +1,18 @@
+{
+  try {
+    final PublicKeyFactoryBean factory=this.publicKeyFactoryBeanClass.newInstance();
+    if (this.location.startsWith(ResourceUtils.CLASSPATH_URL_PREFIX)) {
+      factory.setLocation(new ClassPathResource(StringUtils.removeStart(this.location,ResourceUtils.CLASSPATH_URL_PREFIX)));
+    }
+ else {
+      factory.setLocation(new FileSystemResource(this.location));
+    }
+    factory.setAlgorithm(this.algorithm);
+    factory.setSingleton(false);
+    return factory.getObject();
+  }
+ catch (  final Exception e) {
+    LOGGER.warn(e.getMessage(),e);
+    throw Throwables.propagate(e);
+  }
+}

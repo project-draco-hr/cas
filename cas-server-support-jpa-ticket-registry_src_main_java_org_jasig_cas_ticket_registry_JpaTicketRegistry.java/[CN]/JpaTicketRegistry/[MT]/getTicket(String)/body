@@ -1,3 +1,0 @@
-{
-  return getProxiedTicketInstance(getRawTicket(ticketId));
-}

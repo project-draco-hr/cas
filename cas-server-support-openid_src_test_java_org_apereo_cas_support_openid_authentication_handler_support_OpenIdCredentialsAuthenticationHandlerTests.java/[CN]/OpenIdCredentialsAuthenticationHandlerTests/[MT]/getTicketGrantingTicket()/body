@@ -1,0 +1,3 @@
+{
+  return new TicketGrantingTicketImpl("test",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
+}

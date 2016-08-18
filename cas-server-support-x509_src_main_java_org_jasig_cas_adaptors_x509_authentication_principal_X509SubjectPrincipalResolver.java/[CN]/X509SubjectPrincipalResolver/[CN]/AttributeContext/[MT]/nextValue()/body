@@ -1,6 +1,0 @@
-{
-  if (this.currentIndex == this.values.length) {
-    throw new IllegalStateException("No values remaining for attribute " + this.name);
-  }
-  return this.values[this.currentIndex++];
-}

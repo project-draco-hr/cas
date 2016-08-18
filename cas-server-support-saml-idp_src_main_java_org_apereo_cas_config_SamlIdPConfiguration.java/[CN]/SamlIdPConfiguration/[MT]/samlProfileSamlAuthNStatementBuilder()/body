@@ -1,0 +1,6 @@
+{
+  final SamlProfileSamlAuthNStatementBuilder b=new SamlProfileSamlAuthNStatementBuilder();
+  b.setConfigBean(openSamlConfigBean);
+  b.setAuthnContextClassRefBuilder(defaultAuthnContextClassRefBuilder());
+  return b;
+}

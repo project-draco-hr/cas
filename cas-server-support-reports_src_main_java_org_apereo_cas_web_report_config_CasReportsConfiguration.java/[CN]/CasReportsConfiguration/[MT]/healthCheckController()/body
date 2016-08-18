@@ -1,0 +1,5 @@
+{
+  final HealthCheckController c=new HealthCheckController();
+  c.setHealthCheckMonitor(healthCheckMonitor);
+  return c;
+}

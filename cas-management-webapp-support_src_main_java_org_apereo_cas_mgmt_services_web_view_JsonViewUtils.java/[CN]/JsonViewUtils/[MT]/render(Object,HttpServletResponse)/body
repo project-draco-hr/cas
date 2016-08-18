@@ -1,0 +1,11 @@
+{
+  try {
+    final MappingJackson2HttpMessageConverter jsonConverter=new MappingJackson2HttpMessageConverter();
+    jsonConverter.setPrettyPrint(true);
+    final MediaType jsonMimeType=MediaType.APPLICATION_JSON;
+    jsonConverter.write(model,jsonMimeType,new ServletServerHttpResponse(response));
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

@@ -1,0 +1,11 @@
+{
+  assertEquals(this.principal.getAttributes().size(),1);
+  try (AbstractPrincipalAttributesRepository repository=getPrincipalAttributesRepository(TimeUnit.MILLISECONDS.name(),100)){
+    assertEquals(repository.getAttributes(this.principal).size(),this.attributes.size());
+    assertTrue(repository.getAttributes(this.principal).containsKey("mail"));
+    Thread.sleep(200);
+    this.attributes.remove("mail");
+    assertTrue(repository.getAttributes(this.principal).containsKey("a2"));
+    assertFalse(repository.getAttributes(this.principal).containsKey("mail"));
+  }
+ }

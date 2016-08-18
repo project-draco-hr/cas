@@ -1,0 +1,3 @@
+{
+  this.cas.createProxyGrantingTicket("bad-st",getAuthenticationContext());
+}

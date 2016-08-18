@@ -1,5 +1,5 @@
 {
-  if (suspendEncoding) {
+  if (this.suspendEncoding) {
     this.out.write(theBytes,off,len);
     return;
   }

@@ -1,0 +1,6 @@
+{
+  final DefaultRefreshTokenFactory f=new DefaultRefreshTokenFactory();
+  f.setExpirationPolicy(refreshTokenExpirationPolicy());
+  f.setRefreshTokenIdGenerator(refreshTokenIdGenerator());
+  return f;
+}

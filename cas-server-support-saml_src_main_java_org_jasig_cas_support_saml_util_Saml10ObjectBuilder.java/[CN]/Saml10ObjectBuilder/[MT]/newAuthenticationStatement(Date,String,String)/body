@@ -1,7 +1,0 @@
-{
-  final AuthenticationStatement authnStatement=newSamlObject(AuthenticationStatement.class);
-  authnStatement.setAuthenticationInstant(new DateTime(authenticationDate));
-  authnStatement.setAuthenticationMethod(authenticationMethod != null ? authenticationMethod : SamlAuthenticationMetaDataPopulator.AUTHN_METHOD_UNSPECIFIED);
-  authnStatement.setSubject(newSubject(subjectId));
-  return authnStatement;
-}

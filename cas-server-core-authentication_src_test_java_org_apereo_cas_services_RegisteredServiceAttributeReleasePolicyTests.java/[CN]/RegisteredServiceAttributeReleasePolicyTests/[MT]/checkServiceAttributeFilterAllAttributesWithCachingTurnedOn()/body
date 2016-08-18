@@ -1,0 +1,17 @@
+{
+  final ReturnAllAttributeReleasePolicy policy=new ReturnAllAttributeReleasePolicy();
+  final Map<String,List<Object>> attributes=new HashMap<>();
+  attributes.put("values",Lists.newArrayList(new Object[]{"v1","v2","v3"}));
+  attributes.put("cn",Lists.newArrayList(new Object[]{"commonName"}));
+  attributes.put("username",Lists.newArrayList(new Object[]{"uid"}));
+  final IPersonAttributeDao dao=new StubPersonAttributeDao(attributes);
+  final IPersonAttributes person=mock(IPersonAttributes.class);
+  when(person.getName()).thenReturn("uid");
+  when(person.getAttributes()).thenReturn(attributes);
+  final CachingPrincipalAttributesRepository repository=new CachingPrincipalAttributesRepository(TimeUnit.MILLISECONDS.name(),100);
+  repository.setAttributeRepository(dao);
+  final Principal p=new DefaultPrincipalFactory().createPrincipal("uid",Collections.<String,Object>singletonMap("mail","final@example.com"));
+  policy.setPrincipalAttributesRepository(repository);
+  final Map<String,Object> attr=policy.getAttributes(p);
+  assertEquals(attr.size(),attributes.size());
+}

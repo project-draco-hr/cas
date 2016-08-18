@@ -1,0 +1,4 @@
+{
+  final String codeId=this.oAuthCodeIdGenerator.getNewTicketId(OAuthCode.PREFIX);
+  return new OAuthCodeImpl(codeId,service,authentication,this.expirationPolicy);
+}

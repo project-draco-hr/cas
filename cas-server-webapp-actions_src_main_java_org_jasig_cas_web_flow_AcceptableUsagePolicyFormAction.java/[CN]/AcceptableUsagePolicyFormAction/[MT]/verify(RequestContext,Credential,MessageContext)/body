@@ -1,8 +1,0 @@
-{
-  final String key=credential.getId();
-  if (this.policyMap.containsKey(key)) {
-    final Boolean hasAcceptedPolicy=this.policyMap.get(key);
-    return hasAcceptedPolicy ? success() : accept();
-  }
-  return accept();
-}

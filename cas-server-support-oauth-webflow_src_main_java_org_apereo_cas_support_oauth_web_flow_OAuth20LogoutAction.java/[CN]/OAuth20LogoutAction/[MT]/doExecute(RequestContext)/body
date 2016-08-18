@@ -1,0 +1,4 @@
+{
+  this.applicationLogoutController.applicationLogout(WebUtils.getHttpServletRequest(requestContext),WebUtils.getHttpServletResponse(requestContext));
+  return success();
+}

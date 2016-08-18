@@ -1,0 +1,4 @@
+{
+  final AuthenticationResultBuilder builder=new DefaultAuthenticationResultBuilder(this.principalElectionStrategy).collect(authentication);
+  return builder;
+}

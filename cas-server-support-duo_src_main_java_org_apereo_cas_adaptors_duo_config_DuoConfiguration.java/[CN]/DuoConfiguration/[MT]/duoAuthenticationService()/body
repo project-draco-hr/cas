@@ -1,0 +1,5 @@
+{
+  final DuoAuthenticationService s=new DuoAuthenticationService();
+  s.setHttpClient(this.httpClient);
+  return s;
+}

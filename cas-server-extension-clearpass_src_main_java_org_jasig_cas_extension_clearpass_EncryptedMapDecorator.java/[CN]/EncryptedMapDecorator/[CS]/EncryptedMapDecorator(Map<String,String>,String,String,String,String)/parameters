@@ -1,5 +1,0 @@
-Map<String,String> decoratedMap
-String hashAlgorithm
-String salt
-String secretKeyAlgorithm
-String secretKey

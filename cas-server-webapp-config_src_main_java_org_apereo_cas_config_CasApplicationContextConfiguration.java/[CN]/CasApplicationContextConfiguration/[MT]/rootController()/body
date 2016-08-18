@@ -1,0 +1,10 @@
+{
+  return new ParameterizableViewController(){
+    @Override protected ModelAndView handleRequestInternal(    final HttpServletRequest request,    final HttpServletResponse response) throws Exception {
+      final String queryString=request.getQueryString();
+      final String url=request.getContextPath() + "/login" + (queryString != null ? '?' + queryString : "");
+      return new ModelAndView(new RedirectView(response.encodeURL(url)));
+    }
+  }
+;
+}

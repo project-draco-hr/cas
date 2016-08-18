@@ -1,0 +1,3 @@
+long maxCacheSize
+String timeUnit
+long expiryDuration

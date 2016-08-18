@@ -1,0 +1,7 @@
+{
+  final ContextualAuthenticationPolicy<ServiceContext> policy=this.serviceContextAuthenticationPolicyFactory.createPolicy(context);
+  if (policy.isSatisfiedBy(authentication)) {
+    return authentication;
+  }
+  throw new UnsatisfiedAuthenticationPolicyException(policy);
+}

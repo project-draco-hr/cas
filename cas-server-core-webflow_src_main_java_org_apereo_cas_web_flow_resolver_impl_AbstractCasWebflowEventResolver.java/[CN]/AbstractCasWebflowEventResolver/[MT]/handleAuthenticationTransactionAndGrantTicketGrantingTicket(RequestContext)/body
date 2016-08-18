@@ -1,0 +1,15 @@
+{
+  try {
+    final Credential credential=getCredentialFromContext(context);
+    AuthenticationResultBuilder builder=WebUtils.getAuthenticationResultBuilder(context);
+    logger.debug("Handling authentication transaction for credential {}",credential);
+    builder=this.authenticationSystemSupport.handleAuthenticationTransaction(builder,credential);
+    final Service service=WebUtils.getService(context);
+    logger.debug("Issuing ticket-granting tickets for service {}",service);
+    return ImmutableSet.of(grantTicketGrantingTicketToAuthenticationResult(context,builder,service));
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+    return ImmutableSet.of(new Event(this,"error"));
+  }
+}

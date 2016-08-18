@@ -1,0 +1,3 @@
+{
+  return RadiusTokenCredential.class.isAssignableFrom(credential.getClass());
+}

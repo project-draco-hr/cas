@@ -1,0 +1,4 @@
+{
+  final Collection<Ticket> c=this.cas.getTickets(Predicates.<Ticket>alwaysTrue());
+  assertEquals(c.size(),this.ticketRegMock.getTickets().size());
+}

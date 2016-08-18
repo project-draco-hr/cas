@@ -1,0 +1,4 @@
+{
+  final byte[] outBytes=serialize(object);
+  return cipher.encode(outBytes);
+}

@@ -1,0 +1,3 @@
+SPSSODescriptor ssoDescriptor
+EntityDescriptor entityDescriptor
+MetadataResolver metadataResolver

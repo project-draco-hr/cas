@@ -1,3 +1,0 @@
-byte[] object
-CipherExecutor<byte[],byte[]> cipher
-Class<? extends Serializable> type

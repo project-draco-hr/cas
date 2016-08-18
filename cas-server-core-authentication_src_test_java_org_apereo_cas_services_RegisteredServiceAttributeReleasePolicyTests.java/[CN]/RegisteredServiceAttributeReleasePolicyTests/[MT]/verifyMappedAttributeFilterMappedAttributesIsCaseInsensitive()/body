@@ -1,0 +1,14 @@
+{
+  final ReturnMappedAttributeReleasePolicy policy=new ReturnMappedAttributeReleasePolicy();
+  final Map<String,String> mappedAttr=new HashMap<>();
+  mappedAttr.put("attr1","newAttr1");
+  policy.setAllowedAttributes(mappedAttr);
+  final Principal p=mock(Principal.class);
+  final Map<String,Object> map=new HashMap<>();
+  map.put("ATTR1","value1");
+  when(p.getAttributes()).thenReturn(map);
+  when(p.getId()).thenReturn("principalId");
+  final Map<String,Object> attr=policy.getAttributes(p);
+  assertEquals(attr.size(),1);
+  assertTrue(attr.containsKey("newAttr1"));
+}

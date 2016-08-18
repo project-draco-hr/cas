@@ -1,0 +1,11 @@
+{
+  try {
+    final URI casHost=new URI(casProperties.getServer().getName());
+    final HttpHost host=new HttpHost(casHost.getHost(),casHost.getPort(),casHost.getScheme());
+    final ClientHttpRequestFactory factory=new HttpComponentsClientHttpRequestFactoryBasicAuth(host);
+    return new RestTemplate(factory);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

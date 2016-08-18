@@ -1,0 +1,23 @@
+{
+  logger.info("Loading metadata dynamically for [{}]",service.getName());
+  final FunctionDrivenDynamicHTTPMetadataResolver resolver=new FunctionDrivenDynamicHTTPMetadataResolver(this.httpClient.getWrappedHttpClient());
+  resolver.setMinCacheDuration(TimeUnit.MILLISECONDS.convert(this.metadataCacheExpirationMinutes,TimeUnit.MINUTES));
+  resolver.setRequestURLBuilder(new Function<String,String>(){
+    @Nullable @Override public String apply(    @Nullable final String input){
+      try {
+        if (StringUtils.isNotBlank(input)) {
+          final String metadataLocation=service.getMetadataLocation().replace("{0}",EncodingUtils.urlEncode(input));
+          logger.info("Constructed dynamic metadata query [{}] for [{}]",metadataLocation,service.getName());
+          return metadataLocation;
+        }
+        return null;
+      }
+ catch (      final Exception e) {
+        throw new RuntimeException(e.getMessage(),e);
+      }
+    }
+  }
+);
+  buildSingleMetadataResolver(resolver,service);
+  metadataResolvers.add(resolver);
+}

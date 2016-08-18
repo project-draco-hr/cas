@@ -1,0 +1,15 @@
+{
+  try {
+    logger.debug("Removing ticket [{}] from registry...",ticketGrantingTicketId);
+    final TicketGrantingTicket ticket=getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
+    logger.debug("Ticket found. Processing logout requests and then deleting the ticket...");
+    final List<LogoutRequest> logoutRequests=this.logoutManager.performLogout(ticket);
+    this.ticketRegistry.deleteTicket(ticketGrantingTicketId);
+    doPublishEvent(new CasTicketGrantingTicketDestroyedEvent(this,ticket));
+    return logoutRequests;
+  }
+ catch (  final InvalidTicketException e) {
+    logger.debug("TicketGrantingTicket [{}] cannot be found in the ticket registry.",ticketGrantingTicketId);
+  }
+  return Collections.emptyList();
+}

@@ -1,0 +1,5 @@
+{
+  final WsFederationHelper h=new WsFederationHelper();
+  h.setConfigBean(this.configBean);
+  return h;
+}

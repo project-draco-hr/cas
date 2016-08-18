@@ -1,0 +1,5 @@
+{
+  final OpenIdServiceFactory f=new OpenIdServiceFactory();
+  f.setOpenIdPrefixUrl(casProperties.getServer().getPrefix().concat("/openid"));
+  return f;
+}

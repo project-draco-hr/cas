@@ -1,0 +1,5 @@
+{
+  if (!casProperties.getAuthn().getAttributeRepository().getAttributes().isEmpty() && list.isEmpty()) {
+    list.add(Beans.newStubAttributeRepository(casProperties.getAuthn().getAttributeRepository()));
+  }
+}

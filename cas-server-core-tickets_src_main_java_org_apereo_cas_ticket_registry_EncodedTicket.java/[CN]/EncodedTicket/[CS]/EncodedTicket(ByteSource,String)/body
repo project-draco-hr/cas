@@ -1,0 +1,9 @@
+{
+  try {
+    this.id=encodedTicketId;
+    this.encodedTicket=encodedTicket.read();
+  }
+ catch (  final IOException e) {
+    throw Throwables.propagate(e);
+  }
+}

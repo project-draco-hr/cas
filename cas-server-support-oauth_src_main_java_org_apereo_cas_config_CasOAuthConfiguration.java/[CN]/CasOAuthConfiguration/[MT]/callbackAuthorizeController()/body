@@ -1,0 +1,7 @@
+{
+  final OAuth20CallbackAuthorizeController c=new OAuth20CallbackAuthorizeController();
+  c.setCallbackController(callbackController());
+  c.setConfig(oauthSecConfig());
+  c.setAuth20CallbackAuthorizeViewResolver(callbackAuthorizeViewResolver());
+  return c;
+}

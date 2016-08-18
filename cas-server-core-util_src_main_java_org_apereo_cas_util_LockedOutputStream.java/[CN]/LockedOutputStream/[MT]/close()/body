@@ -1,0 +1,12 @@
+{
+  if (this.closed) {
+    return;
+  }
+  try {
+    this.lock.release();
+  }
+  finally {
+    this.closed=true;
+    super.close();
+  }
+}

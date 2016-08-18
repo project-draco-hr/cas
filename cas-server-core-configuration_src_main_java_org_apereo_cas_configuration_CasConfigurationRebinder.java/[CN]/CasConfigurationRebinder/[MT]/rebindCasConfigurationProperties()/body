@@ -1,0 +1,10 @@
+{
+  final Map<String,CasConfigurationProperties> map=this.applicationContext.getBeansOfType(CasConfigurationProperties.class);
+  final String name=map.keySet().iterator().next();
+  LOGGER.debug("Reloading CAS configuration via {}",name);
+  final Object e=this.applicationContext.getBean(name);
+  this.binder.postProcessBeforeInitialization(e,name);
+  final Object bean=this.applicationContext.getAutowireCapableBeanFactory().initializeBean(e,name);
+  this.applicationContext.getAutowireCapableBeanFactory().autowireBean(bean);
+  LOGGER.info("Reloaded CAS configuration {}",name);
+}

@@ -1,0 +1,15 @@
+{
+  final RegexRegisteredService svc=new RegexRegisteredService();
+  svc.setDescription("description");
+  svc.setServiceId("serviceId");
+  svc.setName("name");
+  svc.setEvaluationOrder(123);
+  assertTrue(this.manager.getAllServices().isEmpty());
+  final RegisteredServiceEditBean.ServiceData data=registeredServiceFactory.createServiceData(svc);
+  this.controller.saveService(new MockHttpServletRequest(),new MockHttpServletResponse(),data,mock(BindingResult.class));
+  final Collection<RegisteredService> services=this.manager.getAllServices();
+  assertEquals(1,services.size());
+  for (  final RegisteredService rs : this.manager.getAllServices()) {
+    assertTrue(rs instanceof RegexRegisteredService);
+  }
+}

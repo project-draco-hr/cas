@@ -1,0 +1,10 @@
+{
+  final String remoteIp=getRemoteIp(context);
+  logger.debug("Current user IP {}",remoteIp);
+  if (shouldDoSpnego(remoteIp)) {
+    logger.info("Spnego should be activated for {}",remoteIp);
+    return yes();
+  }
+  logger.info("Spnego should is skipped for {}",remoteIp);
+  return no();
+}

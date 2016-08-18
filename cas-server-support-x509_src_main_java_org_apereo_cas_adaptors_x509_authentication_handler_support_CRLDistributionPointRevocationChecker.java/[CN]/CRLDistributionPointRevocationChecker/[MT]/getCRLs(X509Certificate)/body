@@ -1,0 +1,61 @@
+{
+  if (this.crlCache == null) {
+    throw new IllegalArgumentException("CRL cache is not defined");
+  }
+  if (this.fetcher == null) {
+    throw new IllegalArgumentException("CRL fetcher is not defined");
+  }
+  if (getExpiredCRLPolicy() == null) {
+    throw new IllegalArgumentException("Expiration CRL policy is not defined");
+  }
+  if (getUnavailableCRLPolicy() == null) {
+    throw new IllegalArgumentException("Unavailable CRL policy is not defined");
+  }
+  final URI[] urls=getDistributionPoints(cert);
+  logger.debug("Distribution points for {}: {}.",CertUtils.toString(cert),Lists.newArrayList(urls));
+  final List<X509CRL> listOfLocations=new ArrayList<>(urls.length);
+  boolean stopFetching=false;
+  try {
+    for (int index=0; !stopFetching && index < urls.length; index++) {
+      final URI url=urls[index];
+      final Element item=this.crlCache.get(url);
+      if (item != null) {
+        logger.debug("Found CRL in cache for {}",CertUtils.toString(cert));
+        final byte[] encodedCrl=(byte[])item.getObjectValue();
+        final X509CRL crlFetched=this.fetcher.fetch(new ByteArrayResource(encodedCrl));
+        if (crlFetched != null) {
+          listOfLocations.add(crlFetched);
+        }
+ else {
+          logger.warn("Could fetch X509 CRL for {}. Returned value is null",url);
+        }
+      }
+ else {
+        logger.debug("CRL for {} is not cached. Fetching and caching...",CertUtils.toString(cert));
+        try {
+          final X509CRL crl=this.fetcher.fetch(url);
+          if (crl != null) {
+            logger.info("Success. Caching fetched CRL at {}.",url);
+            addCRL(url,crl);
+            listOfLocations.add(crl);
+          }
+        }
+ catch (        final Exception e) {
+          logger.error("Error fetching CRL at {}",url,e);
+          if (this.throwOnFetchFailure) {
+            throw Throwables.propagate(e);
+          }
+        }
+      }
+      if (!this.checkAll && !listOfLocations.isEmpty()) {
+        logger.debug("CRL fetching is configured to not check all locations.");
+        stopFetching=true;
+      }
+    }
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+  logger.debug("Found {} CRLs",listOfLocations.size());
+  return listOfLocations;
+}

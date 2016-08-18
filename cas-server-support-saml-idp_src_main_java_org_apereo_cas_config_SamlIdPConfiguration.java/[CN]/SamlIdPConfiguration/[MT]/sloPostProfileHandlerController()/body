@@ -1,0 +1,5 @@
+{
+  final SLOPostProfileHandlerController c=new SLOPostProfileHandlerController();
+  initControllerBean(c);
+  return c;
+}

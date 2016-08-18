@@ -1,0 +1,7 @@
+{
+  final DefaultTicketRegistryCleaner c=new DefaultTicketRegistryCleaner();
+  c.setLockingStrategy(lockingStrategy());
+  c.setLogoutManager(logoutManager);
+  c.setTicketRegistry(this.ticketRegistry);
+  return c;
+}

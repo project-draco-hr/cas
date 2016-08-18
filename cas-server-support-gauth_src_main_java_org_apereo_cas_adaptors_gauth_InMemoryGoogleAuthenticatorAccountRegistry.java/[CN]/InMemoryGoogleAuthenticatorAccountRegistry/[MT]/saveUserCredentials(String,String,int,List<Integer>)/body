@@ -1,0 +1,7 @@
+{
+  final GoogleAuthenticatorAccount account=new GoogleAuthenticatorAccount();
+  account.setScratchCodes(scratchCodes);
+  account.setValidationCode(validationCode);
+  account.setSecretKey(secretKey);
+  this.accounts.put(userName,account);
+}

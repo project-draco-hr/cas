@@ -1,0 +1,5 @@
+{
+  final Map<String,UniqueTicketIdGenerator> map=new HashMap<>();
+  map.put("org.apereo.cas.authentication.principal.SimpleWebApplicationServiceImpl",serviceTicketUniqueIdGenerator());
+  return map;
+}

@@ -1,5 +1,0 @@
-{
-  for (  final Entry<? extends String,? extends String> entry : m.entrySet()) {
-    this.put(entry.getKey(),entry.getValue());
-  }
-}

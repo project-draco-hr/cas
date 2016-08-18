@@ -1,0 +1,10 @@
+{
+  int failureCount=0;
+  final List<ServiceTicketImpl> serviceTicketImpls=getTicketQueryResultList(ticketId,"select s from " + TABLE_SERVICE_TICKETS + " s where s.ticketGrantingTicket.id = :id",ServiceTicketImpl.class);
+  failureCount+=deleteTicketsFromResultList(serviceTicketImpls);
+  List<TicketGrantingTicketImpl> ticketGrantingTicketImpls=getTicketQueryResultList(ticketId,"select t from " + TABLE_TICKET_GRANTING_TICKETS + " t where t.ticketGrantingTicket.id = :id",TicketGrantingTicketImpl.class);
+  failureCount+=deleteTicketsFromResultList(ticketGrantingTicketImpls);
+  ticketGrantingTicketImpls=getTicketQueryResultList(ticketId,"select t from " + TABLE_TICKET_GRANTING_TICKETS + " t where t.id = :id",TicketGrantingTicketImpl.class);
+  failureCount+=deleteTicketsFromResultList(ticketGrantingTicketImpls);
+  return failureCount;
+}

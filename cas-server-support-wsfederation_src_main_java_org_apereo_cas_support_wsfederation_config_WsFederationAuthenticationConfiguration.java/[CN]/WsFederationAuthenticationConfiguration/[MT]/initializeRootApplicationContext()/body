@@ -1,0 +1,10 @@
+{
+  if (StringUtils.isNotBlank(casProperties.getAuthn().getWsfed().getIdentityProviderUrl()) && StringUtils.isNotBlank(casProperties.getAuthn().getWsfed().getIdentityProviderIdentifier())) {
+    if (!casProperties.getAuthn().getWsfed().isAttributeResolverEnabled()) {
+      authenticationHandlersResolvers.put(adfsAuthNHandler(),null);
+    }
+ else {
+      authenticationHandlersResolvers.put(adfsAuthNHandler(),adfsPrincipalResolver());
+    }
+  }
+}

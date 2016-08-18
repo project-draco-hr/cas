@@ -1,0 +1,17 @@
+{
+  final AuthyTokenCredential tokenCredential=(AuthyTokenCredential)credential;
+  final RequestContext context=RequestContextHolder.getRequestContext();
+  final Principal principal=WebUtils.getAuthentication(context).getPrincipal();
+  final User user=instance.getOrCreateUser(principal);
+  if (!user.isOk()) {
+    throw new FailedLoginException(AuthyClientInstance.getErrorMessage(user.getError()));
+  }
+  final Integer authyId=user.getId();
+  final Map<String,String> options=new HashMap<>();
+  options.put("force",this.forceVerification.toString());
+  final Token verification=this.instance.getAuthyTokens().verify(authyId,tokenCredential.getToken(),options);
+  if (!verification.isOk()) {
+    throw new FailedLoginException(AuthyClientInstance.getErrorMessage(verification.getError()));
+  }
+  return createHandlerResult(tokenCredential,principal,new ArrayStack());
+}

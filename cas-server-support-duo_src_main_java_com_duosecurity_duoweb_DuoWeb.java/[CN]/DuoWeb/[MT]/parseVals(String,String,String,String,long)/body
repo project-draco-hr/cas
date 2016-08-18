@@ -6,7 +6,7 @@
   final String u_prefix=parts[0];
   final String u_b64=parts[1];
   final String u_sig=parts[2];
-  final String sig=Util.hmacSign(key,u_prefix + "|" + u_b64);
+  final String sig=Util.hmacSign(key,u_prefix + '|' + u_b64);
   if (!Util.hmacSign(key,sig).equals(Util.hmacSign(key,u_sig))) {
     throw new DuoWebException("Invalid response");
   }

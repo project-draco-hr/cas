@@ -1,0 +1,4 @@
+{
+  this.attributes.putAll(authn.getAttributes());
+  this.authenticationDate=authn.getAuthenticationDate();
+}

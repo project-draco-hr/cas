@@ -1,0 +1,3 @@
+ServicesManager servicesManager
+RegisteredServiceFactory registeredServiceFactory
+String defaultServiceUrl

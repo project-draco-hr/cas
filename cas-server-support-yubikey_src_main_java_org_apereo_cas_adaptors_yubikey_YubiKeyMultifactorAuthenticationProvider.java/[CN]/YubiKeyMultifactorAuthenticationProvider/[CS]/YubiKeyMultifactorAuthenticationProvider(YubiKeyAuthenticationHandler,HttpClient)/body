@@ -1,0 +1,4 @@
+{
+  this.yubiKeyAuthenticationHandler=yubiKeyAuthenticationHandler;
+  this.httpClient=httpClient;
+}

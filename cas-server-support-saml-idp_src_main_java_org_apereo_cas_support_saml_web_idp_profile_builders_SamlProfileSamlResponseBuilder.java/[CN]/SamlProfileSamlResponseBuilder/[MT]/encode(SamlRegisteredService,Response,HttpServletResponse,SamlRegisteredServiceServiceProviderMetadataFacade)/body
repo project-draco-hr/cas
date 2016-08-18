@@ -1,0 +1,17 @@
+{
+  try {
+    final HTTPPostEncoder encoder=new HTTPPostEncoder();
+    encoder.setHttpServletResponse(httpResponse);
+    encoder.setVelocityEngine(this.velocityEngineFactory.createVelocityEngine());
+    final MessageContext outboundMessageContext=new MessageContext<>();
+    SamlIdPUtils.preparePeerEntitySamlEndpointContext(outboundMessageContext,adaptor);
+    outboundMessageContext.setMessage(samlResponse);
+    encoder.setMessageContext(outboundMessageContext);
+    encoder.initialize();
+    encoder.encode();
+    return samlResponse;
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

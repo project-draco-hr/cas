@@ -1,0 +1,3 @@
+{
+  registry.addInterceptor(oauthInterceptor()).addPathPatterns(OAuthConstants.BASE_OAUTH20_URL.concat("/").concat("*"));
+}

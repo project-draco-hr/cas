@@ -1,0 +1,6 @@
+{
+  final Collection<RegisteredService> col=oAuth20AuthorizeController.getServicesManager().getAllServices();
+  for (  final RegisteredService r : col) {
+    oAuth20AuthorizeController.getServicesManager().delete(r.getId());
+  }
+}

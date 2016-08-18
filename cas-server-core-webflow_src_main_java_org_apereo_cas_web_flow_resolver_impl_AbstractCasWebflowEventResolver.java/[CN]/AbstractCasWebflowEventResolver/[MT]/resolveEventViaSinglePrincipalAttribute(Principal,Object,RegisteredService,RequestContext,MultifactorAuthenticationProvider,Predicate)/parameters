@@ -1,0 +1,6 @@
+Principal principal
+Object attributeValue
+RegisteredService service
+RequestContext context
+MultifactorAuthenticationProvider provider
+Predicate predicate

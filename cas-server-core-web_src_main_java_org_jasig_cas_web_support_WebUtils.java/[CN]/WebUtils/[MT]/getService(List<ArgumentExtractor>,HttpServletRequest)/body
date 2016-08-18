@@ -1,9 +1,0 @@
-{
-  for (  final ArgumentExtractor argumentExtractor : argumentExtractors) {
-    final WebApplicationService service=argumentExtractor.extractService(request);
-    if (service != null) {
-      return service;
-    }
-  }
-  return null;
-}

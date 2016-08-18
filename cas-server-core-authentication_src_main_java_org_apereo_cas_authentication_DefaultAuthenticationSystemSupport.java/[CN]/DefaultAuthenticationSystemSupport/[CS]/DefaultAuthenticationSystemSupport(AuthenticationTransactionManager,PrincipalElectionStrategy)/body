@@ -1,0 +1,4 @@
+{
+  this.authenticationTransactionManager=authenticationTransactionManager;
+  this.principalElectionStrategy=principalElectionStrategy;
+}

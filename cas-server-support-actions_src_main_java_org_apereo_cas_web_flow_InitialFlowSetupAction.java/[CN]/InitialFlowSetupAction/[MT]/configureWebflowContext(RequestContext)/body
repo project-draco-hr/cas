@@ -1,0 +1,9 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  WebUtils.putTicketGrantingTicketInScopes(context,this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request));
+  WebUtils.putGoogleAnalyticsTrackingIdIntoFlowScope(context,this.googleAnalyticsTrackingId);
+  WebUtils.putWarningCookie(context,Boolean.valueOf(this.warnCookieGenerator.retrieveCookieValue(request)));
+  WebUtils.putGeoLocationTrackingIntoFlowScope(context,this.trackGeoLocation);
+  WebUtils.putRecaptchaSiteKeyIntoFlowScope(context,this.googleRecaptchaSiteKey);
+  WebUtils.putStaticAuthenticationIntoFlowScope(context,this.staticAuthentication);
+}

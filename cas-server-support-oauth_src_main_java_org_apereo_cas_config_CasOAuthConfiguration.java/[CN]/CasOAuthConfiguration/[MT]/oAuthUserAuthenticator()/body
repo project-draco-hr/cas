@@ -1,0 +1,5 @@
+{
+  final OAuthUserAuthenticator w=new OAuthUserAuthenticator();
+  w.setAuthenticationSystemSupport(authenticationSystemSupport);
+  return w;
+}

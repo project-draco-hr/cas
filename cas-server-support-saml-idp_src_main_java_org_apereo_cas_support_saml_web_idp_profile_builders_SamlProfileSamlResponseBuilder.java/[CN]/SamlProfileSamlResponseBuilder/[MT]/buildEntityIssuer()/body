@@ -1,0 +1,5 @@
+{
+  final Issuer issuer=newIssuer(casProperties.getAuthn().getSamlIdp().getEntityId());
+  issuer.setFormat(Issuer.ENTITY);
+  return issuer;
+}

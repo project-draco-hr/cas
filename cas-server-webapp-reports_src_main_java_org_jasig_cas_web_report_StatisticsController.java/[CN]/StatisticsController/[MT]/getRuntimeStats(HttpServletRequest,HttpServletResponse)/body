@@ -1,8 +1,0 @@
-{
-  final Map<String,Object> responseMap=new HashMap<>();
-  responseMap.put("availableProcessors",Runtime.getRuntime().availableProcessors());
-  responseMap.put("serverHostName",request.getServerName());
-  responseMap.put("serverIpAddress",request.getLocalAddr());
-  responseMap.put("casTicketSuffix",this.casTicketSuffix);
-  return responseMap;
-}

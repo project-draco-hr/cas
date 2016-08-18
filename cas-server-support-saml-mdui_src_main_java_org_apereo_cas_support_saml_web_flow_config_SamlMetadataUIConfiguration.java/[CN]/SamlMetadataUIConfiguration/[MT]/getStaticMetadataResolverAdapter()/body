@@ -1,0 +1,6 @@
+{
+  final StaticMetadataResolverAdapter adapter=new StaticMetadataResolverAdapter();
+  configureAdapter(adapter);
+  adapter.buildMetadataResolverAggregate();
+  return adapter;
+}

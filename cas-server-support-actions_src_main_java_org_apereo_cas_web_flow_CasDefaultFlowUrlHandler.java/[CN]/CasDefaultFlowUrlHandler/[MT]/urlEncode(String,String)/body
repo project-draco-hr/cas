@@ -1,0 +1,8 @@
+{
+  try {
+    return URLEncoder.encode(value,encodingScheme);
+  }
+ catch (  final UnsupportedEncodingException e) {
+    throw new IllegalArgumentException("Cannot url encode " + value);
+  }
+}

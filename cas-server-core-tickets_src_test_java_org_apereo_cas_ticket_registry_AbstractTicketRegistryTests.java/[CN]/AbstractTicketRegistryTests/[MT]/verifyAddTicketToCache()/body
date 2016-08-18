@@ -1,0 +1,8 @@
+{
+  try {
+    this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
+  }
+ catch (  final Exception e) {
+    fail("Caught an exception. But no exception should have been thrown.");
+  }
+}

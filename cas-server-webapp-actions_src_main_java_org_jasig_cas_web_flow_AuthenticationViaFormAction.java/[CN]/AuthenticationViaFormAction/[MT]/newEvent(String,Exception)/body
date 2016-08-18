@@ -1,3 +1,0 @@
-{
-  return new Event(this,id,new LocalAttributeMap("error",error));
-}

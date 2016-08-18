@@ -1,0 +1,9 @@
+{
+  super.copyFrom(source);
+  final OAuthRegisteredService oAuthRegisteredService=(OAuthRegisteredService)source;
+  this.setClientId(oAuthRegisteredService.getClientId());
+  this.setClientSecret(oAuthRegisteredService.getClientSecret());
+  this.setBypassApprovalPrompt(oAuthRegisteredService.isBypassApprovalPrompt());
+  this.setGenerateRefreshToken(oAuthRegisteredService.isGenerateRefreshToken());
+  this.setJsonFormat(oAuthRegisteredService.isJsonFormat());
+}

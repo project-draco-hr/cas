@@ -1,0 +1,9 @@
+{
+  final ChainingMetadataResolverCacheLoader c=new ChainingMetadataResolverCacheLoader();
+  c.setFailFastInitialization(casProperties.getAuthn().getSamlIdp().getMetadata().isFailFast());
+  c.setMetadataCacheExpirationMinutes(casProperties.getAuthn().getSamlIdp().getMetadata().getCacheExpirationMinutes());
+  c.setRequireValidMetadata(casProperties.getAuthn().getSamlIdp().getMetadata().isRequireValidMetadata());
+  c.setConfigBean(this.openSamlConfigBean);
+  c.setHttpClient(this.httpClient);
+  return c;
+}

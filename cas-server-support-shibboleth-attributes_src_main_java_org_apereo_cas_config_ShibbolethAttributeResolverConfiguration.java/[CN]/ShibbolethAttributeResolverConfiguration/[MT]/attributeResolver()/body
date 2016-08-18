@@ -1,0 +1,4 @@
+{
+  final ApplicationContext tempApplicationContext=SpringSupport.newContext("shibbolethAttributeResolverContext",casProperties.getShibAttributeResolver().getResources(),Collections.singletonList(this.placeholderConfigurerSupport),Collections.emptyList(),Collections.emptyList(),this.applicationContext);
+  return new AttributeResolverImpl("ShibbolethAttributeResolver",BeanFactoryUtils.beansOfTypeIncludingAncestors(tempApplicationContext,AttributeDefinition.class).values(),BeanFactoryUtils.beansOfTypeIncludingAncestors(tempApplicationContext,DataConnector.class).values(),null);
+}

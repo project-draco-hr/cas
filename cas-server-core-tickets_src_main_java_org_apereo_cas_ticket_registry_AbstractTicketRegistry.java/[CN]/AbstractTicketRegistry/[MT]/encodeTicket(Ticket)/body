@@ -1,0 +1,16 @@
+{
+  if (!isCipherExecutorEnabled()) {
+    logger.trace(MESSAGE);
+    return ticket;
+  }
+  if (ticket == null) {
+    logger.debug("Ticket passed is null and cannot be encoded");
+    return null;
+  }
+  logger.info("Encoding [{}]",ticket);
+  final byte[] encodedTicketObject=SerializationUtils.serializeAndEncodeObject(this.cipherExecutor,ticket);
+  final String encodedTicketId=encodeTicketId(ticket.getId());
+  final Ticket encodedTicket=new EncodedTicket(ByteSource.wrap(encodedTicketObject),encodedTicketId);
+  logger.info("Created [{}]",encodedTicket);
+  return encodedTicket;
+}

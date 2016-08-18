@@ -1,0 +1,4 @@
+{
+  properties.put(PropertiesConfigFactory.GITHUB_ID,casProperties.getAuthn().getPac4j().getGithub().getId());
+  properties.put(PropertiesConfigFactory.GITHUB_SECRET,casProperties.getAuthn().getPac4j().getGithub().getSecret());
+}

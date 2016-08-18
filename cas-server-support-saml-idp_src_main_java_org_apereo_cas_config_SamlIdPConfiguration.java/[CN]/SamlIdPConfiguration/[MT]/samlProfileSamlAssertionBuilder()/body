@@ -1,0 +1,10 @@
+{
+  final SamlProfileSamlAssertionBuilder b=new SamlProfileSamlAssertionBuilder();
+  b.setConfigBean(openSamlConfigBean);
+  b.setSamlObjectSigner(samlObjectSigner());
+  b.setSamlProfileSamlAttributeStatementBuilder(samlProfileSamlAttributeStatementBuilder());
+  b.setSamlProfileSamlAuthNStatementBuilder(samlProfileSamlAuthNStatementBuilder());
+  b.setSamlProfileSamlConditionsBuilder(samlProfileSamlConditionsBuilder());
+  b.setSamlProfileSamlSubjectBuilder(samlProfileSamlSubjectBuilder());
+  return b;
+}

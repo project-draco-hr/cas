@@ -1,0 +1,11 @@
+{
+  final OidcAccessTokenEndpointController c=new OidcAccessTokenEndpointController();
+  c.setAccessTokenResponseGenerator(oidcAccessTokenResponseGenerator());
+  c.setAccessTokenFactory(defaultAccessTokenFactory);
+  c.setPrincipalFactory(oidcPrincipalFactory());
+  c.setRefreshTokenFactory(defaultRefreshTokenFactory);
+  c.setServicesManager(servicesManager);
+  c.setTicketRegistry(ticketRegistry);
+  c.setValidator(oAuthValidator);
+  return c;
+}

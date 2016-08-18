@@ -1,0 +1,6 @@
+{
+  final TimeBasedRegisteredServiceAccessStrategy authz=new TimeBasedRegisteredServiceAccessStrategy(true,true);
+  authz.setStartingDateTime(ZonedDateTime.now(ZoneOffset.UTC).toString());
+  authz.setEndingDateTime(ZonedDateTime.now(ZoneOffset.UTC).plusSeconds(30).toString());
+  assertTrue(authz.isServiceAccessAllowed());
+}

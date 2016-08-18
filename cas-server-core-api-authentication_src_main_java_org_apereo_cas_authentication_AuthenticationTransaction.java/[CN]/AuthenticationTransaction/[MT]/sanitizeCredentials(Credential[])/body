@@ -1,0 +1,13 @@
+{
+  if (credentials != null && credentials.length > 0) {
+    final Set<Credential> set=new HashSet<>(Lists.newArrayList(credentials));
+    final Iterator<Credential> it=set.iterator();
+    while (it.hasNext()) {
+      if (it.next() == null) {
+        it.remove();
+      }
+    }
+    return set;
+  }
+  return Collections.emptySet();
+}

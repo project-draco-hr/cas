@@ -1,0 +1,6 @@
+{
+  Assert.notNull(ticketId,"ticketId cannot be null");
+  final Ticket ticket=this.ticketRegistry.getTicket(ticketId,clazz);
+  verifyTicketState(ticket,ticketId,clazz);
+  return (T)ticket;
+}

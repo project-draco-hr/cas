@@ -1,0 +1,19 @@
+{
+  try {
+    if (svc.getId() == RegisteredService.INITIAL_IDENTIFIER_VALUE) {
+      ((AbstractRegisteredService)svc).setId(System.nanoTime());
+    }
+    final String newDn=getDnForRegisteredService(dn,svc);
+    LOGGER.debug("Creating entry {}",newDn);
+    final Collection<LdapAttribute> attrs=new ArrayList<>();
+    attrs.add(new LdapAttribute(casProperties.getServiceRegistry().getLdap().getIdAttribute(),String.valueOf(svc.getId())));
+    final StringWriter writer=new StringWriter();
+    this.jsonSerializer.to(writer,svc);
+    attrs.add(new LdapAttribute(casProperties.getServiceRegistry().getLdap().getServiceDefinitionAttribute(),writer.toString()));
+    attrs.add(new LdapAttribute(LdapUtils.OBJECTCLASS_ATTRIBUTE,"top",casProperties.getServiceRegistry().getLdap().getObjectClass()));
+    return new LdapEntry(newDn,attrs);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  final TicketGrantingTicket ticketGrantingTicket=new TicketGrantingTicketImpl(this.ticketGrantingTicketUniqueTicketIdGenerator.getNewTicketId(TicketGrantingTicket.PREFIX),authentication,this.ticketGrantingTicketExpirationPolicy);
+  return (T)ticketGrantingTicket;
+}

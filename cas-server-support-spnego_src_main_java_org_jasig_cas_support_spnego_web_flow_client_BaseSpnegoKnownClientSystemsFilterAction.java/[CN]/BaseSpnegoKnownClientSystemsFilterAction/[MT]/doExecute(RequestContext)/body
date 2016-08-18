@@ -1,5 +1,0 @@
-{
-  final String remoteIp=getRemoteIp(context);
-  logger.debug("Current user IP {}",remoteIp);
-  return shouldDoSpnego(remoteIp) ? yes() : no();
-}

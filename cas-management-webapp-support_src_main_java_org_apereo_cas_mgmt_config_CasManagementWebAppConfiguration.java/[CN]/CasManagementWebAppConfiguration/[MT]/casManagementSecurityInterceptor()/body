@@ -1,0 +1,10 @@
+{
+  final SecurityInterceptor interceptor=new SecurityInterceptor(config(),"CasClient","securityHeaders,csrfToken,RequireAnyRoleAuthorizer");
+  interceptor.setSecurityLogic(new DefaultSecurityLogic(){
+    @Override protected HttpAction forbidden(    final WebContext context,    final List currentClients,    final List list,    final String authorizers){
+      return HttpAction.redirect("Authorization failed",context,"authorizationFailure");
+    }
+  }
+);
+  return interceptor;
+}

@@ -1,0 +1,10 @@
+{
+  final SimpleUrlHandlerMapping mapping=new SimpleUrlHandlerMapping();
+  mapping.setOrder(1);
+  mapping.setAlwaysUseFullPath(true);
+  mapping.setRootHandler(rootController());
+  final Properties properties=new Properties();
+  properties.put("/*.html",new UrlFilenameViewController());
+  mapping.setMappings(properties);
+  return mapping;
+}

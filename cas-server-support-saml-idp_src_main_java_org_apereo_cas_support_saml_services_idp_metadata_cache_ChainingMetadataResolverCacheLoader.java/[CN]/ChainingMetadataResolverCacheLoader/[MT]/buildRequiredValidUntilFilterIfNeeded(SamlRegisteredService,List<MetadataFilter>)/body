@@ -1,0 +1,10 @@
+{
+  if (service.getMetadataMaxValidity() > 0) {
+    final RequiredValidUntilFilter requiredValidUntilFilter=new RequiredValidUntilFilter(service.getMetadataMaxValidity());
+    metadataFilterList.add(requiredValidUntilFilter);
+    logger.debug("Added metadata RequiredValidUntilFilter with max validity of [{}]",service.getMetadataMaxValidity());
+  }
+ else {
+    logger.debug("No metadata maximum validity criteria is defined for {}, so RequiredValidUntilFilter will not be invoked",service.getMetadataLocation());
+  }
+}

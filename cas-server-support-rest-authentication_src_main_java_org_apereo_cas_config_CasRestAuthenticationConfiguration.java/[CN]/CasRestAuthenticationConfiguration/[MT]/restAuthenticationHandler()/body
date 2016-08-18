@@ -1,0 +1,6 @@
+{
+  final RestAuthenticationHandler r=new RestAuthenticationHandler();
+  r.setApi(restAuthenticationApi());
+  r.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getRest().getPasswordEncoder()));
+  return r;
+}

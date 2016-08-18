@@ -1,6 +1,0 @@
-{
-  this.expirationPolicy=new ThrottledUseAndTimeoutExpirationPolicy();
-  this.expirationPolicy.setTimeToKillInMilliSeconds(TIMEOUT);
-  this.expirationPolicy.setTimeInBetweenUsesInMilliSeconds(TIMEOUT / 5);
-  this.ticket=new TicketGrantingTicketImpl("test",org.jasig.cas.authentication.TestUtils.getAuthentication(),this.expirationPolicy);
-}

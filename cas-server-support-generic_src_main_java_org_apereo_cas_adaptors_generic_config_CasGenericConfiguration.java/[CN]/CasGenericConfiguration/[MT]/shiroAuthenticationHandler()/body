@@ -1,0 +1,14 @@
+{
+  final ShiroAuthenticationHandler h=new ShiroAuthenticationHandler();
+  h.setPrincipalFactory(shiroPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  h.setRequiredRoles(casProperties.getAuthn().getShiro().getRequiredRoles());
+  h.setRequiredPermissions(casProperties.getAuthn().getShiro().getRequiredPermissions());
+  h.loadShiroConfiguration(casProperties.getAuthn().getShiro().getConfig().getLocation());
+  h.setPasswordEncoder(Beans.newPasswordEncoder(casProperties.getAuthn().getShiro().getPasswordEncoder()));
+  if (shiroPasswordPolicyConfiguration != null) {
+    h.setPasswordPolicyConfiguration(shiroPasswordPolicyConfiguration);
+  }
+  h.setPrincipalNameTransformer(Beans.newPrincipalNameTransformer(casProperties.getAuthn().getShiro().getPrincipalTransformation()));
+  return h;
+}

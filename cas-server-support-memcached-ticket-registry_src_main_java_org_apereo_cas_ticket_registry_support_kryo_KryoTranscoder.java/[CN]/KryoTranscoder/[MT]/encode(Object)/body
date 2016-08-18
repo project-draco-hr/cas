@@ -1,0 +1,9 @@
+{
+  final ByteArrayOutputStream byteStream=new ByteArrayOutputStream();
+  try (Output output=new Output(byteStream)){
+    this.kryo.writeClassAndObject(output,obj);
+    output.flush();
+    final byte[] bytes=byteStream.toByteArray();
+    return new CachedData(0,bytes,bytes.length);
+  }
+ }

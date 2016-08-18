@@ -1,0 +1,3 @@
+{
+  return this.mongoTemplate.count(new Query(),RegisteredService.class,this.collectionName);
+}

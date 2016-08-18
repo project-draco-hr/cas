@@ -1,0 +1,19 @@
+{
+  if (isEmpty()) {
+    LOGGER.warn("No authentication event has been recorded; CAS cannot finalize the authentication result");
+    return null;
+  }
+  final Map<String,Object> authenticationAttributes=new HashMap<>();
+  final Map<String,Object> principalAttributes=new HashMap<>();
+  final AuthenticationBuilder authenticationBuilder=DefaultAuthenticationBuilder.newInstance();
+  buildAuthenticationHistory(this.authentications,authenticationAttributes,principalAttributes,authenticationBuilder);
+  final Principal primaryPrincipal=getPrimaryPrincipal(this.authentications,principalAttributes);
+  authenticationBuilder.setPrincipal(primaryPrincipal);
+  LOGGER.debug("Determined primary authentication principal to be [{}]",primaryPrincipal);
+  authenticationBuilder.setAttributes(authenticationAttributes);
+  LOGGER.debug("Collected authentication attributes for this result are [{}]",authenticationAttributes);
+  authenticationBuilder.setAuthenticationDate(ZonedDateTime.now());
+  final Authentication auth=authenticationBuilder.build();
+  LOGGER.debug("Authentication result commenced at [{}]",auth.getAuthenticationDate());
+  return auth;
+}

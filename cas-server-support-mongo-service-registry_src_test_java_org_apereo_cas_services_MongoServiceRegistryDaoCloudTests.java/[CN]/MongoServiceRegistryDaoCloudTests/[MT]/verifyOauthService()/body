@@ -1,0 +1,5 @@
+{
+  final OAuthCallbackAuthorizeService service=new OAuthCallbackAuthorizeService();
+  service.setServiceId(OAuthConstants.CALLBACK_AUTHORIZE_URL_DEFINITION);
+  this.serviceRegistryDao.save(service);
+}

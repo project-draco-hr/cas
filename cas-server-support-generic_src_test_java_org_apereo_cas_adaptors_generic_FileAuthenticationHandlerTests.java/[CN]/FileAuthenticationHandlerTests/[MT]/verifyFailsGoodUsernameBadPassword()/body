@@ -1,0 +1,8 @@
+{
+  final UsernamePasswordCredential c=new UsernamePasswordCredential();
+  this.authenticationHandler.setFileName(new ClassPathResource("org/apereo/cas/adaptors/generic/authentication2.txt"));
+  this.authenticationHandler.setSeparator(",");
+  c.setUsername("scott");
+  c.setPassword("rutgers1");
+  this.authenticationHandler.authenticate(c);
+}

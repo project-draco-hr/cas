@@ -1,4 +1,0 @@
-{
-  final String hashedKey=constructHashedKey(key.toString());
-  return this.decoratedMap.containsKey(hashedKey);
-}

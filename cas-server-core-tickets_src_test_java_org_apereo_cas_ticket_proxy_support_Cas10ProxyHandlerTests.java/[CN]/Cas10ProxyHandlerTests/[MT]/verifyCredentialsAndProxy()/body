@@ -1,0 +1,5 @@
+{
+  final TicketGrantingTicket proxyGrantingTicket=mock(TicketGrantingTicket.class);
+  when(proxyGrantingTicket.getId()).thenReturn("proxyGrantingTicket");
+  assertNull(this.proxyHandler.handle(TestUtils.getCredentialsWithSameUsernameAndPassword(),proxyGrantingTicket));
+}

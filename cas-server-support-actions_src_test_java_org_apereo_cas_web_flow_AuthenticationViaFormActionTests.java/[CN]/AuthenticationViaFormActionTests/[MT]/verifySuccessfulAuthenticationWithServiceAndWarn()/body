@@ -1,0 +1,14 @@
+{
+  final MockHttpServletRequest request=new MockHttpServletRequest();
+  final MockHttpServletResponse response=new MockHttpServletResponse();
+  final MockRequestContext context=new MockRequestContext();
+  request.addParameter("username","test");
+  request.addParameter("password","test");
+  request.addParameter("warn","true");
+  request.addParameter("service","test");
+  context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,response));
+  final Credential c=org.apereo.cas.authentication.TestUtils.getCredentialsWithSameUsernameAndPassword();
+  putCredentialInRequestScope(context,c);
+  assertEquals(CasWebflowConstants.TRANSITION_ID_SUCCESS,this.action.execute(context).getId());
+  assertNotNull(response.getCookie(this.warnCookieGenerator.getCookieName()));
+}

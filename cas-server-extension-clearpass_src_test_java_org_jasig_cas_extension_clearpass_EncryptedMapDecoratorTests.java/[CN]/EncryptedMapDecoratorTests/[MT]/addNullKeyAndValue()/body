@@ -1,4 +1,0 @@
-{
-  this.decorator.put(null,null);
-  assertNull(this.decorator.get(null));
-}

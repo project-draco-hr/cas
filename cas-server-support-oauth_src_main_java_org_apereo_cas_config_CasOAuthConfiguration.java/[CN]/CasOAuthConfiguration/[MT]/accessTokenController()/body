@@ -1,0 +1,11 @@
+{
+  final OAuth20AccessTokenController c=new OAuth20AccessTokenController();
+  c.setAccessTokenFactory(defaultAccessTokenFactory());
+  c.setAccessTokenResponseGenerator(accessTokenResponseGenerator());
+  c.setPrincipalFactory(oauthPrincipalFactory());
+  c.setRefreshTokenFactory(defaultRefreshTokenFactory());
+  c.setServicesManager(servicesManager);
+  c.setTicketRegistry(ticketRegistry);
+  c.setValidator(oAuthValidator());
+  return c;
+}

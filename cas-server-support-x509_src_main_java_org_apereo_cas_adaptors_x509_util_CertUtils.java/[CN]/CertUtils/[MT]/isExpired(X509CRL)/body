@@ -1,0 +1,3 @@
+{
+  return isExpired(crl,ZonedDateTime.now(ZoneOffset.UTC));
+}

@@ -1,0 +1,26 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
+  final HttpSession session=request.getSession();
+  final WebContext webContext=new J2EContext(request,response);
+  final WebApplicationService service=WebUtils.getService(context);
+  logger.debug("save service: {}",service);
+  session.setAttribute(CasProtocolConstants.PARAMETER_SERVICE,service);
+  saveRequestParameter(request,session,ThemeChangeInterceptor.DEFAULT_PARAM_NAME);
+  saveRequestParameter(request,session,LocaleChangeInterceptor.DEFAULT_PARAM_NAME);
+  saveRequestParameter(request,session,CasProtocolConstants.PARAMETER_METHOD);
+  final Set<ProviderLoginPageConfiguration> urls=new LinkedHashSet<>();
+  for (  final Client client : this.clients.findAllClients()) {
+    try {
+      final IndirectClient indirectClient=(IndirectClient)client;
+      final String name=client.getName().replace("Client","");
+      final String redirectionUrl=indirectClient.getRedirectAction(webContext).getLocation();
+      logger.debug("{} -> {}",name,redirectionUrl);
+      urls.add(new ProviderLoginPageConfiguration(name,redirectionUrl,name.toLowerCase()));
+    }
+ catch (    final Exception e) {
+      logger.error("Cannot process client {}",client,e);
+    }
+  }
+  context.getFlowScope().put(PAC4J_URLS,urls);
+}

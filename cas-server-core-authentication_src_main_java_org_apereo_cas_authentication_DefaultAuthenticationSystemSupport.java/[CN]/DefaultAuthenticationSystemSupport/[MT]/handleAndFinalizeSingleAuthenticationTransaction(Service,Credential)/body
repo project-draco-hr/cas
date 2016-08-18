@@ -1,0 +1,3 @@
+{
+  return this.finalizeAllAuthenticationTransactions(this.handleInitialAuthenticationTransaction(credential),service);
+}

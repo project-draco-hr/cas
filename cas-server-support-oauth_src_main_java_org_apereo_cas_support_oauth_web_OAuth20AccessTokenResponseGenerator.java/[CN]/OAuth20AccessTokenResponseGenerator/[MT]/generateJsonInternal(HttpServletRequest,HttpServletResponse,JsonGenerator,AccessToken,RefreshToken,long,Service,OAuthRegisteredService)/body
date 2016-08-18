@@ -1,0 +1,7 @@
+{
+  jsonGenerator.writeStringField(OAuthConstants.ACCESS_TOKEN,accessTokenId.getId());
+  jsonGenerator.writeNumberField(OAuthConstants.EXPIRES,timeout);
+  if (refreshTokenId != null) {
+    jsonGenerator.writeStringField(OAuthConstants.REFRESH_TOKEN,refreshTokenId.getId());
+  }
+}

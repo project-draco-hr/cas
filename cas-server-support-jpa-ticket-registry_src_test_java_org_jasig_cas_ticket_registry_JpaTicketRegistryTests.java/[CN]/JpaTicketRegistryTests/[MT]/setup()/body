@@ -1,5 +1,0 @@
-{
-  final ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:/jpaSpringContext.xml");
-  this.jpaTicketRegistry=ctx.getBean("jpaTicketRegistry",TicketRegistry.class);
-  this.txManager=ctx.getBean("ticketTransactionManager",PlatformTransactionManager.class);
-}

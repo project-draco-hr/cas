@@ -1,0 +1,9 @@
+{
+  final YubiKeyAuthenticationHandler handler=new YubiKeyAuthenticationHandler(this.casProperties.getAuthn().getMfa().getYubikey().getClientId(),this.casProperties.getAuthn().getMfa().getYubikey().getSecretKey());
+  if (registry != null) {
+    handler.setRegistry(this.registry);
+  }
+  handler.setPrincipalFactory(yubikeyPrincipalFactory());
+  handler.setServicesManager(servicesManager);
+  return handler;
+}

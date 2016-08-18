@@ -1,0 +1,14 @@
+{
+  if (casProperties.getAuthn().getPolicy().getReq().isEnabled()) {
+    final RequiredHandlerAuthenticationPolicy bean=new RequiredHandlerAuthenticationPolicy(casProperties.getAuthn().getPolicy().getReq().getHandlerName());
+    bean.setTryAll(casProperties.getAuthn().getPolicy().getReq().isTryAll());
+    return bean;
+  }
+  if (casProperties.getAuthn().getPolicy().getAll().isEnabled()) {
+    return new AllAuthenticationPolicy();
+  }
+  if (casProperties.getAuthn().getPolicy().getNotPrevented().isEnabled()) {
+    return new NotPreventedAuthenticationPolicy();
+  }
+  return new AnyAuthenticationPolicy(casProperties.getAuthn().getPolicy().getAny().isTryAll());
+}

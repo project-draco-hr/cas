@@ -1,0 +1,5 @@
+{
+  if (this.eventPublisher != null) {
+    this.eventPublisher.publishEvent(event);
+  }
+}

@@ -1,0 +1,5 @@
+{
+  final GoogleAccountCheckRegistrationAction a=new GoogleAccountCheckRegistrationAction();
+  a.setGoogleAuthenticatorInstance(googleAuthenticatorInstance());
+  return a;
+}

@@ -1,0 +1,3 @@
+{
+  super(registeredService != null ? String.valueOf(registeredService.getId()) : null,null,null,null);
+}

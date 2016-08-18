@@ -1,0 +1,13 @@
+{
+  final ExecutorService executor=Executors.newFixedThreadPool(CONCURRENT_SIZE);
+  try {
+    testConcurrency(executor,Lists.newArrayList(getConcurrentLocks("concurrent-new")));
+  }
+ catch (  final Exception e) {
+    logger.debug("testConcurrentAcquireAndRelease produced an error",e);
+    fail("testConcurrentAcquireAndRelease failed.");
+  }
+ finally {
+    executor.shutdownNow();
+  }
+}

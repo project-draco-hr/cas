@@ -1,0 +1,16 @@
+{
+  final SearchFilter filter=new SearchFilter();
+  filter.setFilter(filterQuery);
+  if (params != null) {
+    for (int i=0; i < params.length; i++) {
+      if (filter.getFilter().contains("{" + i + "}")) {
+        filter.setParameter(i,params[i]);
+      }
+ else {
+        filter.setParameter("user",params[i]);
+      }
+    }
+  }
+  LOGGER.debug("Constructed LDAP search filter [{}]",filter.format());
+  return filter;
+}

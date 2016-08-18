@@ -1,0 +1,3 @@
+{
+  registerMultifactorProviderAuthenticationWebflow(getLoginFlow(),MFA_YUBIKEY_EVENT_ID,this.yubikeyFlowRegistry);
+}

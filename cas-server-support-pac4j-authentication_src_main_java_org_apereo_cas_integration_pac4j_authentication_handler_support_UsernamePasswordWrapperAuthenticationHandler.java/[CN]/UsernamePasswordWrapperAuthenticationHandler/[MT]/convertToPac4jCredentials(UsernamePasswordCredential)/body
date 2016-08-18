@@ -1,0 +1,11 @@
+{
+  logger.debug("CAS credentials: {}",casCredential);
+  final String username=this.principalNameTransformer.transform(casCredential.getUsername());
+  if (username == null) {
+    throw new AccountNotFoundException("Username is null.");
+  }
+  final String password=this.passwordEncoder.encode(casCredential.getPassword());
+  final UsernamePasswordCredentials credentials=new UsernamePasswordCredentials(username,password,getClass().getSimpleName());
+  logger.debug("pac4j credentials: {}",credentials);
+  return credentials;
+}

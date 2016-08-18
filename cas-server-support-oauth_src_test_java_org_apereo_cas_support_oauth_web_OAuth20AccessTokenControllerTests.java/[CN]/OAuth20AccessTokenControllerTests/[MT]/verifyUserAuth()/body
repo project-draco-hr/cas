@@ -1,0 +1,4 @@
+{
+  addRegisteredService();
+  internalVerifyUserAuth(false,false);
+}

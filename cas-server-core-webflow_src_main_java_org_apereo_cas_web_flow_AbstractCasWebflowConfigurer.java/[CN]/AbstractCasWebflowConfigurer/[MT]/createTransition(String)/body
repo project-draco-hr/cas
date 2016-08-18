@@ -1,0 +1,4 @@
+{
+  final DefaultTargetStateResolver resolver=new DefaultTargetStateResolver(targetState);
+  return new Transition(resolver);
+}

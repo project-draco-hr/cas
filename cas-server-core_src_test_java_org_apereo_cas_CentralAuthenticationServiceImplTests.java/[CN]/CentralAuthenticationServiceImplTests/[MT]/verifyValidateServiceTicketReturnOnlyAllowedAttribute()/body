@@ -1,0 +1,11 @@
+{
+  final Service service=getService("eduPersonTestInvalid");
+  final AuthenticationResult ctx=TestUtils.getAuthenticationResult(getAuthenticationSystemSupport(),service);
+  final TicketGrantingTicket ticketGrantingTicket=getCentralAuthenticationService().createTicketGrantingTicket(ctx);
+  final ServiceTicket serviceTicket=getCentralAuthenticationService().grantServiceTicket(ticketGrantingTicket.getId(),service,ctx);
+  final Assertion assertion=getCentralAuthenticationService().validateServiceTicket(serviceTicket.getId(),service);
+  final Authentication auth=assertion.getPrimaryAuthentication();
+  final Map<String,Object> attributes=auth.getPrincipal().getAttributes();
+  assertEquals(1,attributes.size());
+  assertEquals("adopters",attributes.get("groupMembership"));
+}

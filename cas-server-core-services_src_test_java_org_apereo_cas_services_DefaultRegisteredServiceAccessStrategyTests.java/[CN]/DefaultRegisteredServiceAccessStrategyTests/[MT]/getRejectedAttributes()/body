@@ -1,0 +1,6 @@
+{
+  final Map<String,Set<String>> map=new HashMap<>();
+  map.put("address",Sets.newHashSet(".+"));
+  map.put("role",Sets.newHashSet("staff"));
+  return map;
+}

@@ -1,0 +1,14 @@
+{
+  final Map<String,String> initParams=new HashMap<>();
+  initParams.put("enableCacheControl",BooleanUtils.toStringTrueFalse(casProperties.getHttpWebRequest().getHeader().isCache()));
+  initParams.put("enableXContentTypeOptions",BooleanUtils.toStringTrueFalse(casProperties.getHttpWebRequest().getHeader().isXcontent()));
+  initParams.put("enableStrictTransportSecurity",BooleanUtils.toStringTrueFalse(casProperties.getHttpWebRequest().getHeader().isHsts()));
+  initParams.put("enableXFrameOptions",BooleanUtils.toStringTrueFalse(casProperties.getHttpWebRequest().getHeader().isXframe()));
+  initParams.put("enableXSSProtection",BooleanUtils.toStringTrueFalse(casProperties.getHttpWebRequest().getHeader().isXss()));
+  final FilterRegistrationBean bean=new FilterRegistrationBean();
+  bean.setFilter(new ResponseHeadersEnforcementFilter());
+  bean.setUrlPatterns(Collections.singleton("/*"));
+  bean.setInitParameters(initParams);
+  bean.setName("responseHeadersSecurityFilter");
+  return bean;
+}

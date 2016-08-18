@@ -1,0 +1,18 @@
+{
+  try {
+    final String address="ldap://" + serverCon.getConnectedAddress() + ':'+ serverCon.getConnectedPort();
+    try (Connection conn=DefaultConnectionFactory.getConnection(address)){
+      try {
+        conn.open();
+        final ModifyOperation modify=new ModifyOperation(conn);
+        modify.execute(new ModifyRequest(dn,new AttributeModification(AttributeModificationType.ADD,attr)));
+      }
+ catch (      final Exception e) {
+        LOGGER.debug(e.getMessage(),e);
+      }
+    }
+   }
+  finally {
+    serverCon.close();
+  }
+}

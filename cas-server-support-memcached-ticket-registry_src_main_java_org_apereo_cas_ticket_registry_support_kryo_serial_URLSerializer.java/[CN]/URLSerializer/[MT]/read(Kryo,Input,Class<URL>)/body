@@ -1,0 +1,9 @@
+{
+  final String url=kryo.readObject(input,String.class);
+  try {
+    return new URL(url);
+  }
+ catch (  final MalformedURLException e) {
+    throw Throwables.propagate(e);
+  }
+}

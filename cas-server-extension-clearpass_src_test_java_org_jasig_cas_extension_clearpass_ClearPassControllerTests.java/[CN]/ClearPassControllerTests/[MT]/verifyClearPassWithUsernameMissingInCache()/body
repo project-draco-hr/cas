@@ -1,8 +1,0 @@
-{
-  final ClearPassController controller=new ClearPassController(this.map);
-  final MockHttpServletRequest req=new MockHttpServletRequest();
-  req.setRemoteUser("casuser");
-  final ModelAndView mv=controller.handleRequestInternal(req,new MockHttpServletResponse());
-  assertEquals(mv.getViewName(),ClearPassController.DEFAULT_SERVICE_FAILURE_VIEW_NAME);
-  assertTrue(mv.getModel().containsKey(ClearPassController.MODEL_FAILURE_DESCRIPTION));
-}

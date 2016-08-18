@@ -1,0 +1,17 @@
+{
+  final PooledSearchDnResolver resolver=new PooledSearchDnResolver();
+  resolver.setBaseDn(l.getBaseDn());
+  resolver.setSubtreeSearch(l.isSubtreeSearch());
+  resolver.setAllowMultipleDns(l.isAllowMultipleDns());
+  resolver.setConnectionFactory(Beans.newPooledConnectionFactory(l));
+  resolver.setUserFilter(l.getUserFilter());
+  final Authenticator auth;
+  if (StringUtils.isBlank(l.getPrincipalAttributePassword())) {
+    auth=new Authenticator(resolver,getPooledBindAuthenticationHandler(l));
+  }
+ else {
+    auth=new Authenticator(resolver,getPooledCompareAuthenticationHandler(l));
+  }
+  auth.setEntryResolver(Beans.newSearchEntryResolver(l));
+  return auth;
+}

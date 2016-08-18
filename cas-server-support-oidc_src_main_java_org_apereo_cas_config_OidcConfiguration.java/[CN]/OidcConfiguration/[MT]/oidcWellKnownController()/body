@@ -1,0 +1,9 @@
+{
+  final OidcWellKnownEndpointController c=new OidcWellKnownEndpointController();
+  c.setPrincipalFactory(oidcPrincipalFactory());
+  c.setAccessTokenFactory(defaultAccessTokenFactory);
+  c.setServicesManager(servicesManager);
+  c.setTicketRegistry(ticketRegistry);
+  c.setValidator(oAuthValidator);
+  return c;
+}

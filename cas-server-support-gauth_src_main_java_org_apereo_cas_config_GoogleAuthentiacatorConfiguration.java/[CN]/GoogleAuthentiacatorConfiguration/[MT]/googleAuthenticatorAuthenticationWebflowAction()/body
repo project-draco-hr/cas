@@ -1,0 +1,5 @@
+{
+  final GoogleAuthenticatorAuthenticationWebflowAction a=new GoogleAuthenticatorAuthenticationWebflowAction();
+  a.setCasWebflowEventResolver(googleAuthenticatorAuthenticationWebflowEventResolver());
+  return a;
+}

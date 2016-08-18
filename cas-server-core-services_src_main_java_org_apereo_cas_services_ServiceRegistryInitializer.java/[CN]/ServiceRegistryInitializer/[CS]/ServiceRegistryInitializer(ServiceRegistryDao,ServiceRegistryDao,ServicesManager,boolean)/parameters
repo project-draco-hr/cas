@@ -1,0 +1,4 @@
+ServiceRegistryDao jsonServiceRegistryDao
+ServiceRegistryDao serviceRegistryDao
+ServicesManager servicesManager
+boolean initFromJson

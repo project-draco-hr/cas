@@ -1,0 +1,11 @@
+{
+  final MessageContext messages=context.getMessageContext();
+  if (!bean.getPassword().equals(bean.getConfirmedPassword())) {
+    messages.addMessage(new MessageBuilder().error().source("pm.passwordsMustMatch").defaultText("Provided passwords do not match.").build());
+    return;
+  }
+  if (!bean.getPassword().matches(casProperties.getAuthn().getPm().getPolicyPattern())) {
+    messages.addMessage(new MessageBuilder().error().source("pm.passwordFailedCriteria").defaultText("Password policy rejected the provided insecure password.").build());
+    return;
+  }
+}

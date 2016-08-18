@@ -1,0 +1,3 @@
+{
+  this.mockMvc=MockMvcBuilders.standaloneSetup(this.registeredServiceResource).defaultRequest(get("/").contextPath("/cas").contentType(MediaType.APPLICATION_FORM_URLENCODED)).build();
+}

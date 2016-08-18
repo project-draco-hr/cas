@@ -1,0 +1,4 @@
+{
+  final RegisteredService service=TestUtils.getRegisteredService("helloworld");
+  assertEquals(service,transcoder.decode(transcoder.encode(service)));
+}

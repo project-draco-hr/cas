@@ -1,0 +1,6 @@
+{
+  final SimpleHttpClientFactoryBean.DefaultHttpClient c=new SimpleHttpClientFactoryBean.DefaultHttpClient();
+  c.setConnectionTimeout(casProperties.getHttpClient().getConnectionTimeout());
+  c.setReadTimeout(casProperties.getHttpClient().getReadTimeout());
+  return c;
+}

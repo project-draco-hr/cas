@@ -1,4 +1,0 @@
-{
-  this.cache.put(new Element(key,value));
-  return value;
-}

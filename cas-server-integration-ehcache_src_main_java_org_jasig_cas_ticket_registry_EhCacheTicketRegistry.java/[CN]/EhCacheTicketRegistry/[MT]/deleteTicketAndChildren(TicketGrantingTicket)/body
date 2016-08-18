@@ -1,7 +1,0 @@
-{
-  final Map<String,Service> services=ticket.getServices();
-  if (services != null && !services.isEmpty()) {
-    this.serviceTicketsCache.removeAll(services.keySet());
-  }
-  return this.ticketGrantingTicketsCache.remove(ticket.getId());
-}

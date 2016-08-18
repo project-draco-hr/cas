@@ -1,0 +1,4 @@
+{
+  final String encTicketId=encodeTicketId(ticketId);
+  return decodeTicket(this.registry.get(encTicketId));
+}

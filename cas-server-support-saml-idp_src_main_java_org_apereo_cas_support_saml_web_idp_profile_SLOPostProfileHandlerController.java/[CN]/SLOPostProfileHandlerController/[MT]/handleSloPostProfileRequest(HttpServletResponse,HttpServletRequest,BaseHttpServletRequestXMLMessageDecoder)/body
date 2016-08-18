@@ -1,0 +1,16 @@
+{
+  if (isSingleLogoutCallbacksDisabled()) {
+    logger.info("Processing SAML IdP SLO requests is disabled");
+    return;
+  }
+  final LogoutRequest logoutRequest=decodeRequest(request,decoder,LogoutRequest.class);
+  if (isForceSignedLogoutRequests() && !logoutRequest.isSigned()) {
+    throw new SAMLException("Logout request is not signed but should be.");
+  }
+ else   if (logoutRequest.isSigned()) {
+    final MetadataResolver resolver=SamlIdPUtils.getMetadataResolverForAllSamlServices(this.servicesManager,SamlIdPUtils.getIssuerFromSamlRequest(logoutRequest),this.samlRegisteredServiceCachingMetadataResolver);
+    this.samlObjectSigner.verifySamlProfileRequestIfNeeded(logoutRequest,resolver);
+  }
+  SamlUtils.logSamlObject(this.configBean,logoutRequest);
+  response.sendRedirect(getLogoutUrl());
+}

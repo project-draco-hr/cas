@@ -1,0 +1,8 @@
+{
+  final ShibbolethIdpMetadataAndCertificatesGenerationService s=new ShibbolethIdpMetadataAndCertificatesGenerationService();
+  s.setEntityId(casProperties.getAuthn().getSamlIdp().getEntityId());
+  s.setHostName(casProperties.getAuthn().getSamlIdp().getHostName());
+  s.setMetadataLocation(casProperties.getAuthn().getSamlIdp().getMetadata().getLocation());
+  s.setScope(casProperties.getAuthn().getSamlIdp().getScope());
+  return s;
+}

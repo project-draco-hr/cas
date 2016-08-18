@@ -1,0 +1,20 @@
+{
+  try {
+    String tgtId=WebUtils.getTicketGrantingTicketId(context);
+    if (tgtId == null) {
+      final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+      tgtId=this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request);
+    }
+    if (tgtId != null) {
+      final List<LogoutRequest> logoutRequests=this.centralAuthenticationService.destroyTicketGrantingTicket(tgtId);
+      WebUtils.putLogoutRequests(context,logoutRequests);
+    }
+    final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
+    this.ticketGrantingTicketCookieGenerator.removeCookie(response);
+    this.warnCookieGenerator.removeCookie(response);
+    return this.eventFactorySupport.success(this);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

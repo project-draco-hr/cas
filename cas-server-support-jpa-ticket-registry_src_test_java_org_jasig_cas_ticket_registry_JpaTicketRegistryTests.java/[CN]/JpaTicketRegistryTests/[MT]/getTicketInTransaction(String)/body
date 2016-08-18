@@ -1,8 +1,0 @@
-{
-  return new TransactionTemplate(txManager).execute(new TransactionCallback<Ticket>(){
-    @Override public Ticket doInTransaction(    final TransactionStatus status){
-      return jpaTicketRegistry.getTicket(ticketId);
-    }
-  }
-);
-}

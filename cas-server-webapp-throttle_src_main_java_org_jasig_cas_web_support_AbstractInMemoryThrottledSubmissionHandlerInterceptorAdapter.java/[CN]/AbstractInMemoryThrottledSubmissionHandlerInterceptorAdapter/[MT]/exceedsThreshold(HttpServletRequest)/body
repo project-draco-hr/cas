@@ -1,7 +1,0 @@
-{
-  final Date last=this.ipMap.get(constructKey(request));
-  if (last == null) {
-    return false;
-  }
-  return submissionRate(new Date(),last) > getThresholdRate();
-}

@@ -1,0 +1,13 @@
+{
+  super.prepareMergedOutputModel(model,request,response);
+  final Service service=super.getServiceFrom(model);
+  final RegisteredService registeredService=this.servicesManager.findServiceBy(service);
+  final Map<String,Object> attributes=new HashMap<>();
+  attributes.putAll(getCasPrincipalAttributes(model,registeredService));
+  if (this.releaseProtocolAttributes) {
+    attributes.putAll(getCasProtocolAuthenticationAttributes(model,registeredService));
+  }
+  decideIfCredentialPasswordShouldBeReleasedAsAttribute(attributes,model,registeredService);
+  decideIfProxyGrantingTicketShouldBeReleasedAsAttribute(attributes,model,registeredService);
+  putCasResponseAttributesIntoModel(model,attributes,registeredService);
+}

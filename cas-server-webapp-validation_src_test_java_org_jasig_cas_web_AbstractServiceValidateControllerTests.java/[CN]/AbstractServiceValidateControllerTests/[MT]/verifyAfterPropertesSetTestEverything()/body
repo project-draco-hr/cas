@@ -1,4 +1,0 @@
-{
-  this.serviceValidateController.setValidationSpecificationClass(Cas20ProtocolValidationSpecification.class);
-  this.serviceValidateController.setProxyHandler(new Cas20ProxyHandler());
-}

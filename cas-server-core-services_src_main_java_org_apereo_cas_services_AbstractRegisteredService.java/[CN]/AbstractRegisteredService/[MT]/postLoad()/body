@@ -1,0 +1,26 @@
+{
+  if (this.proxyPolicy == null) {
+    this.proxyPolicy=new RefuseRegisteredServiceProxyPolicy();
+  }
+  if (this.usernameAttributeProvider == null) {
+    this.usernameAttributeProvider=new DefaultRegisteredServiceUsernameProvider();
+  }
+  if (this.logoutType == null) {
+    this.logoutType=LogoutType.BACK_CHANNEL;
+  }
+  if (this.requiredHandlers == null) {
+    this.requiredHandlers=new HashSet<>();
+  }
+  if (this.accessStrategy == null) {
+    this.accessStrategy=new DefaultRegisteredServiceAccessStrategy();
+  }
+  if (this.multifactorPolicy == null) {
+    this.multifactorPolicy=new DefaultRegisteredServiceMultifactorPolicy();
+  }
+  if (this.properties == null) {
+    this.properties=new HashMap<>();
+  }
+  if (this.attributeReleasePolicy == null) {
+    this.attributeReleasePolicy=new ReturnAllowedAttributeReleasePolicy();
+  }
+}

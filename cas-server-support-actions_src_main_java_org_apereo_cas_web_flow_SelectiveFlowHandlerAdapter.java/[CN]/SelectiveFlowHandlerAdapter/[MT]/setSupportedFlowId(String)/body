@@ -1,0 +1,4 @@
+{
+  this.supportedFlowIds=new HashSet<>();
+  this.supportedFlowIds.add(flowId);
+}

@@ -1,0 +1,22 @@
+{
+  try {
+    final Set<MultifactorAuthenticationProvider> providers=getAuthenticationProviderForService(service);
+    if (providers != null && !providers.isEmpty()) {
+      final MultifactorAuthenticationProvider provider=this.multifactorAuthenticationProviderSelector.resolve(providers,service,principal);
+      logger.debug("Selected multifactor authentication provider for this transaction is {}",provider);
+      if (!provider.verify(service)) {
+        logger.warn("Multifactor authentication provider {} could not be verified/reached.",provider);
+        return null;
+      }
+      final String identifier=provider.getId();
+      logger.debug("Attempting to build an event based on the authentication provider [{}] and service [{}]",provider,service.getName());
+      final Event event=validateEventIdForMatchingTransitionInContext(identifier,context,buildEventAttributeMap(principal,service,provider));
+      return ImmutableSet.of(event);
+    }
+    logger.debug("No multifactor authentication providers could be located for {}",service);
+    return null;
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

@@ -1,3 +1,0 @@
-{
-  return String.format("%s=%s,%s",this.idAttribute,svc.getId(),parentDn);
-}

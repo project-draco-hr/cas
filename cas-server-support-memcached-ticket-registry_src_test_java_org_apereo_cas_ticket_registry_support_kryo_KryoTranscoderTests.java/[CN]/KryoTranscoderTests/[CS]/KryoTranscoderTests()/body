@@ -1,0 +1,10 @@
+{
+  transcoder=new KryoTranscoder();
+  final Map<Class<?>,Serializer> serializerMap=new HashMap<>();
+  serializerMap.put(MockServiceTicket.class,new FieldSerializer(transcoder.getKryo(),MockServiceTicket.class));
+  serializerMap.put(MockTicketGrantingTicket.class,new FieldSerializer(transcoder.getKryo(),MockTicketGrantingTicket.class));
+  transcoder.setSerializerMap(serializerMap);
+  transcoder.initialize();
+  this.principalAttributes=new HashMap<>();
+  this.principalAttributes.put(NICKNAME_KEY,NICKNAME_VALUE);
+}

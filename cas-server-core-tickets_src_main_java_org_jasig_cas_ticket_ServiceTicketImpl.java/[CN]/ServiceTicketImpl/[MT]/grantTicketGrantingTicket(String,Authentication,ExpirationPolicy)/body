@@ -1,9 +1,0 @@
-{
-synchronized (this) {
-    if (this.grantedTicketAlready) {
-      throw new IllegalStateException("TicketGrantingTicket already generated for this ServiceTicket.  Cannot grant more than one TGT for ServiceTicket");
-    }
-    this.grantedTicketAlready=Boolean.TRUE;
-  }
-  return new TicketGrantingTicketImpl(id,service,this.getGrantingTicket(),authentication,expirationPolicy);
-}

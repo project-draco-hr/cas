@@ -1,0 +1,21 @@
+{
+  logger.info("Received SAML profile request [{}]",request.getRequestURI());
+  try {
+    decoder.setHttpServletRequest(request);
+    decoder.setParserPool(this.parserPool);
+    decoder.initialize();
+    decoder.decode();
+    final SignableSAMLObject object=(SignableSAMLObject)decoder.getMessageContext().getMessage();
+    if (object == null) {
+      return null;
+    }
+    if (!clazz.isAssignableFrom(object.getClass())) {
+      throw new ClassCastException("SAML object [" + object.getClass().getName() + " type does not match "+ clazz);
+    }
+    logger.debug("Decoded SAML object [{}] from http request",object.getElementQName());
+    return (T)object;
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

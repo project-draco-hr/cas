@@ -1,8 +1,0 @@
-{
-  final CentralAuthenticationService cas=mock(CentralAuthenticationService.class);
-  when(cas.getTicket(any(String.class),any(Ticket.class.getClass()))).thenThrow(new InvalidTicketException("TGT-1"));
-  final GenericSuccessViewAction action=new GenericSuccessViewAction(cas);
-  final Principal p=action.getAuthenticationPrincipal("TGT-1");
-  assertNotNull(p);
-  assertTrue(p instanceof NullPrincipal);
-}

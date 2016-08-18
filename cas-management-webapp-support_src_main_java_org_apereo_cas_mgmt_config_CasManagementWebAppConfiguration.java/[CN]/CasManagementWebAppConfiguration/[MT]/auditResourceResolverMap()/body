@@ -1,0 +1,6 @@
+{
+  final Map<String,AuditResourceResolver> map=new HashMap<>();
+  map.put("DELETE_SERVICE_RESOURCE_RESOLVER",deleteServiceResourceResolver());
+  map.put("SAVE_SERVICE_RESOURCE_RESOLVER",saveServiceResourceResolver());
+  return map;
+}

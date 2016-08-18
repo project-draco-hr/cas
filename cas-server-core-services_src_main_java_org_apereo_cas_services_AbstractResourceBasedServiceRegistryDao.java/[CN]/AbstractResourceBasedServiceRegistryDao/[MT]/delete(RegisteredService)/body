@@ -1,0 +1,17 @@
+{
+  try {
+    final File f=makeFile(service);
+    final boolean result=f.delete();
+    if (!result) {
+      LOGGER.warn("Failed to delete service definition file [{}]",f.getCanonicalPath());
+    }
+ else {
+      this.serviceMap.remove(service.getId());
+      LOGGER.debug("Successfully deleted service definition file [{}]",f.getCanonicalPath());
+    }
+    return result;
+  }
+ catch (  final IOException e) {
+    throw new IllegalArgumentException(e);
+  }
+}

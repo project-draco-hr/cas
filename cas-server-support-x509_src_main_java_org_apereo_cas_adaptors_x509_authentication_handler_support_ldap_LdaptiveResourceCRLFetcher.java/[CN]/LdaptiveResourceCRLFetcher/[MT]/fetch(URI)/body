@@ -1,0 +1,6 @@
+{
+  if (LdapUtils.isLdapConnectionUrl(crl)) {
+    return fetchCRLFromLdap(crl);
+  }
+  return super.fetch(crl);
+}

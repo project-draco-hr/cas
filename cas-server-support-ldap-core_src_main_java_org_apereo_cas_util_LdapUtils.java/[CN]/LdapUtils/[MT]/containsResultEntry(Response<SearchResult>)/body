@@ -1,0 +1,7 @@
+{
+  final SearchResult result=response.getResult();
+  if (result != null && result.getEntry() != null) {
+    return true;
+  }
+  return false;
+}

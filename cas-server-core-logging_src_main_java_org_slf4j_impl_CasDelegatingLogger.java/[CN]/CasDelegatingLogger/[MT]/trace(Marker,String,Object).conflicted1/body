@@ -1,3 +1,0 @@
-{
-  delegate.trace(marker,manipulateLogMessage(format),manipulateLogArguments(arguments));
-}

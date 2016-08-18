@@ -1,9 +1,0 @@
-{
-  try {
-    final HttpBasedServiceCredential c=new HttpBasedServiceCredential(new URL("http://www.rutgers.edu"),org.jasig.cas.authentication.TestUtils.getRegisteredService());
-    assertFalse(this.authenticationHandler.supports(c));
-  }
- catch (  final MalformedURLException e) {
-    fail("MalformedURLException caught.");
-  }
-}

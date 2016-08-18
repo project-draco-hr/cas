@@ -1,4 +1,0 @@
-{
-  this.expirationPolicy=new TicketGrantingTicketExpirationPolicy(HARD_TIMEOUT,SLIDING_TIMEOUT,TimeUnit.MILLISECONDS);
-  this.ticketGrantingTicket=new TicketGrantingTicketImpl("test",org.jasig.cas.authentication.TestUtils.getAuthentication(),this.expirationPolicy);
-}

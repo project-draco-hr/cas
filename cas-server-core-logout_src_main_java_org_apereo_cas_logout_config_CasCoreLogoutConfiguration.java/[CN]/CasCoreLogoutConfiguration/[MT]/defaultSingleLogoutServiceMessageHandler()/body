@@ -1,0 +1,9 @@
+{
+  final DefaultSingleLogoutServiceMessageHandler handler=new DefaultSingleLogoutServiceMessageHandler();
+  handler.setHttpClient(this.httpClient);
+  handler.setAsynchronous(casProperties.getSlo().isAsynchronous());
+  handler.setLogoutMessageBuilder(logoutBuilder());
+  handler.setSingleLogoutServiceLogoutUrlBuilder(defaultSingleLogoutServiceLogoutUrlBuilder());
+  handler.setServicesManager(servicesManager);
+  return handler;
+}

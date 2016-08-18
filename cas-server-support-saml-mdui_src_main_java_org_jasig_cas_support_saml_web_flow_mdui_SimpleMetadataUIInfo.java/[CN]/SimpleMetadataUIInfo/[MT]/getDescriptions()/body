@@ -1,6 +1,0 @@
-{
-  if (uiInfo != null) {
-    return getStringValues(uiInfo.getDescriptions());
-  }
-  return new ArrayList<>();
-}

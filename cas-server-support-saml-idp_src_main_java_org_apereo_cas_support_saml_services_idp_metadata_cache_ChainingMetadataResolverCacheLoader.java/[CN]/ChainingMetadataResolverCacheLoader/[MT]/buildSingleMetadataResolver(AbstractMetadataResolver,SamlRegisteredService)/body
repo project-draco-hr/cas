@@ -1,0 +1,10 @@
+{
+  metadataProvider.setParserPool(this.configBean.getParserPool());
+  metadataProvider.setFailFastInitialization(this.failFastInitialization);
+  metadataProvider.setRequireValidMetadata(this.requireValidMetadata);
+  metadataProvider.setId(metadataProvider.getClass().getCanonicalName());
+  buildMetadataFilters(service,metadataProvider);
+  logger.info("Initializing metadata resolver from [{}]",service.getMetadataLocation());
+  metadataProvider.initialize();
+  logger.info("Initialized metadata resolver from [{}]",service.getMetadataLocation());
+}

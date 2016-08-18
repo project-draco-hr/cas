@@ -1,0 +1,5 @@
+{
+  logger.debug("Adding ticket [{}] with ttl [{}s]",ticket.getId(),ticket.getExpirationPolicy().getTimeToLive());
+  final Ticket encTicket=encodeTicket(ticket);
+  this.registry.set(encTicket.getId(),encTicket,ticket.getExpirationPolicy().getTimeToLive(),TimeUnit.SECONDS);
+}

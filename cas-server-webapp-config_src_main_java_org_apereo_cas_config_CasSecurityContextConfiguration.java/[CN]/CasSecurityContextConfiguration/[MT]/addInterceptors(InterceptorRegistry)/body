@@ -1,0 +1,4 @@
+{
+  registry.addInterceptor(statusInterceptor()).addPathPatterns("/status/**");
+  registry.addInterceptor(webContentInterceptor()).addPathPatterns("/*");
+}

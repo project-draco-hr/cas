@@ -1,0 +1,3 @@
+{
+  RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(new MockHttpServletRequest(),new MockHttpServletResponse()));
+}

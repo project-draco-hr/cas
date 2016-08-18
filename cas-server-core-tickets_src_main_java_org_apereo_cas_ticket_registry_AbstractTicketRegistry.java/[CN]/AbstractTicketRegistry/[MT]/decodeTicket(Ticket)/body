@@ -1,0 +1,15 @@
+{
+  if (!isCipherExecutorEnabled()) {
+    logger.trace(MESSAGE);
+    return result;
+  }
+  if (result == null) {
+    logger.debug("Ticket passed is null and cannot be decoded");
+    return null;
+  }
+  logger.info("Attempting to decode {}",result);
+  final EncodedTicket encodedTicket=(EncodedTicket)result;
+  final Ticket ticket=SerializationUtils.decodeAndSerializeObject(encodedTicket.getEncoded(),this.cipherExecutor,Ticket.class);
+  logger.info("Decoded {}",ticket);
+  return ticket;
+}

@@ -1,0 +1,10 @@
+{
+  final Authentication authentication=TestUtils.getAuthentication();
+  final Authentication authentication1=TestUtils.getAuthentication("test1");
+  final List<Authentication> principals=new ArrayList<>();
+  principals.add(authentication);
+  principals.add(authentication1);
+  final TicketGrantingTicketImpl t1=new TicketGrantingTicketImpl("test",null,null,authentication1,new NeverExpiresExpirationPolicy());
+  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",TestUtils.getService("gantor"),t1,authentication,new NeverExpiresExpirationPolicy());
+  assertEquals(principals,t.getChainedAuthentications());
+}

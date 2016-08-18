@@ -1,0 +1,21 @@
+{
+  String currentDn=null;
+  if (ldapServiceMapper == null) {
+    return null;
+  }
+  try {
+    final Response<SearchResult> response=searchForServiceById(rs.getId());
+    if (LdapUtils.containsResultEntry(response)) {
+      currentDn=response.getResult().getEntry().getDn();
+    }
+  }
+ catch (  final Exception e) {
+    LOGGER.error(e.getMessage(),e);
+  }
+  if (StringUtils.isNotBlank(currentDn)) {
+    LOGGER.debug("Updating registered service at {}",currentDn);
+    final LdapEntry entry=this.ldapServiceMapper.mapFromRegisteredService(this.baseDn,rs);
+    LdapUtils.executeModifyOperation(currentDn,this.connectionFactory,entry);
+  }
+  return rs;
+}

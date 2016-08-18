@@ -1,0 +1,7 @@
+{
+  final DuoAuthenticationHandler h=new DuoAuthenticationHandler();
+  h.setDuoAuthenticationService(duoAuthenticationService());
+  h.setPrincipalFactory(duoPrincipalFactory());
+  h.setServicesManager(servicesManager);
+  return h;
+}

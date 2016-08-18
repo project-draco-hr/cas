@@ -1,3 +1,0 @@
-{
-  throw new UnsupportedOperationException("getTickets not supported.");
-}

@@ -1,0 +1,3 @@
+{
+  return new DefaultAuditActionResolver(AUDIT_ACTION_SUFFIX_SUCCESS,AUDIT_ACTION_SUFFIX_FAILED);
+}

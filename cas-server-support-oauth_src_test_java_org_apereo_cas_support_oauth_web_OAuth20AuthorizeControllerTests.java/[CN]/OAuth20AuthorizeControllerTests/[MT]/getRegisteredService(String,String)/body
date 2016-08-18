@@ -1,0 +1,8 @@
+{
+  final OAuthRegisteredService registeredServiceImpl=new OAuthRegisteredService();
+  registeredServiceImpl.setName(name);
+  registeredServiceImpl.setServiceId(serviceId);
+  registeredServiceImpl.setClientId(CLIENT_ID);
+  registeredServiceImpl.setAttributeReleasePolicy(new ReturnAllowedAttributeReleasePolicy(Lists.newArrayList(new String[]{FIRST_NAME_ATTRIBUTE})));
+  return registeredServiceImpl;
+}

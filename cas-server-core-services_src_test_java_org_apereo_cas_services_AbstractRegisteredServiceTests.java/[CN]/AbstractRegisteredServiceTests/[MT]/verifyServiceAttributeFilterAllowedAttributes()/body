@@ -1,0 +1,17 @@
+{
+  prepareService();
+  final ReturnAllowedAttributeReleasePolicy policy=new ReturnAllowedAttributeReleasePolicy();
+  policy.setAllowedAttributes(Lists.newArrayList("attr1","attr3"));
+  this.r.setAttributeReleasePolicy(policy);
+  final Principal p=mock(Principal.class);
+  final Map<String,Object> map=new HashMap<>();
+  map.put("attr1","value1");
+  map.put("attr2","value2");
+  map.put("attr3",Lists.newArrayList("v3","v4"));
+  when(p.getAttributes()).thenReturn(map);
+  when(p.getId()).thenReturn("principalId");
+  final Map<String,Object> attr=this.r.getAttributeReleasePolicy().getAttributes(p);
+  assertEquals(attr.size(),2);
+  assertTrue(attr.containsKey("attr1"));
+  assertTrue(attr.containsKey("attr3"));
+}

@@ -1,0 +1,4 @@
+{
+  final Authentication authn=getPrimaryAuthenticationFrom(model);
+  return authn.getAttributes();
+}

@@ -1,0 +1,4 @@
+{
+  final RegisteredServiceSimpleFormController c=new RegisteredServiceSimpleFormController(servicesManager,registeredServiceFactory());
+  return c;
+}

@@ -1,9 +1,0 @@
-{
-  this.loggerContext=Configurator.initialize("CAS",null,this.logConfigurationFile.getURI());
-  this.loggerContext.getConfiguration().addListener(new ConfigurationListener(){
-    @Override public void onChange(    final Reconfigurable reconfigurable){
-      loggerContext.updateLoggers(reconfigurable.reconfigure());
-    }
-  }
-);
-}

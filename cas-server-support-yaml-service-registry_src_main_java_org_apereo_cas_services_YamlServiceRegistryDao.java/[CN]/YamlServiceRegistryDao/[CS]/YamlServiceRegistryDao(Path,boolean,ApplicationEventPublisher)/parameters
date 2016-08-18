@@ -1,0 +1,3 @@
+Path configDirectory
+boolean enableWatcher
+ApplicationEventPublisher eventPublisher

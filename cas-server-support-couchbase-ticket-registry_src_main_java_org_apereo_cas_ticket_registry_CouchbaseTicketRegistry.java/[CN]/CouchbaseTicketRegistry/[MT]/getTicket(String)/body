@@ -1,0 +1,20 @@
+{
+  try {
+    final String encTicketId=encodeTicketId(ticketId);
+    if (ticketId == null) {
+      return null;
+    }
+    final SerializableDocument document=this.couchbase.bucket().get(encTicketId,SerializableDocument.class);
+    if (document != null) {
+      final Ticket t=(Ticket)document.content();
+      logger.debug("Got ticket {} from registry.",t);
+      return t;
+    }
+    logger.debug("Ticket {} not found in registry.",encTicketId);
+    return null;
+  }
+ catch (  final Exception e) {
+    logger.error("Failed fetching {}: {}",ticketId,e);
+    return null;
+  }
+}

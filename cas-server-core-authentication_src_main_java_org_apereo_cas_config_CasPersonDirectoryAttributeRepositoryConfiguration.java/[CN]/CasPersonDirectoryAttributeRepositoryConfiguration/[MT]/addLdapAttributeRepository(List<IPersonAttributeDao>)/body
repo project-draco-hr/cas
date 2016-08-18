@@ -1,0 +1,20 @@
+{
+  final PrincipalAttributesProperties.Ldap ldap=casProperties.getAuthn().getAttributeRepository().getLdap();
+  if (!casProperties.getAuthn().getAttributeRepository().getAttributes().isEmpty() && StringUtils.isNotBlank(ldap.getBaseDn()) && StringUtils.isNotBlank(ldap.getLdapUrl())) {
+    final LdaptivePersonAttributeDao ldapDao=new LdaptivePersonAttributeDao();
+    ldapDao.setConnectionFactory(Beans.newPooledConnectionFactory(ldap));
+    ldapDao.setBaseDN(ldap.getBaseDn());
+    ldapDao.setSearchFilter(ldap.getUserFilter());
+    ldapDao.setResultAttributeMapping(casProperties.getAuthn().getAttributeRepository().getAttributes());
+    final SearchControls constraints=new SearchControls();
+    final String[] attributes=casProperties.getAuthn().getAttributeRepository().getAttributes().keySet().toArray(new String[casProperties.getAuthn().getAttributeRepository().getAttributes().keySet().size()]);
+    constraints.setReturningAttributes(attributes);
+    if (ldap.isSubtreeSearch()) {
+      constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
+    }
+    constraints.setDerefLinkFlag(true);
+    ldapDao.setSearchControls(constraints);
+    ldapDao.initialize();
+    list.add(ldapDao);
+  }
+}

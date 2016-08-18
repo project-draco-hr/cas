@@ -1,8 +1,0 @@
-{
-  final List<Authentication> list=new ArrayList<>();
-  list.add(org.jasig.cas.authentication.TestUtils.getAuthentication("test"));
-  list.add(org.jasig.cas.authentication.TestUtils.getAuthentication("test1"));
-  list.add(org.jasig.cas.authentication.TestUtils.getAuthentication("test2"));
-  final ImmutableAssertion assertion=new ImmutableAssertion(org.jasig.cas.authentication.TestUtils.getAuthentication(),list,org.jasig.cas.services.TestUtils.getService(),true);
-  assertEquals(list.toArray(new Authentication[0]).length,assertion.getChainedAuthentications().size());
-}

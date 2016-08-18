@@ -1,7 +1,0 @@
-{
-  final Map<String,Object> responseMap=new HashMap<>();
-  responseMap.put("totalMemory",convertToMegaBytes(Runtime.getRuntime().totalMemory()));
-  responseMap.put("maxMemory",convertToMegaBytes(Runtime.getRuntime().maxMemory()));
-  responseMap.put("freeMemory",convertToMegaBytes(Runtime.getRuntime().freeMemory()));
-  return responseMap;
-}

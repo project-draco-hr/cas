@@ -1,6 +1,0 @@
-{
-  if (StringUtils.isNotBlank(twitterId) && StringUtils.isNotBlank(twitterSecret)) {
-    final TwitterClient twitterClient=new TwitterClient(twitterId,twitterSecret);
-    clients.add(twitterClient);
-  }
-}

@@ -1,0 +1,4 @@
+{
+  final HttpEntity<SimplePrincipal> entity=new HttpEntity<>(createHeaders(c));
+  return restTemplate.exchange(authenticationUri,HttpMethod.POST,entity,SimplePrincipal.class);
+}

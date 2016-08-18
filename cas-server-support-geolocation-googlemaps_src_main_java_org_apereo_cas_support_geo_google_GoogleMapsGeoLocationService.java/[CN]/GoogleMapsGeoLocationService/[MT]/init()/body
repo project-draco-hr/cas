@@ -1,0 +1,13 @@
+{
+  if (casProperties.getGoogleMaps().isGoogleAppsEngine()) {
+    context=new GeoApiContext(new GaeRequestHandler());
+  }
+ else {
+    context=new GeoApiContext();
+  }
+  if (StringUtils.isNotBlank(casProperties.getGoogleMaps().getClientId()) && StringUtils.isNotBlank(casProperties.getGoogleMaps().getClientSecret())) {
+    context.setEnterpriseCredentials(casProperties.getGoogleMaps().getClientId(),casProperties.getGoogleMaps().getClientSecret());
+  }
+  context.setApiKey(casProperties.getGoogleMaps().getApiKey());
+  context.setConnectTimeout(casProperties.getGoogleMaps().getConnectTimeout(),TimeUnit.MILLISECONDS);
+}

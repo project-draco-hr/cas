@@ -1,0 +1,5 @@
+{
+  final DelegatingController controller=new DelegatingController();
+  controller.setDelegates(Lists.newArrayList(smartOpenIdAssociationController(),openIdValidateController()));
+  return controller;
+}

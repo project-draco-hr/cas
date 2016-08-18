@@ -1,3 +1,0 @@
-{
-  return new TicketGrantingTicketImpl("test",org.jasig.cas.authentication.TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy());
-}

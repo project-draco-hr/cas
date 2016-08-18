@@ -1,0 +1,15 @@
+{
+  this.servicesManager.load();
+  final Collection<RegisteredService> c=this.servicesManager.getAllServices();
+  if (c == null) {
+    throw new IllegalStateException("Services cannot be empty");
+  }
+  if (!this.servicesManager.matchesExistingService(this.defaultService)) {
+    final RegexRegisteredService svc=new RegexRegisteredService();
+    svc.setServiceId('^' + this.defaultService.getId());
+    svc.setName("Services Management Web Application");
+    svc.setDescription(svc.getName());
+    this.servicesManager.save(svc);
+    this.servicesManager.load();
+  }
+}

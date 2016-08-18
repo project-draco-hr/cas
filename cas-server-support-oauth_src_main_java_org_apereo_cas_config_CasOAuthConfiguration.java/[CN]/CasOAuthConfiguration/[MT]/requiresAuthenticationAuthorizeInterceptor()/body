@@ -1,0 +1,3 @@
+{
+  return new SecurityInterceptor(oauthSecConfig(),CAS_OAUTH_CLIENT);
+}

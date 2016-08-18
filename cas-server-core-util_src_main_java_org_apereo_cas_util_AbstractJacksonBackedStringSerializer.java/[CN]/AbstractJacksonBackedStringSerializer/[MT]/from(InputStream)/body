@@ -1,0 +1,9 @@
+{
+  try {
+    final String jsonString=isJsonFormat() ? JsonValue.readHjson(IOUtils.toString(json,"UTF-8")).toString() : IOUtils.readLines(json,"UTF-8").stream().collect(Collectors.joining("\n"));
+    return this.objectMapper.readValue(jsonString,getTypeToSerialize());
+  }
+ catch (  final Exception e) {
+    throw new IllegalArgumentException(e);
+  }
+}

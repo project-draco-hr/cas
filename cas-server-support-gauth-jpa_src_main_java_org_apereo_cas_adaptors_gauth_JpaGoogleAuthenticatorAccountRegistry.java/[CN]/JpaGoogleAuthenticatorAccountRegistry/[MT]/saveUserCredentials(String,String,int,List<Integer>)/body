@@ -1,0 +1,8 @@
+{
+  final GoogleAuthenticatorRegistrationRecord r=new GoogleAuthenticatorRegistrationRecord();
+  r.setScratchCodes(scratchCodes);
+  r.setSecretKey(secretKey);
+  r.setUsername(userName);
+  r.setValidationCode(validationCode);
+  this.entityManager.merge(r);
+}

@@ -1,3 +1,0 @@
-{
-  FileUtils.write(LOG_FILE,"",false);
-}

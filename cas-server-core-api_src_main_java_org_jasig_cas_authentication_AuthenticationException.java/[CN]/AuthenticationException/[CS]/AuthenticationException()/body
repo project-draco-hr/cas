@@ -1,3 +1,0 @@
-{
-  this("No supported authentication handlers found for given credentials.",Collections.<String,Class<? extends Exception>>emptyMap(),Collections.<String,HandlerResult>emptyMap());
-}

@@ -1,0 +1,4 @@
+{
+  Assert.notEmpty(map,MESSAGE);
+  this.handlerResolverMap=map;
+}

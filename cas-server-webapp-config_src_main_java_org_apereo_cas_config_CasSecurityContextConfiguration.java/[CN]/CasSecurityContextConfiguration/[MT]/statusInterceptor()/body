@@ -1,0 +1,13 @@
+{
+  return new HandlerInterceptorAdapter(){
+    @Override public boolean preHandle(    final HttpServletRequest request,    final HttpServletResponse response,    final Object handler) throws Exception {
+      final String requestPath=request.getRequestURI();
+      final Pattern pattern=Pattern.compile("/status(/)*$");
+      if (pattern.matcher(requestPath).find()) {
+        return requiresAuthenticationStatusInterceptor().preHandle(request,response,handler);
+      }
+      return requiresAuthenticationStatusAdminEndpointsInterceptor().preHandle(request,response,handler);
+    }
+  }
+;
+}

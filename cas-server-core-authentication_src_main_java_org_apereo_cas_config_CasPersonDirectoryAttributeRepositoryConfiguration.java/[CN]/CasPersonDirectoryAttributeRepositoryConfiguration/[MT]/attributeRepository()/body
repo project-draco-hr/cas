@@ -1,0 +1,9 @@
+{
+  final List<IPersonAttributeDao> list=new ArrayList<>();
+  addLdapAttributeRepository(list);
+  addJdbcAttributeRepository(list);
+  addJsonAttributeRepository(list);
+  addGroovyAttributeRepository(list);
+  addStubAttributeRepositoryIfNothingElse(list);
+  return composeMergedAndCachedAttributeRepositories(list);
+}

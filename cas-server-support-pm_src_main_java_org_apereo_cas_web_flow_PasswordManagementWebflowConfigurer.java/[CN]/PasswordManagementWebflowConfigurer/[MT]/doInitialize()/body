@@ -1,0 +1,18 @@
+{
+  final Flow flow=getLoginFlow();
+  createViewState(flow,"casAuthenticationBlockedView","casAuthenticationBlockedView");
+  createViewState(flow,"casBadWorkstationView","casBadWorkstationView");
+  createViewState(flow,"casBadHoursView","casBadHoursView");
+  createViewState(flow,"casAccountLockedView","casAccountLockedView");
+  createViewState(flow,"casAccountDisabledView","casAccountDisabledView");
+  createViewState(flow,"casAccountDisabledView","casAccountDisabledView");
+  createEndState(flow,"casPasswordUpdateSuccess","casPasswordUpdateSuccessView");
+  if (casProperties.getAuthn().getPm().isEnabled()) {
+    configure(CAS_MUST_CHANGE_PASS_VIEW);
+    configure(CAS_EXPIRED_PASS_VIEW);
+  }
+ else {
+    createViewState(flow,CAS_MUST_CHANGE_PASS_VIEW,CAS_MUST_CHANGE_PASS_VIEW);
+    createViewState(flow,CAS_EXPIRED_PASS_VIEW,CAS_EXPIRED_PASS_VIEW);
+  }
+}

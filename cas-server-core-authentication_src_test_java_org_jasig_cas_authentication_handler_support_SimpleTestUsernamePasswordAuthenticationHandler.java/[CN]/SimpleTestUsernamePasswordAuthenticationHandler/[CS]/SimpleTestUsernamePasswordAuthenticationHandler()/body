@@ -1,3 +1,0 @@
-{
-  logger.warn("{} is only to be used in a testing environment.  NEVER enable this in a production environment.",getName());
-}

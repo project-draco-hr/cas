@@ -1,0 +1,44 @@
+{
+  LOGGER.debug("Result token received from ADFS is {}",wresult);
+  try (InputStream in=new ByteArrayInputStream(wresult.getBytes("UTF-8"))){
+    final Document document=configBean.getParserPool().parse(in);
+    final Element metadataRoot=document.getDocumentElement();
+    final UnmarshallerFactory unmarshallerFactory=configBean.getUnmarshallerFactory();
+    final Unmarshaller unmarshaller=unmarshallerFactory.getUnmarshaller(metadataRoot);
+    if (unmarshaller == null) {
+      throw new IllegalArgumentException("Unmarshaller for the metadata root element cannot be determined");
+    }
+    final RequestSecurityTokenResponse rsToken=(RequestSecurityTokenResponse)unmarshaller.unmarshall(metadataRoot);
+    if (rsToken == null || rsToken.getRequestedSecurityToken() == null) {
+      throw new IllegalArgumentException("Request security token response is null");
+    }
+    final List<RequestedSecurityToken> rst=rsToken.getRequestedSecurityToken();
+    if (rst.isEmpty()) {
+      throw new IllegalArgumentException("No requested security token response is provided in the response");
+    }
+    final RequestedSecurityToken reqToken=rst.get(0);
+    if (reqToken.getSecurityTokens() == null || reqToken.getSecurityTokens().isEmpty()) {
+      throw new IllegalArgumentException("Requested security token response is not carrying any security tokens");
+    }
+    Assertion assertion=null;
+    XMLObject securityToken=reqToken.getSecurityTokens().get(0);
+    if (securityToken != null) {
+      if (securityToken instanceof EncryptedData) {
+        final EncryptedData encryptedData=EncryptedData.class.cast(securityToken);
+        securityToken=buildAssertionDecrypter(config).decryptData(encryptedData);
+      }
+    }
+    if (securityToken instanceof Assertion) {
+      assertion=Assertion.class.cast(securityToken);
+    }
+    if (assertion == null) {
+      throw new IllegalArgumentException("Assertion is null");
+    }
+    LOGGER.debug("Assertion: {}",assertion);
+    return assertion;
+  }
+ catch (  final Exception ex) {
+    LOGGER.warn(ex.getMessage());
+    return null;
+  }
+}

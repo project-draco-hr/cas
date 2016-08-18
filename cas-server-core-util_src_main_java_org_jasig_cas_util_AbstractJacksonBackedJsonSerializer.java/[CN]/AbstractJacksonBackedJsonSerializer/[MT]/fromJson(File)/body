@@ -1,8 +1,0 @@
-{
-  try {
-    return this.objectMapper.readValue(json,getTypeToSerialize());
-  }
- catch (  final Exception e) {
-    throw new RuntimeException(e);
-  }
-}

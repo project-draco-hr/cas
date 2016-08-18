@@ -1,0 +1,6 @@
+{
+  if (source != null) {
+    return new HashMap<>(source);
+  }
+  return Collections.emptyMap();
+}

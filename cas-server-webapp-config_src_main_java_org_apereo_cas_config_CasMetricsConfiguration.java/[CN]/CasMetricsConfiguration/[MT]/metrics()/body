@@ -1,0 +1,8 @@
+{
+  final MetricRegistry metrics=new MetricRegistry();
+  metrics.register("jvm.gc",new GarbageCollectorMetricSet());
+  metrics.register("jvm.memory",new MemoryUsageGaugeSet());
+  metrics.register("thread-states",new ThreadStatesGaugeSet());
+  metrics.register("jvm.fd.usage",new FileDescriptorRatioGauge());
+  return metrics;
+}

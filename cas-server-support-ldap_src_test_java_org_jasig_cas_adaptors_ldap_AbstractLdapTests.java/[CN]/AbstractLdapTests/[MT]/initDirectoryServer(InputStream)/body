@@ -1,5 +1,0 @@
-{
-  final ClassPathResource properties=new ClassPathResource("ldap.properties");
-  final ClassPathResource schema=new ClassPathResource("schema/standard-ldap.schema");
-  DIRECTORY=new InMemoryTestLdapDirectoryServer(properties.getInputStream(),ldifFile,schema.getInputStream());
-}

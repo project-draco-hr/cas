@@ -1,0 +1,9 @@
+{
+  final RadiusTokenAuthenticationHandler a=new RadiusTokenAuthenticationHandler();
+  a.setPrincipalFactory(radiusTokenPrincipalFactory());
+  a.setServicesManager(servicesManager);
+  a.setServers(radiusTokenServers());
+  a.setFailoverOnAuthenticationFailure(casProperties.getAuthn().getMfa().getRadius().isFailoverOnAuthenticationFailure());
+  a.setFailoverOnException(casProperties.getAuthn().getMfa().getRadius().isFailoverOnException());
+  return a;
+}

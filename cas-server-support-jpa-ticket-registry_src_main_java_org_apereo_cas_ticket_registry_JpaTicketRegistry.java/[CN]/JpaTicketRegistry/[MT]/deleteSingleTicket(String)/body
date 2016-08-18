@@ -1,0 +1,20 @@
+{
+  final Ticket ticket=getTicket(ticketId);
+  if (ticket == null) {
+    return true;
+  }
+  final int failureCount;
+  if (ticket instanceof OAuthToken) {
+    failureCount=deleteOAuthTokens(ticketId);
+  }
+ else   if (ticket instanceof ServiceTicket) {
+    failureCount=deleteServiceTickets(ticketId);
+  }
+ else   if (ticket instanceof TicketGrantingTicket) {
+    failureCount=deleteTicketGrantingTickets(ticketId);
+  }
+ else {
+    throw new IllegalArgumentException("Invalid ticket type with id " + ticketId);
+  }
+  return failureCount == 0;
+}

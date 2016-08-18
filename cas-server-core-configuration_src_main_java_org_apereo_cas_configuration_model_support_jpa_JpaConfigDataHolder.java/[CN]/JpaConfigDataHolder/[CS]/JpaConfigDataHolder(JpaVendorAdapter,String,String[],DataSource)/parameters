@@ -1,0 +1,4 @@
+JpaVendorAdapter jpaVendorAdapter
+String persistenceUnitName
+String[] packagesToScan
+DataSource dataSource

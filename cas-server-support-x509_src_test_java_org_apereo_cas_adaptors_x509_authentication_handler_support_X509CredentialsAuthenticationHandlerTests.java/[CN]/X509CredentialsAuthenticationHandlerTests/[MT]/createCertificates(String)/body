@@ -1,0 +1,13 @@
+{
+  final X509Certificate[] certs=new X509Certificate[files.length];
+  int i=0;
+  for (  final String file : files) {
+    try {
+      certs[i++]=CertUtil.readCertificate(new ClassPathResource(file).getInputStream());
+    }
+ catch (    final Exception e) {
+      throw new RuntimeException("Error creating certificate at " + file,e);
+    }
+  }
+  return certs;
+}

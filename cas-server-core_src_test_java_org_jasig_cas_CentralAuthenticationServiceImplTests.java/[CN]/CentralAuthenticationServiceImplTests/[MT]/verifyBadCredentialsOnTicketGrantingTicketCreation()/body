@@ -1,3 +1,0 @@
-{
-  getCentralAuthenticationService().createTicketGrantingTicket(TestUtils.getCredentialsWithDifferentUsernameAndPassword());
-}

@@ -1,0 +1,15 @@
+{
+  final String uniqueTicketIdGenKey=service.getClass().getName();
+  UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator=null;
+  if (this.uniqueTicketIdGeneratorsForService != null && !this.uniqueTicketIdGeneratorsForService.isEmpty()) {
+    logger.debug("Looking up service ticket id generator for [{}]",uniqueTicketIdGenKey);
+    serviceTicketUniqueTicketIdGenerator=this.uniqueTicketIdGeneratorsForService.get(uniqueTicketIdGenKey);
+  }
+  if (serviceTicketUniqueTicketIdGenerator == null) {
+    serviceTicketUniqueTicketIdGenerator=this.defaultServiceTicketIdGenerator;
+    logger.debug("Service ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
+  }
+  final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX);
+  final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication,trackMostRecentSession);
+  return (T)serviceTicket;
+}

@@ -1,0 +1,5 @@
+{
+  final CouchbaseServiceRegistryDao c=new CouchbaseServiceRegistryDao();
+  c.setCouchbaseClientFactory(serviceRegistryCouchbaseClientFactory());
+  return c;
+}

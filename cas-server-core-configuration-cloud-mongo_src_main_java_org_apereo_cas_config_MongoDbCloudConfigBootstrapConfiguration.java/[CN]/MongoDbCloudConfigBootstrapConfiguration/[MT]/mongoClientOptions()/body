@@ -1,0 +1,12 @@
+{
+  try {
+    final MongoClientOptionsFactoryBean bean=new MongoClientOptionsFactoryBean();
+    bean.setSocketTimeout(TIMEOUT);
+    bean.setConnectTimeout(TIMEOUT);
+    bean.afterPropertiesSet();
+    return bean.getObject();
+  }
+ catch (  final Exception e) {
+    throw new BeanCreationException(e.getMessage(),e);
+  }
+}

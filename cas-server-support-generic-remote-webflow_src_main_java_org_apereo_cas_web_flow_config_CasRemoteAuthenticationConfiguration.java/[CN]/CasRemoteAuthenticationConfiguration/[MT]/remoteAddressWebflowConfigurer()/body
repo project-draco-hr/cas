@@ -1,0 +1,6 @@
+{
+  final RemoteAddressWebflowConfigurer w=new RemoteAddressWebflowConfigurer();
+  w.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  w.setFlowBuilderServices(flowBuilderServices);
+  return w;
+}

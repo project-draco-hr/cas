@@ -1,0 +1,19 @@
+{
+  if (this.client == null) {
+    logger.debug("No memcached client is available in the configuration.");
+    return;
+  }
+  final Ticket ticket=encodeTicket(ticketToUpdate);
+  logger.debug("Updating ticket {}",ticket);
+  try {
+    if (!this.client.replace(ticket.getId(),getTimeout(ticketToUpdate),ticket).get()) {
+      logger.error("Failed to update {}",ticket);
+    }
+  }
+ catch (  final InterruptedException e) {
+    logger.warn("Interrupted while waiting for response to async replace operation for ticket {}. " + "Cannot determine whether update was successful.",ticket);
+  }
+catch (  final Exception e) {
+    logger.error("Failed updating {}",ticket,e);
+  }
+}

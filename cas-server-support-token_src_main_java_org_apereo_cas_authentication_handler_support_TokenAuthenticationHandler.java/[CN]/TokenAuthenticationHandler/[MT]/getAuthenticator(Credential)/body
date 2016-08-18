@@ -1,0 +1,16 @@
+{
+  final TokenCredential tokenCredential=(TokenCredential)credential;
+  logger.debug("Locating token secret for service [{}]",tokenCredential.getService());
+  final RegisteredService service=this.servicesManager.findServiceBy(tokenCredential.getService());
+  final String signingSecret=getRegisteredServiceJwtSigningSecret(service);
+  final String encryptionSecret=getRegisteredServiceJwtEncryptionSecret(service);
+  if (StringUtils.isNotBlank(signingSecret)) {
+    if (StringUtils.isBlank(encryptionSecret)) {
+      logger.warn("JWT authentication is configured to share a single key for both signing/encryption");
+      return new JwtAuthenticator(signingSecret);
+    }
+    return new JwtAuthenticator(signingSecret,encryptionSecret);
+  }
+  logger.warn("No token signing secret is defined for service [{}]. Ensure [{}] property is defined for service",service.getServiceId(),TokenConstants.PROPERTY_NAME_TOKEN_SECRET_SIGNING);
+  return null;
+}

@@ -1,9 +1,0 @@
-{
-  final YubiKeyAuthenticationHandler handler=new YubiKeyAuthenticationHandler(CLIENT_ID,SECRET_KEY,new YubiKeyAccountRegistry(){
-    @Override public boolean isYubiKeyRegisteredFor(    final String uid,    final String yubikeyPublicId){
-      return false;
-    }
-  }
-);
-  handler.authenticate(new UsernamePasswordCredential("casuser",OTP));
-}

@@ -1,0 +1,14 @@
+{
+  try (StringWriter writer=SamlUtils.transformSamlObject(this.configBean,authnRequest)){
+    final URLBuilder builder=new URLBuilder(this.callbackService.getId());
+    builder.getQueryParams().add(new Pair<>(SamlProtocolConstants.PARAMETER_ENTITY_ID,SamlIdPUtils.getIssuerFromSamlRequest(authnRequest)));
+    final String samlRequest=EncodingUtils.encodeBase64(writer.toString().getBytes("UTF-8"));
+    builder.getQueryParams().add(new Pair<>(SamlProtocolConstants.PARAMETER_SAML_REQUEST,samlRequest));
+    final String url=builder.buildURL();
+    logger.debug("Built service callback url [{}]",url);
+    return CommonUtils.constructServiceUrl(request,response,url,this.serverName,CasProtocolConstants.PARAMETER_SERVICE,CasProtocolConstants.PARAMETER_TICKET,false);
+  }
+ catch (  final Exception e) {
+    throw new SamlException(e.getMessage(),e);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  final LdapServiceRegistryDao r=new LdapServiceRegistryDao();
+  final ConnectionFactory connectionFactory=Beans.newPooledConnectionFactory(casProperties.getServiceRegistry().getLdap());
+  r.setConnectionFactory(connectionFactory);
+  r.setLdapServiceMapper(ldapServiceRegistryMapper());
+  r.setBaseDn(casProperties.getServiceRegistry().getLdap().getBaseDn());
+  return r;
+}

@@ -1,0 +1,8 @@
+HttpServletRequest request
+HttpServletResponse response
+JsonGenerator jsonGenerator
+AccessToken accessTokenId
+RefreshToken refreshTokenId
+long timeout
+Service service
+OAuthRegisteredService registeredService

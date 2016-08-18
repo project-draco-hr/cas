@@ -1,0 +1,5 @@
+{
+  final RadiusAuthenticationWebflowAction w=new RadiusAuthenticationWebflowAction();
+  w.setRadiusAuthenticationWebflowEventResolver(radiusAuthenticationWebflowEventResolver());
+  return w;
+}

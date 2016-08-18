@@ -1,0 +1,4 @@
+{
+  final Principal principal=new DefaultPrincipalFactory().createPrincipal("bob",Collections.singletonMap("displayName",(Object)"Bob"));
+  return new TicketGrantingTicketImpl(ID_GENERATOR.getNewTicketId(TicketGrantingTicket.PREFIX),TestUtils.getAuthentication(principal),EXP_POLICY_TGT);
+}

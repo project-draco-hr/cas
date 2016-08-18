@@ -1,0 +1,4 @@
+{
+  this.cache.evict(ticketId);
+  return getTicket(ticketId) == null;
+}

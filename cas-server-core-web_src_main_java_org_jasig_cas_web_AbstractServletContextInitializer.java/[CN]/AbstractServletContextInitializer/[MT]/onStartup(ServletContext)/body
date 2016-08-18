@@ -1,4 +1,0 @@
-{
-  logger.info("Starting up servlet application context...");
-  onStartupServletContext(servletContext);
-}

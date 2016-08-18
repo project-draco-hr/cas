@@ -1,0 +1,4 @@
+{
+  requestContext.getFlowScope().put("passwordManagementEnabled",casProperties.getAuthn().getPm().isEnabled());
+  return null;
+}

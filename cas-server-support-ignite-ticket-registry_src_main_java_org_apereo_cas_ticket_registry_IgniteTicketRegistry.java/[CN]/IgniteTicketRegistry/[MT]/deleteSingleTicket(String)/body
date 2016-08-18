@@ -1,0 +1,7 @@
+{
+  final Ticket ticket=getTicket(ticketId);
+  if (ticket != null) {
+    return this.ticketIgniteCache.remove(ticket.getId());
+  }
+  return true;
+}

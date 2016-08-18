@@ -1,4 +1,0 @@
-{
-  LOGGER.warn("The {} does not support caching. Turned off caching forcefully.",this.getClass().getSimpleName());
-  super.setCache(false);
-}

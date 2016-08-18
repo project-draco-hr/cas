@@ -1,0 +1,4 @@
+{
+  configureCasMockToCreateValidST();
+  this.mockMvc.perform(post("/cas/v1/tickets/TGT-1").param("service",TestUtils.getService().getId())).andExpect(status().isOk()).andExpect(content().contentType("text/plain;charset=ISO-8859-1")).andExpect(content().string("ST-1"));
+}

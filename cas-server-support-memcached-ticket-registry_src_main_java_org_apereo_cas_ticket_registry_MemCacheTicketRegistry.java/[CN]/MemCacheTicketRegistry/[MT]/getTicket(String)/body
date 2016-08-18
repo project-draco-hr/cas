@@ -1,0 +1,17 @@
+{
+  if (this.client == null) {
+    logger.debug("No memcached client is configured.");
+    return null;
+  }
+  final String ticketId=encodeTicketId(ticketIdToGet);
+  try {
+    final Ticket t=(Ticket)this.client.get(ticketId);
+    if (t != null) {
+      return decodeTicket(t);
+    }
+  }
+ catch (  final Exception e) {
+    logger.error("Failed fetching {} ",ticketId,e);
+  }
+  return null;
+}

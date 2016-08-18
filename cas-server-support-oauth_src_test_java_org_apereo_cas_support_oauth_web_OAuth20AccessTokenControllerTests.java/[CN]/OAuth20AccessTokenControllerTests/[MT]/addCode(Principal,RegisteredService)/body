@@ -1,0 +1,7 @@
+{
+  final Authentication authentication=getAuthentication(principal);
+  final Service service=new OAuthWebApplicationService(registeredService);
+  final OAuthCode code=oAuthCodeFactory.create(service,authentication);
+  oAuth20AccessTokenController.getTicketRegistry().addTicket(code);
+  return code;
+}

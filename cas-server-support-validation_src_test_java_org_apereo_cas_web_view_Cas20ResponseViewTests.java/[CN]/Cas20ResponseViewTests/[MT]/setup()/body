@@ -1,0 +1,5 @@
+{
+  this.serviceValidateController.setFailureView(cas2ServiceFailureView);
+  this.serviceValidateController.setSuccessView(cas2SuccessView);
+  this.serviceValidateController.setJsonView(cas3ServiceJsonView);
+}

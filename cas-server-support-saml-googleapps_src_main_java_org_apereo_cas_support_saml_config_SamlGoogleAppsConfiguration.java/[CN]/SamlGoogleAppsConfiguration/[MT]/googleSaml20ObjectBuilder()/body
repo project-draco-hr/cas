@@ -1,0 +1,5 @@
+{
+  final GoogleSaml20ObjectBuilder b=new GoogleSaml20ObjectBuilder();
+  b.setConfigBean(openSamlConfigBean);
+  return b;
+}

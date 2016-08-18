@@ -1,0 +1,11 @@
+{
+  try {
+    if (!mongoTemplate().collectionExists(MongoDbPropertySource.class.getSimpleName())) {
+      mongoTemplate().createCollection(MongoDbPropertySource.class.getSimpleName());
+    }
+    return new MongoDbPropertySourceLocator(mongoTemplate());
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

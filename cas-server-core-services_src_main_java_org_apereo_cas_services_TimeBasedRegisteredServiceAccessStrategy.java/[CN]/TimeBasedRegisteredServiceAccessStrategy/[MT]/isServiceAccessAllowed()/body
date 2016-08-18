@@ -1,0 +1,9 @@
+{
+  if (!doesStartingTimeAllowServiceAccess()) {
+    return false;
+  }
+  if (!doesEndingTimeAllowServiceAccess()) {
+    return false;
+  }
+  return super.isServiceAccessAllowed();
+}

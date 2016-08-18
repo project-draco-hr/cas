@@ -1,0 +1,20 @@
+{
+  final EhCacheFactoryBean bean=new EhCacheFactoryBean();
+  bean.setCacheName(casProperties.getTicket().getRegistry().getEhcache().getCacheName());
+  bean.setCacheEventListeners(ImmutableSet.of(ticketRMISynchronousCacheReplicator()));
+  bean.setTimeToIdle(casProperties.getTicket().getRegistry().getEhcache().getCacheTimeToIdle());
+  bean.setTimeToLive(casProperties.getTicket().getRegistry().getEhcache().getCacheTimeToLive());
+  bean.setCacheManager(manager);
+  bean.setBootstrapCacheLoader(ticketCacheBootstrapCacheLoader());
+  bean.setDiskExpiryThreadIntervalSeconds(casProperties.getTicket().getRegistry().getEhcache().getDiskExpiryThreadIntervalSeconds());
+  bean.setEternal(casProperties.getTicket().getRegistry().getEhcache().isEternal());
+  bean.setMaxEntriesLocalHeap(casProperties.getTicket().getRegistry().getEhcache().getMaxElementsInMemory());
+  bean.setMaxEntriesInCache(casProperties.getTicket().getRegistry().getEhcache().getMaxElementsInCache());
+  bean.setMaxEntriesLocalDisk(casProperties.getTicket().getRegistry().getEhcache().getMaxElementsOnDisk());
+  bean.setMemoryStoreEvictionPolicy(casProperties.getTicket().getRegistry().getEhcache().getMemoryStoreEvictionPolicy());
+  final PersistenceConfiguration c=new PersistenceConfiguration();
+  c.strategy(casProperties.getTicket().getRegistry().getEhcache().getPersistence());
+  c.setSynchronousWrites(casProperties.getTicket().getRegistry().getEhcache().isSynchronousWrites());
+  bean.persistence(c);
+  return bean;
+}

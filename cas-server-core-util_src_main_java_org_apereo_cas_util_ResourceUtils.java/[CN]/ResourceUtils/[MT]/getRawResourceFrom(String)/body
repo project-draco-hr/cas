@@ -1,0 +1,13 @@
+{
+  final AbstractResource metadataLocationResource;
+  if (location.toLowerCase().startsWith("http")) {
+    metadataLocationResource=new UrlResource(location);
+  }
+ else   if (location.toLowerCase().startsWith("classpath")) {
+    metadataLocationResource=new ClassPathResource(location);
+  }
+ else {
+    metadataLocationResource=new FileSystemResource(location);
+  }
+  return metadataLocationResource;
+}

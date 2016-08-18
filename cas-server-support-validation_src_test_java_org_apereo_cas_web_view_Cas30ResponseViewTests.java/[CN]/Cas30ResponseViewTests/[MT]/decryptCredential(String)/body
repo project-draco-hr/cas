@@ -1,0 +1,20 @@
+{
+  try {
+    final PrivateKeyFactoryBean factory=new PrivateKeyFactoryBean();
+    factory.setAlgorithm("RSA");
+    factory.setLocation(new ClassPathResource("RSA1024Private.p8"));
+    factory.setSingleton(false);
+    final PrivateKey privateKey=factory.getObject();
+    logger.debug("Initializing cipher based on [{}]",privateKey.getAlgorithm());
+    final Cipher cipher=Cipher.getInstance(privateKey.getAlgorithm());
+    logger.debug("Decoding value [{}]",cred);
+    final byte[] cred64=EncodingUtils.decodeBase64(cred);
+    logger.debug("Initializing decrypt-mode via private key [{}]",privateKey.getAlgorithm());
+    cipher.init(Cipher.DECRYPT_MODE,privateKey);
+    final byte[] cipherData=cipher.doFinal(cred64);
+    return new String(cipherData);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return new HashCodeBuilder().appendSuper(super.hashCode()).append(jwks).append(signIdToken).toHashCode();
+}

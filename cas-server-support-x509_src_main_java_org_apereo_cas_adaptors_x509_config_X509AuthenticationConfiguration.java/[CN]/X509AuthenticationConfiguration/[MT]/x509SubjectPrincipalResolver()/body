@@ -1,0 +1,9 @@
+{
+  final X509SubjectPrincipalResolver r=new X509SubjectPrincipalResolver();
+  r.setDescriptor(casProperties.getAuthn().getX509().getPrincipalDescriptor());
+  r.setAttributeRepository(attributeRepository);
+  r.setPrincipalAttributeName(casProperties.getAuthn().getX509().getPrincipal().getPrincipalAttribute());
+  r.setReturnNullIfNoAttributes(casProperties.getAuthn().getX509().getPrincipal().isReturnNull());
+  r.setPrincipalFactory(x509PrincipalFactory());
+  return r;
+}

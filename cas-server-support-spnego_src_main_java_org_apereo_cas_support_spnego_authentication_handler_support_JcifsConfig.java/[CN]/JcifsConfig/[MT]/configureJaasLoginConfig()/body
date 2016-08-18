@@ -1,0 +1,32 @@
+{
+  try {
+    final String propValue=System.getProperty(SYS_PROP_LOGIN_CONF);
+    if (StringUtils.isNotBlank(propValue)) {
+      logger.info("Found login config {} in system property {}",propValue,SYS_PROP_LOGIN_CONF);
+      if (StringUtils.isNotBlank(this.loginConf)) {
+        logger.warn("Configured login config for CAS under {} will be ignored",this.loginConf);
+      }
+    }
+ else {
+      final String loginConf=StringUtils.isBlank(this.loginConf) ? DEFAULT_LOGIN_CONFIG : this.loginConf;
+      logger.debug("Attempting to load login config from {}",loginConf);
+      final Resource res=this.resourceLoader.getResource(loginConf);
+      if (res != null && res.exists()) {
+        final String urlPath=res.getURL().toExternalForm();
+        logger.debug("Located login config {} and configured it under {}",urlPath,SYS_PROP_LOGIN_CONF);
+        System.setProperty(SYS_PROP_LOGIN_CONF,urlPath);
+      }
+ else {
+        final URL url=getClass().getResource("/jcifs/http/login.conf");
+        if (url != null) {
+          logger.debug("Falling back unto default login config {} under {}",url.toExternalForm(),SYS_PROP_LOGIN_CONF);
+          System.setProperty(SYS_PROP_LOGIN_CONF,url.toExternalForm());
+        }
+      }
+      logger.debug("configured login configuration path : {}",propValue);
+    }
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

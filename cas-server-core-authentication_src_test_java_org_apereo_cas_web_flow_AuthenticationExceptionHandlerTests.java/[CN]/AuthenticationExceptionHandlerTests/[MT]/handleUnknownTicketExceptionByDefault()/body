@@ -1,0 +1,7 @@
+{
+  final AuthenticationExceptionHandler handler=new AuthenticationExceptionHandler();
+  final MessageContext ctx=mock(MessageContext.class);
+  final String id=handler.handle(new InvalidTicketException("TGT"),ctx);
+  assertEquals(id,"UNKNOWN");
+  verifyZeroInteractions(ctx);
+}

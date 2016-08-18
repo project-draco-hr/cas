@@ -1,0 +1,9 @@
+{
+  final ZonedDateTime cutoff=ZonedDateTime.now(ZoneOffset.UTC);
+  if (CertUtils.isExpired(crl,cutoff)) {
+    if (CertUtils.isExpired(crl,cutoff.minusSeconds(this.threshold))) {
+      throw new ExpiredCRLException(crl.toString(),cutoff,this.threshold);
+    }
+    logger.info(String.format("CRL expired on %s but is within threshold period, %s seconds.",crl.getNextUpdate(),this.threshold));
+  }
+}

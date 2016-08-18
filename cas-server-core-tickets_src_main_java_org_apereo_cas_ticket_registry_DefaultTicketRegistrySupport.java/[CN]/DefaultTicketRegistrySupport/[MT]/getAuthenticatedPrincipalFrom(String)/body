@@ -1,0 +1,4 @@
+{
+  final Authentication auth=getAuthenticationFrom(ticketGrantingTicketId);
+  return auth == null ? null : auth.getPrincipal();
+}

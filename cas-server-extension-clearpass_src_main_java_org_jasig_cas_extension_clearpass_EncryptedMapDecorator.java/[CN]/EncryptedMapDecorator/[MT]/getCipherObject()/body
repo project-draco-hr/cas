@@ -1,3 +1,0 @@
-{
-  return Cipher.getInstance(CIPHER_ALGORITHM);
-}

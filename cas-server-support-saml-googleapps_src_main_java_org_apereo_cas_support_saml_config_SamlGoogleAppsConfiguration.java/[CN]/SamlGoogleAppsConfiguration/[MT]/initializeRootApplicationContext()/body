@@ -1,0 +1,3 @@
+{
+  this.argumentExtractor.getServiceFactories().add(0,googleAccountsServiceFactory());
+}

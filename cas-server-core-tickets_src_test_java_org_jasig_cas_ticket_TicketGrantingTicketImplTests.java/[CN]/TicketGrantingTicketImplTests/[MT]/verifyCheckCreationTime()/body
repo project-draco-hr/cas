@@ -1,9 +1,0 @@
-{
-  final Authentication authentication=org.jasig.cas.authentication.TestUtils.getAuthentication();
-  final List<Authentication> principals=new ArrayList<>();
-  principals.add(authentication);
-  final long startTime=System.currentTimeMillis();
-  final TicketGrantingTicket t=new TicketGrantingTicketImpl("test",null,null,authentication,new NeverExpiresExpirationPolicy());
-  final long finishTime=System.currentTimeMillis();
-  assertTrue(startTime <= t.getCreationTime() && finishTime >= t.getCreationTime());
-}

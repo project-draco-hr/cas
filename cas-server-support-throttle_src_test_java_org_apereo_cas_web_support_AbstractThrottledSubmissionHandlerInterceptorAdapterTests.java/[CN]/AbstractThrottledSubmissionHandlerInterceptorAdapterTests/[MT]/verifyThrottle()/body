@@ -1,0 +1,7 @@
+{
+  failLoop(3,1000,HttpStatus.SC_UNAUTHORIZED);
+  failLoop(3,200,HttpStatus.SC_FORBIDDEN);
+  throttle.decrement();
+  Thread.sleep(1000);
+  failLoop(3,1000,HttpStatus.SC_UNAUTHORIZED);
+}

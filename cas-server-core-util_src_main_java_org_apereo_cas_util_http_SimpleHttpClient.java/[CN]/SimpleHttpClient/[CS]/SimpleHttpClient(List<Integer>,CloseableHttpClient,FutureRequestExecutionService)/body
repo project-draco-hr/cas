@@ -1,0 +1,6 @@
+{
+  Collections.sort(acceptableCodes);
+  this.acceptableCodes=ImmutableList.copyOf(acceptableCodes);
+  this.httpClient=httpClient;
+  this.requestExecutorService=requestExecutorService;
+}

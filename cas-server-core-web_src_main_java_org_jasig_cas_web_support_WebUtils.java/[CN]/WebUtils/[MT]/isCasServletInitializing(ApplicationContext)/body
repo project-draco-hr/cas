@@ -1,7 +1,0 @@
-{
-  if (sce instanceof WebApplicationContext) {
-    return isCasServletInitializing(((WebApplicationContext)sce).getServletContext());
-  }
-  LOGGER.debug("No CAS servlet is available because the given application context is not of type {}",WebApplicationContext.class);
-  return false;
-}

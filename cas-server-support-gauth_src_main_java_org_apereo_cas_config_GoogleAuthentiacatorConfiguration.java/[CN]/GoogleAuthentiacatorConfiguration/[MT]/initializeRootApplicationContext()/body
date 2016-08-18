@@ -1,0 +1,6 @@
+{
+  if (StringUtils.isNotBlank(casProperties.getAuthn().getMfa().getGauth().getIssuer())) {
+    authenticationHandlersResolvers.put(googleAuthenticatorAuthenticationHandler(),null);
+    authenticationMetadataPopulators.add(0,googleAuthenticatorAuthenticationMetaDataPopulator());
+  }
+}

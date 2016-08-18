@@ -1,0 +1,6 @@
+{
+  if (StringUtils.isNotBlank(casProperties.getAuthn().getMfa().getDuo().getDuoApiHost()) && StringUtils.isNotBlank(casProperties.getAuthn().getMfa().getDuo().getDuoSecretKey())) {
+    this.authenticationHandlersResolvers.put(duoAuthenticationHandler(),null);
+    authenticationMetadataPopulators.add(0,duoAuthenticationMetaDataPopulator());
+  }
+}

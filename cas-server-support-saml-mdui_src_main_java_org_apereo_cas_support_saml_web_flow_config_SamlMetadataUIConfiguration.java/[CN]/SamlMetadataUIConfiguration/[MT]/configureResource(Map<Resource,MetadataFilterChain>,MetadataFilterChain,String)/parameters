@@ -1,0 +1,3 @@
+Map<Resource,MetadataFilterChain> resources
+MetadataFilterChain chain
+String r

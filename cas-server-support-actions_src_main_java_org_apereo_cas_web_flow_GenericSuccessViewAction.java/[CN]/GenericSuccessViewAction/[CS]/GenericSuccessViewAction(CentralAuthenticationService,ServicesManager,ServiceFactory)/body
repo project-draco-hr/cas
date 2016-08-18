@@ -1,0 +1,5 @@
+{
+  this.centralAuthenticationService=centralAuthenticationService;
+  this.servicesManager=servicesManager;
+  this.serviceFactory=serviceFactory;
+}

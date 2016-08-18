@@ -1,0 +1,5 @@
+{
+  final MemCacheTicketRegistry registry=new MemCacheTicketRegistry(memcachedClientIF);
+  registry.setCipherExecutor(Beans.newTicketRegistryCipherExecutor(casProperties.getTicket().getRegistry().getMemcached().getCrypto()));
+  return registry;
+}

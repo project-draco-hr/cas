@@ -1,0 +1,3 @@
+{
+  assertTrue(new Cas10ProtocolValidationSpecification(false).isSatisfiedBy(TestUtils.getAssertion(false),new MockHttpServletRequest()));
+}

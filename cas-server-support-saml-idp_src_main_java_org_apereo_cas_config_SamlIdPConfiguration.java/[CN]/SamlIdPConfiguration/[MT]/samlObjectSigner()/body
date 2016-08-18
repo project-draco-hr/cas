@@ -1,0 +1,8 @@
+{
+  final SamlObjectSigner s=new SamlObjectSigner();
+  s.setOverrideBlackListedSignatureSigningAlgorithms(overrideBlackListedSignatureSigningAlgorithms);
+  s.setOverrideSignatureAlgorithms(overrideSignatureAlgorithms);
+  s.setOverrideSignatureReferenceDigestMethods(overrideSignatureReferenceDigestMethods);
+  s.setOverrideWhiteListedAlgorithms(overrideWhiteListedSignatureSigningAlgorithms);
+  return s;
+}

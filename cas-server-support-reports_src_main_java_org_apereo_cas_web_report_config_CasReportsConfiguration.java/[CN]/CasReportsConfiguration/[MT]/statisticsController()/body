@@ -1,0 +1,7 @@
+{
+  final StatisticsController c=new StatisticsController();
+  c.setCentralAuthenticationService(centralAuthenticationService);
+  c.setHealthCheckRegistry(healthCheckRegistry);
+  c.setMetricsRegistry(metricsRegistry);
+  return c;
+}

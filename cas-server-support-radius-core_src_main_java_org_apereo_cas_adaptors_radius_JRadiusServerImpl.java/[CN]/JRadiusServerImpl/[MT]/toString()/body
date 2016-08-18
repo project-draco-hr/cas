@@ -1,0 +1,3 @@
+{
+  return new ToStringBuilder(this).append("protocol",this.protocol).append("radiusClientFactory",this.radiusClientFactory).append("retries",this.retries).append("nasIpAddress",this.nasIpAddress).append("nasIpv6Address",this.nasIpv6Address).append("nasPort",this.nasPort).append("nasPortId",this.nasPortId).append("nasIdentifier",this.nasIdentifier).append("nasRealPort",this.nasRealPort).append("nasPortType",this.nasPortType).toString();
+}

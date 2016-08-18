@@ -1,0 +1,19 @@
+{
+  Class<?> clazz=target.getClass();
+  final String key=new StringBuilder().append(clazz.getName()).append('.').append(name).toString();
+  Field f=this.fieldCache.get(key);
+  while (f == null) {
+    try {
+      f=clazz.getDeclaredField(name);
+      f.setAccessible(true);
+      this.fieldCache.put(key,f);
+    }
+ catch (    final NoSuchFieldException e) {
+      clazz=clazz.getSuperclass();
+      if (clazz == null) {
+        throw new IllegalStateException("No such field " + key);
+      }
+    }
+  }
+  return f;
+}

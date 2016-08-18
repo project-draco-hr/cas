@@ -1,0 +1,12 @@
+{
+  final InfinispanTicketRegistry r=new InfinispanTicketRegistry();
+  r.setCipherExecutor(Beans.newTicketRegistryCipherExecutor(casProperties.getTicket().getRegistry().getInfinispan()));
+  final String cacheName=casProperties.getTicket().getRegistry().getInfinispan().getCacheName();
+  if (StringUtils.isBlank(cacheName)) {
+    r.setCache(cacheManager().getCache());
+  }
+ else {
+    r.setCache(cacheManager().getCache(cacheName));
+  }
+  return r;
+}

@@ -1,0 +1,5 @@
+{
+  final SamlProfileSamlConditionsBuilder b=new SamlProfileSamlConditionsBuilder();
+  b.setConfigBean(openSamlConfigBean);
+  return b;
+}

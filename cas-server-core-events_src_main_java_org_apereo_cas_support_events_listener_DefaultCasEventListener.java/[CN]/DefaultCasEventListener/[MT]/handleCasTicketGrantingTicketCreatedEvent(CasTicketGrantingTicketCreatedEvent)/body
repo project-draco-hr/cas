@@ -1,0 +1,17 @@
+{
+  if (this.casEventRepository != null) {
+    final CasEvent dto=new CasEvent();
+    dto.setType(event.getClass().getCanonicalName());
+    dto.putTimestamp(event.getTimestamp());
+    dto.putCreationTime(event.getTicketGrantingTicket().getCreationTime());
+    dto.putId(TicketIdSanitizationUtils.sanitize(event.getTicketGrantingTicket().getId()));
+    dto.setPrincipalId(event.getTicketGrantingTicket().getAuthentication().getPrincipal().getId());
+    final ClientInfo clientInfo=ClientInfoHolder.getClientInfo();
+    dto.putClientIpAddress(clientInfo.getClientIpAddress());
+    dto.putServerIpAddress(clientInfo.getServerIpAddress());
+    dto.putAgent(WebUtils.getHttpServletRequestUserAgent());
+    final GeoLocationRequest location=WebUtils.getHttpServletRequestGeoLocation();
+    dto.putGeoLocation(location);
+    this.casEventRepository.save(dto);
+  }
+}

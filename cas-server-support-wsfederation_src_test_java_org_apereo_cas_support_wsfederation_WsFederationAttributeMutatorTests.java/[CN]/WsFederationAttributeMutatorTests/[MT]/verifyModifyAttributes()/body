@@ -1,0 +1,12 @@
+{
+  final Map<String,List<Object>> attributes=new HashMap<>();
+  final List values=new ArrayList();
+  values.add("test@example.com");
+  attributes.put("upn",values);
+  final WsFederationAttributeMutator instance=new WsFederationAttributeMutatorImpl();
+  instance.modifyAttributes(attributes);
+  assertTrue(attributes.containsKey("test"));
+  assertTrue("newtest".equalsIgnoreCase(attributes.get("test").get(0).toString()));
+  assertTrue(attributes.containsKey("upn"));
+  assertTrue("testing".equalsIgnoreCase(attributes.get("upn").get(0).toString()));
+}

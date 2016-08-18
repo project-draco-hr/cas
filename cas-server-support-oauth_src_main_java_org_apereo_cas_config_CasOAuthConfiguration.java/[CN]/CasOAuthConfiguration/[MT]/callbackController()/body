@@ -1,0 +1,5 @@
+{
+  final CallbackController c=new CallbackController();
+  c.setConfig(oauthSecConfig());
+  return c;
+}

@@ -1,0 +1,21 @@
+{
+  try {
+    if (this.handler.supports(this.credential)) {
+      final HandlerResult result=this.handler.authenticate(this.credential);
+      if (this.expectedResult instanceof DefaultHandlerResult) {
+        assertEquals(this.expectedResult,result);
+      }
+ else {
+        fail("Authentication succeeded when it should have failed with " + this.expectedResult);
+      }
+    }
+  }
+ catch (  final Exception e) {
+    if (this.expectedResult instanceof Exception) {
+      assertEquals(this.expectedResult.getClass(),e.getClass());
+    }
+ else {
+      fail("Authentication failed when it should have succeeded: " + e.getMessage());
+    }
+  }
+}

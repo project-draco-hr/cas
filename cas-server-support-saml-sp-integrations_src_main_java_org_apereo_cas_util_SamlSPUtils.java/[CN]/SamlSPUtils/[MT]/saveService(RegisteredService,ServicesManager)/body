@@ -1,0 +1,11 @@
+{
+  servicesManager.load();
+  if (!servicesManager.matchesExistingService(service.getServiceId())) {
+    LOGGER.debug("Service {} does not exist in the registry and will be added.",service.getServiceId());
+    servicesManager.save(service);
+    servicesManager.load();
+  }
+ else {
+    LOGGER.debug("Service {} exists in the registry and will not be added again.",service.getServiceId());
+  }
+}

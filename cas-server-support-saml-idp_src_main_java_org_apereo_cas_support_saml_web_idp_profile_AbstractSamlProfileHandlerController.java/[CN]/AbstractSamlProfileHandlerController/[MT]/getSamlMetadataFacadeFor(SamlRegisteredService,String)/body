@@ -1,0 +1,3 @@
+{
+  return SamlRegisteredServiceServiceProviderMetadataFacade.get(this.samlRegisteredServiceCachingMetadataResolver,registeredService,entityId);
+}

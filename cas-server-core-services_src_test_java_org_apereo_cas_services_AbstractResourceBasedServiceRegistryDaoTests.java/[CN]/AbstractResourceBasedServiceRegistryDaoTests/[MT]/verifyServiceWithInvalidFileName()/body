@@ -1,0 +1,7 @@
+{
+  final RegexRegisteredService r=new RegexRegisteredService();
+  r.setServiceId("^https://.+");
+  r.setName("hell/o@world:*");
+  r.setEvaluationOrder(1000);
+  this.dao.save(r);
+}

@@ -1,0 +1,10 @@
+{
+  try {
+    initDirectoryServer();
+    getDirectory().populateEntries(new ClassPathResource("ldif/users-x509.ldif").getInputStream());
+    populateCertificateRevocationListAttribute();
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

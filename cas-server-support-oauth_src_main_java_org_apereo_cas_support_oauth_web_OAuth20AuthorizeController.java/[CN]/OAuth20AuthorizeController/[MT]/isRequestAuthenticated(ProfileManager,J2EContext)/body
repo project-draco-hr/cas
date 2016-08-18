@@ -1,0 +1,4 @@
+{
+  final Optional<CommonProfile> opt=manager.get(true);
+  return opt.isPresent();
+}

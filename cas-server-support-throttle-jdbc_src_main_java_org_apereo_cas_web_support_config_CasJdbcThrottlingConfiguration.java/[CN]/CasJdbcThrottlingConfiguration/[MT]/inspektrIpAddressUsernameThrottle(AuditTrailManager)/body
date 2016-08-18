@@ -1,0 +1,7 @@
+{
+  final InspektrThrottledSubmissionByIpAddressAndUsernameHandlerInterceptorAdapter bean=new InspektrThrottledSubmissionByIpAddressAndUsernameHandlerInterceptorAdapter(auditTrailManager,inspektrAuditTrailDataSource());
+  bean.setApplicationCode(casProperties.getAuthn().getThrottle().getAppcode());
+  bean.setAuthenticationFailureCode(casProperties.getAuthn().getThrottle().getFailure().getCode());
+  bean.setSqlQueryAudit(casProperties.getAuthn().getThrottle().getJdbc().getAuditQuery());
+  return configureThrottleHandlerInterceptorAdaptor(bean);
+}

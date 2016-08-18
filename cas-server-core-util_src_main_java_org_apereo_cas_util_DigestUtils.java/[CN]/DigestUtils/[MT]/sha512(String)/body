@@ -1,0 +1,3 @@
+{
+  return digest(MessageDigestAlgorithms.SHA_512,data.getBytes());
+}
