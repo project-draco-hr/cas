@@ -1,0 +1,7 @@
+{
+synchronized (lock) {
+    final String log=LOG_OUTPUT.toString();
+    LOG_OUTPUT=new StringBuilder();
+    return log;
+  }
+}
