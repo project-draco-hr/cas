@@ -1,7 +1,9 @@
 {
   String principalId=principal.getId();
-  final Map<String,Object> originalPrincipalAttributes=principal.getAttributes();
-  final Map<String,Object> attributes=getPrincipalAttributes(principal,service);
+  final Map<String,Object> originalPrincipalAttributes=new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+  originalPrincipalAttributes.putAll(principal.getAttributes());
+  final Map<String,Object> attributes=new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+  attributes.putAll(getPrincipalAttributes(principal,service));
   LOGGER.debug("Principal attributes available for selection of username attribute [{}] are [{}].",this.usernameAttribute,attributes);
   if (attributes.containsKey(this.usernameAttribute)) {
     principalId=attributes.get(this.usernameAttribute).toString();
