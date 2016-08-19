@@ -1,0 +1,9 @@
+{
+  final SamlRegisteredService service=SamlSPUtils.newSamlServiceProviderService(casProperties.getSamlSP().getOffice365());
+  if (service != null) {
+    service.setSignAssertions(true);
+    service.setSignResponses(false);
+    service.setEncryptAssertions(false);
+    SamlSPUtils.saveService(service,this.servicesManager);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  setNameIdAttribute("scopedImmutableID");
+  setAttributes(Lists.newArrayList("IDPEmail,ImmutableID"));
+}
