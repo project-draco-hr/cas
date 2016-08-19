@@ -1,5 +1,5 @@
 {
-synchronized (lock) {
+synchronized (LOCK) {
     final String log=LOG_OUTPUT.toString();
     LOG_OUTPUT=new StringBuilder();
     return log;

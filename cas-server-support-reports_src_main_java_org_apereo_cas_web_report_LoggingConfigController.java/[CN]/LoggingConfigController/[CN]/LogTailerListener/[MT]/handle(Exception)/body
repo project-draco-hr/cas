@@ -1,5 +1,5 @@
 {
-synchronized (lock) {
+synchronized (LOCK) {
     LOG_OUTPUT.append(ex).append("\n");
   }
 }
