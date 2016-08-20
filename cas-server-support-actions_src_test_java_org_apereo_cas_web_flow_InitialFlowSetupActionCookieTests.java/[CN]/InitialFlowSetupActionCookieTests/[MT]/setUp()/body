@@ -7,6 +7,7 @@
   this.action.setWarnCookieGenerator(this.warnCookieGenerator);
   final ArgumentExtractor[] argExtractors=new ArgumentExtractor[]{new DefaultArgumentExtractor(new WebApplicationServiceFactory())};
   this.action.setArgumentExtractors(Lists.newArrayList(argExtractors));
+  this.action.setCasProperties(casProperties);
   this.servicesManager=mock(ServicesManager.class);
   when(this.servicesManager.findServiceBy(any(Service.class))).thenReturn(TestUtils.getRegisteredService("test"));
   this.action.setServicesManager(this.servicesManager);
