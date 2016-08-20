@@ -9,6 +9,7 @@
     setMetadataMaxValidity(samlRegisteredService.getMetadataMaxValidity());
     setMetadataSignatureLocation(samlRegisteredService.getMetadataSignatureLocation());
     setEncryptAssertions(samlRegisteredService.isEncryptAssertions());
+    setRequiredNameIdFormat(samlRegisteredService.getRequiredNameIdFormat());
   }
  catch (  final Exception e) {
     throw Throwables.propagate(e);
