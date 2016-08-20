@@ -1,6 +1,5 @@
 {
   boolean needFrontSlo=false;
-  putLogoutIndex(context,0);
   final List<LogoutRequest> logoutRequests=WebUtils.getLogoutRequests(context);
   if (logoutRequests != null) {
     for (    final LogoutRequest logoutRequest : logoutRequests) {
@@ -15,7 +14,7 @@
     final Service webAppService=new WebApplicationServiceFactory().createService(service);
     final RegisteredService rService=this.servicesManager.findServiceBy(webAppService);
     if (rService != null && rService.getAccessStrategy().isServiceAccessAllowed()) {
-      context.getFlowScope().put("logoutRedirectUrl",service);
+      WebUtils.putLogoutRedirectUrl(context,service);
     }
   }
   if (needFrontSlo) {

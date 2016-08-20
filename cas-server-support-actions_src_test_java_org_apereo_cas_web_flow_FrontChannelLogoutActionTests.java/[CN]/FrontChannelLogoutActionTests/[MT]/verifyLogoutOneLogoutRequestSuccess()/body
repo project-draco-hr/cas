@@ -1,8 +1,0 @@
-{
-  final DefaultLogoutRequest logoutRequest=new DefaultLogoutRequest("",null,null);
-  logoutRequest.setStatus(LogoutRequestStatus.SUCCESS);
-  WebUtils.putLogoutRequests(this.requestContext,Collections.<LogoutRequest>emptyList());
-  this.requestContext.getFlowScope().put(FrontChannelLogoutAction.LOGOUT_INDEX,0);
-  final Event event=this.frontChannelLogoutAction.doExecute(this.requestContext);
-  assertEquals(FrontChannelLogoutAction.FINISH_EVENT,event.getId());
-}

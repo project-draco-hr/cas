@@ -1,5 +1,0 @@
-{
-  WebUtils.putLogoutRequests(this.requestContext,requests);
-  this.requestContext.getFlowScope().put(FrontChannelLogoutAction.LOGOUT_INDEX,0);
-  return this.frontChannelLogoutAction.doExecute(this.requestContext);
-}

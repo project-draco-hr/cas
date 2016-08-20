@@ -1,9 +1,0 @@
-{
-  final RegexRegisteredService svc=new RegexRegisteredService();
-  svc.setServiceId("https://www.github.com");
-  svc.setLogoutUrl(new URL("https://www.google.com"));
-  svc.setName("Service logout test");
-  svc.setLogoutType(LogoutType.FRONT_CHANNEL);
-  svc.setAccessStrategy(new DefaultRegisteredServiceAccessStrategy(true,true));
-  return svc;
-}
