@@ -1,4 +1,6 @@
 {
   config.enableSimpleBroker("/logs");
-  config.setApplicationDestinationPrefixes("/cas");
+  if (StringUtils.isNotBlank(serverProperties.getContextPath())) {
+    config.setApplicationDestinationPrefixes(serverProperties.getContextPath());
+  }
 }
