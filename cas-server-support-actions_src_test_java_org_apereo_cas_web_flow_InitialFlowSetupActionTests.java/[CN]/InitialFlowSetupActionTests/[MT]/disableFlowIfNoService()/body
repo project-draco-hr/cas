@@ -1,6 +1,0 @@
-{
-  final MockRequestContext context=new MockRequestContext();
-  final MockHttpServletRequest request=new MockHttpServletRequest();
-  context.setExternalContext(new ServletExternalContext(new MockServletContext(),request,new MockHttpServletResponse()));
-  this.action.execute(context);
-}
