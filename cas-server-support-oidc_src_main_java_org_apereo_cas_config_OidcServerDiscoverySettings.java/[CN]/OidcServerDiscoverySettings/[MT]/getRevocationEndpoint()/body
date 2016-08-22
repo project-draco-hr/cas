@@ -1,3 +1,0 @@
-{
-  return this.serverPrefix.concat('/' + OidcConstants.BASE_OIDC_URL + '/'+ OidcConstants.REVOCATION_URL);
-}

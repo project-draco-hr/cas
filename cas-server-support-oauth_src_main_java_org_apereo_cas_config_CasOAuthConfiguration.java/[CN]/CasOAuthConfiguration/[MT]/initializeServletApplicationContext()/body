@@ -8,6 +8,7 @@
     service.setDescription("OAuth Wrapper Callback Url");
     service.setServiceId(oAuthCallbackUrl);
     service.setEvaluationOrder(Integer.MIN_VALUE);
+    service.setAttributeReleasePolicy(new ReturnAllAttributeReleasePolicy());
     servicesManager.save(service);
     servicesManager.load();
   }
