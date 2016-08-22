@@ -10,8 +10,6 @@
   if (casProperties.getAuthn().getPm().isEnabled()) {
     configure(CAS_MUST_CHANGE_PASS_VIEW);
     configure(CAS_EXPIRED_PASS_VIEW);
-    final TransitionableState submit=flow.getTransitionableState(CasWebflowConstants.STATE_ID_VIEW_LOGIN_FORM);
-    submit.getTransitionSet().add(createTransition("forgotPassword",CAS_MUST_CHANGE_PASS_VIEW));
   }
  else {
     createViewState(flow,CAS_MUST_CHANGE_PASS_VIEW,CAS_MUST_CHANGE_PASS_VIEW);
