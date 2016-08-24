@@ -4,4 +4,5 @@
   createDefaultEndStates(flow);
   createDefaultDecisionStates(flow);
   createDefaultActionStates(flow);
+  createRememberMeAuthnWebflowConfig(flow);
 }
