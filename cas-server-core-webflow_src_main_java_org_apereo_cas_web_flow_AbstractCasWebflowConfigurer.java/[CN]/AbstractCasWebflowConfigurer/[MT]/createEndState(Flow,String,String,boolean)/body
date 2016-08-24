@@ -1,0 +1,8 @@
+{
+  if (!redirect) {
+    return createEndState(flow,id,viewId);
+  }
+  final Expression expression=createExpression(viewId,String.class);
+  final ActionExecutingViewFactory viewFactory=new ActionExecutingViewFactory(new ExternalRedirectAction(expression));
+  return createEndState(flow,id,viewFactory);
+}

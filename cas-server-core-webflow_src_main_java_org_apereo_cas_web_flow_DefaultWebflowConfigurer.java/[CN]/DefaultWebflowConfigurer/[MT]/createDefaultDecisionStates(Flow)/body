@@ -1,0 +1,9 @@
+{
+  createDecisionState(flow,"serviceUnauthorizedCheck","flowScope.unauthorizedRedirectUrl != null","viewRedirectToUnauthorizedUrlView","viewServiceErrorView");
+  createDecisionState(flow,"serviceCheck","flowScope.service != null","generateServiceTicket","viewGenericLoginSuccess");
+  createDecisionState(flow,"postRedirectDecision","requestScope.response.responseType.name() == 'POST'","postView","redirectView");
+  createDecisionState(flow,"warn","flowScope.warnCookieValue","showWarningView","redirect");
+  createDecisionState(flow,"gatewayRequestCheck","requestParameters.gateway != '' and requestParameters.gateway != null and flowScope.service != null","gatewayServicesManagementCheck","serviceAuthorizationCheck");
+  createDecisionState(flow,"hasServiceCheck","flowScope.service != null","renewRequestCheck","viewGenericLoginSuccess");
+  createDecisionState(flow,"renewRequestCheck","requestParameters.renew != '' and requestParameters.renew != null","serviceAuthorizationCheck","generateServiceTicket");
+}

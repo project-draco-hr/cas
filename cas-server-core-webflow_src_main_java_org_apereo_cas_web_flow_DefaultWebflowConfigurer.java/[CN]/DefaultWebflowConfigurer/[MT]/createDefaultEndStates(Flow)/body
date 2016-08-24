@@ -1,0 +1,9 @@
+{
+  createEndState(flow,"viewRedirectToUnauthorizedUrlView","flowScope.unauthorizedRedirectUrl",true);
+  createEndState(flow,"redirectView","requestScope.response.url",true);
+  createEndState(flow,"viewServiceErrorView","casServiceErrorView");
+  final EndState state=createEndState(flow,"viewGenericLoginSuccess","casGenericSuccessView");
+  state.getEntryActionList().add(createEvaluateAction("genericSuccessViewAction"));
+  final EndState stateWarning=createEndState(flow,"showWarningView","casConfirmView");
+  stateWarning.getEntryActionList().add(createEvaluateAction("serviceWarningAction"));
+}
