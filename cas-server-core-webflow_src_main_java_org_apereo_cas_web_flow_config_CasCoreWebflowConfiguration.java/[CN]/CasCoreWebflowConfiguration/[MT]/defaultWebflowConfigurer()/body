@@ -1,0 +1,6 @@
+{
+  final DefaultWebflowConfigurer c=new DefaultWebflowConfigurer();
+  c.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  c.setFlowBuilderServices(flowBuilderServices);
+  return c;
+}
