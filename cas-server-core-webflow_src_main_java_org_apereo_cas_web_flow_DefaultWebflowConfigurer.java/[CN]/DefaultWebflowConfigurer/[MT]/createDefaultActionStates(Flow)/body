@@ -1,0 +1,6 @@
+{
+  final ActionState terminateSession=createActionState(flow,"terminateSession",createEvaluateAction("terminateSessionAction"));
+  createStateDefaultTransition(terminateSession,"gatewayRequestCheck");
+  final ActionState serviceAuthorizationCheck=createActionState(flow,"serviceAuthorizationCheck",createEvaluateAction("serviceAuthorizationCheck"));
+  createStateDefaultTransition(serviceAuthorizationCheck,"initializeLoginForm");
+}

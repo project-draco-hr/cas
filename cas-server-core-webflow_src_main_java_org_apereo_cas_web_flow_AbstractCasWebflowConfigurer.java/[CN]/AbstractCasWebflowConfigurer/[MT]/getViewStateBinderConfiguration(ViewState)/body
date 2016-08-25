@@ -1,0 +1,5 @@
+{
+  final Field field=ReflectionUtils.findField(state.getViewFactory().getClass(),"binderConfiguration");
+  ReflectionUtils.makeAccessible(field);
+  return (BinderConfiguration)ReflectionUtils.getField(field,state.getViewFactory());
+}

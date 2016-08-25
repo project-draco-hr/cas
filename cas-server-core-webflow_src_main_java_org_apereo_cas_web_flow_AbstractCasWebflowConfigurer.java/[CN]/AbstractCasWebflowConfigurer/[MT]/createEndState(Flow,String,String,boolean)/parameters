@@ -1,0 +1,4 @@
+Flow flow
+String id
+String viewId
+boolean redirect

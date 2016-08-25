@@ -1,0 +1,11 @@
+{
+  if (casProperties.getTicket().getTgt().getRememberMe().isEnabled()) {
+    createFlowVariable(flow,"credential",RememberMeUsernamePasswordCredential.class);
+    final ViewState state=(ViewState)flow.getState(CasWebflowConstants.STATE_ID_VIEW_LOGIN_FORM);
+    final BinderConfiguration cfg=getViewStateBinderConfiguration(state);
+    cfg.addBinding(new BinderConfiguration.Binding("rememberMe",null,false));
+  }
+ else {
+    createFlowVariable(flow,"credential",UsernamePasswordCredential.class);
+  }
+}
