@@ -3,7 +3,7 @@
   final String contentType=request.getHeader(AJAX_REQUEST_HEADER_NAME);
   if (contentType != null && contentType.equals(AJAX_REQUEST_HEADER_VALUE)) {
     logger.debug("Handling exception {} for ajax request indicated by header {}",ex.getClass().getName(),AJAX_REQUEST_HEADER_NAME);
-    JsonViewUtils.renderException(ex,response);
+    JsonUtils.renderException(ex,response);
     return null;
   }
  else {

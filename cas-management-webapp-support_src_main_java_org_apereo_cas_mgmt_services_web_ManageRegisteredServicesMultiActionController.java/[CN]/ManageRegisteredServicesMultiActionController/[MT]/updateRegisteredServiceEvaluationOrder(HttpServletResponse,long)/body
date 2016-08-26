@@ -13,5 +13,5 @@
   }
   final Map<String,Object> model=new HashMap<>();
   model.put(STATUS,HttpServletResponse.SC_OK);
-  JsonViewUtils.render(model,response);
+  JsonUtils.render(model,response);
 }

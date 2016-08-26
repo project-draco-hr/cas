@@ -14,7 +14,7 @@
     }
     bean.setFormData(this.registeredServiceFactory.createFormData());
     bean.setStatus(HttpServletResponse.SC_OK);
-    JsonViewUtils.render(bean,response);
+    JsonUtils.render(bean,response);
   }
  catch (  final Exception e) {
     throw Throwables.propagate(e);
