@@ -5,7 +5,7 @@
   logger.debug("Generated Oauth access token: {}",accessToken);
   final URIBuilder builder=new URIBuilder(redirectUri);
   final StringBuilder stringBuilder=new StringBuilder();
-  stringBuilder.append(OAuthConstants.ACCESS_TOKEN).append('=').append(accessToken.getId()).append('&').append(OAuthConstants.TOKEN_TYPE).append('=').append(OAuthConstants.TOKEN_TYPE_BEARER).append('&').append(OAuthConstants.EXPIRES).append('=').append(casProperties.getTicket().getTgt().getTimeToKillInSeconds());
+  stringBuilder.append(OAuthConstants.ACCESS_TOKEN).append('=').append(accessToken.getId()).append('&').append(OAuthConstants.TOKEN_TYPE).append('=').append(OAuthConstants.TOKEN_TYPE_BEARER).append('&').append(OAuthConstants.EXPIRES_IN).append('=').append(casProperties.getTicket().getTgt().getTimeToKillInSeconds());
   if (StringUtils.isNotBlank(state)) {
     stringBuilder.append('&').append(OAuthConstants.STATE).append('=').append(EncodingUtils.urlEncode(state));
   }

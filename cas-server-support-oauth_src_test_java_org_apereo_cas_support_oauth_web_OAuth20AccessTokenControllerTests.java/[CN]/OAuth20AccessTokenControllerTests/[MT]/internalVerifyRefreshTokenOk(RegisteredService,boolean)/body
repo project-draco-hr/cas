@@ -16,14 +16,14 @@
     assertEquals("application/json",mockResponse.getContentType());
     assertTrue(body.contains('"' + OAuthConstants.ACCESS_TOKEN + "\":\"AT-"));
     assertFalse(body.contains('"' + OAuthConstants.REFRESH_TOKEN + "\":\"RT-"));
-    assertTrue(body.contains('"' + OAuthConstants.EXPIRES + "\":7"));
+    assertTrue(body.contains('"' + OAuthConstants.EXPIRES_IN + "\":7"));
     accessTokenId=StringUtils.substringBetween(body,OAuthConstants.ACCESS_TOKEN + "\":\"","\",\"");
   }
  else {
     assertEquals("text/plain",mockResponse.getContentType());
     assertTrue(body.contains(OAuthConstants.ACCESS_TOKEN + '='));
     assertFalse(body.contains(OAuthConstants.REFRESH_TOKEN + '='));
-    assertTrue(body.contains(OAuthConstants.EXPIRES + '='));
+    assertTrue(body.contains(OAuthConstants.EXPIRES_IN + '='));
     accessTokenId=StringUtils.substringBetween(body,OAuthConstants.ACCESS_TOKEN + '=',"&");
   }
   final AccessToken accessToken=oAuth20AccessTokenController.getTicketRegistry().getTicket(accessTokenId,AccessToken.class);

@@ -2,18 +2,18 @@
   final int timeLeft;
   if (json) {
     if (refreshToken) {
-      timeLeft=Integer.parseInt(StringUtils.substringBetween(body,OAuthConstants.EXPIRES + "\":",","));
+      timeLeft=Integer.parseInt(StringUtils.substringBetween(body,OAuthConstants.EXPIRES_IN + "\":",","));
     }
  else {
-      timeLeft=Integer.parseInt(StringUtils.substringBetween(body,OAuthConstants.EXPIRES + "\":","}"));
+      timeLeft=Integer.parseInt(StringUtils.substringBetween(body,OAuthConstants.EXPIRES_IN + "\":","}"));
     }
   }
  else {
     if (refreshToken) {
-      timeLeft=Integer.parseInt(StringUtils.substringBetween(body,'&' + OAuthConstants.EXPIRES + '=','&' + OAuthConstants.REFRESH_TOKEN));
+      timeLeft=Integer.parseInt(StringUtils.substringBetween(body,'&' + OAuthConstants.EXPIRES_IN + '=','&' + OAuthConstants.REFRESH_TOKEN));
     }
  else {
-      timeLeft=Integer.parseInt(StringUtils.substringAfter(body,'&' + OAuthConstants.EXPIRES + '='));
+      timeLeft=Integer.parseInt(StringUtils.substringAfter(body,'&' + OAuthConstants.EXPIRES_IN + '='));
     }
   }
   return timeLeft;
