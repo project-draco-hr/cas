@@ -1,15 +1,16 @@
 {
   final VelocityEngineFactoryBean bean=new VelocityEngineFactoryBean();
   final Properties properties=new Properties();
-  properties.put("runtime.log.logsystem.class",SLF4JLogChute.class.getName());
-  properties.put("input.encoding","UTF-8");
-  properties.put("output.encoding","UTF-8");
-  properties.put("resource.loader","file, classpath, string");
+  properties.put(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS,SLF4JLogChute.class.getName());
+  properties.put(RuntimeConstants.INPUT_ENCODING,"UTF-8");
+  properties.put(RuntimeConstants.OUTPUT_ENCODING,"UTF-8");
+  properties.put(RuntimeConstants.ENCODING_DEFAULT,"UTF-8");
+  properties.put(RuntimeConstants.RESOURCE_LOADER,"file, classpath, string");
+  properties.put(RuntimeConstants.FILE_RESOURCE_LOADER_PATH,FileUtils.getTempDirectory().getAbsolutePath());
+  properties.put(RuntimeConstants.FILE_RESOURCE_LOADER_CACHE,false);
   properties.put("classpath.resource.loader.class",ClasspathResourceLoader.class.getName());
   properties.put("string.resource.loader.class",StringResourceLoader.class.getName());
   properties.put("file.resource.loader.class",FileResourceLoader.class.getName());
-  properties.put("file.resource.loader.path",FileUtils.getTempDirectory().getAbsolutePath());
-  properties.put("file.resource.loader.cache",false);
   bean.setOverrideLogging(false);
   bean.setVelocityProperties(properties);
   return bean;
