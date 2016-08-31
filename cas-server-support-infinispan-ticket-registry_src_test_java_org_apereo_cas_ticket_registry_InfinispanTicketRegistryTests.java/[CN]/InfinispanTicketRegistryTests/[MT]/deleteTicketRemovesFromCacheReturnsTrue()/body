@@ -1,6 +1,6 @@
 {
   final Ticket ticket=getTicket();
   infinispanTicketRegistry.addTicket(ticket);
-  assertTrue(infinispanTicketRegistry.deleteTicket(ticket.getId()));
+  assertSame(1,infinispanTicketRegistry.deleteTicket(ticket.getId()));
   assertNull(infinispanTicketRegistry.getTicket(ticket.getId()));
 }

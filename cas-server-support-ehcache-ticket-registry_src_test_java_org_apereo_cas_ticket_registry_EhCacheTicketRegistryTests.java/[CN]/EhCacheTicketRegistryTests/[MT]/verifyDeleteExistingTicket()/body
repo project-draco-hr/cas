@@ -1,7 +1,7 @@
 {
   try {
     this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
-    assertTrue("Ticket was not deleted.",this.ticketRegistry.deleteTicket("TEST"));
+    assertSame(1,this.ticketRegistry.deleteTicket("TEST"));
   }
  catch (  final Exception e) {
     logger.error(e.getMessage(),e);

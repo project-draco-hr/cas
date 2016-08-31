@@ -1,0 +1,16 @@
+{
+  final Authentication a=TestUtils.getAuthentication();
+  this.infinispanTicketRegistry.addTicket(new TicketGrantingTicketImpl(TGT_NAME,a,new NeverExpiresExpirationPolicy()));
+  final TicketGrantingTicket tgt=this.infinispanTicketRegistry.getTicket(TGT_NAME,TicketGrantingTicket.class);
+  final Service service=org.apereo.cas.services.TestUtils.getService("TGT_DELETE_TEST");
+  final ServiceTicket st1=tgt.grantServiceTicket("ST1",service,new NeverExpiresExpirationPolicy(),a,true);
+  this.infinispanTicketRegistry.addTicket(st1);
+  assertNotNull(this.infinispanTicketRegistry.getTicket(TGT_NAME,TicketGrantingTicket.class));
+  assertNotNull(this.infinispanTicketRegistry.getTicket("ST1",ServiceTicket.class));
+  final ProxyGrantingTicket pgt=st1.grantProxyGrantingTicket("PGT-1",a,new NeverExpiresExpirationPolicy());
+  assertEquals(a,pgt.getAuthentication());
+  assertSame(3,this.infinispanTicketRegistry.deleteTicket(tgt.getId()));
+  assertNull(this.infinispanTicketRegistry.getTicket(TGT_NAME,TicketGrantingTicket.class));
+  assertNull(this.infinispanTicketRegistry.getTicket("ST1",ServiceTicket.class));
+  assertNull(this.infinispanTicketRegistry.getTicket("PGT-1",ProxyGrantingTicket.class));
+}

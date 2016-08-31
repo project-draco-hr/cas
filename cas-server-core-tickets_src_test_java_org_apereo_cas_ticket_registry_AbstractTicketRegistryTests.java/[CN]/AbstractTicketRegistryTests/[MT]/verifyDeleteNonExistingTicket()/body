@@ -1,7 +1,7 @@
 {
   try {
     this.ticketRegistry.addTicket(new TicketGrantingTicketImpl("TEST",TestUtils.getAuthentication(),new NeverExpiresExpirationPolicy()));
-    assertFalse("Ticket was deleted.",this.ticketRegistry.deleteTicket("TEST1"));
+    assertSame(0,this.ticketRegistry.deleteTicket("TEST1"));
   }
  catch (  final Exception e) {
     fail("Caught an exception. But no exception should have been thrown.");

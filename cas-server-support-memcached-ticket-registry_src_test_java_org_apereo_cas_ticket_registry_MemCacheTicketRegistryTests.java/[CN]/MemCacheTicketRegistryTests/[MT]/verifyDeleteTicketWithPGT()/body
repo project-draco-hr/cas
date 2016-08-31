@@ -1,0 +1,16 @@
+{
+  final Authentication a=TestUtils.getAuthentication();
+  this.registry.addTicket(new TicketGrantingTicketImpl("TGT",a,new NeverExpiresExpirationPolicy()));
+  final TicketGrantingTicket tgt=this.registry.getTicket("TGT",TicketGrantingTicket.class);
+  final Service service=TestUtils.getService("TGT_DELETE_TEST");
+  final ServiceTicket st1=tgt.grantServiceTicket("ST1",service,new NeverExpiresExpirationPolicy(),null,true);
+  this.registry.addTicket(st1);
+  assertNotNull(this.registry.getTicket("TGT",TicketGrantingTicket.class));
+  assertNotNull(this.registry.getTicket("ST1",ServiceTicket.class));
+  final ProxyGrantingTicket pgt=st1.grantProxyGrantingTicket("PGT-1",a,new NeverExpiresExpirationPolicy());
+  assertEquals(a,pgt.getAuthentication());
+  assertSame(3,this.registry.deleteTicket(tgt.getId()));
+  assertNull(this.registry.getTicket("TGT",TicketGrantingTicket.class));
+  assertNull(this.registry.getTicket("ST1",ServiceTicket.class));
+  assertNull(this.registry.getTicket("PGT-1",ProxyGrantingTicket.class));
+}

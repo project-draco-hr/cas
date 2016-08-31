@@ -1,4 +1,4 @@
 {
   final String ticketId="does_not_exist";
-  assertFalse(infinispanTicketRegistry.deleteTicket(ticketId));
+  assertSame(0,infinispanTicketRegistry.deleteTicket(ticketId));
 }

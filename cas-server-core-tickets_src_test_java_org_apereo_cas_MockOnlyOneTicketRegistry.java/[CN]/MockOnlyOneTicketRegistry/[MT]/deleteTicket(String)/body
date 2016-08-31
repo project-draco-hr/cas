@@ -1,4 +1,4 @@
 {
   this.ticket=null;
-  return false;
+  return 0;
 }
