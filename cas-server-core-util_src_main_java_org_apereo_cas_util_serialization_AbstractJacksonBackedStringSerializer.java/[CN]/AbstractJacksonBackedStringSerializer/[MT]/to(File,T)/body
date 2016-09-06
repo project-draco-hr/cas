@@ -5,10 +5,10 @@
       JsonValue.readHjson(writer.toString()).writeTo(new BufferedWriter(new FileWriter(out)));
     }
  else {
-      FileUtils.write(out,writer.toString(),"UTF-8");
+      FileUtils.write(out,writer.toString(),StandardCharsets.UTF_8);
     }
   }
  catch (  final Exception e) {
-    throw new IllegalArgumentException(e);
+    throw Throwables.propagate(e);
   }
 }

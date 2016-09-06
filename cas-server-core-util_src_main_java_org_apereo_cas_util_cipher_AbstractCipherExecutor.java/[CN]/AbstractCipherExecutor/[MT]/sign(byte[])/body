@@ -5,7 +5,7 @@
     jws.setPayload(base64);
     jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.HMAC_SHA512);
     jws.setKey(this.signingKey);
-    return jws.getCompactSerialization().getBytes();
+    return jws.getCompactSerialization().getBytes(StandardCharsets.UTF_8);
   }
  catch (  final Exception e) {
     throw Throwables.propagate(e);

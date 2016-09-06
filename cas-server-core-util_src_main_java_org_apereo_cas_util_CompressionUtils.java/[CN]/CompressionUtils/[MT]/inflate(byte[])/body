@@ -12,12 +12,9 @@
       throw new RuntimeException("buffer not large enough.");
     }
     inflater.end();
-    return new String(xmlMessageBytes,0,resultLength,"UTF-8");
+    return new String(xmlMessageBytes,0,resultLength,StandardCharsets.UTF_8);
   }
  catch (  final DataFormatException e) {
     return null;
-  }
-catch (  final UnsupportedEncodingException e) {
-    throw new RuntimeException("Cannot find encoding: UTF-8",e);
   }
 }

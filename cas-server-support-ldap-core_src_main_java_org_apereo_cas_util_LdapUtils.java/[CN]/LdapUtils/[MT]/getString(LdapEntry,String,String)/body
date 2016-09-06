@@ -6,7 +6,7 @@
   final String v;
   if (attr.isBinary()) {
     final byte[] b=attr.getBinaryValue();
-    v=new String(b,Charset.forName("UTF-8"));
+    v=new String(b,StandardCharsets.UTF_8);
   }
  else {
     v=attr.getStringValue();

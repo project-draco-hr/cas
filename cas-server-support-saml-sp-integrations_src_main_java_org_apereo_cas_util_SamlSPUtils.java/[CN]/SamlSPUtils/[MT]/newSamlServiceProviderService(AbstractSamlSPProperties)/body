@@ -8,7 +8,7 @@
     service.setName(sp.getName());
     service.setDescription(sp.getDescription());
     final Resource resource=ResourceUtils.prepareClasspathResourceIfNeeded(ResourceUtils.getResourceFrom(sp.getMetadata()));
-    final String content=IOUtils.toString(resource.getInputStream(),"UTF-8");
+    final String content=IOUtils.toString(resource.getInputStream(),StandardCharsets.UTF_8);
     final Matcher m=Pattern.compile("entityID=\"(\\w+)",Pattern.CASE_INSENSITIVE).matcher(content);
     if (m.find()) {
       service.setServiceId(m.group(1));

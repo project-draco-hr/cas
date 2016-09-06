@@ -1,6 +1,6 @@
 {
   final File metadataFile=this.metadataAndCertificatesGenerationService.performGenerationSteps();
-  final String contents=FileUtils.readFileToString(metadataFile,"UTF-8");
+  final String contents=FileUtils.readFileToString(metadataFile,StandardCharsets.UTF_8);
   response.setContentType(CONTENT_TYPE);
   response.setStatus(HttpServletResponse.SC_OK);
   final PrintWriter writer=response.getWriter();

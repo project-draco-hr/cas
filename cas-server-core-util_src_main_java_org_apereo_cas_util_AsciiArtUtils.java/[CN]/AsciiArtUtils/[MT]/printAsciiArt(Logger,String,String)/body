@@ -1,7 +1,7 @@
 {
   try {
     out.warn(ANSI_CYAN);
-    out.warn("\n\n" + FigletFont.convertOneLine(asciiArt) + additional);
+    out.warn("\n\n".concat(FigletFont.convertOneLine(asciiArt)).concat(additional));
     out.warn(ANSI_RESET);
   }
  catch (  final Exception e) {

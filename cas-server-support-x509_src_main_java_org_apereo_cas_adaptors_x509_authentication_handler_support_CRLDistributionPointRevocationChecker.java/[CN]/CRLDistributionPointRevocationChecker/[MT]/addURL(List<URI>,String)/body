@@ -2,7 +2,7 @@
   try {
     URI uri;
     try {
-      final URL url=new URL(URLDecoder.decode(uriString,"UTF-8"));
+      final URL url=new URL(URLDecoder.decode(uriString,StandardCharsets.UTF_8.name()));
       uri=new URI(url.getProtocol(),url.getAuthority(),url.getPath(),url.getQuery(),null);
     }
  catch (    final MalformedURLException e) {

@@ -1,6 +1,6 @@
 {
   try {
-    final BufferedReader br=new BufferedReader(new InputStreamReader(config.getEncryptionPrivateKey().getInputStream()));
+    final BufferedReader br=new BufferedReader(new InputStreamReader(config.getEncryptionPrivateKey().getInputStream(),StandardCharsets.UTF_8));
     Security.addProvider(new BouncyCastleProvider());
     final PEMParser pemParser=new PEMParser(br);
     final Object privateKeyPemObject=pemParser.readObject();

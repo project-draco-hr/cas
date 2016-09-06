@@ -1,5 +1,5 @@
 {
   final String encoded=encryptValue(value);
-  final String signed=new String(sign(encoded.getBytes()));
+  final String signed=new String(sign(encoded.getBytes(StandardCharsets.UTF_8)),StandardCharsets.UTF_8);
   return signed;
 }

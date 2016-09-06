@@ -21,7 +21,7 @@
      final int responseCode=con.getResponseCode();
     LOGGER.debug("Response Code: {}",responseCode);
     if (responseCode == HttpStatus.OK.value()) {
-      try (BufferedReader in=new BufferedReader(new InputStreamReader(con.getInputStream()))){
+      try (BufferedReader in=new BufferedReader(new InputStreamReader(con.getInputStream(),StandardCharsets.UTF_8))){
         String inputLine;
         final StringBuilder response=new StringBuilder();
         while ((inputLine=in.readLine()) != null) {

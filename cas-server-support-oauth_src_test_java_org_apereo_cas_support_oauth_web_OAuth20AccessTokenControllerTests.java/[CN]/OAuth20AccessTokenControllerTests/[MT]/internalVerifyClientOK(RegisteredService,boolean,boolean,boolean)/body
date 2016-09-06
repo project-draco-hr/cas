@@ -6,7 +6,7 @@
   mockRequest.setParameter(OAuthConstants.GRANT_TYPE,OAuthGrantType.AUTHORIZATION_CODE.name().toLowerCase());
   if (basicAuth) {
     final String auth=CLIENT_ID + ':' + CLIENT_SECRET;
-    final String value=Base64.encodeBase64String(auth.getBytes("UTF-8"));
+    final String value=Base64.encodeBase64String(auth.getBytes(StandardCharsets.UTF_8));
     mockRequest.addHeader(HttpConstants.AUTHORIZATION_HEADER,HttpConstants.BASIC_HEADER_PREFIX + value);
   }
  else {

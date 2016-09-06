@@ -1,7 +1,7 @@
 {
-  final byte[] encoded=verifySignature(value.getBytes());
+  final byte[] encoded=verifySignature(value.getBytes(StandardCharsets.UTF_8));
   if (encoded != null && encoded.length > 0) {
-    return decryptValue(new String(encoded));
+    return decryptValue(new String(encoded,StandardCharsets.UTF_8));
   }
   return null;
 }

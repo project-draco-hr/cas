@@ -1,6 +1,6 @@
 {
   try {
-    final String jsonString=isJsonFormat() ? JsonValue.readHjson(FileUtils.readFileToString(json,"UTF-8")).toString() : FileUtils.readFileToString(json,"UTF-8");
+    final String jsonString=isJsonFormat() ? JsonValue.readHjson(FileUtils.readFileToString(json,StandardCharsets.UTF_8)).toString() : FileUtils.readFileToString(json,StandardCharsets.UTF_8);
     return this.objectMapper.readValue(jsonString,getTypeToSerialize());
   }
  catch (  final Exception e) {

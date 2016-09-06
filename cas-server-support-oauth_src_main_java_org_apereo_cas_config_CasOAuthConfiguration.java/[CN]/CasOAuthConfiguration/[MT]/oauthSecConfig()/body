@@ -7,9 +7,10 @@
 ;
   oauthCasClient.setName(CAS_OAUTH_CLIENT);
   oauthCasClient.setCallbackUrlResolver(buildOAuthCasCallbackUrlResolver());
-  final DirectBasicAuthClient basicAuthClient=new DirectBasicAuthClient(oAuthClientAuthenticator());
+  final Authenticator authenticator=oAuthClientAuthenticator();
+  final DirectBasicAuthClient basicAuthClient=new DirectBasicAuthClient(authenticator);
   basicAuthClient.setName("clientBasicAuth");
-  final DirectFormClient directFormClient=new DirectFormClient(oAuthClientAuthenticator());
+  final DirectFormClient directFormClient=new DirectFormClient(authenticator);
   directFormClient.setName("clientForm");
   directFormClient.setUsernameParameter(OAuthConstants.CLIENT_ID);
   directFormClient.setPasswordParameter(OAuthConstants.CLIENT_SECRET);

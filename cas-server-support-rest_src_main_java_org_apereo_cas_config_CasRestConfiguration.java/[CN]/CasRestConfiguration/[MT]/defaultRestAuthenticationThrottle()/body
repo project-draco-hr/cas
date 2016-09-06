@@ -4,7 +4,7 @@
     return this.applicationContext.getBean(throttler,HandlerInterceptor.class);
   }
   return new HandlerInterceptorAdapter(){
-    @Override public boolean preHandle(    final HttpServletRequest request,    final HttpServletResponse response,    final Object handler) throws Exception {
+    @Override public boolean preHandle(    final HttpServletRequest request,    final HttpServletResponse response,    final Object handler){
       return true;
     }
   }

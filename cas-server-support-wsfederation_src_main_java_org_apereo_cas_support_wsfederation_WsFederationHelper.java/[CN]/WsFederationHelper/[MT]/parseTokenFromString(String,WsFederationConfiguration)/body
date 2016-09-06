@@ -1,6 +1,6 @@
 {
   LOGGER.debug("Result token received from ADFS is {}",wresult);
-  try (InputStream in=new ByteArrayInputStream(wresult.getBytes("UTF-8"))){
+  try (InputStream in=new ByteArrayInputStream(wresult.getBytes(StandardCharsets.UTF_8))){
     final Document document=configBean.getParserPool().parse(in);
     final Element metadataRoot=document.getDocumentElement();
     final UnmarshallerFactory unmarshallerFactory=configBean.getUnmarshallerFactory();
@@ -22,11 +22,9 @@
     }
     Assertion assertion=null;
     XMLObject securityToken=reqToken.getSecurityTokens().get(0);
-    if (securityToken != null) {
-      if (securityToken instanceof EncryptedData) {
-        final EncryptedData encryptedData=EncryptedData.class.cast(securityToken);
-        securityToken=buildAssertionDecrypter(config).decryptData(encryptedData);
-      }
+    if (securityToken instanceof EncryptedData) {
+      final EncryptedData encryptedData=EncryptedData.class.cast(securityToken);
+      securityToken=buildAssertionDecrypter(config).decryptData(encryptedData);
     }
     if (securityToken instanceof Assertion) {
       assertion=Assertion.class.cast(securityToken);

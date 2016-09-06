@@ -1,6 +1,6 @@
 {
   try {
-    final String asString=new String(value);
+    final String asString=new String(value,StandardCharsets.UTF_8);
     final JsonWebSignature jws=new JsonWebSignature();
     jws.setCompactSerialization(asString);
     jws.setKey(this.signingKey);

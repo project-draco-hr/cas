@@ -2,7 +2,7 @@
   try (StringWriter writer=SamlUtils.transformSamlObject(this.configBean,authnRequest)){
     final URLBuilder builder=new URLBuilder(this.callbackService.getId());
     builder.getQueryParams().add(new net.shibboleth.utilities.java.support.collection.Pair<>(SamlProtocolConstants.PARAMETER_ENTITY_ID,SamlIdPUtils.getIssuerFromSamlRequest(authnRequest)));
-    final String samlRequest=EncodingUtils.encodeBase64(writer.toString().getBytes("UTF-8"));
+    final String samlRequest=EncodingUtils.encodeBase64(writer.toString().getBytes(StandardCharsets.UTF_8));
     builder.getQueryParams().add(new net.shibboleth.utilities.java.support.collection.Pair<>(SamlProtocolConstants.PARAMETER_SAML_REQUEST,samlRequest));
     final String url=builder.buildURL();
     logger.debug("Built service callback url [{}]",url);

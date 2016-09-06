@@ -2,7 +2,7 @@
   try {
     final Cipher cipher=initializeCipherBasedOnServicePublicKey(publicKey,registeredService);
     if (cipher != null) {
-      return cipher.doFinal(data.getBytes(UTF8_ENCODING));
+      return cipher.doFinal(data.getBytes(StandardCharsets.UTF_8));
     }
   }
  catch (  final Exception e) {

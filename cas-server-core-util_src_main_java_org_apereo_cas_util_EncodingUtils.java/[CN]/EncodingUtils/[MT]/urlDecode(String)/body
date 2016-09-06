@@ -1,6 +1,6 @@
 {
   try {
-    return URLDecoder.decode(value,"UTF-8");
+    return URLDecoder.decode(value,StandardCharsets.UTF_8.name());
   }
  catch (  final UnsupportedEncodingException e) {
     throw Throwables.propagate(e);

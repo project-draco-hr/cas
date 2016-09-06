@@ -19,7 +19,7 @@
     }
   }
  catch (  final Exception e) {
-    LOGGER.error("Update failed",e.getMessage());
+    LOGGER.error(e.getMessage(),e);
   }
   return false;
 }

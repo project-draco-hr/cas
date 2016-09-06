@@ -6,7 +6,7 @@
     }
   }
  catch (  final Exception ex) {
-    throw new RuntimeException(ex.getMessage(),ex);
+    throw Throwables.propagate(ex);
   }
   return null;
 }
