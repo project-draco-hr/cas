@@ -1,4 +1,4 @@
 {
-  final AuthnRequest authnRequest=retrieveAuthnRequest(request,decoder);
+  final Pair<? extends SignableSAMLObject,MessageContext> authnRequest=retrieveAuthnRequest(request,decoder);
   initiateAuthenticationRequest(authnRequest,response,request);
 }

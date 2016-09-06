@@ -5,15 +5,16 @@
     decoder.setParserPool(this.parserPool);
     decoder.initialize();
     decoder.decode();
-    final SignableSAMLObject object=(SignableSAMLObject)decoder.getMessageContext().getMessage();
+    final MessageContext messageContext=decoder.getMessageContext();
+    final SignableSAMLObject object=(SignableSAMLObject)messageContext.getMessage();
     if (object == null) {
-      return null;
+      throw new SAMLException("No " + clazz.getName() + " could be found in this request context. Decoder has failed.");
     }
     if (!clazz.isAssignableFrom(object.getClass())) {
       throw new ClassCastException("SAML object [" + object.getClass().getName() + " type does not match "+ clazz);
     }
     logger.debug("Decoded SAML object [{}] from http request",object.getElementQName());
-    return (T)object;
+    return new Pair<>(object,messageContext);
   }
  catch (  final Exception e) {
     throw Throwables.propagate(e);

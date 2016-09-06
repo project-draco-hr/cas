@@ -1,0 +1,18 @@
+{
+  try {
+    final MetadataCredentialResolver kekCredentialResolver=new MetadataCredentialResolver();
+    final SignatureValidationConfiguration config=getSignatureValidationConfiguration();
+    kekCredentialResolver.setRoleDescriptorResolver(resolver);
+    kekCredentialResolver.setKeyInfoCredentialResolver(DefaultSecurityConfigurationBootstrap.buildBasicInlineKeyInfoCredentialResolver());
+    kekCredentialResolver.initialize();
+    final CriteriaSet criteriaSet=new CriteriaSet();
+    criteriaSet.add(new SignatureValidationConfigurationCriterion(config));
+    criteriaSet.add(new EntityIdCriterion(SamlIdPUtils.getIssuerFromSamlRequest(profileRequest)));
+    criteriaSet.add(new EntityRoleCriterion(SPSSODescriptor.DEFAULT_ELEMENT_NAME));
+    criteriaSet.add(new UsageCriterion(UsageType.SIGNING));
+    return kekCredentialResolver.resolveSingle(criteriaSet);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

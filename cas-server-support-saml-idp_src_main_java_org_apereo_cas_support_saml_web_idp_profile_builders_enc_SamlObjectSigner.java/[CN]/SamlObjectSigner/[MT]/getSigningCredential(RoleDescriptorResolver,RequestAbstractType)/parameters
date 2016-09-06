@@ -1,2 +1,2 @@
+RoleDescriptorResolver resolver
 RequestAbstractType profileRequest
-MetadataResolver metadataResolver

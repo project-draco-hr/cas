@@ -1,8 +1,10 @@
 {
+  final AuthnRequest authnRequest=AuthnRequest.class.cast(pair.getFirst());
   final String issuer=SamlIdPUtils.getIssuerFromSamlRequest(authnRequest);
   final SamlRegisteredService registeredService=verifySamlRegisteredService(issuer);
   final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=SamlRegisteredServiceServiceProviderMetadataFacade.get(this.samlRegisteredServiceCachingMetadataResolver,registeredService,authnRequest);
-  if (!authnRequest.isSigned()) {
+  final MessageContext ctx=pair.getSecond();
+  if (!SAMLBindingSupport.isMessageSigned(ctx)) {
     if (adaptor.isAuthnRequestsSigned()) {
       logger.error("Metadata for [{}] says authentication requests are signed, yet this authentication request is not",adaptor.getEntityId());
       throw new SAMLException("AuthN request is not signed but should be");
@@ -10,7 +12,7 @@
     logger.info("Authentication request is not signed, so there is no need to verify its signature.");
   }
  else {
-    this.samlObjectSigner.verifySamlProfileRequestIfNeeded(authnRequest,adaptor.getMetadataResolver());
+    this.samlObjectSigner.verifySamlProfileRequestIfNeeded(authnRequest,adaptor.getMetadataResolver(),request,ctx);
   }
   SamlUtils.logSamlObject(this.configBean,authnRequest);
   issueAuthenticationRequestRedirect(authnRequest,request,response);

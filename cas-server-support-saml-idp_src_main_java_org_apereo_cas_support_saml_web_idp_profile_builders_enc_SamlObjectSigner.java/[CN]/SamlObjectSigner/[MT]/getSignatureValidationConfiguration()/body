@@ -1,0 +1,14 @@
+{
+  final BasicSignatureValidationConfiguration config=DefaultSecurityConfigurationBootstrap.buildDefaultSignatureValidationConfiguration();
+  if (this.overrideBlackListedSignatureAlgorithms != null && !casProperties.getAuthn().getSamlIdp().getResponse().getOverrideSignatureCanonicalizationAlgorithm().isEmpty()) {
+    config.setBlacklistedAlgorithms(this.overrideBlackListedSignatureAlgorithms);
+    config.setWhitelistMerge(true);
+  }
+  if (this.overrideWhiteListedAlgorithms != null && !this.overrideWhiteListedAlgorithms.isEmpty()) {
+    config.setWhitelistedAlgorithms(this.overrideWhiteListedAlgorithms);
+    config.setBlacklistMerge(true);
+  }
+  logger.debug("Signature validation blacklisted algorithms: [{}]",config.getBlacklistedAlgorithms());
+  logger.debug("Signature validation whitelisted algorithms: {}",config.getWhitelistedAlgorithms());
+  return config;
+}

@@ -1,12 +1,12 @@
 {
-  final String providerId=CommonUtils.safeGetParameter(request,"providerId");
+  final String providerId=CommonUtils.safeGetParameter(request,SamlIdPConstants.PROVIDER_ID);
   if (StringUtils.isBlank(providerId)) {
     logger.warn("No providerId parameter given in unsolicited SSO authentication request.");
     throw new MessageDecodingException("No providerId parameter given in unsolicited SSO authentication request.");
   }
   final SamlRegisteredService registeredService=verifySamlRegisteredService(providerId);
   final SamlRegisteredServiceServiceProviderMetadataFacade adaptor=getSamlMetadataFacadeFor(registeredService,providerId);
-  String shire=CommonUtils.safeGetParameter(request,"shire");
+  String shire=CommonUtils.safeGetParameter(request,SamlIdPConstants.SHIRE);
   if (StringUtils.isBlank(shire)) {
     shire=adaptor.getAssertionConsumerService().getLocation();
   }
@@ -14,8 +14,8 @@
     logger.warn("Unable to resolve SP ACS URL for AuthnRequest construction for entityID: {}",providerId);
     throw new MessageDecodingException("Unable to resolve SP ACS URL for AuthnRequest construction");
   }
-  final String target=CommonUtils.safeGetParameter(request,"target");
-  final String time=CommonUtils.safeGetParameter(request,"time");
+  final String target=CommonUtils.safeGetParameter(request,SamlIdPConstants.TARGET);
+  final String time=CommonUtils.safeGetParameter(request,SamlIdPConstants.TIME);
   final SAMLObjectBuilder builder=(SAMLObjectBuilder)configBean.getBuilderFactory().getBuilder(AuthnRequest.DEFAULT_ELEMENT_NAME);
   final AuthnRequest authnRequest=(AuthnRequest)builder.buildObject();
   authnRequest.setAssertionConsumerServiceURL(shire);
@@ -41,5 +41,9 @@
   if (StringUtils.isNotBlank(target)) {
     request.setAttribute(SamlProtocolConstants.PARAMETER_SAML_RELAY_STATE,target);
   }
-  initiateAuthenticationRequest(authnRequest,response,request);
+  final MessageContext ctx=new MessageContext();
+  ctx.setAutoCreateSubcontexts(true);
+  ctx.getSubcontext(SAMLBindingContext.class,true).setHasBindingSignature(false);
+  final Pair<SignableSAMLObject,MessageContext> pair=new Pair<>(authnRequest,ctx);
+  initiateAuthenticationRequest(pair,response,request);
 }

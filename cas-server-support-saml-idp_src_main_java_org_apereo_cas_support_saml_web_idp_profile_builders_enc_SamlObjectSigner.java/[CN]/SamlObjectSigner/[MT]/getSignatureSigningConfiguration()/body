@@ -1,7 +1,7 @@
 {
   final BasicSignatureSigningConfiguration config=DefaultSecurityConfigurationBootstrap.buildDefaultSignatureSigningConfiguration();
-  if (this.overrideBlackListedSignatureSigningAlgorithms != null && !casProperties.getAuthn().getSamlIdp().getResponse().getOverrideSignatureCanonicalizationAlgorithm().isEmpty()) {
-    config.setBlacklistedAlgorithms(this.overrideBlackListedSignatureSigningAlgorithms);
+  if (this.overrideBlackListedSignatureAlgorithms != null && !casProperties.getAuthn().getSamlIdp().getResponse().getOverrideSignatureCanonicalizationAlgorithm().isEmpty()) {
+    config.setBlacklistedAlgorithms(this.overrideBlackListedSignatureAlgorithms);
   }
   if (this.overrideSignatureAlgorithms != null && !this.overrideSignatureAlgorithms.isEmpty()) {
     config.setSignatureAlgorithms(this.overrideSignatureAlgorithms);

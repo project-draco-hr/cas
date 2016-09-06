@@ -1,0 +1,4 @@
+RequestAbstractType profileRequest
+MetadataResolver metadataResolver
+HttpServletRequest request
+MessageContext context
