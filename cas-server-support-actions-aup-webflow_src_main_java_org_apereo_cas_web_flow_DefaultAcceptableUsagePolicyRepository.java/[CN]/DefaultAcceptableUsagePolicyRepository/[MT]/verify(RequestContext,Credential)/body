@@ -1,9 +1,7 @@
 {
   final String key=credential.getId();
-synchronized (this.policyMap) {
-    if (this.policyMap.containsKey(key)) {
-      return this.policyMap.get(key);
-    }
+  if (this.policyMap.containsKey(key)) {
+    return this.policyMap.get(key);
   }
   return false;
 }

@@ -1,6 +1,4 @@
 {
-synchronized (this.policyMap) {
-    this.policyMap.put(credential.getId(),Boolean.TRUE);
-    return this.policyMap.containsKey(credential.getId());
-  }
+  this.policyMap.put(credential.getId(),Boolean.TRUE);
+  return this.policyMap.containsKey(credential.getId());
 }

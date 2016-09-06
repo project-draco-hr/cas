@@ -7,7 +7,7 @@
   final Optional<String> requestedContext=this.multifactorTriggerSelectionStrategy.resolve(providers.values(),request,service,authentication.getPrincipal());
   if (!requestedContext.isPresent()) {
     logger.debug("No particular authentication context is required for this request");
-    return new Pair<>(true,Optional.empty());
+    return new Pair<>(Boolean.TRUE,Optional.empty());
   }
   final Pair<Boolean,Optional<MultifactorAuthenticationProvider>> result=this.authenticationContextValidator.validate(authentication,requestedContext.get(),service);
   return result;
