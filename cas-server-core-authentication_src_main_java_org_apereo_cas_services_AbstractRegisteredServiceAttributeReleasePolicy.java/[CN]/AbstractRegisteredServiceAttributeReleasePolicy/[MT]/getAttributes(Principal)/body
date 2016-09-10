@@ -1,8 +1,23 @@
 {
+  LOGGER.debug("Locating principal attributes for {}",p.getId());
   final Map<String,Object> principalAttributes=this.principalAttributesRepository == null ? p.getAttributes() : this.principalAttributesRepository.getAttributes(p);
-  final Map<String,Object> attributesToRelease=getAttributesInternal(principalAttributes);
+  LOGGER.debug("Found principal attributes {} for {}",principalAttributes,p.getId());
+  LOGGER.debug("Calling attribute policy {} to process attributes for {}",getClass().getSimpleName(),p.getId());
+  final Map<String,Object> policyAttributes=getAttributesInternal(principalAttributes);
+  LOGGER.debug("Attribute policy {} allows release of {} for {}",getClass().getSimpleName(),policyAttributes,p.getId());
+  LOGGER.debug("Checking default attribute policy attributes");
+  final Map<String,Object> defaultAttributes=getReleasedByDefaultAttributes(p,principalAttributes);
+  LOGGER.debug("Default attributes found to be released are {}",defaultAttributes);
+  LOGGER.debug("Attempting to merge policy attributes and default attributes");
+  final Map<String,Object> attributesToRelease=newTreeMap(String.CASE_INSENSITIVE_ORDER);
+  LOGGER.debug("Adding default attributes first to the released set of attributes");
+  attributesToRelease.putAll(defaultAttributes);
+  LOGGER.debug("Adding policy attributes to the released set of attributes");
+  attributesToRelease.putAll(policyAttributes);
   if (this.registeredServiceAttributeFilter != null) {
+    LOGGER.debug("Invoking attribute filter on the final set of attributes");
     return this.registeredServiceAttributeFilter.filter(attributesToRelease);
   }
+  LOGGER.debug("Final collection of attributes allowed are: {}",attributesToRelease);
   return attributesToRelease;
 }
