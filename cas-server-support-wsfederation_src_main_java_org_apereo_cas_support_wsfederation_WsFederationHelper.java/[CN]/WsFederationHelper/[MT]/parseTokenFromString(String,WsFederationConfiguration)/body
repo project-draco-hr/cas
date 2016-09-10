@@ -1,6 +1,7 @@
 {
   LOGGER.debug("Result token received from ADFS is {}",wresult);
   try (InputStream in=new ByteArrayInputStream(wresult.getBytes(StandardCharsets.UTF_8))){
+    LOGGER.debug("Parsing token into a document");
     final Document document=configBean.getParserPool().parse(in);
     final Element metadataRoot=document.getDocumentElement();
     final UnmarshallerFactory unmarshallerFactory=configBean.getUnmarshallerFactory();
@@ -8,31 +9,44 @@
     if (unmarshaller == null) {
       throw new IllegalArgumentException("Unmarshaller for the metadata root element cannot be determined");
     }
+    LOGGER.debug("Unmarshalling the document into a security token response");
     final RequestSecurityTokenResponse rsToken=(RequestSecurityTokenResponse)unmarshaller.unmarshall(metadataRoot);
     if (rsToken == null || rsToken.getRequestedSecurityToken() == null) {
       throw new IllegalArgumentException("Request security token response is null");
     }
+    LOGGER.debug("Locating list of requested security tokens");
     final List<RequestedSecurityToken> rst=rsToken.getRequestedSecurityToken();
     if (rst.isEmpty()) {
       throw new IllegalArgumentException("No requested security token response is provided in the response");
     }
+    LOGGER.debug("Locating the first occurrence of a requested security token in the list");
     final RequestedSecurityToken reqToken=rst.get(0);
     if (reqToken.getSecurityTokens() == null || reqToken.getSecurityTokens().isEmpty()) {
       throw new IllegalArgumentException("Requested security token response is not carrying any security tokens");
     }
     Assertion assertion=null;
+    LOGGER.debug("Locating the first occurrence of a security token from the requested security token");
     XMLObject securityToken=reqToken.getSecurityTokens().get(0);
     if (securityToken instanceof EncryptedData) {
-      final EncryptedData encryptedData=EncryptedData.class.cast(securityToken);
-      securityToken=buildAssertionDecrypter(config).decryptData(encryptedData);
+      try {
+        LOGGER.debug("Security token is encrypted. Attempting to decrypt to extract the assertion");
+        final EncryptedData encryptedData=EncryptedData.class.cast(securityToken);
+        final Decrypter decrypter=buildAssertionDecrypter(config);
+        LOGGER.debug("Built an instance of {} to decrypt. Attempting to decrypt data next");
+        securityToken=decrypter.decryptData(encryptedData);
+      }
+ catch (      final Exception e) {
+        throw new IllegalArgumentException("Unable to decrypt security token",e);
+      }
     }
     if (securityToken instanceof Assertion) {
+      LOGGER.debug("Security token is an assertion.");
       assertion=Assertion.class.cast(securityToken);
     }
     if (assertion == null) {
-      throw new IllegalArgumentException("Assertion is null");
+      throw new IllegalArgumentException("Could not extract or decrypt an assertion based on the security token provided");
     }
-    LOGGER.debug("Assertion: {}",assertion);
+    LOGGER.debug("Extracted assertion successfully: {}",assertion);
     return assertion;
   }
  catch (  final Exception ex) {

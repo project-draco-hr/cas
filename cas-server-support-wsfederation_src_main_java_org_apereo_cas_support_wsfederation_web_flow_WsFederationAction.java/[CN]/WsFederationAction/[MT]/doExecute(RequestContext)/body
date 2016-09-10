@@ -4,40 +4,49 @@
     final HttpSession session=request.getSession();
     final String wa=request.getParameter(WA);
     if (StringUtils.isNotBlank(wa) && wa.equalsIgnoreCase(WSIGNIN)) {
-      final String wresult=request.getParameter(WRESULT);
-      LOGGER.debug("Parameter [{}] received: {}",WRESULT,wresult);
-      if (StringUtils.isBlank(wresult)) {
+      final String wResult=request.getParameter(WRESULT);
+      LOGGER.debug("Parameter [{}] received: {}",WRESULT,wResult);
+      if (StringUtils.isBlank(wResult)) {
         LOGGER.error("No {} parameter is found",WRESULT);
         return error();
       }
-      final Assertion assertion=this.wsFederationHelper.parseTokenFromString(wresult,configuration);
+      LOGGER.debug("Attempting to create an assertion from the token parameter");
+      final Assertion assertion=this.wsFederationHelper.parseTokenFromString(wResult,configuration);
       if (assertion == null) {
         LOGGER.error("Could not validate assertion via parsing the token from {}",WRESULT);
         return error();
       }
+      LOGGER.debug("Attempting to validate the signature on the assertion");
       if (!this.wsFederationHelper.validateSignature(assertion,this.configuration)) {
         LOGGER.error("WS Requested Security Token is blank or the signature is not valid.");
         return error();
       }
       try {
         final Service service=(Service)session.getAttribute(SERVICE);
+        LOGGER.debug("Creating credential based on the provided assertion");
         final WsFederationCredential credential=this.wsFederationHelper.createCredentialFromToken(assertion);
-        if (credential != null && credential.isValid(getRelyingPartyIdentifier(service),this.configuration.getIdentityProviderIdentifier(),this.configuration.getTolerance())) {
+        final String rpId=getRelyingPartyIdentifier(service);
+        if (credential != null && credential.isValid(rpId,this.configuration.getIdentityProviderIdentifier(),this.configuration.getTolerance())) {
+          LOGGER.debug("Validated assertion for the created credential successfully");
           if (this.configuration.getAttributeMutator() != null) {
+            LOGGER.debug("Modifying credential attributes based on {}",this.configuration.getAttributeMutator().getClass().getSimpleName());
             this.configuration.getAttributeMutator().modifyAttributes(credential.getAttributes());
           }
         }
  else {
-          logger.warn("SAML assertions are blank or no longer valid.");
+          LOGGER.warn("SAML assertions are blank or no longer valid based on RP identifier {} and IdP identifier {}",rpId,this.configuration.getIdentityProviderIdentifier());
           final String authorizationUrl=String.format("%s%s%s",this.configuration.getIdentityProviderUrl(),QUERYSTRING,getRelyingPartyIdentifier(service));
           context.getFlowScope().put(PROVIDERURL,authorizationUrl);
+          LOGGER.warn("Created authentication url {} and returning error",authorizationUrl);
           return error();
         }
         context.getFlowScope().put(SERVICE,service);
         restoreRequestAttribute(request,session,THEME);
         restoreRequestAttribute(request,session,LOCALE);
         restoreRequestAttribute(request,session,METHOD);
+        LOGGER.debug("Creating final authentication result based on the given credential");
         final AuthenticationResult authenticationResult=this.authenticationSystemSupport.handleAndFinalizeSingleAuthenticationTransaction(service,credential);
+        LOGGER.debug("Attempting to create a ticket-granting ticket for the authentication result");
         WebUtils.putTicketGrantingTicketInScopes(context,this.centralAuthenticationService.createTicketGrantingTicket(authenticationResult));
         LOGGER.info("Token validated and new {} created: {}",credential.getClass().getName(),credential);
         return success();
@@ -60,7 +69,7 @@
       LOGGER.info("Preparing to redirect to the IdP {}",authorizationUrl);
       context.getFlowScope().put(PROVIDERURL,authorizationUrl);
     }
-    LOGGER.debug("Redirecting to the IdP");
+    LOGGER.debug("Returning error event");
     return error();
   }
  catch (  final Exception ex) {
