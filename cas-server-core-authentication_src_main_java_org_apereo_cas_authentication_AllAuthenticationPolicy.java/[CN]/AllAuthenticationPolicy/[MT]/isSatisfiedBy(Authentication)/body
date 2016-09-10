@@ -1,3 +1,8 @@
 {
-  return authn.getSuccesses().size() == authn.getCredentials().size();
+  if (authn.getSuccesses().size() != authn.getCredentials().size()) {
+    LOGGER.warn("Number of successful authentications, {}, does match the number of provided credentials, {}.",authn.getSuccesses(),authn.getCredentials());
+    return false;
+  }
+  LOGGER.debug("Authentication policy is satisfied.");
+  return true;
 }

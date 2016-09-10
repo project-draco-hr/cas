@@ -1,7 +1,2 @@
 {
-  boolean credsOk=true;
-  if (this.tryAll) {
-    credsOk=authn.getCredentials().size() == authn.getSuccesses().size() + authn.getFailures().size();
-  }
-  return credsOk && StringUtils.isNotBlank(this.requiredHandlerName) && authn.getSuccesses().containsKey(this.requiredHandlerName);
 }
