@@ -6,6 +6,7 @@
     formatter.format("Java Home: %s%n",properties.get("java.home"));
     formatter.format("Java Vendor: %s%n",properties.get("java.vendor"));
     formatter.format("Java Version: %s%n",properties.get("java.version"));
+    formatter.format("JCE Installed: %s%n",BooleanUtils.toStringYesNo(isJceInstallation()));
     formatter.format("OS Architecture: %s%n",properties.get("os.arch"));
     formatter.format("OS Name: %s%n",properties.get("os.name"));
     formatter.format("OS Version: %s%n",properties.get("os.version"));
