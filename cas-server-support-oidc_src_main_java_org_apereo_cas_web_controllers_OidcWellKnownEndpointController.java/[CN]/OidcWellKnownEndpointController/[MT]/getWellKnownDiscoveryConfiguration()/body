@@ -6,7 +6,6 @@
   discoveryProperties.setSubjectTypesSupported(ImmutableList.of("public","pairwise"));
   discoveryProperties.setClaimTypesSupported(ImmutableList.of("normal"));
   discoveryProperties.setGrantTypesSupported(ImmutableList.of("authorization_code","password","implicit"));
-  final String idTokenSigningAlgValues=casProperties.getAuthn().getOidc().getIdTokenSigningAlgs();
-  discoveryProperties.setIdTokenSigningAlgValuesSupported(Lists.newArrayList(idTokenSigningAlgValues.split(",")));
+  discoveryProperties.setIdTokenSigningAlgValuesSupported(ImmutableList.of("none","RS256"));
   return new ResponseEntity(discoveryProperties,HttpStatus.OK);
 }
