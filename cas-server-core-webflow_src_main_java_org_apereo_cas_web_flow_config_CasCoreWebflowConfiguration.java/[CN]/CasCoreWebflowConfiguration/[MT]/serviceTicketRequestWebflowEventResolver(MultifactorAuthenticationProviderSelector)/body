@@ -1,5 +1,5 @@
 {
   final ServiceTicketRequestWebflowEventResolver r=new ServiceTicketRequestWebflowEventResolver();
-  configureResolver(r);
+  configureResolver(r,selector);
   return r;
 }

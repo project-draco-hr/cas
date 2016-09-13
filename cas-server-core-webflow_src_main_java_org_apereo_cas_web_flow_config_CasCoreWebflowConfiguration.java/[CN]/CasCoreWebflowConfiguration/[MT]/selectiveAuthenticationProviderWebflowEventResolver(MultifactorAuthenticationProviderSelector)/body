@@ -1,5 +1,5 @@
 {
   final SelectiveAuthenticationProviderWebflowEventResolver r=new SelectiveAuthenticationProviderWebflowEventResolver();
-  configureResolver(r);
+  configureResolver(r,selector);
   return r;
 }

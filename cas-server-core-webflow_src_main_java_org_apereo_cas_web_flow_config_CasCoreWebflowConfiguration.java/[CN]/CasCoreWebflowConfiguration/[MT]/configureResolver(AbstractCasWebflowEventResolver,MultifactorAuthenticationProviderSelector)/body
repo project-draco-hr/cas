@@ -1,7 +1,7 @@
 {
   r.setAuthenticationSystemSupport(authenticationSystemSupport);
   r.setCentralAuthenticationService(centralAuthenticationService);
-  r.setMultifactorAuthenticationProviderSelector(multifactorAuthenticationProviderSelector);
+  r.setMultifactorAuthenticationProviderSelector(selector);
   r.setServicesManager(servicesManager);
   r.setTicketRegistrySupport(ticketRegistrySupport);
   r.setWarnCookieGenerator(warnCookieGenerator);

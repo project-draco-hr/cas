@@ -1,5 +1,5 @@
 {
   final RequestParameterAuthenticationPolicyWebflowEventResolver r=new RequestParameterAuthenticationPolicyWebflowEventResolver();
-  configureResolver(r);
+  configureResolver(r,selector);
   return r;
 }

@@ -1,0 +1,11 @@
+{
+  final InitialAuthenticationAttemptWebflowEventResolver r=new InitialAuthenticationAttemptWebflowEventResolver();
+  r.addDelegate(adaptiveAuthenticationPolicyWebflowEventResolver(selector));
+  r.addDelegate(requestParameterAuthenticationPolicyWebflowEventResolver(selector));
+  r.addDelegate(registeredServicePrincipalAttributeAuthenticationPolicyWebflowEventResolver(selector));
+  r.addDelegate(principalAttributeAuthenticationPolicyWebflowEventResolver(selector));
+  r.addDelegate(registeredServiceAuthenticationPolicyWebflowEventResolver(selector));
+  r.setSelectiveResolver(selectiveAuthenticationProviderWebflowEventResolver(selector));
+  configureResolver(r,selector);
+  return r;
+}

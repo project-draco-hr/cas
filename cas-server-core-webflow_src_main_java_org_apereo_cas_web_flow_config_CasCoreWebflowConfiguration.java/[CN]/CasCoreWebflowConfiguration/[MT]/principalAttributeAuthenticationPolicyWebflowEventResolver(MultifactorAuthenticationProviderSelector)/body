@@ -1,5 +1,5 @@
 {
   final PrincipalAttributeAuthenticationPolicyWebflowEventResolver r=new PrincipalAttributeAuthenticationPolicyWebflowEventResolver();
-  configureResolver(r);
+  configureResolver(r,selector);
   return r;
 }

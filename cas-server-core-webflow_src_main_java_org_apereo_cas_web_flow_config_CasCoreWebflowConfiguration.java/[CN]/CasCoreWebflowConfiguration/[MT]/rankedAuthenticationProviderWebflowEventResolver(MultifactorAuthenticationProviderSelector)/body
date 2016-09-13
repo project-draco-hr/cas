@@ -1,7 +1,7 @@
 {
   final RankedAuthenticationProviderWebflowEventResolver r=new RankedAuthenticationProviderWebflowEventResolver();
   r.setAuthenticationContextValidator(authenticationContextValidator);
-  r.setInitialAuthenticationAttemptWebflowEventResolver(initialAuthenticationAttemptWebflowEventResolver());
-  configureResolver(r);
+  r.setInitialAuthenticationAttemptWebflowEventResolver(initialAuthenticationAttemptWebflowEventResolver(selector));
+  configureResolver(r,selector);
   return r;
 }
