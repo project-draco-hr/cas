@@ -1,7 +1,7 @@
 {
   final TransitionExecutingFlowExecutionExceptionHandler h=new TransitionExecutingFlowExecutionExceptionHandler();
   h.add(UnauthorizedSsoServiceException.class,CasWebflowConstants.STATE_ID_VIEW_LOGIN_FORM);
-  h.add(NoSuchFlowExecutionException.class,"viewServiceErrorView");
-  h.add(UnauthorizedServiceException.class,"serviceUnauthorizedCheck");
+  h.add(NoSuchFlowExecutionException.class,CasWebflowConstants.STATE_ID_VIEW_SERVICE_ERROR);
+  h.add(UnauthorizedServiceException.class,CasWebflowConstants.STATE_ID_SERVICE_UNAUTHZ_CHECK);
   flow.getExceptionHandlerSet().add(h);
 }

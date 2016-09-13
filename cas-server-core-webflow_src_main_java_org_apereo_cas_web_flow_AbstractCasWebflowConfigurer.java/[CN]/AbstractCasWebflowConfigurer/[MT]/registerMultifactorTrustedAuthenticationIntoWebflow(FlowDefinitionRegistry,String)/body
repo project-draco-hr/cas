@@ -1,0 +1,12 @@
+{
+  final Flow flow=(Flow)registry.getFlowDefinition(flowId);
+  final ActionState state=(ActionState)flow.getState(CasWebflowConstants.STATE_ID_INIT_LOGIN_FORM);
+  final Transition transition=(Transition)state.getTransition(CasWebflowConstants.TRANSITION_ID_SUCCESS);
+  final String targetStateId=transition.getTargetStateId();
+  transition.setTargetStateResolver(new DefaultTargetStateResolver("verifyTrusted"));
+  final ActionState verifyAction=createActionState(flow,"verifyTrusted",createEvaluateAction("mfaVerifyTrustAction"));
+  createTransitionForState(verifyAction,CasWebflowConstants.TRANSITION_ID_YES,CasWebflowConstants.STATE_ID_SUCCESS);
+  createTransitionForState(verifyAction,CasWebflowConstants.TRANSITION_ID_NO,targetStateId);
+  final EndState endState=(EndState)flow.getState(CasWebflowConstants.STATE_ID_SUCCESS);
+  endState.getEntryActionList().add(createEvaluateAction("mfaSetTrustAction"));
+}

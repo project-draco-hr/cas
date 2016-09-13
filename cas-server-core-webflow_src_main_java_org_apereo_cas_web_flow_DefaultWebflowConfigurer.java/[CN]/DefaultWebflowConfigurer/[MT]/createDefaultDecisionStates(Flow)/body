@@ -1,9 +1,9 @@
 {
-  createDecisionState(flow,"serviceUnauthorizedCheck","flowScope.unauthorizedRedirectUrl != null","viewRedirectToUnauthorizedUrlView","viewServiceErrorView");
-  createDecisionState(flow,"serviceCheck","flowScope.service != null","generateServiceTicket","viewGenericLoginSuccess");
-  createDecisionState(flow,"postRedirectDecision","requestScope.response.responseType.name() == 'POST'","postView","redirectView");
-  createDecisionState(flow,"warn","flowScope.warnCookieValue","showWarningView","redirect");
-  createDecisionState(flow,"gatewayRequestCheck","requestParameters.gateway != '' and requestParameters.gateway != null and flowScope.service != null","gatewayServicesManagementCheck","serviceAuthorizationCheck");
-  createDecisionState(flow,"hasServiceCheck","flowScope.service != null","renewRequestCheck","viewGenericLoginSuccess");
-  createDecisionState(flow,"renewRequestCheck","requestParameters.renew != '' and requestParameters.renew != null","serviceAuthorizationCheck","generateServiceTicket");
+  createDecisionState(flow,CasWebflowConstants.STATE_ID_SERVICE_UNAUTHZ_CHECK,"flowScope.unauthorizedRedirectUrl != null",CasWebflowConstants.STATE_ID_VIEW_REDIR_UNAUTHZ_URL,CasWebflowConstants.STATE_ID_VIEW_SERVICE_ERROR);
+  createDecisionState(flow,CasWebflowConstants.STATE_ID_SERVICE_CHECK,"flowScope.service != null",CasWebflowConstants.STATE_ID_GENERATE_SERVICE_TICKET,CasWebflowConstants.STATE_ID_VIEW_GENERIC_LOGIN_SUCCESS);
+  createDecisionState(flow,CasWebflowConstants.STATE_ID_POST_REDIR_DECISION,"requestScope.response.responseType.name() == '" + HttpMethod.POST.name() + "'",CasWebflowConstants.STATE_ID_POST_VIEW,CasWebflowConstants.STATE_ID_REDIR_VIEW);
+  createDecisionState(flow,CasWebflowConstants.STATE_ID_WARN,"flowScope.warnCookieValue",CasWebflowConstants.STATE_ID_SHOW_WARNING_VIEW,CasWebflowConstants.STATE_ID_REDIR);
+  createDecisionState(flow,CasWebflowConstants.STATE_ID_GATEWAY_REQUEST_CHECK,"requestParameters.gateway != '' and requestParameters.gateway != null and flowScope.service != null",CasWebflowConstants.STATE_ID_GATEWAY_SERVICES_MGMT_CHECK,CasWebflowConstants.STATE_ID_SERVICE_AUTHZ_CHECK);
+  createDecisionState(flow,CasWebflowConstants.STATE_ID_HAS_SERVICE_CHECK,"flowScope.service != null",CasWebflowConstants.STATE_ID_RENEW_REQUEST_CHECK,CasWebflowConstants.STATE_ID_VIEW_GENERIC_LOGIN_SUCCESS);
+  createDecisionState(flow,CasWebflowConstants.STATE_ID_RENEW_REQUEST_CHECK,"requestParameters.renew != '' and requestParameters.renew != null",CasWebflowConstants.STATE_ID_SERVICE_AUTHZ_CHECK,CasWebflowConstants.STATE_ID_GENERATE_SERVICE_TICKET);
 }

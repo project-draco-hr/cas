@@ -1,6 +1,6 @@
 {
-  final ActionState terminateSession=createActionState(flow,"terminateSession",createEvaluateAction("terminateSessionAction"));
-  createStateDefaultTransition(terminateSession,"gatewayRequestCheck");
-  final ActionState serviceAuthorizationCheck=createActionState(flow,"serviceAuthorizationCheck",createEvaluateAction("serviceAuthorizationCheck"));
-  createStateDefaultTransition(serviceAuthorizationCheck,"initializeLoginForm");
+  final ActionState terminateSession=createActionState(flow,CasWebflowConstants.STATE_ID_TERMINATE_SESSION,createEvaluateAction("terminateSessionAction"));
+  createStateDefaultTransition(terminateSession,CasWebflowConstants.STATE_ID_GATEWAY_REQUEST_CHECK);
+  final ActionState serviceAuthorizationCheck=createActionState(flow,CasWebflowConstants.STATE_ID_SERVICE_AUTHZ_CHECK,createEvaluateAction("serviceAuthorizationCheck"));
+  createStateDefaultTransition(serviceAuthorizationCheck,CasWebflowConstants.STATE_ID_INIT_LOGIN_FORM);
 }

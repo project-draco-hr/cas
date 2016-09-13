@@ -1,9 +1,9 @@
 {
-  createEndState(flow,"viewRedirectToUnauthorizedUrlView","flowScope.unauthorizedRedirectUrl",true);
-  createEndState(flow,"redirectView","requestScope.response.url",true);
-  createEndState(flow,"viewServiceErrorView","casServiceErrorView");
-  final EndState state=createEndState(flow,"viewGenericLoginSuccess","casGenericSuccessView");
+  createEndState(flow,CasWebflowConstants.STATE_ID_VIEW_REDIR_UNAUTHZ_URL,"flowScope.unauthorizedRedirectUrl",true);
+  createEndState(flow,CasWebflowConstants.STATE_ID_REDIR_VIEW,"requestScope.response.url",true);
+  createEndState(flow,CasWebflowConstants.STATE_ID_VIEW_SERVICE_ERROR,CasWebflowConstants.VIEW_ID_SERVICE_ERROR);
+  final EndState state=createEndState(flow,CasWebflowConstants.STATE_ID_VIEW_GENERIC_LOGIN_SUCCESS,CasWebflowConstants.VIEW_ID_GENERIC_SUCCESS);
   state.getEntryActionList().add(createEvaluateAction("genericSuccessViewAction"));
-  final EndState stateWarning=createEndState(flow,"showWarningView","casConfirmView");
+  final EndState stateWarning=createEndState(flow,CasWebflowConstants.STATE_ID_SHOW_WARNING_VIEW,CasWebflowConstants.VIEW_ID_CONFIRM);
   stateWarning.getEntryActionList().add(createEvaluateAction("serviceWarningAction"));
 }

@@ -1,0 +1,3 @@
+{
+  registerMultifactorTrustedAuthenticationIntoWebflow(duoFlowRegistry,DuoMultifactorWebflowConfigurer.MFA_DUO_EVENT_ID);
+}
