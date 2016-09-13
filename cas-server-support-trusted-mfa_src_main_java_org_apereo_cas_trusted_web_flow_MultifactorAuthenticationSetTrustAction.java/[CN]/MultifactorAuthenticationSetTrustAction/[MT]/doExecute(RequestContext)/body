@@ -1,3 +1,13 @@
 {
-  return null;
+  final Authentication c=WebUtils.getAuthentication(requestContext);
+  if (c == null) {
+    LOGGER.error("Could not determine authentication from the request context");
+    return error();
+  }
+  final String principal=c.getPrincipal().getId();
+  LOGGER.debug("Attempt to store trusted authentication record for {}",principal);
+  final MultifactorAuthenticationTrustRecord record=MultifactorAuthenticationTrustRecord.newInstance(principal,MultifactorAuthenticationTrustUtils.generateGeography());
+  storage.set(record);
+  LOGGER.debug("Saved trusted authentication record for {}",principal);
+  return success();
 }

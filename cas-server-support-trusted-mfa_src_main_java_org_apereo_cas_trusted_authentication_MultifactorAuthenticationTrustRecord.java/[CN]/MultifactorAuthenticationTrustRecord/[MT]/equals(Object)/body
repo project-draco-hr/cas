@@ -8,6 +8,6 @@
   if (obj.getClass() != getClass()) {
     return false;
   }
-  final AuthenticationTrustRecord rhs=(AuthenticationTrustRecord)obj;
+  final MultifactorAuthenticationTrustRecord rhs=(MultifactorAuthenticationTrustRecord)obj;
   return new EqualsBuilder().append(this.principal,rhs.principal).append(this.geography,rhs.geography).append(this.date,rhs.date).append(this.key,rhs.key).isEquals();
 }

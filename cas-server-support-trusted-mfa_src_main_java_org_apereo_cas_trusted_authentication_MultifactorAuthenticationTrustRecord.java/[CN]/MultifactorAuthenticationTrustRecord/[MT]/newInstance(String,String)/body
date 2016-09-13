@@ -1,5 +1,5 @@
 {
-  final AuthenticationTrustRecord r=new AuthenticationTrustRecord();
+  final MultifactorAuthenticationTrustRecord r=new MultifactorAuthenticationTrustRecord();
   r.setDate(LocalDate.now());
   r.setPrincipal(principal);
   r.setGeography(geography);

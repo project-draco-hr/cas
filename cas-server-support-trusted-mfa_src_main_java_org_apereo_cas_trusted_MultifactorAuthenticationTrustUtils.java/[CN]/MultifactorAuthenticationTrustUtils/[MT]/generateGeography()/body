@@ -1,0 +1,5 @@
+{
+  final ClientInfo clientInfo=ClientInfoHolder.getClientInfo();
+  final String geography=clientInfo.getClientIpAddress().concat("@").concat(WebUtils.getHttpServletRequestUserAgent());
+  return geography;
+}
