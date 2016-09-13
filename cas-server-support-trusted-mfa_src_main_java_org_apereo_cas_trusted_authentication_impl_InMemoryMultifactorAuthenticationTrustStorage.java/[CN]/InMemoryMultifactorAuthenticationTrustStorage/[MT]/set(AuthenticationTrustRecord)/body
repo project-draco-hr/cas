@@ -1,0 +1,4 @@
+{
+  final String key=cipherExecutor.encode(UUID.randomUUID().toString());
+  storage.put(key,record);
+}

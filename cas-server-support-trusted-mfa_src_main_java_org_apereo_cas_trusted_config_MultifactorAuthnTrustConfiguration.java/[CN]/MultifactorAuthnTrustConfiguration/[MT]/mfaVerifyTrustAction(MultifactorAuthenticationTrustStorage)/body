@@ -1,0 +1,6 @@
+{
+  final MultifactorAuthenticationVerifyTrustAction a=new MultifactorAuthenticationVerifyTrustAction();
+  a.setStorage(storage);
+  a.setNumberOfDays(casProperties.getAuthn().getMfa().getTrusted().getValidNumberOfDays());
+  return a;
+}

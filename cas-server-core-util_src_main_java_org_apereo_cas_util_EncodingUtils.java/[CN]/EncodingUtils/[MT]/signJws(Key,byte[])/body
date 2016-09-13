@@ -1,0 +1,13 @@
+{
+  try {
+    final String base64=EncodingUtils.encodeBase64(value);
+    final JsonWebSignature jws=new JsonWebSignature();
+    jws.setPayload(base64);
+    jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.HMAC_SHA512);
+    jws.setKey(key);
+    return jws.getCompactSerialization().getBytes(StandardCharsets.UTF_8);
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}

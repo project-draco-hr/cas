@@ -1,0 +1,13 @@
+{
+  if (obj == null) {
+    return false;
+  }
+  if (obj == this) {
+    return true;
+  }
+  if (obj.getClass() != getClass()) {
+    return false;
+  }
+  final AuthenticationTrustRecord rhs=(AuthenticationTrustRecord)obj;
+  return new EqualsBuilder().append(this.principal,rhs.principal).append(this.geography,rhs.geography).append(this.date,rhs.date).append(this.key,rhs.key).isEquals();
+}

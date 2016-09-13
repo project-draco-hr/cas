@@ -1,0 +1,3 @@
+{
+  return new HashCodeBuilder().append(principal).append(geography).append(date).append(key).toHashCode();
+}

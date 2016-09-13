@@ -1,0 +1,7 @@
+{
+  final AuthenticationTrustRecord r=new AuthenticationTrustRecord();
+  r.setDate(LocalDate.now());
+  r.setPrincipal(principal);
+  r.setGeography(geography);
+  return r;
+}

@@ -1,0 +1,5 @@
+{
+  final MultifactorAuthenticationSetTrustAction a=new MultifactorAuthenticationSetTrustAction();
+  a.setStorage(storage);
+  return a;
+}

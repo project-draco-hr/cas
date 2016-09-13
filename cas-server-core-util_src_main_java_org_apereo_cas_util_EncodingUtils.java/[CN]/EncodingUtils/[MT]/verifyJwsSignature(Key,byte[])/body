@@ -1,0 +1,18 @@
+{
+  try {
+    final String asString=new String(value,StandardCharsets.UTF_8);
+    final JsonWebSignature jws=new JsonWebSignature();
+    jws.setCompactSerialization(asString);
+    jws.setKey(signingKey);
+    final boolean verified=jws.verifySignature();
+    if (verified) {
+      final String payload=jws.getPayload();
+      LOGGER.debug("Successfully decoded value. Result in Base64-encoding is [{}]",payload);
+      return EncodingUtils.decodeBase64(payload);
+    }
+    return null;
+  }
+ catch (  final Exception e) {
+    throw Throwables.propagate(e);
+  }
+}
