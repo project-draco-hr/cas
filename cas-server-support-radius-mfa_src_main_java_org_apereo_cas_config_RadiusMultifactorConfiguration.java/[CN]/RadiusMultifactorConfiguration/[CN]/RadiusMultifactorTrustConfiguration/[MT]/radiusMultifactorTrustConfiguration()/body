@@ -1,0 +1,7 @@
+{
+  final RadiusMultifactorTrustWebflowConfigurer r=new RadiusMultifactorTrustWebflowConfigurer();
+  r.setFlowDefinitionRegistry(radiusFlowRegistry());
+  r.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
+  r.setFlowBuilderServices(flowBuilderServices);
+  return r;
+}
