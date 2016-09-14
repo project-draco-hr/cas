@@ -1,0 +1,4 @@
+{
+  this.storage=st;
+  LOGGER.debug("Created cache to track trusted authentication records for {} days",this.numberOfDays);
+}

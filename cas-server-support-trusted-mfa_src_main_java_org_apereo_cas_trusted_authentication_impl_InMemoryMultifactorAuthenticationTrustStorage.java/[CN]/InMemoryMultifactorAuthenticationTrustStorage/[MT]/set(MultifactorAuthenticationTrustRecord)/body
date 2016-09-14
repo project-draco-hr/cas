@@ -1,4 +1,5 @@
 {
-  final String key=cipherExecutor.encode(UUID.randomUUID().toString());
-  storage.put(key,record);
+  LOGGER.debug("Stored authentication trust record for {}",record);
+  record.setKey(generateKey(record));
+  this.storage.put(record.getKey(),record);
 }

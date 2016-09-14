@@ -1,5 +1,6 @@
 {
   final MultifactorAuthenticationSetTrustAction a=new MultifactorAuthenticationSetTrustAction();
   a.setStorage(storage);
+  a.setMfaTrustedAuthnAttributeName(casProperties.getAuthn().getMfa().getTrusted().getAuthenticationContextAttribute());
   return a;
 }

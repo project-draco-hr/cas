@@ -1,0 +1,3 @@
+{
+  return cipherExecutor.encode(MultifactorAuthenticationTrustUtils.generateKey(r));
+}

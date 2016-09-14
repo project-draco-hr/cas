@@ -5,9 +5,17 @@
     return error();
   }
   final String principal=c.getPrincipal().getId();
-  LOGGER.debug("Attempt to store trusted authentication record for {}",principal);
-  final MultifactorAuthenticationTrustRecord record=MultifactorAuthenticationTrustRecord.newInstance(principal,MultifactorAuthenticationTrustUtils.generateGeography());
-  storage.set(record);
-  LOGGER.debug("Saved trusted authentication record for {}",principal);
+  if (!requestContext.getFlashScope().contains(MultifactorAuthenticationVerifyTrustAction.MFA_TRUSTED_AUTHN_SCOPE_ATTR)) {
+    LOGGER.debug("Attempt to store trusted authentication record for {}",principal);
+    final MultifactorAuthenticationTrustRecord record=MultifactorAuthenticationTrustRecord.newInstance(principal,MultifactorAuthenticationTrustUtils.generateGeography());
+    storage.set(record);
+    LOGGER.debug("Saved trusted authentication record for {}",principal);
+  }
+  LOGGER.debug("Trusted authentication session exists for {}",principal);
+  if (StringUtils.isNotBlank(mfaTrustedAuthnAttributeName) && !c.getAttributes().containsKey(mfaTrustedAuthnAttributeName)) {
+    final Authentication newAuthn=DefaultAuthenticationBuilder.newInstance(c).addAttribute(this.mfaTrustedAuthnAttributeName,Boolean.TRUE).build();
+    LOGGER.debug("Updated authentication session to remember trusted MFA record via {}",this.mfaTrustedAuthnAttributeName);
+    c.update(newAuthn);
+  }
   return success();
 }
