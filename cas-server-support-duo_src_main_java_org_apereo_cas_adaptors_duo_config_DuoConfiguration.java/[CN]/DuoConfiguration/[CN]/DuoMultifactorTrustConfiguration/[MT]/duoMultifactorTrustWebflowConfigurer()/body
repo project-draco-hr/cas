@@ -1,6 +1,6 @@
 {
   final DuoMultifactorTrustWebflowConfigurer r=new DuoMultifactorTrustWebflowConfigurer();
-  r.setDuoFlowRegistry(duoFlowRegistry());
+  r.setFlowDefinitionRegistry(duoFlowRegistry());
   r.setLoginFlowDefinitionRegistry(loginFlowDefinitionRegistry);
   r.setFlowBuilderServices(flowBuilderServices);
   return r;

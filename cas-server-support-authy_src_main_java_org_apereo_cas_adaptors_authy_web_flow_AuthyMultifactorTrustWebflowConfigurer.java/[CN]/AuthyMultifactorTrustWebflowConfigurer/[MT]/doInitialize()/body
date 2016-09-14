@@ -1,0 +1,3 @@
+{
+  registerMultifactorTrustedAuthenticationIntoWebflow(flowDefinitionRegistry,AuthyMultifactorWebflowConfigurer.MFA_AUTHY_EVENT_ID);
+}
