@@ -1,4 +1,9 @@
 {
   putTicketGrantingTicketIntoMap(context.getRequestScope(),ticketValue);
   putTicketGrantingTicketIntoMap(context.getFlowScope(),ticketValue);
+  FlowSession session=context.getFlowExecutionContext().getActiveSession().getParent();
+  while (session != null) {
+    putTicketGrantingTicketIntoMap(session.getScope(),ticketValue);
+    session=session.getParent();
+  }
 }

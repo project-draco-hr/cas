@@ -3,5 +3,6 @@
   r.setDate(LocalDate.now());
   r.setPrincipal(principal);
   r.setGeography(geography);
+  r.setName(principal.concat("-").concat(LocalDate.now().toString()).concat("-").concat(geography));
   return r;
 }

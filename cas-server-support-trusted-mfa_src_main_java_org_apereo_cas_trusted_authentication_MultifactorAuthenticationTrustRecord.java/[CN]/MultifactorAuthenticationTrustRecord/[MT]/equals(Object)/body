@@ -9,5 +9,5 @@
     return false;
   }
   final MultifactorAuthenticationTrustRecord rhs=(MultifactorAuthenticationTrustRecord)obj;
-  return new EqualsBuilder().append(this.principal,rhs.principal).append(this.geography,rhs.geography).append(this.date,rhs.date).append(this.key,rhs.key).isEquals();
+  return new EqualsBuilder().append(this.principal,rhs.principal).append(this.geography,rhs.geography).append(this.date,rhs.date).append(this.key,rhs.key).append(this.name,rhs.name).isEquals();
 }
