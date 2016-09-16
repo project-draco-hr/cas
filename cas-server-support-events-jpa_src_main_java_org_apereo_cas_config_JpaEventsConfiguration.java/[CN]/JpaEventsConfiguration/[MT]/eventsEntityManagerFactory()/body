@@ -1,5 +1,5 @@
 {
-  final LocalContainerEntityManagerFactoryBean bean=Beans.newEntityManagerFactoryBean(new JpaConfigDataHolder(jpaEventVendorAdapter(),"jpaEventRegistryContext",jpaEventPackagesToScan(),dataSourceEvent()),casProperties.getEvents().getJpa().getDatabase());
+  final LocalContainerEntityManagerFactoryBean bean=Beans.newEntityManagerFactoryBean(new JpaConfigDataHolder(jpaEventVendorAdapter(),"jpaEventRegistryContext",jpaEventPackagesToScan(),dataSourceEvent()),casProperties.getEvents().getJpa());
   bean.getJpaPropertyMap().put("hibernate.enable_lazy_load_no_trans",Boolean.TRUE);
   return bean;
 }

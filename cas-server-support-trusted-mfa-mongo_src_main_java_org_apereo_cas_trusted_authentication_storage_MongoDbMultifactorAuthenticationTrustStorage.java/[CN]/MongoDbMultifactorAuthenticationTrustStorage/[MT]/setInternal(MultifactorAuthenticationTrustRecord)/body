@@ -1,0 +1,4 @@
+{
+  this.mongoTemplate.save(record,this.collectionName);
+  return record;
+}

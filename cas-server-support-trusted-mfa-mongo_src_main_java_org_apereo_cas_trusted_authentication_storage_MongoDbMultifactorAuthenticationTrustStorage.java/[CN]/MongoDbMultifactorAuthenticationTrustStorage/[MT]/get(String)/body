@@ -1,0 +1,6 @@
+{
+  final Query query=new Query();
+  query.addCriteria(Criteria.where("principal").is(principal));
+  final List<MultifactorAuthenticationTrustRecord> results=this.mongoTemplate.find(query,MultifactorAuthenticationTrustRecord.class,this.collectionName);
+  return Sets.newHashSet(results);
+}

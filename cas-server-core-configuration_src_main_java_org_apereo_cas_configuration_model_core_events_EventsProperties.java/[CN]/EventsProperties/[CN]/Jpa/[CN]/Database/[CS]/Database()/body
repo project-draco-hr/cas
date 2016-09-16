@@ -1,3 +1,0 @@
-{
-  super.setUrl("jdbc:hsqldb:mem:cas-events");
-}

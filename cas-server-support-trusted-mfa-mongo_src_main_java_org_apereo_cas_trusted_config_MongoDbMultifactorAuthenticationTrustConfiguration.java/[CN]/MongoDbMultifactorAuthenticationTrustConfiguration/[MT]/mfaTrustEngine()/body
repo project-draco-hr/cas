@@ -1,0 +1,5 @@
+{
+  final MongoDbMultifactorAuthenticationTrustStorage m=new MongoDbMultifactorAuthenticationTrustStorage(casProperties.getAuthn().getMfa().getTrusted().getMongodb().getCollection(),casProperties.getAuthn().getMfa().getTrusted().getMongodb().isDropCollection(),mongoMfaTrustedAuthnTemplate());
+  m.setCipherExecutor(this.mfaTrustCipherExecutor);
+  return m;
+}
