@@ -1,0 +1,5 @@
+{
+  final RestMultifactorAuthenticationTrustStorage m=new RestMultifactorAuthenticationTrustStorage(casProperties.getAuthn().getMfa().getTrusted().getRest().getEndpoint());
+  m.setCipherExecutor(this.mfaTrustCipherExecutor);
+  return m;
+}
