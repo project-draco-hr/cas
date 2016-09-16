@@ -18,6 +18,5 @@
     LOGGER.debug("Invoking attribute filter on the final set of attributes");
     return this.registeredServiceAttributeFilter.filter(attributesToRelease);
   }
-  LOGGER.debug("Final collection of attributes allowed are: {}",attributesToRelease);
-  return attributesToRelease;
+  return returnFinalAttributesCollection(attributesToRelease);
 }
