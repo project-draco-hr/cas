@@ -1,0 +1,5 @@
+{
+  final JpaMultifactorAuthenticationTrustStorage m=new JpaMultifactorAuthenticationTrustStorage();
+  m.setCipherExecutor(this.mfaTrustCipherExecutor);
+  return m;
+}

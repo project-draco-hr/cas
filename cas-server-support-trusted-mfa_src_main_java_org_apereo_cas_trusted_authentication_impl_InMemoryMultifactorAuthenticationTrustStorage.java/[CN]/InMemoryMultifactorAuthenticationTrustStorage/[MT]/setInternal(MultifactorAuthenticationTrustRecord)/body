@@ -1,6 +1,0 @@
-{
-  LOGGER.debug("Stored authentication trust record for {}",record);
-  record.setKey(generateKey(record));
-  this.storage.put(record.getKey(),record);
-  return record;
-}

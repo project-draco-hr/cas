@@ -1,0 +1,5 @@
+{
+  logger.debug("Stored authentication trust record for {}",record);
+  record.setKey(generateKey(record));
+  return setInternal(record);
+}

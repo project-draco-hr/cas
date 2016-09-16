@@ -1,0 +1,4 @@
+{
+  this.storage.put(record.getKey(),record);
+  return record;
+}
