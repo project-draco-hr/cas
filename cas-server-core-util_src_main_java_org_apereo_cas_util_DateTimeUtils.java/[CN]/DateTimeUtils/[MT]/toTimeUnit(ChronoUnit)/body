@@ -1,0 +1,23 @@
+{
+  if (tu == null) {
+    return null;
+  }
+switch (tu) {
+case DAYS:
+    return TimeUnit.DAYS;
+case HOURS:
+  return TimeUnit.HOURS;
+case MINUTES:
+return TimeUnit.MINUTES;
+case SECONDS:
+return TimeUnit.SECONDS;
+case MICROS:
+return TimeUnit.MICROSECONDS;
+case MILLIS:
+return TimeUnit.MILLISECONDS;
+case NANOS:
+return TimeUnit.NANOSECONDS;
+default :
+throw new UnsupportedOperationException("Man, use a real temporal unit");
+}
+}

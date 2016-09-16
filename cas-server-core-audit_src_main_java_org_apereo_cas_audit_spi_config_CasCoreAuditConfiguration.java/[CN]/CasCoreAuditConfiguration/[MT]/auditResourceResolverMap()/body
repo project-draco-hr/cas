@@ -9,5 +9,6 @@
   map.put("GRANT_PROXY_TICKET_RESOURCE_RESOLVER",new ServiceResourceResolver());
   map.put("VALIDATE_SERVICE_TICKET_RESOURCE_RESOLVER",this.ticketResourceResolver());
   map.put("SAVE_SERVICE_RESOURCE_RESOLVER",returnValueResourceResolver());
+  map.put("TRUSTED_AUTHENTICATION_RESOURCE_RESOLVER",returnValueResourceResolver());
   return map;
 }

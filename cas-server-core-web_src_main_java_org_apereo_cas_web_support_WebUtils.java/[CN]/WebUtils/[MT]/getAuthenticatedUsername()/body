@@ -12,5 +12,5 @@
       }
     }
   }
-  return UNKNOWN_USER;
+  return PrincipalResolver.UNKNOWN_USER;
 }
