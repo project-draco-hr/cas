@@ -20,5 +20,8 @@
       sBean.setType(AbstractRegisteredServiceAttributeReleasePolicyStrategyBean.Types.MAPPED.toString());
       sBean.setAttributes(attrPolicyAllowed.getAllowedAttributes());
     }
+ else     if (attrPolicy instanceof DenyAllAttributeReleasePolicy) {
+      sBean.setType(AbstractRegisteredServiceAttributeReleasePolicyStrategyBean.Types.DENY.toString());
+    }
   }
 }

@@ -1,0 +1,4 @@
+{
+  LOGGER.debug("Final collection of attributes allowed are: {}",attributesToRelease);
+  return attributesToRelease;
+}

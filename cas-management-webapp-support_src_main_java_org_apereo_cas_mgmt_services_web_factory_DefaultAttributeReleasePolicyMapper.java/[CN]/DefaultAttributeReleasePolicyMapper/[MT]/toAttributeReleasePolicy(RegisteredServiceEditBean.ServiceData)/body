@@ -12,6 +12,9 @@
  else   if (StringUtils.equalsIgnoreCase(policyType,AbstractRegisteredServiceAttributeReleasePolicyStrategyBean.Types.MAPPED.toString())) {
     policy=new ReturnMappedAttributeReleasePolicy((Map)policyBean.getAttributes());
   }
+ else   if (StringUtils.equalsIgnoreCase(policyType,AbstractRegisteredServiceAttributeReleasePolicyStrategyBean.Types.DENY.toString())) {
+    policy=new DenyAllAttributeReleasePolicy();
+  }
  else {
     policy=new ReturnAllowedAttributeReleasePolicy();
   }

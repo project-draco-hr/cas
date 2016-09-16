@@ -1,0 +1,11 @@
+{
+  final DenyAllAttributeReleasePolicy policy=new DenyAllAttributeReleasePolicy();
+  final Principal p=mock(Principal.class);
+  final Map<String,Object> map=new HashMap<>();
+  map.put("ATTR1","value1");
+  map.put("ATTR2","value2");
+  when(p.getAttributes()).thenReturn(map);
+  when(p.getId()).thenReturn("principalId");
+  final Map<String,Object> attr=policy.getAttributes(p);
+  assertEquals(attr.size(),0);
+}
