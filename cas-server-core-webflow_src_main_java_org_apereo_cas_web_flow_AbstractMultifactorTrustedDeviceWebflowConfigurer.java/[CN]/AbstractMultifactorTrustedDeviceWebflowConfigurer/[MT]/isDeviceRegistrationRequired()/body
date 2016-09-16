@@ -1,0 +1,3 @@
+{
+  return "flashScope.".concat(MFA_TRUSTED_AUTHN_SCOPE_ATTR).concat("== null");
+}

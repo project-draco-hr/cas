@@ -6,7 +6,7 @@
   }
   CurrentCredentialsAndAuthentication.bindCurrent(c);
   final String principal=c.getPrincipal().getId();
-  if (!requestContext.getFlashScope().contains(MultifactorAuthenticationVerifyTrustAction.MFA_TRUSTED_AUTHN_SCOPE_ATTR)) {
+  if (!requestContext.getFlashScope().contains(AbstractMultifactorTrustedDeviceWebflowConfigurer.MFA_TRUSTED_AUTHN_SCOPE_ATTR)) {
     LOGGER.debug("Attempt to store trusted authentication record for {}",principal);
     final MultifactorAuthenticationTrustRecord record=MultifactorAuthenticationTrustRecord.newInstance(principal,MultifactorAuthenticationTrustUtils.generateGeography());
     if (requestContext.getRequestParameters().contains(PARAM_NAME_DEVICE_NAME)) {

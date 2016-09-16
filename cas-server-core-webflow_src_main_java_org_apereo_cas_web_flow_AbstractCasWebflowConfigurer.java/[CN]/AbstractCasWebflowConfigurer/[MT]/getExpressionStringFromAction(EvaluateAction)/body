@@ -1,0 +1,5 @@
+{
+  final Field field=ReflectionUtils.findField(act.getClass(),"expression");
+  ReflectionUtils.makeAccessible(field);
+  return (Expression)ReflectionUtils.getField(field,act);
+}
