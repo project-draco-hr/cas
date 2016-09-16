@@ -25,5 +25,8 @@
         attrPolicyBean.setAttrPolicy(RegisteredServiceAttributeReleasePolicyStrategyViewBean.Types.MAPPED.toString());
       }
     }
+ else     if (attrPolicy instanceof DenyAllAttributeReleasePolicy) {
+      attrPolicyBean.setAttrPolicy(RegisteredServiceAttributeReleasePolicyStrategyViewBean.Types.DENY.toString());
+    }
   }
 }
