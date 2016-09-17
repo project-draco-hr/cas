@@ -1,2 +1,10 @@
 {
+  final String url=(!this.endpoint.endsWith("/") ? this.endpoint.concat("/") : this.endpoint).concat(principal);
+  final RestTemplate restTemplate=new RestTemplate();
+  final ResponseEntity<MultifactorAuthenticationTrustRecord[]> responseEntity=restTemplate.getForEntity(url,MultifactorAuthenticationTrustRecord[].class);
+  if (responseEntity.getStatusCode() == HttpStatus.OK) {
+    final MultifactorAuthenticationTrustRecord[] results=responseEntity.getBody();
+    return Sets.newHashSet(results);
+  }
+  return Sets.newHashSet();
 }

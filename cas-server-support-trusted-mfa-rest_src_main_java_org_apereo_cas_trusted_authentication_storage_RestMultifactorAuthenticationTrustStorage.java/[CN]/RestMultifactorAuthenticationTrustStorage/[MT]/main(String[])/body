@@ -1,5 +1,0 @@
-{
-  RestMultifactorAuthenticationTrustStorage r=new RestMultifactorAuthenticationTrustStorage("http://demo5926981.mockable.io/");
-  r.setCipherExecutor(new NoOpCipherExecutor());
-  r.get("casuser");
-}

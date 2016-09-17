@@ -1,7 +1,7 @@
 {
   final RestTemplate restTemplate=new RestTemplate();
-  final Integer status=restTemplate.postForObject(this.endpoint,record,Integer.class);
-  if (status == HttpStatus.OK.value()) {
+  final ResponseEntity<Object> response=restTemplate.postForEntity(this.endpoint,record,Object.class);
+  if (response != null && response.getStatusCode() == HttpStatus.OK) {
     return record;
   }
   return null;
