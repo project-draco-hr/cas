@@ -2,6 +2,13 @@
   logger.info("Loading metadata dynamically for [{}]",service.getName());
   final FunctionDrivenDynamicHTTPMetadataResolver resolver=new FunctionDrivenDynamicHTTPMetadataResolver(this.httpClient.getWrappedHttpClient());
   resolver.setMinCacheDuration(TimeUnit.MILLISECONDS.convert(this.metadataCacheExpirationMinutes,TimeUnit.MINUTES));
+  resolver.setRequireValidMetadata(requireValidMetadata);
+  if (StringUtils.isNotBlank(this.basicAuthnPassword) && StringUtils.isNotBlank(this.basicAuthnUsername)) {
+    resolver.setBasicCredentials(new UsernamePasswordCredentials(this.basicAuthnUsername,this.basicAuthnPassword));
+  }
+  if (!this.supportedContentTypes.isEmpty()) {
+    resolver.setSupportedContentTypes(supportedContentTypes);
+  }
   resolver.setRequestURLBuilder(new Function<String,String>(){
     @Nullable @Override public String apply(    @Nullable final String input){
       try {
