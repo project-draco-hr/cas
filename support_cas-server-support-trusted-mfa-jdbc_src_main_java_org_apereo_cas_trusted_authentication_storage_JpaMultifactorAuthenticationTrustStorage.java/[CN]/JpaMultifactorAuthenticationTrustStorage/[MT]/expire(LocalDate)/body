@@ -1,0 +1,9 @@
+{
+  try {
+    final int count=this.entityManager.createQuery("DELETE FROM " + TABLE_NAME + " r where r.date < :date",MultifactorAuthenticationTrustRecord.class).setParameter("date",onOrBefore).executeUpdate();
+    logger.info("Found and removed {} records",count);
+  }
+ catch (  final NoResultException e) {
+    logger.info("No trusted authentication records could be found");
+  }
+}

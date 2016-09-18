@@ -1,0 +1,6 @@
+{
+  final MultifactorAuthenticationTrustStorageCleaner c=new MultifactorAuthenticationTrustStorageCleaner();
+  c.setTrustedProperties(casProperties.getAuthn().getMfa().getTrusted());
+  c.setStorage(storage);
+  return c;
+}

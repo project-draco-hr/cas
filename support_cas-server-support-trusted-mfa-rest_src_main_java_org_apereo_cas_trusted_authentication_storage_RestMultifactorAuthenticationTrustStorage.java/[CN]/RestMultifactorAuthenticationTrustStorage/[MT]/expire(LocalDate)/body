@@ -1,0 +1,3 @@
+{
+  logger.info("{} does not support expiring trusted authentication records",this.getClass().getSimpleName());
+}
