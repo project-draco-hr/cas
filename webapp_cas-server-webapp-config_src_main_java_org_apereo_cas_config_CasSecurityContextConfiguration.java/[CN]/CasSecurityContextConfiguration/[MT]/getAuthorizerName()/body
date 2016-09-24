@@ -1,0 +1,6 @@
+{
+  if (this.casProperties.getAdminPagesSecurity().getUsers() == null) {
+    return IsAuthenticatedAuthorizer.class.getSimpleName();
+  }
+  return RequireAnyRoleAuthorizer.class.getSimpleName();
+}

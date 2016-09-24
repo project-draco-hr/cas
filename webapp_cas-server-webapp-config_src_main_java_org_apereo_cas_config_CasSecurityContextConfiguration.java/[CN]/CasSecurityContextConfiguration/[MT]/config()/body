@@ -1,14 +1,24 @@
 {
   try {
-    if (StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getLoginUrl()) && StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getService()) && StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getAdminRoles())) {
+    if (StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getLoginUrl()) && StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getService())) {
       final CasConfiguration casConfig=new CasConfiguration(casProperties.getAdminPagesSecurity().getLoginUrl());
       final DirectCasClient client=new DirectCasClient(casConfig);
-      client.setName("CasClient");
-      final Properties properties=new Properties();
-      properties.load(this.casProperties.getAdminPagesSecurity().getUsers().getInputStream());
-      client.setAuthorizationGenerator(new SpringSecurityPropertiesAuthorizationGenerator(properties));
+      client.setName(CAS_CLIENT_NAME);
       final Config cfg=new Config(casProperties.getAdminPagesSecurity().getService(),client);
-      cfg.setAuthorizer(new RequireAnyRoleAuthorizer(org.springframework.util.StringUtils.commaDelimitedListToSet(casProperties.getAdminPagesSecurity().getAdminRoles())));
+      if (this.casProperties.getAdminPagesSecurity().getUsers() == null) {
+        LOGGER.warn("List of authorized users for admin pages security is not defined." + "Allowing access for all authenticated users");
+        client.setAuthorizationGenerator(new DefaultCasAuthorizationGenerator<>());
+        cfg.setAuthorizer(new IsAuthenticatedAuthorizer());
+      }
+ else {
+        final Resource file=ResourceUtils.prepareClasspathResourceIfNeeded(this.casProperties.getAdminPagesSecurity().getUsers());
+        if (file != null && file.exists()) {
+          final Properties properties=new Properties();
+          properties.load(file.getInputStream());
+          client.setAuthorizationGenerator(new SpringSecurityPropertiesAuthorizationGenerator(properties));
+          cfg.setAuthorizer(new RequireAnyRoleAuthorizer(org.springframework.util.StringUtils.commaDelimitedListToSet(casProperties.getAdminPagesSecurity().getAdminRoles())));
+        }
+      }
       return cfg;
     }
   }

@@ -3,12 +3,17 @@
   if (cfg.getClients() == null) {
     return requiresAuthenticationStatusInterceptor();
   }
-  final SecurityInterceptor interceptor=new SecurityInterceptor(cfg,"CasClient","securityHeaders,csrfToken,RequireAnyRoleAuthorizer");
-  interceptor.setSecurityLogic(new DefaultSecurityLogic(){
+  final SecurityInterceptor interceptor=new SecurityInterceptor(cfg,CAS_CLIENT_NAME,"securityHeaders,csrfToken,".concat(getAuthorizerName()));
+  final DefaultSecurityLogic secLogic=new DefaultSecurityLogic(){
     @Override protected HttpAction unauthorized(    final WebContext context,    final List currentClients){
       return HttpAction.forbidden("Access Denied",context);
     }
+    @Override protected boolean loadProfilesFromSession(    final WebContext context,    final List currentClients){
+      return true;
+    }
   }
-);
+;
+  secLogic.setSaveProfileInSession(true);
+  interceptor.setSecurityLogic(secLogic);
   return interceptor;
 }
