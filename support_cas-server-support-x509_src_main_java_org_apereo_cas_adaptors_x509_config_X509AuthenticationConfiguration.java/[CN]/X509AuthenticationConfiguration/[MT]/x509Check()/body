@@ -1,8 +1,7 @@
 {
   final X509CertificateCredentialsNonInteractiveAction a=new X509CertificateCredentialsNonInteractiveAction();
-  a.setAuthenticationSystemSupport(authenticationSystemSupport);
-  a.setCentralAuthenticationService(centralAuthenticationService);
-  a.setPrincipalFactory(x509PrincipalFactory());
-  a.setWarnCookieGenerator(warnCookieGenerator);
+  a.setAdaptiveAuthenticationPolicy(adaptiveAuthenticationPolicy);
+  a.setInitialAuthenticationAttemptWebflowEventResolver(initialAuthenticationAttemptWebflowEventResolver);
+  a.setServiceTicketRequestWebflowEventResolver(serviceTicketRequestWebflowEventResolver);
   return a;
 }

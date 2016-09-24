@@ -1,8 +1,8 @@
 {
   final PrincipalFromRequestRemoteUserNonInteractiveCredentialsAction a=new PrincipalFromRequestRemoteUserNonInteractiveCredentialsAction();
-  a.setAuthenticationSystemSupport(authenticationSystemSupport);
-  a.setCentralAuthenticationService(centralAuthenticationService);
   a.setPrincipalFactory(trustedPrincipalFactory());
-  a.setWarnCookieGenerator(warnCookieGenerator);
+  a.setAdaptiveAuthenticationPolicy(adaptiveAuthenticationPolicy);
+  a.setInitialAuthenticationAttemptWebflowEventResolver(initialAuthenticationAttemptWebflowEventResolver);
+  a.setServiceTicketRequestWebflowEventResolver(serviceTicketRequestWebflowEventResolver);
   return a;
 }

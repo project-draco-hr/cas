@@ -1,3 +1,0 @@
-{
-  WebUtils.putWarnCookieIfRequestParameterPresent(this.warnCookieGenerator,context);
-}

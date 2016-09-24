@@ -1,0 +1,21 @@
+{
+  final Credential credential=WebUtils.getCredential(context);
+  if (credential == null) {
+    logger.debug("No credential was provided. No response header set.");
+    return;
+  }
+  final HttpServletResponse response=WebUtils.getHttpServletResponse(context);
+  final SpnegoCredential spnegoCredentials=(SpnegoCredential)credential;
+  final byte[] nextToken=spnegoCredentials.getNextToken();
+  if (nextToken != null) {
+    logger.debug("Obtained output token: {}",new String(nextToken,Charset.defaultCharset()));
+    response.setHeader(SpnegoConstants.HEADER_AUTHENTICATE,(this.ntlm ? SpnegoConstants.NTLM : SpnegoConstants.NEGOTIATE) + ' ' + EncodingUtils.encodeBase64(nextToken));
+  }
+ else {
+    logger.debug("Unable to obtain the output token required.");
+  }
+  if (spnegoCredentials.getPrincipal() == null && this.send401OnAuthenticationFailure) {
+    logger.debug("Setting HTTP Status to 401");
+    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+  }
+}

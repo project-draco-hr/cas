@@ -1,8 +1,7 @@
 {
   final BasicAuthenticationAction a=new BasicAuthenticationAction();
-  a.setAuthenticationSystemSupport(authenticationSystemSupport);
-  a.setCentralAuthenticationService(centralAuthenticationService);
-  a.setPrincipalFactory(basicPrincipalFactory());
-  a.setWarnCookieGenerator(warnCookieGenerator);
+  a.setAdaptiveAuthenticationPolicy(adaptiveAuthenticationPolicy);
+  a.setInitialAuthenticationAttemptWebflowEventResolver(initialAuthenticationAttemptWebflowEventResolver);
+  a.setServiceTicketRequestWebflowEventResolver(serviceTicketRequestWebflowEventResolver);
   return a;
 }

@@ -1,0 +1,11 @@
+{
+  if (e.getId().equals(CasWebflowConstants.TRANSITION_ID_ERROR)) {
+    onError(ctx);
+  }
+  if (e.getId().equals(CasWebflowConstants.TRANSITION_ID_WARN)) {
+    onWarn(ctx);
+  }
+  if (e.getId().equals(CasWebflowConstants.TRANSITION_ID_SUCCESS)) {
+    onSuccess(ctx);
+  }
+}

@@ -1,29 +1,12 @@
 {
   final String ticketGrantingTicketId=WebUtils.getTicketGrantingTicketId(context);
   final String openidIdentityParameter=context.getRequestParameters().get(OpenIdProtocolConstants.OPENID_IDENTITY);
-  String userName;
-  if (OpenIdProtocolConstants.OPENID_IDENTIFIERSELECT.equals(openidIdentityParameter)) {
-    userName=OpenIdProtocolConstants.OPENID_IDENTIFIERSELECT;
-    context.getFlowScope().remove(OpenIdProtocolConstants.OPENID_LOCALID);
-    if (ticketGrantingTicketId != null) {
-      try {
-        final TicketGrantingTicket tgt=getCentralAuthenticationService().getTicket(ticketGrantingTicketId,TicketGrantingTicket.class);
-        userName=tgt.getAuthentication().getPrincipal().getId();
-      }
- catch (      final InvalidTicketException e) {
-        logger.error("Cannot get ticket granting ticket",e);
-      }
-    }
-  }
- else {
-    userName=this.extractor.extractLocalUsernameFromUri(openidIdentityParameter);
-    context.getFlowScope().put(OpenIdProtocolConstants.OPENID_LOCALID,userName);
-  }
+  final String userName=getOpenIdSelectedIdentifier(context,ticketGrantingTicketId,openidIdentityParameter);
   final Service service=WebUtils.getService(context);
-  if (service instanceof OpenIdService && userName == null) {
+  if (service instanceof OpenIdService && StringUtils.isBlank(userName)) {
     context.getFlowScope().remove(CasProtocolConstants.PARAMETER_SERVICE);
   }
-  if (ticketGrantingTicketId == null || userName == null) {
+  if (StringUtils.isBlank(ticketGrantingTicketId) || StringUtils.isBlank(userName)) {
     return null;
   }
   return new OpenIdCredential(ticketGrantingTicketId,userName);

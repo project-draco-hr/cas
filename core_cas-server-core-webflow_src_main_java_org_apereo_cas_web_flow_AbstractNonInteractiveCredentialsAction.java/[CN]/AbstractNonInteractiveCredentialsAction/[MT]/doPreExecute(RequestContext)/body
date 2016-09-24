@@ -1,0 +1,9 @@
+{
+  final Credential credential=constructCredentialsFromRequest(context);
+  if (credential == null) {
+    logger.warn("No credentials detected. Navigating to error...");
+    return error();
+  }
+  WebUtils.putCredential(context,credential);
+  return super.doPreExecute(context);
+}

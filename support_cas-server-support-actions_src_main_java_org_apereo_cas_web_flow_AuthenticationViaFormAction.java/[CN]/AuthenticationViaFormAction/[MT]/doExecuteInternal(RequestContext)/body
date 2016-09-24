@@ -1,7 +1,0 @@
-{
-  final Event serviceTicketEvent=this.serviceTicketRequestWebflowEventResolver.resolveSingle(requestContext);
-  if (serviceTicketEvent != null) {
-    return serviceTicketEvent;
-  }
-  return super.doExecuteInternal(requestContext);
-}

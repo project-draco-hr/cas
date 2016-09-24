@@ -1,3 +1,0 @@
-{
-  return this.initialAuthenticationAttemptWebflowEventResolver.resolveSingle(requestContext);
-}

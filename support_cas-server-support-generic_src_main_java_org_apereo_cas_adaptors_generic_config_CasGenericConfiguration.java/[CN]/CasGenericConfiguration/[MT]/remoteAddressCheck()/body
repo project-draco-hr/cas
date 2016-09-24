@@ -1,8 +1,7 @@
 {
   final RemoteAddressNonInteractiveCredentialsAction a=new RemoteAddressNonInteractiveCredentialsAction();
-  a.setAuthenticationSystemSupport(authenticationSystemSupport);
-  a.setCentralAuthenticationService(centralAuthenticationService);
-  a.setPrincipalFactory(remoteAddressPrincipalFactory());
-  a.setWarnCookieGenerator(warnCookieGenerator);
+  a.setAdaptiveAuthenticationPolicy(adaptiveAuthenticationPolicy);
+  a.setInitialAuthenticationAttemptWebflowEventResolver(initialAuthenticationAttemptWebflowEventResolver);
+  a.setServiceTicketRequestWebflowEventResolver(serviceTicketRequestWebflowEventResolver);
   return a;
 }

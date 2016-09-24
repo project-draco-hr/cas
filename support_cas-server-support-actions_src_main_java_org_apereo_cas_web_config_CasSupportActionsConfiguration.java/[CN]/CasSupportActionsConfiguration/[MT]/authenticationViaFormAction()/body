@@ -1,5 +1,7 @@
 {
-  final AuthenticationViaFormAction a=new AuthenticationViaFormAction();
+  final AbstractAuthenticationAction a=new AbstractAuthenticationAction(){
+  }
+;
   a.setInitialAuthenticationAttemptWebflowEventResolver(initialAuthenticationAttemptWebflowEventResolver);
   a.setServiceTicketRequestWebflowEventResolver(serviceTicketRequestWebflowEventResolver);
   a.setAdaptiveAuthenticationPolicy(this.adaptiveAuthenticationPolicy);

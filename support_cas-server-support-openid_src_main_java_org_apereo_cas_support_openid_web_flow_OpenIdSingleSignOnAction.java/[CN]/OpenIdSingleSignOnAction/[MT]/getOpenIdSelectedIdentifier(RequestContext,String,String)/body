@@ -1,0 +1,13 @@
+{
+  if (OpenIdProtocolConstants.OPENID_IDENTIFIERSELECT.equals(openidIdentityParameter)) {
+    context.getFlowScope().remove(OpenIdProtocolConstants.OPENID_LOCALID);
+    final Principal p=ticketRegistrySupport.getAuthenticatedPrincipalFrom(ticketGrantingTicketId);
+    if (p != null) {
+      return p.getId();
+    }
+    return OpenIdProtocolConstants.OPENID_IDENTIFIERSELECT;
+  }
+  final String userName=this.extractor.extractLocalUsernameFromUri(openidIdentityParameter);
+  context.getFlowScope().put(OpenIdProtocolConstants.OPENID_LOCALID,userName);
+  return userName;
+}

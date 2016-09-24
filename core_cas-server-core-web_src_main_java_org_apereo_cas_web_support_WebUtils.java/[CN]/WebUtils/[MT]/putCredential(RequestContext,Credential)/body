@@ -1,0 +1,4 @@
+{
+  context.getRequestScope().put(PARAMETER_CREDENTIAL,c);
+  context.getFlowScope().put(PARAMETER_CREDENTIAL,c);
+}
