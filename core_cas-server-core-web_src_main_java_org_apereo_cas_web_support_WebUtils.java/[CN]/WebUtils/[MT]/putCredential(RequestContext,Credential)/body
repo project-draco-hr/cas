@@ -1,4 +1,10 @@
 {
-  context.getRequestScope().put(PARAMETER_CREDENTIAL,c);
-  context.getFlowScope().put(PARAMETER_CREDENTIAL,c);
+  if (c == null) {
+    context.getRequestScope().remove(PARAMETER_CREDENTIAL);
+    context.getFlowScope().remove(PARAMETER_CREDENTIAL);
+  }
+ else {
+    context.getRequestScope().put(PARAMETER_CREDENTIAL,c);
+    context.getFlowScope().put(PARAMETER_CREDENTIAL,c);
+  }
 }

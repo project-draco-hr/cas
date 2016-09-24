@@ -1,0 +1,4 @@
+{
+  WebUtils.putCredential(requestContext,null);
+  return null;
+}
