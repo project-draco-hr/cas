@@ -1,0 +1,10 @@
+{
+  try {
+    final List<MultifactorAuthenticationTrustRecord> results=this.entityManager.createQuery("SELECT r FROM " + TABLE_NAME + " r where r.date >= :date",MultifactorAuthenticationTrustRecord.class).setParameter("date",onOrAfterDate).getResultList();
+    return Sets.newHashSet(results);
+  }
+ catch (  final NoResultException e) {
+    logger.info("No trusted authentication records could be found for {}",onOrAfterDate);
+  }
+  return Sets.newHashSet();
+}

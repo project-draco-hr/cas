@@ -1,0 +1,5 @@
+{
+  final MultifactorAuthenticationTrustController a=new MultifactorAuthenticationTrustController(storage);
+  a.setTrustedProperties(casProperties.getAuthn().getMfa().getTrusted());
+  return a;
+}
