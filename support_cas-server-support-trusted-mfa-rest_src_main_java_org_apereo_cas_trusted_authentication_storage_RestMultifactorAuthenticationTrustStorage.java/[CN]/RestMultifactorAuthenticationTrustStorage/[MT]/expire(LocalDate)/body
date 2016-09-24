@@ -1,3 +1,4 @@
 {
-  logger.info("{} does not support expiring trusted authentication records",this.getClass().getSimpleName());
+  final RestTemplate restTemplate=new RestTemplate();
+  restTemplate.postForEntity(this.endpoint,onOrBefore,Object.class);
 }
