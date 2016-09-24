@@ -1,5 +1,4 @@
 {
-  final byte[] token=consumeByteSourceOrNull(tokenSource);
   if (token == null || token.length < NTLM_TOKEN_MAX_LENGTH) {
     return false;
   }

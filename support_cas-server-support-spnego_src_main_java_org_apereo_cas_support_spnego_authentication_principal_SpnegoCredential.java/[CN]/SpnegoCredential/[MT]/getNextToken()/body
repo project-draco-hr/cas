@@ -1,3 +1,3 @@
 {
-  return consumeByteSourceOrNull(this.nextToken);
+  return this.nextToken;
 }

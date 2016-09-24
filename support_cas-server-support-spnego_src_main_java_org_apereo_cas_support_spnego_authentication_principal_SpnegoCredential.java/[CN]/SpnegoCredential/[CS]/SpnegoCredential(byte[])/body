@@ -1,5 +1,5 @@
 {
   Assert.notNull(initToken,"The initToken cannot be null.");
-  this.initToken=ByteSource.wrap(initToken);
+  this.initToken=consumeByteSourceOrNull(ByteSource.wrap(initToken));
   this.isNtlm=isTokenNtlm(this.initToken);
 }
