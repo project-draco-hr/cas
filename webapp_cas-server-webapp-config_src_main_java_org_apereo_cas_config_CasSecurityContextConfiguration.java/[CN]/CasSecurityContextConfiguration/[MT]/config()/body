@@ -1,7 +1,9 @@
 {
   try {
     if (StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getLoginUrl()) && StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getService()) && StringUtils.isNotBlank(casProperties.getAdminPagesSecurity().getAdminRoles())) {
-      final IndirectClient client=new CasClient(casProperties.getAdminPagesSecurity().getLoginUrl());
+      final CasConfiguration casConfig=new CasConfiguration(casProperties.getAdminPagesSecurity().getLoginUrl());
+      final DirectCasClient client=new DirectCasClient(casConfig);
+      client.setName("CasClient");
       final Properties properties=new Properties();
       properties.load(this.casProperties.getAdminPagesSecurity().getUsers().getInputStream());
       client.setAuthorizationGenerator(new SpringSecurityPropertiesAuthorizationGenerator(properties));
