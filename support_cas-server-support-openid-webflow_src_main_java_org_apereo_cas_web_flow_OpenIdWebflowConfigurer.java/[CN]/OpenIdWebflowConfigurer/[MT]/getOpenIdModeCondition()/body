@@ -1,0 +1,3 @@
+{
+  return "externalContext.requestParameterMap['openid.mode'] ne '' " + "&& externalContext.requestParameterMap['openid.mode'] ne null " + "&& externalContext.requestParameterMap['openid.mode'] ne 'associate'";
+}
