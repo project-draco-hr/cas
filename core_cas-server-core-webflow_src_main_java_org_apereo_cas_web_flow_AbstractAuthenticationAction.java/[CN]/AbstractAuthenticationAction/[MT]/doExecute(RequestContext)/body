@@ -7,9 +7,5 @@
     final AuthenticationException error=new AuthenticationException(msg,map,Collections.emptyMap());
     return new Event(this,CasWebflowConstants.TRANSITION_ID_AUTHENTICATION_FAILURE,new LocalAttributeMap(CasWebflowConstants.TRANSITION_ID_ERROR,error));
   }
-  final Event serviceTicketEvent=this.serviceTicketRequestWebflowEventResolver.resolveSingle(requestContext);
-  if (serviceTicketEvent != null) {
-    return serviceTicketEvent;
-  }
-  return this.initialAuthenticationAttemptWebflowEventResolver.resolveSingle(requestContext);
+  return doExecuteInternal(requestContext);
 }
