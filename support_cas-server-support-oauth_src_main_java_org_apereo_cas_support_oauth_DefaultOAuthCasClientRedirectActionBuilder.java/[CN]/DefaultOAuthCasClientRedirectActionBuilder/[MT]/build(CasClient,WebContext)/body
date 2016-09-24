@@ -1,6 +1,7 @@
 {
   try {
-    final String redirectionUrl=CommonUtils.constructRedirectUrl(casClient.getCasLoginUrl(),CasProtocolConstants.PARAMETER_SERVICE,casClient.computeFinalCallbackUrl(context),casClient.isRenew(),casClient.isGateway());
+    final CasConfiguration casConfiguration=casClient.getConfiguration();
+    final String redirectionUrl=CommonUtils.constructRedirectUrl(casConfiguration.getLoginUrl(),CasProtocolConstants.PARAMETER_SERVICE,casClient.computeFinalCallbackUrl(context),casConfiguration.isRenew(),casConfiguration.isGateway());
     LOGGER.debug("Final redirect url is {}",redirectionUrl);
     return RedirectAction.redirect(redirectionUrl);
   }
