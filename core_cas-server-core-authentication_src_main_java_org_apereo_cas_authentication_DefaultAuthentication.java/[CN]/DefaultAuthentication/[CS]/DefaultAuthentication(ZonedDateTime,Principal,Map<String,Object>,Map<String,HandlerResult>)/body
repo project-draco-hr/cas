@@ -5,7 +5,7 @@
   Assert.notEmpty(successes,"Successes cannot be empty");
   this.authenticationDate=date;
   this.principal=principal;
-  this.attributes=attributes.isEmpty() ? null : attributes;
+  this.attributes=attributes;
   this.successes=successes;
   this.credentials=null;
   this.failures=null;
