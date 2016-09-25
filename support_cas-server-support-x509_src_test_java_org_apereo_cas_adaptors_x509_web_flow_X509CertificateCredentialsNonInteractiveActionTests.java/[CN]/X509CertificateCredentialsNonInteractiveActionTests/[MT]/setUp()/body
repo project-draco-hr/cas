@@ -1,5 +1,0 @@
-{
-  this.action=new X509CertificateCredentialsNonInteractiveAction();
-  final X509CredentialsAuthenticationHandler handler=new X509CredentialsAuthenticationHandler();
-  handler.setTrustedIssuerDnPattern("CN=\\w+,DC=jasig,DC=org");
-}
