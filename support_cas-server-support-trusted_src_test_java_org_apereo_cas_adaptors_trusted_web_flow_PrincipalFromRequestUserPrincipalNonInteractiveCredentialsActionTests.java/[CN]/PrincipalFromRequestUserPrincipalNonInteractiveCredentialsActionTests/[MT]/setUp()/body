@@ -1,4 +1,0 @@
-{
-  this.action=new PrincipalFromRequestUserPrincipalNonInteractiveCredentialsAction();
-  this.action.setPrincipalFactory(new DefaultPrincipalFactory());
-}
