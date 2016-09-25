@@ -18,6 +18,6 @@ return TimeUnit.MILLISECONDS;
 case NANOS:
 return TimeUnit.NANOSECONDS;
 default :
-throw new UnsupportedOperationException("Man, use a real temporal unit");
+throw new UnsupportedOperationException("Temporal unit is not supported");
 }
 }
