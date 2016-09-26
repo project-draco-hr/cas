@@ -1,0 +1,5 @@
+{
+  final LocalDate onOrAfter=LocalDate.now().minus(casProperties.getAuthn().getMfa().getTrusted().getExpiration(),DateTimeUtils.toChronoUnit(casProperties.getAuthn().getMfa().getTrusted().getTimeUnit()));
+  this.mfaTrustEngine.expire(onOrAfter);
+  return this.mfaTrustEngine.get(onOrAfter);
+}
