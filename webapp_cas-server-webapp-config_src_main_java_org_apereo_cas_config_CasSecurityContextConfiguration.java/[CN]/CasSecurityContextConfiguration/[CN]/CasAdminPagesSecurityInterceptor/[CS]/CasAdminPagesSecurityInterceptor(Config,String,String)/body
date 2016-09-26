@@ -1,0 +1,14 @@
+{
+  super(config,clients,authorizers);
+  final DefaultSecurityLogic secLogic=new DefaultSecurityLogic(){
+    @Override protected HttpAction unauthorized(    final WebContext context,    final List currentClients){
+      return HttpAction.forbidden("Access Denied",context);
+    }
+    @Override protected boolean loadProfilesFromSession(    final WebContext context,    final List currentClients){
+      return true;
+    }
+  }
+;
+  secLogic.setSaveProfileInSession(true);
+  setSecurityLogic(secLogic);
+}

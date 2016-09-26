@@ -1,0 +1,10 @@
+{
+  this.manager=manager;
+  this.storage=CacheBuilder.newBuilder().initialCapacity(INITIAL_CACHE_SIZE).maximumSize(MAX_CACHE_SIZE).recordStats().expireAfterWrite(this.expirationDuration,this.expirationTimeUnit).build(new CacheLoader<String,AuditActionContext>(){
+    @Override public AuditActionContext load(    final String s) throws Exception {
+      LOGGER.error("Load operation of the audit cache is not supported.");
+      return null;
+    }
+  }
+);
+}

@@ -2,5 +2,5 @@
   final JdbcAuditTrailManager t=new JdbcAuditTrailManager(inspektrAuditTransactionTemplate());
   t.setCleanupCriteria(auditCleanupCriteria());
   t.setDataSource(inspektrAuditTrailDataSource());
-  return t;
+  return new DefaultDelegatingAuditTrailManager(t);
 }

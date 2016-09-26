@@ -3,5 +3,5 @@
   mgmr.setUseSingleLine(casProperties.getAudit().isUseSingleLine());
   mgmr.setEntrySeparator(casProperties.getAudit().getSinglelineSeparator());
   mgmr.setAuditFormat(casProperties.getAudit().getAuditFormat());
-  return mgmr;
+  return new DefaultDelegatingAuditTrailManager(mgmr);
 }

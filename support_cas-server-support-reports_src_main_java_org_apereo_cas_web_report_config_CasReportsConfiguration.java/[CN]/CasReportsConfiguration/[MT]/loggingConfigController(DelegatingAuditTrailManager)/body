@@ -1,4 +1,5 @@
 {
   final LoggingConfigController c=new LoggingConfigController();
+  c.setAuditTrailManager(auditTrailManager);
   return c;
 }
