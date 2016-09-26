@@ -1,5 +1,2 @@
 {
-  final FlowVariable flowVar=new FlowVariable(id,new BeanFactoryVariableValueFactory(type,applicationContext.getAutowireCapableBeanFactory()));
-  flow.addVariable(flowVar);
-  return flowVar;
 }
