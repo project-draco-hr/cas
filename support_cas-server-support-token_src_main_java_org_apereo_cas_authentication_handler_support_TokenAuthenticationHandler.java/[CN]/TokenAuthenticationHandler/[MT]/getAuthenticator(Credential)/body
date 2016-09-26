@@ -7,9 +7,12 @@
   if (StringUtils.isNotBlank(signingSecret)) {
     if (StringUtils.isBlank(encryptionSecret)) {
       logger.warn("JWT authentication is configured to share a single key for both signing/encryption");
-      return new JwtAuthenticator(signingSecret);
+      return new JwtAuthenticator(Lists.newArrayList(new SecretSignatureConfiguration(signingSecret,JWSAlgorithm.HS256)));
     }
-    return new JwtAuthenticator(signingSecret,encryptionSecret);
+    final JwtAuthenticator a=new JwtAuthenticator();
+    a.setSignatureConfiguration(new SecretSignatureConfiguration(signingSecret,JWSAlgorithm.HS256));
+    a.setEncryptionConfiguration(new SecretEncryptionConfiguration(encryptionSecret,JWEAlgorithm.DIR,EncryptionMethod.A192CBC_HS384));
+    return a;
   }
   logger.warn("No token signing secret is defined for service [{}]. Ensure [{}] property is defined for service",service.getServiceId(),TokenConstants.PROPERTY_NAME_TOKEN_SECRET_SIGNING);
   return null;

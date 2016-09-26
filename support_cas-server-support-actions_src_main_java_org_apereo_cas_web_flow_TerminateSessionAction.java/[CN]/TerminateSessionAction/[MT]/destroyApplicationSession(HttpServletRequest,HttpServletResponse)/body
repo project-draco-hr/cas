@@ -1,0 +1,8 @@
+{
+  LOGGER.debug("Destroying application session");
+  this.applicationLogoutController.applicationLogout(request,response);
+  final HttpSession session=request.getSession();
+  if (session != null) {
+    session.invalidate();
+  }
+}
