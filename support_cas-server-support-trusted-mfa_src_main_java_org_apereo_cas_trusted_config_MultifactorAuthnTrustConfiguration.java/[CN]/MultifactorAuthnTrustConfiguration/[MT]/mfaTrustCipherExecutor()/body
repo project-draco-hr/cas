@@ -2,6 +2,6 @@
   if (casProperties.getAuthn().getMfa().getTrusted().isCipherEnabled()) {
     return new MultifactorAuthenticationTrustCipherExecutor(casProperties.getAuthn().getMfa().getTrusted().getEncryptionKey(),casProperties.getAuthn().getMfa().getTrusted().getSigningKey());
   }
-  LOGGER.info("Multifactor trusted authentication record encryption/signing is turned off and " + "may NOT be safe in a production environment. " + "Consider using other choices to handle encryption, signing and verification of "+ "trusted authentication records for MFA");
+  LOGGER.info("Multifactor trusted authentication record encryption/signing is turned off and " + "MAY NOT be safe in a production environment. " + "Consider using other choices to handle encryption, signing and verification of "+ "trusted authentication records for MFA");
   return new NoOpCipherExecutor();
 }

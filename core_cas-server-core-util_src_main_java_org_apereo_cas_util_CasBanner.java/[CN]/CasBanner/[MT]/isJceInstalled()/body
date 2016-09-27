@@ -1,7 +1,7 @@
 {
   try {
     final int maxKeyLen=Cipher.getMaxAllowedKeyLength("AES");
-    return maxKeyLen < Integer.MAX_VALUE;
+    return maxKeyLen == Integer.MAX_VALUE;
   }
  catch (  final Exception e) {
     return false;
