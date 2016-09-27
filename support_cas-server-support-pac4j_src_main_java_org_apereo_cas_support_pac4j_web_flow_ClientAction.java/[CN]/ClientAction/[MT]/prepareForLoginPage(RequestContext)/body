@@ -18,14 +18,22 @@
       logger.debug("{} -> {}",name,redirectionUrl);
       urls.add(new ProviderLoginPageConfiguration(name,redirectionUrl,name.toLowerCase()));
     }
- catch (    final Exception e) {
+ catch (    final HttpAction e) {
+      if (e.getCode() == HttpStatus.UNAUTHORIZED.value()) {
+        logger.debug("Authentication request was denied from the provider {}",client.getName());
+      }
+ else {
+        logger.warn(e.getMessage(),e);
+      }
+    }
+catch (    final Exception e) {
       logger.error("Cannot process client {}",client,e);
     }
   }
   if (!urls.isEmpty()) {
     context.getFlowScope().put(PAC4J_URLS,urls);
   }
- else {
-    logger.warn("No clients could be determined based on the provided configuration");
+ else   if (response.getStatus() != HttpStatus.UNAUTHORIZED.value()) {
+    logger.info("No clients could be determined based on the provided configuration");
   }
 }

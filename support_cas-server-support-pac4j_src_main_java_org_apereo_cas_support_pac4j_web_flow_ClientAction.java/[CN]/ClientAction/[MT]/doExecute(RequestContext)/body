@@ -11,18 +11,18 @@
     final Credentials credentials;
     try {
       credentials=client.getCredentials(webContext);
-      logger.debug("credentials: {}",credentials);
+      logger.debug("Retrieved credentials: {}",credentials);
     }
  catch (    final Exception e) {
-      logger.debug("requires http action",e);
+      logger.debug("The request requires http action",e);
       response.flushBuffer();
       final ExternalContext externalContext=ExternalContextHolder.getExternalContext();
       externalContext.recordResponseComplete();
-      return new Event(this,"stop");
+      return new Event(this,STOP_WEBFLOW);
     }
     final Service service=(Service)session.getAttribute(CasProtocolConstants.PARAMETER_SERVICE);
     context.getFlowScope().put(CasProtocolConstants.PARAMETER_SERVICE,service);
-    logger.debug("retrieve service: {}",service);
+    logger.debug("Retrieve service: {}",service);
     if (service != null) {
       request.setAttribute(CasProtocolConstants.PARAMETER_SERVICE,service.getId());
     }
@@ -37,5 +37,8 @@
     }
   }
   prepareForLoginPage(context);
+  if (response.getStatus() == HttpStatus.UNAUTHORIZED.value()) {
+    return new Event(this,STOP);
+  }
   return error();
 }

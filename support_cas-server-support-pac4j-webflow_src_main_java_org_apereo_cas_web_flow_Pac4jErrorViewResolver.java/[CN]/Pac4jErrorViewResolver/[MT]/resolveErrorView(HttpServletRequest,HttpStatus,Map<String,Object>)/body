@@ -1,0 +1,13 @@
+{
+  final Map<String,String[]> params=request.getParameterMap();
+  if (params.containsKey("error") && params.containsKey("error_code") && params.containsKey("error_description")) {
+    final Map<String,Object> model=Maps.newHashMap();
+    model.put("code",status.value());
+    model.put("error",request.getParameter("error"));
+    model.put("description",request.getParameter("error_description"));
+    model.put("client",request.getParameter("client_name"));
+    model.putAll(map);
+    return new ModelAndView("casPac4jStopWebflow",model);
+  }
+  return conventionErrorViewResolver.resolveErrorView(request,status,map);
+}
