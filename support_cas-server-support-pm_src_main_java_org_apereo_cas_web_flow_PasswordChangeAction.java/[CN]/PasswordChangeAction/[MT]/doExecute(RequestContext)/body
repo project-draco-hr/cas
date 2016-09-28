@@ -3,7 +3,7 @@
     final UsernamePasswordCredential c=(UsernamePasswordCredential)WebUtils.getCredential(requestContext);
     final PasswordChangeBean bean=requestContext.getFlowScope().get("password",PasswordChangeBean.class);
     if (passwordChangeService.execute(c,bean)) {
-      return new EventFactorySupport().event(this,"passwordUpdateSuccess");
+      return new EventFactorySupport().event(this,PASSWORD_UPDATE_SUCCESS);
     }
   }
  catch (  final Exception e) {
