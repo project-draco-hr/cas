@@ -6,6 +6,7 @@
     model.put("error",request.getParameter("error"));
     model.put("reason",request.getParameter("error_reason"));
     model.put("description",request.getParameter("error_description"));
+    model.put("service",request.getAttribute(CasProtocolConstants.PARAMETER_SERVICE));
     model.put("client",request.getParameter("client_name"));
     model.putAll(map);
     return new ModelAndView("casPac4jStopWebflow",model);
