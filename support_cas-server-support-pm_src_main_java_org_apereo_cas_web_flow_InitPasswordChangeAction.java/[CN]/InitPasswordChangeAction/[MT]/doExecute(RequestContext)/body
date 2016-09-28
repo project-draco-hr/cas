@@ -1,3 +1,4 @@
 {
+  requestContext.getFlowScope().put("policyPattern",casProperties.getAuthn().getPm().getPolicyPattern());
   return null;
 }
