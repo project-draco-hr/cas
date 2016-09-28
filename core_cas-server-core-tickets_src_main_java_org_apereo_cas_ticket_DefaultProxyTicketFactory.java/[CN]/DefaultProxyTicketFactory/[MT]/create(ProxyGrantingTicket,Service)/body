@@ -6,7 +6,12 @@
     generator=this.defaultTicketIdGenerator;
     logger.debug("Ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
   }
-  final String ticketId=generator.getNewTicketId(ProxyTicket.PROXY_TICKET_PREFIX);
+  String ticketId=generator.getNewTicketId(ProxyTicket.PROXY_TICKET_PREFIX);
+  if (this.cipherExecutor != null) {
+    logger.debug("Attempting to encode proxy ticket {}",ticketId);
+    ticketId=this.cipherExecutor.encode(ticketId);
+    logger.debug("Encoded proxy ticket id {}",ticketId);
+  }
   final ProxyTicket serviceTicket=proxyGrantingTicket.grantProxyTicket(ticketId,service,this.proxyTicketExpirationPolicy,casProperties.getTicket().getTgt().isOnlyTrackMostRecentSession());
   return (T)serviceTicket;
 }

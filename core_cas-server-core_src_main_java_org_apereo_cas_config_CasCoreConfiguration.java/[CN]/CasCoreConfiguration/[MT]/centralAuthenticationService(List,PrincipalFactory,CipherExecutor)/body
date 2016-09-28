@@ -7,5 +7,6 @@
   impl.setValidationServiceSelectionStrategies(validationServiceSelectionStrategies);
   impl.setServiceContextAuthenticationPolicyFactory(authenticationPolicyFactory());
   impl.setPrincipalFactory(principalFactory);
+  impl.setCipherExecutor(cipherExecutor);
   return impl;
 }

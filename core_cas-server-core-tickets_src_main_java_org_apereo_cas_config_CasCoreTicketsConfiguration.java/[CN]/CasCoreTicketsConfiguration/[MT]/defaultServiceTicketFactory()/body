@@ -3,5 +3,6 @@
   f.setServiceTicketExpirationPolicy(serviceTicketExpirationPolicy());
   f.setUniqueTicketIdGeneratorsForService(uniqueIdGeneratorsMap());
   f.setTrackMostRecentSession(casProperties.getTicket().getTgt().isOnlyTrackMostRecentSession());
+  f.setCipherExecutor(protocolTicketCipherExecutor());
   return f;
 }

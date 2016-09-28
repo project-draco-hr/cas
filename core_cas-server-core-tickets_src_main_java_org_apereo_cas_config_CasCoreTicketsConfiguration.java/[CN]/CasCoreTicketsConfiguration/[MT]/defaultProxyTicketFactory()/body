@@ -2,5 +2,6 @@
   final DefaultProxyTicketFactory f=new DefaultProxyTicketFactory();
   f.setProxyTicketExpirationPolicy(proxyTicketExpirationPolicy());
   f.setUniqueTicketIdGeneratorsForService(uniqueIdGeneratorsMap());
+  f.setCipherExecutor(protocolTicketCipherExecutor());
   return f;
 }

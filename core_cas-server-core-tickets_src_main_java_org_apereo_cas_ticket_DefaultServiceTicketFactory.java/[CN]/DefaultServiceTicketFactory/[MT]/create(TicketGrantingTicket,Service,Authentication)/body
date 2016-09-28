@@ -9,7 +9,12 @@
     serviceTicketUniqueTicketIdGenerator=this.defaultServiceTicketIdGenerator;
     logger.debug("Service ticket id generator not found for [{}]. Using the default generator...",uniqueTicketIdGenKey);
   }
-  final String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX);
+  String ticketId=serviceTicketUniqueTicketIdGenerator.getNewTicketId(ServiceTicket.PREFIX);
+  if (this.cipherExecutor != null) {
+    logger.debug("Attempting to encode service ticket {}",ticketId);
+    ticketId=this.cipherExecutor.encode(ticketId);
+    logger.debug("Encoded service ticket id {}",ticketId);
+  }
   final ServiceTicket serviceTicket=ticketGrantingTicket.grantServiceTicket(ticketId,service,this.serviceTicketExpirationPolicy,currentAuthentication,trackMostRecentSession);
   return (T)serviceTicket;
 }
