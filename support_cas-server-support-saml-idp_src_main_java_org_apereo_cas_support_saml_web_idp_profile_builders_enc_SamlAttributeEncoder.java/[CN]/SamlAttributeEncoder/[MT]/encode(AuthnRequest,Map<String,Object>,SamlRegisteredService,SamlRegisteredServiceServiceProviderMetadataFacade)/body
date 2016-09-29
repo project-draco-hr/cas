@@ -1,0 +1,5 @@
+{
+  final Map<String,Object> finalAttributes=Maps.newHashMap(attributes);
+  transformUniformResourceNames(finalAttributes);
+  return finalAttributes;
+}

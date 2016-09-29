@@ -1,5 +1,6 @@
 {
   final SamlProfileSamlAttributeStatementBuilder b=new SamlProfileSamlAttributeStatementBuilder();
+  b.setSamlAttributeEncoder(new SamlAttributeEncoder());
   b.setConfigBean(openSamlConfigBean);
   return b;
 }

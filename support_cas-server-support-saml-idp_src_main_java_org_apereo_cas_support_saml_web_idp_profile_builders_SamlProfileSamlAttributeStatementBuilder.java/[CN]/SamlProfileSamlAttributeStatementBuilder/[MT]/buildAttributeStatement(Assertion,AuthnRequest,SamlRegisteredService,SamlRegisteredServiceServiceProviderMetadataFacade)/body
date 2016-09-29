@@ -1,0 +1,6 @@
+{
+  final Map<String,Object> attributes=new HashMap<>(assertion.getAttributes());
+  attributes.putAll(assertion.getPrincipal().getAttributes());
+  final Map<String,Object> encodedAttrs=this.samlAttributeEncoder.encode(authnRequest,attributes,service,adaptor);
+  return newAttributeStatement(encodedAttrs,casProperties.getAuthn().getSamlIdp().getResponse().isUseAttributeFriendlyName());
+}

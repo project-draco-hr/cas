@@ -1,0 +1,4 @@
+AuthnRequest authnRequest
+Map<String,Object> attributes
+SamlRegisteredService service
+SamlRegisteredServiceServiceProviderMetadataFacade adaptor
