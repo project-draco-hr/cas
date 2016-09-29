@@ -1,3 +1,6 @@
 {
-  return this.eventRepository.load();
+  if (this.eventRepository != null) {
+    return this.eventRepository.load();
+  }
+  return Sets.newHashSet();
 }
