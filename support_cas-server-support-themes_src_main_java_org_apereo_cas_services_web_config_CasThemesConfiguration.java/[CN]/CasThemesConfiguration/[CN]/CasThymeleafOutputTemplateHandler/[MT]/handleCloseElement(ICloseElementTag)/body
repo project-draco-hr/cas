@@ -1,0 +1,4 @@
+{
+  super.handleCloseElement(tag);
+  writeWhitespace=true;
+}

@@ -1,0 +1,4 @@
+{
+  super.handleOpenElement(openElementTag);
+  writeWhitespace=true;
+}

@@ -1,0 +1,10 @@
+{
+  final String contentString=text.getText();
+  if (!contentString.isEmpty() && contentString.trim().isEmpty()) {
+    if (!writeWhitespace) {
+      return;
+    }
+    writeWhitespace=false;
+  }
+  super.handleText(text);
+}
