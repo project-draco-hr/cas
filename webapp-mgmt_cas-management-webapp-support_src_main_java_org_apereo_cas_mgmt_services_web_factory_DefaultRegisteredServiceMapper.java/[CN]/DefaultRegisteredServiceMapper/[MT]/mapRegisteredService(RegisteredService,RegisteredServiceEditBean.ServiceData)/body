@@ -64,9 +64,9 @@ pBean.setAlgorithm(key.getAlgorithm());
 pBean.setLocation(key.getLocation());
 }
 final Map<String,RegisteredServiceProperty> props=svc.getProperties();
-final Map<String,Set<String>> beanProps=bean.getProps();
-for (final Map.Entry<String,RegisteredServiceProperty> stringRegisteredServicePropertyEntry : props.entrySet()) {
-final Set<String> set=stringRegisteredServicePropertyEntry.getValue().getValues();
-beanProps.put(stringRegisteredServicePropertyEntry.getKey(),set);
+final Set<RegisteredServiceEditBean.ServiceData.PropertyBean> beanProps=bean.getProperties();
+for (final Map.Entry<String,RegisteredServiceProperty> p : props.entrySet()) {
+final String set=org.springframework.util.StringUtils.collectionToCommaDelimitedString(p.getValue().getValues());
+beanProps.add(new RegisteredServiceEditBean.ServiceData.PropertyBean(p.getKey(),set));
 }
 }

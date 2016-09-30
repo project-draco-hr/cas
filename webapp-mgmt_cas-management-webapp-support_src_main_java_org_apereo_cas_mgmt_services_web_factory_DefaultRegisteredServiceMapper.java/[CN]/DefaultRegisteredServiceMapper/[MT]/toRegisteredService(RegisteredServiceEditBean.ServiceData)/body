@@ -66,11 +66,11 @@
     if (publicKey != null && publicKey.isValid()) {
       regSvc.setPublicKey(new RegisteredServicePublicKeyImpl(publicKey.getLocation(),publicKey.getAlgorithm()));
     }
-    final Map<String,Set<String>> props=data.getProps();
-    for (    final Map.Entry<String,Set<String>> stringSetEntry : props.entrySet()) {
+    final Set<RegisteredServiceEditBean.ServiceData.PropertyBean> props=data.getProperties();
+    for (    final RegisteredServiceEditBean.ServiceData.PropertyBean str : props) {
       final DefaultRegisteredServiceProperty value=new DefaultRegisteredServiceProperty();
-      value.setValues(stringSetEntry.getValue());
-      regSvc.getProperties().put(stringSetEntry.getKey(),value);
+      value.setValues(org.springframework.util.StringUtils.commaDelimitedListToSet(str.getValue()));
+      regSvc.getProperties().put(str.getName(),value);
     }
     return regSvc;
   }
