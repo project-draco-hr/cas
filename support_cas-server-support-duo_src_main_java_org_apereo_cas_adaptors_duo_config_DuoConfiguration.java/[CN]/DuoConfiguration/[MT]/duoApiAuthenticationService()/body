@@ -1,0 +1,4 @@
+{
+  final DuoApiAuthenticationService s=new DuoApiAuthenticationService();
+  return s;
+}

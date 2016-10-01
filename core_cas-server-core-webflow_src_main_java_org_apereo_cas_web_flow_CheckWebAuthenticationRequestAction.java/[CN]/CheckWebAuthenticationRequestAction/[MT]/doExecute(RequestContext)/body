@@ -1,0 +1,7 @@
+{
+  final HttpServletRequest request=WebUtils.getHttpServletRequest(context);
+  if (this.contentType.equalsIgnoreCase(request.getContentType())) {
+    return new EventFactorySupport().no(this);
+  }
+  return new EventFactorySupport().yes(this);
+}

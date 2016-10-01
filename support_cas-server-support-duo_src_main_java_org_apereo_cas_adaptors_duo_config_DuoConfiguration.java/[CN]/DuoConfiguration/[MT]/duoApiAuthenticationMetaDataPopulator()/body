@@ -1,0 +1,7 @@
+{
+  final DuoApiAuthenticationMetaDataPopulator pop=new DuoApiAuthenticationMetaDataPopulator();
+  pop.setAuthenticationContextAttribute(casProperties.getAuthn().getMfa().getAuthenticationContextAttribute());
+  pop.setAuthenticationHandler(duoApiAuthenticationHandler());
+  pop.setProvider(duoAuthenticationProvider());
+  return pop;
+}

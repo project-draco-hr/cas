@@ -1,0 +1,8 @@
+{
+  final DuoApiCredential c=DuoApiCredential.class.cast(credential);
+  if (this.duoApiAuthenticationService.authenticate(c)) {
+    final Principal principal=c.getAuthentication().getPrincipal();
+    return createHandlerResult(credential,principal,new ArrayList<>());
+  }
+  throw new FailedLoginException("Duo authentication has failed");
+}

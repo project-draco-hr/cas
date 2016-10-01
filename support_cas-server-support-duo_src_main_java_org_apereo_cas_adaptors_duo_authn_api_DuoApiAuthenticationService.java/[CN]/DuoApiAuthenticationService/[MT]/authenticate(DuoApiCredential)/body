@@ -1,0 +1,19 @@
+{
+  try {
+    final Principal p=credential.getAuthentication().getPrincipal();
+    final Http request=new Http(HttpMethod.POST.name(),casProperties.getAuthn().getMfa().getDuo().getDuoApiHost(),"/auth/v" + API_VERSION + "/auth");
+    request.addParam("username",p.getId());
+    request.addParam("factor","auto");
+    request.addParam("device","auto");
+    request.signRequest(casProperties.getAuthn().getMfa().getDuo().getDuoIntegrationKey(),casProperties.getAuthn().getMfa().getDuo().getDuoSecretKey(),API_VERSION);
+    final JSONObject result=(JSONObject)request.executeRequest();
+    logger.debug("Duo authentication response: {}",result);
+    if ("allow".equalsIgnoreCase(result.getString("result"))) {
+      return true;
+    }
+  }
+ catch (  final Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+  return false;
+}

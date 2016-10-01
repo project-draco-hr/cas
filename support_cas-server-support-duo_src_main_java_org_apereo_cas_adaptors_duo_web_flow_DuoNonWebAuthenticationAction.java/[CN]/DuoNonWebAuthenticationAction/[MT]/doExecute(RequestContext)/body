@@ -1,0 +1,5 @@
+{
+  final DuoApiCredential c=new DuoApiCredential(WebUtils.getAuthentication(requestContext));
+  WebUtils.putCredential(requestContext,c);
+  return success();
+}

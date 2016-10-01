@@ -1,0 +1,4 @@
+{
+  final DuoNonWebAuthenticationAction a=new DuoNonWebAuthenticationAction();
+  return a;
+}
